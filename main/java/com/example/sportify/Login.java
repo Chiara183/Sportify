@@ -47,4 +47,8 @@ public class Login extends Application{
 			System.out.println("Please enter valid username and password");
 		}
 	}
+
+	public static void main(String[] args) {
+		launch();
+	}
 }
