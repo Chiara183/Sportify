@@ -1,9 +1,6 @@
-package main.java; /**
- * @author Matteo
- *
- */
+package com.example.sportify;
 
-//import required classes and packages  
+import required classes and packages
 import javax.swing.*;
 import java.lang.Exception;
 
@@ -13,7 +10,7 @@ class GenerateLogin {
 	//main() method start
 	public static void main(String[] args) {
 		  
-        try {  
+        try {
             //create instance of the CreateLoginForm  
             Login form = new Login();  
             form.setSize(300,100);  				//set size of the frame  
@@ -24,7 +21,7 @@ class GenerateLogin {
         {     
             //handle exception   
             JOptionPane.showMessageDialog(null, e.getMessage());  
-        }  
+        }
 
 	}
 

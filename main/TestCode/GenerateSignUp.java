@@ -1,18 +1,14 @@
-package main.java;
+package com.example.sportify;
 
 import javax.swing.*;
 import java.lang.Exception;
 
-/**
- * @author Chiara
- *
- */
 public class GenerateSignUp {
 
 	//main() method start
 	public static void main(String[] args) {
 		  
-        try {  
+        try {
             //create instance of the CreateLoginForm  
             SignUpUser form = new SignUpUser();  
             form.setSize(500,500);  				//set size of the frame  
@@ -23,7 +19,7 @@ public class GenerateSignUp {
         {     
             //handle exception   
             JOptionPane.showMessageDialog(null, e.getMessage());  
-        }  
+        }
 
 	}
 

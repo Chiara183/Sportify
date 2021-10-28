@@ -2,16 +2,9 @@ package main.java;
 
 import java.util.*;
 import java.io.*;
-/**
- * @author Chiara
- *
- */
+
 public class ReadFile {
 
-	/**
-	 * @param args
-	 * @throws FileNotFoundException 
-	 */
 	public static void main(String[] args){
 		FileReader reader = null;
 		try {

@@ -1,26 +1,26 @@
-package main.java;
+package com.example.sportify;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.*;
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
 
-/**
- * @author Chiara
- *
- */
-public class SignUpUser extends JFrame implements ActionListener {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4321511332795726851L;
-	/**
-	 * 
-	 */
-	
-	//initialize button, panel, label, and text field 
-	JButton b1;
+public class SignUpUser extends Application {
+	@Override
+	//initialize button, panel, label, and text field
+	public void start(Stage stage) throws IOException {
+		//initialize button, panel, label, and text field
+		FXMLLoader fxmlLoader = new FXMLLoader(com.example.sportify.Login.class.getResource("SignUp.fxml"));
+		Scene sceneSignUp = new Scene(fxmlLoader.load(), 780, 438);
+		stage.setTitle("SIGN UP FORM");
+		stage.setScene(sceneSignUp);
+		stage.setResizable(false);
+		stage.show();
+	}
+	/*JButton b1;
 	JPanel newPanel;
 	JLabel userLabel, passLabel, firstNameLabel, lastNameLabel;
 	final JTextField textField1, textField2, textField3, textField4;
@@ -104,5 +104,9 @@ public class SignUpUser extends JFrame implements ActionListener {
 			//show error message
 			System.out.println("Please fill the requested fields");
 		}
+	}*/
+
+	public static void main(String[] args) {
+		launch();
 	}
 }
