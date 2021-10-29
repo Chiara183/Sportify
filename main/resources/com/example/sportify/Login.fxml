@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.Login">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.Co">
   <ImageView fitHeight="458.0" fitWidth="780.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
     <Image url="@Sfondo.jpg" />
   </ImageView>
@@ -43,11 +44,13 @@
     <Button fx:id="submit" mnemonicParsing="false" onAction="#submitAction" text="Submit">
        <VBox.margin>
           <Insets bottom="10.0" />
-       </VBox.margin></Button>
+       </VBox.margin>
+      </Button>
     <Button fx:id="signUp" layoutX="117.0" layoutY="272.0" mnemonicParsing="false" onAction="#signUpAction" text="Sign Up">
        <VBox.margin>
           <Insets bottom="10.0" />
-       </VBox.margin></Button>
+       </VBox.margin>
+      </Button>
     <Button fx:id="skip" mnemonicParsing="false" text="Skip" />
   </VBox>
 </Pane>
