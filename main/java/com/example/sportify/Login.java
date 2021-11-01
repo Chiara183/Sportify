@@ -1,12 +1,14 @@
 package com.example.sportify;
 
 //import required classes and packages
+
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Login extends Application{
 
