@@ -9,6 +9,7 @@ module com.example.sportify {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires javafx.graphics;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;
