@@ -1,4 +1,4 @@
-package com.example.home;
+package com.example.sportify;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
