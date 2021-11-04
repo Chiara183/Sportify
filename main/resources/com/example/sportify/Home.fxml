@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -23,7 +24,6 @@
             </ImageView>
          </children>
       </VBox>
-      <Button fx:id="signIn1" mnemonicParsing="false" onAction="#signAction" prefHeight="76.0" prefWidth="141.0" text="Button" visible="false" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="175.0" layoutY="263.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
       <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="419.0" layoutY="263.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="308.0" layoutY="375.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
@@ -42,6 +42,10 @@
             <Font name="Comic Sans MS" size="24.0" />
          </font>
       </Text>
+      <Button fx:id="signIn1" layoutX="419.0" layoutY="262.0" mnemonicParsing="false" onAction="#signAction" opacity="0.0" prefHeight="74.0" prefWidth="141.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
    <effect>
       <ColorAdjust contrast="0.05" />

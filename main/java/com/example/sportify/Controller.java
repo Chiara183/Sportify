@@ -49,15 +49,24 @@ public class Controller implements Initializable {
             stage.setTitle("SIGN UP FORM");
             stage.setScene(sceneSignUp);
             stage.show();
-        } else if(event.getSource()==signIn || event.getSource()==signIn1){
+        } else if(event.getSource()==signIn){
             stage = (Stage) signIn.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             Scene sceneSignUp = new Scene(root, 780, 438);
             stage.setTitle("LOGIN FORM");
             stage.setScene(sceneSignUp);
             stage.setResizable(false);
-            stage.show();            stage.setResizable(false);
-
+            stage.show();
+            stage.setResizable(false);
+        } else if(event.getSource()==signIn1){
+            stage = (Stage) signIn1.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            Scene sceneSignUp = new Scene(root, 780, 438);
+            stage.setTitle("LOGIN FORM");
+            stage.setScene(sceneSignUp);
+            stage.setResizable(false);
+            stage.show();
+            stage.setResizable(false);
         }
     }
 
