@@ -19,7 +19,7 @@ public class Controller implements Initializable {
     private TextField username, password, firstName, lastName;
 
     @FXML
-    private Button signUp, submitLogin, submitSignUp, skipLogin, skipSignUp, signIn;
+    private Button signUp, submitLogin, submitSignUp, skipLogin, skipSignUp, signIn, signIn1;
 
     @FXML
     protected void submitAction() {
@@ -48,16 +48,16 @@ public class Controller implements Initializable {
             Scene sceneSignUp = new Scene(root, 814, 456);
             stage.setTitle("SIGN UP FORM");
             stage.setScene(sceneSignUp);
-            stage.setResizable(false);
             stage.show();
-        } else if(event.getSource()==signIn){
+        } else if(event.getSource()==signIn || event.getSource()==signIn1){
             stage = (Stage) signIn.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             Scene sceneSignUp = new Scene(root, 780, 438);
             stage.setTitle("LOGIN FORM");
             stage.setScene(sceneSignUp);
             stage.setResizable(false);
-            stage.show();
+            stage.show();            stage.setResizable(false);
+
         }
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -17,13 +18,14 @@
          <children>
             <ImageView fitHeight="240.0" fitWidth="378.0">
                <image>
-                  <Image url="@Sportify%20logo.png" />
+                  <Image url="@Sportify logo.png" />
                </image>
             </ImageView>
          </children>
       </VBox>
+      <Button fx:id="signIn1" mnemonicParsing="false" onAction="#signAction" prefHeight="76.0" prefWidth="141.0" text="Button" visible="false" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="175.0" layoutY="263.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="419.0" layoutY="263.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
+      <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="419.0" layoutY="263.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="308.0" layoutY="375.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
       <Text fontSmoothingType="LCD" layoutX="457.0" layoutY="309.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
          <font>
