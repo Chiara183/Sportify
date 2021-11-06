@@ -14,12 +14,12 @@ public class Home extends Application{
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
 
-        //LoginScene
-        Scene sceneLogin = new Scene(root, 757, 536);
+        //HomeScene
+        Scene sceneHome = new Scene(root, 757, 536);
 
         //set stage
-        stage.setTitle("LOGIN FORM");
-        stage.setScene(sceneLogin);
+        stage.setTitle("HOME FORM");
+        stage.setScene(sceneHome);
         stage.setResizable(false);
         stage.show();
     }

@@ -15,11 +15,14 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+    Stage stage;
+    Parent root;
+
     @FXML
     private TextField username, password, firstName, lastName;
 
     @FXML
-    private Button signUp, submitLogin, submitSignUp, skipLogin, skipSignUp, signIn, signIn1;
+    private Button signUp, submitLogin, submitSignUp, skipLogin, skipSignUp, signIn, home;
 
     @FXML
     protected void submitAction() {
@@ -40,33 +43,47 @@ public class Controller implements Initializable {
 
     @FXML
     private void signAction(ActionEvent event) throws Exception{
-        Stage stage;
-        Parent root;
         if(event.getSource()==signUp) {
             stage = (Stage) signUp.getScene().getWindow();
+
+            //SignUpScene
             root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
             Scene sceneSignUp = new Scene(root, 814, 456);
+
+            //set stage
             stage.setTitle("SIGN UP FORM");
             stage.setScene(sceneSignUp);
             stage.show();
         } else if(event.getSource()==signIn){
             stage = (Stage) signIn.getScene().getWindow();
+
+            //LoginScene
             root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             Scene sceneSignUp = new Scene(root, 780, 438);
+
+            //set stage
             stage.setTitle("LOGIN FORM");
             stage.setScene(sceneSignUp);
             stage.setResizable(false);
             stage.show();
             stage.setResizable(false);
-        } else if(event.getSource()==signIn1){
-            stage = (Stage) signIn1.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            Scene sceneSignUp = new Scene(root, 780, 438);
-            stage.setTitle("LOGIN FORM");
-            stage.setScene(sceneSignUp);
+        }
+    }
+
+    @FXML
+    private void homeAction(ActionEvent event) throws Exception{
+        if(event.getSource()==home) {
+            stage = (Stage) home.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+
+            //HomeScene
+            Scene sceneHome = new Scene(root, 757, 536);
+
+            //set stage
+            stage.setTitle("HOME FORM");
+            stage.setScene(sceneHome);
             stage.setResizable(false);
             stage.show();
-            stage.setResizable(false);
         }
     }
 

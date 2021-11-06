@@ -42,7 +42,7 @@
             <Font name="Comic Sans MS" size="24.0" />
          </font>
       </Text>
-      <Button fx:id="signIn1" layoutX="419.0" layoutY="262.0" mnemonicParsing="false" onAction="#signAction" opacity="0.0" prefHeight="74.0" prefWidth="141.0" text="Button">
+      <Button fx:id="signIn" layoutX="419.0" layoutY="262.0" mnemonicParsing="false" onAction="#signAction" opacity="0.0" prefHeight="74.0" prefWidth="141.0" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
