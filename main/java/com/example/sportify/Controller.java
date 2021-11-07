@@ -91,11 +91,11 @@ public class Controller implements Initializable {
 
             //LoginScene
             root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            Scene sceneSignUp = new Scene(root, 780, 438);
+            Scene sceneSignIn = new Scene(root, 780, 438);
 
             //set stage
             stage.setTitle("LOGIN FORM");
-            stage.setScene(sceneSignUp);
+            stage.setScene(sceneSignIn);
             stage.setResizable(false);
             stage.show();
             stage.setResizable(false);

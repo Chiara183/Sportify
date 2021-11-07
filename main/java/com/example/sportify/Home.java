@@ -15,7 +15,7 @@ public class Home extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
 
         //HomeScene
-        Scene sceneHome = new Scene(root, 882, 464);
+        Scene sceneHome = new Scene(root, 882, 500);
 
         //set stage
         stage.setTitle("HOME FORM");
