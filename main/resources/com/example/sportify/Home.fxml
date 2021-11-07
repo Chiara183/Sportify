@@ -8,44 +8,50 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.Controller">
    <children>
-      <ImageView fitHeight="536.0" fitWidth="757.0">
+      <ImageView fitHeight="464.0" fitWidth="882.0">
          <image>
             <Image url="@sport_-diversi_.jpg" />
          </image>
       </ImageView>
-      <VBox layoutX="187.0" layoutY="-27.0" prefHeight="263.0" prefWidth="408.0">
-         <children>
-            <ImageView fitHeight="240.0" fitWidth="378.0">
-               <image>
-                  <Image url="@Sportify logo.png" />
-               </image>
-            </ImageView>
-         </children>
-      </VBox>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="175.0" layoutY="263.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
-      <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="419.0" layoutY="263.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="308.0" layoutY="375.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
-      <Text fontSmoothingType="LCD" layoutX="457.0" layoutY="309.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
+      <ImageView fitHeight="240.0" fitWidth="378.0" layoutX="252.0">
+         <image>
+            <Image url="@Sportify logo.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="200.0" layoutY="263.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
+      <Text fontSmoothingType="LCD" layoutX="212.0" layoutY="309.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Sport quiz">
          <font>
             <Font name="Comic Sans MS" size="24.0" />
          </font>
       </Text>
-      <Text fontSmoothingType="LCD" layoutX="326.0" layoutY="422.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Find gym">
+      <Button fx:id="sportQuiz" layoutX="200.0" layoutY="263.0" mnemonicParsing="false" onAction="#sportQuizAction" opacity="0.0" prefHeight="74.0" prefWidth="141.0" text="Sport quiz">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="541.0" layoutY="263.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
+      <Text fontSmoothingType="LCD" layoutX="579.0" layoutY="309.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
          <font>
             <Font name="Comic Sans MS" size="24.0" />
          </font>
       </Text>
-      <Text fontSmoothingType="LCD" layoutX="187.0" layoutY="309.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Sport quiz">
-         <font>
-            <Font name="Comic Sans MS" size="24.0" />
-         </font>
-      </Text>
-      <Button fx:id="signIn" layoutX="419.0" layoutY="262.0" mnemonicParsing="false" onAction="#signAction" opacity="0.0" prefHeight="74.0" prefWidth="141.0" text="Button">
+      <Button fx:id="signIn" layoutX="541.0" layoutY="263.0" mnemonicParsing="false" onAction="#signAction" opacity="0.0" prefHeight="74.0" prefWidth="141.0" text="Log in">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="370.0" layoutY="375.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0" width="141.0" />
+      <Text fontSmoothingType="LCD" layoutX="388.0" layoutY="422.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Find gym">
+         <font>
+            <Font name="Comic Sans MS" size="24.0" />
+         </font>
+      </Text>
+      <Button fx:id="findGym" layoutX="370.0" layoutY="375.0" mnemonicParsing="false" onAction="#findGymAction" opacity="0.0" prefHeight="74.0" prefWidth="141.0" text="Find gym">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
    <effect>
       <ColorAdjust contrast="0.05" />

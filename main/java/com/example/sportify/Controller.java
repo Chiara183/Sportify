@@ -23,7 +23,7 @@ public class Controller implements Initializable {
     private TextField username, password, firstName, lastName;
 
     @FXML
-    private Button signUp, submitLogin, submitSignUp, skipLogin, skipSignUp, signIn, home;
+    private Button signUp, submitLogin, submitSignUp, skipLogin, skipSignUp, signIn, home, sportQuiz, findGym;
 
     @FXML
     protected void submitActionLogin() {
@@ -47,16 +47,30 @@ public class Controller implements Initializable {
 
         String userValue = username.getText(); 								//get user entered username from the textField1
         String passValue = password.getText(); 								//get user entered password from the textField2
+        String nameValue = firstName.getText(); 							//get user entered firstName from the textField3
+        String lastNameValue = lastName.getText(); 							//get user entered lastName from the textField4
 
         //check whether the credentials are authentic or not
         JFrame jFrame = new JFrame();
-        if ( !userValue.equals("") && !passValue.equals("") && !firstName.equals("") && !lastName.equals("")){	//if authentic, navigate user to a new page
-            JOptionPane.showMessageDialog(jFrame, "Thank you for your registration!");
+        if ( !userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")){	//if authentic, navigate user to a new page
+            JOptionPane.showMessageDialog(jFrame, "You're registered with:\n" + "\nFirstname: " + nameValue + "\nLastname: " + lastNameValue + "\n Username: " + userValue + "\nPassword: " + passValue + "\n\nThank you for your registration!");
         }
         else{
             //show error message
             JOptionPane.showMessageDialog(jFrame, "Please enter all value.");
         }
+    }
+
+    @FXML
+    protected void sportQuizAction() {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "You're in sport quiz form!");
+    }
+
+    @FXML
+    protected void findGymAction() {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "You try to find a Gym!");
     }
 
     @FXML
@@ -95,7 +109,7 @@ public class Controller implements Initializable {
             root = FXMLLoader.load(getClass().getResource("Home.fxml"));
 
             //HomeScene
-            Scene sceneHome = new Scene(root, 757, 536);
+            Scene sceneHome = new Scene(root, 882, 464);
 
             //set stage
             stage.setTitle("HOME FORM");
