@@ -9,11 +9,8 @@
 <?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.Controller">
-   <children>
       <ImageView fitHeight="500.0" fitWidth="882.0">
-         <image>
             <Image url="@sport_-diversi_.jpg" />
-         </image>
       </ImageView>
       <ImageView fitHeight="240.0" fitWidth="378.0" layoutX="252.0">
          <image>
@@ -52,7 +49,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-   </children>
    <effect>
       <ColorAdjust contrast="0.05" />
    </effect>

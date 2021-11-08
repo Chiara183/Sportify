@@ -24,7 +24,6 @@
           <RowConstraints maxHeight="277.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="170.0" minHeight="5.0" prefHeight="71.0" vgrow="SOMETIMES" />
         </rowConstraints>
-         <children>
           <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <Image url="@Sportify logo.png" />
           </ImageView>
@@ -82,7 +81,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-         </children>
       </GridPane>
   </VBox>
 </Pane>
