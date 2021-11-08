@@ -23,7 +23,7 @@ public class Controller implements Initializable {
     private TextField username, password, firstName, lastName;
 
     @FXML
-    private Button signUp, submitLogin, submitSignUp, skipLogin, skipSignUp, signIn, home, sportQuiz, findGym;
+    private Button signUp, signIn, home, submitLogin, submitSignUp, skipLogin, skipSignUp, sportQuiz, findGym;
 
     @FXML
     protected void submitActionLogin() {
