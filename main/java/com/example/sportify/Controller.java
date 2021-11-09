@@ -20,10 +20,21 @@ public class Controller implements Initializable {
     Parent root;
 
     @FXML
-    private TextField username, password, firstName, lastName;
+    private TextField username;
+    private TextField password;
+    private TextField firstName;
+    private TextField lastName;
 
     @FXML
-    private Button signUp, signIn, home, submitLogin, submitSignUp, skipLogin, skipSignUp, sportQuiz, findGym;
+    private Button signUp;
+    private Button signIn;
+    private Button home;
+    private Button submitLogin;
+    private Button submitSignUp;
+    private Button skipLogin;
+    private Button skipSignUp;
+    private Button sportQuiz;
+    private Button findGym;
 
     @FXML
     protected void submitActionLogin() {
