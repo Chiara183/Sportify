@@ -9,12 +9,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Login extends Application{
 
 	@Override
 	public void start(Stage stage) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+		Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
 
 		//LoginScene
 		Scene sceneLogin = new Scene(root, 780, 438);

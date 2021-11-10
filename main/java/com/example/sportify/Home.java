@@ -7,12 +7,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Home extends Application{
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
 
         //HomeScene
         Scene sceneHome = new Scene(root, 882, 500);

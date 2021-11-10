@@ -1,6 +1,6 @@
 package com.example.sportify;
 
-import required classes and packages
+//import required classes and packages
 import javax.swing.*;
 import java.lang.Exception;
 

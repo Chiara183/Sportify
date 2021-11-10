@@ -1,4 +1,4 @@
-package main.java;
+package com.example.sportify;
 
 import java.util.*;
 import java.io.*;

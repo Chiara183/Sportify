@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javax.swing.*;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -19,22 +20,35 @@ public class Controller implements Initializable {
     Stage stage;
     Parent root;
 
+    //TextField
     @FXML
     private TextField username;
+    @FXML
     private TextField password;
+    @FXML
     private TextField firstName;
+    @FXML
     private TextField lastName;
 
+    //Button
     @FXML
     private Button signUp;
+    @FXML
     private Button signIn;
+    @FXML
     private Button home;
+    /*@FXML
     private Button submitLogin;
+    @FXML
     private Button submitSignUp;
+    @FXML
     private Button skipLogin;
+    @FXML
     private Button skipSignUp;
+    @FXML
     private Button sportQuiz;
-    private Button findGym;
+    @FXML
+    private Button findGym;*/
 
     @FXML
     protected void submitActionLogin() {
@@ -90,7 +104,7 @@ public class Controller implements Initializable {
             stage = (Stage) signUp.getScene().getWindow();
 
             //SignUpScene
-            root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SignUp.fxml")));
             Scene sceneSignUp = new Scene(root, 814, 456);
 
             //set stage
@@ -101,7 +115,7 @@ public class Controller implements Initializable {
             stage = (Stage) signIn.getScene().getWindow();
 
             //LoginScene
-            root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
             Scene sceneSignIn = new Scene(root, 780, 438);
 
             //set stage
@@ -117,7 +131,7 @@ public class Controller implements Initializable {
     private void homeAction(ActionEvent event) throws Exception{
         if(event.getSource()==home) {
             stage = (Stage) home.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
 
             //HomeScene
             Scene sceneHome = new Scene(root, 882, 464);
