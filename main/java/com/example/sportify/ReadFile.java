@@ -13,6 +13,7 @@ public class ReadFile {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		assert reader != null;
 		Scanner input = new Scanner(reader);
 		while(input.hasNextLine())
 		{
