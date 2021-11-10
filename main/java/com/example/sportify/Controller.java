@@ -1,6 +1,5 @@
 package com.example.sportify;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,9 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javax.swing.*;
 
+import javax.swing.*;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -19,6 +20,7 @@ public class Controller implements Initializable {
 
     Stage stage;
     Parent root;
+    HashMap<String, String[]> account = new HashMap<String, String[]>();
 
     //TextField
     @FXML
@@ -58,27 +60,44 @@ public class Controller implements Initializable {
 
         //check whether the credentials are authentic or not
         JFrame jFrame = new JFrame();
-        if (userValue.equals("test1@gmail.com") && passValue.equals("test")){	//if authentic, navigate user to a new page
+        if (!account.isEmpty() && account.containsKey(userValue) && userValue.equals(account.get(userValue)[0]) && passValue.equals(account.get(userValue)[1])) {    //if authentic, navigate user to a new page
             JOptionPane.showMessageDialog(jFrame, "Correct!");
-        }
-        else{
+        } else {
+            if (!account.isEmpty()) {
+                System.out.println("HashMap is Empty");
+            } else {
+                System.out.println("HashMap not find a key\n" + Arrays.toString(account.values().toArray()));
+            }
             //show error message
-            JOptionPane.showMessageDialog(jFrame, "Please enter valid username and password");
+            JOptionPane.showMessageDialog(jFrame, "Please enter valid username and password or Signup");
         }
     }
 
     @FXML
-    protected void submitActionSignUp() {
+    protected void submitActionSignUp() throws Exception {
 
-        String userValue = username.getText(); 								//get user entered username from the textField1
-        String passValue = password.getText(); 								//get user entered password from the textField2
-        String nameValue = firstName.getText(); 							//get user entered firstName from the textField3
-        String lastNameValue = lastName.getText(); 							//get user entered lastName from the textField4
+        String userValue = username.getText();                                //get user entered username from the textField1
+        String passValue = password.getText();                                //get user entered password from the textField2
+        String nameValue = firstName.getText();                            //get user entered firstName from the textField3
+        String lastNameValue = lastName.getText();                            //get user entered lastName from the textField4
 
         //check whether the credentials are authentic or not
         JFrame jFrame = new JFrame();
-        if ( !userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")){	//if authentic, navigate user to a new page
-            JOptionPane.showMessageDialog(jFrame, "You're registered with:\n" + "\nFirstname: " + nameValue + "\nLastname: " + lastNameValue + "\n Username: " + userValue + "\nPassword: " + passValue + "\n\nThank you for your registration!");
+        if (!userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")) {    //if authentic, navigate user to a new page
+            String[] userAccount = new String[4];
+            userAccount[0] = userValue;
+            userAccount[1] = passValue;
+            userAccount[2] = nameValue;
+            userAccount[3] = lastNameValue;
+            account.put(userValue, userAccount);
+            JOptionPane.showMessageDialog(jFrame,
+                    "You're registered with:\n" +
+                            "\nFirstname: " + nameValue +
+                            "\nLastname: " + lastNameValue +
+                            "\n Username: " + userValue +
+                            "\nPassword: " + passValue +
+                            "\n\nThank you for your registration!");
+            signLoginAction();
         }
         else{
             //show error message
@@ -99,49 +118,48 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void signAction(ActionEvent event) throws Exception{
-        if(event.getSource()==signUp) {
-            stage = (Stage) signUp.getScene().getWindow();
+    private void signSignUpAction() throws Exception {
+        stage = (Stage) signUp.getScene().getWindow();
 
-            //SignUpScene
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SignUp.fxml")));
-            Scene sceneSignUp = new Scene(root, 814, 456);
+        //SignUpScene
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SignUp.fxml")));
+        Scene sceneSignUp = new Scene(root, 814, 456);
 
-            //set stage
-            stage.setTitle("SIGN UP FORM");
-            stage.setScene(sceneSignUp);
-            stage.show();
-        } else if(event.getSource()==signIn){
-            stage = (Stage) signIn.getScene().getWindow();
-
-            //LoginScene
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
-            Scene sceneSignIn = new Scene(root, 780, 438);
-
-            //set stage
-            stage.setTitle("LOGIN FORM");
-            stage.setScene(sceneSignIn);
-            stage.setResizable(false);
-            stage.show();
-            stage.setResizable(false);
-        }
+        //set stage
+        stage.setTitle("SIGN UP FORM");
+        stage.setScene(sceneSignUp);
+        stage.show();
     }
 
     @FXML
-    private void homeAction(ActionEvent event) throws Exception{
-        if(event.getSource()==home) {
-            stage = (Stage) home.getScene().getWindow();
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
+    private void signLoginAction() throws Exception {
+        stage = (Stage) signIn.getScene().getWindow();
 
-            //HomeScene
-            Scene sceneHome = new Scene(root, 882, 464);
+        //LoginScene
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
+        Scene sceneSignIn = new Scene(root, 780, 438);
 
-            //set stage
-            stage.setTitle("HOME FORM");
-            stage.setScene(sceneHome);
-            stage.setResizable(false);
-            stage.show();
-        }
+        //set stage
+        stage.setTitle("LOGIN FORM");
+        stage.setScene(sceneSignIn);
+        stage.setResizable(false);
+        stage.show();
+        stage.setResizable(false);
+    }
+
+    @FXML
+    private void homeAction() throws Exception {
+        stage = (Stage) home.getScene().getWindow();
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
+
+        //HomeScene
+        Scene sceneHome = new Scene(root, 882, 464);
+
+        //set stage
+        stage.setTitle("HOME FORM");
+        stage.setScene(sceneHome);
+        stage.setResizable(false);
+        stage.show();
     }
 
     @Override
