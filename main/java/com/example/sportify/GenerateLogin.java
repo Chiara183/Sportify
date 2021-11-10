@@ -1,8 +1,8 @@
 package com.example.sportify;
 
 //import required classes and packages
+
 import javax.swing.*;
-import java.lang.Exception;
 
 
 class GenerateLogin {
@@ -12,9 +12,9 @@ class GenerateLogin {
 		  
         try {
             //create instance of the CreateLoginForm  
-            Login form = new Login();  
+            /*Login form = new Login();
             form.setSize(300,100);  				//set size of the frame  
-            form.setVisible(true);  				//make form visible to the user  
+            form.setVisible(true);*/                //make form visible to the user
         } 
         
         catch(Exception e)  

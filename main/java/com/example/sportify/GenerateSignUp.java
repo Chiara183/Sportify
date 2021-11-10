@@ -10,9 +10,9 @@ public class GenerateSignUp {
 		  
         try {
             //create instance of the CreateLoginForm  
-            SignUpUser form = new SignUpUser();  
+            /*SignUpUser form = new SignUpUser();
             form.setSize(500,500);  				//set size of the frame  
-            form.setVisible(true);  				//make form visible to the user  
+            form.setVisible(true);*/                //make form visible to the user
         } 
         
         catch(Exception e)  

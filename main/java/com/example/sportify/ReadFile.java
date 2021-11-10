@@ -1,7 +1,9 @@
 package com.example.sportify;
 
-import java.util.*;
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class ReadFile {
 
@@ -18,7 +20,7 @@ public class ReadFile {
 		while(input.hasNextLine())
 		{
 			String line = input.nextLine();
-			logger.log(line);
+			//logger.log(line);
 		}
 		try {
 			reader.close();
