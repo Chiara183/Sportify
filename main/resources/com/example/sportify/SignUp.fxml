@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.Controller">
   <ImageView fitHeight="475.0" fitWidth="814.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
@@ -67,6 +68,9 @@
                      <Cursor fx:constant="TEXT" />
                   </cursor></TextField>
           </GridPane>
+          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="200.0" layoutY="263.0"
+                     stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0"
+                     width="141.0"/>
           <Button fx:id="submitSignUp" mnemonicParsing="false" onAction="#submitActionSignUp" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <cursor>
                   <Cursor fx:constant="HAND" />

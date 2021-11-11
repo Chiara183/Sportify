@@ -138,7 +138,7 @@ public class Controller implements Initializable {
 
         //LoginScene
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
-        Scene sceneSignIn = new Scene(root, 780, 438);
+        Scene sceneSignIn = new Scene(root, 780, 437);
 
         //set stage
         stage.setTitle("LOGIN FORM");
@@ -154,7 +154,7 @@ public class Controller implements Initializable {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
 
         //HomeScene
-        Scene sceneHome = new Scene(root, 882, 464);
+        Scene sceneHome = new Scene(root, 780, 437);
 
         //set stage
         stage.setTitle("HOME FORM");
