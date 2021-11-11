@@ -195,23 +195,23 @@ public class Controller implements Initializable {
     @FXML
     private void darkColor(MouseEvent event) {
         if (event.getSource() == signUp) {
-            signUp.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            signUp.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == signIn) {
-            signIn.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            signIn.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == home) {
-            home.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            home.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == submitLogin) {
-            submitLogin.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            submitLogin.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == submitSignUp) {
-            submitSignUp.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            submitSignUp.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == skipSignUp) {
-            skipSignUp.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            skipSignUp.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == skipLogin) {
-            skipLogin.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            skipLogin.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == sportQuiz) {
-            sportQuiz.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            sportQuiz.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == findGym) {
-            findGym.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            findGym.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         }
     }
 
