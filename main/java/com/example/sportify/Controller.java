@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import java.awt.*;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -53,10 +52,6 @@ public class Controller implements Initializable {
     private Button sportQuiz;
     @FXML
     private Button findGym;
-
-    //Rectangle
-    @FXML
-    private Rectangle SportQuizHome;
 
     @FXML
     protected void submitActionLogin() {

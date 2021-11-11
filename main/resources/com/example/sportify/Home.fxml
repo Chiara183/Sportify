@@ -14,9 +14,7 @@
         <Image url="@sport_-diversi_.jpg"/>
     </ImageView>
     <ImageView fitHeight="240.0" fitWidth="378.0" layoutX="201.0">
-        <image>
             <Image url="@Sportify logo.png"/>
-        </image>
     </ImageView>
     <Button fx:id="sportQuiz" ellipsisString="" layoutX="166.0" layoutY="243.0" mnemonicParsing="false"
             onAction="#sportQuizAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="78.0"

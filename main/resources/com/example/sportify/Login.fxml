@@ -84,7 +84,8 @@
                     <Font name="Comic Sans MS" size="17.0"/>
                 </font>
             </Button>
-            <Button fx:id="submit" mnemonicParsing="false" onAction="#submitActionLogin" onMouseEntered="#lightColor"
+            <Button fx:id="submitLogin" mnemonicParsing="false" onAction="#submitActionLogin"
+                    onMouseEntered="#lightColor"
                     onMouseExited="#darkColor" prefHeight="54.0" prefWidth="95.0"
                     style="-fx-background-color: #2571b9; -fx-border-width: 4px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
                     text="Submit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
@@ -95,7 +96,7 @@
                     <Font name="Comic Sans MS" size="17.0"/>
                 </font>
             </Button>
-            <Button fx:id="skip" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor"
+            <Button fx:id="skipLogin" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor"
                     prefHeight="53.0" prefWidth="92.0"
                     style="-fx-background-color: #2571b9; -fx-border-width: 4px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
                     text="Skip" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
