@@ -20,49 +20,67 @@
         </image>
     </ImageView>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="166.0" layoutY="243.0"
-               stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0"
-               width="141.0"/>
+               onMouseEntered="#lightColor" opacity="0.0" stroke="#000000" strokeLineCap="ROUND" strokeLineJoin="ROUND"
+               strokeType="OUTSIDE" strokeWidth="5.0" width="141.0"/>
     <Text fontSmoothingType="LCD" layoutX="178.0" layoutY="289.0" strokeLineCap="ROUND" strokeType="OUTSIDE"
           strokeWidth="0.0" text="Sport quiz">
         <font>
             <Font name="Comic Sans MS" size="24.0"/>
         </font>
     </Text>
-    <Button fx:id="sportQuiz" layoutX="166.0" layoutY="243.0" mnemonicParsing="false" onAction="#sportQuizAction"
-            opacity="0.0" prefHeight="74.0" prefWidth="141.0" text="Sport quiz">
+    <Button fx:id="sportQuiz" ellipsisString="" layoutX="166.0" layoutY="243.0" mnemonicParsing="false"
+            onAction="#sportQuizAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="78.0"
+            prefWidth="145.0"
+            style="-fx-background-color: #1e90ff; -fx-border-width: 4px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
+            text="Sport quiz" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
         <cursor>
             <Cursor fx:constant="HAND"/>
         </cursor>
+        <font>
+            <Font name="Comic Sans MS" size="22.0"/>
+        </font>
     </Button>
     <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="507.0"
-               layoutY="243.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE"
-               strokeWidth="5.0" width="141.0"/>
+               layoutY="243.0" opacity="0.0" stroke="#000000" strokeLineCap="ROUND" strokeLineJoin="ROUND"
+               strokeType="OUTSIDE" strokeWidth="5.0" width="141.0"/>
     <Text fontSmoothingType="LCD" layoutX="545.0" layoutY="289.0" strokeLineCap="ROUND" strokeType="OUTSIDE"
           strokeWidth="0.0" text="Log in">
         <font>
             <Font name="Comic Sans MS" size="24.0"/>
         </font>
     </Text>
-    <Button fx:id="signIn" layoutX="507.0" layoutY="243.0" mnemonicParsing="false" onAction="#signLoginAction"
-            opacity="0.0" prefHeight="74.0" prefWidth="141.0" text="Log in">
+    <Button fx:id="signIn" ellipsisString="" layoutX="507.0" layoutY="243.0" mnemonicParsing="false"
+            onAction="#signLoginAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="74.0"
+            prefWidth="141.0"
+            style="-fx-background-color: #1e90ff; -fx-border-width: 4px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
+            text="Log in">
         <cursor>
             <Cursor fx:constant="HAND"/>
         </cursor>
+        <font>
+            <Font name="Comic Sans MS" size="22.0"/>
+        </font>
     </Button>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="336.0" layoutY="345.0"
-               stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="5.0"
-               width="141.0"/>
+               opacity="0.0" stroke="#000000" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE"
+               strokeWidth="5.0" width="141.0"/>
     <Text fontSmoothingType="LCD" layoutX="354.0" layoutY="392.0" strokeLineCap="ROUND" strokeType="OUTSIDE"
           strokeWidth="0.0" text="Find gym">
         <font>
             <Font name="Comic Sans MS" size="24.0"/>
         </font>
     </Text>
-    <Button fx:id="findGym" layoutX="336.0" layoutY="345.0" mnemonicParsing="false" onAction="#findGymAction"
-            opacity="0.0" prefHeight="74.0" prefWidth="141.0" text="Find gym">
+    <Button fx:id="findGym" ellipsisString="" layoutX="336.0" layoutY="345.0" mnemonicParsing="false"
+            onAction="#findGymAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="74.0"
+            prefWidth="141.0"
+            style="-fx-background-color: #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;"
+            text="Find gym">
         <cursor>
             <Cursor fx:constant="HAND"/>
         </cursor>
+        <font>
+            <Font name="Comic Sans MS" size="22.0"/>
+        </font>
     </Button>
     <effect>
       <ColorAdjust contrast="0.05" />

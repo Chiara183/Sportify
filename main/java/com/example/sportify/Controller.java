@@ -7,9 +7,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,7 +41,7 @@ public class Controller implements Initializable {
     private Button signIn;
     @FXML
     private Button home;
-    /*@FXML
+    @FXML
     private Button submitLogin;
     @FXML
     private Button submitSignUp;
@@ -50,13 +52,17 @@ public class Controller implements Initializable {
     @FXML
     private Button sportQuiz;
     @FXML
-    private Button findGym;*/
+    private Button findGym;
+
+    //Rectangle
+    @FXML
+    private Rectangle SportQuizHome;
 
     @FXML
     protected void submitActionLogin() {
 
-        String userValue = username.getText(); 								//get user entered username from the textField1
-        String passValue = password.getText(); 								//get user entered password from the textField2
+        String userValue = username.getText();                                //get user entered username from the textField1
+        String passValue = password.getText();                                //get user entered password from the textField2
 
         //check whether the credentials are authentic or not
         JFrame jFrame = new JFrame();
@@ -161,6 +167,52 @@ public class Controller implements Initializable {
         stage.setScene(sceneHome);
         stage.setResizable(false);
         stage.show();
+    }
+
+    @FXML
+    private void lightColor(MouseEvent event) {
+        if (event.getSource() == signUp) {
+            signUp.setStyle("-fx-background-color:  #479eff;");
+        } else if (event.getSource() == signIn) {
+            signIn.setStyle("-fx-background-color: #479eff;");
+        } else if (event.getSource() == home) {
+            home.setStyle("-fx-background-color: #479eff;");
+        } else if (event.getSource() == submitLogin) {
+            submitLogin.setStyle("-fx-background-color: #479eff;");
+        } else if (event.getSource() == submitSignUp) {
+            submitSignUp.setStyle("-fx-background-color: #479eff;");
+        } else if (event.getSource() == skipSignUp) {
+            skipSignUp.setStyle("-fx-background-color: #479eff;");
+        } else if (event.getSource() == skipLogin) {
+            skipLogin.setStyle("-fx-background-color: #479eff;");
+        } else if (event.getSource() == sportQuiz) {
+            sportQuiz.setStyle("-fx-background-color: #479eff;");
+        } else if (event.getSource() == findGym) {
+            findGym.setStyle("-fx-background-color: #479eff;");
+        }
+    }
+
+    @FXML
+    private void darkColor(MouseEvent event) {
+        if (event.getSource() == signUp) {
+            signUp.setStyle("-fx-background-color:  #1e90ff;");
+        } else if (event.getSource() == signIn) {
+            signIn.setStyle("-fx-background-color:  #1e90ff;");
+        } else if (event.getSource() == home) {
+            home.setStyle("-fx-background-color:  #1e90ff;");
+        } else if (event.getSource() == submitLogin) {
+            submitLogin.setStyle("-fx-background-color:  #1e90ff;");
+        } else if (event.getSource() == submitSignUp) {
+            submitSignUp.setStyle("-fx-background-color:  #1e90ff;");
+        } else if (event.getSource() == skipSignUp) {
+            skipSignUp.setStyle("-fx-background-color:  #1e90ff;");
+        } else if (event.getSource() == skipLogin) {
+            skipLogin.setStyle("-fx-background-color:  #1e90ff;");
+        } else if (event.getSource() == sportQuiz) {
+            sportQuiz.setStyle("-fx-background-color:  #1e90ff;");
+        } else if (event.getSource() == findGym) {
+            findGym.setStyle("-fx-background-color:  #1e90ff;");
+        }
     }
 
     @Override
