@@ -172,46 +172,46 @@ public class Controller implements Initializable {
     @FXML
     private void lightColor(MouseEvent event) {
         if (event.getSource() == signUp) {
-            signUp.setStyle("-fx-background-color:  #479eff;");
+            signUp.setStyle("-fx-background-color:  #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == signIn) {
-            signIn.setStyle("-fx-background-color: #479eff;");
+            signIn.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == home) {
-            home.setStyle("-fx-background-color: #479eff;");
+            home.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == submitLogin) {
-            submitLogin.setStyle("-fx-background-color: #479eff;");
+            submitLogin.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == submitSignUp) {
-            submitSignUp.setStyle("-fx-background-color: #479eff;");
+            submitSignUp.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == skipSignUp) {
-            skipSignUp.setStyle("-fx-background-color: #479eff;");
+            skipSignUp.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == skipLogin) {
-            skipLogin.setStyle("-fx-background-color: #479eff;");
+            skipLogin.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == sportQuiz) {
-            sportQuiz.setStyle("-fx-background-color: #479eff;");
+            sportQuiz.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == findGym) {
-            findGym.setStyle("-fx-background-color: #479eff;");
+            findGym.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         }
     }
 
     @FXML
     private void darkColor(MouseEvent event) {
         if (event.getSource() == signUp) {
-            signUp.setStyle("-fx-background-color:  #1e90ff;");
+            signUp.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == signIn) {
-            signIn.setStyle("-fx-background-color:  #1e90ff;");
+            signIn.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == home) {
-            home.setStyle("-fx-background-color:  #1e90ff;");
+            home.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == submitLogin) {
-            submitLogin.setStyle("-fx-background-color:  #1e90ff;");
+            submitLogin.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == submitSignUp) {
-            submitSignUp.setStyle("-fx-background-color:  #1e90ff;");
+            submitSignUp.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == skipSignUp) {
-            skipSignUp.setStyle("-fx-background-color:  #1e90ff;");
+            skipSignUp.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == skipLogin) {
-            skipLogin.setStyle("-fx-background-color:  #1e90ff;");
+            skipLogin.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == sportQuiz) {
-            sportQuiz.setStyle("-fx-background-color:  #1e90ff;");
+            sportQuiz.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == findGym) {
-            findGym.setStyle("-fx-background-color:  #1e90ff;");
+            findGym.setStyle("-fx-background-color:  #1e90ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 4px; -fx-border-color: #000000; -fx-background-size: 2px;");
         }
     }
 
