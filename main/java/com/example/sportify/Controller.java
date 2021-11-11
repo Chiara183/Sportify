@@ -20,7 +20,7 @@ public class Controller implements Initializable {
 
     Stage stage;
     Parent root;
-    HashMap<String, String[]> account = new HashMap<String, String[]>();
+    HashMap<String, String[]> account = new HashMap<>();
 
     //TextField
     @FXML
@@ -90,6 +90,7 @@ public class Controller implements Initializable {
             userAccount[2] = nameValue;
             userAccount[3] = lastNameValue;
             account.put(userValue, userAccount);
+            System.out.println("HashMap not find a key\n" + Arrays.toString(account.values().toArray()));
             JOptionPane.showMessageDialog(jFrame,
                     "You're registered with:\n" +
                             "\nFirstname: " + nameValue +
