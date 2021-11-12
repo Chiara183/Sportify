@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -52,6 +53,13 @@ public class Controller implements Initializable {
     private Button sportQuiz;
     @FXML
     private Button findGym;
+
+    //CheckBox
+    @FXML
+    CheckBox gymTick;
+    @FXML
+    CheckBox userTick;
+
 
     @FXML
     protected void submitActionLogin() {
@@ -207,6 +215,15 @@ public class Controller implements Initializable {
             sportQuiz.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == findGym) {
             findGym.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+        }
+    }
+
+    @FXML
+    private void tickAction(javafx.event.ActionEvent event) {
+        if (event.getSource() == gymTick) {
+            userTick.setSelected(false);
+        } else if (event.getSource() == userTick) {
+            gymTick.setSelected(false);
         }
     }
 
