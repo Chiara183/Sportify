@@ -33,8 +33,7 @@
             </rowConstraints>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1"
                   GridPane.rowIndex="3">
-                <CheckBox fx:id="gymTick" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                          onAction="#tickAction" text="Gym">
+                <CheckBox fx:id="gymTick" alignment="CENTER" onAction="#tickAction" text="Gym">
                     <Cursor fx:constant="HAND"/>
                     <padding>
                         <Insets right="20.0"/>
@@ -43,8 +42,7 @@
                         <Font name="Comic Sans MS" size="16.0"/>
                     </font>
                 </CheckBox>
-                <CheckBox fx:id="userTick" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                          onAction="#tickAction" selected="true" text="User">
+                <CheckBox fx:id="userTick" alignment="CENTER" onAction="#tickAction" selected="true" text="User">
                     <cursor>
                         <Cursor fx:constant="HAND"/>
                     </cursor>
@@ -118,8 +116,7 @@
                 </TextField>
           </GridPane>
             <Button fx:id="submitSignUp" mnemonicParsing="false" onAction="#submitActionSignUp"
-                    onKeyPressed="#submitActionSignUp" onMouseEntered="#lightColor" onMouseExited="#darkColor"
-                    prefHeight="51.0" prefWidth="86.0"
+                    onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="51.0" prefWidth="86.0"
                     style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
                     text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="4">
                 <cursor>
