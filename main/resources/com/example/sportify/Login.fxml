@@ -110,9 +110,9 @@
                     mnemonicParsing="false" onAction="#homeAction" onMouseEntered="#lightColor"
                     onMouseExited="#darkColor" prefHeight="52.0" prefWidth="52.0"
                     style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
-                    text="🏠" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER">
+                    text="🏠" textAlignment="CENTER" wrapText="true" GridPane.halignment="LEFT">
                 <GridPane.margin>
-                    <Insets/>
+                    <Insets left="30.0"/>
                 </GridPane.margin>
                 <font>
                     <Font name="Comic Sans MS Bold" size="18.0"/>

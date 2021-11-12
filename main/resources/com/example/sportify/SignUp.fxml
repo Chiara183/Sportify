@@ -124,12 +124,12 @@
                     onAction="#homeAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="46.0"
                     prefWidth="48.0"
                     style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
-                    text="🏠" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER">
+                    text="🏠" textAlignment="CENTER" wrapText="true" GridPane.halignment="LEFT">
                 <cursor>
                     <Cursor fx:constant="HAND"/>
                 </cursor>
                 <GridPane.margin>
-                    <Insets left="10.0"/>
+                    <Insets left="40.0"/>
                 </GridPane.margin>
                 <font>
                     <Font name="Comic Sans MS" size="16.0"/>
