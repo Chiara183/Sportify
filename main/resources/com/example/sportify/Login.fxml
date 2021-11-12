@@ -75,7 +75,7 @@
             </GridPane>
             <Button fx:id="signUp" mnemonicParsing="false" onAction="#signSignUpAction" onMouseEntered="#lightColor"
                     onMouseExited="#darkColor" prefHeight="54.0" prefWidth="95.0"
-                    style="-fx-background-color: #2571b9; -fx-border-width: 4px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
+                    style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
                     text="Sign Up" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                 <cursor>
                     <Cursor fx:constant="HAND"/>
@@ -85,9 +85,8 @@
                 </font>
             </Button>
             <Button fx:id="submitLogin" mnemonicParsing="false" onAction="#submitActionLogin"
-                    onMouseEntered="#lightColor"
-                    onMouseExited="#darkColor" prefHeight="54.0" prefWidth="95.0"
-                    style="-fx-background-color: #2571b9; -fx-border-width: 4px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
+                    onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="54.0" prefWidth="95.0"
+                    style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
                     text="Submit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                 <cursor>
                     <Cursor fx:constant="HAND"/>
@@ -98,7 +97,7 @@
             </Button>
             <Button fx:id="skipLogin" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor"
                     prefHeight="53.0" prefWidth="92.0"
-                    style="-fx-background-color: #2571b9; -fx-border-width: 4px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
+                    style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
                     text="Skip" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                 <cursor>
                     <Cursor fx:constant="HAND"/>
@@ -110,7 +109,7 @@
             <Button fx:id="home" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0"
                     mnemonicParsing="false" onAction="#homeAction" onMouseEntered="#lightColor"
                     onMouseExited="#darkColor" prefHeight="52.0" prefWidth="52.0"
-                    style="-fx-background-color: #2571b9; -fx-border-width: 4px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
+                    style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
                     text="🏠" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER">
                 <GridPane.margin>
                     <Insets/>
