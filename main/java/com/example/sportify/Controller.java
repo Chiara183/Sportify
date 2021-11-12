@@ -100,14 +100,18 @@ public class Controller implements Initializable {
             userAccount[3] = lastNameValue;
             account.put(userValue, userAccount);
             System.out.println("HashMap not find a key\n" + Arrays.toString(account.values().toArray()));
-            JOptionPane.showMessageDialog(jFrame,
-                    "You're registered with:\n" +
-                            "\nFirstname: " + nameValue +
-                            "\nLastname: " + lastNameValue +
-                            "\n Username: " + userValue +
-                            "\nPassword: " + passValue +
-                            "\n\nThank you for your registration!");
-            signLoginAction();
+            if (userTick.isSelected()) {
+                JOptionPane.showMessageDialog(jFrame,
+                        "You're registered with:\n" +
+                                "\nFirstname: " + nameValue +
+                                "\nLastname: " + lastNameValue +
+                                "\n Username: " + userValue +
+                                "\nPassword: " + passValue +
+                                "\n\nThank you for your registration!");
+                signLoginAction();
+            } else if (gymTick.isSelected()) {
+                signSignUpGymAction();
+            }
         }
         else{
             //show error message
@@ -125,6 +129,20 @@ public class Controller implements Initializable {
     protected void findGymAction() {
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "You try to find a Gym!");
+    }
+
+    @FXML
+    private void signSignUpGymAction() throws Exception {
+        stage = (Stage) submitSignUp.getScene().getWindow();
+
+        //SignUpScene
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SignUpGym.fxml")));
+        Scene sceneSignUpGym = new Scene(root, 814, 456);
+
+        //set stage
+        stage.setTitle("SIGN UP FORM");
+        stage.setScene(sceneSignUpGym);
+        stage.show();
     }
 
     @FXML
