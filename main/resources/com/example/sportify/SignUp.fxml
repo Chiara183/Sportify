@@ -33,8 +33,8 @@
             </rowConstraints>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1"
                   GridPane.rowIndex="3">
-                <CheckBox fx:id="gymTick" alignment="CENTER" contentDisplay="CENTER" onAction="#tickAction"
-                          mnemonicParsing="false" text="Gym">
+                <CheckBox fx:id="gymTick" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                          onAction="#tickAction" text="Gym">
                     <Cursor fx:constant="HAND"/>
                     <padding>
                         <Insets right="20.0"/>
@@ -69,10 +69,10 @@
                 </columnConstraints>
                 <rowConstraints>
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
             <TextField fx:id="username" maxWidth="273.0" minWidth="1.0" prefHeight="34.0" prefWidth="273.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                   <cursor>
                      <Cursor fx:constant="TEXT" />
@@ -118,7 +118,8 @@
                 </TextField>
           </GridPane>
             <Button fx:id="submitSignUp" mnemonicParsing="false" onAction="#submitActionSignUp"
-                    onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="51.0" prefWidth="86.0"
+                    onKeyPressed="#submitActionSignUp" onMouseEntered="#lightColor" onMouseExited="#darkColor"
+                    prefHeight="51.0" prefWidth="86.0"
                     style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
                     text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="4">
                 <cursor>

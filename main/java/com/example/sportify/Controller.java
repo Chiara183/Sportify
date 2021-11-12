@@ -1,5 +1,6 @@
 package com.example.sportify;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -83,39 +85,39 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    protected void submitActionSignUp() throws Exception {
+    protected void submitActionSignUp(ActionEvent event) throws Exception {
+        if (event.getSource().equals(KeyCode.ENTER) || event.getSource().equals(submitSignUp)) {
+            String userValue = username.getText();                                //get user entered username from the textField1
+            String passValue = password.getText();                                //get user entered password from the textField2
+            String nameValue = firstName.getText();                            //get user entered firstName from the textField3
+            String lastNameValue = lastName.getText();                            //get user entered lastName from the textField4
 
-        String userValue = username.getText();                                //get user entered username from the textField1
-        String passValue = password.getText();                                //get user entered password from the textField2
-        String nameValue = firstName.getText();                            //get user entered firstName from the textField3
-        String lastNameValue = lastName.getText();                            //get user entered lastName from the textField4
-
-        //check whether the credentials are authentic or not
-        JFrame jFrame = new JFrame();
-        if (!userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")) {    //if authentic, navigate user to a new page
-            String[] userAccount = new String[4];
-            userAccount[0] = userValue;
-            userAccount[1] = passValue;
-            userAccount[2] = nameValue;
-            userAccount[3] = lastNameValue;
-            account.put(userValue, userAccount);
-            System.out.println("HashMap not find a key\n" + Arrays.toString(account.values().toArray()));
-            if (userTick.isSelected()) {
-                JOptionPane.showMessageDialog(jFrame,
-                        "You're registered with:\n" +
-                                "\nFirstname: " + nameValue +
-                                "\nLastname: " + lastNameValue +
-                                "\n Username: " + userValue +
-                                "\nPassword: " + passValue +
-                                "\n\nThank you for your registration!");
-                signLoginAction();
-            } else if (gymTick.isSelected()) {
-                signSignUpGymAction();
+            //check whether the credentials are authentic or not
+            JFrame jFrame = new JFrame();
+            if (!userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")) {    //if authentic, navigate user to a new page
+                String[] userAccount = new String[4];
+                userAccount[0] = userValue;
+                userAccount[1] = passValue;
+                userAccount[2] = nameValue;
+                userAccount[3] = lastNameValue;
+                account.put(userValue, userAccount);
+                System.out.println("HashMap not find a key\n" + Arrays.toString(account.values().toArray()));
+                if (userTick.isSelected()) {
+                    JOptionPane.showMessageDialog(jFrame,
+                            "You're registered with:\n" +
+                                    "\nFirstname: " + nameValue +
+                                    "\nLastname: " + lastNameValue +
+                                    "\n Username: " + userValue +
+                                    "\nPassword: " + passValue +
+                                    "\n\nThank you for your registration!");
+                    signLoginAction();
+                } else if (gymTick.isSelected()) {
+                    signSignUpGymAction();
+                }
+            } else {
+                //show error message
+                JOptionPane.showMessageDialog(jFrame, "Please enter all value.");
             }
-        }
-        else{
-            //show error message
-            JOptionPane.showMessageDialog(jFrame, "Please enter all value.");
         }
     }
 
