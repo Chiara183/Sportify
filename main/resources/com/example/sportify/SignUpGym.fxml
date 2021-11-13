@@ -19,14 +19,51 @@
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="216.0" minWidth="10.0" prefWidth="184.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="109.0" minHeight="0.0" prefHeight="73.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="228.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="109.0" minHeight="0.0" prefHeight="89.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="228.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="242.0" minHeight="10.0" prefHeight="189.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="89.0" minHeight="59.0" prefHeight="89.0" />
             </rowConstraints>
-            <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                 <Image url="@Sportify logo.png" />
+            <GridPane.margin>
+               <Insets top="50.0" />
+            </GridPane.margin>
             </ImageView>
+            <HBox prefHeight="100.0" prefWidth="465.0" style="-fx-background-radius: 8px; -fx-background-color: #aaaeaf;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                <GridPane.margin>
+                    <Insets bottom="10.0" left="-15.0" right="-15.0" top="50.0" />
+                </GridPane.margin>
+                <children>
+                    <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Home">
+                        <font>
+                            <Font name="Comic Sans MS Bold" size="15.0" />
+                        </font></Button>
+                    <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sport Quiz">
+                        <font>
+                            <Font name="Comic Sans MS Bold" size="15.0" />
+                        </font>
+                        <HBox.margin>
+                            <Insets left="10.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Gym Finder">
+                        <font>
+                            <Font name="Comic Sans MS Bold" size="15.0" />
+                        </font>
+                        <HBox.margin>
+                            <Insets left="10.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Login">
+                        <font>
+                            <Font name="Comic Sans MS Bold" size="15.0" />
+                        </font>
+                        <HBox.margin>
+                            <Insets left="10.0" />
+                        </HBox.margin>
+                    </Button>
+                </children></HBox>
             <GridPane alignment="TOP_CENTER" prefHeight="197.0" prefWidth="438.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <columnConstraints>
                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="109.0" />
