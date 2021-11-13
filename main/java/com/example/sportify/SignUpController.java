@@ -64,11 +64,11 @@ public class SignUpController implements Initializable {
             JFrame jFrame = new JFrame();
             if (!userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")) {    //if authentic, navigate user to a new page
                 if (userTick.isSelected()) {
-                    saveOnFile(account, "login");
+                    saveOnFile(account);
                     JOptionPane.showMessageDialog(jFrame, "You're registered!");
                     signLoginAction();
                 } else if (gymTick.isSelected()) {
-                    saveOnFile(account, "login");
+                    saveOnFile(account);
                     signSignUpGymAction();
                 }
             } else {
@@ -78,9 +78,9 @@ public class SignUpController implements Initializable {
         }
     }
 
-    protected void saveOnFile(HashMap<String, String[]> map, String str) {
-        String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + str;
-        Path path = Path.of(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + str);
+    protected void saveOnFile(HashMap<String, String[]> map) {
+        String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login";
+        Path path = Path.of(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login");
         String mapAsString = map.keySet().stream().map(key -> key + "=" + Arrays.toString(map.get(key))).collect(Collectors.joining(", ", "{", "}"));
         try {
             File file = new File(filePath);

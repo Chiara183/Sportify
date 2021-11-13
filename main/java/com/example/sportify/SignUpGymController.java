@@ -53,7 +53,7 @@ public class SignUpGymController implements Initializable {
             //check whether the credentials are authentic or not
             JFrame jFrame = new JFrame();
             if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("")) {    //if authentic, navigate user to a new page
-                saveOnFile(account, "login");
+                saveOnFile(account);
                 JOptionPane.showMessageDialog(jFrame, "You're registered!");
                 signLoginAction();
             } else {
@@ -63,9 +63,9 @@ public class SignUpGymController implements Initializable {
         }
     }
 
-    protected void saveOnFile(HashMap<String, String[]> map, String str) {
-        String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + str;
-        Path path = Path.of(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + str);
+    protected void saveOnFile(HashMap<String, String[]> map) {
+        String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login";
+        Path path = Path.of(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login");
         String mapAsString = map.keySet().stream().map(key -> key + "=" + Arrays.toString(map.get(key))).collect(Collectors.joining(", ", "{", "}"));
         try {
             File file = new File(filePath);

@@ -36,7 +36,7 @@ public class LoginController implements Initializable {
     @FXML
     protected void submitActionLogin() throws IOException {
         HashMap<String, String[]> account;
-        account = readFile("login");
+        account = readFile();
 
         String userValue = username.getText();                                //get user entered username from the textField1
         String passValue = password.getText();                                //get user entered password from the textField2
@@ -51,9 +51,9 @@ public class LoginController implements Initializable {
         }
     }
 
-    protected HashMap<String, String[]> readFile(String str) throws IOException {
+    protected HashMap<String, String[]> readFile() throws IOException {
         // File path is passed as parameter
-        File file = new File(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + str);
+        File file = new File(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login");
 
         // Creating an object of BufferedReader class
         BufferedReader br = new BufferedReader(new FileReader(file));
