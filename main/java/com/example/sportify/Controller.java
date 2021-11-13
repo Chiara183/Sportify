@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
@@ -133,9 +134,9 @@ public class Controller implements Initializable {
         try {
             File file = new File(filePath);
             if (file.exists()) {
-                Files.writeString(path, mapAsString);
+                Files.writeString(path, "\n" + mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
             } else if (file.createNewFile()) {
-                Files.writeString(path, mapAsString);
+                Files.writeString(path, mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
             } else {
                 System.out.println("Il file non può essere creato");
             }
