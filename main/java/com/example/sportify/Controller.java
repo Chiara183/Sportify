@@ -107,15 +107,9 @@ public class Controller implements Initializable {
             //check whether the credentials are authentic or not
             JFrame jFrame = new JFrame();
             if (!userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")) {    //if authentic, navigate user to a new page
-                saveOnFile(account);
                 if (userTick.isSelected()) {
-                    JOptionPane.showMessageDialog(jFrame,
-                            "You're registered with:\n" +
-                                    "\nFirstname: " + nameValue +
-                                    "\nLastname: " + lastNameValue +
-                                    "\n Username: " + userValue +
-                                    "\nPassword: " + passValue +
-                                    "\n\nThank you for your registration!");
+                    saveOnFile(account);
+                    JOptionPane.showMessageDialog(jFrame, "You're registered!");
                     signLoginAction();
                 } else if (gymTick.isSelected()) {
                     signSignUpGymAction();
@@ -142,7 +136,7 @@ public class Controller implements Initializable {
             } else if (file.createNewFile()) {
                 Files.writeString(path, mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
             } else {
-                System.out.println("Il file non può essere creato");
+                System.out.println("The file cannot be created");
             }
         } catch (IOException e) {
             e.printStackTrace();
