@@ -14,11 +14,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class Controller implements Initializable {
 
@@ -87,21 +92,21 @@ public class Controller implements Initializable {
     @FXML
     protected void submitActionSignUp(ActionEvent event) throws Exception {
         if (event.getSource().equals(KeyCode.ENTER) || event.getSource().equals(submitSignUp)) {
-            String userValue = username.getText();                                //get user entered username from the textField1
-            String passValue = password.getText();                                //get user entered password from the textField2
-            String nameValue = firstName.getText();                            //get user entered firstName from the textField3
-            String lastNameValue = lastName.getText();                            //get user entered lastName from the textField4
+            String[] userAccount = new String[4];                               //initialize list of string 'userAccount'
+            String userValue = username.getText();                              //get user entered username
+            String passValue = password.getText();                              //get user entered password
+            String nameValue = firstName.getText();                             //get user entered first name
+            String lastNameValue = lastName.getText();                          //get user entered last name
+            userAccount[0] = userValue;                                         //put userValue in userAccount
+            userAccount[1] = passValue;                                         //put user password in userAccount
+            userAccount[2] = nameValue;                                         //put user firstName in userAccount
+            userAccount[3] = lastNameValue;                                     //put user lastName in userAccount
+            account.put(userValue, userAccount);                                //add userAccount
 
             //check whether the credentials are authentic or not
             JFrame jFrame = new JFrame();
             if (!userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")) {    //if authentic, navigate user to a new page
-                String[] userAccount = new String[4];
-                userAccount[0] = userValue;
-                userAccount[1] = passValue;
-                userAccount[2] = nameValue;
-                userAccount[3] = lastNameValue;
-                account.put(userValue, userAccount);
-                System.out.println("HashMap not find a key\n" + Arrays.toString(account.values().toArray()));
+                saveOnFile(account);
                 if (userTick.isSelected()) {
                     JOptionPane.showMessageDialog(jFrame,
                             "You're registered with:\n" +
@@ -118,6 +123,24 @@ public class Controller implements Initializable {
                 //show error message
                 JOptionPane.showMessageDialog(jFrame, "Please enter all value.");
             }
+        }
+    }
+
+    protected void saveOnFile(HashMap<String, String[]> map) {
+        String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\login.txt";
+        Path path = Path.of(System.getProperty("user.dir") + "\\trunk\\SystemFile\\login.txt");
+        String mapAsString = map.keySet().stream().map(key -> key + "=" + map.get(key)).collect(Collectors.joining(", ", "{", "}"));
+        try {
+            File file = new File(filePath);
+            if (file.exists()) {
+                Files.writeString(path, mapAsString);
+            } else if (file.createNewFile()) {
+                Files.writeString(path, mapAsString);
+            } else {
+                System.out.println("Il file non può essere creato");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
