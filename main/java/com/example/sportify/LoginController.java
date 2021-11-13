@@ -11,7 +11,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.*;
 
-public class LoginController implements Initializable {
+public class LoginController extends HomeController implements Initializable {
 
     Stage stage;
     Parent root;

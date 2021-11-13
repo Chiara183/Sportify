@@ -37,7 +37,7 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void signLoginAction() throws Exception {
+    protected void signLoginAction() throws Exception {
         stage = (Stage) signIn.getScene().getWindow();
 
         //LoginScene

@@ -37,10 +37,10 @@
                 <RowConstraints maxHeight="277.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="170.0" minHeight="5.0" prefHeight="96.0" vgrow="SOMETIMES" />
             </rowConstraints>
-          <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS">
+          <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
             <Image url="@Sportify logo.png" />
             <GridPane.margin>
-               <Insets top="40.0" />
+               <Insets />
             </GridPane.margin>
           </ImageView>
             <GridPane alignment="TOP_CENTER" prefHeight="152.0" prefWidth="465.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -100,48 +100,49 @@
                     <Font name="Comic Sans MS" size="17.0" />
                 </font>
             </Button>
-            <Button fx:id="home" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" mnemonicParsing="false" onAction="#homeAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="🏠" textAlignment="CENTER" wrapText="true" GridPane.halignment="LEFT">
-                <GridPane.margin>
-                    <Insets left="30.0" />
-                </GridPane.margin>
-                <font>
-                    <Font name="Comic Sans MS Bold" size="18.0" />
-                </font>
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-            </Button>
-         <HBox prefHeight="100.0" prefWidth="465.0" style="-fx-background-radius: 8px; -fx-background-color: #aaaeaf;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <HBox alignment="TOP_CENTER" maxHeight="27.0" minHeight="27.0" prefHeight="20.0" prefWidth="465.0" style="-fx-background-radius: 8px;" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
             <GridPane.margin>
-               <Insets bottom="45.0" top="50.0" />
+               <Insets bottom="60.0" top="5.0" />
             </GridPane.margin>
-               <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Home">
+               <Button fx:id="home" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#homeAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Home">
                   <font>
-                     <Font name="Comic Sans MS Bold" size="15.0" />
-                  </font></Button>
-               <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sport Quiz">
+                     <Font name="Comic Sans MS Bold" size="11.0" />
+                  </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+               <Button fx:id="sportQuiz" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sport Quiz">
                   <font>
-                     <Font name="Comic Sans MS Bold" size="15.0" />
+                     <Font name="Comic Sans MS Bold" size="11.0" />
                   </font>
                   <HBox.margin>
                      <Insets left="10.0" />
                   </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                </Button>
-               <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Gym Finder">
+               <Button fx:id="gymFinder" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#findGymAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Gym Finder">
                   <font>
-                     <Font name="Comic Sans MS Bold" size="15.0" />
+                     <Font name="Comic Sans MS Bold" size="11.0" />
                   </font>
                   <HBox.margin>
                      <Insets left="10.0" />
                   </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                </Button>
-               <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Login">
+               <Button fx:id="signIn" alignment="TOP_CENTER" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Login">
                   <font>
-                     <Font name="Comic Sans MS Bold" size="15.0" />
+                     <Font name="Comic Sans MS Bold" size="11.0" />
                   </font>
                   <HBox.margin>
                      <Insets left="10.0" />
                   </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                </Button>
             </HBox>
         </GridPane>
