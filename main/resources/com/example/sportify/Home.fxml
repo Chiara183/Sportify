@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity" prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.2"
-      fx:controller="com.example.sportify.Controller">
+      fx:controller="com.example.sportify.HomeController">
     <ImageView fitHeight="437.0" fitWidth="780.0">
         <Image url="@sport_-diversi_.jpg"/>
     </ImageView>

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.SignUpGymController">
     <ImageView fitHeight="457.0" fitWidth="814.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@Sfondo.jpg" />
     </ImageView>
@@ -34,7 +34,6 @@
                 <GridPane.margin>
                     <Insets bottom="10.0" left="-15.0" right="-15.0" top="50.0" />
                 </GridPane.margin>
-                <children>
                     <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Home">
                         <font>
                             <Font name="Comic Sans MS Bold" size="15.0" />
@@ -63,7 +62,7 @@
                             <Insets left="10.0" />
                         </HBox.margin>
                     </Button>
-                </children></HBox>
+                </HBox>
             <GridPane alignment="TOP_CENTER" prefHeight="197.0" prefWidth="438.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <columnConstraints>
                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="109.0" />
@@ -124,7 +123,7 @@
                     <Font name="Comic Sans MS" size="16.0" />
                 </font>
             </Button>
-            <Button fx:id="skipSignUp" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="54.0" prefWidth="86.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Skip" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button fx:id="skipSignUpGym" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="54.0" prefWidth="86.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Skip" GridPane.columnIndex="2" GridPane.rowIndex="3">
                 <cursor>
                     <Cursor fx:constant="HAND" />
                 </cursor>
