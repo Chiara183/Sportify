@@ -130,11 +130,15 @@ public class Controller implements Initializable {
     protected void saveOnFile(HashMap<String, String[]> map) {
         String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\login";
         Path path = Path.of(System.getProperty("user.dir") + "\\trunk\\SystemFile\\login");
-        String mapAsString = map.keySet().stream().map(key -> key + "=" + map.get(key)).collect(Collectors.joining(", ", "{", "}"));
+        String mapAsString = map.keySet().stream().map(key -> key + "=" + Arrays.toString(map.get(key))).collect(Collectors.joining(", ", "{", "}"));
         try {
             File file = new File(filePath);
             if (file.exists()) {
-                Files.writeString(path, "\n" + mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+                if (file.length() == 0) {
+                    Files.writeString(path, mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+                } else {
+                    Files.writeString(path, "\n" + mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+                }
             } else if (file.createNewFile()) {
                 Files.writeString(path, mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
             } else {
