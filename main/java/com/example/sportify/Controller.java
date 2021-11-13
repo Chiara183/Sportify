@@ -14,23 +14,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Controller implements Initializable {
 
     Stage stage;
     Parent root;
-    HashMap<String, String[]> account = new HashMap<>();
 
     //TextField
     @FXML
@@ -70,7 +65,9 @@ public class Controller implements Initializable {
 
 
     @FXML
-    protected void submitActionLogin() {
+    protected void submitActionLogin() throws IOException {
+        HashMap<String, String[]> account;
+        account = readFile("login");
 
         String userValue = username.getText();                                //get user entered username from the textField1
         String passValue = password.getText();                                //get user entered password from the textField2
@@ -80,11 +77,6 @@ public class Controller implements Initializable {
         if (!account.isEmpty() && account.containsKey(userValue) && userValue.equals(account.get(userValue)[0]) && passValue.equals(account.get(userValue)[1])) {    //if authentic, navigate user to a new page
             JOptionPane.showMessageDialog(jFrame, "Correct!");
         } else {
-            if (!account.isEmpty()) {
-                System.out.println("HashMap is Empty");
-            } else {
-                System.out.println("HashMap not find a key\n" + Arrays.toString(account.values().toArray()));
-            }
             //show error message
             JOptionPane.showMessageDialog(jFrame, "Please enter valid username and password or Signup");
         }
@@ -92,6 +84,7 @@ public class Controller implements Initializable {
 
     @FXML
     protected void submitActionSignUp(ActionEvent event) throws Exception {
+        HashMap<String, String[]> account = new HashMap<>();
         if (event.getSource().equals(KeyCode.ENTER) || event.getSource().equals(submitSignUp)) {
             String[] userAccount = new String[4];                               //initialize list of string 'userAccount'
             String userValue = username.getText();                              //get user entered username
@@ -108,7 +101,7 @@ public class Controller implements Initializable {
             JFrame jFrame = new JFrame();
             if (!userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")) {    //if authentic, navigate user to a new page
                 if (userTick.isSelected()) {
-                    saveOnFile(account);
+                    saveOnFile(account, "login");
                     JOptionPane.showMessageDialog(jFrame, "You're registered!");
                     signLoginAction();
                 } else if (gymTick.isSelected()) {
@@ -121,9 +114,9 @@ public class Controller implements Initializable {
         }
     }
 
-    protected void saveOnFile(HashMap<String, String[]> map) {
-        String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\login";
-        Path path = Path.of(System.getProperty("user.dir") + "\\trunk\\SystemFile\\login");
+    protected void saveOnFile(HashMap<String, String[]> map, String str) {
+        String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + str;
+        Path path = Path.of(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + str);
         String mapAsString = map.keySet().stream().map(key -> key + "=" + Arrays.toString(map.get(key))).collect(Collectors.joining(", ", "{", "}"));
         try {
             File file = new File(filePath);
@@ -141,6 +134,36 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    protected HashMap<String, String[]> readFile(String str) throws IOException {
+        // File path is passed as parameter
+        File file = new File(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + str);
+
+        // Creating an object of BufferedReader class
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        // Declaring a string variable
+        String st;
+        // Declaring a HashMap variable
+        HashMap<String, String[]> hashMap = new HashMap<>();
+        // Condition holds true till
+        // there is character in a string
+        while ((st = br.readLine()) != null){
+            // Remove first and last char from st
+            st = st.substring(1, st.length() - 1);
+            // split the String by a comma
+            String[] parts = st.split("=");
+            // Create HashMap key
+            String key = parts[0].trim();
+            // Create a list string
+            String list = parts[1].substring(1, parts[1].length() - 1);
+            // split the String by a comma
+            String[] listParts = list.split(", ");
+            // Add to map
+            hashMap.put(key, listParts);
+        }
+        return (hashMap);
     }
 
     @FXML
