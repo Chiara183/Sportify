@@ -36,6 +36,12 @@ public class Controller implements Initializable {
     private TextField firstName;
     @FXML
     private TextField lastName;
+    @FXML
+    private TextField gymName;
+    @FXML
+    private TextField gymAddress;
+    @FXML
+    private TextField gymCity;
 
     //Button
     @FXML
@@ -105,8 +111,35 @@ public class Controller implements Initializable {
                     JOptionPane.showMessageDialog(jFrame, "You're registered!");
                     signLoginAction();
                 } else if (gymTick.isSelected()) {
+                    saveOnFile(account, "login");
                     signSignUpGymAction();
                 }
+            } else {
+                //show error message
+                JOptionPane.showMessageDialog(jFrame, "Please enter all value.");
+            }
+        }
+    }
+
+    @FXML
+    protected void submitActionSignUpGym(ActionEvent event) throws Exception {
+        if (event.getSource().equals(KeyCode.ENTER) || event.getSource().equals(submitSignUp)) {
+            HashMap<String, String[]> account = new HashMap<>();
+            String[] userGymAccount = new String[3];                                //initialize list of string 'userGymAccount'
+            String gymValue = gymName.getText();                                    //get user entered gym name
+            String addressValue = gymAddress.getText();                             //get user entered gym address
+            String cityValue = gymCity.getText();                                   //get user entered gym city
+            userGymAccount[0] = gymValue;                                           //put userValue in userAccount
+            userGymAccount[1] = addressValue;                                       //put user password in userAccount
+            userGymAccount[2] = cityValue;                                          //put user firstName in userAccount
+            account.put(gymValue, userGymAccount);
+
+            //check whether the credentials are authentic or not
+            JFrame jFrame = new JFrame();
+            if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("")) {    //if authentic, navigate user to a new page
+                saveOnFile(account, "login");
+                JOptionPane.showMessageDialog(jFrame, "You're registered!");
+                signLoginAction();
             } else {
                 //show error message
                 JOptionPane.showMessageDialog(jFrame, "Please enter all value.");
