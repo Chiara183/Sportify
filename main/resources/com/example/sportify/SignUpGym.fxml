@@ -24,38 +24,10 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="109.0" minHeight="0.0" prefHeight="56.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="228.0" minHeight="10.0" prefHeight="109.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="242.0" minHeight="10.0" prefHeight="177.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="33.0" valignment="CENTER"
-                                vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="84.0" valignment="CENTER"
-                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="228.0" minHeight="10.0" prefHeight="112.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="242.0" minHeight="10.0" prefHeight="205.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="69.0" minHeight="59.0" prefHeight="69.0"/>
             </rowConstraints>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1"
-                  GridPane.rowIndex="3">
-                <CheckBox fx:id="gymTick" alignment="CENTER" contentDisplay="CENTER" onAction="#tickAction"
-                          mnemonicParsing="false" text="Gym">
-                    <Cursor fx:constant="HAND"/>
-                    <padding>
-                        <Insets right="20.0"/>
-                    </padding>
-                    <font>
-                        <Font name="Comic Sans MS" size="16.0"/>
-                    </font>
-                </CheckBox>
-                <CheckBox fx:id="userTick" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                          onAction="#tickAction" selected="true" text="User">
-                    <cursor>
-                        <Cursor fx:constant="HAND"/>
-                    </cursor>
-                    <padding>
-                        <Insets left="20.0"/>
-                    </padding>
-                    <font>
-                        <Font name="Comic Sans MS" size="16.0"/>
-                    </font>
-                </CheckBox>
-            </HBox>
             <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true"
                        GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <Image url="@Sportify logo.png"/>
@@ -122,7 +94,7 @@
             <Button fx:id="submitSignUp" mnemonicParsing="false" onAction="#submitActionSignUp"
                     onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="51.0" prefWidth="86.0"
                     style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
-                    text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <cursor>
                     <Cursor fx:constant="HAND"/>
                 </cursor>
@@ -133,7 +105,7 @@
             <Button fx:id="signIn" mnemonicParsing="false" onAction="#signLoginAction" onMouseEntered="#lightColor"
                     onMouseExited="#darkColor" prefHeight="50.0" prefWidth="94.0"
                     style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
-                    text="Sign In" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                    text="Sign In" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                 <cursor>
                     <Cursor fx:constant="HAND"/>
                 </cursor>
@@ -144,7 +116,7 @@
             <Button fx:id="skipSignUp" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor"
                     prefHeight="54.0" prefWidth="86.0"
                     style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;"
-                    text="Skip" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                    text="Skip" GridPane.columnIndex="2" GridPane.rowIndex="3">
                 <cursor>
                     <Cursor fx:constant="HAND"/>
                 </cursor>
