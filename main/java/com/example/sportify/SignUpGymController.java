@@ -76,6 +76,11 @@ public class SignUpGymController extends HomeController implements Initializable
     }
 
     @FXML
+    protected void signLoginAction() throws Exception {
+        CreateWindow.signLoginAction(signInGym);
+    }
+
+    @FXML
     private void homeAction() throws Exception {
         CreateWindow.homeAction(home);
     }
