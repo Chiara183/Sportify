@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.LoginController">
     <ImageView fitHeight="458.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@Sfondo.jpg" />
         <effect>
@@ -37,6 +28,62 @@
                 <RowConstraints maxHeight="277.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="170.0" minHeight="5.0" prefHeight="96.0" vgrow="SOMETIMES" />
             </rowConstraints>
+         <HBox alignment="TOP_CENTER" maxHeight="27.0" minHeight="27.0" prefHeight="20.0" prefWidth="465.0" style="-fx-background-radius: 8px;" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
+            <GridPane.margin>
+               <Insets bottom="60.0" top="5.0" />
+            </GridPane.margin>
+               <Button fx:id="home" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#homeAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Home">
+                  <font>
+                     <Font name="Comic Sans MS Bold" size="11.0" />
+                  </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+               <Button fx:id="sportQuiz" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sport Quiz">
+                  <font>
+                     <Font name="Comic Sans MS Bold" size="11.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets left="10.0" />
+                  </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               </Button>
+               <Button fx:id="gymFinder" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#findGymAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Gym Finder">
+                  <font>
+                     <Font name="Comic Sans MS Bold" size="11.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets left="10.0" />
+                  </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               </Button>
+               <Button fx:id="signIn" alignment="TOP_CENTER" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #25b97b; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Login">
+                  <font>
+                     <Font name="Comic Sans MS Bold" size="11.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets left="10.0" />
+                  </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               </Button>
+            <Button fx:id="signUp" alignment="TOP_CENTER" layoutX="367.0" layoutY="10.0" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#signSignUpAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sign Up">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="11.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+            </HBox>
           <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
             <Image url="@Sportify logo.png" />
             <GridPane.margin>
@@ -76,75 +123,32 @@
                     <Insets bottom="10.0" />
                 </padding>
             </GridPane>
-            <Button fx:id="signUp" mnemonicParsing="false" onAction="#signSignUpAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="54.0" prefWidth="95.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sign Up" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-                <font>
-                    <Font name="Comic Sans MS" size="17.0" />
-                </font>
-            </Button>
-            <Button fx:id="submitLogin" mnemonicParsing="false" onAction="#submitActionLogin" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="54.0" prefWidth="95.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Submit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-                <font>
-                    <Font name="Comic Sans MS" size="17.0" />
-                </font>
-            </Button>
-            <Button fx:id="skipLogin" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="53.0" prefWidth="92.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Skip" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-                <font>
-                    <Font name="Comic Sans MS" size="17.0" />
-                </font>
-            </Button>
-         <HBox alignment="TOP_CENTER" maxHeight="27.0" minHeight="27.0" prefHeight="20.0" prefWidth="465.0" style="-fx-background-radius: 8px;" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
-            <GridPane.margin>
-               <Insets bottom="60.0" top="5.0" />
-            </GridPane.margin>
-               <Button fx:id="home" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#homeAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Home">
-                  <font>
-                     <Font name="Comic Sans MS Bold" size="11.0" />
-                  </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-               <Button fx:id="sportQuiz" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sport Quiz">
-                  <font>
-                     <Font name="Comic Sans MS Bold" size="11.0" />
-                  </font>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <children>
+                  <Button fx:id="submitLogin" mnemonicParsing="false" onAction="#submitActionLogin" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="54.0" prefWidth="95.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Submit">
+                      <cursor>
+                          <Cursor fx:constant="HAND" />
+                      </cursor>
+                      <font>
+                          <Font name="Comic Sans MS" size="17.0" />
+                      </font>
+                  <HBox.margin>
+                     <Insets right="10.0" />
+                  </HBox.margin>
+                  </Button>
+                  <Button fx:id="skipLogin" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="53.0" prefWidth="92.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Skip">
+                      <cursor>
+                          <Cursor fx:constant="HAND" />
+                      </cursor>
+                      <font>
+                          <Font name="Comic Sans MS" size="17.0" />
+                      </font>
                   <HBox.margin>
                      <Insets left="10.0" />
                   </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               </Button>
-               <Button fx:id="gymFinder" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#findGymAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Gym Finder">
-                  <font>
-                     <Font name="Comic Sans MS Bold" size="11.0" />
-                  </font>
-                  <HBox.margin>
-                     <Insets left="10.0" />
-                  </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               </Button>
-               <Button fx:id="signIn" alignment="TOP_CENTER" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Login">
-                  <font>
-                     <Font name="Comic Sans MS Bold" size="11.0" />
-                  </font>
-                  <HBox.margin>
-                     <Insets left="10.0" />
-                  </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               </Button>
-            </HBox>
+                  </Button>
+            </children>
+         </HBox>
         </GridPane>
   </VBox>
 </Pane>
