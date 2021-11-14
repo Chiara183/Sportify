@@ -1,5 +1,6 @@
 package com.example.sportify;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -12,7 +13,7 @@ public class HomeController implements Initializable {
 
     //Button
     @FXML
-    private Button signIn;
+    private Button login;
     @FXML
     private Button sportQuiz;
     @FXML
@@ -33,13 +34,13 @@ public class HomeController implements Initializable {
 
     @FXML
     protected void signLoginAction() throws Exception {
-        CreateWindow.signLoginAction(signIn);
+        CreateWindow.signLoginAction(login) ;
     }
 
     @FXML
     private void lightColor(MouseEvent event) {
-        if (event.getSource() == signIn) {
-            HighlightButton.lightColor(signIn);
+        if (event.getSource() == login) {
+            HighlightButton.lightColor(login);
         } else if (event.getSource() == sportQuiz) {
             HighlightButton.lightColor(sportQuiz);
         } else if (event.getSource() == findGym) {
@@ -49,8 +50,8 @@ public class HomeController implements Initializable {
 
     @FXML
     private void darkColor(MouseEvent event) {
-        if (event.getSource() == signIn) {
-            HighlightButton.darkColor(signIn);
+        if (event.getSource() == login) {
+            HighlightButton.darkColor(login);
         } else if (event.getSource() == sportQuiz) {
             HighlightButton.darkColor(sportQuiz);
         } else if (event.getSource() == findGym) {

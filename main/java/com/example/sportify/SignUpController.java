@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.net.URL;
 import java.util.*;
 
-public class SignUpController implements Initializable {
+public class SignUpController extends HomeController implements Initializable {
 
     //TextField
     @FXML
@@ -23,7 +23,7 @@ public class SignUpController implements Initializable {
 
     //Button
     @FXML
-    private Button signIn;
+    private Button login;
     @FXML
     private Button home;
     @FXML
@@ -78,20 +78,20 @@ public class SignUpController implements Initializable {
         CreateWindow.signSignUpGymAction(submitSignUp);
     }
 
-    @FXML
-    private void signLoginAction() throws Exception {
-        CreateWindow.signLoginAction(signIn);
-    }
+    //@FXML
+   //private void signLoginAction() throws Exception {
+    // CreateWindow.signLoginAction(signIn);
+    //}
 
     @FXML
-    private void homeAction() throws Exception {
+    protected void homeAction() throws Exception {
         CreateWindow.homeAction(home);
     }
 
     @FXML
     private void lightColor(MouseEvent event) {
-        if (event.getSource() == signIn) {
-            signIn.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+        if (event.getSource() == login) {
+            login.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == home) {
             home.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
         } else if (event.getSource() == submitSignUp) {
@@ -103,8 +103,8 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void darkColor(MouseEvent event) {
-        if (event.getSource() == signIn) {
-            HighlightButton.darkColor(signIn);
+        if (event.getSource() == login) {
+            HighlightButton.darkColor(login);
         } else if (event.getSource() == home) {
             HighlightButton.darkColor(home);
         } else if (event.getSource() == submitSignUp) {

@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.net.URL;
 import java.util.*;
 
-public class SignUpGymController implements Initializable {
+public class SignUpGymController extends HomeController implements Initializable {
 
     //TextField
     @FXML
@@ -21,7 +21,7 @@ public class SignUpGymController implements Initializable {
 
     //Button
     @FXML
-    private Button signInGym;
+    private Button login;
     @FXML
     private Button home;
     @FXML
@@ -55,10 +55,10 @@ public class SignUpGymController implements Initializable {
         }
     }
 
-    @FXML
-    private void signLoginAction() throws Exception {
-        CreateWindow.signLoginAction(signInGym);
-    }
+    //@FXML
+    //private void signLoginAction() throws Exception {
+      //  CreateWindow.signLoginAction(signInGym);
+    //}
 
     @FXML
     private void homeAction() throws Exception {
@@ -67,8 +67,8 @@ public class SignUpGymController implements Initializable {
 
     @FXML
     private void lightColor(MouseEvent event) {
-        if (event.getSource() == signInGym) {
-            HighlightButton.lightColor(signInGym);
+        if (event.getSource() == login) {
+            HighlightButton.lightColor(login);
         } else if (event.getSource() == home) {
             HighlightButton.lightColor(home);
         } else if (event.getSource() == submitSignUpGym) {
@@ -80,8 +80,8 @@ public class SignUpGymController implements Initializable {
 
     @FXML
     private void darkColor(MouseEvent event) {
-        if (event.getSource() == signInGym) {
-            HighlightButton.darkColor(signInGym);
+        if (event.getSource() == login) {
+            HighlightButton.darkColor(login);
         } else if (event.getSource() == home) {
             HighlightButton.darkColor(home);
         } else if (event.getSource() == submitSignUpGym) {

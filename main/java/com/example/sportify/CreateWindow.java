@@ -23,8 +23,8 @@ public class CreateWindow implements Initializable {
         stage.show();
     }
 
-    public static void signLoginAction(Button signIn) throws Exception {
-        Stage stage = (Stage) signIn.getScene().getWindow();
+    public static void signLoginAction(Button login) throws Exception {
+        Stage stage = (Stage) login.getScene().getWindow();
 
         //LoginScene
         Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("Login.fxml")));
