@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.net.URL;
 import java.util.*;
 
-public class SignUpController extends HomeController implements Initializable {
+public class SignUpController implements Initializable {
 
     //TextField
     @FXML
@@ -23,19 +23,35 @@ public class SignUpController extends HomeController implements Initializable {
 
     //Button
     @FXML
-    private Button login;
+    private Button signIn;
     @FXML
     private Button home;
     @FXML
     private Button submitSignUp;
     @FXML
     private Button skipSignUp;
+    @FXML
+    private Button sportQuiz;
+    @FXML
+    private Button findGym;
 
     //CheckBox
     @FXML
     CheckBox gymTick;
     @FXML
     CheckBox userTick;
+
+    @FXML
+    protected void sportQuizAction() {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "You're in sport quiz form!");
+    }
+
+    @FXML
+    protected void findGymAction() {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "You try to find a Gym!");
+    }
 
     @FXML
     protected void submitActionSignUp(ActionEvent event) throws Exception {
@@ -78,39 +94,47 @@ public class SignUpController extends HomeController implements Initializable {
         CreateWindow.signSignUpGymAction(submitSignUp);
     }
 
-    //@FXML
-   //private void signLoginAction() throws Exception {
-    // CreateWindow.signLoginAction(signIn);
-    //}
+    @FXML
+    private void signLoginAction() throws Exception {
+        CreateWindow.signLoginAction(signIn);
+    }
 
     @FXML
-    protected void homeAction() throws Exception {
+    private void homeAction() throws Exception {
         CreateWindow.homeAction(home);
     }
 
     @FXML
     private void lightColor(MouseEvent event) {
-        if (event.getSource() == login) {
-            login.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+        if (event.getSource() == signIn) {
+            HighlightButton.lightColor(signIn);
         } else if (event.getSource() == home) {
-            home.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(home);
         } else if (event.getSource() == submitSignUp) {
-            submitSignUp.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(submitSignUp);
         } else if (event.getSource() == skipSignUp) {
-            skipSignUp.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(skipSignUp);
+        } else if (event.getSource() == sportQuiz) {
+            HighlightButton.lightColor(sportQuiz);
+        } else if (event.getSource() == findGym) {
+            HighlightButton.lightColor(findGym);
         }
     }
 
     @FXML
     private void darkColor(MouseEvent event) {
-        if (event.getSource() == login) {
-            HighlightButton.darkColor(login);
+        if (event.getSource() == signIn) {
+            HighlightButton.darkColor(signIn);
         } else if (event.getSource() == home) {
             HighlightButton.darkColor(home);
         } else if (event.getSource() == submitSignUp) {
             HighlightButton.darkColor(submitSignUp);
         } else if (event.getSource() == skipSignUp) {
             HighlightButton.darkColor(skipSignUp);
+        } else if (event.getSource() == sportQuiz) {
+            HighlightButton.darkColor(sportQuiz);
+        } else if (event.getSource() == findGym) {
+            HighlightButton.darkColor(findGym);
         }
     }
 

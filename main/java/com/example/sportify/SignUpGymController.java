@@ -28,6 +28,22 @@ public class SignUpGymController extends HomeController implements Initializable
     private Button submitSignUpGym;
     @FXML
     private Button skipSignUpGym;
+    @FXML
+    private Button sportQuiz;
+    @FXML
+    private Button findGym;
+
+    @FXML
+    protected void sportQuizAction() {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "You're in sport quiz form!");
+    }
+
+    @FXML
+    protected void findGymAction() {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "You try to find a Gym!");
+    }
 
     @FXML
     protected void submitActionSignUpGym(ActionEvent event) throws Exception {
@@ -75,6 +91,10 @@ public class SignUpGymController extends HomeController implements Initializable
             HighlightButton.lightColor(submitSignUpGym);
         } else if (event.getSource() == skipSignUpGym) {
             HighlightButton.lightColor(skipSignUpGym);
+        } else if (event.getSource() == sportQuiz) {
+            HighlightButton.lightColor(sportQuiz);
+        } else if (event.getSource() == findGym) {
+            HighlightButton.lightColor(findGym);
         }
     }
 
@@ -88,6 +108,10 @@ public class SignUpGymController extends HomeController implements Initializable
             HighlightButton.darkColor(submitSignUpGym);
         } else if (event.getSource() == skipSignUpGym) {
             HighlightButton.darkColor(skipSignUpGym);
+        } else if (event.getSource() == sportQuiz) {
+            HighlightButton.darkColor(sportQuiz);
+        } else if (event.getSource() == findGym) {
+            HighlightButton.darkColor(findGym);
         }
     }
 

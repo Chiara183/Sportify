@@ -9,7 +9,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.*;
 
-public class LoginController extends HomeController implements Initializable {
+public class LoginController implements Initializable {
 
     //TextField
     @FXML
@@ -26,7 +26,22 @@ public class LoginController extends HomeController implements Initializable {
     private Button submitLogin;
     @FXML
     private Button skipLogin;
+    @FXML
+    private Button sportQuiz;
+    @FXML
+    private Button findGym;
 
+    @FXML
+    protected void sportQuizAction() {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "You're in sport quiz form!");
+    }
+
+    @FXML
+    protected void findGymAction() {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "You try to find a Gym!");
+    }
 
     @FXML
     protected void submitActionLogin() throws IOException {
@@ -66,6 +81,10 @@ public class LoginController extends HomeController implements Initializable {
             HighlightButton.lightColor(submitLogin);
         } else if (event.getSource() == skipLogin) {
             HighlightButton.lightColor(skipLogin);
+        } else if (event.getSource() == sportQuiz) {
+            HighlightButton.lightColor(sportQuiz);
+        } else if (event.getSource() == findGym) {
+            HighlightButton.lightColor(findGym);
         }
     }
 
@@ -79,6 +98,10 @@ public class LoginController extends HomeController implements Initializable {
             HighlightButton.darkColor(submitLogin);
         } else if (event.getSource() == skipLogin) {
             HighlightButton.darkColor(skipLogin);
+        } else if (event.getSource() == sportQuiz) {
+            HighlightButton.darkColor(sportQuiz);
+        } else if (event.getSource() == findGym) {
+            HighlightButton.darkColor(findGym);
         }
     }
 
