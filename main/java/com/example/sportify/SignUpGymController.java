@@ -6,11 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 
 import javax.swing.*;
-import java.io.*;
 import java.net.URL;
-import java.nio.file.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class SignUpGymController implements Initializable {
 

@@ -16,22 +16,19 @@ import java.util.stream.Collectors;
 
 public class SportQuizController implements Initializable {
 
-    Stage stage;
-    Parent root;
-
     Button button;
 
     @FXML
     private void lightColor(MouseEvent event) {
         if (event.getSource() == button) {
-            button.setStyle("-fx-background-color:  #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(button);
         }
     }
 
     @FXML
     private void darkColor(MouseEvent event) {
         if (event.getSource() == button) {
-            button.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(button);
         }
     }
 
