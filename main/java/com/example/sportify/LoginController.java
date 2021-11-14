@@ -89,26 +89,26 @@ public class LoginController extends HomeController implements Initializable {
     @FXML
     private void lightColor(MouseEvent event) {
         if (event.getSource() == signUp) {
-            signUp.setStyle("-fx-background-color:  #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(signUp);
         } else if (event.getSource() == home) {
-            home.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(home);
         } else if (event.getSource() == submitLogin) {
-            submitLogin.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(submitLogin);
         } else if (event.getSource() == skipLogin) {
-            skipLogin.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(skipLogin);
         }
     }
 
     @FXML
     private void darkColor(MouseEvent event) {
         if (event.getSource() == signUp) {
-            signUp.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(signUp);
         } else if (event.getSource() == home) {
-            home.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(home);
         } else if (event.getSource() == submitLogin) {
-            submitLogin.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(submitLogin);
         } else if (event.getSource() == skipLogin) {
-            skipLogin.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(skipLogin);
         }
     }
 

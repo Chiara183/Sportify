@@ -129,13 +129,13 @@ public class SignUpController implements Initializable {
     @FXML
     private void darkColor(MouseEvent event) {
         if (event.getSource() == signIn) {
-            signIn.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(signIn);
         } else if (event.getSource() == home) {
-            home.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(home);
         } else if (event.getSource() == submitSignUp) {
-            submitSignUp.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(submitSignUp);
         } else if (event.getSource() == skipSignUp) {
-            skipSignUp.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(skipSignUp);
         }
     }
 

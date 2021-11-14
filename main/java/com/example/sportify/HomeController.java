@@ -39,22 +39,22 @@ public class HomeController implements Initializable {
     @FXML
     private void lightColor(MouseEvent event) {
         if (event.getSource() == signIn) {
-            signIn.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(signIn);
         } else if (event.getSource() == sportQuiz) {
-            sportQuiz.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(sportQuiz);
         } else if (event.getSource() == findGym) {
-            findGym.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(findGym);
         }
     }
 
     @FXML
     private void darkColor(MouseEvent event) {
         if (event.getSource() == signIn) {
-            signIn.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(signIn);
         } else if (event.getSource() == sportQuiz) {
-            sportQuiz.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(sportQuiz);
         } else if (event.getSource() == findGym) {
-            findGym.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(findGym);
         }
     }
 

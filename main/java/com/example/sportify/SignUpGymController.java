@@ -24,7 +24,7 @@ public class SignUpGymController implements Initializable {
 
     //Button
     @FXML
-    private Button signIn;
+    private Button signInGym;
     @FXML
     private Button home;
     @FXML
@@ -82,7 +82,7 @@ public class SignUpGymController implements Initializable {
 
     @FXML
     private void signLoginAction() throws Exception {
-        CreateWindow.signLoginAction(signIn);
+        CreateWindow.signLoginAction(signInGym);
     }
 
     @FXML
@@ -92,27 +92,27 @@ public class SignUpGymController implements Initializable {
 
     @FXML
     private void lightColor(MouseEvent event) {
-        if (event.getSource() == signIn) {
-            signIn.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+        if (event.getSource() == signInGym) {
+            HighlightButton.lightColor(signInGym);
         } else if (event.getSource() == home) {
-            home.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(home);
         } else if (event.getSource() == submitSignUpGym) {
-            submitSignUpGym.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(submitSignUpGym);
         } else if (event.getSource() == skipSignUpGym) {
-            skipSignUpGym.setStyle("-fx-background-color: #53a5ff; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.lightColor(skipSignUpGym);
         }
     }
 
     @FXML
     private void darkColor(MouseEvent event) {
-        if (event.getSource() == signIn) {
-            signIn.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+        if (event.getSource() == signInGym) {
+            HighlightButton.darkColor(signInGym);
         } else if (event.getSource() == home) {
-            home.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(home);
         } else if (event.getSource() == submitSignUpGym) {
-            submitSignUpGym.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(submitSignUpGym);
         } else if (event.getSource() == skipSignUpGym) {
-            skipSignUpGym.setStyle("-fx-background-color:  #2571b9; -fx-border-radius: 8px; -fx-background-radius: 12px; -fx-border-width: 2px; -fx-border-color: #000000; -fx-background-size: 2px;");
+            HighlightButton.darkColor(skipSignUpGym);
         }
     }
 
