@@ -1,13 +1,17 @@
 package com.example.sportify;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.*;
-import javafx.scene.control.*;
-import javafx.scene.input.*;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 
 import javax.swing.*;
 import java.net.URL;
-import java.util.*;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 public class SignUpGymController extends HomeController implements Initializable {
 
@@ -21,7 +25,7 @@ public class SignUpGymController extends HomeController implements Initializable
 
     //Button
     @FXML
-    private Button login;
+    private Button signInGym;
     @FXML
     private Button home;
     @FXML
@@ -71,11 +75,6 @@ public class SignUpGymController extends HomeController implements Initializable
         }
     }
 
-    //@FXML
-    //private void signLoginAction() throws Exception {
-      //  CreateWindow.signLoginAction(signInGym);
-    //}
-
     @FXML
     private void homeAction() throws Exception {
         CreateWindow.homeAction(home);
@@ -86,8 +85,8 @@ public class SignUpGymController extends HomeController implements Initializable
     }
     @FXML
     private void lightColor(MouseEvent event) {
-        if (event.getSource() == login) {
-            HighlightButton.lightColor(login);
+        if (event.getSource() == signInGym) {
+            HighlightButton.lightColor(signInGym);
         } else if (event.getSource() == home) {
             HighlightButton.lightColor(home);
         } else if (event.getSource() == submitSignUpGym) {
@@ -103,8 +102,8 @@ public class SignUpGymController extends HomeController implements Initializable
 
     @FXML
     private void darkColor(MouseEvent event) {
-        if (event.getSource() == login) {
-            HighlightButton.darkColor(login);
+        if (event.getSource() == signInGym) {
+            HighlightButton.darkColor(signInGym);
         } else if (event.getSource() == home) {
             HighlightButton.darkColor(home);
         } else if (event.getSource() == submitSignUpGym) {
