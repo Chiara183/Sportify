@@ -51,7 +51,19 @@ public class CreateWindow implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
+    public static void loginAction(Button button) throws Exception {
+        Stage stage = (Stage) button.getScene().getWindow();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("Login.fxml")));
 
+        //HomeScene
+        Scene sceneBack = new Scene(root, 780, 437);
+
+        //set stage
+        stage.setTitle("LOGIN FORM");
+        stage.setScene(sceneBack);
+        stage.setResizable(false);
+        stage.show();
+    }
     public static void signSignUpAction(Button signUp) throws Exception {
         Stage stage = (Stage) signUp.getScene().getWindow();
 

@@ -80,7 +80,10 @@ public class SignUpGymController extends HomeController implements Initializable
     private void homeAction() throws Exception {
         CreateWindow.homeAction(home);
     }
-
+    @FXML
+    private void skipAction() throws Exception {
+        CreateWindow.loginAction(skipSignUpGym);
+    }
     @FXML
     private void lightColor(MouseEvent event) {
         if (event.getSource() == login) {

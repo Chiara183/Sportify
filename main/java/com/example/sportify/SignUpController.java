@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.net.URL;
 import java.util.*;
 
-public class SignUpController implements Initializable {
+public class SignUpController extends HomeController implements Initializable {
 
     //TextField
     @FXML
@@ -95,7 +95,7 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    private void signLoginAction() throws Exception {
+    protected void signLoginAction() throws Exception {
         CreateWindow.signLoginAction(signIn);
     }
 
@@ -103,7 +103,10 @@ public class SignUpController implements Initializable {
     private void homeAction() throws Exception {
         CreateWindow.homeAction(home);
     }
-
+    @FXML
+    protected void skipAction() throws Exception {
+        CreateWindow.loginAction(skipSignUp);
+    }
     @FXML
     private void lightColor(MouseEvent event) {
         if (event.getSource() == signIn) {

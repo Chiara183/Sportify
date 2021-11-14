@@ -9,7 +9,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.*;
 
-public class LoginController implements Initializable {
+public class LoginController extends HomeController implements Initializable {
 
     //TextField
     @FXML
@@ -69,6 +69,11 @@ public class LoginController implements Initializable {
     @FXML
     private void homeAction() throws Exception {
         CreateWindow.homeAction(home);
+    }
+
+    @FXML
+    private void skipAction() throws Exception {
+        CreateWindow.homeAction(skipLogin);
     }
 
     @FXML
