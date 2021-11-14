@@ -1,10 +1,8 @@
 package com.example.sportify;
 
 import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.*;
@@ -12,9 +10,6 @@ import java.net.URL;
 import java.util.*;
 
 public class LoginController extends HomeController implements Initializable {
-
-    Stage stage;
-    Parent root;
 
     //TextField
     @FXML
@@ -83,31 +78,12 @@ public class LoginController extends HomeController implements Initializable {
 
     @FXML
     private void signSignUpAction() throws Exception {
-        stage = (Stage) signUp.getScene().getWindow();
-
-        //SignUpScene
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SignUp.fxml")));
-        Scene sceneSignUp = new Scene(root, 814, 456);
-
-        //set stage
-        stage.setTitle("SIGN UP FORM");
-        stage.setScene(sceneSignUp);
-        stage.show();
+        CreateWindow.signSignUpAction(signUp);
     }
 
     @FXML
     private void homeAction() throws Exception {
-        stage = (Stage) home.getScene().getWindow();
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
-
-        //HomeScene
-        Scene sceneHome = new Scene(root, 780, 437);
-
-        //set stage
-        stage.setTitle("HOME FORM");
-        stage.setScene(sceneHome);
-        stage.setResizable(false);
-        stage.show();
+        CreateWindow.homeAction(home);
     }
 
     @FXML

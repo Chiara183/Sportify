@@ -2,10 +2,8 @@ package com.example.sportify;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
-import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.*;
@@ -15,9 +13,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class SignUpGymController implements Initializable {
-
-    Stage stage;
-    Parent root;
 
     //TextField
     @FXML
@@ -87,33 +82,12 @@ public class SignUpGymController implements Initializable {
 
     @FXML
     private void signLoginAction() throws Exception {
-        stage = (Stage) signIn.getScene().getWindow();
-
-        //LoginScene
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
-        Scene sceneSignIn = new Scene(root, 780, 437);
-
-        //set stage
-        stage.setTitle("LOGIN FORM");
-        stage.setScene(sceneSignIn);
-        stage.setResizable(false);
-        stage.show();
-        stage.setResizable(false);
+        CreateWindow.signLoginAction(signIn);
     }
 
     @FXML
     private void homeAction() throws Exception {
-        stage = (Stage) home.getScene().getWindow();
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
-
-        //HomeScene
-        Scene sceneHome = new Scene(root, 780, 437);
-
-        //set stage
-        stage.setTitle("HOME FORM");
-        stage.setScene(sceneHome);
-        stage.setResizable(false);
-        stage.show();
+        CreateWindow.homeAction(home);
     }
 
     @FXML

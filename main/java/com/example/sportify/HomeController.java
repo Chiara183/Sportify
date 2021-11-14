@@ -1,19 +1,14 @@
 package com.example.sportify;
 
 import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.net.URL;
 import java.util.*;
 
 public class HomeController implements Initializable {
-
-    Stage stage;
-    Parent root;
 
     //Button
     @FXML
@@ -38,18 +33,7 @@ public class HomeController implements Initializable {
 
     @FXML
     protected void signLoginAction() throws Exception {
-        stage = (Stage) signIn.getScene().getWindow();
-
-        //LoginScene
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
-        Scene sceneSignIn = new Scene(root, 780, 437);
-
-        //set stage
-        stage.setTitle("LOGIN FORM");
-        stage.setScene(sceneSignIn);
-        stage.setResizable(false);
-        stage.show();
-        stage.setResizable(false);
+        CreateWindow.signLoginAction(signIn);
     }
 
     @FXML

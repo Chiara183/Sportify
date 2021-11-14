@@ -2,10 +2,8 @@ package com.example.sportify;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
-import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.*;
@@ -15,9 +13,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class SignUpController implements Initializable {
-
-    Stage stage;
-    Parent root;
 
     //TextField
     @FXML
@@ -47,7 +42,10 @@ public class SignUpController implements Initializable {
 
     @FXML
     protected void submitActionSignUp(ActionEvent event) throws Exception {
+
+        // Create HashMap
         HashMap<String, String[]> account = new HashMap<>();
+
         if (event.getSource().equals(KeyCode.ENTER) || event.getSource().equals(submitSignUp)) {
             String[] userAccount = new String[4];                               //initialize list of string 'userAccount'
             String userValue = username.getText();                              //get user entered username
@@ -102,47 +100,17 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void signSignUpGymAction() throws Exception {
-        stage = (Stage) submitSignUp.getScene().getWindow();
-
-        //SignUpScene
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SignUpGym.fxml")));
-        Scene sceneSignUpGym = new Scene(root, 814, 456);
-
-        //set stage
-        stage.setTitle("SIGN UP FORM");
-        stage.setScene(sceneSignUpGym);
-        stage.show();
+        CreateWindow.signSignUpGymAction(submitSignUp);
     }
 
     @FXML
     private void signLoginAction() throws Exception {
-        stage = (Stage) signIn.getScene().getWindow();
-
-        //LoginScene
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
-        Scene sceneSignIn = new Scene(root, 780, 437);
-
-        //set stage
-        stage.setTitle("LOGIN FORM");
-        stage.setScene(sceneSignIn);
-        stage.setResizable(false);
-        stage.show();
-        stage.setResizable(false);
+        CreateWindow.signLoginAction(signIn);
     }
 
     @FXML
     private void homeAction() throws Exception {
-        stage = (Stage) home.getScene().getWindow();
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
-
-        //HomeScene
-        Scene sceneHome = new Scene(root, 780, 437);
-
-        //set stage
-        stage.setTitle("HOME FORM");
-        stage.setScene(sceneHome);
-        stage.setResizable(false);
-        stage.show();
+        CreateWindow.homeAction(home);
     }
 
     @FXML
@@ -173,10 +141,14 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void tickAction(javafx.event.ActionEvent event) {
-        if (event.getSource() == gymTick) {
+        if (event.getSource() == gymTick && userTick.isSelected()) {
             userTick.setSelected(false);
-        } else if (event.getSource() == userTick) {
+        } else if (event.getSource() == userTick && gymTick.isSelected()) {
             gymTick.setSelected(false);
+        } else if (event.getSource() == gymTick && !userTick.isSelected()) {
+            userTick.setSelected(true);
+        } else if (event.getSource() == userTick && !gymTick.isSelected()) {
+            gymTick.setSelected(true);
         }
     }
 
