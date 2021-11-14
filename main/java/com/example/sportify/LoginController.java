@@ -31,7 +31,7 @@ public class LoginController extends HomeController implements Initializable {
     @FXML
     protected void submitActionLogin() throws IOException {
         HashMap<String, String[]> account;
-        account = readFile();
+        account = readWriteFile.readFile();
 
         String userValue = username.getText();                                //get user entered username from the textField1
         String passValue = password.getText();                                //get user entered password from the textField2
@@ -44,36 +44,6 @@ public class LoginController extends HomeController implements Initializable {
             //show error message
             JOptionPane.showMessageDialog(jFrame, "Please enter valid username and password or Signup");
         }
-    }
-
-    protected HashMap<String, String[]> readFile() throws IOException {
-        // File path is passed as parameter
-        File file = new File(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login");
-
-        // Creating an object of BufferedReader class
-        BufferedReader br = new BufferedReader(new FileReader(file));
-
-        // Declaring a string variable
-        String st;
-        // Declaring a HashMap variable
-        HashMap<String, String[]> hashMap = new HashMap<>();
-        // Condition holds true till
-        // there is character in a string
-        while ((st = br.readLine()) != null){
-            // Remove first and last char from st
-            st = st.substring(1, st.length() - 1);
-            // split the String by a comma
-            String[] parts = st.split("=");
-            // Create HashMap key
-            String key = parts[0].trim();
-            // Create a list string
-            String list = parts[1].substring(1, parts[1].length() - 1);
-            // split the String by a comma
-            String[] listParts = list.split(", ");
-            // Add to map
-            hashMap.put(key, listParts);
-        }
-        return (hashMap);
     }
 
     @FXML

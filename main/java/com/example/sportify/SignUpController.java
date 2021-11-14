@@ -6,11 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 
 import javax.swing.*;
-import java.io.*;
 import java.net.URL;
-import java.nio.file.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class SignUpController implements Initializable {
 
@@ -62,39 +59,17 @@ public class SignUpController implements Initializable {
             JFrame jFrame = new JFrame();
             if (!userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")) {    //if authentic, navigate user to a new page
                 if (userTick.isSelected()) {
-                    saveOnFile(account);
+                    readWriteFile.saveOnFile(account);
                     JOptionPane.showMessageDialog(jFrame, "You're registered!");
                     signLoginAction();
                 } else if (gymTick.isSelected()) {
-                    saveOnFile(account);
+                    readWriteFile.saveOnFile(account);
                     signSignUpGymAction();
                 }
             } else {
                 //show error message
                 JOptionPane.showMessageDialog(jFrame, "Please enter all value.");
             }
-        }
-    }
-
-    protected void saveOnFile(HashMap<String, String[]> map) {
-        String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login";
-        Path path = Path.of(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login");
-        String mapAsString = map.keySet().stream().map(key -> key + "=" + Arrays.toString(map.get(key))).collect(Collectors.joining(", ", "{", "}"));
-        try {
-            File file = new File(filePath);
-            if (file.exists()) {
-                if (file.length() == 0) {
-                    Files.writeString(path, mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-                } else {
-                    Files.writeString(path, "\n" + mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-                }
-            } else if (file.createNewFile()) {
-                Files.writeString(path, mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-            } else {
-                System.out.println("The file cannot be created");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

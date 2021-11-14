@@ -48,35 +48,13 @@ public class SignUpGymController implements Initializable {
             //check whether the credentials are authentic or not
             JFrame jFrame = new JFrame();
             if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("")) {    //if authentic, navigate user to a new page
-                saveOnFile(account);
+                readWriteFile.saveOnFile(account);
                 JOptionPane.showMessageDialog(jFrame, "You're registered!");
                 signLoginAction();
             } else {
                 //show error message
                 JOptionPane.showMessageDialog(jFrame, "Please enter all value.");
             }
-        }
-    }
-
-    protected void saveOnFile(HashMap<String, String[]> map) {
-        String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login";
-        Path path = Path.of(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login");
-        String mapAsString = map.keySet().stream().map(key -> key + "=" + Arrays.toString(map.get(key))).collect(Collectors.joining(", ", "{", "}"));
-        try {
-            File file = new File(filePath);
-            if (file.exists()) {
-                if (file.length() == 0) {
-                    Files.writeString(path, mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-                } else {
-                    Files.writeString(path, "\n" + mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-                }
-            } else if (file.createNewFile()) {
-                Files.writeString(path, mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-            } else {
-                System.out.println("The file cannot be created");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
