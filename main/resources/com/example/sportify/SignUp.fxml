@@ -106,16 +106,6 @@
                    <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" text="Password" textAlignment="CENTER" GridPane.rowIndex="3">
-                    <font>
-                        <Font name="Comic Sans MS" size="16.0" />
-                    </font>
-                </Label>
-                <PasswordField fx:id="password" maxWidth="273.0" minWidth="1.0" prefHeight="34.0" prefWidth="273.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-                    <cursor>
-                        <Cursor fx:constant="TEXT" />
-                    </cursor>
-                </PasswordField>
               <Label text="First Name" GridPane.rowIndex="1">
                   <font>
                       <Font name="Comic Sans MS" size="16.0" />
@@ -136,6 +126,16 @@
                         <Cursor fx:constant="TEXT" />
                     </cursor>
                 </TextField>
+                <Label alignment="CENTER" contentDisplay="CENTER" text="Password" textAlignment="CENTER" GridPane.rowIndex="3">
+                    <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                    </font>
+                </Label>
+                <PasswordField fx:id="password" maxWidth="273.0" minWidth="1.0" prefHeight="34.0" prefWidth="273.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                </PasswordField>
           </GridPane>
             <Button fx:id="submitSignUp" mnemonicParsing="false" onAction="#submitActionSignUp" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="51.0" prefWidth="86.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="4">
                 <cursor>
