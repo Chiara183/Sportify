@@ -19,10 +19,13 @@ public class Submit implements Initializable {
                 passValue.equals(account.get(userValue).get("password"));
     }
 
-    public static void signUp(String userValue, HashMap<String, String> userAccount) throws Exception {
+    public static void signUp(String userValue, HashMap<String, String> userAccount, String... deleteKey) throws Exception {
 
         // Create HashMap
         HashMap<String, HashMap<String, String>> account = readWriteFile.readFile();
+        if(deleteKey.length != 0){
+            account.remove(deleteKey[0]);
+        }
         readWriteFile.clearFile();
         account.put(userValue, userAccount);                                //add userAccount
         readWriteFile.saveOnFile(account);

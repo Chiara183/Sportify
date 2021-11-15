@@ -80,7 +80,7 @@ public class SignUpController implements Initializable {
                     JOptionPane.showMessageDialog(jFrame, "You're registered!");
                     signLoginAction();
                 } else if (gymTick.isSelected()) {
-                    Submit.signUp(userValue, userAccount);
+                    Submit.signUp("gymTick", userAccount);
                     signSignUpGymAction();
                 }
             } else {

@@ -52,7 +52,7 @@ public class SignUpGymController implements Initializable {
     @FXML
     protected void submitActionSignUpGym(ActionEvent event) throws Exception {
         if (event.getSource().equals(KeyCode.ENTER) || event.getSource().equals(submitSignUpGym)) {
-            String userValue = "";
+            String userValue = "gymTick";
             HashMap<String, HashMap<String, String>> account= readWriteFile.readFile();
             HashMap<String, String> userGymAccount = account.get(userValue);
             String gymValue = gymName.getText();                                    //get user entered gym name
@@ -65,7 +65,7 @@ public class SignUpGymController implements Initializable {
             //check whether the credentials are authentic or not
             JFrame jFrame = new JFrame();
             if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("")) {    //if authentic, navigate user to a new page
-                Submit.signUp(userValue, userGymAccount);
+                Submit.signUp(userGymAccount.get("username"), userGymAccount, "gymTick");
                 JOptionPane.showMessageDialog(jFrame, "You're registered!");
                 signLoginAction();
             } else {
