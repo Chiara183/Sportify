@@ -13,13 +13,10 @@ public class Submit implements Initializable {
         HashMap<String, HashMap<String, String>> account = readWriteFile.readFile();
         System.out.println(account.get(userValue).get("username") + "\n" + passValue.equals(account.get(userValue).get("password")));
 
-        if (!account.isEmpty() && account.containsKey(userValue) &&
+        //if authentic, navigate user to a new page
+        return !account.isEmpty() && account.containsKey(userValue) &&
                 userValue.equals(account.get(userValue).get("username")) &&
-                passValue.equals(account.get(userValue).get("password"))) {    //if authentic, navigate user to a new page
-            return true;
-        } else {
-            return false;
-        }
+                passValue.equals(account.get(userValue).get("password"));
     }
 
     public static void signUp(String userValue, HashMap<String, String> userAccount) throws Exception {
