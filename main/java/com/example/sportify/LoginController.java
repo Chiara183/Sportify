@@ -1,15 +1,18 @@
 package com.example.sportify;
 
-import javafx.fxml.*;
-import javafx.scene.control.*;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import javax.swing.*;
-import java.io.*;
+import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
-public class LoginController extends HomeController implements Initializable {
+public class LoginController implements Initializable {
 
     //TextField
     @FXML

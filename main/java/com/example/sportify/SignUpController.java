@@ -1,15 +1,20 @@
 package com.example.sportify;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.*;
-import javafx.scene.control.*;
-import javafx.scene.input.*;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 
 import javax.swing.*;
 import java.net.URL;
-import java.util.*;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
-public class SignUpController extends HomeController implements Initializable {
+public class SignUpController implements Initializable {
 
     //TextField
     @FXML
