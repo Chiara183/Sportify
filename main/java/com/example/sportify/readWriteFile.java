@@ -34,7 +34,7 @@ public class readWriteFile implements Initializable {
             }
 
             String str;
-            str = s.toString().substring(1, s.length() - 1);
+            str = s.substring(1, s.length() - 1);
             String[] subParts = str.split(", ");
             HashMap<String, String> subHashMap = new HashMap<>();
             String[] arr;
