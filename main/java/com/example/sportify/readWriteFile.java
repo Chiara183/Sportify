@@ -57,7 +57,7 @@ public class readWriteFile implements Initializable {
         StringBuilder mapAsString = new StringBuilder();
         for (String key : map.keySet()){
             HashMap<String, String> subMap = map.get(key);
-            mapAsString = new StringBuilder("{" + key + "={");
+            mapAsString.append("{").append(key).append("={");
             for (String subKey : subMap.keySet()){
                mapAsString.append(subKey).append("={").append(subMap.get(subKey)).append("}, ");}
             mapAsString = new StringBuilder(mapAsString.substring(0, mapAsString.length() - 2));
