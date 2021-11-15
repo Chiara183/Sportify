@@ -9,7 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -48,15 +47,12 @@ public class LoginController implements Initializable {
 
     @FXML
     protected void submitActionLogin() throws IOException {
-        HashMap<String, String[]> account;
-        account = readWriteFile.readFile();
-
         String userValue = username.getText();                                //get user entered username from the textField1
         String passValue = password.getText();                                //get user entered password from the textField2
 
         //check whether the credentials are authentic or not
         JFrame jFrame = new JFrame();
-        if (!account.isEmpty() && account.containsKey(userValue) && userValue.equals(account.get(userValue)[0]) && passValue.equals(account.get(userValue)[1])) {    //if authentic, navigate user to a new page
+        if (Submit.login(userValue, passValue)) {    //if authentic, navigate user to a new page
             JOptionPane.showMessageDialog(jFrame, "Correct!");
         } else {
             //show error message

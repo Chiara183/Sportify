@@ -52,20 +52,20 @@ public class SignUpGymController implements Initializable {
     @FXML
     protected void submitActionSignUpGym(ActionEvent event) throws Exception {
         if (event.getSource().equals(KeyCode.ENTER) || event.getSource().equals(submitSignUpGym)) {
-            HashMap<String, String[]> account = new HashMap<>();
-            String[] userGymAccount = new String[3];                                //initialize list of string 'userGymAccount'
+            String userValue = "";
+            HashMap<String, HashMap<String, String>> account= readWriteFile.readFile();
+            HashMap<String, String> userGymAccount = account.get(userValue);
             String gymValue = gymName.getText();                                    //get user entered gym name
             String addressValue = gymAddress.getText();                             //get user entered gym address
             String cityValue = gymCity.getText();                                   //get user entered gym city
-            userGymAccount[0] = gymValue;                                           //put userValue in userAccount
-            userGymAccount[1] = addressValue;                                       //put user password in userAccount
-            userGymAccount[2] = cityValue;                                          //put user firstName in userAccount
-            account.put(gymValue, userGymAccount);
+            userGymAccount.put("gymName", gymValue);                                //put userValue in userAccount
+            userGymAccount.put("gymAddress", addressValue);                         //put user password in userAccount
+            userGymAccount.put("gymCity", cityValue);                               //put user firstName in userAccount
 
             //check whether the credentials are authentic or not
             JFrame jFrame = new JFrame();
             if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("")) {    //if authentic, navigate user to a new page
-                readWriteFile.saveOnFile(account);
+                Submit.signUp(userValue, userGymAccount);
                 JOptionPane.showMessageDialog(jFrame, "You're registered!");
                 signLoginAction();
             } else {

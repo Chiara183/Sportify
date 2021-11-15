@@ -61,30 +61,26 @@ public class SignUpController implements Initializable {
     @FXML
     protected void submitActionSignUp(ActionEvent event) throws Exception {
 
-        // Create HashMap
-        HashMap<String, String[]> account = new HashMap<>();
-
         if (event.getSource().equals(KeyCode.ENTER) || event.getSource().equals(submitSignUp)) {
-            String[] userAccount = new String[4];                               //initialize list of string 'userAccount'
+            HashMap<String, String> userAccount = new HashMap<>();              //initialize list of string 'userAccount'
             String userValue = username.getText();                              //get user entered username
             String passValue = password.getText();                              //get user entered password
             String nameValue = firstName.getText();                             //get user entered first name
             String lastNameValue = lastName.getText();                          //get user entered last name
-            userAccount[0] = userValue;                                         //put userValue in userAccount
-            userAccount[1] = passValue;                                         //put user password in userAccount
-            userAccount[2] = nameValue;                                         //put user firstName in userAccount
-            userAccount[3] = lastNameValue;                                     //put user lastName in userAccount
-            account.put(userValue, userAccount);                                //add userAccount
+            userAccount.put("username", userValue);                             //put userValue in userAccount
+            userAccount.put("password", passValue);                             //put user password in userAccount
+            userAccount.put("firstName", nameValue);                            //put user firstName in userAccount
+            userAccount.put("lastName", lastNameValue);                         //put user lastName in userAccount
 
             //check whether the credentials are authentic or not
             JFrame jFrame = new JFrame();
             if (!userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")) {    //if authentic, navigate user to a new page
                 if (userTick.isSelected()) {
-                    readWriteFile.saveOnFile(account);
+                    Submit.signUp(userValue, userAccount);
                     JOptionPane.showMessageDialog(jFrame, "You're registered!");
                     signLoginAction();
                 } else if (gymTick.isSelected()) {
-                    readWriteFile.saveOnFile(account);
+                    Submit.signUp(userValue, userAccount);
                     signSignUpGymAction();
                 }
             } else {
