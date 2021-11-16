@@ -1,13 +1,13 @@
 package com.example.sportify;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.*;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 import javax.swing.*;
 import java.net.URL;
-import java.util.*;
+import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
@@ -34,7 +34,7 @@ public class HomeController implements Initializable {
 
     @FXML
     protected void signLoginAction() throws Exception {
-        CreateWindow.signLoginAction(login) ;
+        CreateWindow.loginAction(login) ;
     }
 
     @FXML

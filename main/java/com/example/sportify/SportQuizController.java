@@ -35,7 +35,7 @@ public class SportQuizController implements Initializable {
 
     @FXML
     protected void signLoginAction() throws Exception {
-        CreateWindow.signLoginAction(signInGym);
+        CreateWindow.loginAction(signInGym);
     }
 
     @FXML

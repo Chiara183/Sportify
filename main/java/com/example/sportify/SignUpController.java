@@ -97,17 +97,19 @@ public class SignUpController implements Initializable {
 
     @FXML
     protected void signLoginAction() throws Exception {
-        CreateWindow.signLoginAction(signIn);
+        CreateWindow.loginAction(signIn);
     }
 
     @FXML
     private void homeAction() throws Exception {
         CreateWindow.homeAction(home);
     }
+
     @FXML
     protected void skipAction() throws Exception {
         CreateWindow.loginAction(skipSignUp);
     }
+
     @FXML
     private void lightColor(MouseEvent event) {
         if (event.getSource() == signIn) {
