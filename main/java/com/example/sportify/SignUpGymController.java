@@ -38,15 +38,13 @@ public class SignUpGymController implements Initializable {
     private Button findGym;
 
     @FXML
-    protected void sportQuizAction() {
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "You're in sport quiz form!");
+    protected void sportQuizAction() throws Exception {
+        CreateWindow.sportQuiz(sportQuiz);
     }
 
     @FXML
-    protected void findGymAction() {
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "You try to find a Gym!");
+    protected void findGymAction() throws Exception {
+        CreateWindow.findGym(findGym);
     }
 
     @FXML
@@ -77,17 +75,17 @@ public class SignUpGymController implements Initializable {
 
     @FXML
     protected void signLoginAction() throws Exception {
-        CreateWindow.loginAction(signInGym);
+        CreateWindow.login(signInGym);
     }
 
     @FXML
     private void homeAction() throws Exception {
-        CreateWindow.homeAction(home);
+        CreateWindow.home(home);
     }
 
     @FXML
     private void skipAction() throws Exception {
-        CreateWindow.loginAction(skipSignUpGym);
+        CreateWindow.login(skipSignUpGym);
     }
 
     @FXML

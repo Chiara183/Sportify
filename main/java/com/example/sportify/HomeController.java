@@ -5,7 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,20 +20,18 @@ public class HomeController implements Initializable {
 
 
     @FXML
-    protected void sportQuizAction() {
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "You're in sport quiz form!");
+    protected void sportQuizAction() throws Exception {
+        CreateWindow.sportQuiz(sportQuiz);
     }
 
     @FXML
-    protected void findGymAction() {
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "You try to find a Gym!");
+    protected void findGymAction() throws Exception {
+        CreateWindow.findGym(findGym);
     }
 
     @FXML
     protected void signLoginAction() throws Exception {
-        CreateWindow.loginAction(login) ;
+        CreateWindow.login(login) ;
     }
 
     @FXML

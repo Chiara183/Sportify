@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -25,26 +26,36 @@ public class CreateWindow implements Initializable {
         stage.show();
     }
 
-    public static void signSignUpGymAction(Button submitSignUp) throws Exception {
+    public static void signUpGym(Button submitSignUp) throws Exception {
         //SignUpScene
         Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("SignUpGym.fxml")));
         create(submitSignUp, root, "SIGN UP");
     }
 
-    public static void homeAction(Button home) throws Exception {
+    public static void home(Button home) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("Home.fxml")));
         create(home, root, "HOME");
     }
 
-    public static void loginAction(Button login) throws Exception {
+    public static void login(Button login) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("Login.fxml")));
         create(login, root, "LOGIN FORM");
     }
 
-    public static void signSignUpAction(Button signUp) throws Exception {
+    public static void signUp(Button signUp) throws Exception {
         //SignUpScene
         Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("SignUp.fxml")));
         create(signUp, root, "SIGN UP");
+    }
+
+    public static void sportQuiz(Button sportQuiz) {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "You're in sport quiz form!");
+    }
+
+    public static void findGym(Button findGym) {
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "You try to find a Gym!");
     }
 
     @Override

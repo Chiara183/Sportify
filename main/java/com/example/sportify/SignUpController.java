@@ -47,15 +47,13 @@ public class SignUpController implements Initializable {
     CheckBox userTick;
 
     @FXML
-    protected void sportQuizAction() {
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "You're in sport quiz form!");
+    protected void sportQuizAction() throws Exception {
+        CreateWindow.sportQuiz(sportQuiz);
     }
 
     @FXML
-    protected void findGymAction() {
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "You try to find a Gym!");
+    protected void findGymAction() throws Exception {
+        CreateWindow.findGym(findGym);
     }
 
     @FXML
@@ -92,22 +90,22 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void signSignUpGymAction() throws Exception {
-        CreateWindow.signSignUpGymAction(submitSignUp);
+        CreateWindow.signUpGym(submitSignUp);
     }
 
     @FXML
     protected void signLoginAction() throws Exception {
-        CreateWindow.loginAction(signIn);
+        CreateWindow.login(signIn);
     }
 
     @FXML
     private void homeAction() throws Exception {
-        CreateWindow.homeAction(home);
+        CreateWindow.home(home);
     }
 
     @FXML
     protected void skipAction() throws Exception {
-        CreateWindow.loginAction(skipSignUp);
+        CreateWindow.login(skipSignUp);
     }
 
     @FXML
