@@ -59,7 +59,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void signSignUpAction() throws Exception {
+    private void signUpAction() throws Exception {
         CreateWindow.signUp(signUp);
     }
 

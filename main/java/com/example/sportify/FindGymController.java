@@ -19,6 +19,8 @@ public class FindGymController implements Initializable {
     private Button sportQuiz;
     @FXML
     private Button findGym;
+    @FXML
+    private Button signUp;
 
     @FXML
     protected void sportQuizAction() throws Exception {
@@ -39,7 +41,10 @@ public class FindGymController implements Initializable {
     private void homeAction() throws Exception {
         CreateWindow.home(home);
     }
-
+    @FXML
+    protected void signUpAction() throws Exception {
+        CreateWindow.signUp(signUp);
+    }
     @FXML
     private void lightColor(MouseEvent event) {
         if (event.getSource() == signInGym) {

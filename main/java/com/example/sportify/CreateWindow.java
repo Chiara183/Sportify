@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -53,9 +54,9 @@ public class CreateWindow implements Initializable {
         JOptionPane.showMessageDialog(jFrame, "You're in sport quiz form!");
     }
 
-    public static void findGym(Button findGym) {
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "You try to find a Gym!");
+    public static void findGym(Button findGym) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("FindGym.fxml")));
+        create(findGym, root, "GYM FINDER");
     }
 
     @Override

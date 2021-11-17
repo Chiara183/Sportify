@@ -19,10 +19,17 @@ public class SportQuizController implements Initializable {
     private Button sportQuiz;
     @FXML
     private Button findGym;
+    @FXML
+    private Button signUp;
+
 
     @FXML
     protected void sportQuizAction() throws Exception {
         CreateWindow.sportQuiz(sportQuiz);
+    }
+    @FXML
+    protected void signUpAction() throws Exception {
+        CreateWindow.signUp(signUp);
     }
 
     @FXML

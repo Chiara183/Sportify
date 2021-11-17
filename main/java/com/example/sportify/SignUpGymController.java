@@ -27,6 +27,8 @@ public class SignUpGymController implements Initializable {
     @FXML
     private Button signInGym;
     @FXML
+    private Button signUp;
+    @FXML
     private Button home;
     @FXML
     private Button submitSignUpGym;
@@ -77,7 +79,10 @@ public class SignUpGymController implements Initializable {
     protected void signLoginAction() throws Exception {
         CreateWindow.login(signInGym);
     }
-
+    @FXML
+    protected void signUpAction() throws Exception {
+        CreateWindow.signUp(signUp);
+    }
     @FXML
     private void homeAction() throws Exception {
         CreateWindow.home(home);
