@@ -79,14 +79,14 @@ public class LoginController implements Initializable {
             HighlightButton.lightColor(signUp);
         } else if (event.getSource() == home) {
             HighlightButton.lightColor(home);
-        } else if (event.getSource() == submitLogin) {
-            HighlightButton.lightColor(submitLogin);
-        } else if (event.getSource() == skipLogin) {
-            HighlightButton.lightColor(skipLogin);
         } else if (event.getSource() == sportQuiz) {
             HighlightButton.lightColor(sportQuiz);
         } else if (event.getSource() == findGym) {
             HighlightButton.lightColor(findGym);
+        } else if (event.getSource() == submitLogin) {
+            HighlightButton.lightColor(submitLogin);
+        } else if (event.getSource() == skipLogin) {
+            HighlightButton.lightColor(skipLogin);
         }
     }
 

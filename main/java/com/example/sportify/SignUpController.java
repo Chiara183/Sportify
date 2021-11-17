@@ -32,8 +32,6 @@ public class SignUpController implements Initializable {
     @FXML
     private Button home;
     @FXML
-    private Button signUp;
-    @FXML
     private Button submitSignUp;
     @FXML
     private Button skipSignUp;
@@ -94,10 +92,7 @@ public class SignUpController implements Initializable {
     private void signUpGymAction() throws Exception {
         CreateWindow.signUpGym(submitSignUp);
     }
-    @FXML
-    private void signUpAction() throws Exception {
-        CreateWindow.signUp(signUp);
-    }
+
     @FXML
     protected void signLoginAction() throws Exception {
         CreateWindow.login(signIn);
