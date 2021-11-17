@@ -14,6 +14,8 @@ public class FindGymController implements Initializable {
     @FXML
     private Button signInGym;
     @FXML
+    private Button skipGymFinder;
+    @FXML
     private Button home;
     @FXML
     private Button sportQuiz;
@@ -31,7 +33,10 @@ public class FindGymController implements Initializable {
     protected void findGymAction() throws Exception {
         CreateWindow.findGym(findGym);
     }
-
+    @FXML
+    private void skipAction() throws Exception {
+        CreateWindow.home(skipGymFinder);
+    }
     @FXML
     protected void signLoginAction() throws Exception {
         CreateWindow.login(signInGym);

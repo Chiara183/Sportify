@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<Pane prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.FindGymController">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.FindGymController">
     <ImageView fitHeight="437.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@Sfondo.jpg" />
     </ImageView>
@@ -103,15 +115,21 @@
                   </cursor>
                </Button>
                <MenuButton mnemonicParsing="false" prefHeight="32.0" prefWidth="94.0" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" text="Km">
-                 <items>
-                   <MenuItem mnemonicParsing="false" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" text="5" />
-                   <MenuItem mnemonicParsing="false" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" text="10" />
-                     <MenuItem mnemonicParsing="false" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" text="20" />
-                     <MenuItem mnemonicParsing="false" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" text="50" />
-                 </items>
                   <font>
                      <Font name="Comic Sans MS Bold" size="14.0" />
                   </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <items>
+                     <MenuItem mnemonicParsing="false"  text="5" />
+                  <SeparatorMenuItem mnemonicParsing="false" style="-fx-background-color: #000000;" />
+                <MenuItem mnemonicParsing="false" text="10" />
+                  <SeparatorMenuItem mnemonicParsing="false" style="-fx-background-color: #000000;" />
+                   <MenuItem mnemonicParsing="false"  text="20" />
+                  <SeparatorMenuItem mnemonicParsing="false" style="-fx-background-color: #000000;" />
+                  <MenuItem mnemonicParsing="false" text="50" />
+               </items>
                </MenuButton>
          </HBox>
          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -129,6 +147,17 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </ScrollPane>
+         <Button fx:id="skipGymFinder" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#skipAction" onMouseDragEntered="#lightColor" onMouseDragExited="#darkColor" prefHeight="53.0" prefWidth="92.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Skip" GridPane.rowIndex="3">
+            <font>
+               <Font name="Comic Sans MS Bold" size="17.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+            <GridPane.margin>
+               <Insets left="30.0" />
+            </GridPane.margin>
+         </Button>
     </GridPane>
     </VBox>
 </Pane>
