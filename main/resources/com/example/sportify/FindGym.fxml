@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<Pane prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.FindGymController">
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<Pane prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.FindGymController">
     <ImageView fitHeight="437.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@Sfondo.jpg" />
     </ImageView>
@@ -62,7 +51,7 @@
                     <Cursor fx:constant="HAND" />
                 </cursor>
             </Button>
-            <Button fx:id="findGym" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#findGymAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #25b97b; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Gym Finder">
+            <Button fx:id="findGym" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #25b97b; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Gym Finder">
                 <font>
                     <Font name="Comic Sans MS Bold" size="11.0" />
                 </font>
@@ -100,7 +89,6 @@
             <GridPane.margin>
                <Insets top="25.0" />
             </GridPane.margin>
-            <children>
                <TextField prefHeight="33.0" prefWidth="318.0" style="-fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;">
                   <cursor>
                      <Cursor fx:constant="TEXT" />
@@ -116,29 +104,24 @@
                </Button>
                <MenuButton mnemonicParsing="false" prefHeight="32.0" prefWidth="94.0" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" text="Km">
                  <items>
-                   <MenuItem mnemonicParsing="false" text="5" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" />
-                   <MenuItem mnemonicParsing="false" text="10" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;"/>
-                     <MenuItem mnemonicParsing="false" text="20" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;"/>
-                     <MenuItem mnemonicParsing="false" text="50" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;"/>
+                   <MenuItem mnemonicParsing="false" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" text="5" />
+                   <MenuItem mnemonicParsing="false" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" text="10" />
+                     <MenuItem mnemonicParsing="false" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" text="20" />
+                     <MenuItem mnemonicParsing="false" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" text="50" />
                  </items>
                   <font>
                      <Font name="Comic Sans MS Bold" size="14.0" />
                   </font>
                </MenuButton>
-            </children>
          </HBox>
          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          <ScrollPane hbarPolicy="ALWAYS" vbarPolicy="ALWAYS" GridPane.columnIndex="1" GridPane.rowIndex="2">
-            <content>
                <ImageView accessibleRole="TAB_ITEM" fitHeight="316.0" fitWidth="451.0">
-                  <image>
                      <Image url="@../../../../../../../Immagini progetto/maps.jpg" />
-                  </image>
                   <cursor>
                      <Cursor fx:constant="HAND" />
                   </cursor>
                </ImageView>
-            </content>
             <GridPane.margin>
                <Insets bottom="-70.0" right="5.0" top="-75.0" />
             </GridPane.margin>
