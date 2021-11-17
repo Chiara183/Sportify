@@ -11,7 +11,6 @@ public class Submit implements Initializable {
 
     public static boolean login(String userValue, String passValue) throws IOException {
         HashMap<String, HashMap<String, String>> account = readWriteFile.readFile();
-        System.out.println(account.get(userValue).get("username") + "\n" + passValue.equals(account.get(userValue).get("password")));
 
         //if authentic, navigate user to a new page
         return !account.isEmpty() && account.containsKey(userValue) &&
