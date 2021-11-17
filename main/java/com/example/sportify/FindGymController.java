@@ -33,10 +33,12 @@ public class FindGymController implements Initializable {
     protected void findGymAction() throws Exception {
         CreateWindow.findGym(findGym);
     }
+
     @FXML
     private void skipAction() throws Exception {
         CreateWindow.home(skipGymFinder);
     }
+
     @FXML
     protected void signLoginAction() throws Exception {
         CreateWindow.login(signInGym);
@@ -46,10 +48,12 @@ public class FindGymController implements Initializable {
     private void homeAction() throws Exception {
         CreateWindow.home(home);
     }
+
     @FXML
     protected void signUpAction() throws Exception {
         CreateWindow.signUp(signUp);
     }
+
     @FXML
     private void lightColor(MouseEvent event) {
         if (event.getSource() == signInGym) {
