@@ -25,17 +25,9 @@ public class SignUpController extends ButtonAction implements Initializable {
 
     //Button
     @FXML
-    private Button signIn;
-    @FXML
-    private Button home;
-    @FXML
     private Button submitSignUp;
     @FXML
     private Button skipSignUp;
-    @FXML
-    private Button sportQuiz;
-    @FXML
-    private Button findGym;
 
     //CheckBox
     @FXML
@@ -44,28 +36,17 @@ public class SignUpController extends ButtonAction implements Initializable {
     CheckBox userTick;
 
     @FXML
-    protected void sportQuizAction() throws Exception {
-        CreateWindow.sportQuiz(sportQuiz);
-    }
-
-    @FXML
-    protected void findGymAction() throws Exception {
-        CreateWindow.findGym(findGym);
-    }
-
-    @FXML
     protected void submitActionSignUp(ActionEvent event) throws Exception {
-
         if (event.getSource().equals(KeyCode.ENTER) || event.getSource().equals(submitSignUp)) {
-            HashMap<String, String> userAccount = new HashMap<>();              //initialize list of string 'userAccount'
-            String userValue = username.getText();                              //get user entered username
-            String passValue = password.getText();                              //get user entered password
-            String nameValue = firstName.getText();                             //get user entered first name
-            String lastNameValue = lastName.getText();                          //get user entered last name
-            userAccount.put("username", userValue);                             //put userValue in userAccount
-            userAccount.put("password", passValue);                             //put user password in userAccount
-            userAccount.put("firstName", nameValue);                            //put user firstName in userAccount
-            userAccount.put("lastName", lastNameValue);                         //put user lastName in userAccount
+            HashMap<String, String> userAccount = new HashMap<>();  //initialize list of string 'userAccount'
+            String userValue = username.getText();                  //get user entered username
+            String passValue = password.getText();                  //get user entered password
+            String nameValue = firstName.getText();                 //get user entered first name
+            String lastNameValue = lastName.getText();              //get user entered last name
+            userAccount.put("username", userValue);                 //put userValue in userAccount
+            userAccount.put("password", passValue);                 //put user password in userAccount
+            userAccount.put("firstName", nameValue);                //put user firstName in userAccount
+            userAccount.put("lastName", lastNameValue);             //put user lastName in userAccount
 
             //check whether the credentials are authentic or not
             JFrame jFrame = new JFrame();
@@ -88,16 +69,6 @@ public class SignUpController extends ButtonAction implements Initializable {
     @FXML
     private void signUpGymAction() throws Exception {
         CreateWindow.signUpGym(submitSignUp);
-    }
-
-    @FXML
-    protected void signLoginAction() throws Exception {
-        CreateWindow.login(signIn);
-    }
-
-    @FXML
-    private void homeAction() throws Exception {
-        CreateWindow.home(home);
     }
 
     @FXML

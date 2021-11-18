@@ -9,6 +9,44 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ButtonAction implements Initializable {
+
+    //Button
+    @FXML
+    private Button home;
+    @FXML
+    private Button sportQuiz;
+    @FXML
+    private Button findGym;
+    @FXML
+    private Button signIn;
+    @FXML
+    private Button signUp;
+
+    @FXML
+    private void homeAction() throws Exception {
+        CreateWindow.home(home);
+    }
+
+    @FXML
+    protected void sportQuizAction() throws Exception {
+        CreateWindow.sportQuiz(sportQuiz);
+    }
+
+    @FXML
+    protected void findGymAction() throws Exception {
+        CreateWindow.findGym(findGym);
+    }
+
+    @FXML
+    protected void signLoginAction() throws Exception {
+        CreateWindow.login(signIn);
+    }
+
+    @FXML
+    private void signUpAction() throws Exception {
+        CreateWindow.signUp(signUp);
+    }
+
     @FXML
     private void lightColor(MouseEvent event) {
         HighlightButton.lightColor((Button) event.getSource());

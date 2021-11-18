@@ -22,29 +22,9 @@ public class SignUpGymController extends ButtonAction implements Initializable {
 
     //Button
     @FXML
-    private Button signInGym;
-    @FXML
-    private Button signUp;
-    @FXML
-    private Button home;
-    @FXML
     private Button submitSignUpGym;
     @FXML
     private Button skipSignUpGym;
-    @FXML
-    private Button sportQuiz;
-    @FXML
-    private Button findGym;
-
-    @FXML
-    protected void sportQuizAction() throws Exception {
-        CreateWindow.sportQuiz(sportQuiz);
-    }
-
-    @FXML
-    protected void findGymAction() throws Exception {
-        CreateWindow.findGym(findGym);
-    }
 
     @FXML
     protected void submitActionSignUpGym(ActionEvent event) throws Exception {
@@ -52,16 +32,17 @@ public class SignUpGymController extends ButtonAction implements Initializable {
             String userValue = "gymTick";
             HashMap<String, HashMap<String, String>> account= readWriteFile.readFile();
             HashMap<String, String> userGymAccount = account.get(userValue);
-            String gymValue = gymName.getText();                                    //get user entered gym name
-            String addressValue = gymAddress.getText();                             //get user entered gym address
-            String cityValue = gymCity.getText();                                   //get user entered gym city
-            userGymAccount.put("gymName", gymValue);                                //put userValue in userAccount
-            userGymAccount.put("gymAddress", addressValue);                         //put user password in userAccount
-            userGymAccount.put("gymCity", cityValue);                               //put user firstName in userAccount
+            String gymValue = gymName.getText();            //get user entered gym name
+            String addressValue = gymAddress.getText();     //get user entered gym address
+            String cityValue = gymCity.getText();           //get user entered gym city
+            userGymAccount.put("gymName", gymValue);        //put userValue in userAccount
+            userGymAccount.put("gymAddress", addressValue); //put user password in userAccount
+            userGymAccount.put("gymCity", cityValue);       //put user firstName in userAccount
 
             //check whether the credentials are authentic or not
             JFrame jFrame = new JFrame();
-            if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("")) {    //if authentic, navigate user to a new page
+            if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("")) {
+                //if authentic, navigate user to a new page
                 Submit.signUp(userGymAccount.get("username"), userGymAccount, "gymTick");
                 JOptionPane.showMessageDialog(jFrame, "You're registered!");
                 signLoginAction();
@@ -70,21 +51,6 @@ public class SignUpGymController extends ButtonAction implements Initializable {
                 JOptionPane.showMessageDialog(jFrame, "Please enter all value.");
             }
         }
-    }
-
-    @FXML
-    protected void signLoginAction() throws Exception {
-        CreateWindow.login(signInGym);
-    }
-
-    @FXML
-    protected void signUpAction() throws Exception {
-        CreateWindow.signUp(signUp);
-    }
-
-    @FXML
-    private void homeAction() throws Exception {
-        CreateWindow.home(home);
     }
 
     @FXML

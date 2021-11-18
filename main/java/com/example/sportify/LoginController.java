@@ -18,49 +18,21 @@ public class LoginController extends ButtonAction implements Initializable {
 
     //Button
     @FXML
-    private Button signUp;
-    @FXML
-    private Button home;
-    @FXML
     private Button skipLogin;
-    @FXML
-    private Button sportQuiz;
-    @FXML
-    private Button findGym;
-
-    @FXML
-    protected void sportQuizAction() throws Exception {
-        CreateWindow.sportQuiz(sportQuiz);
-    }
-
-    @FXML
-    protected void findGymAction() throws Exception {
-        CreateWindow.findGym(findGym);
-    }
 
     @FXML
     protected void submitActionLogin() throws IOException {
-        String userValue = username.getText();                                //get user entered username from the textField1
-        String passValue = password.getText();                                //get user entered password from the textField2
+        String userValue = username.getText();      //get user entered username from the textField1
+        String passValue = password.getText();      //get user entered password from the textField2
 
         //check whether the credentials are authentic or not
         JFrame jFrame = new JFrame();
-        if (Submit.login(userValue, passValue)) {    //if authentic, navigate user to a new page
+        if (Submit.login(userValue, passValue)) {   //if authentic, navigate user to a new page
             JOptionPane.showMessageDialog(jFrame, "Correct!");
         } else {
             //show error message
             JOptionPane.showMessageDialog(jFrame, "Please enter valid username and password or Signup");
         }
-    }
-
-    @FXML
-    private void signUpAction() throws Exception {
-        CreateWindow.signUp(signUp);
-    }
-
-    @FXML
-    private void homeAction() throws Exception {
-        CreateWindow.home(home);
     }
 
     @FXML

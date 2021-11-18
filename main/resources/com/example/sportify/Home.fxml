@@ -22,7 +22,7 @@
             <Font name="Comic Sans MS" size="22.0" />
         </font>
     </Button>
-    <Button fx:id="login" ellipsisString="" layoutX="507.0" layoutY="243.0" mnemonicParsing="false" onAction="#signLoginAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="74.0" prefWidth="141.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Log in">
+    <Button fx:id="signIn" ellipsisString="" layoutX="507.0" layoutY="243.0" mnemonicParsing="false" onAction="#signLoginAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="74.0" prefWidth="141.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Log in">
         <cursor>
             <Cursor fx:constant="HAND" />
         </cursor>
