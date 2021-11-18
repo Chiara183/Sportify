@@ -9,10 +9,10 @@
 <?import javafx.scene.text.Font?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.HomeController">
     <ImageView fitHeight="437.0" fitWidth="780.0">
-        <Image url="@sport_-diversi_.jpg" />
+        <Image url="@Images/sport_-diversi_.jpg" />
     </ImageView>
     <ImageView fitHeight="240.0" fitWidth="378.0" layoutX="201.0">
-        <Image url="@Sportify logo.png" />
+        <Image url="@Images/Sportify logo.png" />
     </ImageView>
     <Button fx:id="sportQuiz" ellipsisString="" layoutX="166.0" layoutY="243.0" mnemonicParsing="false" onAction="#sportQuizAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="78.0" prefWidth="145.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sport quiz" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
         <cursor>

@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.LoginController">
     <ImageView fitHeight="437.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@Sfondo.jpg" />
+        <Image url="@Images/Sfondo.jpg" />
         <effect>
             <ColorAdjust />
         </effect>
@@ -85,7 +85,7 @@
                 </Button>
             </HBox>
             <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-                <Image url="@Sportify logo.png" />
+                <Image url="@Images/Sportify logo.png" />
                 <GridPane.margin>
                     <Insets />
                 </GridPane.margin>

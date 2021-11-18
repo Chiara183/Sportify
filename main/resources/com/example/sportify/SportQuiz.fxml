@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <Pane prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.SportQuizController">
     <ImageView fitHeight="437.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@Sfondo.jpg" />
+        <Image url="@Images/Sfondo.jpg" />
     </ImageView>
     <VBox alignment="TOP_CENTER" layoutY="1.0" prefHeight="437.0" prefWidth="780.0">
         <GridPane prefHeight="437.0" prefWidth="780.0">
@@ -25,7 +25,7 @@
                 <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-                <Image url="@Sportify logo.png" />
+                <Image url="@Images/Sportify logo.png" />
                 <GridPane.margin>
                     <Insets />
                 </GridPane.margin>
