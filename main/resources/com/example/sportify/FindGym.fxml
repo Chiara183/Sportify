@@ -102,7 +102,7 @@
                      <Cursor fx:constant="HAND" />
                   </cursor>
                </Button>
-               <MenuButton mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="32.0" prefWidth="94.0" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" text="Km">
+               <MenuButton mnemonicParsing="false" prefHeight="32.0" prefWidth="94.0" style="-fx-border-width: 2px; -fx-background-color: #2571b9; -fx-background-radius: 12px; -fx-border-radius: 8px; -fx-border-color: #000000;" text="Km">
                   <font>
                      <Font name="Comic Sans MS Bold" size="14.0" />
                   </font>
