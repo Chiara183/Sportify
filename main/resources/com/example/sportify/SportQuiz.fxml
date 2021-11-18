@@ -41,7 +41,7 @@
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor></Button>
-                <Button fx:id="sportQuiz" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#sportQuizAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #25b97b; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sport Quiz">
+                <Button fx:id="sportQuiz" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #25b97b; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sport Quiz">
                     <font>
                         <Font name="Comic Sans MS Bold" size="11.0" />
                     </font>
