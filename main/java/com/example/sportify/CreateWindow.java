@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -49,9 +48,9 @@ public class CreateWindow implements Initializable {
         create(signUp, root, "SIGN UP");
     }
 
-    public static void sportQuiz(Button sportQuiz) {
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "You're in sport quiz form!");
+    public static void sportQuiz(Button sportQuiz) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("SportQuiz.fxml")));
+        create(sportQuiz, root, "SPORT QUIZ");
     }
 
     public static void findGym(Button findGym) throws IOException {
