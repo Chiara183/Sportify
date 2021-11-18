@@ -1,5 +1,9 @@
-package com.example.sportify;
+package com.example.sportify.controller;
 
+import com.example.sportify.ButtonAction;
+import com.example.sportify.CreateWindow;
+import com.example.sportify.Submit;
+import com.example.sportify.readWriteFile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
