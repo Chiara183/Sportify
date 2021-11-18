@@ -3,12 +3,8 @@ package com.example.sportify;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class FindGymController implements Initializable {
+public class FindGymController extends ButtonAction implements Initializable{
 
     //Button
     @FXML
@@ -52,20 +48,5 @@ public class FindGymController implements Initializable {
     @FXML
     protected void signUpAction() throws Exception {
         CreateWindow.signUp(signUp);
-    }
-
-    @FXML
-    private void lightColor(MouseEvent event) {
-        HighlightButton.lightColor((Button) event.getSource());
-    }
-
-    @FXML
-    private void darkColor(MouseEvent event) {
-        HighlightButton.darkColor((Button) event.getSource());
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO
     }
 }

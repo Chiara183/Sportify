@@ -6,14 +6,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
 
 import javax.swing.*;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
-public class SignUpGymController implements Initializable {
+public class SignUpGymController extends ButtonAction implements Initializable {
 
     //TextField
     @FXML
@@ -79,10 +76,12 @@ public class SignUpGymController implements Initializable {
     protected void signLoginAction() throws Exception {
         CreateWindow.login(signInGym);
     }
+
     @FXML
     protected void signUpAction() throws Exception {
         CreateWindow.signUp(signUp);
     }
+
     @FXML
     private void homeAction() throws Exception {
         CreateWindow.home(home);
@@ -91,21 +90,6 @@ public class SignUpGymController implements Initializable {
     @FXML
     private void skipAction() throws Exception {
         CreateWindow.login(skipSignUpGym);
-    }
-
-    @FXML
-    private void lightColor(MouseEvent event) {
-        HighlightButton.lightColor((Button) event.getSource());
-    }
-
-    @FXML
-    private void darkColor(MouseEvent event) {
-        HighlightButton.darkColor((Button) event.getSource());
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO
     }
 }
 

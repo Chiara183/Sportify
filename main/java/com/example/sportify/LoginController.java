@@ -4,14 +4,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class LoginController extends ButtonAction implements Initializable {
 
     //TextField
     @FXML
@@ -69,21 +66,6 @@ public class LoginController implements Initializable {
     @FXML
     private void skipAction() throws Exception {
         CreateWindow.home(skipLogin);
-    }
-
-    @FXML
-    private void lightColor(MouseEvent event) {
-        HighlightButton.lightColor((Button) event.getSource());
-    }
-
-    @FXML
-    private void darkColor(MouseEvent event) {
-        HighlightButton.darkColor((Button) event.getSource());
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO
     }
 }
 

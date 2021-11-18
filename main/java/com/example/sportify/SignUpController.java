@@ -7,14 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
 
 import javax.swing.*;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
-public class SignUpController implements Initializable {
+public class SignUpController extends ButtonAction implements Initializable {
 
     //TextField
     @FXML
@@ -109,16 +106,6 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    private void lightColor(MouseEvent event) {
-        HighlightButton.lightColor((Button) event.getSource());
-    }
-
-    @FXML
-    private void darkColor(MouseEvent event) {
-        HighlightButton.darkColor((Button) event.getSource());
-    }
-
-    @FXML
     private void tickAction(javafx.event.ActionEvent event) {
         if (event.getSource() == gymTick && userTick.isSelected()) {
             userTick.setSelected(false);
@@ -129,11 +116,6 @@ public class SignUpController implements Initializable {
         } else if (event.getSource() == userTick && !gymTick.isSelected()) {
             gymTick.setSelected(true);
         }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO
     }
 }
 
