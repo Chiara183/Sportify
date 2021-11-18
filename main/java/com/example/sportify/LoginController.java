@@ -25,8 +25,6 @@ public class LoginController implements Initializable {
     @FXML
     private Button home;
     @FXML
-    private Button submitLogin;
-    @FXML
     private Button skipLogin;
     @FXML
     private Button sportQuiz;
@@ -75,36 +73,12 @@ public class LoginController implements Initializable {
 
     @FXML
     private void lightColor(MouseEvent event) {
-        if (event.getSource() == signUp) {
-            HighlightButton.lightColor(signUp);
-        } else if (event.getSource() == home) {
-            HighlightButton.lightColor(home);
-        } else if (event.getSource() == sportQuiz) {
-            HighlightButton.lightColor(sportQuiz);
-        } else if (event.getSource() == findGym) {
-            HighlightButton.lightColor(findGym);
-        } else if (event.getSource() == submitLogin) {
-            HighlightButton.lightColor(submitLogin);
-        } else if (event.getSource() == skipLogin) {
-            HighlightButton.lightColor(skipLogin);
-        }
+        HighlightButton.lightColor((Button) event.getSource());
     }
 
     @FXML
     private void darkColor(MouseEvent event) {
-        if (event.getSource() == signUp) {
-            HighlightButton.darkColor(signUp);
-        } else if (event.getSource() == home) {
-            HighlightButton.darkColor(home);
-        } else if (event.getSource() == submitLogin) {
-            HighlightButton.darkColor(submitLogin);
-        } else if (event.getSource() == skipLogin) {
-            HighlightButton.darkColor(skipLogin);
-        } else if (event.getSource() == sportQuiz) {
-            HighlightButton.darkColor(sportQuiz);
-        } else if (event.getSource() == findGym) {
-            HighlightButton.darkColor(findGym);
-        }
+        HighlightButton.darkColor((Button) event.getSource());
     }
 
     @Override

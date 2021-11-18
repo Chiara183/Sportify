@@ -36,24 +36,12 @@ public class HomeController implements Initializable {
 
     @FXML
     private void lightColor(MouseEvent event) {
-        if (event.getSource() == login) {
-            HighlightButton.lightColor(login);
-        } else if (event.getSource() == sportQuiz) {
-            HighlightButton.lightColor(sportQuiz);
-        } else if (event.getSource() == findGym) {
-            HighlightButton.lightColor(findGym);
-        }
+        HighlightButton.lightColor((Button) event.getSource());
     }
 
     @FXML
     private void darkColor(MouseEvent event) {
-        if (event.getSource() == login) {
-            HighlightButton.darkColor(login);
-        } else if (event.getSource() == sportQuiz) {
-            HighlightButton.darkColor(sportQuiz);
-        } else if (event.getSource() == findGym) {
-            HighlightButton.darkColor(findGym);
-        }
+        HighlightButton.darkColor((Button) event.getSource());
     }
 
     @Override

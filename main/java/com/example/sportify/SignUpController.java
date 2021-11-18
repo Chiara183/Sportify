@@ -110,36 +110,12 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void lightColor(MouseEvent event) {
-        if (event.getSource() == signIn) {
-            HighlightButton.lightColor(signIn);
-        } else if (event.getSource() == home) {
-            HighlightButton.lightColor(home);
-        } else if (event.getSource() == submitSignUp) {
-            HighlightButton.lightColor(submitSignUp);
-        } else if (event.getSource() == skipSignUp) {
-            HighlightButton.lightColor(skipSignUp);
-        } else if (event.getSource() == sportQuiz) {
-            HighlightButton.lightColor(sportQuiz);
-        } else if (event.getSource() == findGym) {
-            HighlightButton.lightColor(findGym);
-        }
+        HighlightButton.lightColor((Button) event.getSource());
     }
 
     @FXML
     private void darkColor(MouseEvent event) {
-        if (event.getSource() == signIn) {
-            HighlightButton.darkColor(signIn);
-        } else if (event.getSource() == home) {
-            HighlightButton.darkColor(home);
-        } else if (event.getSource() == submitSignUp) {
-            HighlightButton.darkColor(submitSignUp);
-        } else if (event.getSource() == skipSignUp) {
-            HighlightButton.darkColor(skipSignUp);
-        } else if (event.getSource() == sportQuiz) {
-            HighlightButton.darkColor(sportQuiz);
-        } else if (event.getSource() == findGym) {
-            HighlightButton.darkColor(findGym);
-        }
+        HighlightButton.darkColor((Button) event.getSource());
     }
 
     @FXML
