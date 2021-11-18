@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<Pane prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.FindGymController">
+<Pane prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.FindGymController">
     <ImageView fitHeight="437.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@Images/Sfondo.jpg" />
     </ImageView>
@@ -135,7 +135,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </ScrollPane>
-         <Button fx:id="skipGymFinder" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#skipAction" onMouseDragEntered="#lightColor" onMouseDragExited="#darkColor" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="53.0" prefWidth="92.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Skip" GridPane.rowIndex="3">
+         <Button fx:id="skipGymFinder" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#skipAction" onMouseDragEntered="#lightColor" onMouseDragExited="#darkColor" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="53.0" prefWidth="92.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Back" GridPane.rowIndex="3">
             <font>
                <Font name="Comic Sans MS Bold" size="17.0" />
             </font>
