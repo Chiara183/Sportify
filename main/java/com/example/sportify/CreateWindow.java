@@ -15,6 +15,8 @@ import java.util.ResourceBundle;
 public class CreateWindow implements Initializable {
 
     private static void create(Button button, Parent root, String string){
+        //root.getChildrenUnmodifiable().equals("logged");
+
         //HomeScene
         Scene sceneBack = new Scene(root, 780, 437);
         Stage stage = (Stage) button.getScene().getWindow();

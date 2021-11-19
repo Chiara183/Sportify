@@ -22,6 +22,10 @@ public class ButtonAction implements Initializable {
     @FXML
     private Button signUp;
 
+    //CheckBox
+    /*@FXML
+    private CheckBox Logged;*/
+
     @FXML
     private void homeAction() throws Exception {
         CreateWindow.home(home);
