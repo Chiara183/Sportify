@@ -124,7 +124,7 @@
                 </padding>
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                <Button mnemonicParsing="false" onAction="#submitActionLogin" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="54.0" prefWidth="95.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Submit">
+                <Button fx:id="submit" mnemonicParsing="false" onAction="#submitActionLogin" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="54.0" prefWidth="95.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Submit">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
