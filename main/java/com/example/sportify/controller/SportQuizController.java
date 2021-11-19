@@ -1,8 +1,28 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.ButtonAction;
+import com.example.sportify.CreateWindow;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 public class SportQuizController extends ButtonAction implements Initializable {
-    //TODO
+    //Button
+    @FXML
+    private Button backQuiz;
+    @FXML
+    private Button next;
+    @FXML
+    private Button age1;
+    @FXML
+    private Button age2;
+    @FXML
+    private Button age3;
+    @FXML
+    private Button age4;
+
+    @FXML
+    private void backQuizAction() throws Exception {
+        CreateWindow.home(backQuiz);
+    }
 }

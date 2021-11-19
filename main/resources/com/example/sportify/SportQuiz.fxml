@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<Pane prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.SportQuizController">
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.SportQuizController">
     <ImageView fitHeight="437.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@Images/Sfondo.jpg" />
     </ImageView>
@@ -41,7 +48,7 @@
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor></Button>
-                <Button fx:id="sportQuiz" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #25b97b; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sport Quiz">
+                <Button fx:id="sportQuiz" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#sportQuizAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #25b97b; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sport Quiz">
                     <font>
                         <Font name="Comic Sans MS Bold" size="11.0" />
                     </font>
@@ -63,7 +70,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="signIn" alignment="TOP_CENTER" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#signLoginAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Login">
+                <Button fx:id="signInGym" alignment="TOP_CENTER" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#signLoginAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Login">
                     <font>
                         <Font name="Comic Sans MS Bold" size="11.0" />
                     </font>
@@ -74,7 +81,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="signUp" alignment="TOP_CENTER" layoutX="367.0" layoutY="10.0" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#signUpAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sign Up">
+                <Button fx:id="signUp" alignment="TOP_CENTER" layoutX="367.0" layoutY="10.0" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#signUpAction" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sign Up">
                     <font>
                         <Font name="Comic Sans MS Bold" size="11.0" />
                     </font>
@@ -86,6 +93,89 @@
                     </HBox.margin>
                 </Button>
             </HBox>
+            <Button mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="53.0" prefWidth="92.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Next" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <font>
+                    <Font name="Comic Sans MS" size="17.0" />
+                </font>
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="68.0" prefWidth="113.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 30px; -fx-background-radius: 35px;" text="18 - 30" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <font>
+                    <Font name="Comic Sans MS" size="17.0" />
+                </font>
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+            <GridPane.margin>
+               <Insets bottom="-50.0" left="-120.0" top="100.0" />
+            </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="68.0" prefWidth="113.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 30px; -fx-background-radius: 35px;" text="0 - 18" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <font>
+                    <Font name="Comic Sans MS" size="17.0" />
+                </font>
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+            <GridPane.margin>
+               <Insets left="-120.0" />
+            </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="68.0" prefWidth="113.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 30px; -fx-background-radius: 35px;" text="30 - 50" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <font>
+                    <Font name="Comic Sans MS" size="17.0" />
+                </font>
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+            <GridPane.margin>
+               <Insets right="-120.0" />
+            </GridPane.margin>
+            </Button>
+            <Button fx:id="backQuiz" mnemonicParsing="false" onAction="#backQuizAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="53.0" prefWidth="92.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <font>
+                    <Font name="Comic Sans MS" size="17.0" />
+                </font>
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+            </Button>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How old are you?" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <font>
+               <Font name="Comic Sans MS" size="24.0" />
+            </font>
+            <GridPane.margin>
+               <Insets top="-150.0" />
+            </GridPane.margin>
+         </Text>
+         <Button mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="68.0" prefWidth="113.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 30px; -fx-background-radius: 35px;" text="over 60" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+            <font>
+               <Font name="Comic Sans MS" size="17.0" />
+            </font>
+            <GridPane.margin>
+               <Insets bottom="-50.0" right="-120.0" top="100.0" />
+            </GridPane.margin>
+         </Button>
         </GridPane>
     </VBox>
 </Pane>

@@ -55,12 +55,13 @@ public class CreateWindow implements Initializable {
         create(sportQuiz, root, "SPORT QUIZ");
     }
 
-    public static void findGym(Button findGym) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("FindGym.fxml")));
-        create(findGym, root, "GYM FINDER");
-    }
 
-    @Override
+    public static void findGym(Button findGym) throws IOException {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("FindGym.fxml")));
+            create(findGym, root, "GYM FINDER");
+        }
+
+        @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // TODO
     }
