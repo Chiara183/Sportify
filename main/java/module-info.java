@@ -11,6 +11,8 @@ module com.example.sportify {
     requires eu.hansolo.tilesfx;
     requires javafx.graphics;
     requires java.desktop;
+    requires okhttp3;
+    requires spring.web;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;
