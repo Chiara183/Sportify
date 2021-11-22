@@ -97,7 +97,7 @@
                     <Insets left="10.0" />
                 </HBox.margin>
             </Button>
-            <Button fx:id="age3" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="18 - 30" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Button fx:id="water" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Water" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                 <cursor>
                     <Cursor fx:constant="HAND" />
                 </cursor>
@@ -111,7 +111,7 @@
                <Insets bottom="-50.0" left="-120.0" top="100.0" />
             </GridPane.margin>
             </Button>
-            <Button fx:id="age1" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="0 - 18" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Button fx:id="indoor" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Indoor" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                 <cursor>
                     <Cursor fx:constant="HAND" />
                 </cursor>
@@ -125,7 +125,7 @@
                <Insets left="-120.0" />
             </GridPane.margin>
             </Button>
-            <Button fx:id="age2" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="30 - 50" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Button fx:id="outoor" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Outdoor" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                 <cursor>
                     <Cursor fx:constant="HAND" />
                 </cursor>
@@ -158,7 +158,7 @@
                <Insets top="-150.0" />
             </GridPane.margin>
          </Text>
-         <Button fx:id="age4" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="over 60" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <Button fx:id="mountain" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Mountain" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor>

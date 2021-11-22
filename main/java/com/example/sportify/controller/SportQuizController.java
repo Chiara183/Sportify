@@ -4,27 +4,26 @@ import com.example.sportify.ButtonAction;
 import com.example.sportify.CreateWindow;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
+import java.awt.event.MouseEvent;
+
 public class SportQuizController extends ButtonAction implements Initializable {
-    //Button
+
     @FXML
     private Button backQuiz;
     @FXML
-    private Button next;
-    @FXML
-    private Button age1;
-    @FXML
-    private Button age2;
-    @FXML
-    private Button age3;
-    @FXML
-    private Button age4;
-
-//TODO correct highlighting button ages
+    private Button backQuizEnv;
 
     @FXML
-    private void backQuizAction() throws Exception {
-        CreateWindow.home(backQuiz);
+    private void backQuizAction(MouseEvent event) throws Exception {
+        Button b = (Button) event.getSource();
+        if(b == backQuiz){
+            CreateWindow.home(b);
+        }
+        else if(b == backQuizEnv){
+            CreateWindow.sportQuiz(b);
+        }
     }
 }

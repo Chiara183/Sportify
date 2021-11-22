@@ -22,6 +22,8 @@ public class ButtonAction implements Initializable {
     @FXML
     private Button signUp;
 
+
+
     @FXML
     private void homeAction() throws Exception {
         CreateWindow.home(home);
@@ -49,11 +51,13 @@ public class ButtonAction implements Initializable {
 
     @FXML
     private void lightColor(MouseEvent event) {
+        Button b = (Button) event.getSource();
         HighlightButton.lightColor((Button) event.getSource());
     }
 
     @FXML
     private void darkColor(MouseEvent event) {
+        Button b = (Button) event.getSource();
         HighlightButton.darkColor((Button) event.getSource());
     }
 
