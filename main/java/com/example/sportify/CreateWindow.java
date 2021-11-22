@@ -60,7 +60,12 @@ public class CreateWindow implements Initializable {
             create(findGym, root, "GYM FINDER");
         }
 
-        @Override
+    public static void sportQuizEnv(Button nextQuiz) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("SportQuizEnv.fxml")));
+        create(nextQuiz, root, "SPORT QUIZ");
+    }
+
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // TODO
     }
