@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <Pane minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="77.0" prefWidth="121.0"><ImageView fitHeight="112.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" GridPane.vgrow="ALWAYS">
-    <Image url="@Images/Sportify logo.png" />
+    <Image url="@../Images/Sportify logo.png" />
     <GridPane.margin>
         <Insets left="20.0" top="25.0" />
     </GridPane.margin>
