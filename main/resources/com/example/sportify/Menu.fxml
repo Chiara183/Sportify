@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" layoutY="1.0" prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.ButtonAction">
+    <GridPane prefHeight="437.0" prefWidth="780.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.0" minWidth="10.0" prefWidth="151.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="492.0" minWidth="10.0" prefWidth="455.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="151.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="237.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="151.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="277.0" minHeight="10.0" prefHeight="165.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <ImageView fitHeight="112.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" GridPane.vgrow="ALWAYS">
+            <Image url="@Images/Sportify logo.png" />
+            <GridPane.margin>
+                <Insets left="20.0" top="25.0" />
+            </GridPane.margin>
+        </ImageView>
+        <HBox alignment="TOP_CENTER" maxHeight="27.0" minHeight="27.0" prefHeight="20.0" prefWidth="465.0" style="-fx-background-radius: 8px;" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
+            <GridPane.margin>
+                <Insets bottom="-10.0" />
+            </GridPane.margin>
+            <Button fx:id="home" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#homeAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Home">
+                <font>
+                    <Font name="Comic Sans MS Bold" size="11.0" />
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor></Button>
+            <Button fx:id="sportQuiz" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#sportQuizAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sport Quiz">
+                <font>
+                    <Font name="Comic Sans MS Bold" size="11.0" />
+                </font>
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </Button>
+            <Button fx:id="findGym" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #25b97b; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Gym Finder">
+                <font>
+                    <Font name="Comic Sans MS Bold" size="11.0" />
+                </font>
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </Button>
+            <Button fx:id="signIn" alignment="TOP_CENTER" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#signLoginAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Login">
+                <font>
+                    <Font name="Comic Sans MS Bold" size="11.0" />
+                </font>
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </Button>
+            <Button fx:id="signUp" alignment="TOP_CENTER" layoutX="367.0" layoutY="10.0" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" onAction="#signUpAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Sign Up">
+                <font>
+                    <Font name="Comic Sans MS Bold" size="11.0" />
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+            </Button>
+        </HBox>
+    </GridPane>
+</VBox>
