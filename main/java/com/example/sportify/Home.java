@@ -2,8 +2,8 @@ package com.example.sportify;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -13,7 +13,9 @@ public class Home extends Application{
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
+        Pane root = new Pane();
+        Pane home = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main/HomeGUI.fxml")));
+        root.getChildren().add(home);
 
         //HomeScene
         Scene sceneHome = new Scene(root, 780, 437);
