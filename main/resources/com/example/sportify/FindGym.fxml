@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<Pane prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.FindGymController">
+
+<Pane prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.FindGymController">
     <ImageView fitHeight="437.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@Images/Sfondo.jpg" />
     </ImageView>
@@ -23,12 +24,16 @@
             <RowConstraints maxHeight="277.0" minHeight="10.0" prefHeight="165.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
         </rowConstraints>
-        <ImageView fitHeight="112.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" GridPane.vgrow="ALWAYS">
-            <Image url="@Images/Sportify logo.png" />
-            <GridPane.margin>
-                <Insets left="20.0" top="25.0" />
-            </GridPane.margin>
-        </ImageView>
+         <Pane minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="77.0" prefWidth="121.0">
+            <children>
+              <ImageView fitHeight="112.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@Images/Sportify logo.png" />
+              </ImageView>
+            </children>
+            <padding>
+               <Insets top="10.0" />
+            </padding>
+         </Pane>
         <HBox alignment="TOP_CENTER" maxHeight="27.0" minHeight="27.0" prefHeight="20.0" prefWidth="465.0" style="-fx-background-radius: 8px;" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets bottom="-10.0" />

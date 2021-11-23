@@ -69,4 +69,14 @@ public class CreateWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // TODO
     }
+
+    /*Pane root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Background.fxml")));
+        VBox view = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("VBox.fxml")));
+        GridPane grid = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("GridPane.fxml")));
+        Pane image = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ImageUp.fxml")));
+        HBox menu = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Menu.fxml")));
+        grid.getChildren().add(image);
+        grid.getChildren().add(menu);
+        view.getChildren().add(grid);
+        root.getChildren().add(view);*/
 }
