@@ -18,6 +18,12 @@ public class SportQuizController extends ButtonAction implements Initializable {
     private Button backQuizEnv;
     @FXML
     private Button nextQuiz;
+    @FXML
+    private Button backQuizType;
+    @FXML
+    private Button nextQuizEnv;
+    @FXML
+    private Button nextQuizType;
 
     @FXML
     public void backQuizAction(ActionEvent event) throws Exception {
@@ -28,6 +34,9 @@ public class SportQuizController extends ButtonAction implements Initializable {
         else if(b == backQuizEnv){
             CreateWindow.sportQuiz(b);
         }
+        else if(b == backQuizType){
+            CreateWindow.sportQuizEnv(b);
+        }
     }
 
     @FXML
@@ -35,6 +44,9 @@ public class SportQuizController extends ButtonAction implements Initializable {
         Button b = (Button) event.getSource();
         if(b == nextQuiz){
             CreateWindow.sportQuizEnv(b);
+        }
+        else if(b == nextQuizEnv){
+            CreateWindow.sportQuizType(b);
         }
     }
 }
