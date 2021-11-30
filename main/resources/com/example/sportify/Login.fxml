@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.LoginController">
+<Pane stylesheets="@Login.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.LoginController">
     <ImageView fitHeight="437.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@Images/Sfondo.jpg" />
         <effect>
@@ -18,9 +18,9 @@
     <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="-2.0" prefHeight="444.0" prefWidth="786.0">
         <GridPane prefHeight="423.0" prefWidth="786.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.0" minWidth="10.0" prefWidth="138.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="526.0" minWidth="10.0" prefWidth="526.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="119.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="127.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="526.0" minWidth="10.0" prefWidth="527.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="127.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="237.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
@@ -28,14 +28,12 @@
                 <RowConstraints maxHeight="277.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="170.0" minHeight="5.0" prefHeight="96.0" vgrow="SOMETIMES" />
             </rowConstraints>
-            <fx:include fx:id="menu" source="Main/Menu.fxml" />
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-            <children>
                   <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true">
                       <Image url="@Images/Sportify logo.png" />
                   </ImageView>
-            </children>
-         </Pane>
+            </Pane>
+            <fx:include fx:id="menu" source="Main/Menu.fxml" />
             <GridPane alignment="TOP_CENTER" prefHeight="152.0" prefWidth="465.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <columnConstraints>
                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="1.0" prefWidth="1.0" />
@@ -70,24 +68,12 @@
                 </padding>
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                <Button fx:id="submit" mnemonicParsing="false" onAction="#submitActionLogin" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="54.0" prefWidth="95.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Submit">
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <font>
-                        <Font name="Comic Sans MS" size="17.0" />
-                    </font>
+                <Button fx:id="submit" mnemonicParsing="false" onAction="#submitActionLogin" prefHeight="54.0" prefWidth="95.0" text="Submit">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="skipLogin" mnemonicParsing="false" onAction="#skipAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="53.0" prefWidth="92.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Skip" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <font>
-                        <Font name="Comic Sans MS" size="17.0" />
-                    </font>
+                <Button fx:id="skipLogin" mnemonicParsing="false" onAction="#skipAction" prefHeight="53.0" prefWidth="92.0" text="Skip" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                     <HBox.margin>
                         <Insets left="10.0" />
                     </HBox.margin>
