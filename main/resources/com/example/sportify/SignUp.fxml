@@ -12,7 +12,7 @@
         <Image url="@Images/Sfondo.jpg" />
     </ImageView>
     <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="-2.0" prefHeight="444.0" prefWidth="786.0">
-        <GridPane prefHeight="423.0" prefWidth="786.0">
+        <GridPane prefHeight="436.0" prefWidth="786.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="127.0" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="526.0" minWidth="10.0" prefWidth="527.0" />
@@ -20,10 +20,10 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="237.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="130.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="277.0" minHeight="10.0" prefHeight="140.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="170.0" minHeight="5.0" prefHeight="86.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="129.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="277.0" minHeight="10.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="170.0" minHeight="5.0" prefHeight="51.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                 <Image url="@Images/Sportify logo.png" />
@@ -83,8 +83,8 @@
                     </cursor>
                 </PasswordField>
             </GridPane>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                <CheckBox fx:id="gymTick" alignment="CENTER" onAction="#tickAction" text="Gym">
+            <HBox alignment="CENTER" prefHeight="45.0" prefWidth="526.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <CheckBox fx:id="gymTick" alignment="TOP_CENTER" onAction="#tickAction" text="Gym">
                     <Cursor fx:constant="HAND" />
                     <padding>
                         <Insets right="20.0" />
@@ -93,7 +93,7 @@
                         <Font name="Comic Sans MS" size="16.0" />
                     </font>
                 </CheckBox>
-                <CheckBox fx:id="userTick" alignment="CENTER" onAction="#tickAction" selected="true" text="User">
+                <CheckBox fx:id="userTick" alignment="TOP_CENTER" onAction="#tickAction" selected="true" text="User">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
