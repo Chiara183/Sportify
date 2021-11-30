@@ -7,9 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-import javax.swing.*;
-import java.awt.event.MouseEvent;
-
 public class SportQuizController extends ButtonAction implements Initializable {
 
     @FXML
@@ -24,6 +21,34 @@ public class SportQuizController extends ButtonAction implements Initializable {
     private Button nextQuizEnv;
     @FXML
     private Button nextQuizType;
+    @FXML
+    private Button age1;
+    @FXML
+    private Button age2;
+    @FXML
+    private Button age3;
+    @FXML
+    private Button age4;
+    @FXML
+    private Button indoor;
+    @FXML
+    private Button outdoor;
+    @FXML
+    private Button group;
+    @FXML
+    private Button single;
+
+    private boolean buttonAge1;
+    private boolean buttonAge2;
+    private boolean buttonAge3;
+    private boolean buttonAge4;
+    private boolean buttonIndoor;
+    private boolean buttonOutdoor;
+    private boolean buttonGroup;
+    private boolean buttonSingle;
+
+
+
 
     @FXML
     public void backQuizAction(ActionEvent event) throws Exception {
@@ -47,6 +72,39 @@ public class SportQuizController extends ButtonAction implements Initializable {
         }
         else if(b == nextQuizEnv){
             CreateWindow.sportQuizType(b);
+        }
+    }
+
+    @FXML
+    public void takeQuiz(ActionEvent event) throws Exception {
+        //TODO : takeQuiz on each button on fxml files
+        //TODO : create interfaces for quiz answers
+        //TODO : create function to go to answer's interfaces
+
+        Button b = (Button) event.getSource();
+        if (b == age1) {
+             buttonAge1 = true;
+        }
+        if (b == age2) {
+             buttonAge2 = true;
+        }
+        if (b == age3) {
+             buttonAge3 = true;
+        }
+        if (b == age4) {
+             buttonAge4 = true;
+        }
+        if (b == indoor) {
+             buttonIndoor = true;
+        }
+        if (b == outdoor) {
+             buttonOutdoor = true;
+        }
+        if (b == group) {
+             buttonGroup = true;
+        }
+        if (b == single) {
+             buttonSingle = true;
         }
     }
 }
