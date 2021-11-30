@@ -86,14 +86,14 @@
                     </HBox.margin>
                 </Button>
             </HBox>
-         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="126.0" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="156.0" prefWidth="333.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
             <children>
-               <Text layoutX="15.0" layoutY="-15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How old are you?" textAlignment="CENTER">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How old are you?" x="80.0">
                   <font>
                      <Font name="Comic Sans MS" size="24.0" />
                   </font>
                </Text>
-                  <Button fx:id="indoor" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Indoor">
+                  <Button fx:id="indoor" layoutY="20.0" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Indoor">
                       <cursor>
                           <Cursor fx:constant="HAND" />
                       </cursor>
@@ -101,7 +101,7 @@
                           <Font name="Comic Sans MS" size="17.0" />
                       </font>
                   </Button>
-                  <Button fx:id="outoor" layoutX="120.0" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Outdoor">
+                  <Button fx:id="outoor" layoutX="180.0" layoutY="20.0" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Outdoor">
                       <cursor>
                           <Cursor fx:constant="HAND" />
                       </cursor>
@@ -109,7 +109,7 @@
                           <Font name="Comic Sans MS" size="17.0" />
                       </font>
                   </Button>
-                  <Button fx:id="water" layoutY="80.0" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Water">
+                  <Button fx:id="water" layoutY="100.0" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Water">
                       <cursor>
                           <Cursor fx:constant="HAND" />
                       </cursor>
@@ -117,7 +117,7 @@
                           <Font name="Comic Sans MS" size="17.0" />
                       </font>
                   </Button>
-               <Button fx:id="mountain" layoutX="120.0" layoutY="80.0" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Mountain">
+               <Button fx:id="mountain" layoutX="180.0" layoutY="100.0" mnemonicParsing="false" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Mountain">
                   <cursor>
                      <Cursor fx:constant="HAND" />
                   </cursor>
@@ -138,7 +138,7 @@
                     <Insets left="10.0" />
                 </HBox.margin>
             </Button>
-            <Button fx:id="backQuiz" mnemonicParsing="false" onAction="#backQuizAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="53.0" prefWidth="92.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Button fx:id="backQuizEnv" mnemonicParsing="false" onAction="#backQuizAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="53.0" prefWidth="92.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                 <cursor>
                     <Cursor fx:constant="HAND" />
                 </cursor>
