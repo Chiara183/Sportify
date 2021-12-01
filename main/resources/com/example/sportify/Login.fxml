@@ -34,7 +34,7 @@
                       <Image url="@Images/Sportify logo.png" />
                   </ImageView>
             </Pane>
-            <fx:include fx:id="menu" source="Main/Menu.fxml" />
+            <fx:include fx:id="menu" source="Menu.fxml" />
             <GridPane alignment="TOP_CENTER" prefHeight="152.0" prefWidth="465.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <columnConstraints>
                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="1.0" prefWidth="1.0" />
@@ -83,7 +83,7 @@
         </GridPane>
   </VBox>
    <stylesheets>
-      <URL value="@Button.css" />
-      <URL value="@Login.css" />
+      <URL value="@Style/Button.css" />
+      <URL value="@Style/Login.css" />
    </stylesheets>
 </Pane>

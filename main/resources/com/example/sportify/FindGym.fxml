@@ -43,7 +43,7 @@
                <Insets top="10.0" />
             </padding>
          </Pane>
-         <fx:include fx:id="menu" source="Main/Menu.fxml" />
+         <fx:include fx:id="menu" source="Menu.fxml" />
          <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
             <GridPane.margin>
                <Insets top="20.0" />
@@ -100,7 +100,7 @@
     </GridPane>
     </VBox>
    <stylesheets>
-      <URL value="@Button.css" />
-      <URL value="@FindGym.css" />
+      <URL value="@Style/Button.css" />
+      <URL value="@Style/FindGym.css" />
    </stylesheets>
 </Pane>

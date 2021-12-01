@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox alignment="BOTTOM_CENTER" maxHeight="86.0" minHeight="40.0" prefHeight="40.0" prefWidth="518.0" style="-fx-background-radius: 8px;" stylesheets="@../Button.css" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.ButtonAction">
+<HBox alignment="BOTTOM_CENTER" maxHeight="86.0" minHeight="40.0" prefHeight="40.0" prefWidth="518.0" style="-fx-background-radius: 8px;" stylesheets="@Style/Button.css" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.ButtonAction">
             <GridPane.margin>
                 <Insets bottom="-10.0" />
             </GridPane.margin>

@@ -43,7 +43,7 @@
             </font>
         </Button>
    <stylesheets>
-       <URL value="@Button.css" />
-       <URL value="@HomeGUI.css" />
+       <URL value="@Style/Button.css" />
+       <URL value="@Style/HomeGUI.css" />
    </stylesheets>
 </Pane>

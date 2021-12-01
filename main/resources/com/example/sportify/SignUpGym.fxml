@@ -31,7 +31,7 @@
                     <Insets />
                 </GridPane.margin>
             </ImageView>
-            <fx:include fx:id="menu" source="Main/Menu.fxml" />
+            <fx:include fx:id="menu" source="Menu.fxml" />
             <GridPane alignment="TOP_CENTER" prefHeight="197.0" prefWidth="438.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <columnConstraints>
                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="109.0" />
@@ -91,7 +91,7 @@
         </GridPane>
     </VBox>
    <stylesheets>
-      <URL value="@Button.css" />
-      <URL value="@SignUpGym.css" />
+      <URL value="@Style/Button.css" />
+      <URL value="@Style/SignUpGym.css" />
    </stylesheets>
 </Pane>

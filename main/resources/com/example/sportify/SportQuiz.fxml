@@ -30,7 +30,7 @@
                     <Insets />
                 </GridPane.margin>
             </ImageView>
-            <fx:include fx:id="menu" source="Main/Menu.fxml" />
+            <fx:include fx:id="menu" source="Menu.fxml" />
          <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="156.0" prefWidth="333.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How old are you?" textAlignment="CENTER" x="80.0">
                   <font>
@@ -51,7 +51,7 @@
         </GridPane>
     </VBox>
    <stylesheets>
-      <URL value="@Button.css" />
-      <URL value="@SportQuiz.css" />
+      <URL value="@Style/Button.css" />
+      <URL value="@Style/SportQuiz.css" />
    </stylesheets>
 </Pane>

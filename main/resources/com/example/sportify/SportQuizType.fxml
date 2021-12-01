@@ -30,7 +30,7 @@
                     <Insets />
                 </GridPane.margin>
             </ImageView>
-            <fx:include fx:id="menu" source="Main/Menu.fxml" />
+            <fx:include fx:id="menu" source="Menu.fxml" />
             <HBox alignment="TOP_CENTER" maxHeight="27.0" minHeight="27.0" prefHeight="20.0" prefWidth="465.0" style="-fx-background-radius: 8px;" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                 <GridPane.margin>
                     <Insets />
@@ -58,7 +58,7 @@
         </GridPane>
     </VBox>
    <stylesheets>
-      <URL value="@Button.css" />
-      <URL value="@SportQuizType.css" />
+      <URL value="@Style/Button.css" />
+      <URL value="@Style/SportQuizType.css" />
    </stylesheets>
 </Pane>
