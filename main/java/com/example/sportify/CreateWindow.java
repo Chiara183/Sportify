@@ -22,7 +22,7 @@ public class CreateWindow implements Initializable {
         Stage stage = (Stage) button.getScene().getWindow();
 
         //set stage
-        stage.getIcons().add(new Image(Objects.requireNonNull(CreateWindow.class.getResourceAsStream("Images/8675330_ic_fluent_sport_regular_icon.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(CreateWindow.class.getResourceAsStream("Images/Sportify icon.png"))));
         stage.setTitle(string);
         stage.setScene(sceneBack);
         stage.setResizable(false);

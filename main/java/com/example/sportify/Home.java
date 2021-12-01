@@ -22,7 +22,7 @@ public class Home extends Application{
         Scene sceneHome = new Scene(root, 780, 437);
 
         //set stage
-        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/8675330_ic_fluent_sport_regular_icon.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Sportify icon.png"))));
         stage.setTitle("Sportify - Home");
         stage.setScene(sceneHome);
         stage.setResizable(false);
