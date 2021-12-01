@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -76,24 +77,12 @@
             </GridPane.margin>
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                <Button fx:id="submitSignUpGym" mnemonicParsing="false" onAction="#submitActionSignUpGym" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="54.0" prefWidth="95.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Submit">
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <font>
-                        <Font name="Comic Sans MS" size="17.0" />
-                    </font>
+                <Button fx:id="submitSignUpGym" mnemonicParsing="false" onAction="#submitActionSignUpGym" prefHeight="54.0" prefWidth="95.0" text="Submit">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="skipSignUpGym" mnemonicParsing="false" onAction="#skipAction" onMouseEntered="#lightColor" onMouseExited="#darkColor" prefHeight="54.0" prefWidth="86.0" style="-fx-background-color: #2571b9; -fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;" text="Skip" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <font>
-                        <Font name="Comic Sans MS" size="17.0" />
-                    </font>
+                <Button fx:id="skipSignUpGym" mnemonicParsing="false" onAction="#skipAction" prefHeight="54.0" prefWidth="86.0" text="Skip" GridPane.columnIndex="2" GridPane.rowIndex="3">
                     <HBox.margin>
                         <Insets left="10.0" />
                     </HBox.margin>
@@ -101,4 +90,8 @@
             </HBox>
         </GridPane>
     </VBox>
+   <stylesheets>
+      <URL value="@Button.css" />
+      <URL value="@SignUpGym.css" />
+   </stylesheets>
 </Pane>
