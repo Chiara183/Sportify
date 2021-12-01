@@ -15,7 +15,7 @@ public class Home extends Application{
     @Override
     public void start(Stage stage) throws IOException {
         Pane root = new Pane();
-        Pane home = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HomeGUI.fxml")));
+        Pane home = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
         root.getChildren().add(home);
 
         //HomeScene

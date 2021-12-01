@@ -36,7 +36,7 @@ public class CreateWindow implements Initializable {
     }
 
     public static void home(Button home) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("HomeGUI.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("Home.fxml")));
         create(home, root, "HOME");
     }
 
