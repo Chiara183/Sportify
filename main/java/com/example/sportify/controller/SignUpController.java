@@ -1,6 +1,5 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.ButtonAction;
 import com.example.sportify.CreateWindow;
 import com.example.sportify.Submit;
 import javafx.event.ActionEvent;
@@ -12,9 +11,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 
 import javax.swing.*;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
-public class SignUpController extends ButtonAction implements Initializable {
+public class SignUpController implements Initializable {
 
     //TextField
     @FXML
@@ -57,7 +58,7 @@ public class SignUpController extends ButtonAction implements Initializable {
                 if (userTick.isSelected()) {
                     Submit.signUp(userValue, userAccount);
                     JOptionPane.showMessageDialog(jFrame, "You're registered!");
-                    signLoginAction();
+                    CreateWindow.login(skipSignUp);
                 } else if (gymTick.isSelected()) {
                     Submit.signUp("gymTick", userAccount);
                     signUpGymAction();
@@ -90,6 +91,11 @@ public class SignUpController extends ButtonAction implements Initializable {
         } else if (event.getSource() == userTick && !gymTick.isSelected()) {
             gymTick.setSelected(true);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // TODO
     }
 }
 

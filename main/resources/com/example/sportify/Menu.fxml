@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox alignment="BOTTOM_CENTER" maxHeight="86.0" minHeight="40.0" prefHeight="40.0" prefWidth="518.0" style="-fx-background-radius: 8px;" stylesheets="@Style/Button.css" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.ButtonAction">
+<HBox alignment="BOTTOM_CENTER" maxHeight="86.0" minHeight="40.0" prefHeight="40.0" prefWidth="518.0" style="-fx-background-radius: 8px;" stylesheets="@Style/Button.css" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.MenuController">
             <GridPane.margin>
                 <Insets bottom="-10.0" />
             </GridPane.margin>
@@ -14,7 +14,7 @@
                     <Insets left="10.0" />
                 </HBox.margin>
             </Button>
-            <Button fx:id="findGym" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="112.0" text="Gym Finder">
+            <Button fx:id="findGym" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#findGymAction" prefHeight="27.0" prefWidth="112.0" text="Gym Finder">
                 <HBox.margin>
                     <Insets left="10.0" />
                 </HBox.margin>

@@ -1,6 +1,5 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.ButtonAction;
 import com.example.sportify.CreateWindow;
 import com.example.sportify.Submit;
 import javafx.fxml.FXML;
@@ -9,8 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import javax.swing.*;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LoginController extends ButtonAction implements Initializable {
+public class LoginController implements Initializable {
 
     //TextField
     @FXML
@@ -43,6 +44,11 @@ public class LoginController extends ButtonAction implements Initializable {
     @FXML
     private void skipAction() throws Exception {
         CreateWindow.home(skipLogin);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // TODO
     }
 }
 

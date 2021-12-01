@@ -1,14 +1,14 @@
-package com.example.sportify;
+package com.example.sportify.controller;
 
+import com.example.sportify.CreateWindow;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ButtonAction implements Initializable {
+public class MenuController implements Initializable {
 
     //Button
     @FXML
@@ -47,18 +47,6 @@ public class ButtonAction implements Initializable {
     @FXML
     private void signUpAction() throws Exception {
         CreateWindow.signUp(signUp);
-    }
-
-    @FXML
-    private void lightColor(MouseEvent event) {
-        Button b = (Button) event.getSource();
-        HighlightButton.lightColor((Button) event.getSource());
-    }
-
-    @FXML
-    private void darkColor(MouseEvent event) {
-        Button b = (Button) event.getSource();
-        HighlightButton.darkColor((Button) event.getSource());
     }
 
     @Override

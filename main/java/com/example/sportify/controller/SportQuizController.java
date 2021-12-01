@@ -1,13 +1,15 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.ButtonAction;
 import com.example.sportify.CreateWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class SportQuizController extends ButtonAction implements Initializable {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class SportQuizController implements Initializable {
 
     @FXML
     private Button backQuiz;
@@ -106,5 +108,10 @@ public class SportQuizController extends ButtonAction implements Initializable {
         if (b == single) {
              buttonSingle = true;
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // TODO
     }
 }
