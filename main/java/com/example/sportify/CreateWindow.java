@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,6 +22,7 @@ public class CreateWindow implements Initializable {
         Stage stage = (Stage) button.getScene().getWindow();
 
         //set stage
+        stage.getIcons().add(new Image(Objects.requireNonNull(CreateWindow.class.getResourceAsStream("Images/8675330_ic_fluent_sport_regular_icon.png"))));
         stage.setTitle(string);
         stage.setScene(sceneBack);
         stage.setResizable(false);
