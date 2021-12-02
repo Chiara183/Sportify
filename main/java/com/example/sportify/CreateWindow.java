@@ -32,43 +32,43 @@ public class CreateWindow implements Initializable {
     public static void signUpGym(Button submitSignUp) throws Exception {
         //SignUpScene
         Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("SignUpGym.fxml")));
-        create(submitSignUp, root, "SIGN UP");
+        create(submitSignUp, root, "Sportify - Sign Up");
     }
 
     public static void home(Button home) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("Home.fxml")));
-        create(home, root, "HOME");
+        create(home, root, "Sportify - Home");
     }
 
     public static void login(Button login) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("Login.fxml")));
-        create(login, root, "LOGIN FORM");
+        create(login, root, "Sportify - Login");
     }
 
     public static void signUp(Button signUp) throws Exception {
         //SignUpScene
         Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("SignUp.fxml")));
-        create(signUp, root, "SIGN UP");
+        create(signUp, root, "Sportify - Sign Up");
     }
 
     public static void sportQuiz(Button sportQuiz) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("SportQuiz.fxml")));
-        create(sportQuiz, root, "SPORT QUIZ");
+        create(sportQuiz, root, "Sportify - Sport Quiz");
     }
 
 
     public static void findGym(Button findGym) throws IOException {
             Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("FindGym.fxml")));
-            create(findGym, root, "GYM FINDER");
+            create(findGym, root, "Sportify - Gym Finder");
         }
 
     public static void sportQuizEnv(Button nextQuiz) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("SportQuizEnv.fxml")));
-        create(nextQuiz, root, "SPORT QUIZ");
+        create(nextQuiz, root, "Sportify - Sport Quiz");
     }
     public static void sportQuizType(Button sportQuiz) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(CreateWindow.class.getResource("SportQuizType.fxml")));
-        create(sportQuiz, root, "SPORT QUIZ");
+        create(sportQuiz, root, "Sportify - Sport Quiz");
     }
 
     @Override
