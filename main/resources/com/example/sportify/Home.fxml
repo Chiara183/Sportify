@@ -12,38 +12,38 @@
     <effect>
         <ColorAdjust />
     </effect>
-        <ImageView cache="true" cacheHint="SCALE" fitHeight="437.0" fitWidth="780.0">
-            <Image url="@Images/sport_-diversi_.jpg" />
-        </ImageView>
-        <ImageView fitHeight="240.0" fitWidth="378.0" layoutX="201.0">
-            <Image url="@Images/Sportify logo.png" />
-        </ImageView>
-        <Button fx:id="sportQuiz" ellipsisString="" layoutX="166.0" layoutY="243.0" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="78.0" prefWidth="145.0" text="Sport quiz" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
-            <font>
-                <Font name="Comic Sans MS" size="22.0" />
-            </font>
-        </Button>
-        <Button fx:id="signIn" ellipsisString="" layoutX="507.0" layoutY="243.0" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="74.0" prefWidth="141.0" text="Log in">
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
-            <font>
-                <Font name="Comic Sans MS" size="22.0" />
-            </font>
-        </Button>
-        <Button fx:id="findGym" ellipsisString="" layoutX="336.0" layoutY="345.0" mnemonicParsing="false" onAction="#findGymAction" prefHeight="74.0" prefWidth="141.0" text="Find gym">
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
-            <font>
-                <Font name="Comic Sans MS" size="22.0" />
-            </font>
-        </Button>
-   <stylesheets>
-       <URL value="@Style/Button.css" />
-       <URL value="@Style/HomeGUI.css" />
-   </stylesheets>
+    <ImageView cache="true" cacheHint="SCALE" fitHeight="437.0" fitWidth="780.0">
+        <Image url="@Images/sport_-diversi_.jpg" />
+    </ImageView>
+    <ImageView fitHeight="168.0" fitWidth="439.0" layoutX="180.0" layoutY="35.0">
+        <Image url="@Images/Sportify logo.png" />
+    </ImageView>
+    <Button ellipsisString="" layoutX="166.0" layoutY="243.0" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="78.0" prefWidth="145.0" text="Sport quiz" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+        <font>
+            <Font name="Comic Sans MS" size="22.0" />
+        </font>
+    </Button>
+    <Button ellipsisString="" layoutX="507.0" layoutY="243.0" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="74.0" prefWidth="141.0" text="Log in">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+        <font>
+            <Font name="Comic Sans MS" size="22.0" />
+        </font>
+    </Button>
+    <Button ellipsisString="" layoutX="336.0" layoutY="345.0" mnemonicParsing="false" onAction="#findGymAction" prefHeight="74.0" prefWidth="141.0" text="Find gym">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+        <font>
+            <Font name="Comic Sans MS" size="22.0" />
+        </font>
+    </Button>
+    <stylesheets>
+        <URL value="@Style/Button.css" />
+        <URL value="@Style/HomeGUI.css" />
+    </stylesheets>
 </Pane>

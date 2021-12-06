@@ -13,6 +13,7 @@ module com.example.sportify {
     requires java.desktop;
     requires okhttp3;
     requires spring.web;
+    requires java.prefs;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;

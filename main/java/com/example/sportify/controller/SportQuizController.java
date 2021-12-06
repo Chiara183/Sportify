@@ -1,13 +1,13 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.CreateWindow;
+import com.example.sportify.MainApp;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.*;
 import javafx.scene.control.Button;
-
+import javafx.scene.layout.Pane;
+import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SportQuizController implements Initializable {
 
@@ -49,64 +49,155 @@ public class SportQuizController implements Initializable {
     private boolean buttonGroup;
     private boolean buttonSingle;
 
+    // Reference to the main application.
+    private MainApp mainApp;
 
+    /**
+     * The constructor.
+     * The constructor is called before the initialize() method.
+     */
+    public SportQuizController() {
+    }
 
+    /**
+     * Is called by the main application to give a reference back to itself.
+     *
+     */
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
+
+    private void home(){
+        this.mainApp.getPrimaryStage().setTitle("Sportify - Home");
+        try {
+            // Load person overview.
+            FXMLLoader loaderHome = new FXMLLoader();
+            loaderHome.setLocation(MainApp.class.getResource("Home.fxml"));
+            Pane pane = loaderHome.load();
+
+            // Set login overview into the center of root layout.
+            this.mainApp.getPrimaryPane().setCenter(pane);
+            this.mainApp.getPrimaryPane().setTop(null);
+
+            // Give the controller access to the main app.
+            HomeController controller = loaderHome.getController();
+            controller.setMainApp(this.mainApp);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sportQuiz(){
+        this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
+        try {
+            // Load sport quiz overview.
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("SportQuiz.fxml"));
+            Pane pane = loaderSport.load();
+
+            // Set sport quiz overview into the center of root layout.
+            this.mainApp.getPrimaryPane().setCenter(pane);
+
+            // Give the controller access to the main app.
+            SportQuizController controller = loaderSport.getController();
+            controller.setMainApp(this.mainApp);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sportQuizEnv(){
+        this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
+        try {
+            // Load sport quiz overview.
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("SportQuizEnv.fxml"));
+            Pane pane = loaderSport.load();
+
+            // Set sport quiz overview into the center of root layout.
+            this.mainApp.getPrimaryPane().setCenter(pane);
+
+            // Give the controller access to the main app.
+            SportQuizController controller = loaderSport.getController();
+            controller.setMainApp(this.mainApp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sportQuizType(){
+        this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
+        try {
+            // Load sport quiz overview.
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("SportQuizType.fxml"));
+            Pane pane = loaderSport.load();
+
+            // Set sport quiz overview into the center of root layout.
+            this.mainApp.getPrimaryPane().setCenter(pane);
+
+            // Give the controller access to the main app.
+            SportQuizController controller = loaderSport.getController();
+            controller.setMainApp(this.mainApp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
-    public void backQuizAction(ActionEvent event) throws Exception {
+    public void backQuizAction(ActionEvent event) {
         Button b = (Button) event.getSource();
         if(b == backQuiz){
-            CreateWindow.home(b);
-        }
-        else if(b == backQuizEnv){
-            CreateWindow.sportQuiz(b);
-        }
-        else if(b == backQuizType){
-            CreateWindow.sportQuizEnv(b);
+            home();
+        }else if(b == backQuizEnv){
+            sportQuiz();
+        }else if(b == backQuizType){
+            sportQuizEnv();
         }
     }
 
     @FXML
-    public void nextQuizAction(ActionEvent event) throws Exception {
+    public void nextQuizAction(ActionEvent event) {
         Button b = (Button) event.getSource();
         if(b == nextQuiz){
-            CreateWindow.sportQuizEnv(b);
-        }
-        else if(b == nextQuizEnv){
-            CreateWindow.sportQuizType(b);
+            sportQuizEnv();
+        }else if(b == nextQuizEnv){
+            sportQuizType();
         }
     }
 
     @FXML
-    public void takeQuiz(ActionEvent event) throws Exception {
+    public void takeQuiz(ActionEvent event) {
         //TODO : takeQuiz on each button on fxml files
         //TODO : create interfaces for quiz answers
         //TODO : create function to go to answer's interfaces
 
         Button b = (Button) event.getSource();
         if (b == age1) {
-             buttonAge1 = true;
+            buttonAge1 = true;
         }
         if (b == age2) {
-             buttonAge2 = true;
+            buttonAge2 = true;
         }
         if (b == age3) {
-             buttonAge3 = true;
+            buttonAge3 = true;
         }
         if (b == age4) {
-             buttonAge4 = true;
+            buttonAge4 = true;
         }
         if (b == indoor) {
-             buttonIndoor = true;
+            buttonIndoor = true;
         }
         if (b == outdoor) {
-             buttonOutdoor = true;
+            buttonOutdoor = true;
         }
         if (b == group) {
-             buttonGroup = true;
+            buttonGroup = true;
         }
         if (b == single) {
-             buttonSingle = true;
+            buttonSingle = true;
         }
     }
 
@@ -115,3 +206,4 @@ public class SportQuizController implements Initializable {
         // TODO
     }
 }
+
