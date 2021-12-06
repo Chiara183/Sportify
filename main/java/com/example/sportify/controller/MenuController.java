@@ -36,11 +36,6 @@ public class MenuController implements Initializable {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-        String s = this.mainApp.getPrimaryPane().getCenter().getId();
-        System.out.println(s);
-        if (Objects.equals(s, "login")){
-            signIn.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
-        }
     }
 
     @FXML
