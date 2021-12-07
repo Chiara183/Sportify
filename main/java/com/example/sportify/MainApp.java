@@ -5,11 +5,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import java.io.*;
-import java.util.*;
-import java.util.prefs.Preferences;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class MainApp extends Application{
 
@@ -103,45 +105,48 @@ public class MainApp extends Application{
 
     /**
      * Returns the data as an HashMap of user.
+     *
+     * public HashMap<String, HashMap<String, String>> getUserData() {
+     *     return userData;
+     * }
      */
-    public HashMap<String, HashMap<String, String>> getUserData() {
-        return userData;
-    }
 
     /**
      * Returns the person file preference, i.e. the file that was last opened.
      * The preference is read from the OS specific registry. If no such
      * preference can be found, null is returned.
      *
+     *
+     * public File getFilePath() {
+     *     Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
+     *     String filePath = prefs.get("filePath", null);
+     *     if (filePath != null) {
+     *         return new File(filePath);
+     *     } else {
+     *         return null;
+     *     }
+     * }
      */
-    public File getFilePath() {
-        Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
-        String filePath = prefs.get("filePath", null);
-        if (filePath != null) {
-            return new File(filePath);
-        } else {
-            return null;
-        }
-    }
 
     /**
      * Sets the file path of the currently loaded file. The path is persisted in
      * the OS specific registry.
      *
      * @param file the file or null to remove the path
+     *
+     * public void setFilePath(File file) {
+     *    Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
+     *    if (file != null) {
+     *        prefs.put("filePath", file.getPath());
+     *
+     *        // Update the stage title.
+     *        primaryStage.setTitle("Sportify - " + file.getName());
+     *    } else {
+     *        prefs.remove("filePath");
+     *
+     *        // Update the stage title.
+     *        primaryStage.setTitle("Sportify");
+     *    }
+     * }
      */
-    public void setFilePath(File file) {
-        Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
-        if (file != null) {
-            prefs.put("filePath", file.getPath());
-
-            // Update the stage title.
-            primaryStage.setTitle("Sportify - " + file.getName());
-        } else {
-            prefs.remove("filePath");
-
-            // Update the stage title.
-            primaryStage.setTitle("Sportify");
-        }
-    }
 }
