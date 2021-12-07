@@ -37,9 +37,9 @@
                         <Font name="Comic Sans MS" size="24.0" />
                     </font>
                 </Text>
-                <Button fx:id="indoor" layoutY="20.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Indoor" />
-                <Button fx:id="outoor" layoutX="180.0" layoutY="20.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Outdoor" />
-                <Button fx:id="water" layoutY="100.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Water" />
+                <Button fx:id="indoor" layoutY="20.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="Indoor" />
+                <Button fx:id="outoor" layoutX="180.0" layoutY="20.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="Outdoor" />
+                <Button fx:id="water" layoutY="100.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="Water" />
                 <Button fx:id="mountain" layoutX="180.0" layoutY="100.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="Mountain" />
             </Pane>
             <Button fx:id="nextQuizEnv" mnemonicParsing="false" onAction="#nextQuizAction" prefHeight="53.0" prefWidth="92.0" text="Next" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">

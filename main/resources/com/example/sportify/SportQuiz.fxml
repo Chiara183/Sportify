@@ -32,9 +32,9 @@
                         <Font name="Comic Sans MS" size="24.0" />
                     </font>
                 </Text>
-                <Button fx:id="age1" layoutY="20.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="0 - 18" />
-                <Button fx:id="age2" layoutX="180.0" layoutY="20.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="30 - 50" />
-                <Button fx:id="age3" layoutY="100.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="18 - 30" />
+                <Button fx:id="age1" layoutY="20.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="0 - 18" />
+                <Button fx:id="age2" layoutX="180.0" layoutY="20.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="30 - 50" />
+                <Button fx:id="age3" layoutY="100.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="18 - 30" />
                 <Button fx:id="age4" layoutX="180.0" layoutY="100.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" text="over 60" />
             </Pane>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
