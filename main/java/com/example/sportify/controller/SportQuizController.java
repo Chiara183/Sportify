@@ -40,14 +40,14 @@ public class SportQuizController implements Initializable {
     @FXML
     private Button single;
 
-    private boolean buttonAge1;
-    private boolean buttonAge2;
-    private boolean buttonAge3;
-    private boolean buttonAge4;
-    private boolean buttonIndoor;
-    private boolean buttonOutdoor;
-    private boolean buttonGroup;
-    private boolean buttonSingle;
+    public static boolean buttonAge1 = false;
+    public static boolean buttonAge2 = false;
+    public static boolean buttonAge3 = false;
+    public static boolean buttonAge4 = false;
+    public static boolean buttonIndoor = false;
+    public static boolean buttonOutdoor = false;
+    public static boolean buttonGroup = false;
+    public static boolean buttonSingle = false;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -67,6 +67,7 @@ public class SportQuizController implements Initializable {
         this.mainApp = mainApp;
     }
 
+    @FXML
     private void home(){
         this.mainApp.getPrimaryStage().setTitle("Sportify - Home");
         try {
@@ -170,58 +171,81 @@ public class SportQuizController implements Initializable {
 
     @FXML
     public void takeQuiz(ActionEvent event) {
-        //TODO : takeQuiz on each button on fxml files
-        //TODO : create interfaces for quiz answers
-        //TODO : create function to go to answer's interfaces
 
         Button b = (Button) event.getSource();
         if (b == age1) {
             buttonAge1 = true;
+            sportQuizEnv();
         }
-        if (b == age2) {
+        else if (b == age2) {
             buttonAge2 = true;
+            sportQuizEnv();
         }
-        if (b == age3) {
+        else if (b == age3) {
             buttonAge3 = true;
+            sportQuizEnv();
         }
-        if (b == age4) {
+        else if (b == age4) {
             buttonAge4 = true;
+            sportQuizEnv();
         }
-        if (b == indoor) {
+        else if (b == indoor) {
             buttonIndoor = true;
+            sportQuizType();
         }
-        if (b == outdoor) {
+        else if (b == outdoor) {
             buttonOutdoor = true;
+            sportQuizType();
         }
-        if (b == group) {
+        else if (b == group) {
             buttonGroup = true;
+            quizLogic();
         }
-        if (b == single) {
+        else if (b == single) {
             buttonSingle = true;
+            quizLogic();
         }
     }
 
     @FXML
     private void quizLogic(){
-        if(buttonAge1 && buttonIndoor && buttonGroup){};
-        if(buttonAge1 && buttonIndoor && buttonSingle){};
-        if(buttonAge1 && buttonOutdoor && buttonGroup){};
-        if(buttonAge1 && buttonOutdoor && buttonSingle){};
+        if(buttonAge1 && buttonIndoor && buttonGroup){
+            this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
+            try {
+                // Load test result overview.
+                FXMLLoader loaderSport = new FXMLLoader();
+                loaderSport.setLocation(MainApp.class.getResource("VolleyBall.fxml"));
+                Pane pane = loaderSport.load();
 
-        if(buttonAge2 && buttonIndoor && buttonGroup){};
-        if(buttonAge2 && buttonIndoor && buttonSingle){};
-        if(buttonAge2 && buttonOutdoor && buttonGroup){};
-        if(buttonAge2 && buttonOutdoor && buttonSingle){};
+                // Set test result overview into the center of root layout.
+                this.mainApp.getPrimaryPane().setCenter(pane);
 
-        if(buttonAge3 && buttonIndoor && buttonGroup){};
-        if(buttonAge3 && buttonIndoor && buttonSingle){};
-        if(buttonAge3 && buttonOutdoor && buttonGroup){};
-        if(buttonAge3 && buttonOutdoor && buttonSingle){};
+                // Give the controller access to the main app.
+                SportQuizController controller = loaderSport.getController();
+                controller.setMainApp(this.mainApp);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
-        if(buttonAge4 && buttonIndoor && buttonGroup){};
-        if(buttonAge4 && buttonIndoor && buttonSingle){};
-        if(buttonAge4 && buttonOutdoor && buttonGroup){};
-        if(buttonAge4 && buttonOutdoor && buttonSingle){};
+        if(buttonAge1 && buttonIndoor && buttonSingle){/* Arti Marziali */};
+        if(buttonAge1 && buttonOutdoor && buttonGroup){/* Calcio */};
+        if(buttonAge1 && buttonOutdoor && buttonSingle){/* Atletica */ };
+
+        if(buttonAge2 && buttonIndoor && buttonGroup){/* Pallavolo */};
+        if(buttonAge2 && buttonIndoor && buttonSingle){/* Nuoto */};
+        if(buttonAge2 && buttonOutdoor && buttonGroup){/* Calcio con opzione a 5 */};
+        if(buttonAge2 && buttonOutdoor && buttonSingle){/* Tennis */ };
+
+        if(buttonAge3 && buttonIndoor && buttonGroup){/* Ballo */};
+        if(buttonAge3 && buttonIndoor && buttonSingle){/* Nuoto */};
+        if(buttonAge3 && buttonOutdoor && buttonGroup){/* Trekking */};
+        if(buttonAge3 && buttonOutdoor && buttonSingle){/* Tennis */};
+
+        if(buttonAge4 && buttonIndoor && buttonGroup){/* Ballo */};
+        if(buttonAge4 && buttonIndoor && buttonSingle){/* Nuoto */};
+        if(buttonAge4 && buttonOutdoor && buttonGroup){/* Trekking in group */};
+        if(buttonAge4 && buttonOutdoor && buttonSingle){/* Golf */};
     }
 
     @Override

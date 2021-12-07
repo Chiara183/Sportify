@@ -20,7 +20,7 @@
                 <RowConstraints maxHeight="277.0" minHeight="10.0" prefHeight="165.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
             </rowConstraints>
-            <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS">
+            <ImageView fitHeight="53.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                 <Image url="@Images/Sportify_logo.png" />
                 <GridPane.margin>
                     <Insets />
@@ -31,25 +31,31 @@
                     <Insets />
                 </GridPane.margin>
             </HBox>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="156.0" prefWidth="333.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                <Text layoutX="76.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you prefer...?" textAlignment="CENTER">
-                    <font>
-                        <Font name="Comic Sans MS" size="24.0" />
-                    </font>
-                </Text>
-                <Button fx:id="group" layoutY="60.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="Being in group" />
-                <Button fx:id="single" layoutX="183.0" layoutY="60.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="Being alone" />
-            </Pane>
-            <Button fx:id="endQuiz" mnemonicParsing="false" onAction="#quizLogic" prefHeight="53.0" prefWidth="92.0" text="End Quiz" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Button fx:id="backQuizType" mnemonicParsing="false" onAction="#home" prefHeight="53.0" prefWidth="92.0" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                 <HBox.margin>
                     <Insets left="10.0" />
                 </HBox.margin>
             </Button>
-            <Button fx:id="backQuizType" mnemonicParsing="false" onAction="#backQuizAction" prefHeight="53.0" prefWidth="92.0" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                <HBox.margin>
-                    <Insets left="10.0" />
-                </HBox.margin>
-            </Button>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The right sport for you is...." textAlignment="CENTER" wrappingWidth="514.294921875" GridPane.columnIndex="1">
+            <font>
+               <Font name="Comic Sans MS" size="30.0" />
+            </font>
+         </Text>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VolleyBall" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <font>
+               <Font name="Comic Sans MS Bold Italic" size="48.0" />
+            </font>
+         </Text>
+         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <children>
+               <Text layoutX="40.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you want to know more information about this sport, click " wrappingWidth="479.46875">
+                  <font>
+                     <Font name="Comic Sans MS" size="24.0" />
+                  </font>
+               </Text>
+                   <Button fx:id="group" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="83.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="27.0" prefWidth="50.0" text="here" />
+            </children>
+         </Pane>
         </GridPane>
     </VBox>
     <stylesheets>
