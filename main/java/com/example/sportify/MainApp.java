@@ -58,9 +58,9 @@ public class MainApp extends Application{
             rootLayout = loader.load();
 
             // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout, 780, 437);
+            Scene scene = new Scene(rootLayout, 862, 444);
             primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
+            //primaryStage.setResizable(false);
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();

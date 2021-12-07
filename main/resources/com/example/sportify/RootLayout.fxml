@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="487.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.2">
-    <ImageView fitHeight="487.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@Images/Sfondo.jpg" />
-        <effect>
-            <ColorAdjust />
-        </effect>
-    </ImageView>
-</BorderPane>
-
+<BorderPane styleClass="image" prefHeight="487.0" prefWidth="780.0" stylesheets="@Style/RootLayout.css" xmlns="http://javafx.com/javafx/11.0.2"/>

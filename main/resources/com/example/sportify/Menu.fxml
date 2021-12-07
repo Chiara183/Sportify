@@ -3,30 +3,34 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="780.0" style="-fx-background-radius: 8px;" stylesheets="@Style/Button.css" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.MenuController">
-    <GridPane.margin>
-        <Insets bottom="-10.0" />
-    </GridPane.margin>
-    <Button maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#homeAction" prefHeight="37.0" prefWidth="112.0" text="Home" />
-    <Button fx:id="sportQuiz" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="27.0" prefWidth="112.0" text="Sport Quiz">
-        <HBox.margin>
-            <Insets left="10.0" />
-        </HBox.margin>
-    </Button>
-    <Button fx:id="findGym" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#findGymAction" prefHeight="27.0" prefWidth="112.0" text="Gym Finder">
-        <HBox.margin>
-            <Insets left="10.0" />
-        </HBox.margin>
-    </Button>
-    <Button fx:id="signIn" alignment="TOP_CENTER" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="27.0" prefWidth="112.0" text="Login">
-        <HBox.margin>
-            <Insets left="10.0" />
-        </HBox.margin>
-    </Button>
-    <Button fx:id="signUp" alignment="TOP_CENTER" layoutX="367.0" layoutY="10.0" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#signUpAction" prefHeight="27.0" prefWidth="112.0" text="Sign Up">
-        <HBox.margin>
-            <Insets left="10.0" />
-        </HBox.margin>
-    </Button>
-</HBox>
+<Pane BorderPane.alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="780.0" stylesheets="@Style/Button.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.MenuController">
+    <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="780.0" style="-fx-background-radius: 8px;">
+        <Button maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#homeAction" prefHeight="37.0" prefWidth="112.0" text="Home" />
+        <Button fx:id="sportQuiz" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="27.0" prefWidth="112.0" text="Sport Quiz">
+            <HBox.margin>
+                <Insets left="10.0" />
+            </HBox.margin>
+        </Button>
+        <Button fx:id="findGym" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#findGymAction" prefHeight="27.0" prefWidth="112.0" text="Gym Finder">
+            <HBox.margin>
+                <Insets left="10.0" />
+            </HBox.margin>
+        </Button>
+        <Button fx:id="signIn" alignment="TOP_CENTER" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="27.0" prefWidth="112.0" text="Login">
+            <HBox.margin>
+                <Insets left="10.0" />
+            </HBox.margin>
+        </Button>
+        <Button fx:id="signUp" alignment="TOP_CENTER" layoutX="367.0" layoutY="10.0" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#signUpAction" prefHeight="27.0" prefWidth="112.0" text="Sign Up">
+            <HBox.margin>
+                <Insets left="10.0" />
+            </HBox.margin>
+        </Button>
+       <opaqueInsets>
+          <Insets />
+       </opaqueInsets>
+       <padding>
+          <Insets top="10.0" />
+       </padding>
+    </HBox>
+</Pane>
