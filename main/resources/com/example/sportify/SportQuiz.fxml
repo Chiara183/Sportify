@@ -7,8 +7,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.SportQuizController">
-    <VBox alignment="TOP_CENTER" layoutY="1.0" prefHeight="437.0" prefWidth="780.0">
+<Pane BorderPane.alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="437.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.SportQuizController">
+    <VBox alignment="CENTER" layoutY="1.0" prefHeight="437.0" prefWidth="780.0">
         <GridPane prefHeight="387.0" prefWidth="780.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.0" minWidth="10.0" prefWidth="138.0" />
