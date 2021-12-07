@@ -23,7 +23,7 @@
             </rowConstraints>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                 <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@Images/Sportify logo.png" />
+                    <Image url="@Images/Sportify_logo.png" />
                 </ImageView>
             </Pane>
             <GridPane alignment="TOP_CENTER" prefHeight="152.0" prefWidth="465.0" GridPane.columnIndex="1" GridPane.rowIndex="1">

@@ -74,7 +74,7 @@
                 </GridPane.margin>
             </Button>
             <ImageView fitHeight="112.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                <Image url="@Images/Sportify logo.png" />
+                <Image url="@Images/Sportify_logo.png" />
                 <GridPane.margin>
                     <Insets bottom="10.0" top="20.0" />
                 </GridPane.margin>

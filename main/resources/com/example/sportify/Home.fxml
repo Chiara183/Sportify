@@ -21,7 +21,7 @@
      </rowConstraints>
       <children>
           <ImageView fitHeight="168.0" fitWidth="439.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BASELINE">
-              <Image url="@Images/Sportify logo.png" />
+              <Image url="@Images/Sportify_logo.png" />
           </ImageView>
           <Button ellipsisString="" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="78.0" prefWidth="145.0" text="Sport quiz" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
               <cursor>
