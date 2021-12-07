@@ -22,7 +22,7 @@ public class SportQuizController implements Initializable {
     @FXML
     private Button nextQuizEnv;
     @FXML
-    private Button nextQuizType;
+    private Button endQuiz;
     @FXML
     private Button age1;
     @FXML
@@ -199,6 +199,29 @@ public class SportQuizController implements Initializable {
         if (b == single) {
             buttonSingle = true;
         }
+    }
+
+    @FXML
+    private void quizLogic(){
+        if(buttonAge1 && buttonIndoor && buttonGroup){};
+        if(buttonAge1 && buttonIndoor && buttonSingle){};
+        if(buttonAge1 && buttonOutdoor && buttonGroup){};
+        if(buttonAge1 && buttonOutdoor && buttonSingle){};
+
+        if(buttonAge2 && buttonIndoor && buttonGroup){};
+        if(buttonAge2 && buttonIndoor && buttonSingle){};
+        if(buttonAge2 && buttonOutdoor && buttonGroup){};
+        if(buttonAge2 && buttonOutdoor && buttonSingle){};
+
+        if(buttonAge3 && buttonIndoor && buttonGroup){};
+        if(buttonAge3 && buttonIndoor && buttonSingle){};
+        if(buttonAge3 && buttonOutdoor && buttonGroup){};
+        if(buttonAge3 && buttonOutdoor && buttonSingle){};
+
+        if(buttonAge4 && buttonIndoor && buttonGroup){};
+        if(buttonAge4 && buttonIndoor && buttonSingle){};
+        if(buttonAge4 && buttonOutdoor && buttonGroup){};
+        if(buttonAge4 && buttonOutdoor && buttonSingle){};
     }
 
     @Override
