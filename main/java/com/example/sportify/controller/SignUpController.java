@@ -31,11 +31,15 @@ public class SignUpController implements Initializable {
     // Reference to the main application.
     private MainApp mainApp;
 
+    // Reference to submit.
+    private Submit submit;
+
     /**
      * The constructor.
      * The constructor is called before the initialize() method.
      */
     public SignUpController() {
+        this.submit = new Submit();
     }
 
     /**
@@ -61,12 +65,12 @@ public class SignUpController implements Initializable {
         //check whether the credentials are authentic or not
         if (!userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")) {    //if authentic, navigate user to a new page
             if (userTick.isSelected()) {
-                Submit.signUp(userValue, userAccount);
+                this.submit.signUp(userValue, userAccount);
                 JFrame jFrame = new JFrame();
                 JOptionPane.showMessageDialog(jFrame, "You're registered!");
                 login();
             } else if (gymTick.isSelected()) {
-                Submit.signUp("gymTick", userAccount);
+                this.submit.signUp("gymTick", userAccount);
                 signUpGymAction();
             }
         } else {
@@ -94,6 +98,7 @@ public class SignUpController implements Initializable {
             // Give the controller access to the main app.
             LoginController controller = loaderLogin.getController();
             controller.setMainApp(this.mainApp);
+            controller.setSubmit(this.submit);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -115,6 +120,7 @@ public class SignUpController implements Initializable {
             // Give the controller access to the main app.
             SignUpGymController controller = loaderSignUp.getController();
             controller.setMainApp(this.mainApp);
+            controller.setSubmit(this.submit);
 
         } catch (IOException e) {
             e.printStackTrace();

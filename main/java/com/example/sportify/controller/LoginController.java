@@ -21,11 +21,15 @@ public class LoginController implements Initializable{
     // Reference to the main application.
     private MainApp mainApp;
 
+    // Reference to submit.
+    private Submit submit;
+
     /**
      * The constructor.
-     * The constructor is called before the initialize() method.
+     * The constructor is called before to initialize() method.
      */
     public LoginController() {
+        this.submit = new Submit();
     }
 
     /**
@@ -36,13 +40,17 @@ public class LoginController implements Initializable{
         this.mainApp = mainApp;
     }
 
+    public void setSubmit(Submit submit) {
+        this.submit = submit;
+    }
+
     @FXML
     protected void submitActionLogin() throws Exception {
         String userValue = username.getText();      //get user entered username from the textField1
         String passValue = password.getText();      //get user entered password from the textField2
 
         //check whether the credentials are authentic or not
-        if (Submit.login(userValue, passValue)) {   //if authentic, navigate user to a new page
+        if (this.submit.login(userValue, passValue)) {   //if authentic, navigate user to a new page
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Correct!");
             home();

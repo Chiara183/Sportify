@@ -4,23 +4,27 @@ import javafx.fxml.Initializable;
 
 import java.io.*;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class readWriteFile implements Initializable {
 
-    public static HashMap<String, HashMap<String, String>> readFile() throws IOException {
+    private final IO file;
+
+    public readWriteFile (){
+        this.file = new IO();
+    }
+
+    public HashMap<String, HashMap<String, String>> readFile() throws IOException {
         // File path is passed as parameter
-        File file = new File(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login");
-        // Creating an object of BufferedReader class
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        // Declaring a string variable
-        String st;
+        // File file= new File(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login");
         // Declaring a HashMap variable
         HashMap<String, HashMap<String, String>> hashMap = new HashMap<>();
+        // Declaring a string variable
+        String st = this.file.read();
+        Reader inputString = new StringReader(st);
+        // Creating an object of BufferedReader class
+        BufferedReader br = new BufferedReader(inputString);
 
         while ((st = br.readLine()) != null){
             st = st.substring(1, st.length() - 1);
@@ -51,9 +55,9 @@ public class readWriteFile implements Initializable {
         return (hashMap);
     }
 
-    public static void saveOnFile(HashMap<String, HashMap<String, String>> map) {
-        String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login";
-        Path path = Path.of(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login");
+    public void saveOnFile(HashMap<String, HashMap<String, String>> map) {
+        // String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login";
+        // Path path = Path.of(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login");
         StringBuilder mapAsString = new StringBuilder();
         for (String key : map.keySet()){
             HashMap<String, String> subMap = map.get(key);
@@ -62,27 +66,12 @@ public class readWriteFile implements Initializable {
                mapAsString.append(subKey).append("={").append(subMap.get(subKey)).append("}, ");}
             mapAsString = new StringBuilder(mapAsString.substring(0, mapAsString.length() - 2));
             mapAsString.append("}\n");}
-        try {
-            File file = new File(filePath);
-            if (file.exists()) {
-                if (file.length() == 0) {
-                    Files.writeString(path, mapAsString.toString(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-                } else {
-                    Files.writeString(path, "\n" + mapAsString, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-                }
-            } else if (file.createNewFile()) {
-                Files.writeString(path, mapAsString.toString(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-            } else {
-                System.out.println("The file cannot be created");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.file.write(String.valueOf(mapAsString));
     }
 
     public static void clearFile(){
         try{
-            String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login";
+            String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login.dat";
             File file = new File(filePath);
             FileWriter fileWriter = new FileWriter(file, false);
             PrintWriter printWriter = new PrintWriter(fileWriter, false);

@@ -10,17 +10,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Objects;
 
 public class MainApp extends Application{
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    /**
-     * The data as an HashMap of User.
-     */
-    private final HashMap<String, HashMap<String, String>> userData;
 
     public static void main(String[] args) {
         launch(args);
@@ -43,8 +38,7 @@ public class MainApp extends Application{
     /**
      * Constructor
      */
-    public MainApp() throws IOException {
-        userData = readWriteFile.readFile();
+    public MainApp(){
     }
 
     /**

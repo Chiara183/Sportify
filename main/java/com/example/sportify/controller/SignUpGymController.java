@@ -22,9 +22,12 @@ public class SignUpGymController implements Initializable {
     // Reference to the main application.
     private MainApp mainApp;
 
+    // Reference to submit.
+    private Submit submit;
+
     /**
      * The constructor.
-     * The constructor is called before the initialize() method.
+     * The constructor is called before to initialize() method.
      */
     public SignUpGymController() {
     }
@@ -37,10 +40,15 @@ public class SignUpGymController implements Initializable {
         this.mainApp = mainApp;
     }
 
+    public void setSubmit(Submit submit){
+        this.submit = submit;
+    }
+
     @FXML
     protected void submitActionSignUpGym() throws Exception {
         String userValue = "gymTick";
-        HashMap<String, HashMap<String, String>> account= readWriteFile.readFile();
+        readWriteFile file = new readWriteFile();
+        HashMap<String, HashMap<String, String>> account= file.readFile();
         HashMap<String, String> userGymAccount = account.get(userValue);
         String gymValue = gymName.getText();            //get user entered gym name
         String addressValue = gymAddress.getText();     //get user entered gym address
@@ -52,7 +60,7 @@ public class SignUpGymController implements Initializable {
         //check whether the credentials are authentic or not
         if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("")) {
             //if authentic, navigate user to a new page
-            Submit.signUp(userGymAccount.get("username"), userGymAccount, "gymTick");
+            this.submit.signUp(userGymAccount.get("username"), userGymAccount, "gymTick");
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "You're registered!");
             login();
@@ -81,6 +89,7 @@ public class SignUpGymController implements Initializable {
             // Give the controller access to the main app.
             LoginController controller = loaderLogin.getController();
             controller.setMainApp(this.mainApp);
+            controller.setSubmit(this.submit);
 
         } catch (IOException e) {
             e.printStackTrace();
