@@ -11,18 +11,14 @@ public class IO {
     }
 
     public void write(String string) {
+        RandomAccessFile out2;
         try {
-            DataOutputStream out2 = new DataOutputStream(
-                    new BufferedOutputStream(new FileOutputStream(this.filenameDataStream)));
-
-            out2.writeBytes(string);
+            out2 = new RandomAccessFile(this.filenameDataStream, "rw");
+            out2.writeUTF(string);
 
             out2.close();
         } catch (EOFException e) {
             throw new RuntimeException(e);
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -31,13 +27,18 @@ public class IO {
 
     public String read(){
         String str = "";
+        RandomAccessFile in5;
         try {
-            DataInputStream in5 = new DataInputStream(new BufferedInputStream(
-                    new FileInputStream(this.filenameDataStream)));
-            str = new String(in5.readAllBytes());
-            System.out.println(str);
+            in5 = new RandomAccessFile(this.filenameDataStream, "r");
+            str = in5.readUTF();
+            in5.close();
         } catch (EOFException e) {
-            throw new RuntimeException(e);
+            File file = new File(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login.dat");
+            if (file.length() == 0) {
+                System.out.println("File is empty ...");
+            } else {
+                throw new RuntimeException(e);
+            }
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             this.filenameDataStream = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login.dat";
@@ -48,16 +49,4 @@ public class IO {
 
         return str;
     }
-
-/*    public static void main(String[] args) {
-        IO currentInstance = new IO();
-// --------------- This is a first set of examples
-        currentInstance.dataStreamExample();
-        System.out.println("*****");
-        currentInstance.dataStreamExampleWrongTypeInReading();
-
-// --------------- This is the last example
-        currentInstance.charsFormInputExample();
-    }*/
-
 }
