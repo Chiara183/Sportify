@@ -27,7 +27,6 @@ public class MainApp extends Application{
         this.primaryStage = primaryStage;
 
         // Set the application.
-        this.primaryStage.setTitle("Sportify - Home");
         this.primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Sportify icon.png"))));
 
         initRootLayout();
@@ -62,10 +61,11 @@ public class MainApp extends Application{
     }
 
     /**
-     * Shows the person overview inside the root layout.
+     * Shows home overview inside the root layout.
      */
     public void showHomeOverview() {
         try {
+            this.primaryStage.setTitle("Sportify - Home");
             // Load home overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("Home.fxml"));

@@ -1,14 +1,15 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.*;
-import javafx.fxml.*;
+import com.example.sportify.MainApp;
+import com.example.sportify.Submit;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
+
 import javax.swing.*;
-import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{
 
@@ -67,46 +68,12 @@ public class LoginController implements Initializable{
     }
 
     private void home(){
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Home");
-        try {
-            // Load home overview.
-            FXMLLoader loaderHome = new FXMLLoader();
-            loaderHome.setLocation(MainApp.class.getResource("Home.fxml"));
-            Pane pane = loaderHome.load();
-
-            // Set login overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
-            this.mainApp.getPrimaryPane().setTop(null);
-
-            // Give the controller access to the main app.
-            HomeController controller = loaderHome.getController();
-            controller.setMainApp(this.mainApp);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.mainApp.showHomeOverview();
     }
 
     @FXML
     private void skipAction() {
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Home");
-        try {
-            // Load person overview.
-            FXMLLoader loaderHome = new FXMLLoader();
-            loaderHome.setLocation(MainApp.class.getResource("Home.fxml"));
-            Pane pane = loaderHome.load();
-
-            // Set login overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
-            this.mainApp.getPrimaryPane().setTop(null);
-
-            // Give the controller access to the main app.
-            HomeController controller = loaderHome.getController();
-            controller.setMainApp(this.mainApp);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        home();
     }
 
     @Override

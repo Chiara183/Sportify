@@ -69,24 +69,7 @@ public class SportQuizController implements Initializable {
 
     @FXML
     private void home(){
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Home");
-        try {
-            // Load person overview.
-            FXMLLoader loaderHome = new FXMLLoader();
-            loaderHome.setLocation(MainApp.class.getResource("Home.fxml"));
-            Pane pane = loaderHome.load();
-
-            // Set login overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
-            this.mainApp.getPrimaryPane().setTop(null);
-
-            // Give the controller access to the main app.
-            HomeController controller = loaderHome.getController();
-            controller.setMainApp(this.mainApp);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.mainApp.showHomeOverview();
     }
 
     private void sportQuiz(){
