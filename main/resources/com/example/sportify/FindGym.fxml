@@ -68,7 +68,7 @@
                     <Cursor fx:constant="HAND" />
                 </cursor>
             </ScrollPane>
-            <Button fx:id="skipGymFinder" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#skipAction" prefHeight="53.0" prefWidth="92.0" text="Back" GridPane.rowIndex="2">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#skipAction" prefHeight="53.0" prefWidth="92.0" text="Back" GridPane.rowIndex="2">
                 <GridPane.margin>
                     <Insets left="30.0" />
                 </GridPane.margin>

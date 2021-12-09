@@ -22,6 +22,7 @@ public class LoginController implements Initializable{
     private MainApp mainApp;
 
     // Reference to submit.
+    @FXML
     private Submit submit;
 
     /**
@@ -36,7 +37,7 @@ public class LoginController implements Initializable{
      * Is called by the main application to give a reference back to itself.
      *
      */
-    public void setMainApp(MainApp mainApp) throws IOException {
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -45,7 +46,7 @@ public class LoginController implements Initializable{
     }
 
     @FXML
-    protected void submitActionLogin() throws Exception {
+    protected void submitActionLogin() {
         String userValue = username.getText();      //get user entered username from the textField1
         String passValue = password.getText();      //get user entered password from the textField2
 

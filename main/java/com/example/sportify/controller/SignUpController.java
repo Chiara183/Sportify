@@ -32,11 +32,11 @@ public class SignUpController implements Initializable {
     private MainApp mainApp;
 
     // Reference to submit.
-    private Submit submit;
+    private final Submit submit;
 
     /**
      * The constructor.
-     * The constructor is called before the initialize() method.
+     * The constructor is called before to initialize() method.
      */
     public SignUpController() {
         this.submit = new Submit();
@@ -46,12 +46,12 @@ public class SignUpController implements Initializable {
      * Is called by the main application to give a reference back to itself.
      *
      */
-    public void setMainApp(MainApp mainApp) throws IOException {
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
     @FXML
-    protected void submitActionSignUp() throws Exception {
+    protected void submitActionSignUp() {
         HashMap<String, String> userAccount = new HashMap<>();  //initialize list of string 'userAccount'
         String userValue = username.getText();                  //get user entered username
         String passValue = password.getText();                  //get user entered password

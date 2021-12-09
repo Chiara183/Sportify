@@ -2,7 +2,6 @@ package com.example.sportify;
 
 import javafx.fxml.Initializable;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -15,7 +14,7 @@ public class Submit implements Initializable {
         this.file = new readWriteFile();
     }
 
-    public boolean login(String userValue, String passValue) throws IOException {
+    public boolean login(String userValue, String passValue) {
         HashMap<String, HashMap<String, String>> account = this.file.readFile();
 
         //if authentic, navigate user to a new page

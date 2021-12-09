@@ -36,7 +36,7 @@ public class SignUpGymController implements Initializable {
      * Is called by the main application to give a reference back to itself.
      *
      */
-    public void setMainApp(MainApp mainApp) throws IOException {
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -45,7 +45,7 @@ public class SignUpGymController implements Initializable {
     }
 
     @FXML
-    protected void submitActionSignUpGym() throws Exception {
+    protected void submitActionSignUpGym() {
         String userValue = "gymTick";
         readWriteFile file = new readWriteFile();
         HashMap<String, HashMap<String, String>> account= file.readFile();

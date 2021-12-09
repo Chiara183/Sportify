@@ -14,7 +14,7 @@ public class FindGymController implements Initializable{
 
     /**
      * The constructor.
-     * The constructor is called before the initialize() method.
+     * The constructor is called before to initialize() method.
      */
     public FindGymController() {
     }

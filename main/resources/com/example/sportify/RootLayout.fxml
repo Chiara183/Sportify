@@ -3,4 +3,5 @@
 <?import javafx.scene.layout.*?>
 
 
-<BorderPane prefHeight="550.0" prefWidth="830.0" styleClass="image" stylesheets="@Style/RootLayout.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" />
+<BorderPane prefHeight="550.0" prefWidth="830.0" styleClass="image" stylesheets="@Style/RootLayout.css"
+            xmlns="http://javafx.com/javafx/11.0.2"/>
