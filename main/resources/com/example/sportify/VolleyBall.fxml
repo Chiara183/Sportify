@@ -46,16 +46,16 @@
                <Font name="Comic Sans MS Bold Italic" size="48.0" />
             </font>
          </Text>
-         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-            <children>
-               <Text layoutX="40.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you want to know more information about this sport, click " wrappingWidth="479.46875">
-                  <font>
-                     <Font name="Comic Sans MS" size="24.0" />
-                  </font>
-               </Text>
-                   <Button fx:id="group" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="83.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="27.0" prefWidth="50.0" text="here" />
-            </children>
-         </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Text layoutX="40.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="If you want to know more information about this sport, click " wrappingWidth="479.46875">
+                    <font>
+                        <Font name="Comic Sans MS" size="24.0"/>
+                    </font>
+                </Text>
+                <Button fx:id="group" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="83.0"
+                        mnemonicParsing="false" onAction="#takeQuiz" prefHeight="27.0" prefWidth="50.0" text="here"/>
+            </Pane>
         </GridPane>
     </VBox>
     <stylesheets>
