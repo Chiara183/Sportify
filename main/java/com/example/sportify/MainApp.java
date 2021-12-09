@@ -1,6 +1,8 @@
 package com.example.sportify;
 
 import com.example.sportify.controller.HomeController;
+import com.example.sportify.controller.LoginController;
+import com.example.sportify.controller.SportQuizController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +18,7 @@ public class MainApp extends Application{
 
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private Submit submit = new Submit();
 
     public static void main(String[] args) {
         launch(args);
@@ -38,6 +41,14 @@ public class MainApp extends Application{
      * Constructor
      */
     public MainApp(){
+    }
+
+    /**
+     * Is called to give a reference back to submit.
+     *
+     */
+    public void setSubmit(Submit submit) {
+        this.submit = submit;
     }
 
     /**
@@ -76,6 +87,53 @@ public class MainApp extends Application{
 
             // Give the controller access to the main app.
             HomeController controller = loader.getController();
+            controller.setMainApp(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Shows login overview inside the root layout.
+     */
+    public void showLoginOverview() {
+        try {
+            this.primaryStage.setTitle("Sportify - Login");
+            // Load login overview.
+            FXMLLoader loaderLogin = new FXMLLoader();
+            loaderLogin.setLocation(MainApp.class.getResource("Login.fxml"));
+            Pane pane = loaderLogin.load();
+
+            // Set login overview into the center of root layout.
+            this.getPrimaryPane().setCenter(pane);
+
+            // Give the controller access to the main app.
+            LoginController controller = loaderLogin.getController();
+            controller.setMainApp(this);
+            controller.setSubmit(this.submit);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Shows sport quiz overview inside the root layout.
+     */
+    public void showSportQuizOverview() {
+        try {
+            this.getPrimaryStage().setTitle("Sportify - Sport Quiz");
+            // Load sport quiz overview.
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("SportQuiz.fxml"));
+            Pane pane = loaderSport.load();
+
+            // Set sport quiz overview into the center of root layout.
+            this.getPrimaryPane().setCenter(pane);
+
+            // Give the controller access to the main app.
+            SportQuizController controller = loaderSport.getController();
             controller.setMainApp(this);
 
         } catch (IOException e) {

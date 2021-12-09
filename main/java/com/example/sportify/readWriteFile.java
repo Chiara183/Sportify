@@ -20,28 +20,29 @@ public class readWriteFile implements Initializable {
     }
 
     public void saveOnFile(HashMap<String, HashMap<String, String>> map) {
-        //StringBuilder mapAsString = new StringBuilder();
-        //for (String key : map.keySet()){
-        //    HashMap<String, String> subMap = map.get(key);
-        //    mapAsString.append("{").append(key).append("={");
-        //    for (String subKey : subMap.keySet()){
-        //       mapAsString.append(subKey).append("={").append(subMap.get(subKey)).append("}, ");}
-        //    mapAsString = new StringBuilder(mapAsString.substring(0, mapAsString.length() - 2));
-        //    mapAsString.append("}\n");}*/
         this.file.write(map);
     }
 
     public static void clearFile(){
+        FileWriter fileWriter = null;
+        PrintWriter printWriter = null;
         try{
             String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login.dat";
             File file = new File(filePath);
-            FileWriter fileWriter = new FileWriter(file, false);
-            PrintWriter printWriter = new PrintWriter(fileWriter, false);
+            fileWriter = new FileWriter(file, false);
+            printWriter = new PrintWriter(fileWriter, false);
             printWriter.flush();
-            printWriter.close();
-            fileWriter.close();
-        }catch(Exception exception){
-            System.out.println("Exception have been caught");
+        }catch(Exception e){
+            e.printStackTrace();
+        } finally {
+            try {
+                assert printWriter != null;
+                printWriter.close();
+                fileWriter.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 

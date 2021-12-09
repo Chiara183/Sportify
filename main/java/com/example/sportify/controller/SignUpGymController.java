@@ -1,13 +1,17 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.*;
-import javafx.fxml.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
+import com.example.sportify.MainApp;
+import com.example.sportify.Submit;
+import com.example.sportify.readWriteFile;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+
 import javax.swing.*;
-import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 public class SignUpGymController implements Initializable {
 
@@ -76,24 +80,8 @@ public class SignUpGymController implements Initializable {
     }
 
     private void login(){
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Login");
-        try {
-            // Load login overview.
-            FXMLLoader loaderLogin = new FXMLLoader();
-            loaderLogin.setLocation(MainApp.class.getResource("Login.fxml"));
-            Pane pane = loaderLogin.load();
-
-            // Set login overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
-
-            // Give the controller access to the main app.
-            LoginController controller = loaderLogin.getController();
-            controller.setMainApp(this.mainApp);
-            controller.setSubmit(this.submit);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.mainApp.setSubmit(this.submit);
+        this.mainApp.showLoginOverview();
     }
 
     @FXML

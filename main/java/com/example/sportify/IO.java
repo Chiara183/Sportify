@@ -14,38 +14,36 @@ public class IO {
     }
 
     public void write(HashMap<String, HashMap<String, String>> map) {
-        //RandomAccessFile out2;
+        ObjectOutputStream output = null;
         try {
             File file = new File(this.filenameDataStream);
-            ObjectOutputStream output = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
-            /* out2 = new RandomAccessFile(this.filenameDataStream, "rw");*/
-            // out2.writeUTF(string);
+            output = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
             output.writeObject(map);
-
             output.flush();
-            output.close();
-            //out2.close();
         } catch (EOFException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } finally {
+            try {
+                assert output != null;
+                output.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 
     public HashMap<String, HashMap<String, String>> read(){
-        /*String str = "";*/
-        //RandomAccessFile in5;
         HashMap<String, HashMap<String, String>> map = null;
+        ObjectInputStream input = null;
         try {
-            /*in5 = new RandomAccessFile(this.filenameDataStream, "r");*/
-            /*str = in5.readUTF();*/
-            //in5.close();
             File file = new File(this.filenameDataStream);
-            ObjectInputStream input = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
+            input = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
             //Reads the first object in
             Object readObject = input.readObject();
-            input.close();
 
             if(!(readObject instanceof HashMap)) throw new IOException("Data is not a hashmap");
             map = (HashMap<String, HashMap<String, String>>) readObject;
@@ -62,6 +60,14 @@ public class IO {
         } catch (IOException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } finally {
+            try {
+                assert input != null;
+                input.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
         return map;

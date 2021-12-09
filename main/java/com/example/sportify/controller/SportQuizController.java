@@ -73,23 +73,7 @@ public class SportQuizController implements Initializable {
     }
 
     private void sportQuiz(){
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
-        try {
-            // Load sport quiz overview.
-            FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("SportQuiz.fxml"));
-            Pane pane = loaderSport.load();
-
-            // Set sport quiz overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
-
-            // Give the controller access to the main app.
-            SportQuizController controller = loaderSport.getController();
-            controller.setMainApp(this.mainApp);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.mainApp.showSportQuizOverview();
     }
 
     private void sportQuizEnv(){
@@ -211,24 +195,24 @@ public class SportQuizController implements Initializable {
             }
         }
 
-        if(buttonAge1 && buttonIndoor && buttonSingle){/* Arti Marziali */};
-        if(buttonAge1 && buttonOutdoor && buttonGroup){/* Calcio */};
-        if(buttonAge1 && buttonOutdoor && buttonSingle){/* Atletica */ };
+        if(buttonAge1 && buttonIndoor && buttonSingle){/* Arti Marziali */}
+        if(buttonAge1 && buttonOutdoor && buttonGroup){/* Calcio */}
+        if(buttonAge1 && buttonOutdoor && buttonSingle){/* Atletica */ }
 
-        if(buttonAge2 && buttonIndoor && buttonGroup){/* Pallavolo */};
-        if(buttonAge2 && buttonIndoor && buttonSingle){/* Nuoto */};
-        if(buttonAge2 && buttonOutdoor && buttonGroup){/* Calcio con opzione a 5 */};
-        if(buttonAge2 && buttonOutdoor && buttonSingle){/* Tennis */ };
+        if(buttonAge2 && buttonIndoor && buttonGroup){/* Pallavolo */}
+        if(buttonAge2 && buttonIndoor && buttonSingle){/* Nuoto */}
+        if(buttonAge2 && buttonOutdoor && buttonGroup){/* Calcio con opzione a 5 */}
+        if(buttonAge2 && buttonOutdoor && buttonSingle){/* Tennis */ }
 
-        if(buttonAge3 && buttonIndoor && buttonGroup){/* Ballo */};
-        if(buttonAge3 && buttonIndoor && buttonSingle){/* Nuoto */};
-        if(buttonAge3 && buttonOutdoor && buttonGroup){/* Trekking */};
-        if(buttonAge3 && buttonOutdoor && buttonSingle){/* Tennis */};
+        if(buttonAge3 && buttonIndoor && buttonGroup){/* Ballo */}
+        if(buttonAge3 && buttonIndoor && buttonSingle){/* Nuoto */}
+        if(buttonAge3 && buttonOutdoor && buttonGroup){/* Trekking */}
+        if(buttonAge3 && buttonOutdoor && buttonSingle){/* Tennis */}
 
-        if(buttonAge4 && buttonIndoor && buttonGroup){/* Ballo */};
-        if(buttonAge4 && buttonIndoor && buttonSingle){/* Nuoto */};
-        if(buttonAge4 && buttonOutdoor && buttonGroup){/* Trekking in group */};
-        if(buttonAge4 && buttonOutdoor && buttonSingle){/* Golf */};
+        if(buttonAge4 && buttonIndoor && buttonGroup){/* Ballo */}
+        if(buttonAge4 && buttonIndoor && buttonSingle){/* Nuoto */}
+        if(buttonAge4 && buttonOutdoor && buttonGroup){/* Trekking in group */}
+        if(buttonAge4 && buttonOutdoor && buttonSingle){/* Golf */}
     }
 
     @Override

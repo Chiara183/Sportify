@@ -85,24 +85,8 @@ public class SignUpController implements Initializable {
     }
 
     private void login(){
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Login");
-        try {
-            // Load login overview.
-            FXMLLoader loaderLogin = new FXMLLoader();
-            loaderLogin.setLocation(MainApp.class.getResource("Login.fxml"));
-            Pane pane = loaderLogin.load();
-
-            // Set login overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
-
-            // Give the controller access to the main app.
-            LoginController controller = loaderLogin.getController();
-            controller.setMainApp(this.mainApp);
-            controller.setSubmit(this.submit);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.mainApp.setSubmit(this.submit);
+        this.mainApp.showLoginOverview();
     }
 
     @FXML
