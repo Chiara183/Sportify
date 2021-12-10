@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.Submit;
+import com.example.sportify.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -23,8 +24,10 @@ public class LoginController implements Initializable{
     private MainApp mainApp;
 
     // Reference to submit.
-    @FXML
     private Submit submit;
+
+    // User
+    private User user;
 
     /**
      * The constructor.
@@ -53,6 +56,7 @@ public class LoginController implements Initializable{
 
         //check whether the credentials are authentic or not
         if (this.submit.login(userValue, passValue)) {   //if authentic, navigate user to a new page
+            this.user = this.submit.setUser(userValue);
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Correct!");
             home();
@@ -68,6 +72,7 @@ public class LoginController implements Initializable{
     }
 
     private void home(){
+        this.mainApp.setUser(this.user);
         this.mainApp.showHomeOverview();
     }
 

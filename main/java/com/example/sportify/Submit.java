@@ -24,7 +24,6 @@ public class Submit implements Initializable {
     }
 
     public void signUp(String userValue, HashMap<String, String> userAccount, String... deleteKey) {
-
         // Create HashMap
         HashMap<String, HashMap<String, String>> account = this.file.readFile();
         if (account == null){
@@ -36,6 +35,16 @@ public class Submit implements Initializable {
         readWriteFile.clearFile();
         account.put(userValue, userAccount);                                //add userAccount
         this.file.saveOnFile(account);
+    }
+
+    public User setUser(String username){
+        HashMap<String, HashMap<String, String>> account = this.file.readFile();
+        User user = new User();
+        user.setUserName(account.get(username).get("username"));
+        user.setPassword(account.get(username).get("password"));
+        user.setFirstName(account.get(username).get("firstName"));
+        user.setLastName(account.get(username).get("lastName"));
+        return user;
     }
 
     public void initialize(URL url, ResourceBundle resourceBundle) {

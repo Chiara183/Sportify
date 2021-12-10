@@ -19,6 +19,7 @@ public class MainApp extends Application{
     private Stage primaryStage;
     private BorderPane rootLayout;
     private Submit submit = new Submit();
+    private User user = null;
 
     public static void main(String[] args) {
         launch(args);
@@ -49,6 +50,14 @@ public class MainApp extends Application{
      */
     public void setSubmit(Submit submit) {
         this.submit = submit;
+    }
+
+    /**
+     * Is called to set user.
+     *
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 
     /**
@@ -87,6 +96,7 @@ public class MainApp extends Application{
 
             // Give the controller access to the main app.
             HomeController controller = loader.getController();
+            controller.setUser(this.user);
             controller.setMainApp(this);
 
         } catch (IOException e) {

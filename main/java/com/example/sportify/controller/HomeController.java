@@ -1,16 +1,24 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
-import javafx.fxml.*;
+import com.example.sportify.User;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
+
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
     // Reference to the main application.
     private MainApp mainApp;
+
+    // User
+    private User user = null;
 
     /**
      * The constructor.
@@ -25,6 +33,14 @@ public class HomeController implements Initializable {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
+    }
+
+    /**
+     * Is called to set user.
+     *
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 
     private MenuController Menu() {
