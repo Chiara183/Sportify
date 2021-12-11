@@ -1,0 +1,8 @@
+.label{
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-font-family: "Comic Sans MS";
+    -fx-cursor: Hand;
+    -fx-text-fill: black;
+    -fx-text-alignment: center;
+}

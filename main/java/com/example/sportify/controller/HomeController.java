@@ -56,6 +56,25 @@ public class HomeController implements Initializable {
             // Give the controller access to the main app.
             controllerB = loaderMenu.getController();
             controllerB.setMainApp(this.mainApp);
+            if (this.user!= null){
+                try {
+                    // Load user overview.
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(MainApp.class.getResource("UserIcon.fxml"));
+                    Pane userOverview = loader.load();
+
+                    // Set home overview into the center of root layout.
+                    paneMenu.getChildren().add(userOverview);
+
+                    // Give the controller access to the main app.
+                    UserController controller = loader.getController();
+                    controller.setUser(this.user);
+                    controller.setMainApp(this.mainApp);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

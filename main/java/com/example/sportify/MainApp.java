@@ -89,16 +89,16 @@ public class MainApp extends Application{
             // Load home overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("Home.fxml"));
-            Pane personOverview = loader.load();
+            Pane homeOverview = loader.load();
 
             // Set home overview into the center of root layout.
-            rootLayout.setCenter(personOverview);
+            rootLayout.setCenter(homeOverview);
+            rootLayout.setTop(null);
 
             // Give the controller access to the main app.
             HomeController controller = loader.getController();
             controller.setUser(this.user);
             controller.setMainApp(this);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
