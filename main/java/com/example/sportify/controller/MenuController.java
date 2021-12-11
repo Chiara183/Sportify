@@ -23,6 +23,9 @@ public class MenuController implements Initializable {
     @FXML
     private Button signOut;
 
+    @FXML
+    private FXMLLoader UserIcon;
+
     // Reference to the main application.
     private MainApp mainApp;
 
@@ -57,6 +60,8 @@ public class MenuController implements Initializable {
             signUp.setPrefWidth(0);
             signIn.setVisible(false);
             signIn.setPrefWidth(0);
+            //UserController controller = UserIcon.getController();
+            //controller.setUser(user);
         } else {
             signOut.setPrefWidth(0);
             signOut.setVisible(false);
@@ -64,6 +69,8 @@ public class MenuController implements Initializable {
             signUp.setVisible(true);
             signIn.setPrefWidth(112);
             signIn.setVisible(true);
+            //UserController controller = UserIcon.getController();
+            //controller.setUser(null);
         }
     }
 

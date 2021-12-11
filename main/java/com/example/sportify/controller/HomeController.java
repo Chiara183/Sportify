@@ -67,6 +67,7 @@ public class HomeController implements Initializable {
             controllerB.setMainApp(this.mainApp);
             controllerB.setUser(this.user);
             if (this.user!= null){
+                System.out.println("I'm HERE!");
                 try {
                     // Load user overview.
                     FXMLLoader loader = new FXMLLoader();

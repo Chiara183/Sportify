@@ -4,6 +4,7 @@ import com.example.sportify.MainApp;
 import com.example.sportify.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
 public class UserController {
 
@@ -16,6 +17,9 @@ public class UserController {
     @FXML
     private Label username;
 
+    @FXML
+    private Pane pane;
+
     /**
      * The constructor.
      * The constructor is called before to initialize() method.
@@ -25,7 +29,12 @@ public class UserController {
 
     public void setUser(User user) {
         this.user = user;
-        username.setText(user.getUserName());
+        if (this.user!=null) {
+            pane.setVisible(true);
+            username.setText(user.getUserName());
+        } else {
+            pane.setVisible(false);
+        }
     }
 
     public void setMainApp(MainApp mainApp) {
