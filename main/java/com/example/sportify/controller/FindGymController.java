@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
+import com.example.sportify.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -11,6 +12,9 @@ public class FindGymController implements Initializable{
 
     // Reference to the main application.
     private MainApp mainApp;
+
+    // User
+    private User user;
 
     /**
      * The constructor.
@@ -27,8 +31,17 @@ public class FindGymController implements Initializable{
         this.mainApp = mainApp;
     }
 
+    /**
+     * Is called to set user.
+     *
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @FXML
     private void skipAction(){
+        this.mainApp.setUser(this.user);
         this.mainApp.showHomeOverview();
     }
 

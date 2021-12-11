@@ -25,22 +25,27 @@
                       <Insets left="10.0" />
                   </HBox.margin>
               </Button>
-              <Button fx:id="signIn" alignment="TOP_CENTER" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="27.0" prefWidth="112.0" text="Login">
+              <Button fx:id="signIn" alignment="TOP_CENTER" maxHeight="27.0" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="27.0" prefWidth="112.0" text="Login">
                   <HBox.margin>
                       <Insets left="10.0" />
                   </HBox.margin>
               </Button>
-              <Button fx:id="signUp" alignment="TOP_CENTER" layoutX="367.0" layoutY="10.0" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#signUpAction" prefHeight="27.0" prefWidth="112.0" text="Sign Up">
-                  <HBox.margin>
-                      <Insets left="10.0" />
-                  </HBox.margin>
+              <Button fx:id="signUp" alignment="TOP_CENTER" layoutX="367.0" layoutY="10.0" maxHeight="27.0" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#signUpAction" prefHeight="27.0" prefWidth="112.0" text="Sign Up">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
               </Button>
+            <Button fx:id="signOut" contentDisplay="CENTER" maxHeight="27.0" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#signOut" prefHeight="27.0" prefWidth="0.0" text="Sign Out" textAlignment="CENTER" visible="false">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
              <opaqueInsets>
                 <Insets />
              </opaqueInsets>
-             <padding>
-                <Insets top="10.0" />
-             </padding>
+            <padding>
+               <Insets top="10.0" />
+            </padding>
           </HBox>
       </children>
    </GridPane>

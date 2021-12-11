@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
+import com.example.sportify.User;
 import javafx.fxml.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -19,9 +20,14 @@ public class MenuController implements Initializable {
     private Button signIn;
     @FXML
     private Button signUp;
+    @FXML
+    private Button signOut;
 
     // Reference to the main application.
     private MainApp mainApp;
+
+    // User
+    private User user;
 
     /**
      * The constructor.
@@ -36,6 +42,34 @@ public class MenuController implements Initializable {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
+    }
+
+    /**
+     * Is called to set user.
+     *
+     */
+    public void setUser(User user) {
+        this.user = user;
+        if (this.user!=null) {
+            signOut.setVisible(true);
+            signOut.setPrefWidth(112);
+            signUp.setVisible(false);
+            signUp.setPrefWidth(0);
+            signIn.setVisible(false);
+            signIn.setPrefWidth(0);
+        } else {
+            signOut.setPrefWidth(0);
+            signOut.setVisible(false);
+            signUp.setPrefWidth(112);
+            signUp.setVisible(true);
+            signIn.setPrefWidth(112);
+            signIn.setVisible(true);
+        }
+    }
+
+    @FXML
+    private void signOut() {
+        setUser(null);
     }
 
     @FXML

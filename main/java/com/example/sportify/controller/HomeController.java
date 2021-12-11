@@ -5,6 +5,7 @@ import com.example.sportify.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -13,6 +14,9 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
+
+    @FXML
+    private Button signIn;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -41,6 +45,11 @@ public class HomeController implements Initializable {
      */
     public void setUser(User user) {
         this.user = user;
+        if (this.user!=null) {
+            signIn.setVisible(false);
+        } else {
+            signIn.setVisible(true);
+        }
     }
 
     private MenuController Menu() {
@@ -56,6 +65,7 @@ public class HomeController implements Initializable {
             // Give the controller access to the main app.
             controllerB = loaderMenu.getController();
             controllerB.setMainApp(this.mainApp);
+            controllerB.setUser(this.user);
             if (this.user!= null){
                 try {
                     // Load user overview.

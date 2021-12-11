@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
+import com.example.sportify.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.Button;
@@ -52,6 +53,9 @@ public class SportQuizController implements Initializable {
     // Reference to the main application.
     private MainApp mainApp;
 
+    // User
+    private User user;
+
     /**
      * The constructor.
      * The constructor is called before to initialize() method.
@@ -67,16 +71,27 @@ public class SportQuizController implements Initializable {
         this.mainApp = mainApp;
     }
 
+    /**
+     * Is called to set user.
+     *
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @FXML
     private void home(){
+        this.mainApp.setUser(this.user);
         this.mainApp.showHomeOverview();
     }
 
     private void sportQuiz(){
+        this.mainApp.setUser(this.user);
         this.mainApp.showSportQuizOverview();
     }
 
     private void sportQuizEnv(){
+        this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
         try {
             // Load sport quiz overview.
@@ -96,6 +111,7 @@ public class SportQuizController implements Initializable {
     }
 
     private void sportQuizType(){
+        this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
         try {
             // Load sport quiz overview.

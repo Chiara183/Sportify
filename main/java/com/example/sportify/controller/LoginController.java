@@ -45,6 +45,14 @@ public class LoginController implements Initializable{
         this.mainApp = mainApp;
     }
 
+    /**
+     * Is called to set user.
+     *
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public void setSubmit(Submit submit) {
         this.submit = submit;
     }

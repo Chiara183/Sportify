@@ -8,58 +8,50 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="CENTER" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.HomeController">
+<GridPane alignment="CENTER" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.HomeController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="150.0" prefWidth="216.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="301.0" prefWidth="301.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="148.0" prefWidth="208.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="150.0" prefWidth="216.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="301.0" prefWidth="301.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="148.0" prefWidth="208.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="127.0" minHeight="10.0" prefHeight="124.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="138.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="105.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="127.0" minHeight="10.0" prefHeight="124.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="138.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="105.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <styleClass>
-        <String fx:value="grid"/>
-        <String fx:value="image"/>
+        <String fx:value="grid" />
+        <String fx:value="image" />
     </styleClass>
     <stylesheets>
-        <URL value="@Style/Button.css"/>
-        <URL value="@Style/HomeGUI.css"/>
+        <URL value="@Style/Button.css" />
+        <URL value="@Style/HomeGUI.css" />
     </stylesheets>
-    <ImageView fitHeight="168.0" fitWidth="439.0" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-               GridPane.valignment="BASELINE">
-        <Image url="@Images/Sportify_logo.png"/>
+    <ImageView fitHeight="168.0" fitWidth="439.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BASELINE">
+        <Image url="@Images/Sportify_logo.png" />
     </ImageView>
-    <Button ellipsisString="" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="78.0" prefWidth="145.0"
-            text="Sport quiz" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" GridPane.halignment="RIGHT"
-            GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+    <Button ellipsisString="" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="78.0" prefWidth="145.0" text="Sport quiz" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
         <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
         </cursor>
         <font>
-            <Font name="Comic Sans MS" size="22.0"/>
+            <Font name="Comic Sans MS" size="22.0" />
         </font>
     </Button>
-    <Button ellipsisString="" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="74.0" prefWidth="141.0"
-            text="Log in" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1"
-            GridPane.valignment="BOTTOM">
+    <Button fx:id="signIn" ellipsisString="" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="74.0" prefWidth="141.0" text="Log in" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
         <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
         </cursor>
         <font>
-            <Font name="Comic Sans MS" size="22.0"/>
+            <Font name="Comic Sans MS" size="22.0" />
         </font>
     </Button>
-    <Button ellipsisString="" mnemonicParsing="false" onAction="#findGymAction" prefHeight="74.0" prefWidth="141.0"
-            text="Find gym" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
-            GridPane.valignment="CENTER">
+    <Button ellipsisString="" mnemonicParsing="false" onAction="#findGymAction" prefHeight="74.0" prefWidth="141.0" text="Find gym" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
         <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
         </cursor>
         <font>
-            <Font name="Comic Sans MS" size="22.0"/>
+            <Font name="Comic Sans MS" size="22.0" />
         </font>
     </Button>
 </GridPane>

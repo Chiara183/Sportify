@@ -122,6 +122,7 @@ public class MainApp extends Application{
             LoginController controller = loaderLogin.getController();
             controller.setMainApp(this);
             controller.setSubmit(this.submit);
+            controller.setUser(this.user);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -145,6 +146,7 @@ public class MainApp extends Application{
             // Give the controller access to the main app.
             SportQuizController controller = loaderSport.getController();
             controller.setMainApp(this);
+            controller.setUser(this.user);
 
         } catch (IOException e) {
             e.printStackTrace();
