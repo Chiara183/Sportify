@@ -4,6 +4,7 @@ import com.example.sportify.MainApp;
 import com.example.sportify.User;
 import javafx.fxml.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +25,10 @@ public class MenuController implements Initializable {
     private Button signOut;
 
     @FXML
-    private FXMLLoader UserIcon;
+    private Pane userIcon;
+
+    @FXML
+    private Label username;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -60,8 +64,8 @@ public class MenuController implements Initializable {
             signUp.setPrefWidth(0);
             signIn.setVisible(false);
             signIn.setPrefWidth(0);
-            //UserController controller = UserIcon.getController();
-            //controller.setUser(user);
+            userIcon.setVisible(true);
+            username.setText(user.getUserName());
         } else {
             signOut.setPrefWidth(0);
             signOut.setVisible(false);
@@ -69,8 +73,7 @@ public class MenuController implements Initializable {
             signUp.setVisible(true);
             signIn.setPrefWidth(112);
             signIn.setVisible(true);
-            //UserController controller = UserIcon.getController();
-            //controller.setUser(null);
+            userIcon.setVisible(false);
         }
     }
 

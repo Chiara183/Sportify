@@ -45,11 +45,7 @@ public class HomeController implements Initializable {
      */
     public void setUser(User user) {
         this.user = user;
-        if (this.user!=null) {
-            signIn.setVisible(false);
-        } else {
-            signIn.setVisible(true);
-        }
+        signIn.setVisible(this.user == null);
     }
 
     private MenuController Menu() {
@@ -66,26 +62,6 @@ public class HomeController implements Initializable {
             controllerB = loaderMenu.getController();
             controllerB.setMainApp(this.mainApp);
             controllerB.setUser(this.user);
-            if (this.user!= null){
-                System.out.println("I'm HERE!");
-                try {
-                    // Load user overview.
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(MainApp.class.getResource("UserIcon.fxml"));
-                    Pane userOverview = loader.load();
-
-                    // Set home overview into the center of root layout.
-                    paneMenu.getChildren().add(userOverview);
-
-                    // Give the controller access to the main app.
-                    UserController controller = loader.getController();
-                    controller.setUser(this.user);
-                    controller.setMainApp(this.mainApp);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
