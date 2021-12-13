@@ -31,10 +31,10 @@
       <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Label fx:id="birthday" GridPane.columnIndex="1" GridPane.rowIndex="5" />
     </GridPane>
-   <ButtonBar layoutX="164.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="180.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+   <ButtonBar layoutX="164.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="180.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
      <buttons>
-       <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Ok" />
-         <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Cancel" />
+       <Button fx:id="ok" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#okAction" text="Ok" />
+         <Button fx:id="cancel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelAction" text="Cancel" />
      </buttons>
    </ButtonBar>
    <stylesheets>

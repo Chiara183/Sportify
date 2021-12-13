@@ -151,6 +151,7 @@ public class MenuController implements Initializable {
             // Set the person into the controller.
             UserEditController controller = loader.getController();
             controller.setUser(user);
+            controller.setMenuController(this);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
