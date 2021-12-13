@@ -86,6 +86,7 @@ public class HomeController implements Initializable {
             // Give the controller access to the main app.
             SportQuizController controllerSport = loaderSport.getController();
             controllerSport.setMainApp(this.mainApp);
+            controllerSport.setUser(this.user);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,6 +110,7 @@ public class HomeController implements Initializable {
             // Give the controller access to the main app.
             FindGymController controllerGym = loaderGym.getController();
             controllerGym.setMainApp(this.mainApp);
+            controllerGym.setUser(this.user);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -132,6 +134,7 @@ public class HomeController implements Initializable {
             // Give the controller access to the main app.
             LoginController controllerLogin = loaderLogin.getController();
             controllerLogin.setMainApp(this.mainApp);
+            controllerLogin.setUser(this.user);
         } catch (IOException e) {
             e.printStackTrace();
         }

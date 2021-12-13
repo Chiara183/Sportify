@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.User;
+import com.sothawo.mapjfx.MapView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -15,6 +16,10 @@ public class FindGymController implements Initializable{
 
     // User
     private User user;
+
+    // MapView
+    @FXML
+    private MapView mapView;
 
     /**
      * The constructor.

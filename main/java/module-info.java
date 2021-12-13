@@ -5,8 +5,7 @@ module com.example.sportify {
 
     requires javafx.graphics;
     requires java.desktop;
-    requires spring.web;
-    requires okhttp3;
+    requires com.sothawo.mapjfx;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;
