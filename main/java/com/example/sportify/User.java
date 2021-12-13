@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import java.time.LocalDate;
+import java.util.HashMap;
 
 public class User {
 
@@ -14,6 +15,8 @@ public class User {
     private final StringProperty password;
     private final StringProperty email;
     private final ObjectProperty<LocalDate> birthday;
+    private readWriteFile file = new readWriteFile();
+    private Submit submit = new Submit();
 
     /**
      * Default constructor.
@@ -45,6 +48,9 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName.set(firstName);
+        HashMap<String, HashMap<String, String>> account = this.file.readFile();
+        account.get(this.getUserName()).put("firstName", firstName);
+        submit.signUp(this.getUserName(), account.get(this.getUserName()));
     }
 
     public StringProperty firstNameProperty() {
@@ -57,6 +63,9 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName.set(lastName);
+        HashMap<String, HashMap<String, String>> account = this.file.readFile();
+        account.get(this.getUserName()).put("lastName", lastName);
+        submit.signUp(this.getUserName(), account.get(this.getUserName()));
     }
 
     public StringProperty lastNameProperty() {
@@ -93,6 +102,9 @@ public class User {
 
     public void setEmail(String email) {
         this.email.set(email);
+        HashMap<String, HashMap<String, String>> account = this.file.readFile();
+        account.get(this.getUserName()).put("email", email);
+        submit.signUp(this.getUserName(), account.get(this.getUserName()));
     }
 
     public StringProperty emailProperty() {

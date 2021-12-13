@@ -44,6 +44,7 @@ public class Submit implements Initializable {
         user.setPassword(account.get(username).get("password"));
         user.setFirstName(account.get(username).get("firstName"));
         user.setLastName(account.get(username).get("lastName"));
+        user.setEmail(account.get(username).get("email"));
         return user;
     }
 
