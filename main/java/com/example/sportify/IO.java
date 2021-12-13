@@ -46,6 +46,7 @@ public class IO {
 
             if(!(readObject instanceof HashMap)) throw new IOException("Data is not a hashmap");
             map = (HashMap<String, HashMap<String, String>>) readObject;
+            input.close();
         } catch (EOFException e) {
             File file = new File(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login.dat");
             if (file.length() == 0) {

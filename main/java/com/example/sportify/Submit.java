@@ -4,6 +4,7 @@ import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Submit implements Initializable {
@@ -45,7 +46,7 @@ public class Submit implements Initializable {
         user.setFirstName(account.get(username).get("firstName"));
         user.setLastName(account.get(username).get("lastName"));
         user.setEmail(account.get(username).get("email"));
-        if (account.get(username).get("birthday") != ""){
+        if (!Objects.equals(account.get(username).get("birthday"), "")){
             user.setBirthday(DateUtil.parse(account.get(username).get("birthday")));
         }
         return user;
