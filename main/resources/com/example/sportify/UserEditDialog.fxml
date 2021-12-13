@@ -31,7 +31,7 @@
       <Label fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Label fx:id="birthday" GridPane.columnIndex="1" GridPane.rowIndex="5" />
     </GridPane>
-   <ButtonBar layoutX="164.0" layoutY="175.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+   <ButtonBar layoutX="164.0" layoutY="175.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
      <buttons>
        <Button mnemonicParsing="false" text="Ok" />
          <Button mnemonicParsing="false" text="Cancel" />
