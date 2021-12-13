@@ -4,22 +4,25 @@ import com.example.sportify.DateUtil;
 import com.example.sportify.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class UserEditController {
 
     // Label
     @FXML
-    private Label firstName;
-    @FXML
-    private Label lastName;
-    @FXML
     private Label username;
     @FXML
     private Label password;
     @FXML
-    private Label email;
-    @FXML
     private Label birthday;
+
+    // TextField
+    @FXML
+    private TextField firstName;
+    @FXML
+    private TextField lastName;
+    @FXML
+    private TextField email;
 
     // User
     private User user;
