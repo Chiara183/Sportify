@@ -18,14 +18,12 @@ public class FindGymController implements Initializable{
 
     /**
      * The constructor.
-     * The constructor is called before to initialize() method.
      */
     public FindGymController() {
     }
 
     /**
      * Is called by the main application to give a reference back to itself.
-     *
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -33,7 +31,6 @@ public class FindGymController implements Initializable{
 
     /**
      * Is called to set user.
-     *
      */
     public void setUser(User user) {
         this.user = user;

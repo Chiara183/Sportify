@@ -15,8 +15,8 @@ public class User {
     private final StringProperty password;
     private final StringProperty email;
     private final ObjectProperty<LocalDate> birthday;
-    private readWriteFile file = new readWriteFile();
-    private Submit submit = new Submit();
+    private final readWriteFile file = new readWriteFile();
+    private final Submit submit = new Submit();
 
     /**
      * Default constructor.
@@ -27,9 +27,6 @@ public class User {
 
     /**
      * Constructor with some initial data.
-     *
-     * @param userName
-     * @param password
      */
     public User(String userName, String password) {
         this.firstName = new SimpleStringProperty(null);
@@ -39,7 +36,7 @@ public class User {
         this.userName = new SimpleStringProperty(userName);
         this.password = new SimpleStringProperty(password);
         this.email = new SimpleStringProperty(null);
-        this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
+        this.birthday = new SimpleObjectProperty<>(LocalDate.of(1999, 2, 21));
     }
 
     public String getFirstName() {
@@ -53,10 +50,6 @@ public class User {
         submit.signUp(this.getUserName(), account.get(this.getUserName()));
     }
 
-    public StringProperty firstNameProperty() {
-        return firstName;
-    }
-
     public String getLastName() {
         return lastName.get();
     }
@@ -68,10 +61,6 @@ public class User {
         submit.signUp(this.getUserName(), account.get(this.getUserName()));
     }
 
-    public StringProperty lastNameProperty() {
-        return lastName;
-    }
-
     public String getUserName() {
         return userName.get();
     }
@@ -80,20 +69,12 @@ public class User {
         this.userName.set(userName);
     }
 
-    public StringProperty userNameProperty() {
-        return userName;
-    }
-
     public String getPassword() {
         return password.get();
     }
 
     public void setPassword(String password) {
         this.password.set(password);
-    }
-
-    public StringProperty passwordProperty() {
-        return password;
     }
 
     public String getEmail() {
@@ -107,10 +88,6 @@ public class User {
         submit.signUp(this.getUserName(), account.get(this.getUserName()));
     }
 
-    public StringProperty emailProperty() {
-        return email;
-    }
-
     public LocalDate getBirthday() {
         return birthday.get();
     }
@@ -120,9 +97,5 @@ public class User {
         HashMap<String, HashMap<String, String>> account = this.file.readFile();
         account.get(this.getUserName()).put("birthday", birthday.toString());
         submit.signUp(this.getUserName(), account.get(this.getUserName()));
-    }
-
-    public ObjectProperty<LocalDate> birthdayProperty() {
-        return birthday;
     }
 }
