@@ -45,6 +45,9 @@ public class Submit implements Initializable {
         user.setFirstName(account.get(username).get("firstName"));
         user.setLastName(account.get(username).get("lastName"));
         user.setEmail(account.get(username).get("email"));
+        if (account.get(username).get("birthday") != ""){
+            user.setBirthday(DateUtil.parse(account.get(username).get("birthday")));
+        }
         return user;
     }
 

@@ -1,9 +1,9 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.DateUtil;
 import com.example.sportify.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -32,6 +32,10 @@ public class UserEditController {
     @FXML
     private Button cancel;
 
+    // DatePicker
+    @FXML
+    private DatePicker date;
+
     // User
     private User user;
 
@@ -56,7 +60,7 @@ public class UserEditController {
         username.setText(user.getUserName());
         password.setText(user.getPassword());
         email.setText(user.getEmail());
-        birthday.setText(DateUtil.format(user.getBirthday()));
+        date.setValue(user.getBirthday());
     }
 
     @FXML
@@ -64,6 +68,7 @@ public class UserEditController {
         user.setFirstName(firstName.getText());
         user.setLastName(lastName.getText());
         user.setEmail(email.getText());
+        user.setBirthday(date.getValue());
         menu.setUser(user);
         Stage stage = (Stage) ok.getScene().getWindow();
         stage.close();

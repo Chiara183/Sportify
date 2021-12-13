@@ -37,11 +37,10 @@ public class IO {
     }
 
     public HashMap<String, HashMap<String, String>> read(){
-        HashMap<String, HashMap<String, String>> map = null;
-        ObjectInputStream input = null;
+        HashMap<String, HashMap<String, String>> map = new HashMap<>();
         try {
             File file = new File(this.filenameDataStream);
-            input = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
+            ObjectInputStream input = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
             //Reads the first object in
             Object readObject = input.readObject();
 
@@ -60,7 +59,8 @@ public class IO {
         } catch (IOException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } finally {
+        }
+        /*finally {
             try {
                 assert input != null;
                 input.close();
@@ -68,7 +68,7 @@ public class IO {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        }
+        }*/
 
         return map;
     }

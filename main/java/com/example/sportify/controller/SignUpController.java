@@ -61,6 +61,8 @@ public class SignUpController implements Initializable {
         userAccount.put("password", passValue);                 //put user password in userAccount
         userAccount.put("firstName", nameValue);                //put user firstName in userAccount
         userAccount.put("lastName", lastNameValue);             //put user lastName in userAccount
+        userAccount.put("email", "");                           //put user email in userAccount
+        userAccount.put("birthday", "");                        //put user birthday in userAccount
 
         //check whether the credentials are authentic or not
         if (!userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")) {    //if authentic, navigate user to a new page

@@ -30,6 +30,7 @@
       <Label fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Label fx:id="birthday" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="5" />
     </GridPane>
    <ButtonBar layoutX="164.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="180.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
      <buttons>

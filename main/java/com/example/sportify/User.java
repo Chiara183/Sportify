@@ -117,6 +117,9 @@ public class User {
 
     public void setBirthday(LocalDate birthday) {
         this.birthday.set(birthday);
+        HashMap<String, HashMap<String, String>> account = this.file.readFile();
+        account.get(this.getUserName()).put("birthday", birthday.toString());
+        submit.signUp(this.getUserName(), account.get(this.getUserName()));
     }
 
     public ObjectProperty<LocalDate> birthdayProperty() {
