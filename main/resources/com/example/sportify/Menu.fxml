@@ -62,7 +62,7 @@
                 <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <ImageView fitHeight="56.0" fitWidth="56.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <ImageView fitHeight="56.0" fitWidth="56.0" nodeOrientation="INHERIT" onMouseClicked="#openUserInterface" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <Image url="@Images/user.png" />
                 </ImageView>
                 <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" prefHeight="10.0" stylesheets="@Style/UserIcon.css" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />

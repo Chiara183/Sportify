@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="830.0" prefHeight="500.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.SignUpController">
     <VBox alignment="TOP_CENTER" layoutX="-2.0" prefHeight="500.0" prefWidth="830.0">
-        <GridPane prefHeight="500.0" prefWidth="830.0">
+        <GridPane prefHeight="453.0" prefWidth="830.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="127.0" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="526.0" minWidth="10.0" prefWidth="527.0" />

@@ -1,8 +1,6 @@
 package com.example.sportify;
 
-import com.example.sportify.controller.HomeController;
-import com.example.sportify.controller.LoginController;
-import com.example.sportify.controller.SportQuizController;
+import com.example.sportify.controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -147,6 +145,52 @@ public class MainApp extends Application{
             SportQuizController controller = loaderSport.getController();
             controller.setMainApp(this);
             controller.setUser(this.user);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Shows find gym overview inside the root layout.
+     */
+    public void showFindGymOverview() {
+        try {
+            this.getPrimaryStage().setTitle("Sportify - Find Gym");
+            // Load find gym overview.
+            FXMLLoader loaderGym = new FXMLLoader();
+            loaderGym.setLocation(MainApp.class.getResource("FindGym.fxml"));
+            Pane pane = loaderGym.load();
+
+            // Set find gym overview into the center of root layout.
+            this.getPrimaryPane().setCenter(pane);
+
+            // Give the controller access to the main app.
+            FindGymController controller = loaderGym.getController();
+            controller.setMainApp(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Shows sign up overview inside the root layout.
+     */
+    public void showSignUpOverview() {
+        try {
+            this.getPrimaryStage().setTitle("Sportify - Sign Up");
+            // Load sign up overview.
+            FXMLLoader loaderSignUp = new FXMLLoader();
+            loaderSignUp.setLocation(MainApp.class.getResource("SignUp.fxml"));
+            Pane pane = loaderSignUp.load();
+
+            // Set sign up overview into the center of root layout.
+            this.getPrimaryPane().setCenter(pane);
+
+            // Give the controller access to the main app.
+            SignUpController controller = loaderSignUp.getController();
+            controller.setMainApp(this);
 
         } catch (IOException e) {
             e.printStackTrace();

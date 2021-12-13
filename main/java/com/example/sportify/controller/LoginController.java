@@ -31,7 +31,6 @@ public class LoginController implements Initializable{
 
     /**
      * The constructor.
-     * The constructor is called before to initialize() method.
      */
     public LoginController() {
         this.submit = new Submit();
@@ -39,7 +38,6 @@ public class LoginController implements Initializable{
 
     /**
      * Is called by the main application to give a reference back to itself.
-     *
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -47,12 +45,14 @@ public class LoginController implements Initializable{
 
     /**
      * Is called to set user.
-     *
      */
     public void setUser(User user) {
         this.user = user;
     }
 
+    /**
+     * Is called to set submit.
+     */
     public void setSubmit(Submit submit) {
         this.submit = submit;
     }
