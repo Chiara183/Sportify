@@ -40,6 +40,9 @@ public class SportQuizController implements Initializable {
     private Button group;
     @FXML
     private Button single;
+    @FXML
+    private Button infoVolley;
+
 
     public static boolean buttonAge1 = false;
     public static boolean buttonAge2 = false;
@@ -127,6 +130,14 @@ public class SportQuizController implements Initializable {
             controller.setMainApp(this.mainApp);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void getInfo(ActionEvent event){
+        Button b = (Button) event.getSource();
+        if(b == infoVolley){
+            this.loading("VolleyInfo");
         }
     }
 
