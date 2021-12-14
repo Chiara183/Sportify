@@ -190,45 +190,52 @@ public class SportQuizController implements Initializable {
         }
     }
 
+    private void loading(String sportName){
+        this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
+        try {
+            // Load test result overview.
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource(sportName + ".fxml"));
+            Pane pane = loaderSport.load();
+
+            // Set test result overview into the center of root layout.
+            this.mainApp.getPrimaryPane().setCenter(pane);
+
+            // Give the controller access to the main app.
+            SportQuizController controller = loaderSport.getController();
+            controller.setMainApp(this.mainApp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     private void quizLogic(){
-        if(buttonAge1 && buttonIndoor && buttonGroup){
-            this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
-            try {
-                // Load test result overview.
-                FXMLLoader loaderSport = new FXMLLoader();
-                loaderSport.setLocation(MainApp.class.getResource("VolleyBall.fxml"));
-                Pane pane = loaderSport.load();
-
-                // Set test result overview into the center of root layout.
-                this.mainApp.getPrimaryPane().setCenter(pane);
-
-                // Give the controller access to the main app.
-                SportQuizController controller = loaderSport.getController();
-                controller.setMainApp(this.mainApp);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if((buttonAge1 && buttonIndoor && buttonGroup) || (buttonAge2 && buttonIndoor && buttonGroup)){
+            this.loading("VolleyBall");
         }
 
-        if(buttonAge1 && buttonIndoor && buttonSingle){/* Arti Marziali */}
-        if(buttonAge1 && buttonOutdoor && buttonGroup){/* Calcio */}
-        if(buttonAge1 && buttonOutdoor && buttonSingle){/* Atletica */ }
+        if((buttonAge1 && buttonIndoor && buttonSingle) || (buttonAge2 && buttonIndoor && buttonSingle) || (buttonAge3 && buttonIndoor && buttonSingle) || (buttonAge4 && buttonIndoor && buttonSingle)){
+            this.loading("Swimming");
+        }
+        if((buttonAge1 && buttonOutdoor && buttonGroup) || (buttonAge2 && buttonOutdoor && buttonGroup)){
+            this.loading("Football");
+        }
+        if(buttonAge1 && buttonOutdoor && buttonSingle) {
+            this.loading("Athletics");
+        }
+        if((buttonAge2 && buttonOutdoor && buttonSingle) || (buttonAge3 && buttonOutdoor && buttonSingle)){
+            this.loading("Tennis");
+        }
 
-        if(buttonAge2 && buttonIndoor && buttonGroup){/* Pallavolo */}
-        if(buttonAge2 && buttonIndoor && buttonSingle){/* Nuoto */}
-        if(buttonAge2 && buttonOutdoor && buttonGroup){/* Calcio con opzione a 5 */}
-        if(buttonAge2 && buttonOutdoor && buttonSingle){/* Tennis */ }
-
-        if(buttonAge3 && buttonIndoor && buttonGroup){/* Ballo */}
-        if(buttonAge3 && buttonIndoor && buttonSingle){/* Nuoto */}
-        if(buttonAge3 && buttonOutdoor && buttonGroup){/* Trekking */}
-        if(buttonAge3 && buttonOutdoor && buttonSingle){/* Tennis */}
-
-        if(buttonAge4 && buttonIndoor && buttonGroup){/* Ballo */}
-        if(buttonAge4 && buttonIndoor && buttonSingle){/* Nuoto */}
-        if(buttonAge4 && buttonOutdoor && buttonGroup){/* Trekking in group */}
-        if(buttonAge4 && buttonOutdoor && buttonSingle){/* Golf */}
+        if((buttonAge3 && buttonIndoor && buttonGroup) || (buttonAge4 && buttonIndoor && buttonGroup)){
+            this.loading("Dance");
+        }
+        if((buttonAge3 && buttonOutdoor && buttonGroup) || (buttonAge4 && buttonOutdoor && buttonGroup)){
+            this.loading("Trekking");
+        }
+        if(buttonAge4 && buttonOutdoor && buttonSingle){
+            this.loading("Golf");
+        }
     }
 
     @Override
