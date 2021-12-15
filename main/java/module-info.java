@@ -5,7 +5,6 @@ module com.example.sportify {
 
     requires javafx.graphics;
     requires java.desktop;
-    requires com.sothawo.mapjfx;
     requires com.dlsc.gmapsfx;
 
     opens com.example.sportify to javafx.fxml;

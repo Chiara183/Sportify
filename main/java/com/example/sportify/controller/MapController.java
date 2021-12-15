@@ -1,4 +1,4 @@
-package com.example.sportify;
+package com.example.sportify.controller;
 
 
 import com.dlsc.gmapsfx.GoogleMapView;
@@ -7,9 +7,11 @@ import com.dlsc.gmapsfx.javascript.object.*;
 import com.dlsc.gmapsfx.service.directions.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -24,27 +26,37 @@ public class MapController implements Initializable, MapComponentInitializedList
     protected StringProperty to = new SimpleStringProperty();
     protected DirectionsRenderer directionsRenderer = null;
 
+    // Button
     @FXML
     protected Button clearButton;
+    @FXML
+    protected Button searchButton;
 
+    // MenuButton
+    @FXML
+    private MenuButton km;
+
+    // GoogleMapView
     @FXML
     protected GoogleMapView mapView;
 
+    // TextField
     @FXML
     protected TextField fromTextField;
-
     @FXML
     protected TextField toTextField;
+    @FXML
+    protected TextField search;
 
     @FXML
-    private void toTextFieldAction() {
-        DirectionsRequest request = new DirectionsRequest(from.get(), to.get(), TravelModes.DRIVING, true);
+    private void toTextFieldAction(ActionEvent event) {
+        DirectionsRequest request = new DirectionsRequest(search.getText(), search.getText(), TravelModes.DRIVING, true);
         directionsRenderer = new DirectionsRenderer(true, mapView.getMap(), directionsPane);
         directionsService.getRoute(request, this, directionsRenderer);
     }
-    
+
     @FXML
-    private void clearDirections() {
+    private void clearDirections(ActionEvent event) {
         directionsRenderer.clearDirections();
     }
 
@@ -55,8 +67,8 @@ public class MapController implements Initializable, MapComponentInitializedList
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         mapView.addMapInitializedListener(this);
-        to.bindBidirectional(toTextField.textProperty());
-        from.bindBidirectional(fromTextField.textProperty());
+        to.bindBidirectional(search.textProperty());
+        from.bindBidirectional(search.textProperty());
     }
 
     @Override
