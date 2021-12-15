@@ -4,75 +4,34 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import com.sothawo.mapjfx.MapView?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="830.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.sportify.controller.FindGymController">
-    <VBox alignment="CENTER" prefHeight="456.0" prefWidth="830.0">
-        <GridPane layoutY="27.0" prefHeight="439.0" prefWidth="830.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="175.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="551.0" minWidth="10.0" prefWidth="541.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="99.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="124.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="414.0" minHeight="10.0" prefHeight="234.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.valignment="TOP">
-                <GridPane.margin>
-                    <Insets top="20.0" />
-                </GridPane.margin>
-                <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="381.0" style="-fx-border-width: 2px; -fx-border-color: #000000; -fx-border-radius: 8px; -fx-background-radius: 12px;">
-                    <cursor>
-                        <Cursor fx:constant="TEXT" />
-                    </cursor>
-                </TextField>
-                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false">
-                    <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="23.0">
-                            <Image url="@Images/1638265809410.png" />
-                        </ImageView>
-                    </graphic>
-                    <HBox.margin>
-                        <Insets left="5.0" />
-                    </HBox.margin>
-                </Button>
-                <MenuButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Km">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="5" />
-                        <SeparatorMenuItem mnemonicParsing="false" style="-fx-background-color: #000000;" />
-                        <MenuItem mnemonicParsing="false" text="10" />
-                        <SeparatorMenuItem mnemonicParsing="false" style="-fx-background-color: #000000;" />
-                        <MenuItem mnemonicParsing="false" text="20" />
-                        <SeparatorMenuItem mnemonicParsing="false" style="-fx-background-color: #000000;" />
-                        <MenuItem mnemonicParsing="false" text="50" />
-                    </items>
-                    <HBox.margin>
-                        <Insets left="5.0" />
-                    </HBox.margin>
-                </MenuButton>
-            </HBox>
-            <ScrollPane hbarPolicy="ALWAYS" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="463.0" vbarPolicy="ALWAYS" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                <MapView fx:id="mapView"/>
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-            </ScrollPane>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#skipAction" prefHeight="53.0" prefWidth="92.0" text="Back" GridPane.rowIndex="2">
-                <GridPane.margin>
-                    <Insets left="30.0" />
-                </GridPane.margin>
-            </Button>
-            <ImageView fitHeight="112.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                <Image url="@Images/Sportify_logo.png" />
-                <GridPane.margin>
-                    <Insets bottom="10.0" top="20.0" />
-                </GridPane.margin>
-            </ImageView>
-        </GridPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.FindGymController">
+    <VBox alignment="CENTER">
+      <children>
+           <GridPane>
+               <columnConstraints>
+                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="128.0" />
+                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="728.0" minWidth="10.0" prefWidth="573.0" />
+               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="701.0" minWidth="10.0" prefWidth="130.0" />
+               </columnConstraints>
+               <rowConstraints>
+                   <RowConstraints maxHeight="478.0" minHeight="10.0" prefHeight="401.0" vgrow="SOMETIMES" />
+                   <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="770.0" GridPane.columnIndex="1">
+                   <fx:include source="Map.fxml" />
+                   <cursor>
+                       <Cursor fx:constant="HAND" />
+                   </cursor>
+               </Pane>
+               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#skipAction" prefHeight="53.0" prefWidth="92.0" text="Back" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                   <GridPane.margin>
+                       <Insets left="30.0" />
+                   </GridPane.margin>
+               </Button>
+           </GridPane>
+      </children>
     </VBox>
     <stylesheets>
         <URL value="@Style/Button.css" />
