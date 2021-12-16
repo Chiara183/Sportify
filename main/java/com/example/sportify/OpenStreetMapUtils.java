@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class OpenStreetMapUtils {
 
-    public final static Logger log = Logger.getLogger("OpenStreeMapUtils");
+    public final static Logger log = Logger.getLogger("OpenStreetMapUtils");
 
     private static OpenStreetMapUtils instance = null;
     private JSONParser jsonParser;
@@ -44,7 +44,7 @@ public class OpenStreetMapUtils {
 
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
-        StringBuffer response = new StringBuffer();
+        StringBuilder response = new StringBuilder();
 
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
@@ -56,12 +56,12 @@ public class OpenStreetMapUtils {
 
     public Map<String, Double> getCoordinates(String address) {
         Map<String, Double> res;
-        StringBuffer query;
+        StringBuilder query;
         String[] split = address.split(" ");
         String queryResult = null;
 
-        query = new StringBuffer();
-        res = new HashMap<String, Double>();
+        query = new StringBuilder();
+        res = new HashMap<>();
 
         query.append("https://nominatim.openstreetmap.org/search?q=");
 
@@ -92,8 +92,7 @@ public class OpenStreetMapUtils {
         Object obj = JSONValue.parse(queryResult);
         log.debug("obj=" + obj);
 
-        if (obj instanceof JSONArray) {
-            JSONArray array = (JSONArray) obj;
+        if (obj instanceof JSONArray array) {
             if (array.size() > 0) {
                 JSONObject jsonObject = (JSONObject) array.get(0);
 

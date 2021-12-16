@@ -4,7 +4,6 @@ import com.dlsc.gmapsfx.GoogleMapView;
 import com.dlsc.gmapsfx.javascript.object.*;
 import com.example.sportify.MainApp;
 import com.example.sportify.OpenStreetMapUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -42,13 +41,13 @@ public class MapController implements Initializable{
     private GoogleMap map;
 
     // Reference to the main application.
-    private MainApp mainApp = new MainApp();
+    private final MainApp mainApp = new MainApp();
 
     public MapController() {
     }
 
     @FXML
-    public void searchAction(ActionEvent event) {
+    public void searchAction() {
         Map<String, Double> coords;
         coords = OpenStreetMapUtils.getInstance().getCoordinates(search.getText());
         System.out.println("latitude :" + coords.get("lat"));
