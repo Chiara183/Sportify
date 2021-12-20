@@ -36,9 +36,12 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.8.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.8.2" level="project" />
-    <orderEntry type="library" name="dlsc.GMapsFX" level="project" />
-    <orderEntry type="library" name="apache.logging.log4j.1.2.api" level="project" />
+    <orderEntry type="library" name="sothawo.mapjfx" level="project" />
     <orderEntry type="library" name="googlecode.json.simple" level="project" />
+    <orderEntry type="library" name="dlsc.GMapsFX" level="project" />
+    <orderEntry type="library" name="ch.qos.logback.core" level="project" />
+    <orderEntry type="library" name="ch.qos.logback.classic" level="project" />
     <orderEntry type="library" name="apache.logging.log4j.core" level="project" />
+    <orderEntry type="library" name="apache.logging.log4j.1.2.api" level="project" />
   </component>
 </module>

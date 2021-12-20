@@ -14,7 +14,8 @@
    <GoogleMapView fx:id="mapView" layoutX="-311.0" layoutY="-244.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <cursor>
          <Cursor fx:constant="OPEN_HAND" />
-      </cursor></GoogleMapView>
+      </cursor>
+   </GoogleMapView>
    <HBox layoutX="15.0" layoutY="9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="741.0">
       <ImageView fitHeight="112.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <Image url="@Images/Sportify_logo.png" />
