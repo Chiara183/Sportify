@@ -7,23 +7,41 @@
       <sourceFolder url="file://$MODULE_DIR$/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/test/java" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/main/requirements" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: com.dlsc:GMapsFX:11.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:16" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:16" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:16" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:16" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:16" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:win:16" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.3" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.activation:jakarta.activation-api:1.2.2" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-impl:2.3.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.sun.activation:jakarta.activation:1.2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.29" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-1.2-api:2.16.0" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.17.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.17.0" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.10" level="project" />
+    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:17.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:17.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:17.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:17.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:17.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:17.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:17.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:win:17.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-web:17.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-web:win:17.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-media:17.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-media:win:17.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.controlsfx:controlsfx:11.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.controlsfx:controlsfx:11.1.1" level="project" />
     <orderEntry type="library" name="Maven: com.dlsc.formsfx:formsfx-core:11.4.2" level="project" />
     <orderEntry type="library" name="Maven: net.synedra:validatorfx:0.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-javafx:12.2.0" level="project" />
@@ -36,12 +54,5 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.8.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.8.2" level="project" />
-    <orderEntry type="library" name="sothawo.mapjfx" level="project" />
-    <orderEntry type="library" name="googlecode.json.simple" level="project" />
-    <orderEntry type="library" name="dlsc.GMapsFX" level="project" />
-    <orderEntry type="library" name="ch.qos.logback.core" level="project" />
-    <orderEntry type="library" name="ch.qos.logback.classic" level="project" />
-    <orderEntry type="library" name="apache.logging.log4j.core" level="project" />
-    <orderEntry type="library" name="apache.logging.log4j.1.2.api" level="project" />
   </component>
 </module>
