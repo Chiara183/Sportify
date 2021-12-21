@@ -133,13 +133,6 @@ public class SportQuizController implements Initializable {
         }
     }
 
-    @FXML
-    private void getInfo(ActionEvent event){
-        Button b = (Button) event.getSource();
-        if(b == infoVolley){
-            this.loading("VolleyInfo");
-        }
-    }
 
     @FXML
     public void backQuizAction(ActionEvent event) {
@@ -201,51 +194,41 @@ public class SportQuizController implements Initializable {
         }
     }
 
-    private void loading(String sportName){
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
-        try {
-            // Load test result overview.
-            FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource(sportName + ".fxml"));
-            Pane pane = loaderSport.load();
-
-            // Set test result overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
-
-            // Give the controller access to the main app.
-            SportQuizController controller = loaderSport.getController();
-            controller.setMainApp(this.mainApp);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     @FXML
     private void quizLogic(){
         if((buttonAge1 && buttonIndoor && buttonGroup) || (buttonAge2 && buttonIndoor && buttonGroup)){
-            this.loading("VolleyBall");
+            SportController sport = new SportController();
+            sport.loading("VolleyBall");
         }
 
         if((buttonAge1 && buttonIndoor && buttonSingle) || (buttonAge2 && buttonIndoor && buttonSingle) || (buttonAge3 && buttonIndoor && buttonSingle) || (buttonAge4 && buttonIndoor && buttonSingle)){
-            this.loading("Swimming");
+            SportController sport = new SportController();
+            sport.loading("Swimming");
         }
         if((buttonAge1 && buttonOutdoor && buttonGroup) || (buttonAge2 && buttonOutdoor && buttonGroup)){
-            this.loading("Football");
+            SportController sport = new SportController();
+            sport.loading("Football");
         }
         if(buttonAge1 && buttonOutdoor && buttonSingle) {
-            this.loading("Athletics");
+            SportController sport = new SportController();
+            sport.loading("Athletics");
         }
         if((buttonAge2 && buttonOutdoor && buttonSingle) || (buttonAge3 && buttonOutdoor && buttonSingle)){
-            this.loading("Tennis");
+            SportController sport = new SportController();
+            sport.loading("Tennis");
         }
 
         if((buttonAge3 && buttonIndoor && buttonGroup) || (buttonAge4 && buttonIndoor && buttonGroup)){
-            this.loading("Dance");
+            SportController sport = new SportController();
+            sport.loading("Dance");
         }
         if((buttonAge3 && buttonOutdoor && buttonGroup) || (buttonAge4 && buttonOutdoor && buttonGroup)){
-            this.loading("Trekking");
+            SportController sport = new SportController();
+            sport.loading("Trekking");
         }
         if(buttonAge4 && buttonOutdoor && buttonSingle){
-            this.loading("Golf");
+            SportController sport = new SportController();
+            sport.loading("Golf");
         }
     }
 
