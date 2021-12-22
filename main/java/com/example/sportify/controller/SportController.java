@@ -53,6 +53,7 @@ public class SportController implements Initializable{
 
             // Give the controller access to the main app.
             SportController controller = loaderSport.getController();
+            controller.setUser(this.user);
             controller.setMainApp(this.mainApp);
         } catch (IOException e) {
             e.printStackTrace();
