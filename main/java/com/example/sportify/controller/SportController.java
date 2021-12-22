@@ -51,9 +51,9 @@ public class SportController implements Initializable{
             // Set test result overview into the center of root layout.
             this.mainApp.getPrimaryPane().setCenter(pane);
 
-            /* Give the controller access to the main app.
+            // Give the controller access to the main app.
             SportController controller = loaderSport.getController();
-            controller.setMainApp(this.mainApp);*/
+            controller.setMainApp(this.mainApp);
         } catch (IOException e) {
             e.printStackTrace();
         }
