@@ -198,6 +198,7 @@ public class SportQuizController implements Initializable {
     private void quizLogic(){
         if((buttonAge1 && buttonIndoor && buttonGroup) || (buttonAge2 && buttonIndoor && buttonGroup)){
             SportController sport = new SportController();
+            sport.setMainApp(this.mainApp);
             sport.loading("VolleyBall");
         }
 

@@ -13,6 +13,9 @@ import java.util.*;
 public class SportController implements Initializable{
     @FXML
     private Button infoVolley;
+    @FXML
+    private Button backSport;
+
 
 
     // Reference to the main application.
@@ -37,6 +40,7 @@ public class SportController implements Initializable{
 
 
     public void loading(String sportName) {
+        this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
         try {
             // Load test result overview.
@@ -47,9 +51,9 @@ public class SportController implements Initializable{
             // Set test result overview into the center of root layout.
             this.mainApp.getPrimaryPane().setCenter(pane);
 
-            // Give the controller access to the main app.
-            SportQuizController controller = loaderSport.getController();
-            controller.setMainApp(this.mainApp);
+            /* Give the controller access to the main app.
+            SportController controller = loaderSport.getController();
+            controller.setMainApp(this.mainApp);*/
         } catch (IOException e) {
             e.printStackTrace();
         }
