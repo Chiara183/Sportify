@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.User;
+import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -111,6 +112,9 @@ public class HomeController implements Initializable {
             FindGymController controllerGym = loaderGym.getController();
             controllerGym.setMainApp(this.mainApp);
             controllerGym.setUser(this.user);
+            Projection projection = this.mainApp.getParameters().getUnnamed().contains("wgs84")
+                    ? Projection.WGS_84 : Projection.WEB_MERCATOR;
+            controllerGym.setProjection(projection);
         } catch (IOException e) {
             e.printStackTrace();
         }

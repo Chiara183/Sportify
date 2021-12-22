@@ -10,6 +10,8 @@ module com.example.sportify {
     requires java.security.jgss;
     requires com.dlsc.gmapsfx;
     requires org.apache.log4j;
+    requires com.sothawo.mapjfx;
+    requires org.slf4j;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;

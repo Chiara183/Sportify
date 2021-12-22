@@ -1,6 +1,7 @@
 package com.example.sportify;
 
 import com.example.sportify.controller.*;
+import com.sothawo.mapjfx.Projection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -168,6 +169,9 @@ public class MainApp extends Application{
             // Give the controller access to the main app.
             FindGymController controller = loaderGym.getController();
             controller.setMainApp(this);
+            Projection projection = getParameters().getUnnamed().contains("wgs84")
+                    ? Projection.WGS_84 : Projection.WEB_MERCATOR;
+            controller.setProjection(projection);
 
         } catch (IOException e) {
             e.printStackTrace();

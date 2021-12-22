@@ -2,10 +2,16 @@ package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.User;
+import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class FindGymController implements Initializable{
@@ -15,6 +21,9 @@ public class FindGymController implements Initializable{
 
     // User
     private User user;
+
+    @FXML
+    private Pane Map;
 
     /**
      * The constructor.
@@ -45,6 +54,24 @@ public class FindGymController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // TODO
+    }
+
+    public void setProjection(Projection projection){
+        try {
+            // Load find map overview.
+            FXMLLoader loaderGym = new FXMLLoader();
+            loaderGym.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("Map.fxml")));
+            AnchorPane paneMap = loaderGym.load();
+
+            // Set menu overview into the top of root layout.
+            this.Map.getChildren().add(paneMap);
+
+            // Give the controller access to the main app.
+            MapController controller = loaderGym.getController();
+            controller.initMapAndControls(projection);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

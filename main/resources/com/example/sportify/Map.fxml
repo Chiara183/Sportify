@@ -1,21 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.dlsc.gmapsfx.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.web.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.MapController">
-   <WebView fx:id="webMap" prefHeight="400.0" prefWidth="770.0" />
-   <GoogleMapView fx:id="mapView" layoutX="-311.0" layoutY="-244.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <cursor>
-         <Cursor fx:constant="OPEN_HAND" />
-      </cursor>
-   </GoogleMapView>
+<?import com.sothawo.mapjfx.MapView?>
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.MapController">
+   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401" prefWidth="830">
+      <center>
+         <MapView fx:id="mapView" BorderPane.alignment="CENTER"/>
+      </center>
+      <bottom>
+         <Accordion fx:id="leftControls" BorderPane.alignment="CENTER">
+            <panes>
+               <TitledPane fx:id="optionsMapType" text="map style">
+                  <VBox spacing="10.0">
+                     <fx:define>
+                        <ToggleGroup fx:id="mapTypeGroup"/>
+                     </fx:define>
+                     <RadioButton fx:id="radioMsOSM" text="OSM" toggleGroup="$mapTypeGroup"/>
+                     <RadioButton fx:id="radioMsWMS" text="WMS terrestrials OSM" toggleGroup="$mapTypeGroup"/>
+                     <RadioButton fx:id="radioMsXYZ" text="XYZ source" toggleGroup="$mapTypeGroup"/>
+                     <RadioButton fx:id="radioMsBR" text="Bing Roads" toggleGroup="$mapTypeGroup"/>
+                     <RadioButton fx:id="radioMsCd" text="Bing Roads - dark" toggleGroup="$mapTypeGroup"/>
+                     <RadioButton fx:id="radioMsCg" text="Bing Roads - grayscale" toggleGroup="$mapTypeGroup"/>
+                     <RadioButton fx:id="radioMsCl" text="Bing Roads - light" toggleGroup="$mapTypeGroup"/>
+                     <RadioButton fx:id="radioMsBA" text="Bing Aerial" toggleGroup="$mapTypeGroup"/>
+                     <RadioButton fx:id="radioMsBAwL" text="Bing Aerial with Labels" toggleGroup="$mapTypeGroup"/>
+                  </VBox>
+               </TitledPane>
+            </panes>
+         </Accordion>
+      </bottom>
+   </BorderPane>
    <HBox layoutX="15.0" layoutY="9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="741.0">
       <ImageView fitHeight="112.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <Image url="@Images/Sportify_logo.png" />
