@@ -7,12 +7,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
-
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 public class MapController {
@@ -136,7 +134,7 @@ public class MapController {
         km.setItems(radius);
 
         // set all_gym list
-        loadCoordinate(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "M1.csv");
+        loadCoordinate(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "Gym.csv");
 
         // set the controls to disabled, this will be changed when the MapView is initialized
         setControlsDisable(true);
