@@ -125,8 +125,7 @@ public class MapController {
      * called after the fxml is loaded and all objects are created. This is not called initialize anymore,
      * because we need to pass in the projection before initializing.
      *
-     * @param projection
-     *     the projection to use in the map.
+     * @param projection to use in the map.
      */
     public void initMapAndControls(Projection projection) {
         // set ComboBox
@@ -184,8 +183,7 @@ public class MapController {
     /**
      * enables / disables the different controls
      *
-     * @param flag
-     *     if true the controls are disabled
+     * @param flag if true the controls are disabled
      */
     private void setControlsDisable(boolean flag) {
         leftControls.setDisable(flag);
@@ -206,10 +204,8 @@ public class MapController {
     /**
      * load a coordinateLine from the given uri in lat;lon csv format
      *
-     * @param path
-     *     url where to load from
-     * @throws java.lang.NullPointerException
-     *     if uri is null
+     * @param path where to load from
+     * @throws java.lang.NullPointerException if path is null
      */
     private void loadCoordinate(String path) {
         try {
