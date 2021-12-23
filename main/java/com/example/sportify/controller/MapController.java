@@ -3,33 +3,33 @@ package com.example.sportify.controller;
 import com.example.sportify.MainApp;
 import com.example.sportify.OpenStreetMapUtils;
 import com.sothawo.mapjfx.*;
-import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 public class MapController {
 
     /** default zoom value. */
     private static final int ZOOM_DEFAULT = 11;
 
-    // Button
-    @FXML
-    private Button searchButton;
+    // ObservableList
+    ObservableList<String> radius = FXCollections.observableArrayList("1", "5", "10", "20", "50");
+    ObservableList<Coordinate> all_gym = FXCollections.observableArrayList();
 
-    // MenuButton
+    // MapCircle
+    MapCircle circle;
+
+    // ComboBox
     @FXML
-    private MenuButton km;
+    private ComboBox<String> km;
 
     /** the MapView containing the map */
     // MapView
@@ -68,12 +68,6 @@ public class MapController {
     @FXML
     private ToggleGroup mapTypeGroup;
 
-    //  CoordinateLine
-    /** the first CoordinateLine */
-    private CoordinateLine trackMagenta;
-    /** the second CoordinateLine */
-    private CoordinateLine trackCyan;
-
     /** params for the WMS server. */
     private final WMSParam wmsParam = new WMSParam()
             .setUrl("https://ows.terrestris.de/osm/service?")
@@ -85,7 +79,7 @@ public class MapController {
                     "'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
 
     // Reference to the main application.
-    private MainApp mainApp = new MainApp();
+    private final MainApp mainApp = new MainApp();
 
     public MapController() {
     }
@@ -94,10 +88,25 @@ public class MapController {
     public void searchAction() {
         Map<String, Double> coords;
         coords = OpenStreetMapUtils.getInstance().getCoordinates(search.getText());
-        System.out.println("latitude :" + coords.get("lat"));
-        System.out.println("longitude:" + coords.get("lon"));
         if (coords.get("lat") != null && coords.get("lon") != null){
+            if(this.circle!=null) {
+                mapView.removeMapCircle(this.circle);
+            }
             Coordinate latLong = new Coordinate(coords.get("lat"), coords.get("lon"));
+
+            if (isNumeric(km.getValue())){
+                int distance = Integer.parseInt(km.getValue());
+                this.circle = new MapCircle(latLong, distance*1000).setVisible(true);
+                mapView.addMapCircle(this.circle);
+                mapView.setZoom(MapView.MAX_ZOOM - distance/5.0 - 14);
+                System.out.println(all_gym);
+                all_gym.forEach((gym) -> {
+                    if(OpenStreetMapUtils.getInstance().getDistance(gym,latLong)<=distance){
+                        Marker myMarker = Marker.createProvided(Marker.Provided.GREEN).setPosition(gym).setVisible(true);
+                        mapView.addMarker(myMarker);
+                    }
+                });
+            }
 
             Marker myMarker = Marker.createProvided(Marker.Provided.RED).setPosition(latLong).setVisible(true);
             mapView.setCenter(latLong);
@@ -122,6 +131,12 @@ public class MapController {
      *     the projection to use in the map.
      */
     public void initMapAndControls(Projection projection) {
+        // set ComboBox
+        km.setValue("Km");
+        km.setItems(radius);
+
+        // set all_gym list
+        loadCoordinate(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "M1.csv");
 
         // set the controls to disabled, this will be changed when the MapView is initialized
         setControlsDisable(true);
@@ -161,20 +176,6 @@ public class MapController {
         });
         mapTypeGroup.selectToggle(radioMsOSM);
 
-        // load two coordinate lines
-        trackMagenta = loadCoordinateLine(this.mainApp.getClass().getResource("Address/M1.csv")).orElse(new CoordinateLine
-                ()).setColor(Color.MAGENTA);
-        trackCyan = loadCoordinateLine(this.mainApp.getClass().getResource("Address/M2.csv")).orElse(new CoordinateLine
-                ()).setColor(Color.CYAN).setWidth(7);
-        // get the extent of both tracks
-        Extent tracksExtent = Extent.forCoordinates(
-                Stream.concat(trackMagenta.getCoordinateStream(), trackCyan.getCoordinateStream())
-                        .collect(Collectors.toList()));
-        ChangeListener<Boolean> trackVisibleListener =
-                (observable, oldValue, newValue) -> mapView.setExtent(tracksExtent);
-        trackMagenta.visibleProperty().addListener(trackVisibleListener);
-        trackCyan.visibleProperty().addListener(trackVisibleListener);
-
         // finally, initialize the map view
         mapView.initialize(Configuration.builder()
                 .projection(projection)
@@ -200,10 +201,6 @@ public class MapController {
         mapView.setZoom(ZOOM_DEFAULT);
         mapView.setCenter(new Coordinate(41.9109, 12.4818));
 
-        // add the tracks
-        mapView.addCoordinateLine(trackMagenta);
-        mapView.addCoordinateLine(trackCyan);
-
         // now enable the controls
         setControlsDisable(false);
     }
@@ -211,24 +208,24 @@ public class MapController {
     /**
      * load a coordinateLine from the given uri in lat;lon csv format
      *
-     * @param url
+     * @param path
      *     url where to load from
-     * @return optional CoordinateLine object
      * @throws java.lang.NullPointerException
      *     if uri is null
      */
-    private Optional<CoordinateLine> loadCoordinateLine(URL url) {
-        try (
-                Stream<String> lines = new BufferedReader(
-                        new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)).lines()
-        ) {
-            return Optional.of(new CoordinateLine(
-                    lines.map(line -> line.split(";")).filter(array -> array.length == 2)
-                            .map(values -> new Coordinate(Double.valueOf(values[0]), Double.valueOf(values[1])))
-                            .collect(Collectors.toList())));
+    private void loadCoordinate(String path) {
+        try {
+            BufferedReader lines = new BufferedReader(new FileReader(path));
+            String line = lines.readLine();
+            while (line!=null){
+                String[] coord = line.split(";");
+                Coordinate gym = new Coordinate(Double.valueOf(coord[0]), Double.valueOf(coord[1]));
+                this.all_gym.add(gym);
+                line = lines.readLine();
+            }
+            lines.close();
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
         }
-        return Optional.empty();
     }
 }

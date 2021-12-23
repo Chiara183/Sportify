@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import com.sothawo.mapjfx.MapView?>
+
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.MapController">
    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401" prefWidth="830">
       <center>
@@ -16,27 +17,27 @@
       <bottom>
          <Accordion fx:id="leftControls" BorderPane.alignment="CENTER">
             <panes>
-               <TitledPane fx:id="optionsMapType" text="map style">
+               <TitledPane text="map style">
                   <VBox spacing="10.0">
                      <fx:define>
-                        <ToggleGroup fx:id="mapTypeGroup"/>
+                        <ToggleGroup fx:id="mapTypeGroup" />
                      </fx:define>
                      <RadioButton fx:id="radioMsOSM" text="OSM" toggleGroup="$mapTypeGroup"/>
-                     <RadioButton fx:id="radioMsWMS" text="WMS terrestrials OSM" toggleGroup="$mapTypeGroup"/>
-                     <RadioButton fx:id="radioMsXYZ" text="XYZ source" toggleGroup="$mapTypeGroup"/>
-                     <RadioButton fx:id="radioMsBR" text="Bing Roads" toggleGroup="$mapTypeGroup"/>
-                     <RadioButton fx:id="radioMsCd" text="Bing Roads - dark" toggleGroup="$mapTypeGroup"/>
-                     <RadioButton fx:id="radioMsCg" text="Bing Roads - grayscale" toggleGroup="$mapTypeGroup"/>
-                     <RadioButton fx:id="radioMsCl" text="Bing Roads - light" toggleGroup="$mapTypeGroup"/>
-                     <RadioButton fx:id="radioMsBA" text="Bing Aerial" toggleGroup="$mapTypeGroup"/>
-                     <RadioButton fx:id="radioMsBAwL" text="Bing Aerial with Labels" toggleGroup="$mapTypeGroup"/>
+                     <RadioButton fx:id="radioMsWMS" text="WMS terrestrials OSM" toggleGroup="$mapTypeGroup" />
+                     <RadioButton fx:id="radioMsXYZ" text="XYZ source" toggleGroup="$mapTypeGroup" />
+                     <RadioButton fx:id="radioMsBR" text="Bing Roads" toggleGroup="$mapTypeGroup" />
+                     <RadioButton fx:id="radioMsCd" text="Bing Roads - dark" toggleGroup="$mapTypeGroup" />
+                     <RadioButton fx:id="radioMsCg" text="Bing Roads - grayscale" toggleGroup="$mapTypeGroup" />
+                     <RadioButton fx:id="radioMsCl" text="Bing Roads - light" toggleGroup="$mapTypeGroup" />
+                     <RadioButton fx:id="radioMsBA" text="Bing Aerial" toggleGroup="$mapTypeGroup" />
+                     <RadioButton fx:id="radioMsBAwL" text="Bing Aerial with Labels" toggleGroup="$mapTypeGroup" />
                   </VBox>
                </TitledPane>
             </panes>
          </Accordion>
       </bottom>
    </BorderPane>
-   <HBox layoutX="15.0" layoutY="9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="741.0">
+   <HBox layoutX="15.0" layoutY="9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="763.0">
       <ImageView fitHeight="112.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <Image url="@Images/Sportify_logo.png" />
          <GridPane.margin>
@@ -54,7 +55,7 @@
             <Insets left="20.0" top="10.0" />
          </HBox.margin>
       </TextField>
-      <Button fx:id="searchButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#searchAction" prefHeight="45.0" prefWidth="45.0">
+      <Button maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#searchAction" prefHeight="45.0" prefWidth="45.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="23.0">
                <Image url="@Images/1638265809410.png" />
@@ -67,23 +68,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <MenuButton maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="75.0" text="Km">
-         <items>
-            <MenuItem mnemonicParsing="false" text="5" />
-            <SeparatorMenuItem mnemonicParsing="false" style="-fx-background-color: #000000;" />
-            <MenuItem mnemonicParsing="false" text="10" />
-            <SeparatorMenuItem mnemonicParsing="false" style="-fx-background-color: #000000;" />
-            <MenuItem mnemonicParsing="false" text="20" />
-            <SeparatorMenuItem mnemonicParsing="false" style="-fx-background-color: #000000;" />
-            <MenuItem mnemonicParsing="false" text="50" />
-         </items>
+      <ComboBox fx:id="km" prefWidth="150.0" promptText="Km">
          <HBox.margin>
             <Insets left="5.0" top="10.0" />
          </HBox.margin>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-      </MenuButton>
+      </ComboBox>
    </HBox>
    <stylesheets>
       <URL value="@Style/Map.css" />

@@ -12,6 +12,7 @@ module com.example.sportify {
     requires org.apache.log4j;
     requires com.sothawo.mapjfx;
     requires org.slf4j;
+    requires org.apache.commons.lang3;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;

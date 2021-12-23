@@ -1,5 +1,6 @@
 package com.example.sportify;
 
+import com.sothawo.mapjfx.Coordinate;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -107,6 +108,29 @@ public class OpenStreetMapUtils {
         }
 
         return res;
+    }
+
+    public Double getDistance (Coordinate start_point, Coordinate endpoint){
+        double d2r = Math.PI / 180;
+        double distance = 0;
+
+        try{
+            double d_long = (endpoint.getLongitude() - start_point.getLongitude()) * d2r;
+            double d_lat = (endpoint.getLatitude() - start_point.getLatitude()) * d2r;
+            double a =
+                    Math.pow(Math.sin(d_lat / 2.0), 2)
+                            + Math.cos(start_point.getLatitude() * d2r)
+                            * Math.cos(endpoint.getLatitude() * d2r)
+                            * Math.pow(Math.sin(d_long / 2.0), 2);
+            double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            double d = 6367 * c;
+
+            distance = d;
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return distance;
     }
 }
 
