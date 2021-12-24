@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.OpenStreetMapUtils;
+import com.example.sportify.readWriteFile;
 import com.sothawo.mapjfx.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +11,8 @@ import javafx.scene.control.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
@@ -73,8 +76,7 @@ public class MapController {
 
     private final XYZParam xyzParams = new XYZParam()
             .withUrl("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x})")
-            .withAttributions(
-                    "'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
+            .withAttributions("'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
 
     // Reference to the main application.
     private final MainApp mainApp = new MainApp();
@@ -133,7 +135,8 @@ public class MapController {
         km.setItems(radius);
 
         // set all_gym list
-        loadCoordinate(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "Gym.csv");
+        //loadCoordinate(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "Gym.csv");
+        loadCoordinate("gym.dat");
 
         // set the controls to disabled, this will be changed when the MapView is initialized
         setControlsDisable(true);
@@ -204,11 +207,11 @@ public class MapController {
     /**
      * load a coordinateLine from the given uri in lat;lon csv format
      *
-     * @param path where to load from
+     * @param name of the file
      * @throws java.lang.NullPointerException if path is null
      */
-    private void loadCoordinate(String path) {
-        try {
+    private void loadCoordinate(String name) {
+        /*try {
             BufferedReader lines = new BufferedReader(new FileReader(path));
             String line = lines.readLine();
             while (line!=null){
@@ -220,6 +223,13 @@ public class MapController {
             lines.close();
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
+        }*/
+        readWriteFile file = new readWriteFile();
+        HashMap<String, HashMap<String, String>> account = file.readFile(name);
+        for (String key : account.keySet()) {
+            Map<String, Double> coords = OpenStreetMapUtils.getInstance().getCoordinates(account.get(key).get("gymAddress"));
+            Coordinate gym = new Coordinate(coords.get("lat"), coords.get("lon"));
+            this.all_gym.add(gym);
         }
     }
 }

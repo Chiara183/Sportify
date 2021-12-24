@@ -88,6 +88,7 @@ public class MenuController implements Initializable {
     @FXML
     private void signOut() {
         setUser(null);
+        mainApp.setUser(null);
     }
 
     @FXML
@@ -136,7 +137,11 @@ public class MenuController implements Initializable {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("UserEditDialog.fxml"));
+            if(user.getGymName() != null) {
+                loader.setLocation(MainApp.class.getResource("GymEditDialog.fxml"));
+            } else {
+                loader.setLocation(MainApp.class.getResource("UserEditDialog.fxml"));
+            }
             AnchorPane page = loader.load();
 
             // Create the dialog Stage.
@@ -155,8 +160,6 @@ public class MenuController implements Initializable {
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
-
-            //return controller.isOkClicked();
         } catch (IOException e) {
             e.printStackTrace();
             //return false;

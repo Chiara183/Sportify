@@ -44,7 +44,7 @@
                         <Cursor fx:constant="TEXT" />
                     </cursor>
                 </TextField>
-                <Label alignment="CENTER" contentDisplay="CENTER" text="Username">
+                <Label alignment="CENTER" contentDisplay="CENTER" text="*Username">
                     <font>
                         <Font name="Comic Sans MS" size="16.0" />
                     </font>
@@ -69,7 +69,7 @@
                         <Cursor fx:constant="TEXT" />
                     </cursor>
                 </TextField>
-                <Label alignment="CENTER" contentDisplay="CENTER" text="Password" textAlignment="CENTER" GridPane.rowIndex="3">
+                <Label alignment="CENTER" contentDisplay="CENTER" text="*Password" textAlignment="CENTER" GridPane.rowIndex="3">
                     <font>
                         <Font name="Comic Sans MS" size="16.0" />
                     </font>

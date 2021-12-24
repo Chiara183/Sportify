@@ -79,6 +79,26 @@ public class MainApp extends Application{
         }
     }
 
+    private MenuController Menu() {
+        MenuController controllerB = null;
+        try {
+            FXMLLoader loaderMenu = new FXMLLoader();
+            loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("Menu.fxml")));
+            Pane paneMenu = loaderMenu.load();
+
+            // Set menu overview into the top of root layout.
+            this.getPrimaryPane().setTop(paneMenu);
+
+            // Give the controller access to the main app.
+            controllerB = loaderMenu.getController();
+            controllerB.setMainApp(this);
+            controllerB.setUser(this.user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return controllerB;
+    }
+
     /**
      * Shows home overview inside the root layout.
      */
@@ -109,6 +129,10 @@ public class MainApp extends Application{
     public void showLoginOverview() {
         try {
             this.primaryStage.setTitle("Sportify - Login");
+
+            MenuController menuController = Menu();
+            menuController.setLogin();
+
             // Load login overview.
             FXMLLoader loaderLogin = new FXMLLoader();
             loaderLogin.setLocation(MainApp.class.getResource("Login.fxml"));

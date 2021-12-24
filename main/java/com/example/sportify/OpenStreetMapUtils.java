@@ -78,12 +78,10 @@ public class OpenStreetMapUtils {
         }
         query.append("&format=json&addressdetails=1");
 
-        log.debug("Query:" + query);
-
         try {
             queryResult = getRequest(query.toString());
         } catch (Exception e) {
-            log.error("Error when trying to get data with the following query " + query);
+            //TODO
         }
 
         if (queryResult == null) {
@@ -91,7 +89,6 @@ public class OpenStreetMapUtils {
         }
 
         Object obj = JSONValue.parse(queryResult);
-        log.debug("obj=" + obj);
 
         if (obj instanceof JSONArray array) {
             if (array.size() > 0) {
@@ -99,8 +96,6 @@ public class OpenStreetMapUtils {
 
                 String lon = (String) jsonObject.get("lon");
                 String lat = (String) jsonObject.get("lat");
-                log.debug("lon=" + lon);
-                log.debug("lat=" + lat);
                 res.put("lon", Double.parseDouble(lon));
                 res.put("lat", Double.parseDouble(lat));
 
@@ -130,6 +125,7 @@ public class OpenStreetMapUtils {
         } catch(Exception e){
             e.printStackTrace();
         }
+
         return distance;
     }
 }

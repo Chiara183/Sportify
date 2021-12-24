@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
+import com.example.sportify.OpenStreetMapUtils;
 import com.example.sportify.Submit;
 import com.example.sportify.readWriteFile;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.TextField;
 import javax.swing.*;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class SignUpGymController implements Initializable {
@@ -52,30 +54,41 @@ public class SignUpGymController implements Initializable {
     protected void submitActionSignUpGym() {
         String userValue = "gymTick";
         readWriteFile file = new readWriteFile();
-        HashMap<String, HashMap<String, String>> account= file.readFile();
+        HashMap<String, HashMap<String, String>> account= file.readFile("login.dat");
         HashMap<String, String> userGymAccount = account.get(userValue);
         String gymValue = gymName.getText();            //get user entered gym name
         String addressValue = gymAddress.getText();     //get user entered gym address
         String cityValue = gymCity.getText();           //get user entered gym city
-        userGymAccount.put("gymName", gymValue);        //put userValue in userAccount
-        userGymAccount.put("gymAddress", addressValue); //put user password in userAccount
-        userGymAccount.put("gymCity", cityValue);       //put user firstName in userAccount
+        String address = addressValue + ", " + cityValue;
+        Map<String, Double> coords = OpenStreetMapUtils.getInstance().getCoordinates(address);
+        userGymAccount.put("gymName", gymValue);        //put gymName in userAccount
+        userGymAccount.put("gymAddress", address);      //put gymAddress in userAccount
 
         //check whether the credentials are authentic or not
-        if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("")) {
+        if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("") && coords.get("lat") != null && coords.get("lon") != null) {
             //if authentic, navigate user to a new page
             this.submit.signUp(userGymAccount.get("username"), userGymAccount, "gymTick");
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "You're registered!");
             login();
         } else {
-            //show error message
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainApp.getPrimaryStage());
-            alert.setTitle("Empty field");
-            alert.setHeaderText("Some obligatory value are empty");
-            alert.setContentText("Please enter all value.");
-            alert.showAndWait();
+            if (coords.get("lat") == null && coords.get("lon") == null){
+                //show error message
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Wrong address");
+                alert.setHeaderText("Sorry, we can't find your address");
+                alert.setContentText("Please enter valid address");
+                alert.showAndWait();
+            } else {
+                //show error message
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Empty field");
+                alert.setHeaderText("Some obligatory value are empty");
+                alert.setContentText("Please enter all value.");
+                alert.showAndWait();
+            }
         }
     }
 

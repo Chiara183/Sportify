@@ -12,35 +12,35 @@ public class UserEditController {
 
     // Label
     @FXML
-    private Label username;
+    protected Label username;
     @FXML
-    private Label password;
+    protected Label password;
     @FXML
-    private Label birthday;
+    protected Label birthday;
 
     // TextField
     @FXML
-    private TextField firstName;
+    protected TextField firstName;
     @FXML
-    private TextField lastName;
+    protected TextField lastName;
     @FXML
-    private TextField email;
+    protected TextField email;
 
     // Button
     @FXML
-    private Button ok;
+    protected Button ok;
     @FXML
-    private Button cancel;
+    protected Button cancel;
 
     // DatePicker
     @FXML
-    private DatePicker date;
+    protected DatePicker date;
 
     // User
-    private User user;
+    protected User user;
 
     // MenuController
-    private MenuController menu;
+    protected MenuController menu;
 
     /**
      * Sets the menu.
@@ -64,7 +64,7 @@ public class UserEditController {
     }
 
     @FXML
-    private void okAction() {
+    protected void okAction() {
         user.setFirstName(firstName.getText());
         user.setLastName(lastName.getText());
         user.setEmail(email.getText());
@@ -75,7 +75,7 @@ public class UserEditController {
     }
 
     @FXML
-    private void cancelAction() {
+    protected void cancelAction() {
         Stage stage = (Stage) cancel.getScene().getWindow();
         stage.close();
     }

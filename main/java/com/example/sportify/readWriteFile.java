@@ -15,21 +15,21 @@ public class readWriteFile implements Initializable {
         this.file = new IO();
     }
 
-    public HashMap<String, HashMap<String, String>> readFile(){
-        return (this.file.read());
+    public HashMap<String, HashMap<String, String>> readFile(String file){
+        return (this.file.read(file));
     }
 
-    public void saveOnFile(HashMap<String, HashMap<String, String>> map) {
-        this.file.write(map);
+    public void saveOnFile(HashMap<String, HashMap<String, String>> map, String file) {
+        this.file.write(map, file);
     }
 
-    public static void clearFile(){
+    public static void clearFile(String file){
         FileWriter fileWriter = null;
         PrintWriter printWriter = null;
         try{
-            String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "login.dat";
-            File file = new File(filePath);
-            fileWriter = new FileWriter(file, false);
+            String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + file;
+            File fileReader = new File(filePath);
+            fileWriter = new FileWriter(fileReader, false);
             printWriter = new PrintWriter(fileWriter, false);
             printWriter.flush();
         }catch(Exception e){

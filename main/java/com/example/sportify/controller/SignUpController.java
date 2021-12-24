@@ -65,7 +65,7 @@ public class SignUpController implements Initializable {
         userAccount.put("birthday", "");                        //put user birthday in userAccount
 
         //check whether the credentials are authentic or not
-        if (!userValue.equals("") && !passValue.equals("") && !nameValue.equals("") && !lastNameValue.equals("")) {    //if authentic, navigate user to a new page
+        if (!userValue.equals("") && !passValue.equals("") && !this.submit.exist(userValue)) {    //if authentic, navigate user to a new page
             if (userTick.isSelected()) {
                 this.submit.signUp(userValue, userAccount);
                 JFrame jFrame = new JFrame();
@@ -76,13 +76,23 @@ public class SignUpController implements Initializable {
                 signUpGymAction();
             }
         } else {
-            //show error message
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainApp.getPrimaryStage());
-            alert.setTitle("Empty field");
-            alert.setHeaderText("Some obligatory value are empty");
-            alert.setContentText("Please enter all value.");
-            alert.showAndWait();
+            if (this.submit.exist(userValue)){
+                //show error message
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("User already exists");
+                alert.setHeaderText("The user already exists");
+                alert.setContentText("Please enter a different username or login.");
+                alert.showAndWait();
+            } else {
+                //show error message
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Empty field");
+                alert.setHeaderText("Some obligatory value are empty");
+                alert.setContentText("Please enter all obligatory value.");
+                alert.showAndWait();
+            }
         }
     }
 
