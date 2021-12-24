@@ -136,7 +136,7 @@ public class MapController {
 
         // set all_gym list
         //loadCoordinate(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "Gym.csv");
-        loadCoordinate("gym.dat");
+        new Thread(() -> loadCoordinate("gym.dat")).start();
 
         // set the controls to disabled, this will be changed when the MapView is initialized
         setControlsDisable(true);
