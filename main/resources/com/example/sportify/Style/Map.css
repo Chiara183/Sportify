@@ -1,3 +1,8 @@
 .button {
     -fx-font-weight: bold;
 }
+
+.label{
+    padding: 8 8 11 8;
+    background-color: #2571b9 linear-gradient(#04498a, #1c558a);
+}

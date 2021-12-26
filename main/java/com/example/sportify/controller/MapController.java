@@ -4,6 +4,9 @@ import com.example.sportify.MainApp;
 import com.example.sportify.OpenStreetMapUtils;
 import com.example.sportify.readWriteFile;
 import com.sothawo.mapjfx.*;
+import com.sothawo.mapjfx.event.MapLabelEvent;
+import com.sothawo.mapjfx.event.MapViewEvent;
+import com.sothawo.mapjfx.event.MarkerEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +17,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Optional;
+
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 public class MapController {
@@ -23,7 +28,8 @@ public class MapController {
 
     // ObservableList
     ObservableList<String> radius = FXCollections.observableArrayList("1", "5", "10", "20", "50");
-    ObservableList<Coordinate> all_gym = FXCollections.observableArrayList();
+    HashMap<String, Coordinate> all_gym = new HashMap<>();
+    ObservableList<Marker> mark = FXCollections.observableArrayList();
 
     // MapCircle
     MapCircle circle;
@@ -91,6 +97,10 @@ public class MapController {
         if (coords.get("lat") != null && coords.get("lon") != null){
             if(this.circle!=null) {
                 mapView.removeMapCircle(this.circle);
+                mark.forEach(marker -> {
+                    mapView.removeMarker(marker);
+                });
+                mark.clear();
             }
             Coordinate latLong = new Coordinate(coords.get("lat"), coords.get("lon"));
 
@@ -100,9 +110,11 @@ public class MapController {
                 mapView.addMapCircle(this.circle);
                 mapView.setZoom(MapView.MAX_ZOOM - distance/5.0 - 14);
                 System.out.println(all_gym);
-                all_gym.forEach((gym) -> {
-                    if(OpenStreetMapUtils.getInstance().getDistance(gym,latLong)<=distance){
-                        Marker myMarker = Marker.createProvided(Marker.Provided.GREEN).setPosition(gym).setVisible(true);
+                all_gym.forEach((key, value) -> {
+                    if(OpenStreetMapUtils.getInstance().getDistance(value,latLong)<=distance){
+                        MapLabel labelGym = new MapLabel(key, 10, -10).setVisible(false).setCssClass("label");
+                        Marker myMarker = Marker.createProvided(Marker.Provided.GREEN).setPosition(value).setVisible(true).attachLabel(labelGym);
+                        mark.add(myMarker);
                         mapView.addMarker(myMarker);
                     }
                 });
@@ -176,11 +188,44 @@ public class MapController {
         });
         mapTypeGroup.selectToggle(radioMsOSM);
 
+        setupEventHandlers();
+
         // finally, initialize the map view
         mapView.initialize(Configuration.builder()
                 .projection(projection)
                 .showZoomControls(false)
                 .build());
+    }
+
+    /**
+     * initializes the event handlers.
+     */
+    private void setupEventHandlers() {
+        mapView.addEventHandler(MapViewEvent.MAP_POINTER_MOVED, event -> {
+            Coordinate coords = event.getCoordinate();
+                    mark.forEach((gym) -> {
+                        if(coords == gym.getPosition()){
+                            MapLabel label = gym.getMapLabel().get();
+                            label.setVisible(true);
+                            gym.detachLabel();
+                            gym.attachLabel(label);
+                        }
+                    });
+        });
+
+        mapView.addEventHandler(MarkerEvent.MARKER_CLICKED, event -> {
+            //TODO
+        });
+        mapView.addEventHandler(MarkerEvent.MARKER_RIGHTCLICKED, event -> {
+            //TODO
+        });
+
+        mapView.addEventHandler(MapLabelEvent.MAPLABEL_CLICKED, event -> {
+            //TODO
+        });
+        mapView.addEventHandler(MapLabelEvent.MAPLABEL_RIGHTCLICKED, event -> {
+            //TODO
+        });
     }
 
     /**
@@ -229,7 +274,7 @@ public class MapController {
         for (String key : account.keySet()) {
             Map<String, Double> coords = OpenStreetMapUtils.getInstance().getCoordinates(account.get(key).get("gymAddress"));
             Coordinate gym = new Coordinate(coords.get("lat"), coords.get("lon"));
-            this.all_gym.add(gym);
+            this.all_gym.put(account.get(key).get("gymName"), gym);
         }
     }
 }
