@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.LoginController">
     <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="-2.0" prefHeight="500.0" prefWidth="830.0">
         <GridPane prefHeight="500.0" prefWidth="830.0">
             <columnConstraints>
@@ -81,12 +72,17 @@
                     </HBox.margin>
                 </Button>
             </HBox>
-         <Button fx:id="fbLogin" mnemonicParsing="false" prefHeight="49.0" prefWidth="197.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <ImageView fitHeight="53.0" fitWidth="197.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <ImageView accessibleRole="BUTTON" fitHeight="56.0" fitWidth="197.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <image>
                <Image url="@Images/FinalFacebookIcon.png" />
             </image>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
          </ImageView>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
         </GridPane>
     </VBox>
     <stylesheets>
