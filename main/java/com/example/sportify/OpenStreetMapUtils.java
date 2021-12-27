@@ -1,11 +1,9 @@
 package com.example.sportify;
 
 import com.sothawo.mapjfx.Coordinate;
-import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,13 +14,9 @@ import java.util.Map;
 
 public class OpenStreetMapUtils {
 
-    public final static Logger log = Logger.getLogger("OpenStreetMapUtils");
-
     private static OpenStreetMapUtils instance = null;
-    private JSONParser jsonParser;
 
     public OpenStreetMapUtils() {
-        jsonParser = new JSONParser();
     }
 
     public static OpenStreetMapUtils getInstance() {
@@ -118,9 +112,8 @@ public class OpenStreetMapUtils {
                             * Math.cos(endpoint.getLatitude() * d2r)
                             * Math.pow(Math.sin(d_long / 2.0), 2);
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            double d = 6367 * c;
 
-            distance = d;
+            distance = 6367 * c;
 
         } catch(Exception e){
             e.printStackTrace();

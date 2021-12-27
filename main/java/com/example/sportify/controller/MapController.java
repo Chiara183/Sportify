@@ -105,13 +105,14 @@ public class MapController {
             Coordinate latLong = new Coordinate(coords.get("lat"), coords.get("lon"));
 
             if (isNumeric(km.getValue())){
-                int distance = Integer.parseInt(km.getValue());
-                this.circle = new MapCircle(latLong, distance*1000).setVisible(true);
+                double distance = Double.parseDouble(km.getValue());
+                this.circle = new MapCircle(latLong, (distance+2)*1000.0).setVisible(true);
                 mapView.addMapCircle(this.circle);
                 mapView.setZoom(MapView.MAX_ZOOM - distance/5.0 - 14);
-                System.out.println(all_gym);
                 all_gym.forEach((key, value) -> {
                     if(OpenStreetMapUtils.getInstance().getDistance(value,latLong)<=distance){
+                        //*System.out.println("The current distance is " + distance +" Km\n");
+                        //System.out.println("Coordinate: " + value.getLatitude() + "; " + value.getLongitude() + '\n' + key + ": " + OpenStreetMapUtils.getInstance().getDistance(value,latLong) + '\n');
                         MapLabel labelGym = new MapLabel(key, 10, -10).setVisible(false).setCssClass("label");
                         Marker myMarker = Marker.createProvided(Marker.Provided.GREEN).setPosition(value).setVisible(true).attachLabel(labelGym);
                         mark.add(myMarker);
