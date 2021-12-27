@@ -11,13 +11,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Optional;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
@@ -97,9 +93,7 @@ public class MapController {
         if (coords.get("lat") != null && coords.get("lon") != null){
             if(this.circle!=null) {
                 mapView.removeMapCircle(this.circle);
-                mark.forEach(marker -> {
-                    mapView.removeMarker(marker);
-                });
+                mark.forEach(marker -> mapView.removeMarker(marker));
                 mark.clear();
             }
             Coordinate latLong = new Coordinate(coords.get("lat"), coords.get("lon"));
@@ -149,7 +143,7 @@ public class MapController {
 
         // set all_gym list
         //loadCoordinate(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "Gym.csv");
-        new Thread(() -> loadCoordinate("gym.dat")).start();
+        new Thread(this::loadCoordinate).start();
 
         // set the controls to disabled, this will be changed when the MapView is initialized
         setControlsDisable(true);
@@ -206,10 +200,12 @@ public class MapController {
             Coordinate coords = event.getCoordinate();
                     mark.forEach((gym) -> {
                         if(coords == gym.getPosition()){
-                            MapLabel label = gym.getMapLabel().get();
-                            label.setVisible(true);
-                            gym.detachLabel();
-                            gym.attachLabel(label);
+                            if (gym.getMapLabel().isPresent()) {
+                                MapLabel label = gym.getMapLabel().get();
+                                label.setVisible(true);
+                                gym.detachLabel();
+                                gym.attachLabel(label);
+                            }
                         }
                     });
         });
@@ -253,12 +249,11 @@ public class MapController {
     /**
      * load a coordinateLine from the given uri in lat;lon csv format
      *
-     * @param name of the file
      * @throws java.lang.NullPointerException if path is null
      */
-    private void loadCoordinate(String name) {
+    private void loadCoordinate() {
         /*try {
-            BufferedReader lines = new BufferedReader(new FileReader(path));
+            *BufferedReader lines = new BufferedReader(new FileReader(path));
             String line = lines.readLine();
             while (line!=null){
                 String[] coord = line.split(";");
@@ -271,7 +266,7 @@ public class MapController {
             e.printStackTrace();
         }*/
         readWriteFile file = new readWriteFile();
-        HashMap<String, HashMap<String, String>> account = file.readFile(name);
+        HashMap<String, HashMap<String, String>> account = file.readFile("gym.dat");
         for (String key : account.keySet()) {
             Map<String, Double> coords = OpenStreetMapUtils.getInstance().getCoordinates(account.get(key).get("gymAddress"));
             Coordinate gym = new Coordinate(coords.get("lat"), coords.get("lon"));
