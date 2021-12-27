@@ -15,6 +15,21 @@ public class SportController implements Initializable{
     private Button infoVolley;
     @FXML
     private Button backSport;
+    @FXML
+    private Button infoTrekking;
+    @FXML
+    private Button tennisInfo;
+    @FXML
+    private Button infoSwim;
+    @FXML
+    private Button infoGolf;
+    @FXML
+    private Button infoFootball;
+    @FXML
+    private Button infoDance;
+    @FXML
+    private Button infoAthletics;
+
 
 
 
@@ -65,6 +80,27 @@ public class SportController implements Initializable{
         Button b = (Button) event.getSource();
         if(b == infoVolley){
             this.loading("VolleyInfo");
+        }
+        if(b == infoTrekking){
+            this.loading("TrekkingInfo");
+        }
+        if(b == tennisInfo){
+            this.loading("TennisInfo");
+        }
+        if(b == infoSwim){
+            this.loading("SwimmingInfo");
+        }
+        if(b == infoGolf){
+            this.loading("GolfInfo");
+        }
+        if(b == infoFootball){
+            this.loading("FootballInfo");
+        }
+        if(b == infoDance){
+            this.loading("DanceInfo");
+        }
+        if(b == infoAthletics){
+            this.loading("AthleticsInfo");
         }
     }
 

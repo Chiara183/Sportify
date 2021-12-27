@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -52,6 +54,7 @@ public class SportQuizController implements Initializable {
     public static boolean buttonOutdoor = false;
     public static boolean buttonGroup = false;
     public static boolean buttonSingle = false;
+    public static boolean buttonEndQuiz = false;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -192,6 +195,10 @@ public class SportQuizController implements Initializable {
             buttonSingle = true;
             quizLogic();
         }
+        else if (b == endQuiz){
+            buttonEndQuiz = true;
+            quizLogic();
+        }
     }
 
     @FXML
@@ -204,32 +211,43 @@ public class SportQuizController implements Initializable {
 
         if((buttonAge1 && buttonIndoor && buttonSingle) || (buttonAge2 && buttonIndoor && buttonSingle) || (buttonAge3 && buttonIndoor && buttonSingle) || (buttonAge4 && buttonIndoor && buttonSingle)){
             SportController sport = new SportController();
+            sport.setMainApp(this.mainApp);
             sport.loading("Swimming");
         }
         if((buttonAge1 && buttonOutdoor && buttonGroup) || (buttonAge2 && buttonOutdoor && buttonGroup)){
             SportController sport = new SportController();
+            sport.setMainApp(this.mainApp);
             sport.loading("Football");
         }
         if(buttonAge1 && buttonOutdoor && buttonSingle) {
             SportController sport = new SportController();
+            sport.setMainApp(this.mainApp);
             sport.loading("Athletics");
         }
         if((buttonAge2 && buttonOutdoor && buttonSingle) || (buttonAge3 && buttonOutdoor && buttonSingle)){
             SportController sport = new SportController();
+            sport.setMainApp(this.mainApp);
             sport.loading("Tennis");
         }
 
         if((buttonAge3 && buttonIndoor && buttonGroup) || (buttonAge4 && buttonIndoor && buttonGroup)){
             SportController sport = new SportController();
+            sport.setMainApp(this.mainApp);
             sport.loading("Dance");
         }
         if((buttonAge3 && buttonOutdoor && buttonGroup) || (buttonAge4 && buttonOutdoor && buttonGroup)){
             SportController sport = new SportController();
+            sport.setMainApp(this.mainApp);
             sport.loading("Trekking");
         }
         if(buttonAge4 && buttonOutdoor && buttonSingle){
             SportController sport = new SportController();
+            sport.setMainApp(this.mainApp);
             sport.loading("Golf");
+        }
+        if(buttonEndQuiz){
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Choose the situation that you prefer!");
         }
     }
 
