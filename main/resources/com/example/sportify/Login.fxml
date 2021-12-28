@@ -72,7 +72,7 @@
                     </HBox.margin>
                 </Button>
             </HBox>
-         <ImageView accessibleRole="BUTTON" fitHeight="56.0" fitWidth="197.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <ImageView accessibleRole="BUTTON" fitHeight="56.0" fitWidth="197.0" onMouseClicked="#login_with_google" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <image>
                <Image url="@Images/FinalFacebookIcon.png" />
             </image>

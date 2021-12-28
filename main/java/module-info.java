@@ -13,6 +13,11 @@ module com.example.sportify {
     requires com.sothawo.mapjfx;
     requires org.slf4j;
     requires org.apache.commons.lang3;
+    requires spring.context;
+    requires spring.security.config;
+    requires spring.boot;
+    requires spring.web;
+    requires spring.boot.autoconfigure;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;

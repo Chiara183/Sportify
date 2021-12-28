@@ -1,18 +1,28 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
+import com.example.sportify.SpringGoogleApp;
 import com.example.sportify.Submit;
 import com.example.sportify.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
+//import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.RestController;
 
 import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable{
+public class LoginController extends SpringGoogleApp implements Initializable{
 
     //TextField
     @FXML
@@ -82,6 +92,29 @@ public class LoginController implements Initializable{
     private void home(){
         this.mainApp.setUser(this.user);
         this.mainApp.showHomeOverview();
+    }
+    @FXML
+    private void login_with_google(){
+        URI url = null;
+        try {
+            url = new URI("http://localhost");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        try {
+            Desktop.getDesktop().browse(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        welcome();
+        //TODO:User now can return to home being logged;
+        home();
+    }
+
+
+    @GetMapping
+    public String welcome () {
+        return "Welcome to Google !!";
     }
 
     @FXML
