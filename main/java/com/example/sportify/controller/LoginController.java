@@ -8,7 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 //import org.springframework.boot.SpringApplication;
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +25,9 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginController extends SpringGoogleApp implements Initializable{
+@SpringBootApplication
+@RestController
+public class LoginController implements Initializable{
 
     //TextField
     @FXML
@@ -95,9 +100,11 @@ public class LoginController extends SpringGoogleApp implements Initializable{
     }
     @FXML
     private void login_with_google(){
+        SpringGoogleApp spring = new SpringGoogleApp();
+        spring.welcome();
         URI url = null;
         try {
-            url = new URI("http://localhost");
+            url = new URI("http://localhost/dashboard");
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -106,15 +113,7 @@ public class LoginController extends SpringGoogleApp implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        welcome();
-        //TODO:User now can return to home being logged;
         home();
-    }
-
-
-    @GetMapping
-    public String welcome () {
-        return "Welcome to Google !!";
     }
 
     @FXML

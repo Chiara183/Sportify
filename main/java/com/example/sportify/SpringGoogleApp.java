@@ -9,10 +9,17 @@ import java.security.Principal;
 
 @SpringBootApplication
 @RestController
-public abstract class SpringGoogleApp {
-    @GetMapping
+public class SpringGoogleApp {
+
+    @GetMapping("/dashboard")
     public String welcome() {
+        SpringApplication.run(SpringGoogleApp.class);
         return "Welcome to Google !!";
     }
-}
 
+    @GetMapping("/user")
+    public Principal user(Principal principal) {
+        System.out.println("username : " + principal.getName());
+        return principal;
+    }
+}

@@ -4,5 +4,8 @@ spring:
       client:
         registration:
           google:
-            client-id: # get a client-id from https://console.developers.google.com/
-            client-secret: # get a client-secret from https://console.developers.google.com/
+            client-id: 707625727444-s1ift141lv7p5ql6fmtbk0ii91oed61p.apps.googleusercontent.com
+            client-secret: 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
+
+server:
+  port: 80
