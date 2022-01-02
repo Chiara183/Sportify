@@ -75,7 +75,7 @@ public class OpenStreetMapUtils {
         try {
             queryResult = getRequest(query.toString());
         } catch (Exception e) {
-            //TODO
+            e.printStackTrace();
         }
 
         if (queryResult == null) {

@@ -3,7 +3,6 @@ package com.example.sportify.controller;
 import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.OpenStreetMapUtils;
-import com.example.sportify.readWriteFile;
 import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.event.MapLabelEvent;
 import com.sothawo.mapjfx.event.MapViewEvent;
@@ -108,8 +107,6 @@ public class MapController {
                 mapView.setZoom(MapView.MAX_ZOOM - distance/5.0 - 14);
                 all_gym.forEach((key, value) -> {
                     if(OpenStreetMapUtils.getInstance().getDistance(value,latLong)<=distance){
-                        //*System.out.println("The current distance is " + distance +" Km\n");
-                        //System.out.println("Coordinate: " + value.getLatitude() + "; " + value.getLongitude() + '\n' + key + ": " + OpenStreetMapUtils.getInstance().getDistance(value,latLong) + '\n');
                         MapLabel labelGym = new MapLabel(key, 10, -10).setVisible(false).setCssClass("label");
                         Marker myMarker = Marker.createProvided(Marker.Provided.GREEN).setPosition(value).setVisible(true).attachLabel(labelGym);
                         mark.add(myMarker);
@@ -145,7 +142,6 @@ public class MapController {
         km.setItems(radius);
 
         // set all_gym list
-        //loadCoordinate(System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + "Gym.csv");
         new Thread(this::loadCoordinate).start();
 
         // set the controls to disabled, this will be changed when the MapView is initialized
@@ -263,7 +259,9 @@ public class MapController {
                             "LEFT JOIN gym ON gym.owner = user.username " +
                             "WHERE user.ruolo = \"gym\"");
             while (rs.next()) {
-                Coordinate gym = new Coordinate(Double.parseDouble(rs.getString("latitude")), Double.parseDouble(rs.getString("longitude")));
+                Coordinate gym = new Coordinate(
+                        Double.parseDouble(rs.getString("latitude")),
+                        Double.parseDouble(rs.getString("longitude")));
                 this.all_gym.put(rs.getString("name"), gym);
             }
         }catch (SQLException e){

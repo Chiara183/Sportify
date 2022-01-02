@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 public class User {
@@ -44,7 +45,8 @@ public class User {
         this.userName = new SimpleStringProperty(userName);
         this.password = new SimpleStringProperty(password);
         this.email = new SimpleStringProperty(null);
-        this.birthday = new SimpleObjectProperty<>(LocalDate.of(1999, 2, 21));
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.birthday = new SimpleObjectProperty<>(LocalDate.of(timestamp.getYear(), timestamp.getMonth(), timestamp.getDay()));
     }
 
     public String getFirstName() {

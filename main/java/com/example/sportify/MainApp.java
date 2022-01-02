@@ -30,7 +30,10 @@ public class MainApp extends Application{
         this.primaryStage = primaryStage;
 
         // Set the application.
-        this.primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Sportify icon.png"))));
+        this.primaryStage.getIcons().add(
+                new Image(
+                        Objects.requireNonNull(
+                                getClass().getResourceAsStream("Images/Sportify icon.png"))));
 
         initRootLayout();
 

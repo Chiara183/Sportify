@@ -6,11 +6,6 @@ import java.sql.ResultSet;
 
 public class DAO {
 
-    /*public static void main(String[] args){
-       *DAO obj_DAO = new DAO();
-       obj_DAO.Check_Data("select * from user");
-    }*/
-
     public ResultSet Check_Data(String query){
 
         DB_Connection obj_DB_Connection = new DB_Connection();

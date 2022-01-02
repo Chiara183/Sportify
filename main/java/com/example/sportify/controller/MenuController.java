@@ -162,7 +162,6 @@ public class MenuController implements Initializable {
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
-            //return false;
         }
     }
 

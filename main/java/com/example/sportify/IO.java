@@ -7,18 +7,11 @@ import java.util.Objects;
 
 public class IO {
 
-    //private final String filenameDataStream;
-
     public IO (){
         //this.filenameDataStream = System.getProperty("user.dir") + "\\trunk\\SystemFile\\";
     }
 
     public void write(HashMap<String, String> map) {
-        //ObjectOutputStream output = null;
-        /*File fileReader = new File(this.filenameDataStream + file);
-        *output = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(fileReader)));
-        output.writeObject(map);
-        output.flush();*/
         DAO obj_DAO = new DAO();
         String username = map.get("username");
         String password = map.get("password");
@@ -51,65 +44,57 @@ public class IO {
                             + longitude + "', '"
                             + phone + "')");
         }
-        /* finally {
-            try {
-                assert false;
-                output.close();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }*/
     }
 
     public HashMap<String, HashMap<String, String>> read(){
         HashMap<String, HashMap<String, String>> map = new HashMap<>();
-        //File fileReader = new File(this.filenameDataStream + file);
         try {
-            /*ObjectInputStream input = new ObjectInputStream(new GZIPInputStream(new FileInputStream(fileReader)));
-            //Reads the first object in
-            *Object readObject = input.readObject();
-
-            if(!(readObject instanceof HashMap)) throw new IOException("Data is not a hashmap");
-            map = (HashMap<String, HashMap<String, String>>) readObject;
-            input.close();*/
             DAO obj_DAO = new DAO();
             ResultSet rs = obj_DAO.Check_Data("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");
             while (rs.next()) {
-                    HashMap<String, String> gymAccount = new HashMap<>();
-                    String userValue = rs.getString("username");                    //get user username
-                    String passValue = rs.getString("password");                    //get user password
-                    String nameValue = rs.getString("first_name");                  //get user first name
-                    String lastNameValue = rs.getString("last_name");               //get user last name
-                    String email = rs.getString("email");                           //get user email
-                    String birthday = "";
-                    if(rs.getDate("birthday") != null) {
-                        birthday = rs.getDate("birthday").toString();        //get user birthday
-                    }
-                    String ruolo = rs.getString("ruolo");                           //get user ruolo
-                    String gym_name = rs.getString("name");                         //get user gym_name
-                    String address = rs.getString("address");                       //get user gym_address
-                    String latitude = String.valueOf(rs.getDouble("latitude"));     //get user gym_latitude
-                    String longitude = String.valueOf(rs.getDouble("longitude"));   //get user gym_longitude
-                    String phone = rs.getString("phone");                           //get user gym_phone
-                    gymAccount.put("username", userValue);                                     //put userValue in userAccount
-                    gymAccount.put("password", passValue);                                     //put user password in userAccount
-                    gymAccount.put("firstName", nameValue);                                    //put user firstName in userAccount
-                    gymAccount.put("lastName", lastNameValue);                                 //put user lastName in userAccount
-                    gymAccount.put("email", email);                                            //put user email in userAccount
-                    gymAccount.put("birthday", birthday);                                      //put user birthday in userAccount
-                    gymAccount.put("gymName", gym_name);                                       //put user gym_name in userAccount
-                    gymAccount.put("address", address);                                        //put user address in userAccount
-                    gymAccount.put("latitude", latitude);                                      //put user latitude in userAccount
-                    gymAccount.put("longitude", longitude);                                    //put user longitude in userAccount
-                    gymAccount.put("phone", phone);                                            //put user phone in userAccount
-                    gymAccount.put("ruolo", ruolo);                                            //put user ruolo in userAccount
-                    //System.out.println(userValue + ": " + passValue);
-                    map.put(userValue, gymAccount);
+                HashMap<String, String> gymAccount = getInfoUser(rs);
+                String userValue = rs.getString("username");                    //get user username
+                map.put(userValue, gymAccount);
             }
         } catch (SQLException e){
             e.printStackTrace();
         }
         return map;
+    }
+
+    public HashMap<String, String> getInfoUser(ResultSet rs){
+        HashMap<String, String> gymAccount = new HashMap<>();
+        try {
+                String userValue = rs.getString("username");                    //get user username
+                String passValue = rs.getString("password");                    //get user password
+                String nameValue = rs.getString("first_name");                  //get user first name
+                String lastNameValue = rs.getString("last_name");               //get user last name
+                String email = rs.getString("email");                           //get user email
+                String birthday = "";
+                if(rs.getDate("birthday") != null) {
+                    birthday = rs.getDate("birthday").toString();               //get user birthday
+                }
+                String ruolo = rs.getString("ruolo");                           //get user ruolo
+                String gym_name = rs.getString("name");                         //get user gym_name
+                String address = rs.getString("address");                       //get user gym_address
+                String latitude = String.valueOf(rs.getDouble("latitude"));     //get user gym_latitude
+                String longitude = String.valueOf(rs.getDouble("longitude"));   //get user gym_longitude
+                String phone = rs.getString("phone");                           //get user gym_phone
+                gymAccount.put("username", userValue);                                     //put userValue in userAccount
+                gymAccount.put("password", passValue);                                     //put user password in userAccount
+                gymAccount.put("firstName", nameValue);                                    //put user firstName in userAccount
+                gymAccount.put("lastName", lastNameValue);                                 //put user lastName in userAccount
+                gymAccount.put("email", email);                                            //put user email in userAccount
+                gymAccount.put("birthday", birthday);                                      //put user birthday in userAccount
+                gymAccount.put("gymName", gym_name);                                       //put user gym_name in userAccount
+                gymAccount.put("address", address);                                        //put user address in userAccount
+                gymAccount.put("latitude", latitude);                                      //put user latitude in userAccount
+                gymAccount.put("longitude", longitude);                                    //put user longitude in userAccount
+                gymAccount.put("phone", phone);                                            //put user phone in userAccount
+                gymAccount.put("ruolo", ruolo);                                            //put user ruolo in userAccount
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return gymAccount;
     }
 }
