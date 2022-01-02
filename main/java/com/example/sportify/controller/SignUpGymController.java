@@ -70,7 +70,7 @@ public class SignUpGymController implements Initializable {
             String address = rs.getString("address");                       //get user gym_address
             String latitude = String.valueOf(rs.getDouble("latitude"));     //get user gym_latitude
             String longitude = String.valueOf(rs.getDouble("longitude"));   //get user gym_longitude
-            String phone = String.valueOf(rs.getInt("phone"));            //get user gym_phone
+            String phone = rs.getString("phone");                           //get user gym_phone
             gymAccount.put("username", userValue);                                     //put userValue in userAccount
             gymAccount.put("password", passValue);                                     //put user password in userAccount
             gymAccount.put("firstName", nameValue);                                    //put user firstName in userAccount
