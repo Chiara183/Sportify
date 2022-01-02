@@ -1,5 +1,6 @@
 package com.example.sportify.controller;
 
+import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.OpenStreetMapUtils;
 import com.example.sportify.readWriteFile;
@@ -12,6 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -252,25 +255,19 @@ public class MapController {
      * @throws java.lang.NullPointerException if path is null
      */
     private void loadCoordinate() {
-        /*try {
-            *BufferedReader lines = new BufferedReader(new FileReader(path));
-            String line = lines.readLine();
-            while (line!=null){
-                String[] coord = line.split(";");
-                Coordinate gym = new Coordinate(Double.valueOf(coord[0]), Double.valueOf(coord[1]));
-                this.all_gym.add(gym);
-                line = lines.readLine();
+        try {
+            DAO obj_DAO = new DAO();
+            ResultSet rs = obj_DAO.Check_Data(
+                    "SELECT * " +
+                            "FROM user " +
+                            "LEFT JOIN gym ON gym.owner = user.username " +
+                            "WHERE user.ruolo = \"gym\"");
+            while (rs.next()) {
+                Coordinate gym = new Coordinate(Double.parseDouble(rs.getString("latitude")), Double.parseDouble(rs.getString("longitude")));
+                this.all_gym.put(rs.getString("name"), gym);
             }
-            lines.close();
-        } catch (IOException | NumberFormatException e) {
+        }catch (SQLException e){
             e.printStackTrace();
-        }*/
-        readWriteFile file = new readWriteFile();
-        HashMap<String, HashMap<String, String>> account = file.readFile("gym.dat");
-        for (String key : account.keySet()) {
-            Map<String, Double> coords = OpenStreetMapUtils.getInstance().getCoordinates(account.get(key).get("gymAddress"));
-            Coordinate gym = new Coordinate(coords.get("lat"), coords.get("lon"));
-            this.all_gym.put(account.get(key).get("gymName"), gym);
         }
     }
 }

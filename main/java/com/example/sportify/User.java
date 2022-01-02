@@ -4,8 +4,8 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
 import java.time.LocalDate;
-import java.util.HashMap;
 
 public class User {
 
@@ -16,9 +16,10 @@ public class User {
     private final StringProperty email;
     private final StringProperty gymName;
     private final StringProperty address;
+    private final StringProperty latitude;
+    private final StringProperty longitude;
+    private final StringProperty phone;
     private final ObjectProperty<LocalDate> birthday;
-    private final readWriteFile file = new readWriteFile();
-    private final Submit submit = new Submit();
 
     /**
      * Default constructor.
@@ -35,6 +36,9 @@ public class User {
         this.lastName = new SimpleStringProperty(null);
         this.gymName = new SimpleStringProperty(null);
         this.address = new SimpleStringProperty(null);
+        this.latitude = new SimpleStringProperty(null);
+        this.longitude = new SimpleStringProperty(null);
+        this.phone = new SimpleStringProperty(null);
 
         // Some initial dummy data, just for convenient testing.
         this.userName = new SimpleStringProperty(userName);
@@ -49,12 +53,11 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName.set(firstName);
-        HashMap<String, HashMap<String, String>> account = this.file.readFile("login.dat");
-        if (!account.containsKey(this.getUserName())) {
-            account = this.file.readFile("gym.dat");
-        }
-        account.get(this.getUserName()).put("firstName", firstName);
-        submit.signUp(this.getUserName(), account.get(this.getUserName()));
+        DAO obj_DAO = new DAO();
+        obj_DAO.Check_Data(
+                "UPDATE `user` SET `first_name` = '"
+                        + this.firstName + "' WHERE `user`.`username` = '"
+                        + this.userName +"'");
     }
 
     public String getLastName() {
@@ -63,12 +66,11 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName.set(lastName);
-        HashMap<String, HashMap<String, String>> account = this.file.readFile("login.dat");
-        if (!account.containsKey(this.getUserName())) {
-            account = this.file.readFile("gym.dat");
-        }
-        account.get(this.getUserName()).put("lastName", lastName);
-        submit.signUp(this.getUserName(), account.get(this.getUserName()));
+        DAO obj_DAO = new DAO();
+        obj_DAO.Check_Data(
+                "UPDATE `user` SET `last_name` = '"
+                        + this.lastName + "' WHERE `user`.`username` = '"
+                        + this.userName +"'");
     }
 
     public String getUserName() {
@@ -76,6 +78,17 @@ public class User {
     }
 
     public void setUserName(String userName) {
+        DAO obj_DAO = new DAO();
+        obj_DAO.Check_Data(
+                "UPDATE `user` SET `username` = '"
+                        + userName + "' WHERE `user`.`username` = '"
+                        + this.userName +"'");
+        if (this.gymName != null){
+            obj_DAO.Check_Data(
+                    "UPDATE `gym` SET `owner` = '"
+                            + userName + "' WHERE `gym`.`owner` = '"
+                            + this.userName +"'");
+        }
         this.userName.set(userName);
     }
 
@@ -85,6 +98,11 @@ public class User {
 
     public void setPassword(String password) {
         this.password.set(password);
+        DAO obj_DAO = new DAO();
+        obj_DAO.Check_Data(
+                "UPDATE `user` SET `password` = '"
+                        + this.password + "' WHERE `user`.`username` = '"
+                        + this.userName +"'");
     }
 
     public String getEmail() {
@@ -93,12 +111,11 @@ public class User {
 
     public void setEmail(String email) {
         this.email.set(email);
-        HashMap<String, HashMap<String, String>> account = this.file.readFile("login.dat");
-        if (!account.containsKey(this.getUserName())) {
-            account = this.file.readFile("gym.dat");
-        }
-        account.get(this.getUserName()).put("email", email);
-        submit.signUp(this.getUserName(), account.get(this.getUserName()));
+        DAO obj_DAO = new DAO();
+        obj_DAO.Check_Data(
+                "UPDATE `user` SET `email` = '"
+                        + this.email + "' WHERE `user`.`username` = '"
+                        + this.userName +"'");
     }
 
     public LocalDate getBirthday() {
@@ -107,12 +124,11 @@ public class User {
 
     public void setBirthday(LocalDate birthday) {
         this.birthday.set(birthday);
-        HashMap<String, HashMap<String, String>> account = this.file.readFile("login.dat");
-        if (!account.containsKey(this.getUserName())) {
-            account = this.file.readFile("gym.dat");
-        }
-        account.get(this.getUserName()).put("birthday", birthday.toString());
-        submit.signUp(this.getUserName(), account.get(this.getUserName()));
+        DAO obj_DAO = new DAO();
+        obj_DAO.Check_Data(
+                "UPDATE `user` SET `birthday` = '"
+                        + this.birthday + "' WHERE `user`.`username` = '"
+                        + this.userName +"'");
     }
 
     public String getGymName() {
@@ -121,9 +137,11 @@ public class User {
 
     public void setGymName(String name) {
         this.gymName.set(name);
-        HashMap<String, HashMap<String, String>> account = this.file.readFile("gym.dat");
-        account.get(this.getUserName()).put("gymName", name);
-        submit.signUp(this.getUserName(), account.get(this.getUserName()));
+        DAO obj_DAO = new DAO();
+        obj_DAO.Check_Data(
+                "UPDATE `gym` SET `name` = '"
+                        + this.gymName + "' WHERE `gym`.`owner` = '"
+                        + this.userName +"'");
     }
 
     public String getAddress() {
@@ -132,8 +150,49 @@ public class User {
 
     public void setAddress(String address) {
         this.address.set(address);
-        HashMap<String, HashMap<String, String>> account = this.file.readFile("gym.dat");
-        account.get(this.getUserName()).put("gymAddress", address);
-        submit.signUp(this.getUserName(), account.get(this.getUserName()));
+        DAO obj_DAO = new DAO();
+        obj_DAO.Check_Data(
+                "UPDATE `gym` SET `address` = '"
+                        + this.address + "' WHERE `gym`.`owner` = '"
+                        + this.userName +"'");
+    }
+
+    public String getLatitude() {
+        return latitude.get();
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude.set(latitude);
+        DAO obj_DAO = new DAO();
+        obj_DAO.Check_Data(
+                "UPDATE `gym` SET `latitude` = '"
+                        + this.latitude + "' WHERE `gym`.`owner` = '"
+                        + this.userName +"'");
+    }
+
+    public String getLongitude() {
+        return longitude.get();
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude.set(longitude);
+        DAO obj_DAO = new DAO();
+        obj_DAO.Check_Data(
+                "UPDATE `gym` SET `longitude` = '"
+                        + this.longitude + "' WHERE `gym`.`owner` = '"
+                        + this.userName +"'");
+    }
+
+    public String getPhone() {
+        return phone.get();
+    }
+
+    public void setPhone(String phone) {
+        this.phone.set(phone);
+        DAO obj_DAO = new DAO();
+        obj_DAO.Check_Data(
+                "UPDATE `gym` SET `phone` = '"
+                        + this.phone + "' WHERE `gym`.`owner` = '"
+                        + this.userName +"'");
     }
 }

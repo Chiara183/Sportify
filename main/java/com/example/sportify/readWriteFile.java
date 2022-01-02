@@ -15,16 +15,16 @@ public class readWriteFile implements Initializable {
         this.file = new IO();
     }
 
-    public HashMap<String, HashMap<String, String>> readFile(String file){
-        return (this.file.read(file));
+    public HashMap<String, HashMap<String, String>> readFile(){
+        return (this.file.read());
     }
 
-    public void saveOnFile(HashMap<String, HashMap<String, String>> map, String file) {
-        this.file.write(map, file);
+    public void saveOnFile(HashMap<String, String> map) {
+        this.file.write(map);
     }
 
-    public static void clearFile(String file){
-        FileWriter fileWriter = null;
+    /*public static void clearFile(String file){
+        *FileWriter fileWriter = null;
         PrintWriter printWriter = null;
         try{
             String filePath = System.getProperty("user.dir") + "\\trunk\\SystemFile\\" + file;
@@ -44,7 +44,7 @@ public class readWriteFile implements Initializable {
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

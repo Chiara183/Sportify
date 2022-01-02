@@ -18,6 +18,9 @@ module com.example.sportify {
     requires spring.boot;
     requires spring.web;
     requires spring.boot.autoconfigure;
+    requires mysql.connector.java;
+    requires java.sql;
+    requires javax.servlet.jsp.jstl;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;

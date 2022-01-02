@@ -16,79 +16,25 @@ public class Submit implements Initializable {
     }
 
     public boolean login(String userValue, String passValue) {
-        HashMap<String, HashMap<String, String>> account = this.file.readFile("login.dat");
-
-        //if authentic, navigate user to a new page
-        if (!account.isEmpty() && account.containsKey(userValue) &&
+        HashMap<String, HashMap<String, String>> account = this.file.readFile();
+        return !account.isEmpty() && account.containsKey(userValue) &&
                 userValue.equals(account.get(userValue).get("username")) &&
-                passValue.equals(account.get(userValue).get("password"))){
-            return true;
-        } else {
-            account = this.file.readFile("gym.dat");
-
-            //if authentic, navigate user to a new page
-            if (!account.isEmpty() && account.containsKey(userValue) &&
-                    userValue.equals(account.get(userValue).get("username")) &&
-                    passValue.equals(account.get(userValue).get("password"))){
-                return true;
-            }
-            return false;
-        }
+                passValue.equals(account.get(userValue).get("password"));
     }
 
-    public void signUp(String userValue, HashMap<String, String> userAccount, String... deleteKey) {
-        if (userAccount.containsKey("gymName")){
-            // Create HashMap
-            HashMap<String, HashMap<String, String>> account = this.file.readFile("login.dat");
-            if (account == null){
-                account = new HashMap<>();
-            }
-            if(deleteKey.length != 0) {
-                account.remove(deleteKey[0]);
-            }
-            readWriteFile.clearFile("login.dat");
-            this.file.saveOnFile(account, "login.dat");
-            account = this.file.readFile("gym.dat");
-            if (account == null){
-                account = new HashMap<>();
-            }
-            readWriteFile.clearFile("gym.dat");
-            account.put(userValue, userAccount);                                //add userAccount
-            this.file.saveOnFile(account, "gym.dat");
-        } else {
-            // Create HashMap
-            HashMap<String, HashMap<String, String>> account = this.file.readFile("login.dat");
-            if (account == null){
-                account = new HashMap<>();
-            }
-            readWriteFile.clearFile("login.dat");
-            account.put(userValue, userAccount);                                //add userAccount
-            this.file.saveOnFile(account, "login.dat");
-        }
+    public void signUp(HashMap<String, String> userAccount) {
+        this.file.saveOnFile(userAccount);
     }
 
     public boolean exist(String username){
-        HashMap<String, HashMap<String, String>> account = this.file.readFile("login.dat");
-
-        if (!account.isEmpty() && account.containsKey(username)){
-            return true;
-        } else {
-            account = this.file.readFile("gym.dat");
-
-            if (!account.isEmpty() && account.containsKey(username)){
-                return true;
-            }
-            return false;
-        }
+        HashMap<String, HashMap<String, String>> account = this.file.readFile();
+        return !account.isEmpty() && account.containsKey(username);
     }
 
     public User setUser(String username){
-        HashMap<String, HashMap<String, String>> account = this.file.readFile("login.dat");
+        HashMap<String, HashMap<String, String>> account = this.file.readFile();
         User user = new User();
         if (account.containsKey(username)) {
-            user = writeUser(account,username);
-        } else {
-            account = this.file.readFile("gym.dat");
             user = writeUser(account,username);
         }
         return user;
@@ -104,9 +50,12 @@ public class Submit implements Initializable {
         if (!Objects.equals(account.get(username).get("birthday"), "")) {
             user.setBirthday(DateUtil.parse(account.get(username).get("birthday")));
         }
-        if (account.get(username).containsKey("gymName")){
+        if (Objects.equals(account.get(username).get("ruolo"), "gym")){
             user.setGymName(account.get(username).get("gymName"));
             user.setAddress(account.get(username).get("gymAddress"));
+            user.setLatitude(account.get(username).get("latitude"));
+            user.setLongitude(account.get(username).get("longitude"));
+            user.setPhone(account.get(username).get("phone"));
         }
         return user;
     }

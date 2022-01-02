@@ -67,12 +67,14 @@ public class SignUpController implements Initializable {
         //check whether the credentials are authentic or not
         if (!userValue.equals("") && !passValue.equals("") && !this.submit.exist(userValue)) {    //if authentic, navigate user to a new page
             if (userTick.isSelected()) {
-                this.submit.signUp(userValue, userAccount);
+                userAccount.put("ruolo", "user");
+                this.submit.signUp(userAccount);
                 JFrame jFrame = new JFrame();
                 JOptionPane.showMessageDialog(jFrame, "You're registered!");
                 login();
             } else if (gymTick.isSelected()) {
-                this.submit.signUp("gymTick", userAccount);
+                userAccount.put("ruolo", "gym");
+                this.submit.signUp(userAccount);
                 signUpGymAction();
             }
         } else {
