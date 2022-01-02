@@ -82,7 +82,10 @@ public class IO {
                     String nameValue = rs.getString("first_name");                  //get user first name
                     String lastNameValue = rs.getString("last_name");               //get user last name
                     String email = rs.getString("email");                           //get user email
-                    String birthday = rs.getDate("birthday").toString();            //get user birthday
+                    String birthday = "";
+                    if(rs.getDate("birthday") != null) {
+                        birthday = rs.getDate("birthday").toString();        //get user birthday
+                    }
                     String ruolo = rs.getString("ruolo");                           //get user ruolo
                     String gym_name = rs.getString("name");                         //get user gym_name
                     String address = rs.getString("address");                       //get user gym_address

@@ -52,7 +52,7 @@ public class Submit implements Initializable {
         }
         if (Objects.equals(account.get(username).get("ruolo"), "gym")){
             user.setGymName(account.get(username).get("gymName"));
-            user.setAddress(account.get(username).get("gymAddress"));
+            user.setAddress(account.get(username).get("address"));
             user.setLatitude(account.get(username).get("latitude"));
             user.setLongitude(account.get(username).get("longitude"));
             user.setPhone(account.get(username).get("phone"));
