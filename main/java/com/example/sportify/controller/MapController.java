@@ -265,7 +265,8 @@ public class MapController {
                 this.all_gym.put(rs.getString("name"), gym);
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 }

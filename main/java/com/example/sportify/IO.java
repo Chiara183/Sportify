@@ -58,6 +58,7 @@ public class IO {
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
         return map;
     }
@@ -94,6 +95,7 @@ public class IO {
                 gymAccount.put("ruolo", ruolo);                                            //put user ruolo in userAccount
         } catch (SQLException e){
             System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
         return gymAccount;
     }

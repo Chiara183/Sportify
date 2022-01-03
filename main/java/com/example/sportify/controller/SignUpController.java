@@ -121,7 +121,8 @@ public class SignUpController implements Initializable {
             controller.setSubmit(this.submit);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 

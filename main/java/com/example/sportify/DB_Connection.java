@@ -13,6 +13,7 @@ public class DB_Connection {
                     "sql11462781", "SK44uxGzTJ");
         }catch (SQLException | ClassNotFoundException e){
             System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
         return connection;
     }

@@ -112,7 +112,8 @@ public class SportQuizController implements Initializable {
             SportQuizController controller = loaderSport.getController();
             controller.setMainApp(this.mainApp);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -132,7 +133,8 @@ public class SportQuizController implements Initializable {
             SportQuizController controller = loaderSport.getController();
             controller.setMainApp(this.mainApp);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -166,36 +168,28 @@ public class SportQuizController implements Initializable {
         if (b == age1) {
             buttonAge1 = true;
             sportQuizEnv();
-        }
-        else if (b == age2) {
+        } else if (b == age2) {
             buttonAge2 = true;
             sportQuizEnv();
-        }
-        else if (b == age3) {
+        } else if (b == age3) {
             buttonAge3 = true;
             sportQuizEnv();
-        }
-        else if (b == age4) {
+        } else if (b == age4) {
             buttonAge4 = true;
             sportQuizEnv();
-        }
-        else if (b == indoor) {
+        } else if (b == indoor) {
             buttonIndoor = true;
             sportQuizType();
-        }
-        else if (b == outdoor) {
+        } else if (b == outdoor) {
             buttonOutdoor = true;
             sportQuizType();
-        }
-        else if (b == group) {
+        } else if (b == group) {
             buttonGroup = true;
             quizLogic();
-        }
-        else if (b == single) {
+        } else if (b == single) {
             buttonSingle = true;
             quizLogic();
-        }
-        else if (b == endQuiz){
+        } else if (b == endQuiz){
             buttonEndQuiz = true;
             quizLogic();
         }

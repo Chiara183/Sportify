@@ -127,12 +127,14 @@ public class LoginController implements Initializable{
         try {
             url = new URI("http://localhost/dashboard");
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
         try {
             Desktop.getDesktop().browse(url);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
         home();
     }

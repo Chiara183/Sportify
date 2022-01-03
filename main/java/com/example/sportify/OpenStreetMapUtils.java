@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -26,25 +27,30 @@ public class OpenStreetMapUtils {
         return instance;
     }
 
-    private String getRequest(String url) throws Exception {
-
-        final URL obj = new URL(url);
-        final HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-        con.setRequestMethod("GET");
-
-        if (con.getResponseCode() != 200) {
-            return null;
-        }
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
+    private String getRequest(String url){
         StringBuilder response = new StringBuilder();
+        try {
+            final URL obj = new URL(url);
+            final HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+            con.setRequestMethod("GET");
+
+            if (con.getResponseCode() != 200) {
+                return null;
+            }
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            response = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+        } catch(IOException e){
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
-        in.close();
 
         return response.toString();
     }
@@ -53,11 +59,9 @@ public class OpenStreetMapUtils {
         Map<String, Double> res;
         StringBuilder query;
         String[] split = address.split(" ");
-        String queryResult = null;
 
         query = new StringBuilder();
         res = new HashMap<>();
-
         query.append("https://nominatim.openstreetmap.org/search?q=");
 
         if (split.length == 0) {
@@ -72,11 +76,7 @@ public class OpenStreetMapUtils {
         }
         query.append("&format=json&addressdetails=1");
 
-        try {
-            queryResult = getRequest(query.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String queryResult = getRequest(query.toString());
 
         if (queryResult == null) {
             return null;
@@ -101,25 +101,15 @@ public class OpenStreetMapUtils {
 
     public Double getDistance (Coordinate start_point, Coordinate endpoint){
         double d2r = Math.PI / 180;
-        double distance = 0;
-
-        try{
-            double d_long = (endpoint.getLongitude() - start_point.getLongitude()) * d2r;
-            double d_lat = (endpoint.getLatitude() - start_point.getLatitude()) * d2r;
-            double a =
-                    Math.pow(Math.sin(d_lat / 2.0), 2)
-                            + Math.cos(start_point.getLatitude() * d2r)
-                            * Math.cos(endpoint.getLatitude() * d2r)
-                            * Math.pow(Math.sin(d_long / 2.0), 2);
-            double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-            distance = 6367 * c;
-
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-
-        return distance;
+        double d_long = (endpoint.getLongitude() - start_point.getLongitude()) * d2r;
+        double d_lat = (endpoint.getLatitude() - start_point.getLatitude()) * d2r;
+        double a =
+                Math.pow(Math.sin(d_lat / 2.0), 2)
+                        + Math.cos(start_point.getLatitude() * d2r)
+                        * Math.cos(endpoint.getLatitude() * d2r)
+                        * Math.pow(Math.sin(d_long / 2.0), 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return 6367 * c;
     }
 }
 

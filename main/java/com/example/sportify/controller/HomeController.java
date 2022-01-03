@@ -64,7 +64,8 @@ public class HomeController implements Initializable {
             controllerB.setMainApp(this.mainApp);
             controllerB.setUser(this.user);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
         return controllerB;
     }
@@ -89,7 +90,8 @@ public class HomeController implements Initializable {
             controllerSport.setMainApp(this.mainApp);
             controllerSport.setUser(this.user);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -116,7 +118,8 @@ public class HomeController implements Initializable {
                     ? Projection.WGS_84 : Projection.WEB_MERCATOR;
             controllerGym.setProjection(projection);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -140,7 +143,8 @@ public class HomeController implements Initializable {
             controllerLogin.setMainApp(this.mainApp);
             controllerLogin.setUser(this.user);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 

@@ -78,10 +78,14 @@ public class MainApp extends Application{
             //primaryStage.setResizable(false);
             primaryStage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
+    /**
+     * Shows menu overview inside the root layout.
+     */
     private MenuController Menu() {
         MenuController controllerB = null;
         try {
@@ -97,7 +101,8 @@ public class MainApp extends Application{
             controllerB.setMainApp(this);
             controllerB.setUser(this.user);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
         return controllerB;
     }
@@ -122,7 +127,8 @@ public class MainApp extends Application{
             controller.setUser(this.user);
             controller.setMainApp(this);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -151,7 +157,8 @@ public class MainApp extends Application{
             controller.setUser(this.user);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -175,7 +182,8 @@ public class MainApp extends Application{
             controller.setUser(this.user);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -201,7 +209,8 @@ public class MainApp extends Application{
             controller.setProjection(projection);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -224,7 +233,8 @@ public class MainApp extends Application{
             controller.setMainApp(this);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
