@@ -17,7 +17,6 @@ public class DAO {
             rs = ps.executeQuery();
         }catch (SQLException e){
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
         return rs;
     }
@@ -31,7 +30,6 @@ public class DAO {
             ps.execute();
         }catch (SQLException e){
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 
