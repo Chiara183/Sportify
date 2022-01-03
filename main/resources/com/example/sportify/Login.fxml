@@ -56,6 +56,16 @@
                         <Cursor fx:constant="TEXT" />
                     </cursor>
                 </PasswordField>
+                <TextField fx:id="pass_text" maxWidth="233.0" prefHeight="33.0" prefWidth="226.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                </TextField>
+            <CheckBox fx:id="pass_toggle" mnemonicParsing="false" onAction="#togglevisiblePassword" text="Visible" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="14.0" />
+               </font>
+            </CheckBox>
                 <padding>
                     <Insets bottom="10.0" />
                 </padding>

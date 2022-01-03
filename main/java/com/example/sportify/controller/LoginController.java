@@ -7,10 +7,9 @@ import com.example.sportify.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 //import org.springframework.boot.SpringApplication;
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -34,6 +33,12 @@ public class LoginController implements Initializable{
     private TextField username;
     @FXML
     private TextField password;
+    @FXML
+    private TextField pass_text;
+
+    //CheckBox
+    @FXML
+    private CheckBox pass_toggle;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -70,6 +75,22 @@ public class LoginController implements Initializable{
      */
     public void setSubmit(Submit submit) {
         this.submit = submit;
+    }
+
+    /**
+     * Controls the visibility of the Password field
+     */
+    @FXML
+    public void togglevisiblePassword() {
+        if (pass_toggle.isSelected()) {
+            pass_text.setText(password.getText());
+            pass_text.setVisible(true);
+            password.setVisible(false);
+            return;
+        }
+        password.setText(pass_text.getText());
+        password.setVisible(true);
+        pass_text.setVisible(false);
     }
 
     @FXML
