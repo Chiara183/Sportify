@@ -20,7 +20,7 @@ public class IO {
         String email = map.get("email");
         String birthday = map.get("birthday");
         String ruolo = map.get("ruolo");
-        obj_DAO.Check_Data(
+        obj_DAO.updateDB(
                 "INSERT INTO `user` (`username`, `email`, `password`, `first_name`, `last_name`, `ruolo`, `birthday`) VALUES ('"
                         + username +"', '"
                         + email + "', '"
@@ -35,7 +35,7 @@ public class IO {
             String latitude = map.get("latitude");
             String longitude = map.get("longitude");
             String phone = map.get("phone");
-            obj_DAO.Check_Data(
+            obj_DAO.updateDB(
                     "INSERT INTO `gym` (`name`, `owner`, `address`, `latitude`, `longitude`, `phone`) VALUES ('"
                             + gymName +"', '"
                             + username + "', '"
@@ -57,7 +57,7 @@ public class IO {
                 map.put(userValue, gymAccount);
             }
         } catch (SQLException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return map;
     }
@@ -93,7 +93,7 @@ public class IO {
                 gymAccount.put("phone", phone);                                            //put user phone in userAccount
                 gymAccount.put("ruolo", ruolo);                                            //put user ruolo in userAccount
         } catch (SQLException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return gymAccount;
     }

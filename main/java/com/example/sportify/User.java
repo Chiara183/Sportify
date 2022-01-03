@@ -59,7 +59,7 @@ public class User {
     public void setFirstName(String firstName) {
         this.firstName.set(firstName);
         DAO obj_DAO = new DAO();
-        obj_DAO.Check_Data(
+        obj_DAO.updateDB(
                 "UPDATE `user` SET `first_name` = '"
                         + this.firstName + "' WHERE `user`.`username` = '"
                         + this.userName +"'");
@@ -72,7 +72,7 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName.set(lastName);
         DAO obj_DAO = new DAO();
-        obj_DAO.Check_Data(
+        obj_DAO.updateDB(
                 "UPDATE `user` SET `last_name` = '"
                         + this.lastName + "' WHERE `user`.`username` = '"
                         + this.userName +"'");
@@ -84,12 +84,12 @@ public class User {
 
     public void setUserName(String userName) {
         DAO obj_DAO = new DAO();
-        obj_DAO.Check_Data(
+        obj_DAO.updateDB(
                 "UPDATE `user` SET `username` = '"
                         + userName + "' WHERE `user`.`username` = '"
                         + this.userName +"'");
         if (this.gymName != null){
-            obj_DAO.Check_Data(
+            obj_DAO.updateDB(
                     "UPDATE `gym` SET `owner` = '"
                             + userName + "' WHERE `gym`.`owner` = '"
                             + this.userName +"'");
@@ -104,7 +104,7 @@ public class User {
     public void setPassword(String password) {
         this.password.set(password);
         DAO obj_DAO = new DAO();
-        obj_DAO.Check_Data(
+        obj_DAO.updateDB(
                 "UPDATE `user` SET `password` = '"
                         + this.password + "' WHERE `user`.`username` = '"
                         + this.userName +"'");
@@ -117,7 +117,7 @@ public class User {
     public void setEmail(String email) {
         this.email.set(email);
         DAO obj_DAO = new DAO();
-        obj_DAO.Check_Data(
+        obj_DAO.updateDB(
                 "UPDATE `user` SET `email` = '"
                         + this.email + "' WHERE `user`.`username` = '"
                         + this.userName +"'");
@@ -130,7 +130,7 @@ public class User {
     public void setBirthday(LocalDate birthday) {
         this.birthday.set(birthday);
         DAO obj_DAO = new DAO();
-        obj_DAO.Check_Data(
+        obj_DAO.updateDB(
                 "UPDATE `user` SET `birthday` = '"
                         + this.birthday + "' WHERE `user`.`username` = '"
                         + this.userName +"'");
@@ -143,7 +143,7 @@ public class User {
     public void setGymName(String name) {
         this.gymName.set(name);
         DAO obj_DAO = new DAO();
-        obj_DAO.Check_Data(
+        obj_DAO.updateDB(
                 "UPDATE `gym` SET `name` = '"
                         + this.gymName + "' WHERE `gym`.`owner` = '"
                         + this.userName +"'");
@@ -156,7 +156,7 @@ public class User {
     public void setAddress(String address) {
         this.address.set(address);
         DAO obj_DAO = new DAO();
-        obj_DAO.Check_Data(
+        obj_DAO.updateDB(
                 "UPDATE `gym` SET `address` = '"
                         + this.address + "' WHERE `gym`.`owner` = '"
                         + this.userName +"'");
@@ -169,7 +169,7 @@ public class User {
     public void setLatitude(String latitude) {
         this.latitude.set(latitude);
         DAO obj_DAO = new DAO();
-        obj_DAO.Check_Data(
+        obj_DAO.updateDB(
                 "UPDATE `gym` SET `latitude` = '"
                         + this.latitude + "' WHERE `gym`.`owner` = '"
                         + this.userName +"'");
@@ -182,7 +182,7 @@ public class User {
     public void setLongitude(String longitude) {
         this.longitude.set(longitude);
         DAO obj_DAO = new DAO();
-        obj_DAO.Check_Data(
+        obj_DAO.updateDB(
                 "UPDATE `gym` SET `longitude` = '"
                         + this.longitude + "' WHERE `gym`.`owner` = '"
                         + this.userName +"'");
@@ -195,7 +195,7 @@ public class User {
     public void setPhone(String phone) {
         this.phone.set(phone);
         DAO obj_DAO = new DAO();
-        obj_DAO.Check_Data(
+        obj_DAO.updateDB(
                 "UPDATE `gym` SET `phone` = '"
                         + this.phone + "' WHERE `gym`.`owner` = '"
                         + this.userName +"'");

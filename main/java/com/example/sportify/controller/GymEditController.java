@@ -15,18 +15,22 @@ public class GymEditController extends UserEditController{
     private TextField gymName;
     @FXML
     private TextField address;
+    @FXML
+    private TextField telephone;
 
     @Override
     public void setUser(User user) {
         super.setUser(user);
         gymName.setText(user.getGymName());
         address.setText(user.getAddress());
+        telephone.setText(user.getPhone());
     }
 
     @Override
     protected void okAction(){
         user.setGymName(gymName.getText());
         user.setAddress(address.getText());
+        user.setPhone(telephone.getText());
         user.setFirstName(super.firstName.getText());
         user.setLastName(super.lastName.getText());
         user.setEmail(super.email.getText());
