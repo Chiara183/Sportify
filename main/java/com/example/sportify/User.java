@@ -46,7 +46,10 @@ public class User {
         this.password = new SimpleStringProperty(password);
         this.email = new SimpleStringProperty(null);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        this.birthday = new SimpleObjectProperty<>(LocalDate.of(timestamp.getYear(), timestamp.getMonth(), timestamp.getDay()));
+        String date = timestamp.toString();
+        date = date.substring(0,10);
+        String[] dateValue = date.split("-");
+        this.birthday = new SimpleObjectProperty<>(LocalDate.of(Integer.parseInt(dateValue[0]), Integer.parseInt(dateValue[1]), Integer.parseInt(dateValue[2])));
     }
 
     public String getFirstName() {

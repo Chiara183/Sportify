@@ -15,8 +15,6 @@ public class DAO {
         PreparedStatement ps;
         ResultSet rs = null;
         try{
-
-            //String query = "select * from user";
             ps = connection.prepareStatement(query);
 
             rs = ps.executeQuery();
