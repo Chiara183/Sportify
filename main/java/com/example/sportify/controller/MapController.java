@@ -25,9 +25,9 @@ public class MapController {
     private static final int ZOOM_DEFAULT = 11;
 
     // ObservableList
-    ObservableList<String> radius = FXCollections.observableArrayList("1", "5", "10", "20", "50");
-    HashMap<String, Coordinate> all_gym = new HashMap<>();
-    ObservableList<Marker> mark = FXCollections.observableArrayList();
+    private final ObservableList<String> radius = FXCollections.observableArrayList("1", "5", "10", "20", "50");
+    private final HashMap<String, Coordinate> all_gym = new HashMap<>();
+    private final ObservableList<Marker> mark = FXCollections.observableArrayList();
 
     // MapCircle
     MapCircle circle;
@@ -66,8 +66,6 @@ public class MapController {
     private RadioButton radioMsBAwL;
     @FXML
     private RadioButton radioMsWMS;
-    @FXML
-    private RadioButton radioMsXYZ;
 
     /** ToggleGroup for the MapStyle radios */
     @FXML
@@ -156,7 +154,7 @@ public class MapController {
 
         // observe the map type radiobutton
         mapTypeGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            MapType mapType = MapType.OSM;
+            MapType mapType;
             if (newValue == radioMsOSM) {
                 mapType = MapType.OSM;
             } else if (newValue == radioMsBR) {
@@ -174,7 +172,7 @@ public class MapController {
             } else if (newValue == radioMsWMS) {
                 mapView.setWMSParam(wmsParam);
                 mapType = MapType.WMS;
-            } else if (newValue == radioMsXYZ) {
+            } else {
                 mapView.setXYZParam(xyzParams);
                 mapType = MapType.XYZ;
             }

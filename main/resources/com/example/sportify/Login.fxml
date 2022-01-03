@@ -82,14 +82,13 @@
                     </HBox.margin>
                 </Button>
             </HBox>
-         <ImageView accessibleRole="BUTTON" fitHeight="56.0" fitWidth="197.0" onMouseClicked="#login_with_google" GridPane.columnIndex="1" GridPane.rowIndex="2">
-            <image>
-               <Image url="@Images/FinalFacebookIcon.png" />
-            </image>
-            <cursor>
-               <Cursor fx:constant="HAND" />
-            </cursor>
-         </ImageView>
+            <ImageView accessibleRole="BUTTON" fitHeight="56.0" fitWidth="197.0" onMouseClicked="#login_with_google"
+                       GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <cursor>
+                    <Cursor fx:constant="HAND"/>
+                </cursor>
+                <Image url="@Images/FinalFacebookIcon.png"/>
+            </ImageView>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
