@@ -72,7 +72,6 @@ public class SportController implements Initializable{
             controller.setMainApp(this.mainApp);
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 

@@ -27,14 +27,12 @@ public class HomeController implements Initializable {
 
     /**
      * The constructor.
-     * The constructor is called before to initialize() method.
      */
     public HomeController() {
     }
 
     /**
      * Is called by the main application to give a reference back to itself.
-     *
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -42,7 +40,6 @@ public class HomeController implements Initializable {
 
     /**
      * Is called to set user.
-     *
      */
     public void setUser(User user) {
         this.user = user;
@@ -91,7 +88,6 @@ public class HomeController implements Initializable {
             controllerSport.setUser(this.user);
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -119,7 +115,6 @@ public class HomeController implements Initializable {
             controllerGym.setProjection(projection);
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -144,7 +139,6 @@ public class HomeController implements Initializable {
             controllerLogin.setUser(this.user);
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 

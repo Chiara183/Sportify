@@ -79,7 +79,6 @@ public class MainApp extends Application{
             primaryStage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -102,7 +101,6 @@ public class MainApp extends Application{
             controllerB.setUser(this.user);
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
         return controllerB;
     }
@@ -128,7 +126,6 @@ public class MainApp extends Application{
             controller.setMainApp(this);
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -158,7 +155,6 @@ public class MainApp extends Application{
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -183,7 +179,6 @@ public class MainApp extends Application{
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -210,7 +205,6 @@ public class MainApp extends Application{
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -234,7 +228,6 @@ public class MainApp extends Application{
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 

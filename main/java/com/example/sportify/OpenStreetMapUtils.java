@@ -49,7 +49,6 @@ public class OpenStreetMapUtils {
             in.close();
         } catch(IOException e){
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
 
         return response.toString();

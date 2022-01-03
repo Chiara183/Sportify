@@ -162,7 +162,6 @@ public class MenuController implements Initializable {
             dialogStage.showAndWait();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 

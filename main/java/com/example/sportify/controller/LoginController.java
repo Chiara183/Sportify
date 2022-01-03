@@ -119,6 +119,7 @@ public class LoginController implements Initializable{
         this.mainApp.setUser(this.user);
         this.mainApp.showHomeOverview();
     }
+
     @FXML
     private void login_with_google(){
         SpringGoogleApp spring = new SpringGoogleApp();

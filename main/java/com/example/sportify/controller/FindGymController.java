@@ -71,7 +71,6 @@ public class FindGymController implements Initializable{
             controller.initMapAndControls(projection);
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
         }
     }
 }
