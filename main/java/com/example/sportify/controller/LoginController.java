@@ -1,7 +1,10 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
-import com.example.sportify.SpringGoogleApp;
+import com.example.sportify.OAuth.OAuthAuthenticator;
+import com.example.sportify.OAuth.OAuthFacebookAuthenticator;
+import com.example.sportify.OAuth.OAuthGithubAuthenticator;
+import com.example.sportify.OAuth.OAuthGoogleAuthenticator;
 import com.example.sportify.Submit;
 import com.example.sportify.User;
 import javafx.fxml.FXML;
@@ -9,12 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RestController;
-//import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.RestController;
+import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,8 +22,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@SpringBootApplication
-@RestController
 public class LoginController implements Initializable{
 
     //TextField
@@ -122,22 +118,50 @@ public class LoginController implements Initializable{
 
     @FXML
     private void login_with_google(){
-        SpringGoogleApp spring = new SpringGoogleApp();
-        spring.welcome();
-        URI url = null;
-        try {
-            url = new URI("http://localhost/dashboard");
-        } catch (URISyntaxException e) {
-            System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
+        String gClientId = "941217546228-08fmsjebj3jn1a0agnt9tu9tnijgn2pq.apps.googleusercontent.com";
+        String gRedir = "https://localhost:8080/oauth2";
+        String gScope = "https://www.googleapis.com/auth/userinfo.profile";
+        String gSecret = "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";
+        OAuthAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
+        auth.startLogin();
+        while(!auth.hasFinishedSuccessfully()) {
+            try {
+                wait(1);
+            } catch (InterruptedException e){
+                System.out.println(e.getMessage());
+            }
         }
-        try {
-            Desktop.getDesktop().browse(url);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
-        }
+        JSONObject data = auth.getJsonData();
+        String username = data.getString("name");
+        String first_name = data.getString("given_name");
+        String last_name = data.getString("family_name");
+        data.getString("picture");
+        this.user.setUserName(username);
+        this.user.setFirstName(first_name);
+        this.user.setLastName(last_name);
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "Correct!");
         home();
+    }
+
+    @FXML
+    private void login_with_facebook(){
+        String FACEBOOK_clientID = "###############";
+        String FACEBOOK_redirectUri = "http://www.############.com/";
+        String FACEBOOK_fieldsString = "name,gender,id";
+        String FACEBOOK_clientSecret = "#########";
+        OAuthAuthenticator authFB = new OAuthFacebookAuthenticator(FACEBOOK_clientID, FACEBOOK_redirectUri, FACEBOOK_clientSecret, FACEBOOK_fieldsString);
+        authFB.startLogin();
+    }
+
+    @FXML
+    private void login_with_git(){
+        String GIT_clientID = "############";
+        String GIT_redirectUri = "############";
+        String GIT_scope = "user";
+        String GIT_clientSecret = "##############";
+        OAuthAuthenticator authGit = new OAuthGithubAuthenticator(GIT_clientID, GIT_redirectUri, GIT_clientSecret, GIT_scope);
+        authGit.startLogin();
     }
 
     @FXML

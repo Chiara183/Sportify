@@ -87,7 +87,7 @@
                 <cursor>
                     <Cursor fx:constant="HAND"/>
                 </cursor>
-                <Image url="@Images/FinalFacebookIcon.png"/>
+                <Image url="@Images/signin-google-button.png"/>
             </ImageView>
          <cursor>
             <Cursor fx:constant="DEFAULT" />

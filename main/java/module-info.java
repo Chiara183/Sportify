@@ -8,16 +8,14 @@ module com.example.sportify {
     requires json.simple;
     requires org.apache.commons.lang3;
     requires com.sothawo.mapjfx;
-    requires spring.context;
-    requires spring.security.config;
-    requires spring.boot;
-    requires spring.web;
-    requires spring.boot.autoconfigure;
     requires mysql.connector.java;
-    requires commons.lang3;
+    requires javafx.web;
+    requires json;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;
     exports com.example.sportify.controller;
     opens com.example.sportify.controller to javafx.fxml;
+    exports com.example.sportify.OAuth;
+    opens com.example.sportify.OAuth to javafx.fxml;
 }
