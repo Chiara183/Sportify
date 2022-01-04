@@ -1,13 +1,17 @@
 package com.example.sportify.controller;
 
+import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 public class SportController implements Initializable{
@@ -29,6 +33,10 @@ public class SportController implements Initializable{
     private Button infoDance;
     @FXML
     private Button infoAthletics;
+    @FXML
+    private Label sport_name;
+    @FXML
+    private Label sport_description;
 
 
 
@@ -53,6 +61,18 @@ public class SportController implements Initializable{
         this.mainApp.showHomeOverview();
     }
 
+    public void loadDescriptionFromDB(String sport){
+        DAO obj_DAO = new DAO();
+        ResultSet rs = obj_DAO.Check_Data("SELECT * FROM sport WHERE name = "+ sport);
+        String description  = null;
+        try {
+            description = rs.getString("description");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        sport_description.setText(description);
+        this.loading("SportInfo");
+    }
 
     public void loading(String sportName) {
         this.mainApp.setUser(this.user);
@@ -79,7 +99,9 @@ public class SportController implements Initializable{
     private void getInfo(ActionEvent event){
         Button b = (Button) event.getSource();
         if(b == infoVolley){
-            this.loading("VolleyInfo");
+            sport_name.setText("Volleyball");
+            loadDescriptionFromDB("Volleyball");
+            //this.loading("VolleyInfo");
         }
         if(b == infoTrekking){
             this.loading("TrekkingInfo");

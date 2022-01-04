@@ -5,6 +5,7 @@ import com.example.sportify.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 import javax.swing.*;
@@ -43,7 +44,7 @@ public class SportQuizController implements Initializable {
     @FXML
     private Button single;
     @FXML
-    private Button infoVolley;
+    private Label sportName;
 
 
     public static boolean buttonAge1 = false;
@@ -196,9 +197,10 @@ public class SportQuizController implements Initializable {
     @FXML
     private void quizLogic(){
         if((buttonAge1 && buttonIndoor && buttonGroup) || (buttonAge2 && buttonIndoor && buttonGroup)){
+            sportName.setText("Volleyball");
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
-            sport.loading("VolleyBall");
+            sport.loading("Sport");
         }
 
         if((buttonAge1 && buttonIndoor && buttonSingle) || (buttonAge2 && buttonIndoor && buttonSingle) || (buttonAge3 && buttonIndoor && buttonSingle) || (buttonAge4 && buttonIndoor && buttonSingle)){
