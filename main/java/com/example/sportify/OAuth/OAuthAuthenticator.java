@@ -78,6 +78,7 @@ public abstract class OAuthAuthenticator {
                     String returnedJson = doGetAccountInfo();
                     assert returnedJson != null;
                     this.accessedJsonData = new JSONObject(returnedJson);
+                    System.out.println("Login Success!");
                     //System.out.println(returnedJson);
                     String username = accessedJsonData.getString("name");
                     String first_name = accessedJsonData.getString("given_name");
