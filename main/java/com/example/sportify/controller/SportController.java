@@ -3,9 +3,7 @@ package com.example.sportify.controller;
 import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import java.io.IOException;
@@ -16,27 +14,11 @@ import java.util.*;
 
 public class SportController implements Initializable{
     @FXML
-    private Button infoVolley;
-    @FXML
-    private Button backSport;
-    @FXML
-    private Button infoTrekking;
-    @FXML
-    private Button tennisInfo;
-    @FXML
-    private Button infoSwim;
-    @FXML
-    private Button infoGolf;
-    @FXML
-    private Button infoFootball;
-    @FXML
-    private Button infoDance;
-    @FXML
-    private Button infoAthletics;
-    @FXML
     private Label sport_name;
     @FXML
     private Label sport_description;
+    @FXML
+    private Label sportName;
 
 
 
@@ -63,24 +45,26 @@ public class SportController implements Initializable{
 
     public void loadDescriptionFromDB(String sport){
         DAO obj_DAO = new DAO();
-        ResultSet rs = obj_DAO.Check_Data("SELECT * FROM sport WHERE name = "+ sport);
+        ResultSet rs = obj_DAO.Check_Data("SELECT * FROM sport WHERE '"+ sport + "' = sport.name");
         String description  = null;
         try {
-            description = rs.getString("description");
+            while(rs.next()) {
+                description = rs.getString("description");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        sport_description.setText(description);
-        this.loading("SportInfo");
+        this.loadingSport_Name(sport, description);
     }
 
-    public void loading(String sportName) {
+
+    public void loadingSportName(String sport) {
         this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
         try {
             // Load test result overview.
             FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource(sportName + ".fxml"));
+            loaderSport.setLocation(MainApp.class.getResource("Sport.fxml"));
             Pane pane = loaderSport.load();
 
             // Set test result overview into the center of root layout.
@@ -90,39 +74,60 @@ public class SportController implements Initializable{
             SportController controller = loaderSport.getController();
             controller.setUser(this.user);
             controller.setMainApp(this.mainApp);
+            controller.sportName.setText(sport);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void loadingSport_Name(String sport, String Description) {
+        this.mainApp.setUser(this.user);
+        this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
+        try {
+            // Load test result overview.
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("SportInfo.fxml"));
+            Pane pane = loaderSport.load();
+
+            // Set test result overview into the center of root layout.
+            this.mainApp.getPrimaryPane().setCenter(pane);
+
+            // Give the controller access to the main app.
+            SportController controller = loaderSport.getController();
+            controller.setUser(this.user);
+            controller.setMainApp(this.mainApp);
+            controller.sport_name.setText(sport);
+            controller.sport_description.setText(Description);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
     @FXML
-    private void getInfo(ActionEvent event){
-        Button b = (Button) event.getSource();
-        if(b == infoVolley){
-            sport_name.setText("Volleyball");
+    private void getInfo(){
+        if(this.sportName.getText().equals("Volleyball") ){
             loadDescriptionFromDB("Volleyball");
-            //this.loading("VolleyInfo");
         }
-        if(b == infoTrekking){
-            this.loading("TrekkingInfo");
+        if(this.sportName.getText().equals("Trekking")){
+            loadDescriptionFromDB("Trekking");
         }
-        if(b == tennisInfo){
-            this.loading("TennisInfo");
+        if(this.sportName.getText().equals("Tennis")){
+            loadDescriptionFromDB("Tennis");
         }
-        if(b == infoSwim){
-            this.loading("SwimmingInfo");
+        if(this.sportName.getText().equals("Swimming")){
+            loadDescriptionFromDB("Swimming");
         }
-        if(b == infoGolf){
-            this.loading("GolfInfo");
+        if(this.sportName.getText().equals("Golf")){
+            loadDescriptionFromDB("Golf");
         }
-        if(b == infoFootball){
-            this.loading("FootballInfo");
+        if(this.sportName.getText().equals("Football")){
+            loadDescriptionFromDB("Football");
         }
-        if(b == infoDance){
-            this.loading("DanceInfo");
+        if(this.sportName.getText().equals("Dance")){
+            loadDescriptionFromDB("Dance");
         }
-        if(b == infoAthletics){
-            this.loading("AthleticsInfo");
+        if(this.sportName.getText().equals("Athletics")){
+            loadDescriptionFromDB("Athletics");
         }
     }
 

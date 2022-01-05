@@ -5,9 +5,7 @@ import com.example.sportify.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
@@ -43,9 +41,6 @@ public class SportQuizController implements Initializable {
     private Button group;
     @FXML
     private Button single;
-    @FXML
-    private Label sportName;
-
 
     public static boolean buttonAge1 = false;
     public static boolean buttonAge2 = false;
@@ -64,13 +59,6 @@ public class SportQuizController implements Initializable {
     private User user;
 
     /**
-     * The constructor.
-     * The constructor is called before to initialize() method.
-     */
-    public SportQuizController() {
-    }
-
-    /**
      * Is called by the main application to give a reference back to itself.
      *
      */
@@ -85,6 +73,7 @@ public class SportQuizController implements Initializable {
     public void setUser(User user) {
         this.user = user;
     }
+
 
     @FXML
     private void home(){
@@ -197,47 +186,46 @@ public class SportQuizController implements Initializable {
     @FXML
     private void quizLogic(){
         if((buttonAge1 && buttonIndoor && buttonGroup) || (buttonAge2 && buttonIndoor && buttonGroup)){
-            sportName.setText("Volleyball");
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
-            sport.loading("Sport");
+            sport.loadingSportName("Volleyball");
         }
 
         if((buttonAge1 && buttonIndoor && buttonSingle) || (buttonAge2 && buttonIndoor && buttonSingle) || (buttonAge3 && buttonIndoor && buttonSingle) || (buttonAge4 && buttonIndoor && buttonSingle)){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
-            sport.loading("Swimming");
+            sport.loadingSportName("Swimming");
         }
         if((buttonAge1 && buttonOutdoor && buttonGroup) || (buttonAge2 && buttonOutdoor && buttonGroup)){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
-            sport.loading("Football");
+            sport.loadingSportName("Football");
         }
         if(buttonAge1 && buttonOutdoor && buttonSingle) {
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
-            sport.loading("Athletics");
+            sport.loadingSportName("Athletics");
         }
         if((buttonAge2 && buttonOutdoor && buttonSingle) || (buttonAge3 && buttonOutdoor && buttonSingle)){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
-            sport.loading("Tennis");
+            sport.loadingSportName("Tennis");
         }
 
         if((buttonAge3 && buttonIndoor && buttonGroup) || (buttonAge4 && buttonIndoor && buttonGroup)){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
-            sport.loading("Dance");
+            sport.loadingSportName("Dance");
         }
         if((buttonAge3 && buttonOutdoor && buttonGroup) || (buttonAge4 && buttonOutdoor && buttonGroup)){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
-            sport.loading("Trekking");
+            sport.loadingSportName("Trekking");
         }
         if(buttonAge4 && buttonOutdoor && buttonSingle){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
-            sport.loading("Golf");
+            sport.loadingSportName("Golf");
         }
         if(buttonEndQuiz){
             JFrame jFrame = new JFrame();
@@ -249,5 +237,6 @@ public class SportQuizController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // TODO
     }
+
 }
 

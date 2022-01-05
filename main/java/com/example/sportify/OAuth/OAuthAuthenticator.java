@@ -5,6 +5,7 @@ import com.example.sportify.User;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.swing.*;
@@ -77,13 +78,36 @@ public abstract class OAuthAuthenticator {
                     accessToken = doGetAccessTokenRequest();
                     String returnedJson = doGetAccountInfo();
                     assert returnedJson != null;
-                    this.accessedJsonData = new JSONObject(returnedJson);
+                    try {
+                        this.accessedJsonData = new JSONObject(returnedJson);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     System.out.println("Login Success!");
                     //System.out.println(returnedJson);
-                    String username = accessedJsonData.getString("name");
-                    String first_name = accessedJsonData.getString("given_name");
-                    String last_name = accessedJsonData.getString("family_name");
-                    accessedJsonData.getString("picture");
+                    String username = null;
+                    try {
+                        username = accessedJsonData.getString("name");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    String first_name = null;
+                    try {
+                        first_name = accessedJsonData.getString("given_name");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    String last_name = null;
+                    try {
+                        last_name = accessedJsonData.getString("family_name");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        accessedJsonData.getString("picture");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     User user = new User();
                     user.setUserName(username);
                     user.setFirstName(first_name);
@@ -199,13 +223,22 @@ public abstract class OAuthAuthenticator {
             StringBuilder response = getResponse(connection);
             String fullResponse = response.toString();
 
-            JSONObject json = new JSONObject(fullResponse);
+            JSONObject json = null;
+            try {
+                json = new JSONObject(fullResponse);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
             //*System.out.println(fullResponse);
 
             //System.out.println("ACCESS TOKEN: " + accessToken);
 
-            return json.getString("access_token");
+            try {
+                return json.getString("access_token");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

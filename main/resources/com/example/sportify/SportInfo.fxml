@@ -32,7 +32,10 @@
                <Insets left="75.0" />
             </GridPane.margin>
          </Text>
-             <Button fx:id="back" mnemonicParsing="false" onAction="#home" prefHeight="54.0" prefWidth="95.0" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+             <Button fx:id="back" mnemonicParsing="false" onAction="#home" prefHeight="54.0" prefWidth="95.0" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <GridPane.margin>
+               <Insets bottom="20.0" />
+            </GridPane.margin></Button>
          <Label fx:id="sport_name" prefWidth="150.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="LEFT">
             <font>
                <Font name="Comic Sans MS" size="32.0" />

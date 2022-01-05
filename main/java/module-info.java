@@ -6,11 +6,12 @@ module com.example.sportify {
     requires java.desktop;
     requires java.sql;
     requires json.simple;
-    requires org.apache.commons.lang3;
     requires com.sothawo.mapjfx;
     requires mysql.connector.java;
     requires javafx.web;
-    requires json;
+    //requires json;
+    requires android.json;
+    requires commons.lang3;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;
