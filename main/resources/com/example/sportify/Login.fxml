@@ -90,12 +90,12 @@
                       </cursor>
                       <Image url="@Images/signin-google-button.png" />
                   </ImageView>
-               <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#login_with_facebook" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="45.0" fitWidth="45.0" onMouseClicked="#login_with_facebook" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@Images/facebook-icon.png" />
                   </image>
                   <HBox.margin>
-                     <Insets left="10.0" />
+                     <Insets left="10.0" top="2.0" />
                   </HBox.margin>
                   <cursor>
                      <Cursor fx:constant="HAND" />
