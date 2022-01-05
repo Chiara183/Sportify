@@ -1,5 +1,7 @@
 package com.example.sportify.OAuth;
 
+import com.example.sportify.MainApp;
+
 /**
  * Created by max on 13/08/2017.
  */
@@ -30,5 +32,9 @@ public class OAuthGoogleAuthenticator extends OAuthAuthenticator{
     @Override
     String getApiAccessParams() {
         return "client_id=" + getClientID() + "&redirect_uri=" + getRedirectUri() + "&client_secret=" + getClientSecret() + "&grant_type=authorization_code&code=" + getAccessCode();
+    }
+
+    public void startLogin(MainApp mainApp){
+        super.start(mainApp, "Google Login");
     }
 }

@@ -15,10 +15,6 @@ import javafx.scene.control.TextField;
 import org.json.JSONObject;
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -44,6 +40,8 @@ public class LoginController implements Initializable{
 
     // User
     private User user;
+
+    private JSONObject data = null;
 
     /**
      * The constructor.
@@ -119,29 +117,11 @@ public class LoginController implements Initializable{
     @FXML
     private void login_with_google(){
         String gClientId = "941217546228-08fmsjebj3jn1a0agnt9tu9tnijgn2pq.apps.googleusercontent.com";
-        String gRedir = "https://localhost:8080/oauth2";
+        String gRedir = "https://localhost:9191/oauth2";
         String gScope = "https://www.googleapis.com/auth/userinfo.profile";
         String gSecret = "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";
-        OAuthAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
-        auth.startLogin();
-        while(!auth.hasFinishedSuccessfully()) {
-            try {
-                wait(1);
-            } catch (InterruptedException e){
-                System.out.println(e.getMessage());
-            }
-        }
-        JSONObject data = auth.getJsonData();
-        String username = data.getString("name");
-        String first_name = data.getString("given_name");
-        String last_name = data.getString("family_name");
-        data.getString("picture");
-        this.user.setUserName(username);
-        this.user.setFirstName(first_name);
-        this.user.setLastName(last_name);
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Correct!");
-        home();
+        OAuthGoogleAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
+        auth.startLogin(this.mainApp);
     }
 
     @FXML
@@ -150,8 +130,8 @@ public class LoginController implements Initializable{
         String FACEBOOK_redirectUri = "http://www.############.com/";
         String FACEBOOK_fieldsString = "name,gender,id";
         String FACEBOOK_clientSecret = "#########";
-        OAuthAuthenticator authFB = new OAuthFacebookAuthenticator(FACEBOOK_clientID, FACEBOOK_redirectUri, FACEBOOK_clientSecret, FACEBOOK_fieldsString);
-        authFB.startLogin();
+        OAuthFacebookAuthenticator authFB = new OAuthFacebookAuthenticator(FACEBOOK_clientID, FACEBOOK_redirectUri, FACEBOOK_clientSecret, FACEBOOK_fieldsString);
+        authFB.startLogin(this.mainApp);
     }
 
     @FXML
@@ -160,8 +140,8 @@ public class LoginController implements Initializable{
         String GIT_redirectUri = "############";
         String GIT_scope = "user";
         String GIT_clientSecret = "##############";
-        OAuthAuthenticator authGit = new OAuthGithubAuthenticator(GIT_clientID, GIT_redirectUri, GIT_clientSecret, GIT_scope);
-        authGit.startLogin();
+        OAuthGithubAuthenticator authGit = new OAuthGithubAuthenticator(GIT_clientID, GIT_redirectUri, GIT_clientSecret, GIT_scope);
+        authGit.startLogin(this.mainApp);
     }
 
     @FXML

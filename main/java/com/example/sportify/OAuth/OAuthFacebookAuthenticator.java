@@ -1,5 +1,7 @@
 package com.example.sportify.OAuth;
 
+import com.example.sportify.MainApp;
+
 /**
  * Created by max on 13/08/2017.
  */
@@ -32,5 +34,7 @@ public class OAuthFacebookAuthenticator extends OAuthAuthenticator{
         return  "client_id=" + getClientID() + "&redirect_uri=" + getRedirectUri() + "&client_secret=" + getClientSecret() + "&code=" + getAccessCode();
     }
 
-
+    public void startLogin(MainApp mainApp){
+        super.start(mainApp, "Facebook Login");
+    }
 }

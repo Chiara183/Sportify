@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -127,6 +128,18 @@ public class MainApp extends Application{
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Shows home overview inside the root layout.
+     */
+    public void showOAuthAuthenticator(WebView root, String name) {
+        this.primaryStage.setTitle("Sportify - " + name);
+
+        // Set OAuth overview into the center of root layout.
+        rootLayout.setCenter(root);
+        rootLayout.setTop(null);
+
     }
 
     /**
