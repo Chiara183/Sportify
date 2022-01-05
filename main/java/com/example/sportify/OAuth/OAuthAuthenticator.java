@@ -4,7 +4,6 @@ import com.example.sportify.MainApp;
 import com.example.sportify.User;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.Stage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,8 +31,6 @@ public abstract class OAuthAuthenticator {
     private final String redirectUri;
     private final String clientSecret;
 
-    private Stage stage;
-
 
     public OAuthAuthenticator (String clientID, String redirectUri, String clientSecret) {
         this.clientID = clientID;
@@ -53,13 +50,12 @@ public abstract class OAuthAuthenticator {
         return redirectUri;
     }
 
-    public void start(MainApp mainApp, String name) {
+    public void start(MainApp mainApp, String name, OAuthType type) {
 
         if(loginAttempted) {
             return;
         }
         loginAttempted = true;
-        stage = new Stage();
         WebView root = new WebView();
         WebEngine engine = root.getEngine();
 
@@ -73,46 +69,28 @@ public abstract class OAuthAuthenticator {
                 String location = we.getLocation();
                 if (location.contains("code") && location.startsWith(getRedirectUri())) {
                     attemptReceived = true;
-                    closeStage();
                     accessCode = location.substring(location.indexOf("code=") + 5);
                     accessToken = doGetAccessTokenRequest();
                     String returnedJson = doGetAccountInfo();
                     assert returnedJson != null;
-                    try {
-                        this.accessedJsonData = new JSONObject(returnedJson);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    accessedJsonData = new JSONObject(returnedJson);
                     System.out.println("Login Success!");
-                    //System.out.println(returnedJson);
-                    String username = null;
-                    try {
-                        username = accessedJsonData.getString("name");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    String first_name = null;
-                    try {
-                        first_name = accessedJsonData.getString("given_name");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    String last_name = null;
-                    try {
-                        last_name = accessedJsonData.getString("family_name");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    try {
+                    System.out.println(returnedJson);
+                    if(type == OAuthType.GOOGLE) {
+                        String username = accessedJsonData.getString("name");
+                        String first_name = accessedJsonData.getString("given_name");
+                        String last_name = accessedJsonData.getString("family_name");
+                        String email = accessedJsonData.getString("email");
                         accessedJsonData.getString("picture");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        User user = new User();
+                        user.setUserName(username);
+                        user.setFirstName(first_name);
+                        user.setLastName(last_name);
+                        user.setEmail(email);
+                        mainApp.setUser(user);
+                    } else if (type == OAuthType.FACEBOOK){
+                        //TODO
                     }
-                    User user = new User();
-                    user.setUserName(username);
-                    user.setFirstName(first_name);
-                    user.setLastName(last_name);
-                    mainApp.setUser(user);
                     JFrame jFrame = new JFrame();
                     JOptionPane.showMessageDialog(jFrame, "Correct!");
                     mainApp.showHomeOverview();
@@ -140,22 +118,6 @@ public abstract class OAuthAuthenticator {
         return accessCode;
     }
 
-    public boolean hasFinishedSuccessfully() {
-        return gotData;
-    }
-
-    public JSONObject getJsonData() {
-        if(gotData) {
-            return accessedJsonData;
-        } else {
-            return null;
-        }
-    }
-
-    private void closeStage() {
-        stage.close();
-    }
-
     private String doGetAccountInfo() {
         try {
             HttpURLConnection connection2;
@@ -165,8 +127,6 @@ public abstract class OAuthAuthenticator {
 
             connection2.setDoInput(true);
             connection2.setDoOutput(true);
-
-            //System.out.println("URL: " + getApiTokenUrl());
 
             int responseCode2 = connection2.getResponseCode();
 
@@ -187,9 +147,6 @@ public abstract class OAuthAuthenticator {
         try {
             URL url = new URL(getApiAccessUrl());
             String urlParams = getApiAccessParams();
-
-            //System.out.println("URL: " + getApiAccessUrl());
-            //*System.out.println("PARAMS: " + urlParams);
 
             byte[] postData = urlParams.getBytes(StandardCharsets.UTF_8);
             int postDataLength = postData.length;
@@ -215,8 +172,6 @@ public abstract class OAuthAuthenticator {
 
             int responseCode = connection.getResponseCode();
 
-            //System.out.println(responseCode);
-
             if (responseCode != HttpURLConnection.HTTP_OK) { // success
                 System.err.println("Error getting access token for OAuth Login!");
             }
@@ -230,11 +185,10 @@ public abstract class OAuthAuthenticator {
                 e.printStackTrace();
             }
 
-            //*System.out.println(fullResponse);
-
-            //System.out.println("ACCESS TOKEN: " + accessToken);
+            //System.out.println("ACCESS TOKEN: " + json.getString("access_token"));
 
             try {
+                assert json != null;
                 return json.getString("access_token");
             } catch (JSONException e) {
                 e.printStackTrace();

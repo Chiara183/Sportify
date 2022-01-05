@@ -2,7 +2,6 @@ package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.OAuth.OAuthFacebookAuthenticator;
-import com.example.sportify.OAuth.OAuthGithubAuthenticator;
 import com.example.sportify.OAuth.OAuthGoogleAuthenticator;
 import com.example.sportify.Submit;
 import com.example.sportify.User;
@@ -113,8 +112,8 @@ public class LoginController implements Initializable{
     @FXML
     private void login_with_google(){
         String gClientId = "941217546228-08fmsjebj3jn1a0agnt9tu9tnijgn2pq.apps.googleusercontent.com";
-        String gRedir = "https://localhost:9191/oauth2";
-        String gScope = "https://www.googleapis.com/auth/userinfo.profile";
+        String gRedir = "https://localhost:8080/oauth2";
+        String gScope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
         String gSecret = "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";
         OAuthGoogleAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
         auth.startLogin(this.mainApp);
@@ -128,16 +127,6 @@ public class LoginController implements Initializable{
         String FACEBOOK_clientSecret = "78069fee1d59a5ee89e7061116c40320";
         OAuthFacebookAuthenticator authFB = new OAuthFacebookAuthenticator(FACEBOOK_clientID, FACEBOOK_redirectUri, FACEBOOK_clientSecret, FACEBOOK_fieldsString);
         authFB.startLogin(this.mainApp);
-    }
-
-    @FXML
-    private void login_with_git(){
-        String GIT_clientID = "############";
-        String GIT_redirectUri = "############";
-        String GIT_scope = "user";
-        String GIT_clientSecret = "##############";
-        OAuthGithubAuthenticator authGit = new OAuthGithubAuthenticator(GIT_clientID, GIT_redirectUri, GIT_clientSecret, GIT_scope);
-        authGit.startLogin(this.mainApp);
     }
 
     @FXML

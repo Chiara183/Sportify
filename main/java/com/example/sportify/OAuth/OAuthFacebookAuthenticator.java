@@ -32,6 +32,6 @@ public class OAuthFacebookAuthenticator extends OAuthAuthenticator{
     }
 
     public void startLogin(MainApp mainApp){
-        super.start(mainApp, "Facebook Login");
+        super.start(mainApp, "Facebook Login", OAuthType.FACEBOOK);
     }
 }

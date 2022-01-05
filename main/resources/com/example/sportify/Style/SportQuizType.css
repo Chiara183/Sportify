@@ -5,3 +5,7 @@
             #119a60,
             radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);
 }
+
+.label{
+    -fx-text-fill: black;
+}

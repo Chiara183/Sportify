@@ -61,8 +61,8 @@
             </GridPane.margin></Label>
         </GridPane>
     </VBox>
-    <stylesheets>
-        <URL value="@Style/Button.css" />
-        <URL value="@Style/Login.css" />
-    </stylesheets>
+   <stylesheets>
+      <URL value="@Style/Button.css" />
+      <URL value="@Style/SportQuizType.css" />
+   </stylesheets>
 </Pane>

@@ -9,9 +9,8 @@ module com.example.sportify {
     requires com.sothawo.mapjfx;
     requires mysql.connector.java;
     requires javafx.web;
-    //requires json;
-    requires android.json;
-    requires commons.lang3;
+    requires json;
+    requires org.apache.commons.lang3;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;

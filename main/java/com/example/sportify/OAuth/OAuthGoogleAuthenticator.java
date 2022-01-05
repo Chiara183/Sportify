@@ -35,6 +35,6 @@ public class OAuthGoogleAuthenticator extends OAuthAuthenticator{
     }
 
     public void startLogin(MainApp mainApp){
-        super.start(mainApp, "Google Login");
+        super.start(mainApp, "Google Login", OAuthType.GOOGLE);
     }
 }
