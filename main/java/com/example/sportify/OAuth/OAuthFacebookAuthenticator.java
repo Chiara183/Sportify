@@ -2,9 +2,6 @@ package com.example.sportify.OAuth;
 
 import com.example.sportify.MainApp;
 
-/**
- * Created by max on 13/08/2017.
- */
 public class OAuthFacebookAuthenticator extends OAuthAuthenticator{
 
     private final String FACEBOOK_fieldsString;

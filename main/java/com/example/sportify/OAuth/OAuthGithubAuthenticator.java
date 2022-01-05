@@ -2,9 +2,6 @@ package com.example.sportify.OAuth;
 
 import com.example.sportify.MainApp;
 
-/**
- * Created by max on 15/08/2017.
- */
 public class OAuthGithubAuthenticator extends OAuthAuthenticator {
 
     private final String GITHUB_SCOPE;

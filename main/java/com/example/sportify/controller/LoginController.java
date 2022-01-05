@@ -1,7 +1,6 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
-import com.example.sportify.OAuth.OAuthAuthenticator;
 import com.example.sportify.OAuth.OAuthFacebookAuthenticator;
 import com.example.sportify.OAuth.OAuthGithubAuthenticator;
 import com.example.sportify.OAuth.OAuthGoogleAuthenticator;
@@ -12,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import org.json.JSONObject;
 
 import javax.swing.*;
 import java.net.URL;
@@ -40,8 +38,6 @@ public class LoginController implements Initializable{
 
     // User
     private User user;
-
-    private JSONObject data = null;
 
     /**
      * The constructor.
