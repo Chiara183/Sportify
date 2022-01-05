@@ -126,10 +126,10 @@ public class LoginController implements Initializable{
 
     @FXML
     private void login_with_facebook(){
-        String FACEBOOK_clientID = "###############";
-        String FACEBOOK_redirectUri = "http://www.############.com/";
+        String FACEBOOK_clientID = "497348525027976";
+        String FACEBOOK_redirectUri = "https://localhost:9191/oauth2";
         String FACEBOOK_fieldsString = "name,gender,id";
-        String FACEBOOK_clientSecret = "#########";
+        String FACEBOOK_clientSecret = "78069fee1d59a5ee89e7061116c40320";
         OAuthFacebookAuthenticator authFB = new OAuthFacebookAuthenticator(FACEBOOK_clientID, FACEBOOK_redirectUri, FACEBOOK_clientSecret, FACEBOOK_fieldsString);
         authFB.startLogin(this.mainApp);
     }

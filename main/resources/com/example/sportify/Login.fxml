@@ -82,13 +82,27 @@
                     </HBox.margin>
                 </Button>
             </HBox>
-            <ImageView accessibleRole="BUTTON" fitHeight="56.0" fitWidth="197.0" onMouseClicked="#login_with_google"
-                       GridPane.columnIndex="1" GridPane.rowIndex="2">
-                <cursor>
-                    <Cursor fx:constant="HAND"/>
-                </cursor>
-                <Image url="@Images/signin-google-button.png"/>
-            </ImageView>
+         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <children>
+                  <ImageView accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#login_with_google">
+                      <cursor>
+                          <Cursor fx:constant="HAND" />
+                      </cursor>
+                      <Image url="@Images/signin-google-button.png" />
+                  </ImageView>
+               <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#login_with_facebook" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@Images/facebook-icon.png" />
+                  </image>
+                  <HBox.margin>
+                     <Insets left="10.0" />
+                  </HBox.margin>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ImageView>
+            </children>
+         </HBox>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>

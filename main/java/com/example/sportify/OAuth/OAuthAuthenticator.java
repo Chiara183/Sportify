@@ -2,9 +2,6 @@ package com.example.sportify.OAuth;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.User;
-import com.example.sportify.controller.LoginController;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -18,7 +15,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 
 public abstract class OAuthAuthenticator {
 
