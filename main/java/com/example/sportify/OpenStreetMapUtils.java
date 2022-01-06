@@ -94,22 +94,6 @@ public class OpenStreetMapUtils {
 
             }
         }
-        /*switch(obj){
-            case JSONArray array -> {
-                if (array.size() > 0) {
-                                            JSONObject jsonObject = (JSONObject) array.get(0);
-                                            String lon = (String) jsonObject.get("lon");
-                                            String lat = (String) jsonObject.get("lat");
-                                            res.put("lon", Double.parseDouble(lon));
-                                            res.put("lat", Double.parseDouble(lat));
-
-                                        }
-
-            }
-
-            default -> throw new IllegalStateException("Unexpected value: " + obj);
-        }*/
-
         return res;
     }
 

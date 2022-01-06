@@ -5,6 +5,9 @@ import com.sothawo.mapjfx.Projection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -256,6 +259,21 @@ public class MainApp extends Application{
      */
     public BorderPane getPrimaryPane() {
         return rootLayout;
+    }
+
+    /**
+     * Controls the visibility of the Password field
+     */
+    public void togglevisiblePassword(CheckBox pass_toggle, TextField pass_text, TextField password) {
+        if (pass_toggle.isSelected()) {
+            pass_text.setText(password.getText());
+            pass_text.setVisible(true);
+            password.setVisible(false);
+            return;
+        }
+        password.setText(pass_text.getText());
+        password.setVisible(true);
+        pass_text.setVisible(false);
     }
 
 }

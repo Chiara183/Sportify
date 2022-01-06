@@ -9,10 +9,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 
 import javax.swing.*;
+import java.awt.*;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{
@@ -24,6 +31,10 @@ public class LoginController implements Initializable{
     private TextField password;
     @FXML
     private TextField pass_text;
+
+    //Label
+    @FXML
+    private Label eye;
 
     //CheckBox
     @FXML
@@ -66,20 +77,17 @@ public class LoginController implements Initializable{
         this.submit = submit;
     }
 
-    /**
-     * Controls the visibility of the Password field
-     */
     @FXML
-    public void togglevisiblePassword() {
-        if (pass_toggle.isSelected()) {
-            pass_text.setText(password.getText());
-            pass_text.setVisible(true);
-            password.setVisible(false);
-            return;
+    private void set_toggle_pass(){
+        if(!pass_toggle.isSelected()) {
+            eye.setStyle("-fx-text-fill: #06B7C5;");
+            pass_toggle.setSelected(true);
+            mainApp.togglevisiblePassword(this.pass_toggle, this.pass_text, this.password);
+        } else {
+            eye.setStyle("-fx-text-fill: black;");
+            pass_toggle.setSelected(false);
+            mainApp.togglevisiblePassword(this.pass_toggle, this.pass_text, this.password);
         }
-        password.setText(pass_text.getText());
-        password.setVisible(true);
-        pass_text.setVisible(false);
     }
 
     @FXML

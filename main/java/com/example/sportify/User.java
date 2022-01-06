@@ -4,6 +4,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Alert;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -83,18 +84,33 @@ public class User {
     }
 
     public void setUserName(String userName) {
-        DAO obj_DAO = new DAO();
-        obj_DAO.updateDB(
-                "UPDATE `user` SET `username` = '"
-                        + userName + "' WHERE `user`.`username` = '"
-                        + this.userName +"'");
-        if (this.gymName != null){
+        Submit submit = new Submit();
+        if(!submit.exist(userName)) {
+            DAO obj_DAO = new DAO();
             obj_DAO.updateDB(
-                    "UPDATE `gym` SET `owner` = '"
-                            + userName + "' WHERE `gym`.`owner` = '"
-                            + this.userName +"'");
+                    "UPDATE `user` SET `username` = '"
+                            + userName + "' WHERE `user`.`username` = '"
+                            + this.userName + "'");
+            if (this.gymName != null) {
+                obj_DAO.updateDB(
+                        "UPDATE `gym` SET `owner` = '"
+                                + userName + "' WHERE `gym`.`owner` = '"
+                                + this.userName + "'");
+            }
+            this.userName.set(userName);
+        } else if (this.userName.getValue() == null){
+            assert false;
+            this.userName.set(userName);
+        } else {
+            MainApp mainApp = new MainApp();
+            //show error message
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("User already exists");
+            alert.setHeaderText("The user already exists");
+            alert.setContentText("Please enter a different username.");
+            alert.showAndWait();
         }
-        this.userName.set(userName);
     }
 
     public String getPassword() {
@@ -102,12 +118,17 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password.set(password);
-        DAO obj_DAO = new DAO();
-        obj_DAO.updateDB(
-                "UPDATE `user` SET `password` = '"
-                        + this.password + "' WHERE `user`.`username` = '"
-                        + this.userName +"'");
+        if (this.password.getValue() != null) {
+            this.password.set(password);
+            DAO obj_DAO = new DAO();
+            obj_DAO.updateDB(
+                    "UPDATE `user` SET `password` = '"
+                            + this.password + "' WHERE `user`.`username` = '"
+                            + this.userName + "'");
+        } else {
+            assert false;
+            this.password.set(password);
+        }
     }
 
     public String getEmail() {

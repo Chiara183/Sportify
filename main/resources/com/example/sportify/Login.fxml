@@ -51,21 +51,33 @@
                         <Font name="Comic Sans MS" size="18.0" />
                     </font>
                 </Text>
-                <PasswordField fx:id="password" maxWidth="233.0" prefHeight="33.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                    <cursor>
-                        <Cursor fx:constant="TEXT" />
-                    </cursor>
-                </PasswordField>
                 <TextField fx:id="pass_text" maxWidth="233.0" prefHeight="33.0" prefWidth="226.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>
                 </TextField>
-            <CheckBox fx:id="pass_toggle" mnemonicParsing="false" onAction="#togglevisiblePassword" text="Visible" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-               <font>
-                  <Font name="Comic Sans MS Bold" size="14.0" />
-               </font>
-            </CheckBox>
+                <PasswordField fx:id="password" maxWidth="233.0" prefHeight="33.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+                </PasswordField>
+                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets right="8.0" />
+                    </GridPane.margin>
+                    <Label fx:id="eye" onMouseClicked="#set_toggle_pass" text="👁">
+                        <font>
+                            <Font name="Comic Sans MS Bold" size="29.0" />
+                        </font>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                    </Label>
+                    <CheckBox fx:id="pass_toggle" mnemonicParsing="false" visible="false" />
+                </HBox>
                 <padding>
                     <Insets bottom="10.0" />
                 </padding>
@@ -82,27 +94,23 @@
                     </HBox.margin>
                 </Button>
             </HBox>
-         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-            <children>
-                  <ImageView accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#login_with_google">
-                      <cursor>
-                          <Cursor fx:constant="HAND" />
-                      </cursor>
-                      <Image url="@Images/signin-google-button.png" />
-                  </ImageView>
-               <ImageView fitHeight="45.0" fitWidth="45.0" onMouseClicked="#login_with_facebook" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@Images/facebook-icon.png" />
-                  </image>
-                  <HBox.margin>
-                     <Insets left="10.0" top="2.0" />
-                  </HBox.margin>
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor>
-               </ImageView>
-            </children>
-         </HBox>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                <ImageView accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#login_with_google">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <Image url="@Images/signin-google-button.png" />
+                </ImageView>
+                <ImageView fitHeight="45.0" fitWidth="45.0" onMouseClicked="#login_with_facebook" pickOnBounds="true" preserveRatio="true">
+                    <HBox.margin>
+                        <Insets left="10.0" top="2.0" />
+                    </HBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <Image url="@Images/facebook-icon.png" />
+                </ImageView>
+            </HBox>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>

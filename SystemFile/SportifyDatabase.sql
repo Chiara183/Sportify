@@ -116,7 +116,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `login`(in var_username varchar(45),
 BEGIN
 	declare var_user_role ENUM('administrator', 'gym');
     
-    select `ruolo` from `Utenti`
+    select `ruolo` from `user`
 		where `username` = var_username
         and `password` = md5(var_pass)
         into var_user_role;
@@ -150,11 +150,10 @@ BEGIN
     end;
     
     set transaction isolation level read committed;
-    set transaction read only;
     start transaction;
     
 		select 
-			`gym`.`name`,
+			`name`,
 			`address`,
 			`latitude`,
 			`longitude`,

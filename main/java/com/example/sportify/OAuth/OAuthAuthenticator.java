@@ -1,6 +1,8 @@
 package com.example.sportify.OAuth;
 
+import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
+import com.example.sportify.Submit;
 import com.example.sportify.User;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -15,6 +17,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Objects;
 
 public abstract class OAuthAuthenticator {
 
@@ -75,24 +82,56 @@ public abstract class OAuthAuthenticator {
                     assert returnedJson != null;
                     accessedJsonData = new JSONObject(returnedJson);
                     System.out.println("Login Success!");
-                    System.out.println(returnedJson);
+                    //System.out.println(returnedJson);
                     if(type == OAuthType.GOOGLE) {
-                        String username = accessedJsonData.getString("name");
-                        String first_name = accessedJsonData.getString("given_name");
-                        String last_name = accessedJsonData.getString("family_name");
                         String email = accessedJsonData.getString("email");
+                        String[] s = email.split("@");
+                        String username = s[0];
                         accessedJsonData.getString("picture");
-                        User user = new User();
-                        user.setUserName(username);
-                        user.setFirstName(first_name);
-                        user.setLastName(last_name);
-                        user.setEmail(email);
+                        Submit submit = new Submit();
+                        User user;
+                        DAO obj_DAO = new DAO();
+                        ResultSet rs = obj_DAO.Check_Data(
+                                "SELECT * " +
+                                        "FROM user " +
+                                        "WHERE user.email = \"" + email + "\"");
+                        try {
+                            if (rs.next()) {
+                                username = rs.getString("username");
+                            }
+                        }catch (SQLException e){
+                            System.out.println("SQLException: " + e.getMessage());
+                        }
+                        if (!submit.exist(username)) {
+                            String first_name = accessedJsonData.getString("given_name");
+                            String last_name = accessedJsonData.getString("family_name");
+                            String password = submit.generateStrongPassword(32);
+                            HashMap<String, String> account = new HashMap<>();
+                            account.put("username", username);
+                            account.put("password", password);
+                            account.put("firstName", first_name);
+                            account.put("lastName", last_name);
+                            account.put("email", email);
+                            account.put("ruolo", "user");
+                            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                            String date = timestamp.toString();
+                            date = date.substring(0,10);
+                            account.put("birthday", date);
+                            submit.signUp(account);
+                        }
+                        user = submit.setUser(username);
+                        if(Objects.equals(user.getFirstName(), "")){
+                            String first_name = accessedJsonData.getString("given_name");
+                            user.setFirstName(first_name);
+                        }
+                        if(Objects.equals(user.getLastName(), "")){
+                            String last_name = accessedJsonData.getString("family_name");
+                            user.setLastName(last_name);
+                        }
                         mainApp.setUser(user);
                     } else if (type == OAuthType.FACEBOOK){
                         //TODO
                     }
-                    JFrame jFrame = new JFrame();
-                    JOptionPane.showMessageDialog(jFrame, "Correct!");
                     mainApp.showHomeOverview();
                     this.gotData = true;
                 }
