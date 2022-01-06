@@ -132,7 +132,7 @@ public class UserEditController {
     }
 
     @FXML
-    private void set_toggle_pass(MouseEvent modify) {
+    protected void set_toggle_pass(MouseEvent modify) {
         if (modify.getSource() == modify_username) {
             if (!toggle_username.isSelected()) {
                 modify_username.setStyle("-fx-text-fill: #06B7C5;");
