@@ -129,9 +129,6 @@ public abstract class OAuthAuthenticator {
                         }
                         mainApp.setUser(user);
                     }
-                    /*else if (type == OAuthType.FACEBOOK){
-                        //TODO
-                    *}*/
                     mainApp.showHomeOverview();
                     this.gotData = true;
                 }

@@ -95,20 +95,11 @@
                 </Button>
             </HBox>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                <ImageView accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#login_with_google">
+                <ImageView accessibleRole="BUTTON" fitHeight="45.0" fitWidth="155.0" onMouseClicked="#login_with_google">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
-                    <Image url="@Images/signin-google-button.png" />
-                </ImageView>
-                <ImageView fitHeight="45.0" fitWidth="45.0" onMouseClicked="#login_with_facebook" pickOnBounds="true" preserveRatio="true">
-                    <HBox.margin>
-                        <Insets left="10.0" top="2.0" />
-                    </HBox.margin>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <Image url="@Images/facebook-icon.png" />
+                    <Image url="@Images/sign-in-with-google-icon-3.jpg" />
                 </ImageView>
             </HBox>
          <cursor>
