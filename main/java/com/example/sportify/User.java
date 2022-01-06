@@ -62,8 +62,8 @@ public class User {
         DAO obj_DAO = new DAO();
         obj_DAO.updateDB(
                 "UPDATE `user` SET `first_name` = '"
-                        + this.firstName + "' WHERE `user`.`username` = '"
-                        + this.userName +"'");
+                        + firstName + "' WHERE `user`.`username` = '"
+                        + this.userName.getValue() +"'");
     }
 
     public String getLastName() {
@@ -75,8 +75,8 @@ public class User {
         DAO obj_DAO = new DAO();
         obj_DAO.updateDB(
                 "UPDATE `user` SET `last_name` = '"
-                        + this.lastName + "' WHERE `user`.`username` = '"
-                        + this.userName +"'");
+                        + lastName + "' WHERE `user`.`username` = '"
+                        + this.userName.getValue() +"'");
     }
 
     public String getUserName() {
@@ -90,12 +90,12 @@ public class User {
             obj_DAO.updateDB(
                     "UPDATE `user` SET `username` = '"
                             + userName + "' WHERE `user`.`username` = '"
-                            + this.userName + "'");
+                            + this.userName.getValue() + "'");
             if (this.gymName != null) {
                 obj_DAO.updateDB(
                         "UPDATE `gym` SET `owner` = '"
                                 + userName + "' WHERE `gym`.`owner` = '"
-                                + this.userName + "'");
+                                + this.userName.getValue() + "'");
             }
             this.userName.set(userName);
         } else if (this.userName.getValue() == null){
@@ -123,8 +123,8 @@ public class User {
             DAO obj_DAO = new DAO();
             obj_DAO.updateDB(
                     "UPDATE `user` SET `password` = '"
-                            + this.password + "' WHERE `user`.`username` = '"
-                            + this.userName + "'");
+                            + password + "' WHERE `user`.`username` = '"
+                            + this.userName.getValue() + "'");
         } else {
             assert false;
             this.password.set(password);
@@ -140,8 +140,8 @@ public class User {
         DAO obj_DAO = new DAO();
         obj_DAO.updateDB(
                 "UPDATE `user` SET `email` = '"
-                        + this.email + "' WHERE `user`.`username` = '"
-                        + this.userName +"'");
+                        + email + "' WHERE `user`.`username` = '"
+                        + this.userName.getValue() +"'");
     }
 
     public LocalDate getBirthday() {
@@ -153,8 +153,8 @@ public class User {
         DAO obj_DAO = new DAO();
         obj_DAO.updateDB(
                 "UPDATE `user` SET `birthday` = '"
-                        + this.birthday + "' WHERE `user`.`username` = '"
-                        + this.userName +"'");
+                        + birthday.toString() + "' WHERE `user`.`username` = '"
+                        + this.userName.getValue() +"'");
     }
 
     public String getGymName() {
@@ -166,8 +166,8 @@ public class User {
         DAO obj_DAO = new DAO();
         obj_DAO.updateDB(
                 "UPDATE `gym` SET `name` = '"
-                        + this.gymName + "' WHERE `gym`.`owner` = '"
-                        + this.userName +"'");
+                        + name + "' WHERE `gym`.`owner` = '"
+                        + this.userName.getValue() +"'");
     }
 
     public String getAddress() {
@@ -179,8 +179,8 @@ public class User {
         DAO obj_DAO = new DAO();
         obj_DAO.updateDB(
                 "UPDATE `gym` SET `address` = '"
-                        + this.address + "' WHERE `gym`.`owner` = '"
-                        + this.userName +"'");
+                        + address + "' WHERE `gym`.`owner` = '"
+                        + this.userName.getValue() +"'");
     }
 
     public String getLatitude() {
@@ -192,8 +192,8 @@ public class User {
         DAO obj_DAO = new DAO();
         obj_DAO.updateDB(
                 "UPDATE `gym` SET `latitude` = '"
-                        + this.latitude + "' WHERE `gym`.`owner` = '"
-                        + this.userName +"'");
+                        + latitude + "' WHERE `gym`.`owner` = '"
+                        + this.userName.getValue() +"'");
     }
 
     public String getLongitude() {
@@ -205,8 +205,8 @@ public class User {
         DAO obj_DAO = new DAO();
         obj_DAO.updateDB(
                 "UPDATE `gym` SET `longitude` = '"
-                        + this.longitude + "' WHERE `gym`.`owner` = '"
-                        + this.userName +"'");
+                        + longitude + "' WHERE `gym`.`owner` = '"
+                        + this.userName.getValue() +"'");
     }
 
     public String getPhone() {
@@ -218,7 +218,7 @@ public class User {
         DAO obj_DAO = new DAO();
         obj_DAO.updateDB(
                 "UPDATE `gym` SET `phone` = '"
-                        + this.phone + "' WHERE `gym`.`owner` = '"
-                        + this.userName +"'");
+                        + phone + "' WHERE `gym`.`owner` = '"
+                        + this.userName.getValue() +"'");
     }
 }

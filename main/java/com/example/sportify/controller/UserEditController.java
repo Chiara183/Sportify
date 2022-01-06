@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class UserEditController {
 
     // Label
@@ -90,17 +92,34 @@ public class UserEditController {
         usernameLabel.setText(user.getUserName());
         passwordLabel.setText(user.getPassword());
         emailLabel.setText(user.getEmail());
+        firstName.setText(user.getFirstName());
+        lastName.setText(user.getLastName());
+        username.setText(user.getUserName());
+        password.setText(user.getPassword());
+        email.setText(user.getEmail());
         date.setValue(user.getBirthday());
     }
 
     @FXML
     protected void okAction() {
-        user.setUserName(username.getText());
-        user.setPassword(password.getText());
-        user.setFirstName(firstName.getText());
-        user.setLastName(lastName.getText());
-        user.setEmail(email.getText());
-        user.setBirthday(date.getValue());
+        if (!Objects.equals(user.getUserName(), username.getText())) {
+            user.setUserName(username.getText());
+        }
+        if (!Objects.equals(user.getPassword(), password.getText())) {
+            user.setPassword(password.getText());
+        }
+        if (!Objects.equals(user.getFirstName(), firstName.getText())) {
+            user.setFirstName(firstName.getText());
+        }
+        if (!Objects.equals(user.getLastName(), lastName.getText())) {
+            user.setLastName(lastName.getText());
+        }
+        if (!Objects.equals(user.getEmail(), email.getText())) {
+            user.setEmail(email.getText());
+        }
+        if (!Objects.equals(user.getBirthday(), date.getValue())) {
+            user.setBirthday(date.getValue());
+        }
         menu.setUser(user);
         Stage stage = (Stage) ok.getScene().getWindow();
         stage.close();
