@@ -9,7 +9,6 @@ import javafx.scene.web.WebView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -129,9 +128,10 @@ public abstract class OAuthAuthenticator {
                             user.setLastName(last_name);
                         }
                         mainApp.setUser(user);
-                    } else if (type == OAuthType.FACEBOOK){
-                        //TODO
                     }
+                    /*else if (type == OAuthType.FACEBOOK){
+                        //TODO
+                    *}*/
                     mainApp.showHomeOverview();
                     this.gotData = true;
                 }
