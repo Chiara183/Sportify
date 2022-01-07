@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,15 +17,21 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class GymInfoController implements Initializable {
+
+    // Label
     @FXML
     private Label gym_name;
     @FXML
-    private Label sport_description;
+    private Label gym_description;
+
+    // VBox
     @FXML
-    private Label gymName;
+    private VBox course;
+    @FXML
+    private VBox review;
 
-
-
+    // String
+    private String search_cache;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -32,17 +39,79 @@ public class GymInfoController implements Initializable {
     // User
     private User user;
 
-    public GymInfoController(){}
+    public GymInfoController(){
+    }
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
     public void setUser(User user) {
         this.user = user;
     }
+    public void setSearchCache(String search) {
+        this.search_cache = search;
+    }
+
+    private void setGym(String name){
+        this.gym_name.setText(name);
+        this.gym_description.setText(
+                "Address: " + "" +
+                        "\nTelephone: " + "");
+        try {
+            DAO obj_DAO = mainApp.getDAO();
+            ResultSet rs = obj_DAO.Check_Data(
+                    "SELECT * " +
+                            "FROM gym " +
+                            "WHERE gym.name = \"" + name + "\"");
+            if (rs.next()) {
+                this.gym_description.setText(
+                        "Address: " + rs.getString("address") +
+                        "\nTelephone: " + rs.getString("phone"));
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            DAO obj_DAO = mainApp.getDAO();
+            ResultSet rs = obj_DAO.Check_Data(
+                    "SELECT * " +
+                            "FROM review " +
+                            "WHERE review.gym = \"" + name + "\"");
+            while (rs.next()) {
+                Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
+                Label labelReview = new Label(rs.getString("review"));
+                VBox vbox = new VBox(labelTitle, labelReview);
+                this.review.getChildren().add(vbox);
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        if(this.review.getChildren().size()<2){
+            Label label = new Label("There are no reviews");
+            this.review.getChildren().add(label);
+        }
+        try {
+            DAO obj_DAO = mainApp.getDAO();
+            ResultSet rs = obj_DAO.Check_Data(
+                    "SELECT * " +
+                            "FROM course " +
+                            "WHERE course.gym = \"" + name + "\"");
+            while (rs.next()) {
+                Label label = new Label(rs.getString("sport") + " " + rs.getTime("time").toString());
+                this.course.getChildren().add(label);
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        if(this.course.getChildren().size()<2){
+            Label label = new Label("There are no course");
+            this.course.getChildren().add(label);
+        }
+    }
 
     @FXML
     private void findGym(){
         this.mainApp.setUser(this.user);
+        this.mainApp.setSearchCache(this.search_cache);
         this.mainApp.showFindGymOverview();
     }
 
@@ -63,7 +132,7 @@ public class GymInfoController implements Initializable {
             GymInfoController controller = loaderSport.getController();
             controller.setUser(this.user);
             controller.setMainApp(this.mainApp);
-            controller.gymName.setText(name);
+            controller.setGym(name);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -71,6 +140,5 @@ public class GymInfoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

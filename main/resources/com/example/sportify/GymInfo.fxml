@@ -11,9 +11,9 @@
     <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="-2.0" prefHeight="500.0" prefWidth="830.0">
         <GridPane prefHeight="500.0" prefWidth="830.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="193.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="552.0" minWidth="10.0" prefWidth="522.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="115.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="202.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="552.0" minWidth="10.0" prefWidth="436.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="192.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="119.0" vgrow="SOMETIMES" />
@@ -24,11 +24,11 @@
             <ImageView fitHeight="53.0" fitWidth="222.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                 <Image url="@Images/Sportify_logo.png" />
             </ImageView>
-            <Button fx:id="back" mnemonicParsing="false" onAction="#findGym" prefHeight="54.0" prefWidth="95.0" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#findGym" prefHeight="54.0" prefWidth="95.0" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <GridPane.margin>
                     <Insets bottom="20.0" />
                 </GridPane.margin></Button>
-            <Label fx:id="gym_name" prefHeight="75.0" prefWidth="376.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label fx:id="gym_name" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                 <font>
                     <Font name="Comic Sans MS" size="32.0" />
                 </font>
@@ -36,13 +36,31 @@
                     <Insets />
                 </GridPane.margin>
             </Label>
-            <Label fx:id="sport_description" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="293.0" prefWidth="522.0" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="gym_description" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" textAlignment="JUSTIFY" wrapText="true" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                 <font>
                     <Font size="16.0" />
                 </font>
                 <GridPane.margin>
-                    <Insets bottom="-20.0" top="-15.0" />
+                    <Insets left="10.0" />
                 </GridPane.margin></Label>
+         <VBox fx:id="course" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <children>
+               <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Course" textAlignment="CENTER" wrapText="true">
+                  <font>
+                     <Font name="Comic Sans MS Bold" size="18.0" />
+                  </font>
+               </Label>
+            </children>
+         </VBox>
+         <VBox fx:id="review" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <children>
+               <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Review" textAlignment="CENTER" wrapText="true">
+                  <font>
+                     <Font name="Comic Sans MS Bold" size="18.0" />
+                  </font>
+               </Label>
+            </children>
+         </VBox>
         </GridPane>
     </VBox>
     <stylesheets>

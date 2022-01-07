@@ -1,7 +1,6 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
-import com.example.sportify.OAuth.OAuthFacebookAuthenticator;
 import com.example.sportify.OAuth.OAuthGoogleAuthenticator;
 import com.example.sportify.Submit;
 import com.example.sportify.User;
@@ -11,15 +10,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 
 import javax.swing.*;
-import java.awt.*;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{
@@ -53,7 +46,7 @@ public class LoginController implements Initializable{
      * The constructor.
      */
     public LoginController() {
-        this.submit = new Submit();
+        this.submit = new Submit(null);
     }
 
     /**
@@ -61,6 +54,7 @@ public class LoginController implements Initializable{
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
+        this.submit = new Submit(this.mainApp);
     }
 
     /**

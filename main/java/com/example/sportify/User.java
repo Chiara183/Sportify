@@ -23,6 +23,15 @@ public class User {
     private final StringProperty phone;
     private final ObjectProperty<LocalDate> birthday;
 
+    private MainApp mainApp;
+
+    /**
+     * Is called by the main application to give a reference back to itself.
+     */
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
+
     /**
      * Default constructor.
      */
@@ -59,7 +68,7 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName.set(firstName);
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         obj_DAO.updateDB(
                 "UPDATE `user` SET `first_name` = '"
                         + firstName + "' WHERE `user`.`username` = '"
@@ -72,7 +81,7 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName.set(lastName);
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         obj_DAO.updateDB(
                 "UPDATE `user` SET `last_name` = '"
                         + lastName + "' WHERE `user`.`username` = '"
@@ -84,9 +93,9 @@ public class User {
     }
 
     public void setUserName(String userName) {
-        Submit submit = new Submit();
+        Submit submit = new Submit(this.mainApp);
         if(!submit.exist(userName)) {
-            DAO obj_DAO = new DAO();
+            DAO obj_DAO = mainApp.getDAO();
             obj_DAO.updateDB(
                     "UPDATE `user` SET `username` = '"
                             + userName + "' WHERE `user`.`username` = '"
@@ -102,7 +111,6 @@ public class User {
             assert false;
             this.userName.set(userName);
         } else {
-            MainApp mainApp = new MainApp();
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());
@@ -120,7 +128,7 @@ public class User {
     public void setPassword(String password) {
         if (this.password.getValue() != null) {
             this.password.set(password);
-            DAO obj_DAO = new DAO();
+            DAO obj_DAO = mainApp.getDAO();
             obj_DAO.updateDB(
                     "UPDATE `user` SET `password` = '"
                             + password + "' WHERE `user`.`username` = '"
@@ -137,7 +145,7 @@ public class User {
 
     public void setEmail(String email) {
         this.email.set(email);
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         obj_DAO.updateDB(
                 "UPDATE `user` SET `email` = '"
                         + email + "' WHERE `user`.`username` = '"
@@ -150,7 +158,7 @@ public class User {
 
     public void setBirthday(LocalDate birthday) {
         this.birthday.set(birthday);
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         obj_DAO.updateDB(
                 "UPDATE `user` SET `birthday` = '"
                         + birthday.toString() + "' WHERE `user`.`username` = '"
@@ -163,7 +171,7 @@ public class User {
 
     public void setGymName(String name) {
         this.gymName.set(name);
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         obj_DAO.updateDB(
                 "UPDATE `gym` SET `name` = '"
                         + name + "' WHERE `gym`.`owner` = '"
@@ -176,7 +184,7 @@ public class User {
 
     public void setAddress(String address) {
         this.address.set(address);
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         obj_DAO.updateDB(
                 "UPDATE `gym` SET `address` = '"
                         + address + "' WHERE `gym`.`owner` = '"
@@ -189,7 +197,7 @@ public class User {
 
     public void setLatitude(String latitude) {
         this.latitude.set(latitude);
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         obj_DAO.updateDB(
                 "UPDATE `gym` SET `latitude` = '"
                         + latitude + "' WHERE `gym`.`owner` = '"
@@ -202,7 +210,7 @@ public class User {
 
     public void setLongitude(String longitude) {
         this.longitude.set(longitude);
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         obj_DAO.updateDB(
                 "UPDATE `gym` SET `longitude` = '"
                         + longitude + "' WHERE `gym`.`owner` = '"
@@ -215,7 +223,7 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone.set(phone);
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         obj_DAO.updateDB(
                 "UPDATE `gym` SET `phone` = '"
                         + phone + "' WHERE `gym`.`owner` = '"

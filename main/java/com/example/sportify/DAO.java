@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public class DAO {
 
+    Connection connection = null;
+
     public ResultSet Check_Data(String query){
-        DB_Connection obj_DB_Connection = new DB_Connection();
-        Connection connection = obj_DB_Connection.get_connection();
         PreparedStatement ps;
         ResultSet rs = null;
         try{
@@ -22,8 +22,6 @@ public class DAO {
     }
 
     public void updateDB(String query){
-        DB_Connection obj_DB_Connection = new DB_Connection();
-        Connection connection = obj_DB_Connection.get_connection();
         PreparedStatement ps;
         try{
             ps = connection.prepareStatement(query);
@@ -33,4 +31,7 @@ public class DAO {
         }
     }
 
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
 }

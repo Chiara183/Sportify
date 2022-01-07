@@ -10,8 +10,9 @@ public class readWriteFile implements Initializable {
 
     private final IO file;
 
-    public readWriteFile (){
+    public readWriteFile (MainApp mainApp){
         this.file = new IO();
+        file.setMainApp(mainApp);
     }
 
     public HashMap<String, HashMap<String, String>> readFile(){

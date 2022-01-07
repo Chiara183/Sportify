@@ -6,17 +6,18 @@ import com.example.sportify.OpenStreetMapUtils;
 import com.example.sportify.User;
 import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.event.MapLabelEvent;
-import com.sothawo.mapjfx.event.MapViewEvent;
 import com.sothawo.mapjfx.event.MarkerEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
@@ -27,8 +28,8 @@ public class MapController {
 
     // ObservableList
     private final ObservableList<String> radius = FXCollections.observableArrayList("1", "5", "10", "20", "50");
-    private final HashMap<String, Coordinate> all_gym = new HashMap<>();
-    private final ObservableList<Marker> mark = FXCollections.observableArrayList();
+    private final HashMap<Coordinate, String> all_gym = new HashMap<>();
+    private final HashMap<String, Marker> mark = new HashMap<>();
 
     // MapCircle
     MapCircle circle;
@@ -83,6 +84,9 @@ public class MapController {
     public void setUser(User user) {
         this.user = user;
     }
+    public void setSearchCache(String search) {
+        this.search.setText(search);
+    }
 
     @FXML
     public void searchAction() {
@@ -91,7 +95,7 @@ public class MapController {
         if (coords.get("lat") != null && coords.get("lon") != null){
             if(this.circle!=null) {
                 mapView.removeMapCircle(this.circle);
-                mark.forEach(marker -> mapView.removeMarker(marker));
+                mark.forEach((id, marker) -> mapView.removeMarker(marker));
                 mark.clear();
             }
             Coordinate latLong = new Coordinate(coords.get("lat"), coords.get("lon"));
@@ -102,16 +106,16 @@ public class MapController {
                 mapView.addMapCircle(this.circle);
                 mapView.setZoom(MapView.MAX_ZOOM - distance/5.0 - 14);
                 all_gym.forEach((key, value) -> {
-                    if(OpenStreetMapUtils.getInstance().getDistance(value,latLong)<=distance){
-                        MapLabel labelGym = new MapLabel(key, 10, -10).setVisible(false).setCssClass("label");
-                        Marker myMarker = Marker.createProvided(Marker.Provided.GREEN).setPosition(value).setVisible(true).attachLabel(labelGym);
-                        mark.add(myMarker);
+                    if(OpenStreetMapUtils.getInstance().getDistance(key,latLong)<=distance){
+                        Marker myMarker = Marker.createProvided(Marker.Provided.GREEN).setPosition(key).setVisible(true);
+                        mark.put(myMarker.getId(), myMarker);
                         mapView.addMarker(myMarker);
                     }
                 });
             }
 
             Marker myMarker = Marker.createProvided(Marker.Provided.RED).setPosition(latLong).setVisible(true);
+            mark.put(myMarker.getId(), myMarker);
             mapView.setCenter(latLong);
             mapView.addMarker(myMarker);
         }else{
@@ -123,8 +127,6 @@ public class MapController {
             alert.setContentText("Please enter valid address");
             alert.showAndWait();
         }
-
-        setupEventHandlers();
     }
 
 
@@ -183,42 +185,40 @@ public class MapController {
     private void setupEventHandlers() {
         mapView.addEventHandler(MarkerEvent.MARKER_CLICKED, event -> {
             event.consume();
-            loadGymInfo(event);
+            event.consume();
+            Coordinate coords = event.getMarker().getPosition();
+            if(event.getMarker().getMapLabel().isEmpty()) {
+                mark.forEach((id, gym) -> {
+                    if (coords == gym.getPosition()) {
+                        System.out.println("Marker number: " + id);
+                        if (all_gym.get(gym.getPosition()) != null) {
+                            String name = all_gym.get(gym.getPosition());
+                            MapLabel labelGym = new MapLabel(name, 10, -10).setCssClass("label");
+                            mapView.removeMarker(event.getMarker());
+                            event.getMarker().attachLabel(labelGym);
+                            mapView.addMarker(event.getMarker());
+                        } else {
+                            MapLabel labelGym = new MapLabel("You are Here!", 10, -10).setCssClass("label");
+                            mapView.removeMarker(event.getMarker());
+                            event.getMarker().attachLabel(labelGym);
+                            mapView.addMarker(event.getMarker());
+                        }
+                    } else {
+                        gym.detachLabel();
+                    }
+                });
+            } else {
+                mapView.removeMarker(event.getMarker());
+                event.getMarker().detachLabel();
+                mapView.addMarker(event.getMarker());
+            }
         });
         mapView.addEventHandler(MarkerEvent.MARKER_RIGHTCLICKED, event -> {
-            event.consume();
-            loadGymInfo(event);
+            //TODO
         });
 
-        mapView.addEventHandler(MapLabelEvent.MAPLABEL_CLICKED, event -> {
-            event.consume();
-            GymInfoController gym = new GymInfoController();
-            gym.setMainApp(this.mainApp);
-            gym.setUser(this.user);
-            gym.loadingGymName(event.getMapLabel().getText());
-        });
-        mapView.addEventHandler(MapLabelEvent.MAPLABEL_RIGHTCLICKED, event -> {
-            event.consume();
-            GymInfoController gym = new GymInfoController();
-            gym.setMainApp(this.mainApp);
-            gym.setUser(this.user);
-            gym.loadingGymName(event.getMapLabel().getText());
-        });
-
-        mapView.addEventHandler(MapViewEvent.MAP_POINTER_MOVED, event -> {
-            event.consume();
-            Coordinate coords = event.getCoordinate().normalize();
-                    mark.forEach((gym) -> {
-                        if(coords == gym.getPosition()){
-                            if (gym.getMapLabel().isPresent()) {
-                                MapLabel label = gym.getMapLabel().get();
-                                label.setVisible(true);
-                                gym.detachLabel();
-                                gym.attachLabel(label);
-                            }
-                        }
-                    });
-        });
+        mapView.addEventHandler(MapLabelEvent.MAPLABEL_CLICKED, this::loadGymInfo);
+        mapView.addEventHandler(MapLabelEvent.MAPLABEL_RIGHTCLICKED, this::loadGymInfo);
     }
 
     /**
@@ -249,7 +249,7 @@ public class MapController {
      */
     private void loadCoordinate() {
         try {
-            DAO obj_DAO = new DAO();
+            DAO obj_DAO = mainApp.getDAO();
             ResultSet rs = obj_DAO.Check_Data(
                     "SELECT * " +
                             "FROM user " +
@@ -259,21 +259,24 @@ public class MapController {
                 Coordinate gym = new Coordinate(
                         Double.parseDouble(rs.getString("latitude")),
                         Double.parseDouble(rs.getString("longitude")));
-                this.all_gym.put(rs.getString("name"), gym);
+                this.all_gym.put(gym, rs.getString("name"));
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }
     }
 
-    private void loadGymInfo(MarkerEvent event){
-        GymInfoController gym = new GymInfoController();
-        gym.setMainApp(this.mainApp);
-        gym.setUser(this.user);
-        if (event.getMarker().getMapLabel().isPresent()) {
-            gym.loadingGymName(event.getMarker().getMapLabel().get().getText());
-        }else{
-            gym.loadingGymName("Gym Info");
+    private void loadGymInfo(MapLabelEvent event){
+        event.consume();
+        if(!Objects.equals(event.getMapLabel().getText(), "You are Here!")) {
+            GymInfoController gym = new GymInfoController();
+            gym.setMainApp(this.mainApp);
+            gym.setUser(this.user);
+            gym.setSearchCache(this.search.getText());
+            gym.loadingGymName(event.getMapLabel().getText());
+        } else {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Marker is not a gym.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

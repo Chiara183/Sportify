@@ -22,6 +22,9 @@ public class FindGymController implements Initializable{
     // User
     private User user;
 
+    // String
+    private String search_cache;
+
     @FXML
     private Pane Map;
 
@@ -43,6 +46,13 @@ public class FindGymController implements Initializable{
      */
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * Is called to set search_cache.
+     */
+    public void setSearchCache(String search) {
+        this.search_cache = search;
     }
 
     @FXML
@@ -70,7 +80,11 @@ public class FindGymController implements Initializable{
             MapController controller = loaderGym.getController();
             controller.setMainApp(this.mainApp);
             controller.setUser(this.user);
+            controller.setSearchCache(this.search_cache);
             controller.initMapAndControls(projection);
+            if(search_cache!=null){
+                controller.searchAction();
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

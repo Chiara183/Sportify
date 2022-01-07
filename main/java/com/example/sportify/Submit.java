@@ -9,9 +9,11 @@ import java.util.*;
 public class Submit implements Initializable {
 
     private final readWriteFile file;
+    private final MainApp mainApp;
 
-    public Submit(){
-        this.file = new readWriteFile();
+    public Submit(MainApp mainApp){
+        this.mainApp = mainApp;
+        this.file = new readWriteFile(mainApp);
     }
 
     public boolean login(String userValue, String passValue) {
@@ -33,6 +35,7 @@ public class Submit implements Initializable {
     public User setUser(String username){
         HashMap<String, HashMap<String, String>> account = this.file.readFile();
         User user = new User();
+        user.setMainApp(this.mainApp);
         if (account.containsKey(username)) {
             user = writeUser(account,username);
         }
@@ -41,6 +44,7 @@ public class Submit implements Initializable {
 
     private User writeUser(HashMap<String, HashMap<String, String>> account, String username){
         User user = new User();
+        user.setMainApp(mainApp);
         user.setUserName(account.get(username).get("username"));
         user.setPassword(account.get(username).get("password"));
         user.setFirstName(account.get(username).get("firstName"));

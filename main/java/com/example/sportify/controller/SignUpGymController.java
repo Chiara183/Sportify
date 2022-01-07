@@ -50,8 +50,9 @@ public class SignUpGymController implements Initializable {
 
     @FXML
     protected void submitActionSignUpGym() {
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         IO obj_IO = new IO();
+        obj_IO.setMainApp(this.mainApp);
         HashMap<String, String> gymAccount;
         ResultSet rs = obj_DAO.Check_Data(
                 "SELECT * " +

@@ -6,7 +6,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -15,14 +14,17 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.Objects;
 
 public class MainApp extends Application{
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    private Submit submit = new Submit();
+    private Submit submit;
     private User user = null;
+    private String search_cache;
+    private final DAO dao = new DAO();
 
     public static void main(String[] args) {
         launch(args);
@@ -30,6 +32,12 @@ public class MainApp extends Application{
 
     @Override
     public void start(Stage primaryStage) {
+
+        DB_Connection obj_DB_Connection = new DB_Connection();
+        Connection connection = obj_DB_Connection.get_connection();
+        this.dao.setConnection(connection);
+
+        this.submit = new Submit(this);
 
         this.primaryStage = primaryStage;
 
@@ -52,7 +60,6 @@ public class MainApp extends Application{
 
     /**
      * Is called to give a reference back to submit.
-     *
      */
     public void setSubmit(Submit submit) {
         this.submit = submit;
@@ -60,10 +67,17 @@ public class MainApp extends Application{
 
     /**
      * Is called to set user.
-     *
      */
     public void setUser(User user) {
         this.user = user;
+        this.user.setMainApp(this);
+    }
+
+    /**
+     * Is called to set search_cache.
+     */
+    public void setSearchCache(String search) {
+        this.search_cache = search;
     }
 
     /**
@@ -215,6 +229,7 @@ public class MainApp extends Application{
             // Give the controller access to the main app.
             FindGymController controller = loaderGym.getController();
             controller.setMainApp(this);
+            controller.setSearchCache(this.search_cache);
             Projection projection = getParameters().getUnnamed().contains("wgs84")
                     ? Projection.WGS_84 : Projection.WEB_MERCATOR;
             controller.setProjection(projection);
@@ -259,6 +274,13 @@ public class MainApp extends Application{
      */
     public BorderPane getPrimaryPane() {
         return rootLayout;
+    }
+
+    /**
+     * Returns the dao.
+     */
+    public DAO getDAO() {
+        return this.dao;
     }
 
     /**

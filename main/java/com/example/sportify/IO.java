@@ -7,12 +7,21 @@ import java.util.Objects;
 
 public class IO {
 
+    private MainApp mainApp;
+
     public IO (){
-        //this.filenameDataStream = System.getProperty("user.dir") + "\\trunk\\SystemFile\\";
+
+    }
+
+    /**
+     * Is called by the main application to give a reference back to itself.
+     */
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
     }
 
     public void write(HashMap<String, String> map) {
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         String username = map.get("username");
         String password = map.get("password");
         String first_name = map.get("firstName");
@@ -49,7 +58,7 @@ public class IO {
     public HashMap<String, HashMap<String, String>> read(){
         HashMap<String, HashMap<String, String>> map = new HashMap<>();
         try {
-            DAO obj_DAO = new DAO();
+            DAO obj_DAO = mainApp.getDAO();
             ResultSet rs = obj_DAO.Check_Data("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");
             while (rs.next()) {
                 HashMap<String, String> gymAccount = getInfoUser(rs);

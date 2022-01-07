@@ -151,7 +151,6 @@ public class SportQuizController implements Initializable {
 
     @FXML
     public void takeQuiz(ActionEvent event) {
-
         Button b = (Button) event.getSource();
         if (b == age1) {
             buttonAge1 = true;

@@ -44,7 +44,7 @@ public class SportController implements Initializable{
     }
 
     public void loadDescriptionFromDB(String sport){
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         ResultSet rs = obj_DAO.Check_Data("SELECT * FROM sport WHERE '"+ sport + "' = sport.name");
         String description  = null;
         try {

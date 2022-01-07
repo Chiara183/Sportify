@@ -87,9 +87,9 @@ public abstract class OAuthAuthenticator {
                         String[] s = email.split("@");
                         String username = s[0];
                         accessedJsonData.getString("picture");
-                        Submit submit = new Submit();
+                        Submit submit = new Submit(mainApp);
                         User user;
-                        DAO obj_DAO = new DAO();
+                        DAO obj_DAO = mainApp.getDAO();
                         ResultSet rs = obj_DAO.Check_Data(
                                 "SELECT * " +
                                         "FROM user " +

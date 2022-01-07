@@ -45,14 +45,14 @@ public class SignUpController implements Initializable {
     private MainApp mainApp;
 
     // Reference to submit.
-    private final Submit submit;
+    private Submit submit;
 
     /**
      * The constructor.
      * The constructor is called before to initialize() method.
      */
     public SignUpController() {
-        this.submit = new Submit();
+        this.submit = new Submit(null);
     }
 
     /**
@@ -61,6 +61,7 @@ public class SignUpController implements Initializable {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
+        this.submit = new Submit(mainApp);
     }
 
     @FXML
@@ -93,7 +94,7 @@ public class SignUpController implements Initializable {
         userAccount.put("lastName", lastNameValue);             //put user lastName in userAccount
         userAccount.put("email", email);                           //put user email in userAccount
         userAccount.put("birthday", date);                      //put user birthday in userAccount
-        DAO obj_DAO = new DAO();
+        DAO obj_DAO = mainApp.getDAO();
         ResultSet rs = obj_DAO.Check_Data(
                 "SELECT email " +
                         "FROM user " +
