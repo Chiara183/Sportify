@@ -95,7 +95,7 @@
                 </Button>
             </HBox>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                <ImageView accessibleRole="BUTTON" fitHeight="45.0" fitWidth="155.0" onMouseClicked="#login_with_google">
+                <ImageView accessibleRole="BUTTON" fitHeight="45.0" fitWidth="145.0" onMouseClicked="#login_with_google">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
