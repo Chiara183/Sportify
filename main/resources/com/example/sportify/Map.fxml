@@ -24,7 +24,7 @@
                      </fx:define>
                      <RadioButton fx:id="radioMsOSM" text="OSM" toggleGroup="$mapTypeGroup"/>
                      <RadioButton fx:id="radioMsWMS" text="WMS terrestrials OSM" toggleGroup="$mapTypeGroup" />
-                     <RadioButton fx:id="radioMsXYZ" text="XYZ source" toggleGroup="$mapTypeGroup" />
+                     <RadioButton text="XYZ source" toggleGroup="$mapTypeGroup" />
                   </VBox>
                </TitledPane>
             </panes>

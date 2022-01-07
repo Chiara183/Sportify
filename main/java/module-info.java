@@ -7,10 +7,10 @@ module com.example.sportify {
     requires java.sql;
     requires json.simple;
     requires com.sothawo.mapjfx;
-    requires mysql.connector.java;
     requires javafx.web;
     requires json;
     requires org.apache.commons.lang3;
+    requires mysql.connector.java;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;
