@@ -185,7 +185,6 @@ public class MapController {
     private void setupEventHandlers() {
         mapView.addEventHandler(MarkerEvent.MARKER_CLICKED, event -> {
             event.consume();
-            event.consume();
             Coordinate coords = event.getMarker().getPosition();
             if(event.getMarker().getMapLabel().isEmpty()) {
                 mark.forEach((id, gym) -> {
