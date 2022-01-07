@@ -54,23 +54,25 @@ public class GymInfoController implements Initializable {
     private void setGym(String name){
         this.gym_name.setText(name);
         this.gym_description.setText(
-                "Address: " + "" +
-                        "\nTelephone: " + "");
-        try {
+                """
+                        ADDRESS:\s
+
+                        TELEPHONE:\s""");
+        new Thread(() -> {try {
             DAO obj_DAO = mainApp.getDAO();
             ResultSet rs = obj_DAO.Check_Data(
                     "SELECT * " +
                             "FROM gym " +
                             "WHERE gym.name = \"" + name + "\"");
             if (rs.next()) {
-                this.gym_description.setText(
+                gym_description.setText(
                         "Address: " + rs.getString("address") +
                         "\nTelephone: " + rs.getString("phone"));
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());
-        }
-        try {
+        }}).start();
+        new Thread(() -> {try {
             DAO obj_DAO = mainApp.getDAO();
             ResultSet rs = obj_DAO.Check_Data(
                     "SELECT * " +
@@ -78,18 +80,21 @@ public class GymInfoController implements Initializable {
                             "WHERE review.gym = \"" + name + "\"");
             while (rs.next()) {
                 Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
+                labelTitle.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
                 Label labelReview = new Label(rs.getString("review"));
+                labelReview.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
                 VBox vbox = new VBox(labelTitle, labelReview);
-                this.review.getChildren().add(vbox);
+                review.getChildren().add(vbox);
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());
-        }
+        }}).start();
         if(this.review.getChildren().size()<2){
             Label label = new Label("There are no reviews");
+            label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
             this.review.getChildren().add(label);
         }
-        try {
+        new Thread(() -> {try {
             DAO obj_DAO = mainApp.getDAO();
             ResultSet rs = obj_DAO.Check_Data(
                     "SELECT * " +
@@ -97,13 +102,15 @@ public class GymInfoController implements Initializable {
                             "WHERE course.gym = \"" + name + "\"");
             while (rs.next()) {
                 Label label = new Label(rs.getString("sport") + " " + rs.getTime("time").toString());
-                this.course.getChildren().add(label);
+                label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
+                course.getChildren().add(label);
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());
-        }
+        }}).start();
         if(this.course.getChildren().size()<2){
             Label label = new Label("There are no course");
+            label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
             this.course.getChildren().add(label);
         }
     }
@@ -117,7 +124,6 @@ public class GymInfoController implements Initializable {
 
 
     public void loadingGymName(String name) {
-        this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - " + name);
         try {
             // Load test result overview.
@@ -132,6 +138,7 @@ public class GymInfoController implements Initializable {
             GymInfoController controller = loaderSport.getController();
             controller.setUser(this.user);
             controller.setMainApp(this.mainApp);
+            controller.setSearchCache(this.search_cache);
             controller.setGym(name);
         } catch (IOException e) {
             System.out.println(e.getMessage());

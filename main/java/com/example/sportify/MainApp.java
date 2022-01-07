@@ -70,7 +70,9 @@ public class MainApp extends Application{
      */
     public void setUser(User user) {
         this.user = user;
-        this.user.setMainApp(this);
+        if(user != null) {
+            this.user.setMainApp(this);
+        }
     }
 
     /**

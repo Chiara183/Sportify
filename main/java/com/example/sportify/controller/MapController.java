@@ -10,6 +10,7 @@ import com.sothawo.mapjfx.event.MarkerEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
 
 import javax.swing.*;
@@ -215,9 +216,13 @@ public class MapController {
         mapView.addEventHandler(MarkerEvent.MARKER_RIGHTCLICKED, event -> {
             //TODO
         });
+        mapView.addEventHandler(MarkerEvent.MARKER_ENTERED, event -> mapView.setCursor(Cursor.HAND));
+        mapView.addEventHandler(MarkerEvent.MARKER_EXITED, event -> mapView.setCursor(Cursor.DEFAULT));
 
         mapView.addEventHandler(MapLabelEvent.MAPLABEL_CLICKED, this::loadGymInfo);
         mapView.addEventHandler(MapLabelEvent.MAPLABEL_RIGHTCLICKED, this::loadGymInfo);
+        mapView.addEventHandler(MapLabelEvent.MAPLABEL_ENTERED, event -> mapView.setCursor(Cursor.HAND));
+        mapView.addEventHandler(MapLabelEvent.MAPLABEL_EXITED, event -> mapView.setCursor(Cursor.DEFAULT));
     }
 
     /**
@@ -267,15 +272,15 @@ public class MapController {
 
     private void loadGymInfo(MapLabelEvent event){
         event.consume();
-        if(!Objects.equals(event.getMapLabel().getText(), "You are Here!")) {
+        if(Objects.equals(event.getMapLabel().getText(), "You are Here!")) {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Marker is not a gym.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
             GymInfoController gym = new GymInfoController();
             gym.setMainApp(this.mainApp);
             gym.setUser(this.user);
             gym.setSearchCache(this.search.getText());
             gym.loadingGymName(event.getMapLabel().getText());
-        } else {
-            JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "Marker is not a gym.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
