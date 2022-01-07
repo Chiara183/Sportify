@@ -68,6 +68,8 @@ public class FindGymController implements Initializable{
 
             // Give the controller access to the main app.
             MapController controller = loaderGym.getController();
+            controller.setMainApp(this.mainApp);
+            controller.setUser(this.user);
             controller.initMapAndControls(projection);
         } catch (IOException e) {
             System.out.println(e.getMessage());

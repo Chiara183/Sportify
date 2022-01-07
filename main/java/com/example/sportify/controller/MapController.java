@@ -3,6 +3,7 @@ package com.example.sportify.controller;
 import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.OpenStreetMapUtils;
+import com.example.sportify.User;
 import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.event.MapLabelEvent;
 import com.sothawo.mapjfx.event.MapViewEvent;
@@ -53,18 +54,6 @@ public class MapController {
     @FXML
     private RadioButton radioMsOSM;
     @FXML
-    private RadioButton radioMsBR;
-    @FXML
-    private RadioButton radioMsCd;
-    @FXML
-    private RadioButton radioMsCg;
-    @FXML
-    private RadioButton radioMsCl;
-    @FXML
-    private RadioButton radioMsBA;
-    @FXML
-    private RadioButton radioMsBAwL;
-    @FXML
     private RadioButton radioMsWMS;
 
     /** ToggleGroup for the MapStyle radios */
@@ -81,9 +70,18 @@ public class MapController {
             .withAttributions("'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
 
     // Reference to the main application.
-    private final MainApp mainApp = new MainApp();
+    private MainApp mainApp;
+
+    // User
+    private User user;
 
     public MapController() {
+    }
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @FXML
@@ -125,6 +123,8 @@ public class MapController {
             alert.setContentText("Please enter valid address");
             alert.showAndWait();
         }
+
+        setupEventHandlers();
     }
 
 
@@ -157,18 +157,6 @@ public class MapController {
             MapType mapType;
             if (newValue == radioMsOSM) {
                 mapType = MapType.OSM;
-            } else if (newValue == radioMsBR) {
-                mapType = MapType.BINGMAPS_ROAD;
-            } else if (newValue == radioMsCd) {
-                mapType = MapType.BINGMAPS_CANVAS_DARK;
-            } else if (newValue == radioMsCg) {
-                mapType = MapType.BINGMAPS_CANVAS_GRAY;
-            } else if (newValue == radioMsCl) {
-                mapType = MapType.BINGMAPS_CANVAS_LIGHT;
-            } else if (newValue == radioMsBA) {
-                mapType = MapType.BINGMAPS_AERIAL;
-            } else if (newValue == radioMsBAwL) {
-                mapType = MapType.BINGMAPS_AERIAL_WITH_LABELS;
             } else if (newValue == radioMsWMS) {
                 mapView.setWMSParam(wmsParam);
                 mapType = MapType.WMS;
@@ -193,8 +181,33 @@ public class MapController {
      * initializes the event handlers.
      */
     private void setupEventHandlers() {
+        mapView.addEventHandler(MarkerEvent.MARKER_CLICKED, event -> {
+            event.consume();
+            loadGymInfo(event);
+        });
+        mapView.addEventHandler(MarkerEvent.MARKER_RIGHTCLICKED, event -> {
+            event.consume();
+            loadGymInfo(event);
+        });
+
+        mapView.addEventHandler(MapLabelEvent.MAPLABEL_CLICKED, event -> {
+            event.consume();
+            GymInfoController gym = new GymInfoController();
+            gym.setMainApp(this.mainApp);
+            gym.setUser(this.user);
+            gym.loadingGymName(event.getMapLabel().getText());
+        });
+        mapView.addEventHandler(MapLabelEvent.MAPLABEL_RIGHTCLICKED, event -> {
+            event.consume();
+            GymInfoController gym = new GymInfoController();
+            gym.setMainApp(this.mainApp);
+            gym.setUser(this.user);
+            gym.loadingGymName(event.getMapLabel().getText());
+        });
+
         mapView.addEventHandler(MapViewEvent.MAP_POINTER_MOVED, event -> {
-            Coordinate coords = event.getCoordinate();
+            event.consume();
+            Coordinate coords = event.getCoordinate().normalize();
                     mark.forEach((gym) -> {
                         if(coords == gym.getPosition()){
                             if (gym.getMapLabel().isPresent()) {
@@ -205,20 +218,6 @@ public class MapController {
                             }
                         }
                     });
-        });
-
-        mapView.addEventHandler(MarkerEvent.MARKER_CLICKED, event -> {
-            //TODO
-        });
-        mapView.addEventHandler(MarkerEvent.MARKER_RIGHTCLICKED, event -> {
-            //TODO
-        });
-
-        mapView.addEventHandler(MapLabelEvent.MAPLABEL_CLICKED, event -> {
-            //TODO
-        });
-        mapView.addEventHandler(MapLabelEvent.MAPLABEL_RIGHTCLICKED, event -> {
-            //TODO
         });
     }
 
@@ -264,6 +263,17 @@ public class MapController {
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void loadGymInfo(MarkerEvent event){
+        GymInfoController gym = new GymInfoController();
+        gym.setMainApp(this.mainApp);
+        gym.setUser(this.user);
+        if (event.getMarker().getMapLabel().isPresent()) {
+            gym.loadingGymName(event.getMarker().getMapLabel().get().getText());
+        }else{
+            gym.loadingGymName("Gym Info");
         }
     }
 }

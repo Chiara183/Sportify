@@ -25,12 +25,6 @@
                      <RadioButton fx:id="radioMsOSM" text="OSM" toggleGroup="$mapTypeGroup"/>
                      <RadioButton fx:id="radioMsWMS" text="WMS terrestrials OSM" toggleGroup="$mapTypeGroup" />
                      <RadioButton fx:id="radioMsXYZ" text="XYZ source" toggleGroup="$mapTypeGroup" />
-                     <RadioButton fx:id="radioMsBR" text="Bing Roads" toggleGroup="$mapTypeGroup" />
-                     <RadioButton fx:id="radioMsCd" text="Bing Roads - dark" toggleGroup="$mapTypeGroup" />
-                     <RadioButton fx:id="radioMsCg" text="Bing Roads - grayscale" toggleGroup="$mapTypeGroup" />
-                     <RadioButton fx:id="radioMsCl" text="Bing Roads - light" toggleGroup="$mapTypeGroup" />
-                     <RadioButton fx:id="radioMsBA" text="Bing Aerial" toggleGroup="$mapTypeGroup" />
-                     <RadioButton fx:id="radioMsBAwL" text="Bing Aerial with Labels" toggleGroup="$mapTypeGroup" />
                   </VBox>
                </TitledPane>
             </panes>
