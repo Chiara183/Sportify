@@ -23,7 +23,7 @@ public class FindGymController implements Initializable{
     private User user;
 
     // String
-    private String search_cache;
+    private String[] search_cache;
 
     @FXML
     private Pane Map;
@@ -51,7 +51,7 @@ public class FindGymController implements Initializable{
     /**
      * Is called to set search_cache.
      */
-    public void setSearchCache(String search) {
+    public void setSearchCache(String[] search) {
         this.search_cache = search;
     }
 

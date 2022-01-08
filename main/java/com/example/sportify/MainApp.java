@@ -23,7 +23,7 @@ public class MainApp extends Application{
     private BorderPane rootLayout;
     private Submit submit;
     private User user = null;
-    private String search_cache;
+    private String[] search_cache;
     private final DAO dao = new DAO();
 
     public static void main(String[] args) {
@@ -78,7 +78,7 @@ public class MainApp extends Application{
     /**
      * Is called to set search_cache.
      */
-    public void setSearchCache(String search) {
+    public void setSearchCache(String[] search) {
         this.search_cache = search;
     }
 

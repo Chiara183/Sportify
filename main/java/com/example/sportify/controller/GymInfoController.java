@@ -31,7 +31,7 @@ public class GymInfoController implements Initializable {
     private VBox review;
 
     // String
-    private String search_cache;
+    private String[] search_cache;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -47,7 +47,7 @@ public class GymInfoController implements Initializable {
     public void setUser(User user) {
         this.user = user;
     }
-    public void setSearchCache(String search) {
+    public void setSearchCache(String[] search) {
         this.search_cache = search;
     }
 
@@ -66,8 +66,8 @@ public class GymInfoController implements Initializable {
                             "WHERE gym.name = \"" + name + "\"");
             if (rs.next()) {
                 gym_description.setText(
-                        "Address: " + rs.getString("address") +
-                        "\nTelephone: " + rs.getString("phone"));
+                        "ADDRESS: " + rs.getString("address") +
+                        "\n\nTELEPHONE: " + rs.getString("phone"));
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());

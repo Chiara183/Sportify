@@ -85,8 +85,9 @@ public class MapController {
     public void setUser(User user) {
         this.user = user;
     }
-    public void setSearchCache(String search) {
-        this.search.setText(search);
+    public void setSearchCache(String[] search) {
+        this.search.setText(search[0]);
+        this.km.setValue(search[1]);
     }
 
     @FXML
@@ -279,7 +280,10 @@ public class MapController {
             GymInfoController gym = new GymInfoController();
             gym.setMainApp(this.mainApp);
             gym.setUser(this.user);
-            gym.setSearchCache(this.search.getText());
+            String[] search_cache = new String[2];
+            search_cache[0] = this.search.getText();
+            search_cache[1] = this.km.getValue();
+            gym.setSearchCache(search_cache);
             gym.loadingGymName(event.getMapLabel().getText());
         }
     }
