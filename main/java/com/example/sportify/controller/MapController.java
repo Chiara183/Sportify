@@ -219,13 +219,25 @@ public class MapController {
         mapView.addEventHandler(MarkerEvent.MARKER_RIGHTCLICKED, event -> {
             //TODO
         });
-        mapView.addEventHandler(MarkerEvent.MARKER_ENTERED, event -> mapView.setCursor(Cursor.HAND));
-        mapView.addEventHandler(MarkerEvent.MARKER_EXITED, event -> mapView.setCursor(Cursor.DEFAULT));
+        mapView.addEventHandler(MarkerEvent.MARKER_ENTERED, event -> {
+            mapView.setCursor(Cursor.HAND);
+            mainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.HAND);
+        });
+        mapView.addEventHandler(MarkerEvent.MARKER_EXITED, event -> {
+            mapView.setCursor(Cursor.DEFAULT);
+            mainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.DEFAULT);
+        });
 
         mapView.addEventHandler(MapLabelEvent.MAPLABEL_CLICKED, this::loadGymInfo);
         mapView.addEventHandler(MapLabelEvent.MAPLABEL_RIGHTCLICKED, this::loadGymInfo);
-        mapView.addEventHandler(MapLabelEvent.MAPLABEL_ENTERED, event -> mapView.setCursor(Cursor.HAND));
-        mapView.addEventHandler(MapLabelEvent.MAPLABEL_EXITED, event -> mapView.setCursor(Cursor.DEFAULT));
+        mapView.addEventHandler(MapLabelEvent.MAPLABEL_ENTERED, event -> {
+            mapView.setCursor(Cursor.HAND);
+            mainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.HAND);
+        });
+        mapView.addEventHandler(MapLabelEvent.MAPLABEL_EXITED, event -> {
+            mapView.setCursor(Cursor.DEFAULT);
+            mainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.DEFAULT);
+        });
     }
 
     /**

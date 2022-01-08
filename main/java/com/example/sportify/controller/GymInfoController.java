@@ -3,6 +3,7 @@ package com.example.sportify.controller;
 import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.User;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -58,56 +59,65 @@ public class GymInfoController implements Initializable {
                         ADDRESS:\s
 
                         TELEPHONE:\s""");
-        new Thread(() -> {try {
-            DAO obj_DAO = mainApp.getDAO();
-            ResultSet rs = obj_DAO.Check_Data(
-                    "SELECT * " +
-                            "FROM gym " +
-                            "WHERE gym.name = \"" + name + "\"");
-            if (rs.next()) {
-                gym_description.setText(
-                        "ADDRESS: " + rs.getString("address") +
-                        "\n\nTELEPHONE: " + rs.getString("phone"));
+        Runnable task1 = () -> Platform.runLater(() -> {
+            try {
+                DAO obj_DAO = mainApp.getDAO();
+                ResultSet rs = obj_DAO.Check_Data(
+                        "SELECT * " +
+                                "FROM gym " +
+                                "WHERE gym.name = \"" + name + "\"");
+                if (rs.next()) {
+                    gym_description.setText(
+                            "ADDRESS: " + rs.getString("address") +
+                                    "\n\nTELEPHONE: " + rs.getString("phone"));
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
             }
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }}).start();
-        new Thread(() -> {try {
-            DAO obj_DAO = mainApp.getDAO();
-            ResultSet rs = obj_DAO.Check_Data(
-                    "SELECT * " +
-                            "FROM review " +
-                            "WHERE review.gym = \"" + name + "\"");
-            while (rs.next()) {
-                Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
-                labelTitle.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
-                Label labelReview = new Label(rs.getString("review"));
-                labelReview.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
-                VBox vbox = new VBox(labelTitle, labelReview);
-                review.getChildren().add(vbox);
+        });
+        Runnable task2 = () -> Platform.runLater(() -> {
+            try {
+                DAO obj_DAO = mainApp.getDAO();
+                ResultSet rs = obj_DAO.Check_Data(
+                        "SELECT * " +
+                                "FROM review " +
+                                "WHERE review.gym = \"" + name + "\"");
+                while (rs.next()) {
+                    Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
+                    labelTitle.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
+                    Label labelReview = new Label(rs.getString("review"));
+                    labelReview.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
+                    VBox vbox = new VBox(labelTitle, labelReview);
+                    review.getChildren().add(vbox);
+                }
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
             }
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }}).start();
+        });
+        Runnable task3 = () -> Platform.runLater(() -> {
+            try {
+                DAO obj_DAO = mainApp.getDAO();
+                ResultSet rs = obj_DAO.Check_Data(
+                        "SELECT * " +
+                                "FROM course " +
+                                "WHERE course.gym = \"" + name + "\"");
+                while (rs.next()) {
+                    Label label = new Label(rs.getString("sport") + " " + rs.getTime("time").toString());
+                    label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
+                    course.getChildren().add(label);
+                }
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
+        });
+        new Thread(task1).start();
+        new Thread(task2).start();
         if(this.review.getChildren().size()<2){
             Label label = new Label("There are no reviews");
             label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
             this.review.getChildren().add(label);
         }
-        new Thread(() -> {try {
-            DAO obj_DAO = mainApp.getDAO();
-            ResultSet rs = obj_DAO.Check_Data(
-                    "SELECT * " +
-                            "FROM course " +
-                            "WHERE course.gym = \"" + name + "\"");
-            while (rs.next()) {
-                Label label = new Label(rs.getString("sport") + " " + rs.getTime("time").toString());
-                label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
-                course.getChildren().add(label);
-            }
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }}).start();
+        new Thread(task3).start();
         if(this.course.getChildren().size()<2){
             Label label = new Label("There are no course");
             label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
