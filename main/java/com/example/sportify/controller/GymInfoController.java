@@ -4,9 +4,11 @@ import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.User;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -52,6 +54,16 @@ public class GymInfoController implements Initializable {
         this.search_cache = search;
     }
 
+    private Task<Void> createTask(Runnable task){
+        return new Task<>() {
+            @Override
+            protected Void call() {
+                task.run();
+                return null;
+            }
+        };
+    }
+
     private void setGym(String name){
         this.gym_name.setText(name);
         this.gym_description.setText(
@@ -75,6 +87,10 @@ public class GymInfoController implements Initializable {
                 System.out.println(e.getMessage());
             }
         });
+        Task<Void> task4 = createTask(task1);
+        task4.setOnRunning(e -> gym_description.setCursor(Cursor.WAIT));
+        task4.setOnSucceeded(e -> gym_description.setCursor(Cursor.DEFAULT));
+        task4.setOnFailed(e -> gym_description.setCursor(Cursor.DEFAULT));
         Runnable task2 = () -> Platform.runLater(() -> {
             try {
                 DAO obj_DAO = mainApp.getDAO();
@@ -94,6 +110,10 @@ public class GymInfoController implements Initializable {
                 System.out.println(e.getMessage());
             }
         });
+        Task<Void> task5 = createTask(task2);
+        task5.setOnRunning(e -> review.setCursor(Cursor.WAIT));
+        task5.setOnSucceeded(e -> review.setCursor(Cursor.DEFAULT));
+        task5.setOnFailed(e -> review.setCursor(Cursor.DEFAULT));
         Runnable task3 = () -> Platform.runLater(() -> {
             try {
                 DAO obj_DAO = mainApp.getDAO();
@@ -110,14 +130,18 @@ public class GymInfoController implements Initializable {
                 System.out.println(e.getMessage());
             }
         });
-        new Thread(task1).start();
-        new Thread(task2).start();
+        Task<Void> task6 = createTask(task3);
+        task6.setOnRunning(e -> course.setCursor(Cursor.WAIT));
+        task6.setOnSucceeded(e -> course.setCursor(Cursor.DEFAULT));
+        task6.setOnFailed(e -> course.setCursor(Cursor.DEFAULT));
+        new Thread(task4).start();
+        new Thread(task5).start();
         if(this.review.getChildren().size()<2){
             Label label = new Label("There are no reviews");
             label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
             this.review.getChildren().add(label);
         }
-        new Thread(task3).start();
+        new Thread(task6).start();
         if(this.course.getChildren().size()<2){
             Label label = new Label("There are no course");
             label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
