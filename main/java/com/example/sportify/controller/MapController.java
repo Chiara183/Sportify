@@ -86,8 +86,10 @@ public class MapController {
         this.user = user;
     }
     public void setSearchCache(String[] search) {
-        this.search.setText(search[0]);
-        this.km.setValue(search[1]);
+        if(search!=null) {
+            this.search.setText(search[0]);
+            this.km.setValue(search[1]);
+        }
     }
 
     @FXML
