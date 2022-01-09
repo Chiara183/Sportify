@@ -10,6 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -26,6 +28,14 @@ public class GymInfoController implements Initializable {
     private Label gym_name;
     @FXML
     private Label gym_description;
+
+    // TextArea
+    @FXML
+    private TextArea review_area;
+
+    // BorderPane
+    @FXML
+    private BorderPane review_pane;
 
     // VBox
     @FXML
@@ -54,6 +64,50 @@ public class GymInfoController implements Initializable {
         this.search_cache = search;
     }
 
+    private void loadReview(ResultSet rs){
+        try {
+            Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
+            labelTitle.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
+            Label labelReview = new Label(rs.getString("review"));
+            labelReview.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
+            VBox vbox = new VBox(labelTitle, labelReview);
+            this.review.getChildren().add(vbox);
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void share_review(){
+        String gym = gym_name.getText();
+        String review = review_area.getText(0,review_area.getLength());
+        String user = this.user.getUserName();
+        DAO obj_DAO = mainApp.getDAO();
+        obj_DAO.updateDB(
+                "INSERT INTO `review` (`gym`, `review`, `writer`, `timestamp`) VALUES ('\"\n"
+                        + gym +"', '"
+                        + review + "', '"
+                        + user + "', " +
+                        "DEFAULT)");
+        Runnable task2 = () -> Platform.runLater(() -> {
+            try {
+                ResultSet rs = obj_DAO.Check_Data(
+                        "SELECT * " +
+                                "FROM review " +
+                                "WHERE review.gym = \"" + gym + "\"");
+                while (rs.next()) {
+                    loadReview(rs);
+                }
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
+        });
+        Task<Void> task5 = createTask(task2);
+        task5.setOnRunning(e -> this.review.setCursor(Cursor.WAIT));
+        task5.setOnSucceeded(e -> this.review.setCursor(Cursor.DEFAULT));
+        task5.setOnFailed(e -> this.review.setCursor(Cursor.DEFAULT));
+    }
+
     private Task<Void> createTask(Runnable task){
         return new Task<>() {
             @Override
@@ -65,6 +119,9 @@ public class GymInfoController implements Initializable {
     }
 
     private void setGym(String name){
+        if(user!=null){
+            review_pane.setVisible(true);
+        }
         this.gym_name.setText(name);
         this.gym_description.setText(
                 """
@@ -99,12 +156,7 @@ public class GymInfoController implements Initializable {
                                 "FROM review " +
                                 "WHERE review.gym = \"" + name + "\"");
                 while (rs.next()) {
-                    Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
-                    labelTitle.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
-                    Label labelReview = new Label(rs.getString("review"));
-                    labelReview.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
-                    VBox vbox = new VBox(labelTitle, labelReview);
-                    review.getChildren().add(vbox);
+                    loadReview(rs);
                 }
             }catch (SQLException e){
                 System.out.println(e.getMessage());
