@@ -71,11 +71,7 @@ public class GymInfoController implements Initializable {
         this.search_cache = search;
     }
     private void setReview(){
-        if(this.user!=null){
-            review_pane.setVisible(true);
-        } else {
-            review_pane.setVisible(false);
-        }
+        review_pane.setVisible(this.user != null);
     }
     private void setupEventHandlers() {
         mainApp.getPrimaryPane().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
