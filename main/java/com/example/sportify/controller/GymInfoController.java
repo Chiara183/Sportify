@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -115,13 +116,18 @@ public class GymInfoController implements Initializable {
             i++;
         }
         String user = this.user.getUserName();
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
-                "INSERT INTO `review` (`gym`, `review`, `writer`, `timestamp`) VALUES ('"
-                        + gym +"', '"
-                        + review + "', '"
-                        + user + "', " +
-                        "CURRENT_TIMESTAMP);");
+        if(!review.toString().equals("")) {
+            DAO obj_DAO = mainApp.getDAO();
+            obj_DAO.updateDB(
+                    "INSERT INTO `review` (`gym`, `review`, `writer`, `timestamp`) VALUES ('"
+                            + gym + "', '"
+                            + review + "', '"
+                            + user + "', " +
+                            "CURRENT_TIMESTAMP);");
+        } else {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Review is empty.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
         loadingGymName(gym_name.getText());
     }
 
