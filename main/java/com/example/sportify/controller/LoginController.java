@@ -87,7 +87,12 @@ public class LoginController implements Initializable{
     @FXML
     protected void submitActionLogin() {
         String userValue = username.getText();      //get user entered username from the textField1
-        String passValue = password.getText();      //get user entered password from the textField2
+        String passValue;
+        if(pass_toggle.isSelected()) {
+            passValue = pass_text.getText();      //get user entered password from the textField2
+        } else {
+            passValue = password.getText();      //get user entered password from the textField2
+        }
 
         //check whether the credentials are authentic or not
         if (this.submit.login(userValue, passValue)) {   //if authentic, navigate user to a new page

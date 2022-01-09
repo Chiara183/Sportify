@@ -44,6 +44,8 @@ public class GymInfoController implements Initializable {
     @FXML
     private VBox review;
 
+    // Button
+
     // String
     private String[] search_cache;
 
@@ -74,19 +76,24 @@ public class GymInfoController implements Initializable {
         review_pane.setVisible(this.user != null);
     }
     private void setupEventHandlers() {
-        mainApp.getPrimaryPane().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        menu.getSignOut().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             this.user = this.menu.getUser();
-            setReview();
+            Runnable task = () -> Platform.runLater(this::setReview);
+            Task<Void> task1 = createTask(task);
+            task1.setOnRunning(e -> mainApp.getPrimaryPane().setCursor(Cursor.WAIT));
+            task1.setOnSucceeded(e -> mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT));
+            task1.setOnFailed(e -> mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT));
+            new Thread(task1).start();
         });
     }
 
     private void loadReview(ResultSet rs){
         try {
             Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
-            labelTitle.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
+            labelTitle.setStyle("-fx-font-weight: bold;");
             Label labelReview = new Label(rs.getString("review"));
-            labelReview.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
-            VBox vbox = new VBox(labelTitle, labelReview);
+            Label blankSpace = new Label();
+            VBox vbox = new VBox(labelTitle, labelReview, blankSpace);
             this.review.getChildren().add(vbox);
         }catch (SQLException e){
             System.out.println(e.getMessage());
@@ -96,32 +103,26 @@ public class GymInfoController implements Initializable {
     @FXML
     private void share_review(){
         String gym = gym_name.getText();
-        String review = review_area.getText(0,review_area.getLength());
+        StringBuilder review = new StringBuilder(review_area.getText(0, review_area.getLength()));
+        String[] reviewList = review.toString().split("'");
+        review = new StringBuilder();
+        int i = 0;
+        while(i!=reviewList.length){
+            review.append(reviewList[i]);
+            if(i!=reviewList.length-1){
+                review.append("\\'");
+            }
+            i++;
+        }
         String user = this.user.getUserName();
         DAO obj_DAO = mainApp.getDAO();
         obj_DAO.updateDB(
-                "INSERT INTO `review` (`gym`, `review`, `writer`, `timestamp`) VALUES ('\"\n"
+                "INSERT INTO `review` (`gym`, `review`, `writer`, `timestamp`) VALUES ('"
                         + gym +"', '"
                         + review + "', '"
                         + user + "', " +
-                        "DEFAULT)");
-        Runnable task2 = () -> Platform.runLater(() -> {
-            try {
-                ResultSet rs = obj_DAO.Check_Data(
-                        "SELECT * " +
-                                "FROM review " +
-                                "WHERE review.gym = \"" + gym + "\"");
-                while (rs.next()) {
-                    loadReview(rs);
-                }
-            }catch (SQLException e){
-                System.out.println(e.getMessage());
-            }
-        });
-        Task<Void> task5 = createTask(task2);
-        task5.setOnRunning(e -> this.review.setCursor(Cursor.WAIT));
-        task5.setOnSucceeded(e -> this.review.setCursor(Cursor.DEFAULT));
-        task5.setOnFailed(e -> this.review.setCursor(Cursor.DEFAULT));
+                        "CURRENT_TIMESTAMP);");
+        loadingGymName(gym_name.getText());
     }
 
     private Task<Void> createTask(Runnable task){
@@ -178,8 +179,14 @@ public class GymInfoController implements Initializable {
                         "SELECT * " +
                                 "FROM review " +
                                 "WHERE review.gym = \"" + name + "\"");
-                while (rs.next()) {
-                    loadReview(rs);
+                if(rs.next()) {
+                    while (rs.next()) {
+                        loadReview(rs);
+                    }
+                } else {
+                    Label labelNotFound = new Label("There are no reviews");
+                    labelNotFound.setStyle("-fx-font-weight: bold;");
+                    this.review.getChildren().add(labelNotFound);
                 }
             }catch (SQLException e){
                 System.out.println(e.getMessage());
@@ -188,7 +195,12 @@ public class GymInfoController implements Initializable {
         Task<Void> task5 = createTask(task2);
         task5.setOnRunning(e -> review.setCursor(Cursor.WAIT));
         task5.setOnSucceeded(e -> review.setCursor(Cursor.DEFAULT));
-        task5.setOnFailed(e -> review.setCursor(Cursor.DEFAULT));
+        task5.setOnFailed(e -> {
+            review.setCursor(Cursor.DEFAULT);
+            Label labelNotFound = new Label("There are no reviews");
+            labelNotFound.setStyle("-fx-font-weight: bold;");
+            this.review.getChildren().add(labelNotFound);
+        });
 
         // Set course
         Runnable task3 = () -> Platform.runLater(() -> {
@@ -198,10 +210,16 @@ public class GymInfoController implements Initializable {
                         "SELECT * " +
                                 "FROM course " +
                                 "WHERE course.gym = \"" + name + "\"");
-                while (rs.next()) {
-                    Label label = new Label(rs.getString("sport") + " " + rs.getTime("time").toString());
-                    label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
-                    course.getChildren().add(label);
+                if(rs.next()) {
+                    while (rs.next()) {
+                        Label label = new Label(rs.getString("sport") + " " + rs.getTime("time").toString());
+                        label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
+                        course.getChildren().add(label);
+                    }
+                } else {
+                    Label label = new Label("There are no course");
+                    label.setStyle("-fx-font-weight: bold;");
+                    this.course.getChildren().add(label);
                 }
             }catch (SQLException e){
                 System.out.println(e.getMessage());
@@ -210,22 +228,17 @@ public class GymInfoController implements Initializable {
         Task<Void> task6 = createTask(task3);
         task6.setOnRunning(e -> course.setCursor(Cursor.WAIT));
         task6.setOnSucceeded(e -> course.setCursor(Cursor.DEFAULT));
-        task6.setOnFailed(e -> course.setCursor(Cursor.DEFAULT));
+        task6.setOnFailed(e -> {
+            course.setCursor(Cursor.DEFAULT);
+            Label label = new Label("There are no course");
+            label.setStyle("-fx-font-weight: bold;");
+            this.course.getChildren().add(label);
+        });
 
         // Run Thread and set DEFAULT review and course
         new Thread(task4).start();
         new Thread(task5).start();
         new Thread(task6).start();
-        if(this.review.getChildren().size()<2){
-            Label label = new Label("There are no reviews");
-            label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
-            this.review.getChildren().add(label);
-        }
-        if(this.course.getChildren().size()<2){
-            Label label = new Label("There are no course");
-            label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
-            this.course.getChildren().add(label);
-        }
     }
 
     @FXML

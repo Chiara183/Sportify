@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.GymInfoController">
     <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="-2.0" prefHeight="500.0" prefWidth="830.0">
-        <GridPane prefHeight="500.0" prefWidth="830.0">
+        <GridPane prefHeight="479.0" prefWidth="830.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="202.0" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="552.0" minWidth="10.0" prefWidth="436.0" />
@@ -17,11 +17,10 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="317.0" minHeight="10.0" prefHeight="232.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="317.0" minHeight="10.0" prefHeight="222.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="326.0" minHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="326.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
             </rowConstraints>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <ImageView fitHeight="53.0" fitWidth="222.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                 <Image url="@Images/Sportify_logo.png" />
             </ImageView>
@@ -57,13 +56,6 @@
                     </font>
                 </Label>
             </VBox>
-            <VBox fx:id="review" maxWidth="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Review" textAlignment="CENTER" wrapText="true">
-                    <font>
-                        <Font name="Comic Sans MS Bold" size="18.0" />
-                    </font>
-                </Label>
-            </VBox>
          <BorderPane fx:id="review_pane" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <top>
                <Label text="New Review" BorderPane.alignment="CENTER">
@@ -87,6 +79,19 @@
                   </graphic></Button>
             </bottom>
          </BorderPane>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                  minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Review"
+                       textAlignment="CENTER" wrapText="true">
+                    <font>
+                        <Font name="Comic Sans MS Bold" size="18.0"/>
+                    </font>
+                </Label>
+                <ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="194.0" prefWidth="436.0">
+                    <VBox fx:id="review" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity"
+                          translateX="110.0"/>
+                </ScrollPane>
+            </VBox>
         </GridPane>
     </VBox>
     <stylesheets>

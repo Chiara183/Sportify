@@ -92,6 +92,13 @@ public class MenuController implements Initializable {
         return this.user;
     }
 
+    /**
+     * Is called to get signOut button.
+     */
+    public Button getSignOut(){
+        return this.signOut;
+    }
+
     @FXML
     private void signOut() {
         setUser(null);
