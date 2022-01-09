@@ -71,10 +71,10 @@ public class GymInfoController implements Initializable {
         this.search_cache = search;
     }
     private void setReview(){
-        if(user!=null){
+        if(this.user!=null){
             review_pane.setVisible(true);
         } else {
-            review_pane.setVisible(true);
+            review_pane.setVisible(false);
         }
     }
     private void setupEventHandlers() {
@@ -256,6 +256,7 @@ public class GymInfoController implements Initializable {
             controller.setUser(this.user);
             controller.setMainApp(this.mainApp);
             controller.setSearchCache(this.search_cache);
+            controller.setMenu(this.menu);
             controller.setGym(name);
         } catch (IOException e) {
             System.out.println(e.getMessage());
