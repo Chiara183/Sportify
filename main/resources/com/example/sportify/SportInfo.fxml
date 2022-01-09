@@ -32,7 +32,7 @@
                <Insets left="75.0" />
             </GridPane.margin>
          </Text>
-             <Button mnemonicParsing="false" onAction="#home" prefHeight="54.0" prefWidth="95.0" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="2">
+             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#home" prefHeight="54.0" prefWidth="95.0" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <GridPane.margin>
                <Insets bottom="20.0" />
             </GridPane.margin></Button>

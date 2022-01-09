@@ -24,7 +24,7 @@
             <ImageView fitHeight="53.0" fitWidth="222.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                 <Image url="@Images/Sportify_logo.png" />
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#findGym" prefHeight="54.0" prefWidth="95.0" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#findGym" prefHeight="54.0" prefWidth="95.0" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <GridPane.margin>
                     <Insets bottom="20.0" />
                 </GridPane.margin></Button>
@@ -79,17 +79,14 @@
                   </graphic></Button>
             </bottom>
          </BorderPane>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                  minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Review"
-                       textAlignment="CENTER" wrapText="true">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Review" textAlignment="CENTER" wrapText="true">
                     <font>
-                        <Font name="Comic Sans MS Bold" size="18.0"/>
+                        <Font name="Comic Sans MS Bold" size="18.0" />
                     </font>
                 </Label>
                 <ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="194.0" prefWidth="436.0">
-                    <VBox fx:id="review" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity"
-                          translateX="110.0"/>
+                    <VBox fx:id="review" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" translateX="110.0" />
                 </ScrollPane>
             </VBox>
         </GridPane>

@@ -31,7 +31,7 @@
                     <Insets />
                 </GridPane.margin>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#home" prefHeight="53.0" prefWidth="92.0" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#home" prefHeight="53.0" prefWidth="92.0" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                 <HBox.margin>
                     <Insets left="10.0" />
                 </HBox.margin>

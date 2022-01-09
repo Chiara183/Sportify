@@ -32,22 +32,22 @@
                         <Font name="Comic Sans MS" size="24.0" />
                     </font>
                 </Text>
-                <Button fx:id="age1" layoutY="40.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="0 - 18">
+                <Button fx:id="age1" alignment="CENTER" contentDisplay="CENTER" layoutY="40.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="0 - 18">
                <font>
                   <Font name="Comic Sans MS" size="22.0" />
                </font></Button>
-                <Button fx:id="age2" layoutX="180.0" layoutY="40.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="18 - 30" />
-                <Button fx:id="age3" layoutY="120.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="30 - 50" />
-                <Button fx:id="age4" layoutX="180.0" layoutY="120.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="over 60" />
+                <Button fx:id="age2" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="40.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="18 - 30" />
+                <Button fx:id="age3" alignment="CENTER" contentDisplay="CENTER" layoutY="120.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="30 - 50" />
+                <Button fx:id="age4" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="120.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="over 60" />
             <GridPane.margin>
                <Insets />
             </GridPane.margin>
             </Pane>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                <Button fx:id="nextQuiz" mnemonicParsing="false" onAction="#nextQuizAction" prefHeight="53.0" prefWidth="92.0" text="Next" />
+                <Button fx:id="nextQuiz" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nextQuizAction" prefHeight="53.0" prefWidth="92.0" text="Next" />
             </Pane>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                <Button fx:id="backQuiz" mnemonicParsing="false" onAction="#backQuizAction" prefHeight="53.0" prefWidth="92.0" text="Back" />
+                <Button fx:id="backQuiz" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backQuizAction" prefHeight="53.0" prefWidth="92.0" text="Back" />
             </Pane>
         </GridPane>
     </VBox>

@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="830.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.SportQuizController">
     <VBox alignment="CENTER" layoutY="1.0" prefHeight="450.0" prefWidth="830.0">
@@ -45,18 +37,18 @@
                         <Font name="Comic Sans MS" size="24.0" />
                     </font>
                 </Text>
-                <Button fx:id="indoor" layoutY="60.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="Indoor">
+                <Button fx:id="indoor" alignment="CENTER" contentDisplay="CENTER" layoutY="60.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="Indoor">
                <font>
                   <Font name="Comic Sans MS" size="22.0" />
                </font></Button>
                 <Button fx:id="outdoor" layoutX="180.0" layoutY="60.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="Outdoor" />
             </Pane>
-            <Button fx:id="nextQuizEnv" mnemonicParsing="false" onAction="#nextQuizAction" prefHeight="53.0" prefWidth="92.0" text="Next" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Button fx:id="nextQuizEnv" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nextQuizAction" prefHeight="53.0" prefWidth="92.0" text="Next" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                 <HBox.margin>
                     <Insets left="10.0" />
                 </HBox.margin>
             </Button>
-            <Button fx:id="backQuizEnv" mnemonicParsing="false" onAction="#backQuizAction" prefHeight="53.0" prefWidth="92.0" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Button fx:id="backQuizEnv" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backQuizAction" prefHeight="53.0" prefWidth="92.0" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                 <HBox.margin>
                     <Insets left="10.0" />
                 </HBox.margin>
