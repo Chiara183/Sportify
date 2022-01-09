@@ -25,8 +25,12 @@ public class FindGymController implements Initializable{
     // String
     private String[] search_cache;
 
+    // Pane
     @FXML
     private Pane Map;
+
+    // MenuController
+    private MenuController menu;
 
     /**
      * The constructor.
@@ -46,6 +50,13 @@ public class FindGymController implements Initializable{
      */
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * Is called to set menu.
+     */
+    public void setMenu(MenuController menu){
+        this.menu = menu;
     }
 
     /**
@@ -80,6 +91,7 @@ public class FindGymController implements Initializable{
             MapController controller = loaderGym.getController();
             controller.setMainApp(this.mainApp);
             controller.setUser(this.user);
+            controller.setMenu(this.menu);
             controller.setSearchCache(this.search_cache);
             controller.initMapAndControls(projection);
             if(search_cache!=null){

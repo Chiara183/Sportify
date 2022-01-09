@@ -29,6 +29,8 @@ public class MapController {
 
     // ObservableList
     private final ObservableList<String> radius = FXCollections.observableArrayList("1", "5", "10", "20", "50");
+
+    // HashMap
     private final HashMap<Coordinate, String> all_gym = new HashMap<>();
     private final HashMap<String, Marker> mark = new HashMap<>();
 
@@ -39,12 +41,11 @@ public class MapController {
     @FXML
     private ComboBox<String> km;
 
-    /** the MapView containing the map */
     // MapView
     @FXML
     private MapView mapView;
 
-    /** Accordion for all the different options */
+    // Accordion
     @FXML
     private Accordion leftControls;
 
@@ -58,7 +59,7 @@ public class MapController {
     @FXML
     private RadioButton radioMsWMS;
 
-    /** ToggleGroup for the MapStyle radios */
+    // ToggleGroup
     @FXML
     private ToggleGroup mapTypeGroup;
 
@@ -77,6 +78,9 @@ public class MapController {
     // User
     private User user;
 
+    //MenuController
+    private MenuController menu;
+
     public MapController() {
     }
     public void setMainApp(MainApp mainApp) {
@@ -84,6 +88,9 @@ public class MapController {
     }
     public void setUser(User user) {
         this.user = user;
+    }
+    public void setMenu(MenuController menu){
+        this.menu = menu;
     }
     public void setSearchCache(String[] search) {
         if(search!=null) {
@@ -262,9 +269,7 @@ public class MapController {
     }
 
     /**
-     * load a coordinateLine from the given uri in lat;lon csv format
-     *
-     * @throws java.lang.NullPointerException if path is null
+     * load a coordinate of the gym
      */
     private void loadCoordinate() {
         try {
@@ -294,6 +299,7 @@ public class MapController {
             GymInfoController gym = new GymInfoController();
             gym.setMainApp(this.mainApp);
             gym.setUser(this.user);
+            gym.setMenu(this.menu);
             String[] search_cache = new String[2];
             search_cache[0] = this.search.getText();
             search_cache[1] = this.km.getValue();

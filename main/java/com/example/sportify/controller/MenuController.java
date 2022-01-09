@@ -85,6 +85,13 @@ public class MenuController implements Initializable {
         }
     }
 
+    /**
+     * Is called to get user.
+     */
+    public User getUser(){
+        return this.user;
+    }
+
     @FXML
     private void signOut() {
         setUser(null);
@@ -102,7 +109,7 @@ public class MenuController implements Initializable {
         signIn.setStyle("");
         signUp.setStyle("");
         sportQuiz.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
-        this.mainApp.showSportQuizOverview();
+        this.mainApp.showSportQuizOverview(this);
     }
 
     @FXML
@@ -111,7 +118,7 @@ public class MenuController implements Initializable {
         signIn.setStyle("");
         signUp.setStyle("");
         findGym.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
-        this.mainApp.showFindGymOverview();
+        this.mainApp.showFindGymOverview(this);
     }
 
     @FXML

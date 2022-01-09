@@ -86,6 +86,7 @@ public class HomeController implements Initializable {
             SportQuizController controllerSport = loaderSport.getController();
             controllerSport.setMainApp(this.mainApp);
             controllerSport.setUser(this.user);
+            controllerSport.setMenu(menuController);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -110,6 +111,7 @@ public class HomeController implements Initializable {
             FindGymController controllerGym = loaderGym.getController();
             controllerGym.setMainApp(this.mainApp);
             controllerGym.setUser(this.user);
+            controllerGym.setMenu(menuController);
             Projection projection = this.mainApp.getParameters().getUnnamed().contains("wgs84")
                     ? Projection.WGS_84 : Projection.WEB_MERCATOR;
             controllerGym.setProjection(projection);

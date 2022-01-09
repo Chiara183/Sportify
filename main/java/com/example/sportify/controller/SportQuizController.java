@@ -58,6 +58,9 @@ public class SportQuizController implements Initializable {
     // User
     private User user;
 
+    // MenuController
+    private MenuController menu;
+
     /**
      * Is called by the main application to give a reference back to itself.
      *
@@ -74,6 +77,13 @@ public class SportQuizController implements Initializable {
         this.user = user;
     }
 
+    /**
+     * Is called to set menu.
+     */
+    public void setMenu(MenuController menu){
+        this.menu = menu;
+    }
+
 
     @FXML
     private void home(){
@@ -83,7 +93,7 @@ public class SportQuizController implements Initializable {
 
     private void sportQuiz(){
         this.mainApp.setUser(this.user);
-        this.mainApp.showSportQuizOverview();
+        this.mainApp.showSportQuizOverview(this.menu);
     }
 
     private void sportQuizEnv(){
@@ -101,6 +111,7 @@ public class SportQuizController implements Initializable {
             // Give the controller access to the main app.
             SportQuizController controller = loaderSport.getController();
             controller.setMainApp(this.mainApp);
+            controller.setMenu(this.menu);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -121,6 +132,7 @@ public class SportQuizController implements Initializable {
             // Give the controller access to the main app.
             SportQuizController controller = loaderSport.getController();
             controller.setMainApp(this.mainApp);
+            controller.setMenu(this.menu);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -187,43 +199,59 @@ public class SportQuizController implements Initializable {
         if((buttonAge1 && buttonIndoor && buttonGroup) || (buttonAge2 && buttonIndoor && buttonGroup)){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
+            sport.setUser(this.user);
+            sport.setMenu(this.menu);
             sport.loadingSportName("Volleyball");
         }
 
         if((buttonAge1 && buttonIndoor && buttonSingle) || (buttonAge2 && buttonIndoor && buttonSingle) || (buttonAge3 && buttonIndoor && buttonSingle) || (buttonAge4 && buttonIndoor && buttonSingle)){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
+            sport.setUser(this.user);
+            sport.setMenu(this.menu);
             sport.loadingSportName("Swimming");
         }
         if((buttonAge1 && buttonOutdoor && buttonGroup) || (buttonAge2 && buttonOutdoor && buttonGroup)){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
+            sport.setUser(this.user);
+            sport.setMenu(this.menu);
             sport.loadingSportName("Football");
         }
         if(buttonAge1 && buttonOutdoor && buttonSingle) {
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
+            sport.setUser(this.user);
+            sport.setMenu(this.menu);
             sport.loadingSportName("Athletics");
         }
         if((buttonAge2 && buttonOutdoor && buttonSingle) || (buttonAge3 && buttonOutdoor && buttonSingle)){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
+            sport.setUser(this.user);
+            sport.setMenu(this.menu);
             sport.loadingSportName("Tennis");
         }
 
         if((buttonAge3 && buttonIndoor && buttonGroup) || (buttonAge4 && buttonIndoor && buttonGroup)){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
+            sport.setUser(this.user);
+            sport.setMenu(this.menu);
             sport.loadingSportName("Dance");
         }
         if((buttonAge3 && buttonOutdoor && buttonGroup) || (buttonAge4 && buttonOutdoor && buttonGroup)){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
+            sport.setUser(this.user);
+            sport.setMenu(this.menu);
             sport.loadingSportName("Trekking");
         }
         if(buttonAge4 && buttonOutdoor && buttonSingle){
             SportController sport = new SportController();
             sport.setMainApp(this.mainApp);
+            sport.setUser(this.user);
+            sport.setMenu(this.menu);
             sport.loadingSportName("Golf");
         }
         if(buttonEndQuiz){

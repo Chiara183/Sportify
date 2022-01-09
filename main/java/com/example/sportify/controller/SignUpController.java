@@ -47,17 +47,12 @@ public class SignUpController implements Initializable {
     // Reference to submit.
     private Submit submit;
 
-    /**
-     * The constructor.
-     * The constructor is called before to initialize() method.
-     */
     public SignUpController() {
         this.submit = new Submit(null);
     }
 
     /**
      * Is called by the main application to give a reference back to itself.
-     *
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;

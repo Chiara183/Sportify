@@ -193,7 +193,7 @@ public class MainApp extends Application{
     /**
      * Shows sport quiz overview inside the root layout.
      */
-    public void showSportQuizOverview() {
+    public void showSportQuizOverview(MenuController menu) {
         try {
             this.getPrimaryStage().setTitle("Sportify - Sport Quiz");
             // Load sport quiz overview.
@@ -208,6 +208,7 @@ public class MainApp extends Application{
             SportQuizController controller = loaderSport.getController();
             controller.setMainApp(this);
             controller.setUser(this.user);
+            controller.setMenu(menu);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -217,7 +218,7 @@ public class MainApp extends Application{
     /**
      * Shows find gym overview inside the root layout.
      */
-    public void showFindGymOverview() {
+    public void showFindGymOverview(MenuController menu) {
         try {
             this.getPrimaryStage().setTitle("Sportify - Find Gym");
             // Load find gym overview.
@@ -232,6 +233,7 @@ public class MainApp extends Application{
             FindGymController controller = loaderGym.getController();
             controller.setMainApp(this);
             controller.setSearchCache(this.search_cache);
+            controller.setMenu(menu);
             Projection projection = getParameters().getUnnamed().contains("wgs84")
                     ? Projection.WGS_84 : Projection.WEB_MERCATOR;
             controller.setProjection(projection);

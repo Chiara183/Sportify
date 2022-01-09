@@ -29,12 +29,18 @@ public class SportController implements Initializable{
     // User
     private User user;
 
+    // Menu
+    private MenuController menu;
+
     public SportController(){}
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
     public void setUser(User user) {
         this.user = user;
+    }
+    public void setMenu(MenuController menu) {
+        this.menu = menu;
     }
 
     @FXML
@@ -96,6 +102,7 @@ public class SportController implements Initializable{
             SportController controller = loaderSport.getController();
             controller.setUser(this.user);
             controller.setMainApp(this.mainApp);
+            controller.setMenu(this.menu);
             controller.sport_name.setText(sport);
             controller.sport_description.setText(Description);
         } catch (IOException e) {

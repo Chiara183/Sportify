@@ -29,10 +29,6 @@ public class SignUpGymController implements Initializable {
     // Reference to submit.
     private Submit submit;
 
-    /**
-     * The constructor.
-     * The constructor is called before to initialize() method.
-     */
     public SignUpGymController() {
     }
 
@@ -44,6 +40,9 @@ public class SignUpGymController implements Initializable {
         this.mainApp = mainApp;
     }
 
+    /**
+     * Is called to set submit.
+     */
     public void setSubmit(Submit submit){
         this.submit = submit;
     }
