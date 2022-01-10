@@ -32,6 +32,8 @@ public class MenuController implements Initializable {
     private Button signUp;
     @FXML
     private Button signOut;
+    @FXML
+    private Button gymInfo;
 
     // Pane
     @FXML
@@ -74,6 +76,10 @@ public class MenuController implements Initializable {
             signIn.setPrefWidth(0);
             userIcon.setVisible(true);
             username.setText(user.getUserName());
+            if(this.user.getRole().equals("gym")){
+                gymInfo.setVisible(true);
+                gymInfo.setPrefWidth(112);
+            }
         } else {
             signOut.setPrefWidth(0);
             signOut.setVisible(false);
@@ -81,6 +87,8 @@ public class MenuController implements Initializable {
             signUp.setVisible(true);
             signIn.setPrefWidth(112);
             signIn.setVisible(true);
+            gymInfo.setVisible(false);
+            gymInfo.setPrefWidth(0);
             userIcon.setVisible(false);
         }
     }
@@ -103,6 +111,16 @@ public class MenuController implements Initializable {
     private void signOut() {
         setUser(null);
         mainApp.setUser(null);
+    }
+
+    @FXML
+    private void loadGymInfo(){
+        GymInfoController gym = new GymInfoController();
+        gym.setMainApp(this.mainApp);
+        gym.setUser(this.user);
+        gym.setMenu(this);
+        gym.setSearchCache(this.mainApp.getSearchCache());
+        gym.loadingGymName(user.getGymName());
     }
 
     @FXML

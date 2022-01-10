@@ -14,6 +14,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -103,7 +104,10 @@ public class GymInfoController implements Initializable {
     private void setupEventHandlers() {
         menu.getSignOut().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             user = menu.getUser();
-            Runnable task = () -> Platform.runLater(this::setReview);
+            Runnable task = () -> Platform.runLater(() -> {
+                    setReview();
+                    setCourse();
+            });
             Task<Void> task1 = createTask(task);
             task1.setOnRunning(e -> mainApp.getPrimaryPane().setCursor(Cursor.WAIT));
             task1.setOnSucceeded(e -> mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT));
@@ -129,15 +133,64 @@ public class GymInfoController implements Initializable {
     }
 
     private void loadReview(ResultSet rs){
+        review.getChildren().remove(0, review.getChildren().size());
         try {
             Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
             labelTitle.setStyle("-fx-font-weight: bold;");
             Label labelReview = new Label(rs.getString("review"));
             Label blankSpace = new Label();
             VBox vbox = new VBox(labelTitle, labelReview, blankSpace);
-            review.getChildren().add(vbox);
+            if (user != null && Objects.equals(user.getGymName(), gym_name.getText())) {
+                Label cancel = new Label("⮿");
+                cancel.setStyle("-fx-text-fill: red;");
+                cancel.setEllipsisString(labelTitle.getText());
+                cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, this::cancelReview);
+                cancel.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> cancel.setCursor(Cursor.HAND));
+                cancel.addEventHandler(MouseEvent.MOUSE_EXITED, e -> cancel.setCursor(Cursor.DEFAULT));
+                HBox hbox = new HBox(vbox, cancel);
+                review.getChildren().add(hbox);
+            } else {
+                review.getChildren().add(vbox);
+            }
         }catch (SQLException e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void cancelReview(MouseEvent e){
+        System.out.println("I'M TRYING TO CANCEL REVIEW!");
+        Label event = (Label) e.getSource();
+        System.out.println("DELETE FROM `review` WHERE `review`.`writer` = '" +
+                event.getEllipsisString().substring(0, event.getEllipsisString().length()-22) +
+                "' AND `review`.`gym` = '" +
+                gym_name.getText() +
+                "' AND `review`.`timestamp` = '" +
+                event.getEllipsisString().substring(event.getEllipsisString().length()-21, event.getEllipsisString().length()-2) +
+                "'");
+        DAO obj_DAO = mainApp.getDAO();
+        obj_DAO.updateDB("DELETE FROM `review` WHERE `review`.`writer` = '" +
+                event.getEllipsisString().substring(0, event.getEllipsisString().length()-22) +
+                "' AND `review`.`gym` = '" +
+                gym_name.getText() +
+                "' AND `review`.`timestamp` = '" +
+                event.getEllipsisString().substring(event.getEllipsisString().length()-19) +
+                "'");
+        try {
+            ResultSet rs = obj_DAO.Check_Data(
+                    "SELECT * " +
+                            "FROM review " +
+                            "WHERE review.gym = \"" + gym_name.getText() + "\"");
+
+            while (rs.next()) {
+                loadReview(rs);
+            }
+            if(this.review.getChildren().size()<1) {
+                Label labelNotFound = new Label("There are no reviews");
+                labelNotFound.setStyle("-fx-font-weight: bold;");
+                review.getChildren().add(labelNotFound);
+            }
+        }catch (SQLException q){
+            System.out.println(q.getMessage());
         }
     }
 
@@ -168,7 +221,24 @@ public class GymInfoController implements Initializable {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Review is empty.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        loadingGymName(gym_name.getText());
+        try {
+            DAO obj_DAO = mainApp.getDAO();
+            ResultSet rs = obj_DAO.Check_Data(
+                    "SELECT * " +
+                            "FROM review " +
+                            "WHERE review.gym = \"" + gym_name.getText() + "\"");
+
+            while (rs.next()) {
+                loadReview(rs);
+            }
+            if(this.review.getChildren().size()<1) {
+                Label labelNotFound = new Label("There are no reviews");
+                labelNotFound.setStyle("-fx-font-weight: bold;");
+                this.review.getChildren().add(labelNotFound);
+            }
+        }catch (SQLException q){
+            System.out.println(q.getMessage());
+        }
     }
 
     private Task<Void> createTask(Runnable task){
@@ -239,11 +309,11 @@ public class GymInfoController implements Initializable {
                         "SELECT * " +
                                 "FROM review " +
                                 "WHERE review.gym = \"" + name + "\"");
-                if(rs.next()) {
-                    while (rs.next()) {
-                        loadReview(rs);
-                    }
-                } else {
+
+                while (rs.next()) {
+                    loadReview(rs);
+                }
+                if(this.review.getChildren().size()<1) {
                     Label labelNotFound = new Label("There are no reviews");
                     labelNotFound.setStyle("-fx-font-weight: bold;");
                     review.getChildren().add(labelNotFound);
@@ -270,12 +340,23 @@ public class GymInfoController implements Initializable {
                         "SELECT * " +
                                 "FROM course " +
                                 "WHERE course.gym = \"" + name + "\"");
-                if(rs.next()) {
-                    while (rs.next()) {
-                        Label label = new Label(rs.getString("sport") + " " + rs.getTime("time").toString());
+                while (rs.next()) {
+                    Label label = new Label(rs.getString("sport") + " " + rs.getTime("time").toString().substring(0,5));
+                    label.setStyle("-fx-text-fill: white;");
+                    if (user != null && Objects.equals(user.getGymName(), gym_name.getText())) {
+                        Label cancel = new Label("⮿");
+                        cancel.setStyle("-fx-text-fill: red;");
+                        cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {//TODO
+                        });
+                        cancel.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> cancel.setCursor(Cursor.HAND));
+                        cancel.addEventHandler(MouseEvent.MOUSE_EXITED, e -> cancel.setCursor(Cursor.DEFAULT));
+                        HBox hbox = new HBox(label, cancel);
+                        course.getChildren().add(hbox);
+                    } else {
                         course.getChildren().add(label);
                     }
-                } else {
+                }
+                if(this.course.getChildren().size()<2) {
                     Label label = new Label("There are no course");
                     label.setStyle("-fx-font-weight: bold;");
                     this.course.getChildren().add(label);
@@ -310,19 +391,53 @@ public class GymInfoController implements Initializable {
 
     @FXML
     private void add_course(){
-        //TODO
+        String gym = gym_name.getText();
+        String sport = combo_sport.getValue();
+        String hour;
+        if(this.hour.getText().equals("")){
+            hour = "01";
+        } else {
+            hour = this.hour.getText();
+        }
+        String min;
+        if(this.min.getText().equals("")){
+            min = "00";
+        } else {
+            min = this.min.getText();
+        }
+        String time = hour + ':' + min + ":00";
+        if(!sport.equals("select sport")) {
+            DAO obj_DAO = mainApp.getDAO();
+            obj_DAO.updateDB(
+                    "INSERT INTO `course` (`sport`, `gym`, `time`) VALUES ('" +
+                            sport + "', '" +
+                            gym + "', '" +
+                            time + "');");
+            loadingGymName(gym_name.getText());
+        } else {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Insert all value.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @FXML
     private void change_hour(){
         String hour = String.valueOf((int) hour_slider.getValue());
-        this.hour.setText(hour);
+        if(Integer.parseInt(hour)<10) {
+            this.hour.setText("0" + hour);
+        } else {
+            this.hour.setText(hour);
+        }
     }
 
     @FXML
     private void change_min(){
         String min = String.valueOf((int) min_slider.getValue());
-        this.min.setText(min);
+        if(Integer.parseInt(min)<10) {
+            this.min.setText("0" + min);
+        } else {
+            this.min.setText(min);
+        }
     }
 
     public void loadingGymName(String name) {

@@ -84,6 +84,13 @@ public class MainApp extends Application{
     }
 
     /**
+     * Is called to set search_cache.
+     */
+    public String[] getSearchCache() {
+        return this.search_cache;
+    }
+
+    /**
      * Initializes the root layout.
      */
     public void initRootLayout() {

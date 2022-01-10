@@ -80,7 +80,7 @@
                </Button>
             </bottom>
          </BorderPane>
-            <BorderPane fx:id="course_pane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <BorderPane fx:id="course_pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
                 <top>
                     <Label text="New Course" BorderPane.alignment="CENTER">
                         <font>
@@ -89,7 +89,7 @@
                     </Label>
                 </top>
                 <bottom>
-                    <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#add_course" prefHeight="35.0" prefWidth="43.0" text="✔" BorderPane.alignment="CENTER">
+                    <Button alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#add_course" prefHeight="35.0" prefWidth="43.0" text="✔" BorderPane.alignment="CENTER">
                         <font>
                             <Font name="Comic Sans MS Bold" size="23.0" />
                         </font>
@@ -119,19 +119,19 @@
                         </Label>
                         <VBox prefHeight="39.0" prefWidth="147.0">
                             <HBox prefHeight="100.0" prefWidth="200.0">
-                                <Slider fx:id="hour_slider" majorTickUnit="24.0" max="24.0" min="1.0" minorTickCount="1" onDragDetected="#change_hour" onDragDone="#change_hour" onDragDropped="#change_hour" onDragEntered="#change_hour" onDragExited="#change_hour" onDragOver="#change_hour" prefHeight="14.0" prefWidth="115.0" showTickLabels="true" />
-                                <TextField fx:id="hour" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="41.0" promptText="hour" />
+                                <Slider fx:id="hour_slider" majorTickUnit="24.0" max="24.0" min="1.0" minorTickCount="1" onDragDetected="#change_hour" onDragDone="#change_hour" onMouseDragged="#change_hour" prefHeight="14.0" prefWidth="115.0" showTickLabels="true" />
+                                <TextField fx:id="hour" editable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="41.0" promptText="hour" />
                             </HBox>
                             <HBox prefHeight="100.0" prefWidth="200.0">
                                 <opaqueInsets>
                                     <Insets top="3.0" />
                                 </opaqueInsets>
-                                <Slider fx:id="min_slider" majorTickUnit="59.0" max="59.0" minorTickCount="0" onDragDetected="#change_min" onDragDone="#change_hour" onDragDropped="#change_hour" onDragEntered="#change_hour" onDragExited="#change_hour" onDragOver="#change_hour" prefHeight="14.0" prefWidth="115.0" showTickLabels="true">
+                                <Slider fx:id="min_slider" majorTickUnit="59.0" max="59.0" minorTickCount="0" onDragDetected="#change_min" onDragDone="#change_min" onMouseClicked="#change_min" onMouseDragged="#change_min" prefHeight="14.0" prefWidth="115.0" showTickLabels="true">
                                     <HBox.margin>
                                         <Insets top="5.0" />
                                     </HBox.margin>
                                 </Slider>
-                                <TextField fx:id="min" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="36.0" promptText="min">
+                                <TextField fx:id="min" editable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="36.0" promptText="min">
                                     <HBox.margin>
                                         <Insets top="5.0" />
                                     </HBox.margin>
