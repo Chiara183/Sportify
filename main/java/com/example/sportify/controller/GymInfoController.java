@@ -4,13 +4,14 @@ import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.user.User;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -36,9 +37,17 @@ public class GymInfoController implements Initializable {
     @FXML
     private TextArea review_area;
 
+    // TextField
+    @FXML
+    private TextField hour;
+    @FXML
+    private TextField min;
+
     // BorderPane
     @FXML
     private BorderPane review_pane;
+    @FXML
+    private BorderPane course_pane;
 
     // VBox
     @FXML
@@ -46,7 +55,15 @@ public class GymInfoController implements Initializable {
     @FXML
     private VBox review;
 
-    // Button
+    // ComboBox
+    @FXML
+    private ComboBox<String> combo_sport;
+
+    // Slider
+    @FXML
+    private Slider hour_slider;
+    @FXML
+    private Slider min_slider;
 
     // String
     private String[] search_cache;
@@ -59,6 +76,9 @@ public class GymInfoController implements Initializable {
 
     // User
     private User user;
+
+    // ObservableList
+    private ObservableList<String> sport;
 
     public GymInfoController(){
     }
@@ -77,6 +97,9 @@ public class GymInfoController implements Initializable {
     private void setReview(){
         review_pane.setVisible(user != null && !Objects.equals(user.getGymName(), gym_name.getText()));
     }
+    private void setCourse(){
+        course_pane.setVisible(user != null && Objects.equals(user.getGymName(), gym_name.getText()));
+    }
     private void setupEventHandlers() {
         menu.getSignOut().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             user = menu.getUser();
@@ -87,6 +110,22 @@ public class GymInfoController implements Initializable {
             task1.setOnFailed(e -> mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT));
             new Thread(task1).start();
         });
+    }
+    private ObservableList<String> getSport(){
+        ObservableList<String> sport = FXCollections.observableArrayList();
+        try {
+            assert mainApp != null;
+            DAO obj_DAO = mainApp.getDAO();
+            ResultSet rs = obj_DAO.Check_Data(
+                    "SELECT * " +
+                            "FROM sport ");
+            while (rs.next()) {
+                sport.add(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return sport;
     }
 
     private void loadReview(ResultSet rs){
@@ -144,12 +183,26 @@ public class GymInfoController implements Initializable {
 
     private void setGym(String name){
 
+        // set ComboBox
+        Runnable task0 = () -> Platform.runLater(() -> {
+            sport = getSport();
+            combo_sport.setValue("select sport");
+            combo_sport.setItems(sport);
+        });
+        Task<Void> task00 = createTask(task0);
+        task00.setOnRunning(e -> combo_sport.setCursor(Cursor.WAIT));
+        task00.setOnSucceeded(e -> combo_sport.setCursor(Cursor.DEFAULT));
+        task00.setOnFailed(e -> combo_sport.setCursor(Cursor.DEFAULT));
+
         setupEventHandlers();
 
         gym_name.setText(name);
 
         // Set the area where create a new review
         setReview();
+
+        // Set the area where create a new course
+        setCourse();
 
         // Set gym_description
         gym_description.setText(
@@ -242,6 +295,7 @@ public class GymInfoController implements Initializable {
         });
 
         // Run Thread and set DEFAULT review and course
+        new Thread(task00).start();
         new Thread(task4).start();
         new Thread(task5).start();
         new Thread(task6).start();
@@ -254,6 +308,22 @@ public class GymInfoController implements Initializable {
         mainApp.showFindGymOverview(menu);
     }
 
+    @FXML
+    private void add_course(){
+        //TODO
+    }
+
+    @FXML
+    private void change_hour(){
+        String hour = String.valueOf((int) hour_slider.getValue());
+        this.hour.setText(hour);
+    }
+
+    @FXML
+    private void change_min(){
+        String min = String.valueOf((int) min_slider.getValue());
+        this.min.setText(min);
+    }
 
     public void loadingGymName(String name) {
         mainApp.getPrimaryStage().setTitle("Sportify - " + name);
@@ -269,9 +339,9 @@ public class GymInfoController implements Initializable {
             // Give the controller access to the main app.
             GymInfoController controller = loaderSport.getController();
             controller.setUser(user);
-            controller.setMainApp(mainApp);
             controller.setSearchCache(search_cache);
             controller.setMenu(menu);
+            controller.setMainApp(mainApp);
             controller.setGym(name);
         } catch (IOException e) {
             System.out.println(e.getMessage());

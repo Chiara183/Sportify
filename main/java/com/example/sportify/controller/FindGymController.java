@@ -92,8 +92,8 @@ public class FindGymController implements Initializable{
             controller.setMainApp(this.mainApp);
             controller.setUser(this.user);
             controller.setMenu(this.menu);
-            controller.setSearchCache(this.search_cache);
             controller.initMapAndControls(projection);
+            controller.setSearchCache(this.search_cache);
             if(search_cache!=null){
                 controller.searchAction();
             }
