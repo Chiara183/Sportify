@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class GymInfoController implements Initializable {
@@ -71,14 +72,14 @@ public class GymInfoController implements Initializable {
         this.menu = menu;
     }
     public void setSearchCache(String[] search) {
-        this.search_cache = search;
+        search_cache = search;
     }
     private void setReview(){
-        review_pane.setVisible(this.user != null);
+        review_pane.setVisible(user != null && !Objects.equals(user.getGymName(), gym_name.getText()));
     }
     private void setupEventHandlers() {
         menu.getSignOut().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            this.user = this.menu.getUser();
+            user = menu.getUser();
             Runnable task = () -> Platform.runLater(this::setReview);
             Task<Void> task1 = createTask(task);
             task1.setOnRunning(e -> mainApp.getPrimaryPane().setCursor(Cursor.WAIT));
@@ -95,7 +96,7 @@ public class GymInfoController implements Initializable {
             Label labelReview = new Label(rs.getString("review"));
             Label blankSpace = new Label();
             VBox vbox = new VBox(labelTitle, labelReview, blankSpace);
-            this.review.getChildren().add(vbox);
+            review.getChildren().add(vbox);
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }
@@ -145,13 +146,13 @@ public class GymInfoController implements Initializable {
 
         setupEventHandlers();
 
-        this.gym_name.setText(name);
+        gym_name.setText(name);
 
         // Set the area where create a new review
         setReview();
 
         // Set gym_description
-        this.gym_description.setText(
+        gym_description.setText(
                 """
                         ADDRESS:\s
 
@@ -192,7 +193,7 @@ public class GymInfoController implements Initializable {
                 } else {
                     Label labelNotFound = new Label("There are no reviews");
                     labelNotFound.setStyle("-fx-font-weight: bold;");
-                    this.review.getChildren().add(labelNotFound);
+                    review.getChildren().add(labelNotFound);
                 }
             }catch (SQLException e){
                 System.out.println(e.getMessage());
@@ -205,7 +206,7 @@ public class GymInfoController implements Initializable {
             review.setCursor(Cursor.DEFAULT);
             Label labelNotFound = new Label("There are no reviews");
             labelNotFound.setStyle("-fx-font-weight: bold;");
-            this.review.getChildren().add(labelNotFound);
+            review.getChildren().add(labelNotFound);
         });
 
         // Set course
@@ -219,7 +220,6 @@ public class GymInfoController implements Initializable {
                 if(rs.next()) {
                     while (rs.next()) {
                         Label label = new Label(rs.getString("sport") + " " + rs.getTime("time").toString());
-                        label.setStyle("alignment:\"CENTER\"; contentDisplay:\"CENTER\"; maxWidth:\"1.7976931348623157E308\"; textAlignment:\"CENTER\"; wrapText:\"true\"");
                         course.getChildren().add(label);
                     }
                 } else {
@@ -238,7 +238,7 @@ public class GymInfoController implements Initializable {
             course.setCursor(Cursor.DEFAULT);
             Label label = new Label("There are no course");
             label.setStyle("-fx-font-weight: bold;");
-            this.course.getChildren().add(label);
+            course.getChildren().add(label);
         });
 
         // Run Thread and set DEFAULT review and course
@@ -249,14 +249,14 @@ public class GymInfoController implements Initializable {
 
     @FXML
     private void findGym(){
-        this.mainApp.setUser(this.user);
-        this.mainApp.setSearchCache(this.search_cache);
-        this.mainApp.showFindGymOverview(this.menu);
+        mainApp.setUser(user);
+        mainApp.setSearchCache(search_cache);
+        mainApp.showFindGymOverview(menu);
     }
 
 
     public void loadingGymName(String name) {
-        this.mainApp.getPrimaryStage().setTitle("Sportify - " + name);
+        mainApp.getPrimaryStage().setTitle("Sportify - " + name);
         try {
             // Load test result overview.
             FXMLLoader loaderSport = new FXMLLoader();
@@ -264,14 +264,14 @@ public class GymInfoController implements Initializable {
             Pane pane = loaderSport.load();
 
             // Set test result overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
+            mainApp.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
             GymInfoController controller = loaderSport.getController();
-            controller.setUser(this.user);
-            controller.setMainApp(this.mainApp);
-            controller.setSearchCache(this.search_cache);
-            controller.setMenu(this.menu);
+            controller.setUser(user);
+            controller.setMainApp(mainApp);
+            controller.setSearchCache(search_cache);
+            controller.setMenu(menu);
             controller.setGym(name);
         } catch (IOException e) {
             System.out.println(e.getMessage());

@@ -9,26 +9,6 @@ import java.util.Objects;
 
 public class UserEditController extends EditController{
 
-    /**
-     * Sets the user to be edited in the dialog.
-     */
-    @Override
-    public void setUser(User user) {
-        this.user = user;
-
-        firstNameLabel.setText(user.getFirstName());
-        lastNameLabel.setText(user.getLastName());
-        usernameLabel.setText(user.getUserName());
-        passwordLabel.setText(user.getPassword());
-        emailLabel.setText(user.getEmail());
-        firstName.setText(user.getFirstName());
-        lastName.setText(user.getLastName());
-        username.setText(user.getUserName());
-        password.setText(user.getPassword());
-        email.setText(user.getEmail());
-        date.setValue(user.getBirthday());
-    }
-
     @Override
     public void setUser(gymUser user) {
         //TODO

@@ -105,7 +105,7 @@
                     </Label>
                     <CheckBox fx:id="pass_toggle" mnemonicParsing="false" visible="false" />
                 </HBox>
-            <Label text="Email" GridPane.rowIndex="4">
+            <Label text="*Email" GridPane.rowIndex="4">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>

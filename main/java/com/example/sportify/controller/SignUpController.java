@@ -1,17 +1,23 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.*;
+import com.example.sportify.MainApp;
+import com.example.sportify.Submit;
 import javafx.event.ActionEvent;
-import javafx.fxml.*;
-import javafx.scene.control.*;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable {
 
@@ -89,55 +95,46 @@ public class SignUpController implements Initializable {
         userAccount.put("lastName", lastNameValue);             //put user lastName in userAccount
         userAccount.put("email", email);                           //put user email in userAccount
         userAccount.put("birthday", date);                      //put user birthday in userAccount
-        DAO obj_DAO = mainApp.getDAO();
-        ResultSet rs = obj_DAO.Check_Data(
-                "SELECT email " +
-                        "FROM user " +
-                        "WHERE user.email = \"" + email + "\"");
 
         //check whether the credentials are authentic or not
-        try{
-            if (!userValue.equals("") && !passValue.equals("") && !this.submit.exist(userValue) && rs.next()) {    //if authentic, navigate user to a new page
-                if (userTick.isSelected()) {
-                    userAccount.put("ruolo", "user");
-                    this.submit.signUp(userAccount);
-                    JFrame jFrame = new JFrame();
-                    JOptionPane.showMessageDialog(jFrame, "You're registered!");
-                    login();
-                } else if (gymTick.isSelected()) {
-                    userAccount.put("ruolo", "gym");
-                    this.submit.signUp(userAccount);
-                    signUpGymAction();
-                }
-            } else {
-                if (this.submit.exist(userValue)){
-                    //show error message
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.initOwner(mainApp.getPrimaryStage());
-                    alert.setTitle("User already exists");
-                    alert.setHeaderText("The user already exists");
-                    alert.setContentText("Please enter a different username or login.");
-                    alert.showAndWait();
-                } else if (rs.next()){
-                    //show error message
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.initOwner(mainApp.getPrimaryStage());
-                    alert.setTitle("User already exists");
-                    alert.setHeaderText("The email is already registered");
-                    alert.setContentText("Please enter a different email or login.");
-                    alert.showAndWait();
-                } else {
-                    //show error message
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.initOwner(mainApp.getPrimaryStage());
-                    alert.setTitle("Empty field");
-                    alert.setHeaderText("Some obligatory value are empty");
-                    alert.setContentText("Please enter all obligatory value.");
-                    alert.showAndWait();
-                }
+        if (!email.equals("") && !userValue.equals("") && !passValue.equals("") && !submit.exist(userValue) && !submit.existEmail(email)) {    //if authentic, navigate user to a new page
+            if (userTick.isSelected()) {
+                userAccount.put("ruolo", "user");
+                this.submit.signUp(userAccount);
+                JFrame jFrame = new JFrame();
+                JOptionPane.showMessageDialog(jFrame, "You're registered!");
+                login();
+            } else if (gymTick.isSelected()) {
+                userAccount.put("ruolo", "gym");
+                this.submit.signUp(userAccount);
+                signUpGymAction();
             }
-        }catch (SQLException e){
-            System.out.println("SQLException: " + e.getMessage());
+        } else {
+            if (submit.exist(userValue)){
+                //show error message
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("User already exists");
+                alert.setHeaderText("The user already exists");
+                alert.setContentText("Please enter a different username or login.");
+                alert.showAndWait();
+            } else if (submit.existEmail(email)){
+                //show error message
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("User already exists");
+                alert.setHeaderText("The email is already registered");
+                alert.setContentText("Please enter a different email or login.");
+                alert.showAndWait();
+            } else {
+                //show error message
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Empty field");
+                alert.setHeaderText("Some obligatory value are empty");
+                alert.setContentText("Please enter all obligatory value.");
+                alert.showAndWait();
+            }
         }
     }
 

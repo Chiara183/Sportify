@@ -168,7 +168,7 @@ public class MenuController implements Initializable {
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
-            UserEditController controller = loader.getController();
+            EditController controller = loader.getController();
             controller.setUser(user);
             controller.setMenuController(this);
 

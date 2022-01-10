@@ -107,7 +107,21 @@ public abstract class EditController {
     /**
      * Sets the user to be edited in the dialog.
      */
-    abstract void setUser(User user);
+    public void setUser(User user){
+        this.user = user;
+
+        firstNameLabel.setText(user.getFirstName());
+        lastNameLabel.setText(user.getLastName());
+        usernameLabel.setText(user.getUserName());
+        passwordLabel.setText(user.getPassword());
+        emailLabel.setText(user.getEmail());
+        firstName.setText(user.getFirstName());
+        lastName.setText(user.getLastName());
+        username.setText(user.getUserName());
+        password.setText(user.getPassword());
+        email.setText(user.getEmail());
+        date.setValue(user.getBirthday());
+    }
 
     public abstract void setUser(gymUser user);
 

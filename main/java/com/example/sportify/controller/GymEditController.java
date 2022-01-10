@@ -10,9 +10,11 @@ import java.util.Objects;
 
 public class GymEditController extends EditController{
 
+
     @Override
-    void setUser(User user) {
-        //TODO
+    public void setUser(User user) {
+        super.setUser(user);
+        setUser((gymUser) user);
     }
 
     @Override
