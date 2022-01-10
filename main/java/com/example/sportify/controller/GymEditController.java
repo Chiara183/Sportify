@@ -1,50 +1,22 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.User;
+import com.example.sportify.user.User;
+import com.example.sportify.user.gymUser;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class GymEditController extends UserEditController{
-
-    // Label
-    @FXML
-    protected Label gymNameLabel;
-    @FXML
-    protected Label addressLabel;
-    @FXML
-    protected Label telephoneLabel;
-    @FXML
-    protected Label modify_gymName;
-    @FXML
-    protected Label modify_address;
-    @FXML
-    protected Label modify_telephone;
-
-    // TextField
-    @FXML
-    private TextField gymName;
-    @FXML
-    private TextField address;
-    @FXML
-    private TextField telephone;
-
-    // CheckBox
-    @FXML
-    protected CheckBox toggle_gymName;
-    @FXML
-    protected CheckBox toggle_address;
-    @FXML
-    protected CheckBox toggle_telephone;
+public class GymEditController extends EditController{
 
     @Override
-    public void setUser(User user) {
-        super.setUser(user);
+    void setUser(User user) {
+        //TODO
+    }
+
+    @Override
+    public void setUser(gymUser user) {
         gymName.setText(user.getGymName());
         address.setText(user.getAddress());
         telephone.setText(user.getPhone());

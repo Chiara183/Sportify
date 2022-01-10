@@ -2,7 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
-import com.example.sportify.User;
+import com.example.sportify.user.User;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;

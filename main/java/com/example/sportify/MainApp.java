@@ -1,6 +1,7 @@
 package com.example.sportify;
 
 import com.example.sportify.controller.*;
+import com.example.sportify.user.User;
 import com.sothawo.mapjfx.Projection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

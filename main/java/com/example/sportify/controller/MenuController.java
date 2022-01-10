@@ -1,7 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
-import com.example.sportify.User;
+import com.example.sportify.user.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -151,7 +151,7 @@ public class MenuController implements Initializable {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            if(user.getGymName() != null) {
+            if(Objects.equals(user.getRole(), "gym")) {
                 loader.setLocation(MainApp.class.getResource("GymEditDialog.fxml"));
             } else {
                 loader.setLocation(MainApp.class.getResource("UserEditDialog.fxml"));

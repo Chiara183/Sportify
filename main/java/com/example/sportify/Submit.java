@@ -1,10 +1,10 @@
 package com.example.sportify;
 
 import javafx.fxml.Initializable;
-
 import java.net.URL;
 import java.security.SecureRandom;
 import java.util.*;
+import com.example.sportify.user.*;
 
 public class Submit implements Initializable {
 
@@ -34,8 +34,7 @@ public class Submit implements Initializable {
 
     public User setUser(String username){
         HashMap<String, HashMap<String, String>> account = this.file.readFile();
-        User user = new User();
-        user.setMainApp(this.mainApp);
+        User user = null;
         if (account.containsKey(username)) {
             user = writeUser(account,username);
         }
@@ -43,7 +42,18 @@ public class Submit implements Initializable {
     }
 
     private User writeUser(HashMap<String, HashMap<String, String>> account, String username){
-        User user = new User();
+        User user;
+        if (Objects.equals(account.get(username).get("ruolo"), "user")) {
+            user = new classicUser();
+        } else {
+            user = new gymUser();
+            user.setRole(account.get(username).get("ruolo"));
+            ((gymUser) user).setGymName(account.get(username).get("gymName"));
+            ((gymUser) user).setAddress(account.get(username).get("address"));
+            ((gymUser) user).setLatitude(account.get(username).get("latitude"));
+            ((gymUser) user).setLongitude(account.get(username).get("longitude"));
+            ((gymUser) user).setPhone(account.get(username).get("phone"));
+        }
         user.setMainApp(mainApp);
         user.setUserName(account.get(username).get("username"));
         user.setPassword(account.get(username).get("password"));
@@ -53,13 +63,7 @@ public class Submit implements Initializable {
         if (!Objects.equals(account.get(username).get("birthday"), "")) {
             user.setBirthday(DateUtil.parse(account.get(username).get("birthday")));
         }
-        if (Objects.equals(account.get(username).get("ruolo"), "gym")){
-            user.setGymName(account.get(username).get("gymName"));
-            user.setAddress(account.get(username).get("address"));
-            user.setLatitude(account.get(username).get("latitude"));
-            user.setLongitude(account.get(username).get("longitude"));
-            user.setPhone(account.get(username).get("phone"));
-        }
+        user.setRole(account.get(username).get("ruolo"));
         return user;
     }
 

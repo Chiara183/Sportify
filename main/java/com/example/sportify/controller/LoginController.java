@@ -3,7 +3,7 @@ package com.example.sportify.controller;
 import com.example.sportify.MainApp;
 import com.example.sportify.OAuth.OAuthGoogleAuthenticator;
 import com.example.sportify.Submit;
-import com.example.sportify.User;
+import com.example.sportify.user.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;

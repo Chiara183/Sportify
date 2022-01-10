@@ -3,7 +3,7 @@ package com.example.sportify.OAuth;
 import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.Submit;
-import com.example.sportify.User;
+import com.example.sportify.user.User;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import org.json.JSONException;

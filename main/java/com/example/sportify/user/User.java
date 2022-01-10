@@ -1,5 +1,8 @@
-package com.example.sportify;
+package com.example.sportify.user;
 
+import com.example.sportify.DAO;
+import com.example.sportify.MainApp;
+import com.example.sportify.Submit;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,22 +11,24 @@ import javafx.scene.control.Alert;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.Objects;
 
-public class User {
+public abstract class User {
 
-    private final StringProperty firstName;
-    private final StringProperty lastName;
-    private final StringProperty userName;
-    private final StringProperty password;
-    private final StringProperty email;
-    private final StringProperty gymName;
-    private final StringProperty address;
-    private final StringProperty latitude;
-    private final StringProperty longitude;
-    private final StringProperty phone;
-    private final ObjectProperty<LocalDate> birthday;
+    protected final StringProperty firstName;
+    protected final StringProperty lastName;
+    protected final StringProperty userName;
+    protected final StringProperty password;
+    protected final StringProperty email;
+    protected final ObjectProperty<LocalDate> birthday;
+    protected StringProperty role = new SimpleStringProperty(null);
+    protected StringProperty gymName;
+    protected StringProperty address;
+    protected StringProperty latitude;
+    protected StringProperty longitude;
+    protected StringProperty phone;
 
-    private MainApp mainApp;
+    protected MainApp mainApp;
 
     /**
      * Is called by the main application to give a reference back to itself.
@@ -45,21 +50,24 @@ public class User {
     public User(String userName, String password) {
         this.firstName = new SimpleStringProperty(null);
         this.lastName = new SimpleStringProperty(null);
-        this.gymName = new SimpleStringProperty(null);
-        this.address = new SimpleStringProperty(null);
-        this.latitude = new SimpleStringProperty(null);
-        this.longitude = new SimpleStringProperty(null);
-        this.phone = new SimpleStringProperty(null);
+        this.email = new SimpleStringProperty(null);
 
         // Some initial dummy data, just for convenient testing.
         this.userName = new SimpleStringProperty(userName);
         this.password = new SimpleStringProperty(password);
-        this.email = new SimpleStringProperty(null);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String date = timestamp.toString();
         date = date.substring(0,10);
         String[] dateValue = date.split("-");
         this.birthday = new SimpleObjectProperty<>(LocalDate.of(Integer.parseInt(dateValue[0]), Integer.parseInt(dateValue[1]), Integer.parseInt(dateValue[2])));
+    }
+
+    public String getRole() {
+        return this.role.get();
+    }
+
+    public void setRole(String role) {
+        this.role.set(role);
     }
 
     public String getFirstName() {
@@ -100,7 +108,7 @@ public class User {
                     "UPDATE `user` SET `username` = '"
                             + userName + "' WHERE `user`.`username` = '"
                             + this.userName.getValue() + "'");
-            if (this.gymName != null) {
+            if (Objects.equals(this.role.get(), "gym")) {
                 obj_DAO.updateDB(
                         "UPDATE `gym` SET `owner` = '"
                                 + userName + "' WHERE `gym`.`owner` = '"
@@ -169,64 +177,29 @@ public class User {
         return gymName.get();
     }
 
-    public void setGymName(String name) {
-        this.gymName.set(name);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
-                "UPDATE `gym` SET `name` = '"
-                        + name + "' WHERE `gym`.`owner` = '"
-                        + this.userName.getValue() +"'");
-    }
+    protected abstract void setGymName(String name);
 
     public String getAddress() {
         return address.get();
     }
 
-    public void setAddress(String address) {
-        this.address.set(address);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
-                "UPDATE `gym` SET `address` = '"
-                        + address + "' WHERE `gym`.`owner` = '"
-                        + this.userName.getValue() +"'");
-    }
+    protected abstract void setAddress(String address);
 
     public String getLatitude() {
         return latitude.get();
     }
 
-    public void setLatitude(String latitude) {
-        this.latitude.set(latitude);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
-                "UPDATE `gym` SET `latitude` = '"
-                        + latitude + "' WHERE `gym`.`owner` = '"
-                        + this.userName.getValue() +"'");
-    }
+    protected abstract void setLatitude(String latitude);
 
     public String getLongitude() {
         return longitude.get();
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude.set(longitude);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
-                "UPDATE `gym` SET `longitude` = '"
-                        + longitude + "' WHERE `gym`.`owner` = '"
-                        + this.userName.getValue() +"'");
-    }
+    protected abstract void setLongitude(String longitude);
 
     public String getPhone() {
         return phone.get();
     }
 
-    public void setPhone(String phone) {
-        this.phone.set(phone);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
-                "UPDATE `gym` SET `phone` = '"
-                        + phone + "' WHERE `gym`.`owner` = '"
-                        + this.userName.getValue() +"'");
-    }
+    protected abstract void setPhone(String phone);
 }
