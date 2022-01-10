@@ -50,7 +50,6 @@ public class SportQuizController implements Initializable {
     public static boolean buttonOutdoor = false;
     public static boolean buttonGroup = false;
     public static boolean buttonSingle = false;
-    public static boolean buttonEndQuiz = false;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -151,15 +150,6 @@ public class SportQuizController implements Initializable {
         }
     }
 
-    @FXML
-    public void nextQuizAction(ActionEvent event) {
-        Button b = (Button) event.getSource();
-        if(b == nextQuiz){
-            sportQuizEnv();
-        }else if(b == nextQuizEnv){
-            sportQuizType();
-        }
-    }
 
     @FXML
     public void takeQuiz(ActionEvent event) {
@@ -188,10 +178,14 @@ public class SportQuizController implements Initializable {
         } else if (b == single) {
             buttonSingle = true;
             quizLogic();
-        } else if (b == endQuiz){
-            buttonEndQuiz = true;
-            quizLogic();
+        } else if (b == endQuiz || b == nextQuiz || b == nextQuizEnv) {
+            warning();
         }
+    }
+
+    public void warning(){
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "You need to make a choice!");
     }
 
     @FXML
@@ -253,10 +247,6 @@ public class SportQuizController implements Initializable {
             sport.setUser(this.user);
             sport.setMenu(this.menu);
             sport.loadingSportName("Golf");
-        }
-        if(buttonEndQuiz){
-            JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "Choose the situation that you prefer!");
         }
     }
 
