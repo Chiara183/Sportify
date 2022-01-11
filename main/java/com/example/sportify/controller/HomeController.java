@@ -16,8 +16,11 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
+    // Button
     @FXML
     private Button signIn;
+    @FXML
+    private Button gymInfo;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -44,6 +47,15 @@ public class HomeController implements Initializable {
     public void setUser(User user) {
         this.user = user;
         signIn.setVisible(this.user == null);
+        if(this.user!= null && this.user.getRole().equals("gym")){
+            gymInfo.setVisible(true);
+            gymInfo.setPrefWidth(141);
+            signIn.setPrefWidth(0);
+        } else {
+            gymInfo.setVisible(false);
+            gymInfo.setPrefWidth(0);
+            signIn.setPrefWidth(141);
+        }
     }
 
     private MenuController Menu() {
@@ -65,6 +77,16 @@ public class HomeController implements Initializable {
             System.out.println(e.getLocalizedMessage());
         }
         return controllerB;
+    }
+
+    @FXML
+    private void loadGymInfo(){
+        GymInfoController gym = new GymInfoController();
+        gym.setMainApp(this.mainApp);
+        gym.setUser(this.user);
+        gym.setMenu(this.Menu());
+        gym.setSearchCache(this.mainApp.getSearchCache());
+        gym.loadingGymName(user.getGymName());
     }
 
     @FXML

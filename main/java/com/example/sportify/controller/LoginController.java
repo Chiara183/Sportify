@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,6 +42,12 @@ public class LoginController implements Initializable{
     // User
     private User user;
 
+    // Is true when login is in external window
+    private MenuController menu;
+
+    // Is true when login is in external window
+    private boolean external;
+
     /**
      * The constructor.
      */
@@ -70,6 +77,20 @@ public class LoginController implements Initializable{
         this.submit = submit;
     }
 
+    /**
+     * Is called to set submit.
+     */
+    public void setMenu(MenuController menu) {
+        this.menu = menu;
+    }
+
+    /**
+     * Is called to set login in external window.
+     */
+    public void setExternal(boolean external) {
+        this.external = external;
+    }
+
     @FXML
     private void set_toggle_pass(){
         if(!pass_toggle.isSelected()) {
@@ -95,10 +116,20 @@ public class LoginController implements Initializable{
 
         //check whether the credentials are authentic or not
         if (this.submit.login(userValue, passValue)) {   //if authentic, navigate user to a new page
-            this.user = this.submit.setUser(userValue);
-            //JFrame jFrame = new JFrame();
-            //*JOptionPane.showMessageDialog(jFrame, "Correct!");
-            home();
+            if(!external) {
+                this.user = this.submit.setUser(userValue);
+                //JFrame jFrame = new JFrame();
+                //*JOptionPane.showMessageDialog(jFrame, "Correct!");
+                home();
+            } else {
+                this.user = this.submit.setUser(userValue);
+                this.menu.getMainApp().setUser(this.user);
+                MenuController menu = this.menu.getMainApp().Menu();
+                menu.setUser(this.user);
+                menu.getMainApp().setUser(this.user);
+                Stage stage = this.mainApp.getPrimaryStage();
+                stage.close();
+            }
         } else {
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);

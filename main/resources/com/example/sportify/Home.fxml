@@ -38,14 +38,20 @@
             <Font name="Comic Sans MS" size="22.0" />
         </font>
     </Button>
-    <Button fx:id="signIn" ellipsisString="" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="74.0" prefWidth="141.0" text="Log in" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-        <cursor>
-            <Cursor fx:constant="HAND" />
-        </cursor>
-        <font>
-            <Font name="Comic Sans MS" size="22.0" />
-        </font>
-    </Button>
+    <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+          GridPane.valignment="CENTER">
+        <Button fx:id="signIn" ellipsisString="" mnemonicParsing="false" onAction="#signLoginAction" prefHeight="74.0"
+                prefWidth="141.0" text="Log in">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+            <font>
+                <Font name="Comic Sans MS" size="22.0"/>
+            </font>
+        </Button>
+        <Button fx:id="gymInfo" maxHeight="74.0" minWidth="0.0" mnemonicParsing="false" onAction="#loadGymInfo"
+                prefHeight="74.0" prefWidth="0.0" text="Gym Info" visible="false"/>
+    </HBox>
     <Button ellipsisString="" mnemonicParsing="false" onAction="#findGymAction" prefHeight="74.0" prefWidth="141.0" text="Find gym" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
         <cursor>
             <Cursor fx:constant="HAND" />

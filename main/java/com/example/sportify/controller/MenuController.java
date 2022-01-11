@@ -63,6 +63,13 @@ public class MenuController implements Initializable {
     }
 
     /**
+     * Is called by the main application to give a reference back to itself.
+     */
+    public MainApp getMainApp() {
+        return this.mainApp;
+    }
+
+    /**
      * Is called to set user.
      */
     public void setUser(User user) {
@@ -130,37 +137,27 @@ public class MenuController implements Initializable {
 
     @FXML
     private void sportQuizAction() {
-        findGym.setStyle("");
-        signIn.setStyle("");
-        signUp.setStyle("");
-        sportQuiz.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
+        setButton(findGym, signIn, signUp, sportQuiz);
         this.mainApp.showSportQuizOverview(this);
     }
 
     @FXML
     private void findGymAction() {
-        sportQuiz.setStyle("");
-        signIn.setStyle("");
-        signUp.setStyle("");
-        findGym.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
+        setButton(signIn, sportQuiz, signUp, findGym);
         this.mainApp.showFindGymOverview(this);
     }
 
     @FXML
     private void signLoginAction() {
-        findGym.setStyle("");
-        sportQuiz.setStyle("");
-        signUp.setStyle("");
-        signIn.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
+        setButton(findGym, sportQuiz, signUp, signIn);
+        this.mainApp.setExternal_login(true);
+        this.mainApp.setMenu(this);
         this.mainApp.showLoginOverview();
     }
 
     @FXML
     private void signUpAction() {
-        findGym.setStyle("");
-        signIn.setStyle("");
-        sportQuiz.setStyle("");
-        signUp.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
+        setButton(findGym, sportQuiz, signIn, signUp);
         this.mainApp.showSignUpOverview();
     }
 
@@ -198,24 +195,26 @@ public class MenuController implements Initializable {
     }
 
     public void setSportQuiz() {
-        findGym.setStyle("");
-        signIn.setStyle("");
-        signUp.setStyle("");
-        sportQuiz.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
+        setButton(findGym, signIn, signUp, sportQuiz);
     }
 
     public void setFindGym() {
-        sportQuiz.setStyle("");
-        signIn.setStyle("");
-        signUp.setStyle("");
-        findGym.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
+        setButton(signIn, sportQuiz, signUp, findGym);
     }
 
     public void setLogin() {
-        findGym.setStyle("");
-        sportQuiz.setStyle("");
-        signUp.setStyle("");
-        signIn.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
+        setButton(findGym, sportQuiz, signUp, signIn);
+    }
+
+    private void setButton(Button button1, Button button2, Button button3, Button button_off){
+        button1.setStyle("");
+        button1.setDisable(false);
+        button2.setStyle("");
+        button2.setDisable(false);
+        button3.setStyle("");
+        button3.setDisable(false);
+        button_off.setDisable(true);
+        button_off.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
     }
 
     @Override

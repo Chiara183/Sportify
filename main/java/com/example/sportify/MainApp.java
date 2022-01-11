@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,6 +27,8 @@ public class MainApp extends Application{
     private User user = null;
     private String[] search_cache;
     private final DAO dao = new DAO();
+    private boolean external_login = false;
+    private MenuController menu;
 
     public static void main(String[] args) {
         launch(args);
@@ -57,6 +60,7 @@ public class MainApp extends Application{
      * Constructor
      */
     public MainApp(){
+        this.primaryStage = new Stage();
     }
 
     /**
@@ -77,10 +81,38 @@ public class MainApp extends Application{
     }
 
     /**
+     * Is called to set user.
+     */
+    public void setMenu(MenuController menu) {
+        this.menu = menu;
+    }
+
+    /**
      * Is called to set search_cache.
      */
     public void setSearchCache(String[] search) {
         this.search_cache = search;
+    }
+
+    /**
+     * Is called to set login variable.
+     */
+    public void setExternal_login(boolean login) {
+        this.external_login = login;
+    }
+
+    /**
+     * Is called to set rootLayout.
+     */
+    public void setRootLayout(BorderPane rootLayout) {
+        this.rootLayout = rootLayout;
+    }
+
+    /**
+     * Is called to get rootLayout.
+     */
+    public BorderPane getRootLayout() {
+        return this.rootLayout;
     }
 
     /**
@@ -113,7 +145,7 @@ public class MainApp extends Application{
     /**
      * Shows menu overview inside the root layout.
      */
-    private MenuController Menu() {
+    public MenuController Menu() {
         MenuController controllerB = null;
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
@@ -184,14 +216,47 @@ public class MainApp extends Application{
             loaderLogin.setLocation(MainApp.class.getResource("Login.fxml"));
             Pane pane = loaderLogin.load();
 
-            // Set login overview into the center of root layout.
-            this.getPrimaryPane().setCenter(pane);
+            if(!external_login) {
+                // Set login overview into the center of root layout.
+                this.getPrimaryPane().setCenter(pane);
 
-            // Give the controller access to the main app.
-            LoginController controller = loaderLogin.getController();
-            controller.setMainApp(this);
-            controller.setSubmit(this.submit);
-            controller.setUser(this.user);
+                // Give the controller access to the main app.
+                LoginController controller = loaderLogin.getController();
+                controller.setMainApp(this);
+                controller.setSubmit(this.submit);
+                controller.setUser(this.user);
+                controller.setExternal(this.external_login);
+            } else {
+                MainApp mainApp = new MainApp();
+                // Create the dialog Stage.
+                Stage dialogStage = mainApp.getPrimaryStage();
+                dialogStage.setTitle("Sportify - Login");
+                dialogStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Sportify icon.png"))));
+
+                // Load root layout from fxml file.
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("RootLayout.fxml"));
+                mainApp.setRootLayout(loader.load());
+
+                // SetWindowModal
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.initOwner(this.primaryStage);
+                Scene scene = new Scene(mainApp.getRootLayout(), 830, 550);
+                mainApp.getRootLayout().setCenter(pane);
+                dialogStage.setScene(scene);
+                dialogStage.setResizable(false);
+
+                // Set the person into the controller.
+                LoginController controller = loaderLogin.getController();
+                controller.setMainApp(mainApp);
+                controller.setSubmit(this.submit);
+                controller.setUser(this.user);
+                controller.setExternal(this.external_login);
+                controller.setMenu(this.menu);
+
+                // Show the dialog and wait until the user closes it
+                dialogStage.showAndWait();
+            }
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
