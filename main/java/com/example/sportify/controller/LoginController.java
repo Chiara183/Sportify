@@ -91,6 +91,7 @@ public class LoginController extends AccessController{
                 MenuController menu = this.mainApp.Menu();
                 menu.setUser(this.user);
                 if (Objects.equals(this.menu.getView(), "gymInfo")){
+                    menu.setGymInfo(this.menu.getGym());
                     GymInfoController gym = new GymInfoController();
                     gym.setMainApp(this.mainApp);
                     gym.setUser(this.user);
