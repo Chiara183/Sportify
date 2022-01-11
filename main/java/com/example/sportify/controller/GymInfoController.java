@@ -1,15 +1,12 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
-import com.example.sportify.MainApp;
-import com.example.sportify.user.User;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -20,13 +17,11 @@ import javafx.scene.layout.VBox;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
-public class GymInfoController implements Initializable {
+public class GymInfoController extends Controller {
 
     // Label
     @FXML
@@ -66,35 +61,11 @@ public class GymInfoController implements Initializable {
     @FXML
     private Slider min_slider;
 
-    // String
-    private String[] search_cache;
-
-    // Reference to the main application.
-    private MainApp mainApp;
-
-    // Reference to Menu bar
-    private MenuController menu;
-
-    // User
-    private User user;
-
     // ObservableList
     private ObservableList<String> sport;
 
     // Method that set up the controller
     public GymInfoController(){
-    }
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public void setMenu(MenuController menu) {
-        this.menu = menu;
-    }
-    public void setSearchCache(String[] search) {
-        this.search_cache = search;
     }
     private void setReview(){
         if(this.user != null){
@@ -128,7 +99,6 @@ public class GymInfoController implements Initializable {
     }
     private void setupEventHandlers() {
         this.menu.getSignOut().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> settingPage());
-        this.menu.getSignIn().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> settingPage());
     }
     private ObservableList<String> getSport(){
         ObservableList<String> sport = FXCollections.observableArrayList();
@@ -154,6 +124,11 @@ public class GymInfoController implements Initializable {
                 return null;
             }
         };
+    }
+
+    // Get gym name
+    public String getGymName(){
+        return this.gym_name.getText();
     }
 
     // Load the review of gym
@@ -281,7 +256,7 @@ public class GymInfoController implements Initializable {
     }
 
     // Set Gym View
-    public void setGym(String name){
+    private void setGym(String name){
 
         // Handlers
         setupEventHandlers();
@@ -481,9 +456,5 @@ public class GymInfoController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 }

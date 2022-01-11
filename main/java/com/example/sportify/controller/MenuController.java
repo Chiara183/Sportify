@@ -2,10 +2,8 @@ package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.user.User;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,11 +14,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
-public class MenuController implements Initializable {
+public class MenuController extends Controller {
 
     // Button
     @FXML
@@ -44,11 +40,11 @@ public class MenuController implements Initializable {
     @FXML
     private Label username;
 
-    // Reference to the main application.
-    private MainApp mainApp;
+    // String the name of the view
+    private String view;
 
-    // User
-    private User user;
+    // String the name of the view
+    private String gym;
 
     /**
      * The constructor.
@@ -57,22 +53,30 @@ public class MenuController implements Initializable {
     }
 
     /**
-     * Is called by the main application to give a reference back to itself.
+     * Is called to get the name of the view.
      */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
+    public String getView() {
+        return this.view;
     }
 
     /**
-     * Is called by the main application to give a reference back to itself.
+     * Is called to get the name of gym.
      */
-    public MainApp getMainApp() {
-        return this.mainApp;
+    public String getGym() {
+        return this.gym;
+    }
+
+    /**
+     * Is called to set the name of gym.
+     */
+    public void setGym(String gym) {
+        this.gym = gym;
     }
 
     /**
      * Is called to set user.
      */
+    @Override
     public void setUser(User user) {
         this.user = user;
         if (this.user!=null) {
@@ -115,13 +119,6 @@ public class MenuController implements Initializable {
         return this.signOut;
     }
 
-    /**
-     * Is called to get signIn button.
-     */
-    public Button getSignIn(){
-        return this.signIn;
-    }
-
     @FXML
     private void signOut() {
         setUser(null);
@@ -130,27 +127,33 @@ public class MenuController implements Initializable {
 
     @FXML
     private void loadGymInfo(){
+        setButton(findGym, sportQuiz, signOut, gymInfo);
         GymInfoController gym = new GymInfoController();
+        this.view = "gymInfo";
         gym.setMainApp(this.mainApp);
         gym.setUser(this.user);
         gym.setMenu(this);
         gym.setSearchCache(this.mainApp.getSearchCache());
         gym.loadingGymName(user.getGymName());
+        this.gym = user.getGymName();
     }
 
     @FXML
     private void homeAction() {
+        this.view = "home";
         this.mainApp.showHomeOverview();
     }
 
     @FXML
     private void sportQuizAction() {
+        this.view = "sportQuiz";
         setButton(findGym, signIn, signUp, sportQuiz);
         this.mainApp.showSportQuizOverview(this);
     }
 
     @FXML
     private void findGymAction() {
+        this.view = "findGym";
         setButton(signIn, sportQuiz, signUp, findGym);
         this.mainApp.showFindGymOverview(this);
     }
@@ -165,6 +168,7 @@ public class MenuController implements Initializable {
 
     @FXML
     private void signUpAction() {
+        this.view = "signUp";
         setButton(findGym, sportQuiz, signIn, signUp);
         this.mainApp.showSignUpOverview();
     }
@@ -193,7 +197,7 @@ public class MenuController implements Initializable {
             // Set the person into the controller.
             EditController controller = loader.getController();
             controller.setUser(user);
-            controller.setMenuController(this);
+            controller.setMenu(this);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -203,15 +207,23 @@ public class MenuController implements Initializable {
     }
 
     public void setSportQuiz() {
+        this.view = "sportQuiz";
         setButton(findGym, signIn, signUp, sportQuiz);
     }
 
     public void setFindGym() {
+        this.view = "findGym";
         setButton(signIn, sportQuiz, signUp, findGym);
     }
 
     public void setLogin() {
+        this.view = "login";
         setButton(findGym, sportQuiz, signUp, signIn);
+    }
+
+    public void setGymInfo(){
+        this.view = "gymInfo";
+        setButton(findGym, sportQuiz, signOut, gymInfo);
     }
 
     private void setButton(Button button1, Button button2, Button button3, Button button_off){
@@ -223,11 +235,6 @@ public class MenuController implements Initializable {
         button3.setDisable(false);
         button_off.setDisable(true);
         button_off.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO
     }
 }
 

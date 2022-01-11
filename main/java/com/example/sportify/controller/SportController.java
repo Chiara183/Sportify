@@ -2,17 +2,16 @@ package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
-import com.example.sportify.user.User;
-import javafx.fxml.*;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+
 import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
 
-public class SportController implements Initializable{
+public class SportController extends Controller{
     @FXML
     private Label sport_name;
     @FXML
@@ -20,28 +19,7 @@ public class SportController implements Initializable{
     @FXML
     private Label sportName;
 
-
-
-
-    // Reference to the main application.
-    private MainApp mainApp;
-
-    // User
-    private User user;
-
-    // Menu
-    private MenuController menu;
-
     public SportController(){}
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public void setMenu(MenuController menu) {
-        this.menu = menu;
-    }
 
     @FXML
     private void home(){
@@ -136,11 +114,5 @@ public class SportController implements Initializable{
         if(this.sportName.getText().equals("Athletics")){
             loadDescriptionFromDB("Athletics");
         }
-    }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

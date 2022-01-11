@@ -1,32 +1,22 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.MainApp;
 import com.example.sportify.user.User;
 import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
-public class HomeController implements Initializable {
+public class HomeController extends Controller {
 
     // Button
     @FXML
     private Button signIn;
     @FXML
     private Button gymInfo;
-
-    // Reference to the main application.
-    private MainApp mainApp;
-
-    // User
-    private User user = null;
 
     /**
      * The constructor.
@@ -35,15 +25,9 @@ public class HomeController implements Initializable {
     }
 
     /**
-     * Is called by the main application to give a reference back to itself.
-     */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-
-    /**
      * Is called to set user.
      */
+    @Override
     public void setUser(User user) {
         this.user = user;
         signIn.setVisible(this.user == null);
@@ -81,10 +65,12 @@ public class HomeController implements Initializable {
 
     @FXML
     private void loadGymInfo(){
+        MenuController menu = this.Menu();
+        menu.setGymInfo();
         GymInfoController gym = new GymInfoController();
         gym.setMainApp(this.mainApp);
         gym.setUser(this.user);
-        gym.setMenu(this.Menu());
+        gym.setMenu(menu);
         gym.setSearchCache(this.mainApp.getSearchCache());
         gym.loadingGymName(user.getGymName());
     }
@@ -164,10 +150,5 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO
     }
 }

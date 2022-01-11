@@ -1,21 +1,17 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.MainApp;
 import com.example.sportify.OAuth.OAuthGoogleAuthenticator;
 import com.example.sportify.Submit;
-import com.example.sportify.user.User;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.Objects;
 
-public class LoginController implements Initializable{
+public class LoginController extends AccessController{
 
     //TextField
     @FXML
@@ -33,20 +29,11 @@ public class LoginController implements Initializable{
     @FXML
     private CheckBox pass_toggle;
 
-    // Reference to the main application.
-    private MainApp mainApp;
-
-    // Reference to submit.
-    private Submit submit;
-
-    // User
-    private User user;
-
-    // Is true when login is in external window
-    private MenuController menu;
-
     // Is true when login is in external window
     private boolean external;
+
+    // Set up the external stage
+    private Stage externalStage;
 
     /**
      * The constructor.
@@ -56,32 +43,10 @@ public class LoginController implements Initializable{
     }
 
     /**
-     * Is called by the main application to give a reference back to itself.
+     * Is called to set external stage.
      */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-        this.submit = new Submit(this.mainApp);
-    }
-
-    /**
-     * Is called to set user.
-     */
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    /**
-     * Is called to set submit.
-     */
-    public void setSubmit(Submit submit) {
-        this.submit = submit;
-    }
-
-    /**
-     * Is called to set submit.
-     */
-    public void setMenu(MenuController menu) {
-        this.menu = menu;
+    public void setStage(Stage stage) {
+        this.externalStage = stage;
     }
 
     /**
@@ -118,16 +83,22 @@ public class LoginController implements Initializable{
         if (this.submit.login(userValue, passValue)) {   //if authentic, navigate user to a new page
             if(!external) {
                 this.user = this.submit.setUser(userValue);
-                //JFrame jFrame = new JFrame();
-                //*JOptionPane.showMessageDialog(jFrame, "Correct!");
                 home();
             } else {
                 this.user = this.submit.setUser(userValue);
-                this.menu.getMainApp().setUser(this.user);
-                MenuController menu = this.menu.getMainApp().Menu();
+                this.mainApp.setUser(this.user);
+                this.menu.setUser(this.user);
+                MenuController menu = this.mainApp.Menu();
                 menu.setUser(this.user);
-                menu.getMainApp().setUser(this.user);
-                Stage stage = this.mainApp.getPrimaryStage();
+                if (Objects.equals(this.menu.getView(), "gymInfo")){
+                    GymInfoController gym = new GymInfoController();
+                    gym.setMainApp(this.mainApp);
+                    gym.setUser(this.user);
+                    gym.setMenu(this.menu);
+                    gym.setSearchCache(search_cache);
+                    gym.loadingGymName(menu.getGym());
+                }
+                Stage stage = this.externalStage;
                 stage.close();
             }
         } else {
@@ -159,11 +130,6 @@ public class LoginController implements Initializable{
     @FXML
     private void skipAction() {
         home();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO
     }
 }
 

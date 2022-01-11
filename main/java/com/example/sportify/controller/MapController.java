@@ -1,9 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
-import com.example.sportify.MainApp;
 import com.example.sportify.OpenStreetMapUtils;
-import com.example.sportify.user.User;
 import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.event.MapLabelEvent;
 import com.sothawo.mapjfx.event.MarkerEvent;
@@ -22,7 +20,7 @@ import java.util.Objects;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
-public class MapController {
+public class MapController extends Controller{
 
     /** default zoom value. */
     private static final int ZOOM_DEFAULT = 11;
@@ -72,26 +70,10 @@ public class MapController {
             .withUrl("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x})")
             .withAttributions("'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
 
-    // Reference to the main application.
-    private MainApp mainApp;
-
-    // User
-    private User user;
-
-    //MenuController
-    private MenuController menu;
-
     public MapController() {
     }
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public void setMenu(MenuController menu){
-        this.menu = menu;
-    }
+
+    @Override
     public void setSearchCache(String[] search) {
         if(search!=null) {
             this.search.setText(search[0]);
@@ -304,6 +286,7 @@ public class MapController {
             search_cache[0] = this.search.getText();
             search_cache[1] = this.km.getValue();
             gym.setSearchCache(search_cache);
+            this.menu.setGym(event.getMapLabel().getText());
             gym.loadingGymName(event.getMapLabel().getText());
         }
     }

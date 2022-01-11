@@ -5,7 +5,6 @@ import com.example.sportify.Submit;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -14,12 +13,10 @@ import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Timestamp;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
-public class SignUpController implements Initializable {
+public class SignUpController extends AccessController {
 
     //TextField
     @FXML
@@ -47,22 +44,8 @@ public class SignUpController implements Initializable {
     @FXML
     CheckBox userTick;
 
-    // Reference to the main application.
-    private MainApp mainApp;
-
-    // Reference to submit.
-    private Submit submit;
-
     public SignUpController() {
         this.submit = new Submit(null);
-    }
-
-    /**
-     * Is called by the main application to give a reference back to itself.
-     */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-        this.submit = new Submit(mainApp);
     }
 
     @FXML
@@ -181,11 +164,6 @@ public class SignUpController implements Initializable {
         } else if (event.getSource() == userTick && !gymTick.isSelected()) {
             gymTick.setSelected(true);
         }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO
     }
 }
 

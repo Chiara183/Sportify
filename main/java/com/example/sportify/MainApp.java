@@ -60,7 +60,6 @@ public class MainApp extends Application{
      * Constructor
      */
     public MainApp(){
-        this.primaryStage = new Stage();
     }
 
     /**
@@ -102,20 +101,6 @@ public class MainApp extends Application{
     }
 
     /**
-     * Is called to set rootLayout.
-     */
-    public void setRootLayout(BorderPane rootLayout) {
-        this.rootLayout = rootLayout;
-    }
-
-    /**
-     * Is called to get rootLayout.
-     */
-    public BorderPane getRootLayout() {
-        return this.rootLayout;
-    }
-
-    /**
      * Is called to set search_cache.
      */
     public String[] getSearchCache() {
@@ -125,7 +110,7 @@ public class MainApp extends Application{
     /**
      * Initializes the root layout.
      */
-    public void initRootLayout() {
+    private void initRootLayout() {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
@@ -205,6 +190,7 @@ public class MainApp extends Application{
      * Shows login overview inside the root layout.
      */
     public void showLoginOverview() {
+        LoginController controller;
         try {
             this.primaryStage.setTitle("Sportify - Login");
 
@@ -221,38 +207,38 @@ public class MainApp extends Application{
                 this.getPrimaryPane().setCenter(pane);
 
                 // Give the controller access to the main app.
-                LoginController controller = loaderLogin.getController();
+                controller = loaderLogin.getController();
                 controller.setMainApp(this);
                 controller.setSubmit(this.submit);
                 controller.setUser(this.user);
                 controller.setExternal(this.external_login);
             } else {
-                MainApp mainApp = new MainApp();
                 // Create the dialog Stage.
-                Stage dialogStage = mainApp.getPrimaryStage();
+                Stage dialogStage = new Stage();
                 dialogStage.setTitle("Sportify - Login");
                 dialogStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Sportify icon.png"))));
 
                 // Load root layout from fxml file.
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("RootLayout.fxml"));
-                mainApp.setRootLayout(loader.load());
+                BorderPane root = loader.load();
 
                 // SetWindowModal
                 dialogStage.initModality(Modality.WINDOW_MODAL);
                 dialogStage.initOwner(this.primaryStage);
-                Scene scene = new Scene(mainApp.getRootLayout(), 830, 550);
-                mainApp.getRootLayout().setCenter(pane);
+                Scene scene = new Scene(root, 830, 550);
+                root.setCenter(pane);
                 dialogStage.setScene(scene);
                 dialogStage.setResizable(false);
 
                 // Set the person into the controller.
-                LoginController controller = loaderLogin.getController();
-                controller.setMainApp(mainApp);
+                controller = loaderLogin.getController();
+                controller.setMainApp(this);
                 controller.setSubmit(this.submit);
                 controller.setUser(this.user);
                 controller.setExternal(this.external_login);
                 controller.setMenu(this.menu);
+                controller.setStage(dialogStage);
 
                 // Show the dialog and wait until the user closes it
                 dialogStage.showAndWait();

@@ -1,19 +1,19 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.*;
+import com.example.sportify.DAO;
+import com.example.sportify.IO;
+import com.example.sportify.OpenStreetMapUtils;
+import com.example.sportify.Submit;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import javax.swing.*;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
 
-public class SignUpGymController implements Initializable {
+public class SignUpGymController extends Controller {
 
     //TextField
     @FXML
@@ -23,21 +23,10 @@ public class SignUpGymController implements Initializable {
     @FXML
     private TextField gymCity;
 
-    // Reference to the main application.
-    private MainApp mainApp;
-
     // Reference to submit.
     private Submit submit;
 
     public SignUpGymController() {
-    }
-
-    /**
-     * Is called by the main application to give a reference back to itself.
-     *
-     */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
     }
 
     /**
@@ -105,11 +94,6 @@ public class SignUpGymController implements Initializable {
     @FXML
     private void skipAction(){
         login();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO
     }
 }
 

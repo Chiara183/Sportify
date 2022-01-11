@@ -1,17 +1,16 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
-import com.example.sportify.user.User;
 import javafx.event.ActionEvent;
-import javafx.fxml.*;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+
 import javax.swing.*;
 import java.io.IOException;
-import java.net.URL;
-import java.util.*;
 
-public class SportQuizController implements Initializable {
+public class SportQuizController extends Controller {
 
     @FXML
     private Button backQuiz;
@@ -50,39 +49,6 @@ public class SportQuizController implements Initializable {
     public static boolean buttonOutdoor = false;
     public static boolean buttonGroup = false;
     public static boolean buttonSingle = false;
-
-    // Reference to the main application.
-    private MainApp mainApp;
-
-    // User
-    private User user;
-
-    // MenuController
-    private MenuController menu;
-
-    /**
-     * Is called by the main application to give a reference back to itself.
-     *
-     */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-
-    /**
-     * Is called to set user.
-     *
-     */
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    /**
-     * Is called to set menu.
-     */
-    public void setMenu(MenuController menu){
-        this.menu = menu;
-    }
-
 
     @FXML
     private void home(){
@@ -137,7 +103,6 @@ public class SportQuizController implements Initializable {
         }
     }
 
-
     @FXML
     public void backQuizAction(ActionEvent event) {
         Button b = (Button) event.getSource();
@@ -149,7 +114,6 @@ public class SportQuizController implements Initializable {
             sportQuizEnv();
         }
     }
-
 
     @FXML
     public void takeQuiz(ActionEvent event) {
@@ -249,11 +213,5 @@ public class SportQuizController implements Initializable {
             sport.loadingSportName("Golf");
         }
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO
-    }
-
 }
 

@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public abstract class EditController {
+public abstract class EditController extends Controller{
 
     // Label
     @FXML
@@ -91,22 +91,10 @@ public abstract class EditController {
     @FXML
     protected DatePicker date;
 
-    // User
-    protected User user;
-
-    // MenuController
-    protected MenuController menu;
-
-    /**
-     * Sets the menu.
-     */
-    public void setMenuController(MenuController menu){
-        this.menu = menu;
-    }
-
     /**
      * Sets the user to be edited in the dialog.
      */
+    @Override
     public void setUser(User user){
         this.user = user;
 
