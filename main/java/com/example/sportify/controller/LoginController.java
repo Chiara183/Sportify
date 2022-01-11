@@ -94,9 +94,9 @@ public class LoginController extends AccessController{
                     GymInfoController gym = new GymInfoController();
                     gym.setMainApp(this.mainApp);
                     gym.setUser(this.user);
-                    gym.setMenu(this.menu);
-                    gym.setSearchCache(search_cache);
-                    gym.loadingGymName(menu.getGym());
+                    gym.setMenu(menu);
+                    gym.setSearchCache(this.search_cache);
+                    gym.loadingGymName(this.menu.getGym());
                 }
                 Stage stage = this.externalStage;
                 stage.close();

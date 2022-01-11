@@ -221,8 +221,9 @@ public class MenuController extends Controller {
         setButton(findGym, sportQuiz, signUp, signIn);
     }
 
-    public void setGymInfo(){
+    public void setGymInfo(String gym){
         this.view = "gymInfo";
+        this.gym = gym;
         setButton(findGym, sportQuiz, signOut, gymInfo);
     }
 

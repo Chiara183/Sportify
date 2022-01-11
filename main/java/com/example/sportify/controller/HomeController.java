@@ -66,7 +66,7 @@ public class HomeController extends Controller {
     @FXML
     private void loadGymInfo(){
         MenuController menu = this.Menu();
-        menu.setGymInfo();
+        menu.setGymInfo(this.user.getGymName());
         GymInfoController gym = new GymInfoController();
         gym.setMainApp(this.mainApp);
         gym.setUser(this.user);
