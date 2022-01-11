@@ -80,7 +80,7 @@
                </Button>
             </bottom>
          </BorderPane>
-            <BorderPane fx:id="course_pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <BorderPane fx:id="course_pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
                 <top>
                     <Label text="New Course" BorderPane.alignment="CENTER">
                         <font>

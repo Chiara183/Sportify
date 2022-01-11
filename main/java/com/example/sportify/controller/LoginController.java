@@ -1,7 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
-import com.example.sportify.OAuth.OAuthGoogleAuthenticator;
+import com.example.sportify.oauth.OAuthGoogleAuthenticator;
 import com.example.sportify.Submit;
 import com.example.sportify.user.User;
 import javafx.fxml.FXML;
@@ -11,7 +11,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -97,8 +96,8 @@ public class LoginController implements Initializable{
         //check whether the credentials are authentic or not
         if (this.submit.login(userValue, passValue)) {   //if authentic, navigate user to a new page
             this.user = this.submit.setUser(userValue);
-            JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "Correct!");
+            //JFrame jFrame = new JFrame();
+            //*JOptionPane.showMessageDialog(jFrame, "Correct!");
             home();
         } else {
             //show error message
