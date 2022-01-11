@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.user.User;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -112,6 +113,13 @@ public class MenuController implements Initializable {
      */
     public Button getSignOut(){
         return this.signOut;
+    }
+
+    /**
+     * Is called to get signIn button.
+     */
+    public Button getSignIn(){
+        return this.signIn;
     }
 
     @FXML

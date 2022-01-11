@@ -114,19 +114,21 @@ public class GymInfoController implements Initializable {
             this.course_pane.setVisible(false);
         }
     }
-    private void setupEventHandlers() {
-        this.menu.getSignOut().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            this.user = this.menu.getUser();
-            Runnable task = () -> Platform.runLater(() -> {
-                    setReview();
-                    setCourse();
-            });
-            Task<Void> task1 = createTask(task);
-            task1.setOnRunning(e -> this.mainApp.getPrimaryPane().setCursor(Cursor.WAIT));
-            task1.setOnSucceeded(e -> this.mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT));
-            task1.setOnFailed(e -> this.mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT));
-            new Thread(task1).start();
+    private void settingPage(){
+        this.user = this.menu.getUser();
+        Runnable task = () -> Platform.runLater(() -> {
+            setReview();
+            setCourse();
         });
+        Task<Void> task1 = createTask(task);
+        task1.setOnRunning(e -> this.mainApp.getPrimaryPane().setCursor(Cursor.WAIT));
+        task1.setOnSucceeded(e -> this.mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT));
+        task1.setOnFailed(e -> this.mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT));
+        new Thread(task1).start();
+    }
+    private void setupEventHandlers() {
+        this.menu.getSignOut().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> settingPage());
+        this.menu.getSignIn().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> settingPage());
     }
     private ObservableList<String> getSport(){
         ObservableList<String> sport = FXCollections.observableArrayList();
@@ -182,6 +184,7 @@ public class GymInfoController implements Initializable {
     }
 
     // Cancel a review of gym
+    @FXML
     private void cancelReview(MouseEvent e){
         Label event = (Label) e.getSource();
         DAO obj_DAO = this.mainApp.getDAO();
@@ -192,7 +195,7 @@ public class GymInfoController implements Initializable {
                 "' AND `review`.`timestamp` = '" +
                 event.getEllipsisString().split(";")[1] +
                 "'");
-        downloadReview();
+        loadingGymName(gym_name.getText());
     }
 
     // Download the review
@@ -219,7 +222,7 @@ public class GymInfoController implements Initializable {
 
     // Load the course of gym
     private void loadCourse(ResultSet rs){
-        this.course.getChildren().remove(1, this.review.getChildren().size());
+        this.course.getChildren().remove(1, this.course.getChildren().size());
         try {
             Label label = new Label(rs.getString("sport") + " " + rs.getTime("time").toString().substring(0, 5));
             String s = rs.getString("sport") + ";" + rs.getTime("time").toString();
@@ -242,6 +245,7 @@ public class GymInfoController implements Initializable {
     }
 
     // Cancel a course of gym
+    @FXML
     private void cancelCourse(MouseEvent e){
         Label event = (Label) e.getSource();
         DAO obj_DAO = this.mainApp.getDAO();
@@ -252,7 +256,7 @@ public class GymInfoController implements Initializable {
                 "' AND `course`.`time` = '" +
                 event.getEllipsisString().split(";")[1] +
                 "'");
-        downloadCourse();
+        loadingGymName(gym_name.getText());
     }
 
     // Download Course
@@ -395,7 +399,7 @@ public class GymInfoController implements Initializable {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Review is empty.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        downloadReview();
+        loadingGymName(gym_name.getText());
     }
 
     @FXML
@@ -434,7 +438,6 @@ public class GymInfoController implements Initializable {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Insert all value.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        downloadCourse();
     }
 
     @FXML
