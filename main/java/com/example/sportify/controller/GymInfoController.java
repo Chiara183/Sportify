@@ -141,7 +141,7 @@ public class GymInfoController extends Controller {
             Label labelReview = new Label(rs.getString("review"));
             Label blankSpace = new Label();
             VBox vbox = new VBox(labelTitle, labelReview, blankSpace);
-            if (this.user != null && Objects.equals(this.user.getGymName(), this.gym_name.getText())) {
+            if (this.user != null && Objects.equals(this.user.getRole(), "gym") && Objects.equals(this.user.getGymName(), this.gym_name.getText())) {
                 Label cancel = new Label("⮿");
                 cancel.setStyle("-fx-text-fill: red; ");
                 cancel.setEllipsisString(string);
@@ -374,7 +374,7 @@ public class GymInfoController extends Controller {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Review is empty.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        loadingGymName(gym_name.getText());
+        loadingGymName(gym);
     }
 
     @FXML

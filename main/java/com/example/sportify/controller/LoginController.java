@@ -81,11 +81,10 @@ public class LoginController extends AccessController{
 
         //check whether the credentials are authentic or not
         if (this.submit.login(userValue, passValue)) {   //if authentic, navigate user to a new page
+            this.user = this.submit.setUser(userValue);
             if(!external) {
-                this.user = this.submit.setUser(userValue);
                 home();
             } else {
-                this.user = this.submit.setUser(userValue);
                 this.mainApp.setUser(this.user);
                 this.menu.setUser(this.user);
                 MenuController menu = this.mainApp.Menu();
