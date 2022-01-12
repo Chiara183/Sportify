@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public abstract class EditController extends Controller{
 
-    // Label
+    /** All the Label of interface */
     @FXML
     protected Label usernameLabel;
     @FXML
@@ -45,7 +45,7 @@ public abstract class EditController extends Controller{
     @FXML
     protected Label modify_telephone;
 
-    // TextField
+    /** All the TextField of interface*/
     @FXML
     protected TextField username;
     @FXML
@@ -63,7 +63,7 @@ public abstract class EditController extends Controller{
     @FXML
     protected TextField telephone;
 
-    // CheckBox
+    /** All the CheckBox of interface*/
     @FXML
     protected CheckBox toggle_firstName;
     @FXML
@@ -81,7 +81,7 @@ public abstract class EditController extends Controller{
     @FXML
     protected CheckBox toggle_telephone;
 
-    // Button
+    /** All the Button of the interface*/
     @FXML
     protected Button ok;
     @FXML
@@ -91,9 +91,7 @@ public abstract class EditController extends Controller{
     @FXML
     protected DatePicker date;
 
-    /**
-     * Sets the user to be edited in the dialog.
-     */
+    /** Sets the user to be edited in the dialog.*/
     @Override
     public void setUser(User user){
         this.user = user;
@@ -111,17 +109,16 @@ public abstract class EditController extends Controller{
         date.setValue(user.getBirthday());
     }
 
-    public abstract void setUser(gymUser user);
-
+    /** The action of the button.*/
     @FXML
     abstract void okAction();
-
     @FXML
     protected void cancelAction() {
         Stage stage = (Stage) cancel.getScene().getWindow();
         stage.close();
     }
 
+    /** Controls the modifiability of all field*/
     @FXML
     protected void set_toggle_pass(MouseEvent modify) {
         if (modify.getSource() == modify_username) {
@@ -176,10 +173,6 @@ public abstract class EditController extends Controller{
             }
         }
     }
-
-    /**
-     * Controls the visibility of the Password field
-     */
     protected void togglevisible(CheckBox pass_toggle, Label pass_text, TextField password) {
         if (!pass_toggle.isSelected()) {
             pass_text.setText(password.getText());

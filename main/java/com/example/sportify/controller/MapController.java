@@ -28,7 +28,7 @@ public class MapController extends Controller{
     // ObservableList
     private final ObservableList<String> radius = FXCollections.observableArrayList("1", "5", "10", "20", "50");
 
-    // HashMap
+    /** All the HashMap of the map*/
     private final HashMap<Coordinate, String> all_gym = new HashMap<>();
     private final HashMap<String, Marker> mark = new HashMap<>();
 
@@ -51,7 +51,7 @@ public class MapController extends Controller{
     @FXML
     private TextField search;
 
-    // RadioButton
+    /** All radio button of the interface*/
     @FXML
     private RadioButton radioMsOSM;
     @FXML
@@ -62,18 +62,18 @@ public class MapController extends Controller{
     private ToggleGroup mapTypeGroup;
 
     /** params for the WMS server. */
-    private final WMSParam wmsParam = new WMSParam()
-            .setUrl("https://ows.terrestris.de/osm/service?")
+    private final WMSParam wmsParam = new WMSParam().setUrl("https://ows.terrestris.de/osm/service?")
             .addParam("layers", "OSM-WMS");
-
     private final XYZParam xyzParams = new XYZParam()
             .withUrl("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x})")
             .withAttributions("'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
 
+    /** The constructor.*/
     public MapController() {
         this.type = ControllerType.MAP;
     }
 
+    /** It's called to set search cache*/
     @Override
     public void setSearchCache(String[] search) {
         if(search!=null) {
@@ -82,6 +82,7 @@ public class MapController extends Controller{
         }
     }
 
+    /** The action of the button*/
     @FXML
     public void searchAction() {
         Map<String, Double> coords;
@@ -122,7 +123,6 @@ public class MapController extends Controller{
             alert.showAndWait();
         }
     }
-
 
     /**
      * called after the fxml is loaded and all objects are created. This is not called initialize anymore,
@@ -173,9 +173,7 @@ public class MapController extends Controller{
                 .build());
     }
 
-    /**
-     * initializes the event handlers.
-     */
+    /** initializes the event handlers.*/
     private void setupEventHandlers() {
         mapView.addEventHandler(MarkerEvent.MARKER_CLICKED, event -> {
             event.consume();
@@ -230,18 +228,12 @@ public class MapController extends Controller{
         });
     }
 
-    /**
-     * enables / disables the different controls
-     *
-     * @param flag if true the controls are disabled
-     */
+    /** enables / disables the different controls*/
     private void setControlsDisable(boolean flag) {
         leftControls.setDisable(flag);
     }
 
-    /**
-     * finishes setup after the mpa is initialized
-     */
+    /** finishes setup after the mpa is initialized*/
     private void afterMapIsInitialized() {
         // start at the harbour with default zoom
         mapView.setZoom(ZOOM_DEFAULT);
@@ -251,9 +243,7 @@ public class MapController extends Controller{
         setControlsDisable(false);
     }
 
-    /**
-     * load a coordinate of the gym
-     */
+    /** load the coordinate of all gym*/
     private void loadCoordinate() {
         try {
             DAO obj_DAO = mainApp.getDAO();
@@ -273,9 +263,7 @@ public class MapController extends Controller{
         }
     }
 
-    /**
-     * load a gym info overview
-     */
+    /** load a gym info overview*/
     private void loadGymInfo(MapLabelEvent event){
         event.consume();
         if(Objects.equals(event.getMapLabel().getText(), "You are Here!")) {

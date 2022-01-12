@@ -13,7 +13,7 @@ import java.util.Objects;
 
 public class LoginController extends AccessController{
 
-    //TextField
+    /** All the text field of the interface*/
     @FXML
     private TextField username;
     @FXML
@@ -29,34 +29,29 @@ public class LoginController extends AccessController{
     @FXML
     private CheckBox pass_toggle;
 
-    // Is true when login is in external window
+    /** Is true when login is in external window*/
     private boolean external;
 
-    // Set up the external stage
+    /** Set up the external stage*/
     private Stage externalStage;
 
-    /**
-     * The constructor.
-     */
+    /** The constructor.*/
     public LoginController() {
         this.type = ControllerType.LOGIN;
         this.submit = new Submit(null);
     }
 
-    /**
-     * Is called to set external stage.
-     */
+    /** It's called to set external stage.*/
     public void setStage(Stage stage) {
         this.externalStage = stage;
     }
 
-    /**
-     * Is called to set login in external window.
-     */
+    /** Is called to set login in external window.*/
     public void setExternal(boolean external) {
         this.external = external;
     }
 
+    /** Controls the visibility of the password*/
     @FXML
     private void set_toggle_pass(){
         if(!pass_toggle.isSelected()) {
@@ -70,6 +65,7 @@ public class LoginController extends AccessController{
         }
     }
 
+    /** The action of the buttons*/
     @FXML
     protected void submitActionLogin() {
         String userValue = username.getText();      //get user entered username from the textField1
@@ -121,12 +117,6 @@ public class LoginController extends AccessController{
             alert.showAndWait();
         }
     }
-
-    private void home(){
-        this.mainApp.setUser(this.user);
-        this.mainApp.showHomeOverview();
-    }
-
     @FXML
     private void login_with_google(){
         String gClientId = "941217546228-08fmsjebj3jn1a0agnt9tu9tnijgn2pq.apps.googleusercontent.com";
@@ -136,10 +126,15 @@ public class LoginController extends AccessController{
         OAuthGoogleAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
         auth.startLogin(this.mainApp);
     }
-
     @FXML
     private void skipAction() {
         home();
+    }
+
+    /** It's called to load the home overview*/
+    private void home(){
+        this.mainApp.setUser(this.user);
+        this.mainApp.showHomeOverview();
     }
 }
 

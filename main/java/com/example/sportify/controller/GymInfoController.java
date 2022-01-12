@@ -23,7 +23,7 @@ import java.util.Objects;
 
 public class GymInfoController extends Controller {
 
-    // Label
+    /** All the label of interface*/
     @FXML
     private Label gym_name;
     @FXML
@@ -33,19 +33,19 @@ public class GymInfoController extends Controller {
     @FXML
     private TextArea review_area;
 
-    // TextField
+    /** All the text field of interface*/
     @FXML
     private TextField hour;
     @FXML
     private TextField min;
 
-    // BorderPane
+    /** All the border pane of interface*/
     @FXML
     private BorderPane review_pane;
     @FXML
     private BorderPane course_pane;
 
-    // VBox
+    /** All the vbox of interface*/
     @FXML
     private VBox course;
     @FXML
@@ -55,7 +55,7 @@ public class GymInfoController extends Controller {
     @FXML
     private ComboBox<String> combo_sport;
 
-    // Slider
+    /** All the slider of interface*/
     @FXML
     private Slider hour_slider;
     @FXML
@@ -64,10 +64,12 @@ public class GymInfoController extends Controller {
     // ObservableList
     private ObservableList<String> sport;
 
-    // Method that set up the controller
+    /** The constructor.*/
     public GymInfoController(){
         this.type = ControllerType.GYM_INFO;
     }
+
+    /** Method that set up the controller*/
     private void setReview(){
         if(this.user != null){
             if(Objects.equals(this.user.getRole(), "user")){
@@ -98,9 +100,6 @@ public class GymInfoController extends Controller {
         task1.setOnFailed(e -> this.mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT));
         new Thread(task1).start();
     }
-    private void setupEventHandlers() {
-        this.menu.getSignOut().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> settingPage());
-    }
     private ObservableList<String> getSport(){
         ObservableList<String> sport = FXCollections.observableArrayList();
         try {
@@ -117,6 +116,13 @@ public class GymInfoController extends Controller {
         }
         return sport;
     }
+
+    /** initializes the event handlers.*/
+    private void setupEventHandlers() {
+        this.menu.getSignOut().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> settingPage());
+    }
+
+    /** It's called to create new task*/
     private Task<Void> createTask(Runnable task){
         return new Task<>() {
             @Override
@@ -127,7 +133,7 @@ public class GymInfoController extends Controller {
         };
     }
 
-    // Load the review of gym
+    /** Load the review of gym*/
     private void loadReview(ResultSet rs){
         this.review.getChildren().remove(0, this.review.getChildren().size());
         try {
@@ -154,7 +160,7 @@ public class GymInfoController extends Controller {
         }
     }
 
-    // Cancel a review of gym
+    /** Cancel a review of gym*/
     @FXML
     private void cancelReview(MouseEvent e){
         Label event = (Label) e.getSource();
@@ -169,7 +175,7 @@ public class GymInfoController extends Controller {
         loadingGymName(gym_name.getText());
     }
 
-    // Download the review
+    /** Download the review*/
     private void downloadReview(){
         try {
             DAO obj_DAO = this.mainApp.getDAO();
@@ -191,7 +197,7 @@ public class GymInfoController extends Controller {
         }
     }
 
-    // Load the course of gym
+    /** Load the course of gym*/
     private void loadCourse(ResultSet rs){
         this.course.getChildren().remove(1, this.course.getChildren().size());
         try {
@@ -215,7 +221,7 @@ public class GymInfoController extends Controller {
         }
     }
 
-    // Cancel a course of gym
+    /** Cancel a course of gym*/
     @FXML
     private void cancelCourse(MouseEvent e){
         Label event = (Label) e.getSource();
@@ -230,7 +236,7 @@ public class GymInfoController extends Controller {
         loadingGymName(gym_name.getText());
     }
 
-    // Download Course
+    /** Download Course*/
     private void downloadCourse(){
         try {
             DAO obj_DAO = this.mainApp.getDAO();
@@ -251,7 +257,7 @@ public class GymInfoController extends Controller {
         }
     }
 
-    // Set Gym View
+    /** Set Gym View*/
     private void setGym(String name){
 
         // Handlers
@@ -338,6 +344,7 @@ public class GymInfoController extends Controller {
         new Thread(task6).start();
     }
 
+    /** The action of the button*/
     @FXML
     private void share_review(){
         String gym = this.gym_name.getText();
@@ -367,14 +374,12 @@ public class GymInfoController extends Controller {
         }
         loadingGymName(gym);
     }
-
     @FXML
     private void findGym(){
         this.mainApp.setUser(this.user);
         this.mainApp.setSearchCache(this.search_cache);
         this.mainApp.showFindGymOverview(this.menu);
     }
-
     @FXML
     private void add_course(){
         String gym = this.gym_name.getText();
@@ -406,6 +411,7 @@ public class GymInfoController extends Controller {
         }
     }
 
+    /** The action that change the value of text field*/
     @FXML
     private void change_hour(){
         String hour = String.valueOf((int) hour_slider.getValue());
@@ -415,7 +421,6 @@ public class GymInfoController extends Controller {
             this.hour.setText(hour);
         }
     }
-
     @FXML
     private void change_min(){
         String min = String.valueOf((int) min_slider.getValue());
@@ -426,6 +431,7 @@ public class GymInfoController extends Controller {
         }
     }
 
+    /** It's called to set the controller and view*/
     public void loadingGymName(String name) {
         this.mainApp.getPrimaryStage().setTitle("Sportify - " + name);
         try {
@@ -449,7 +455,7 @@ public class GymInfoController extends Controller {
         }
     }
 
-    // Get gym name
+    /** It's called to get gym name*/
     public String getGymName(){
         return this.gym_name.getText();
     }

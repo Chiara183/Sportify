@@ -11,23 +11,23 @@ import java.util.Objects;
 
 public class FindGymController extends Controller{
 
-    // Pane
+    /** Reference to the map pane*/
     @FXML
     private Pane Map;
 
-    /**
-     * The constructor.
-     */
+    /** The constructor.*/
     public FindGymController() {
         this.type = ControllerType.FIND_GYM;
     }
 
+    /** The action of back button*/
     @FXML
     private void skipAction(){
         this.mainApp.setUser(this.user);
         this.mainApp.showHomeOverview();
     }
 
+    /** Set the map*/
     public void setProjection(Projection projection){
         try {
             // Load find map overview.

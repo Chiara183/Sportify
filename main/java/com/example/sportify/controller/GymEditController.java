@@ -10,15 +10,15 @@ import java.util.Objects;
 
 public class GymEditController extends EditController{
 
+    /** The constructor.*/
     public GymEditController(){this.type = ControllerType.GYM_EDIT;}
 
+    /** Sets the user to be edited in the dialog.*/
     @Override
     public void setUser(User user) {
         super.setUser(user);
         setUser((gymUser) user);
     }
-
-    @Override
     public void setUser(gymUser user) {
         gymName.setText(user.getGymName());
         address.setText(user.getAddress());
@@ -28,7 +28,9 @@ public class GymEditController extends EditController{
         telephoneLabel.setText(user.getPhone());
     }
 
+    /** The action of the button.*/
     @Override
+    @FXML
     protected void okAction(){
         if (!Objects.equals(user.getUserName(), super.username.getText())) {
             user.setUserName(super.username.getText());
@@ -62,6 +64,7 @@ public class GymEditController extends EditController{
         stage.close();
     }
 
+    /** Controls the modifiability of all field*/
     @FXML
     protected void set_toggle_pass_gym(MouseEvent modify) {
         if (modify.getSource() == modify_gymName) {

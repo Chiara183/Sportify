@@ -12,22 +12,18 @@ import java.util.Objects;
 
 public class HomeController extends Controller {
 
-    // Button
+    /** All the button of the interface*/
     @FXML
     private Button signIn;
     @FXML
     private Button gymInfo;
 
-    /**
-     * The constructor.
-     */
+    /** The constructor.*/
     public HomeController() {
         this.type = ControllerType.HOME;
     }
 
-    /**
-     * Is called to set user.
-     */
+    /** Is called to set user.*/
     @Override
     public void setUser(User user) {
         this.user = user;
@@ -43,6 +39,7 @@ public class HomeController extends Controller {
         }
     }
 
+    /** It's called to create and ad a new menu in the window*/
     private MenuController Menu() {
         MenuController controllerB = null;
         try {
@@ -64,6 +61,7 @@ public class HomeController extends Controller {
         return controllerB;
     }
 
+    /** The action of the button*/
     @FXML
     private void loadGymInfo(){
         MenuController menu = this.Menu();
@@ -75,7 +73,6 @@ public class HomeController extends Controller {
         gym.setSearchCache(this.mainApp.getSearchCache());
         gym.loadingGymName(user.getGymName());
     }
-
     @FXML
     private void sportQuizAction(){
         this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
@@ -100,7 +97,6 @@ public class HomeController extends Controller {
             System.out.println(e.getMessage());
         }
     }
-
     @FXML
     private void findGymAction(){
         this.mainApp.getPrimaryStage().setTitle("Sportify - Find Gym");
@@ -128,7 +124,6 @@ public class HomeController extends Controller {
             System.out.println(e.getMessage());
         }
     }
-
     @FXML
     private void signLoginAction() {
         this.mainApp.getPrimaryStage().setTitle("Sportify - Login");

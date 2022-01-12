@@ -1,7 +1,5 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.user.User;
-import com.example.sportify.user.gymUser;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
@@ -9,15 +7,12 @@ import java.util.Objects;
 
 public class UserEditController extends EditController{
 
+    /** The constructor.*/
     public UserEditController(){
         this.type = ControllerType.USER_EDIT;
     }
 
-    @Override
-    public void setUser(gymUser user) {
-        System.err.println("#################  The user is not a GYM USER  #####################");
-    }
-
+    /** The action of the button.*/
     @Override
     @FXML
     protected void okAction() {

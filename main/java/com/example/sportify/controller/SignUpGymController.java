@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class SignUpGymController extends Controller {
 
-    //TextField
+    /** All the text field of the interface*/
     @FXML
     private TextField gymName;
     @FXML
@@ -23,20 +23,20 @@ public class SignUpGymController extends Controller {
     @FXML
     private TextField gymCity;
 
-    // Reference to submit.
+    /** Reference to submit.*/
     private Submit submit;
 
+    /** The constructor.*/
     public SignUpGymController() {
         this.type = ControllerType.SIGN_UP_GYM;
     }
 
-    /**
-     * Is called to set submit.
-     */
+    /** It's called to set submit.*/
     public void setSubmit(Submit submit){
         this.submit = submit;
     }
 
+    /** The action of the buttons*/
     @FXML
     protected void submitActionSignUpGym() {
         DAO obj_DAO = mainApp.getDAO();
@@ -86,15 +86,15 @@ public class SignUpGymController extends Controller {
             }
         }
     }
-
-    private void login(){
-        this.mainApp.setSubmit(this.submit);
-        this.mainApp.showLoginOverview();
-    }
-
     @FXML
     private void skipAction(){
         login();
+    }
+
+    /** It's called to load login overview*/
+    private void login(){
+        this.mainApp.setSubmit(this.submit);
+        this.mainApp.showLoginOverview();
     }
 }
 

@@ -12,6 +12,7 @@ import java.io.IOException;
 
 public class SportQuizController extends Controller {
 
+    /** All the button of the interface*/
     @FXML
     private Button backQuiz;
     @FXML
@@ -41,72 +42,22 @@ public class SportQuizController extends Controller {
     @FXML
     private Button single;
 
-    public static boolean buttonAge1 = false;
-    public static boolean buttonAge2 = false;
-    public static boolean buttonAge3 = false;
-    public static boolean buttonAge4 = false;
-    public static boolean buttonIndoor = false;
-    public static boolean buttonOutdoor = false;
-    public static boolean buttonGroup = false;
-    public static boolean buttonSingle = false;
+    /** The variable that identify the user choice*/
+    private static boolean buttonAge1 = false;
+    private static boolean buttonAge2 = false;
+    private static boolean buttonAge3 = false;
+    private static boolean buttonAge4 = false;
+    private static boolean buttonIndoor = false;
+    private static boolean buttonOutdoor = false;
+    private static boolean buttonGroup = false;
+    private static boolean buttonSingle = false;
 
+    /** The constructor.*/
     public SportQuizController(){
         this.type = ControllerType.SPORT_QUIZ;
     }
 
-    @FXML
-    private void home(){
-        this.mainApp.setUser(this.user);
-        this.mainApp.showHomeOverview();
-    }
-
-    private void sportQuiz(){
-        this.mainApp.setUser(this.user);
-        this.mainApp.showSportQuizOverview(this.menu);
-    }
-
-    private void sportQuizEnv(){
-        this.mainApp.setUser(this.user);
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
-        try {
-            // Load sport quiz overview.
-            FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("SportQuizEnv.fxml"));
-            Pane pane = loaderSport.load();
-
-            // Set sport quiz overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
-
-            // Give the controller access to the main app.
-            SportQuizController controller = loaderSport.getController();
-            controller.setMainApp(this.mainApp);
-            controller.setMenu(this.menu);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private void sportQuizType(){
-        this.mainApp.setUser(this.user);
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
-        try {
-            // Load sport quiz overview.
-            FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("SportQuizType.fxml"));
-            Pane pane = loaderSport.load();
-
-            // Set sport quiz overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
-
-            // Give the controller access to the main app.
-            SportQuizController controller = loaderSport.getController();
-            controller.setMainApp(this.mainApp);
-            controller.setMenu(this.menu);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
+    /** The action of the buttons*/
     @FXML
     public void backQuizAction(ActionEvent event) {
         Button b = (Button) event.getSource();
@@ -118,7 +69,6 @@ public class SportQuizController extends Controller {
             sportQuizEnv();
         }
     }
-
     @FXML
     public void takeQuiz(ActionEvent event) {
         Button b = (Button) event.getSource();
@@ -151,12 +101,7 @@ public class SportQuizController extends Controller {
         }
     }
 
-    public void warning(){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "You need to make a choice!");
-    }
-
-    @FXML
+    /** The logic of the quiz*/
     private void quizLogic(){
         if((buttonAge1 && buttonIndoor && buttonGroup) || (buttonAge2 && buttonIndoor && buttonGroup)){
             SportController sport = new SportController();
@@ -215,6 +160,68 @@ public class SportQuizController extends Controller {
             sport.setUser(this.user);
             sport.setMenu(this.menu);
             sport.loadingSportName("Golf");
+        }
+    }
+
+    /** It's called to give the warning to user*/
+    private void warning(){
+        JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "You need to make a choice!");
+    }
+
+    /** It's called to load home overview*/
+    private void home(){
+        this.mainApp.setUser(this.user);
+        this.mainApp.showHomeOverview();
+    }
+
+    /** It's called to load sport quiz overview*/
+    private void sportQuiz(){
+        this.mainApp.setUser(this.user);
+        this.mainApp.showSportQuizOverview(this.menu);
+    }
+
+    /** It's called to load sport quiz env overview*/
+    private void sportQuizEnv(){
+        this.mainApp.setUser(this.user);
+        this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
+        try {
+            // Load sport quiz overview.
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("SportQuizEnv.fxml"));
+            Pane pane = loaderSport.load();
+
+            // Set sport quiz overview into the center of root layout.
+            this.mainApp.getPrimaryPane().setCenter(pane);
+
+            // Give the controller access to the main app.
+            SportQuizController controller = loaderSport.getController();
+            controller.setMainApp(this.mainApp);
+            controller.setMenu(this.menu);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /** It's called to load sport quiz type overview*/
+    private void sportQuizType(){
+        this.mainApp.setUser(this.user);
+        this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
+        try {
+            // Load sport quiz overview.
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("SportQuizType.fxml"));
+            Pane pane = loaderSport.load();
+
+            // Set sport quiz overview into the center of root layout.
+            this.mainApp.getPrimaryPane().setCenter(pane);
+
+            // Give the controller access to the main app.
+            SportQuizController controller = loaderSport.getController();
+            controller.setMainApp(this.mainApp);
+            controller.setMenu(this.menu);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

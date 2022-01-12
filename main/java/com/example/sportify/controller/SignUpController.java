@@ -18,7 +18,7 @@ import java.util.HashMap;
 
 public class SignUpController extends AccessController {
 
-    //TextField
+    /** All the text field of the interface*/
     @FXML
     private TextField username;
     @FXML
@@ -36,19 +36,21 @@ public class SignUpController extends AccessController {
     @FXML
     private Label eye;
 
-    //CheckBox
+    /** All the checkbox of the interface*/
     @FXML
     private CheckBox pass_toggle;
     @FXML
-    CheckBox gymTick;
+    private CheckBox gymTick;
     @FXML
-    CheckBox userTick;
+    private CheckBox userTick;
 
+    /** The constructor.*/
     public SignUpController() {
         this.type = ControllerType.SIGN_UP;
         this.submit = new Submit(null);
     }
 
+    /** Controls the visibility of the password*/
     @FXML
     private void set_toggle_pass(){
         if(!this.pass_toggle.isSelected()) {
@@ -62,6 +64,21 @@ public class SignUpController extends AccessController {
         }
     }
 
+    /** Controls the sign-up method (user, gym)*/
+    @FXML
+    private void tickAction(ActionEvent event) {
+        if (event.getSource() == gymTick && userTick.isSelected()) {
+            userTick.setSelected(false);
+        } else if (event.getSource() == userTick && gymTick.isSelected()) {
+            gymTick.setSelected(false);
+        } else if (event.getSource() == gymTick && !userTick.isSelected()) {
+            userTick.setSelected(true);
+        } else if (event.getSource() == userTick && !gymTick.isSelected()) {
+            gymTick.setSelected(true);
+        }
+    }
+
+    /** The action of the buttons*/
     @FXML
     protected void submitActionSignUp() {
         HashMap<String, String> userAccount = new HashMap<>();  //initialize list of string 'userAccount'
@@ -121,13 +138,18 @@ public class SignUpController extends AccessController {
             }
         }
     }
+    @FXML
+    private void skipAction(){
+        login();
+    }
 
+    /** It's called to load login overview*/
     private void login(){
         this.mainApp.setSubmit(this.submit);
         this.mainApp.showLoginOverview();
     }
 
-    @FXML
+    /** It's called to load sign up gym overview*/
     private void signUpGymAction(){
         this.mainApp.getPrimaryStage().setTitle("Sportify - Sign Up");
         try {
@@ -146,24 +168,6 @@ public class SignUpController extends AccessController {
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        }
-    }
-
-    @FXML
-    private void skipAction(){
-        login();
-    }
-
-    @FXML
-    private void tickAction(ActionEvent event) {
-        if (event.getSource() == gymTick && userTick.isSelected()) {
-            userTick.setSelected(false);
-        } else if (event.getSource() == userTick && gymTick.isSelected()) {
-            gymTick.setSelected(false);
-        } else if (event.getSource() == gymTick && !userTick.isSelected()) {
-            userTick.setSelected(true);
-        } else if (event.getSource() == userTick && !gymTick.isSelected()) {
-            gymTick.setSelected(true);
         }
     }
 }
