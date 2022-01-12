@@ -24,9 +24,9 @@
             <ImageView fitHeight="53.0" fitWidth="222.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                 <Image url="@Images/Sportify_logo.png" />
             </ImageView>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#findGym" prefHeight="54.0" prefWidth="95.0" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#findGym" prefHeight="54.0" prefWidth="95.0" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                 <GridPane.margin>
-                    <Insets bottom="20.0" />
+                    <Insets />
                 </GridPane.margin></Button>
             <Label fx:id="gym_name" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                 <font>
@@ -77,6 +77,9 @@
                           <Image url="@Images/Share.png" />
                       </ImageView>
                   </graphic>
+                  <BorderPane.margin>
+                     <Insets top="5.0" />
+                  </BorderPane.margin>
                </Button>
             </bottom>
          </BorderPane>

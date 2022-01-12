@@ -137,23 +137,25 @@ public class GymInfoController extends Controller {
     private void loadReview(ResultSet rs){
         this.review.getChildren().remove(0, this.review.getChildren().size());
         try {
-            Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
-            String string = rs.getString("writer") + ";" + rs.getTimestamp("timestamp").toString();
-            labelTitle.setStyle("-fx-font-weight: bold;");
-            Label labelReview = new Label(rs.getString("review"));
-            Label blankSpace = new Label();
-            VBox vbox = new VBox(labelTitle, labelReview, blankSpace);
-            if (this.user != null && Objects.equals(this.user.getRole(), "gym") && Objects.equals(this.user.getGymName(), this.gym_name.getText())) {
-                Label cancel = new Label("⮿");
-                cancel.setStyle("-fx-text-fill: red; ");
-                cancel.setEllipsisString(string);
-                cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, this::cancelReview);
-                cancel.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> cancel.setCursor(Cursor.HAND));
-                cancel.addEventHandler(MouseEvent.MOUSE_EXITED, e -> cancel.setCursor(Cursor.DEFAULT));
-                HBox hbox = new HBox(vbox, new Label(), new Label(), new Label(), new Label(), cancel);
-                this.review.getChildren().add(hbox);
-            } else {
-                this.review.getChildren().add(vbox);
+            while (rs.next()) {
+                Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
+                String string = rs.getString("writer") + ";" + rs.getTimestamp("timestamp").toString();
+                labelTitle.setStyle("-fx-font-weight: bold;");
+                Label labelReview = new Label(rs.getString("review"));
+                Label blankSpace = new Label();
+                VBox vbox = new VBox(labelTitle, labelReview, blankSpace);
+                if (this.user != null && Objects.equals(this.user.getRole(), "gym") && Objects.equals(this.user.getGymName(), this.gym_name.getText())) {
+                    Label cancel = new Label("⮿");
+                    cancel.setStyle("-fx-text-fill: red; ");
+                    cancel.setEllipsisString(string);
+                    cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, this::cancelReview);
+                    cancel.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> cancel.setCursor(Cursor.HAND));
+                    cancel.addEventHandler(MouseEvent.MOUSE_EXITED, e -> cancel.setCursor(Cursor.DEFAULT));
+                    HBox hbox = new HBox(vbox, new Label(), new Label(), new Label(), new Label(), cancel);
+                    this.review.getChildren().add(hbox);
+                } else {
+                    this.review.getChildren().add(vbox);
+                }
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());
@@ -177,23 +179,16 @@ public class GymInfoController extends Controller {
 
     /** Download the review*/
     private void downloadReview(){
-        try {
-            DAO obj_DAO = this.mainApp.getDAO();
-            ResultSet rs = obj_DAO.Check_Data(
-                    "SELECT * " +
-                            "FROM review " +
-                            "WHERE review.gym = \"" + this.gym_name.getText() + "\"");
-
-            while (rs.next()) {
-                loadReview(rs);
-            }
-            if(this.review.getChildren().size()<1) {
-                Label labelNotFound = new Label("There are no reviews");
-                labelNotFound.setStyle("-fx-font-weight: bold;");
-                this.review.getChildren().add(labelNotFound);
-            }
-        }catch (SQLException q){
-            System.out.println(q.getMessage());
+        DAO obj_DAO = this.mainApp.getDAO();
+        ResultSet rs = obj_DAO.Check_Data(
+                "SELECT * " +
+                        "FROM review " +
+                        "WHERE review.gym = \"" + this.gym_name.getText() + "\"");
+        loadReview(rs);
+        if(this.review.getChildren().size()<1) {
+            Label labelNotFound = new Label("There are no reviews");
+            labelNotFound.setStyle("-fx-font-weight: bold;");
+            this.review.getChildren().add(labelNotFound);
         }
     }
 
