@@ -3,7 +3,6 @@ package com.example.sportify;
 import com.example.sportify.controller.*;
 import com.example.sportify.user.User;
 import com.sothawo.mapjfx.Projection;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -16,11 +15,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.Objects;
 
-public class MainApp extends Application{
+public class MainApp{
 
+    /** The variable of all application*/
     private Stage primaryStage;
     private BorderPane rootLayout;
     private Submit submit;
@@ -29,88 +28,50 @@ public class MainApp extends Application{
     private final DAO dao = new DAO();
     private boolean external_login = false;
     private MenuController menu;
+    private Projection projection;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-
-        DB_Connection obj_DB_Connection = new DB_Connection();
-        Connection connection = obj_DB_Connection.get_connection();
-        this.dao.setConnection(connection);
-
-        this.submit = new Submit(this);
-
-        this.primaryStage = primaryStage;
-
-        // Set the application.
-        this.primaryStage.getIcons().add(
-                new Image(
-                        Objects.requireNonNull(
-                                getClass().getResourceAsStream("Images/Sportify icon.png"))));
-
-        initRootLayout();
-
-        showHomeOverview();
-    }
-
-    /**
-     * Constructor
-     */
-    public MainApp(){
-    }
-
-    /**
-     * Is called to give a reference back to submit.
-     */
+    /** Set method*/
     public void setSubmit(Submit submit) {
         this.submit = submit;
     }
-
-    /**
-     * Is called to set user.
-     */
+    public void setProjection(Projection projection) {
+        this.projection = projection;
+    }
     public void setUser(User user) {
         this.user = user;
         if(user != null) {
             this.user.setMainApp(this);
         }
     }
-
-    /**
-     * Is called to set user.
-     */
     public void setMenu(MenuController menu) {
         this.menu = menu;
     }
-
-    /**
-     * Is called to set search_cache.
-     */
+    public void setPrimaryStage(Stage stage) {
+        this.primaryStage = stage;
+    }
     public void setSearchCache(String[] search) {
         this.search_cache = search;
     }
-
-    /**
-     * Is called to set login variable.
-     */
     public void setExternal_login(boolean login) {
         this.external_login = login;
     }
 
-    /**
-     * Is called to set search_cache.
-     */
+    /** Get method*/
     public String[] getSearchCache() {
         return this.search_cache;
     }
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+    public DAO getDAO() {
+        return this.dao;
+    }
+    public BorderPane getPrimaryPane() {
+        return rootLayout;
+    }
 
-    /**
-     * Initializes the root layout.
-     */
-    private void initRootLayout() {
+    /** Initializes the root layout.*/
+    public void initRootLayout() {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
@@ -127,9 +88,7 @@ public class MainApp extends Application{
         }
     }
 
-    /**
-     * Shows menu overview inside the root layout.
-     */
+    /** Shows menu overview inside the root layout.*/
     public MenuController Menu() {
         MenuController controllerB = null;
         try {
@@ -150,9 +109,7 @@ public class MainApp extends Application{
         return controllerB;
     }
 
-    /**
-     * Shows home overview inside the root layout.
-     */
+    /** Shows home overview inside the root layout.*/
     public void showHomeOverview() {
         try {
             this.primaryStage.setTitle("Sportify - Home");
@@ -174,9 +131,7 @@ public class MainApp extends Application{
         }
     }
 
-    /**
-     * Shows home overview inside the root layout.
-     */
+    /** Shows home overview inside the root layout.*/
     public void showOAuthAuthenticator(WebView root, String name) {
         this.primaryStage.setTitle("Sportify - " + name);
 
@@ -186,9 +141,7 @@ public class MainApp extends Application{
 
     }
 
-    /**
-     * Shows login overview inside the root layout.
-     */
+    /** Shows login overview inside the root layout.*/
     public void showLoginOverview() {
         LoginController controller;
         try {
@@ -249,9 +202,7 @@ public class MainApp extends Application{
         }
     }
 
-    /**
-     * Shows sport quiz overview inside the root layout.
-     */
+    /** Shows sport quiz overview inside the root layout.*/
     public void showSportQuizOverview(MenuController menu) {
         try {
             this.getPrimaryStage().setTitle("Sportify - Sport Quiz");
@@ -274,9 +225,7 @@ public class MainApp extends Application{
         }
     }
 
-    /**
-     * Shows find gym overview inside the root layout.
-     */
+    /** Shows find gym overview inside the root layout.*/
     public void showFindGymOverview(MenuController menu) {
         try {
             this.getPrimaryStage().setTitle("Sportify - Find Gym");
@@ -293,18 +242,14 @@ public class MainApp extends Application{
             controller.setMainApp(this);
             controller.setSearchCache(this.search_cache);
             controller.setMenu(menu);
-            Projection projection = getParameters().getUnnamed().contains("wgs84")
-                    ? Projection.WGS_84 : Projection.WEB_MERCATOR;
-            controller.setProjection(projection);
+            controller.setProjection(this.projection);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    /**
-     * Shows sign up overview inside the root layout.
-     */
+    /** Shows sign up overview inside the root layout.*/
     public void showSignUpOverview() {
         try {
             this.getPrimaryStage().setTitle("Sportify - Sign Up");
@@ -325,30 +270,7 @@ public class MainApp extends Application{
         }
     }
 
-    /**
-     * Returns the main stage.
-     */
-    public Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
-    /**
-     * Returns the primary pane.
-     */
-    public BorderPane getPrimaryPane() {
-        return rootLayout;
-    }
-
-    /**
-     * Returns the dao.
-     */
-    public DAO getDAO() {
-        return this.dao;
-    }
-
-    /**
-     * Controls the visibility of the Password field
-     */
+    /** Controls the visibility of the Password field*/
     public void togglevisiblePassword(CheckBox pass_toggle, TextField pass_text, TextField password) {
         if (pass_toggle.isSelected()) {
             pass_text.setText(password.getText());

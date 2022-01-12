@@ -15,11 +15,10 @@ import java.util.Map;
 
 public class OpenStreetMapUtils {
 
+    /** The instance of the class.*/
     private static OpenStreetMapUtils instance = null;
 
-    public OpenStreetMapUtils() {
-    }
-
+    /** It's called to get an instance of OpenStreetMapUtils*/
     public static OpenStreetMapUtils getInstance() {
         if (instance == null) {
             instance = new OpenStreetMapUtils();
@@ -27,6 +26,7 @@ public class OpenStreetMapUtils {
         return instance;
     }
 
+    /** It's called to get the right string from web*/
     private String getRequest(String url){
         StringBuilder response = new StringBuilder();
         try {
@@ -54,6 +54,7 @@ public class OpenStreetMapUtils {
         return response.toString();
     }
 
+    /** It's called to get coordinate from given address*/
     public Map<String, Double> getCoordinates(String address) {
         Map<String, Double> res;
         StringBuilder query;
@@ -97,6 +98,7 @@ public class OpenStreetMapUtils {
         return res;
     }
 
+    /** It's called to get distance from given two coordinates*/
     public Double getDistance (Coordinate start_point, Coordinate endpoint){
         double d2r = Math.PI / 180;
         double d_long = (endpoint.getLongitude() - start_point.getLongitude()) * d2r;

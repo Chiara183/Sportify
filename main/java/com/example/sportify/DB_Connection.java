@@ -4,6 +4,10 @@ import java.sql.*;
 
 public class DB_Connection {
 
+    /**
+     * It's called to create a new connection to the DB.
+     * @return null if it gives an error
+     */
     public Connection get_connection(){
         Connection connection = null;
         try{

@@ -1,41 +1,43 @@
 package com.example.sportify;
 
-import javafx.fxml.Initializable;
-import java.net.URL;
+import com.example.sportify.user.User;
+import com.example.sportify.user.classicUser;
+import com.example.sportify.user.gymUser;
+
 import java.security.SecureRandom;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import com.example.sportify.user.*;
+public class Submit{
 
-public class Submit implements Initializable {
-
-    private final readWriteFile file;
+    private final IO DB;
     private final MainApp mainApp;
 
+    /** The constructor.*/
     public Submit(MainApp mainApp){
         this.mainApp = mainApp;
-        this.file = new readWriteFile(mainApp);
+        this.DB = new IO();
+        this.DB.setMainApp(mainApp);
     }
 
+    /** Login and SignUp method*/
     public boolean login(String userValue, String passValue) {
-        HashMap<String, HashMap<String, String>> account = this.file.readFile();
+        HashMap<String, HashMap<String, String>> account = this.DB.read();
         return !account.isEmpty() && account.containsKey(userValue) &&
                 userValue.equals(account.get(userValue).get("username")) &&
                 passValue.equals(account.get(userValue).get("password"));
     }
-
     public void signUp(HashMap<String, String> userAccount) {
-        this.file.saveOnFile(userAccount);
+        this.DB.write(userAccount);
     }
 
+    /** The 'exists' method*/
     public boolean exist(String username){
-        HashMap<String, HashMap<String, String>> account = this.file.readFile();
+        HashMap<String, HashMap<String, String>> account = this.DB.read();
         return !account.isEmpty() && account.containsKey(username);
     }
-
     public boolean existEmail(String email){
-        HashMap<String, HashMap<String, String>> account = this.file.readFile();
+        HashMap<String, HashMap<String, String>> account = this.DB.read();
         AtomicBoolean exist = new AtomicBoolean(false);
         account.forEach( (key, value) -> {
             if(Objects.equals(account.get(key).get("email"), email)){
@@ -45,15 +47,15 @@ public class Submit implements Initializable {
         return exist.get();
     }
 
+    /** It's called to set user in the app*/
     public User setUser(String username){
-        HashMap<String, HashMap<String, String>> account = this.file.readFile();
+        HashMap<String, HashMap<String, String>> account = this.DB.read();
         User user = null;
         if (account.containsKey(username)) {
             user = writeUser(account,username);
         }
         return user;
     }
-
     private User writeUser(HashMap<String, HashMap<String, String>> account, String username){
         User user;
         if (Objects.equals(account.get(username).get("ruolo"), "user")) {
@@ -121,7 +123,6 @@ public class Submit implements Initializable {
 
         return password;
     }
-
     private String generateRandomString(String input, int size) {
 
         if (input == null || input.length() <= 0) {
@@ -140,14 +141,9 @@ public class Submit implements Initializable {
         }
         return result.toString();
     }
-
     private String shuffleString(String input) {
         List<String> result = Arrays.asList(input.split(""));
         Collections.shuffle(result);
         return String.join("", result);
-    }
-
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO
     }
 }

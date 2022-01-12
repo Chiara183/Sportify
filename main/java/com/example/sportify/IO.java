@@ -7,19 +7,15 @@ import java.util.Objects;
 
 public class IO {
 
+    /** Reference to MainApp.*/
     private MainApp mainApp;
 
-    public IO (){
-
-    }
-
-    /**
-     * Is called by the main application to give a reference back to itself.
-     */
+    /** It's called to give a reference to MainApp.*/
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
+    /** It's called to write user in the DB.*/
     public void write(HashMap<String, String> map) {
         DAO obj_DAO = mainApp.getDAO();
         String username = map.get("username");
@@ -55,6 +51,7 @@ public class IO {
         }
     }
 
+    /** It's called to read users in the DB.*/
     public HashMap<String, HashMap<String, String>> read(){
         HashMap<String, HashMap<String, String>> map = new HashMap<>();
         try {
@@ -71,6 +68,7 @@ public class IO {
         return map;
     }
 
+    /** It's called to get info of given user.*/
     public HashMap<String, String> getInfoUser(ResultSet rs){
         HashMap<String, String> gymAccount = new HashMap<>();
         try {
