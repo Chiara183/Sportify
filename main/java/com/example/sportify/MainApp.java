@@ -69,6 +69,9 @@ public class MainApp{
     public BorderPane getPrimaryPane() {
         return rootLayout;
     }
+    public Projection getProjection() {
+        return projection;
+    }
 
     /** Initializes the root layout.*/
     public void initRootLayout() {
@@ -81,7 +84,7 @@ public class MainApp{
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout, 830, 550);
             primaryStage.setScene(scene);
-            //primaryStage.setResizable(false);
+            primaryStage.setFullScreen(true);
             primaryStage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
