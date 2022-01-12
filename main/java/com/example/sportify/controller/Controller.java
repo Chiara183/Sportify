@@ -9,6 +9,9 @@ import java.util.ResourceBundle;
 
 public abstract class Controller implements Initializable {
 
+    // Type of Controller
+    protected ControllerType type;
+
     // Reference to the main application.
     protected MainApp mainApp;
 
@@ -49,6 +52,13 @@ public abstract class Controller implements Initializable {
      */
     public void setSearchCache(String[] search) {
         this.search_cache = search;
+    }
+
+    /**
+     * Is called to get type.
+     */
+    public ControllerType getType() {
+        return this.type;
     }
 
 

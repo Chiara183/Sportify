@@ -71,6 +71,7 @@ public class MapController extends Controller{
             .withAttributions("'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
 
     public MapController() {
+        this.type = ControllerType.MAP;
     }
 
     @Override

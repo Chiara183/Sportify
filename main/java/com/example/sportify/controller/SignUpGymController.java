@@ -27,6 +27,7 @@ public class SignUpGymController extends Controller {
     private Submit submit;
 
     public SignUpGymController() {
+        this.type = ControllerType.SIGN_UP_GYM;
     }
 
     /**

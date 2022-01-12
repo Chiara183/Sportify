@@ -39,6 +39,7 @@ public class LoginController extends AccessController{
      * The constructor.
      */
     public LoginController() {
+        this.type = ControllerType.LOGIN;
         this.submit = new Submit(null);
     }
 
@@ -89,7 +90,7 @@ public class LoginController extends AccessController{
                 this.menu.setUser(this.user);
                 MenuController menu = this.mainApp.Menu();
                 menu.setUser(this.user);
-                if (Objects.equals(this.menu.getView(), "gymInfo")){
+                if (Objects.equals(this.menu.getView(), ControllerType.GYM_INFO)){
                     menu.setGymInfo(this.menu.getGym());
                     GymInfoController gym = new GymInfoController();
                     gym.setMainApp(this.mainApp);
@@ -97,7 +98,7 @@ public class LoginController extends AccessController{
                     gym.setMenu(menu);
                     gym.setSearchCache(this.search_cache);
                     gym.loadingGymName(this.menu.getGym());
-                } else if (Objects.equals(this.menu.getView(), "findGym")){
+                } else if (Objects.equals(this.menu.getView(), ControllerType.FIND_GYM)){
                     menu.setFindGym();
                     menu.setGym(this.menu.getGym());
                     GymInfoController gym = new GymInfoController();

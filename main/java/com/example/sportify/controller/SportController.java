@@ -19,7 +19,9 @@ public class SportController extends Controller{
     @FXML
     private Label sportName;
 
-    public SportController(){}
+    public SportController(){
+        this.type = ControllerType.SPORT;
+    }
 
     @FXML
     private void home(){

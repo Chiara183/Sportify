@@ -41,7 +41,7 @@ public class MenuController extends Controller {
     private Label username;
 
     // String the name of the view
-    private String view;
+    private ControllerType view;
 
     // String the name of the view
     private String gym;
@@ -50,12 +50,13 @@ public class MenuController extends Controller {
      * The constructor.
      */
     public MenuController() {
+        this.type = ControllerType.MENU;
     }
 
     /**
      * Is called to get the name of the view.
      */
-    public String getView() {
+    public ControllerType getView() {
         return this.view;
     }
 
@@ -129,7 +130,7 @@ public class MenuController extends Controller {
     private void loadGymInfo(){
         setButton(findGym, sportQuiz, signOut, gymInfo);
         GymInfoController gym = new GymInfoController();
-        this.view = "gymInfo";
+        this.view = ControllerType.GYM_INFO;
         gym.setMainApp(this.mainApp);
         gym.setUser(this.user);
         gym.setMenu(this);
@@ -140,7 +141,7 @@ public class MenuController extends Controller {
 
     @FXML
     private void homeAction() {
-        this.view = "home";
+        this.view = ControllerType.HOME;
         this.mainApp.setMenu(this);
         this.mainApp.setUser(this.user);
         this.mainApp.showHomeOverview();
@@ -148,7 +149,7 @@ public class MenuController extends Controller {
 
     @FXML
     private void sportQuizAction() {
-        this.view = "sportQuiz";
+        this.view = ControllerType.SPORT_QUIZ;
         setButton(findGym, signIn, signUp, sportQuiz);
         this.mainApp.setMenu(this);
         this.mainApp.setUser(this.user);
@@ -157,7 +158,7 @@ public class MenuController extends Controller {
 
     @FXML
     private void findGymAction() {
-        this.view = "findGym";
+        this.view = ControllerType.FIND_GYM;
         setButton(signIn, sportQuiz, signUp, findGym);
         this.mainApp.setMenu(this);
         this.mainApp.setUser(this.user);
@@ -175,7 +176,7 @@ public class MenuController extends Controller {
 
     @FXML
     private void signUpAction() {
-        this.view = "signUp";
+        this.view = ControllerType.SIGN_UP;
         setButton(findGym, sportQuiz, signIn, signUp);
         this.mainApp.setMenu(this);
         this.mainApp.setUser(this.user);
@@ -216,22 +217,22 @@ public class MenuController extends Controller {
     }
 
     public void setSportQuiz() {
-        this.view = "sportQuiz";
+        this.view = ControllerType.SPORT_QUIZ;
         setButton(findGym, signIn, signUp, sportQuiz);
     }
 
     public void setFindGym() {
-        this.view = "findGym";
+        this.view = ControllerType.FIND_GYM;
         setButton(signIn, sportQuiz, signUp, findGym);
     }
 
     public void setLogin() {
-        this.view = "login";
+        this.view = ControllerType.LOGIN;
         setButton(findGym, sportQuiz, signUp, signIn);
     }
 
     public void setGymInfo(String gym){
-        this.view = "gymInfo";
+        this.view = ControllerType.GYM_INFO;
         this.gym = gym;
         setButton(findGym, sportQuiz, signOut, gymInfo);
     }

@@ -9,9 +9,13 @@ import java.util.Objects;
 
 public class UserEditController extends EditController{
 
+    public UserEditController(){
+        this.type = ControllerType.USER_EDIT;
+    }
+
     @Override
     public void setUser(gymUser user) {
-        //TODO
+        System.err.println("#################  The user is not a GYM USER  #####################");
     }
 
     @Override

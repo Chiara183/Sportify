@@ -19,6 +19,7 @@ public class FindGymController extends Controller{
      * The constructor.
      */
     public FindGymController() {
+        this.type = ControllerType.FIND_GYM;
     }
 
     @FXML

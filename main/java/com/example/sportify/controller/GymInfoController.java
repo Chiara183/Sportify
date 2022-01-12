@@ -66,6 +66,7 @@ public class GymInfoController extends Controller {
 
     // Method that set up the controller
     public GymInfoController(){
+        this.type = ControllerType.GYM_INFO;
     }
     private void setReview(){
         if(this.user != null){

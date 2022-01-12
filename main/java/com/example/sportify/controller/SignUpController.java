@@ -45,6 +45,7 @@ public class SignUpController extends AccessController {
     CheckBox userTick;
 
     public SignUpController() {
+        this.type = ControllerType.SIGN_UP;
         this.submit = new Submit(null);
     }
 

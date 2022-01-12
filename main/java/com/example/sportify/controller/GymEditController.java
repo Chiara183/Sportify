@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public class GymEditController extends EditController{
 
+    public GymEditController(){this.type = ControllerType.GYM_EDIT;}
 
     @Override
     public void setUser(User user) {

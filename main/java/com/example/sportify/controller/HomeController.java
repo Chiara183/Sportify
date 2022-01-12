@@ -22,6 +22,7 @@ public class HomeController extends Controller {
      * The constructor.
      */
     public HomeController() {
+        this.type = ControllerType.HOME;
     }
 
     /**

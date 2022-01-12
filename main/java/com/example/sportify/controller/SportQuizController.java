@@ -50,6 +50,10 @@ public class SportQuizController extends Controller {
     public static boolean buttonGroup = false;
     public static boolean buttonSingle = false;
 
+    public SportQuizController(){
+        this.type = ControllerType.SPORT_QUIZ;
+    }
+
     @FXML
     private void home(){
         this.mainApp.setUser(this.user);
