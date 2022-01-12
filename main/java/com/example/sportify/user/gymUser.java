@@ -5,16 +5,10 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class gymUser extends User {
 
-    /**
-     * Default constructor.
-     */
+    /** The constructor.*/
     public gymUser() {
         this(null, null);
     }
-
-    /**
-     * Constructor with some initial data.
-     */
     public gymUser(String userName, String password) {
         super(userName, password);
         role = new SimpleStringProperty("gym");
@@ -25,7 +19,7 @@ public class gymUser extends User {
         this.phone = new SimpleStringProperty(null);
     }
 
-    @Override
+    /** The method that set up gym variable*/
     public void setGymName(String name) {
         this.gymName.set(name);
         DAO obj_DAO = mainApp.getDAO();
@@ -34,8 +28,6 @@ public class gymUser extends User {
                         + name + "' WHERE `gym`.`owner` = '"
                         + this.userName.getValue() +"'");
     }
-
-    @Override
     public void setAddress(String address) {
         this.address.set(address);
         DAO obj_DAO = mainApp.getDAO();
@@ -44,8 +36,6 @@ public class gymUser extends User {
                         + address + "' WHERE `gym`.`owner` = '"
                         + this.userName.getValue() +"'");
     }
-
-    @Override
     public void setLatitude(String latitude) {
         this.latitude.set(latitude);
         DAO obj_DAO = mainApp.getDAO();
@@ -54,8 +44,6 @@ public class gymUser extends User {
                         + latitude + "' WHERE `gym`.`owner` = '"
                         + this.userName.getValue() +"'");
     }
-
-    @Override
     public void setLongitude(String longitude) {
         this.longitude.set(longitude);
         DAO obj_DAO = mainApp.getDAO();
@@ -64,8 +52,6 @@ public class gymUser extends User {
                         + longitude + "' WHERE `gym`.`owner` = '"
                         + this.userName.getValue() +"'");
     }
-
-    @Override
     public void setPhone(String phone) {
         this.phone.set(phone);
         DAO obj_DAO = mainApp.getDAO();

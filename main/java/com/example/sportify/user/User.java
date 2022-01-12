@@ -173,21 +173,11 @@ public abstract class User {
         return gymName.get();
     }
 
-    protected abstract void setGymName(String name);
-
     public String getAddress() {
         return address.get();
     }
 
-    protected abstract void setAddress(String address);
-
-    protected abstract void setLatitude(String latitude);
-
-    protected abstract void setLongitude(String longitude);
-
     public String getPhone() {
         return phone.get();
     }
-
-    protected abstract void setPhone(String phone);
 }
