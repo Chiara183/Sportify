@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public abstract class User {
 
-    // StringProperty
+    /** All parameter of user*/
     protected final StringProperty firstName;
     protected final StringProperty lastName;
     protected final StringProperty userName;
@@ -29,20 +29,18 @@ public abstract class User {
     protected StringProperty longitude;
     protected StringProperty phone;
 
-    // Main-app
+    /** Reference to the MainApp*/
     protected MainApp mainApp;
 
-    /**
-     * Is called to give a reference back to main app.
-     */
+    /** Is called to give a reference back to main app.*/
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
+    /** The constructor.*/
     public User() {
         this(null, null);
     }
-
     public User(String userName, String password) {
         this.firstName = new SimpleStringProperty(null);
         this.lastName = new SimpleStringProperty(null);
@@ -58,18 +56,42 @@ public abstract class User {
         this.birthday = new SimpleObjectProperty<>(LocalDate.of(Integer.parseInt(dateValue[0]), Integer.parseInt(dateValue[1]), Integer.parseInt(dateValue[2])));
     }
 
+    /** The get action*/
     public String getRole() {
         return this.role.get();
     }
-
-    public void setRole(String role) {
-        this.role.set(role);
-    }
-
     public String getFirstName() {
         return firstName.get();
     }
+    public String getLastName() {
+        return lastName.get();
+    }
+    public String getUserName() {
+        return userName.get();
+    }
+    public String getPassword() {
+        return password.get();
+    }
+    public String getEmail() {
+        return email.get();
+    }
+    public LocalDate getBirthday() {
+        return birthday.get();
+    }
+    public String getGymName() {
+        return gymName.get();
+    }
+    public String getAddress() {
+        return address.get();
+    }
+    public String getPhone() {
+        return phone.get();
+    }
 
+    /** The set action*/
+    public void setRole(String role) {
+        this.role.set(role);
+    }
     public void setFirstName(String firstName) {
         this.firstName.set(firstName);
         DAO obj_DAO = mainApp.getDAO();
@@ -78,11 +100,6 @@ public abstract class User {
                         + firstName + "' WHERE `user`.`username` = '"
                         + this.userName.getValue() +"'");
     }
-
-    public String getLastName() {
-        return lastName.get();
-    }
-
     public void setLastName(String lastName) {
         this.lastName.set(lastName);
         DAO obj_DAO = mainApp.getDAO();
@@ -91,11 +108,6 @@ public abstract class User {
                         + lastName + "' WHERE `user`.`username` = '"
                         + this.userName.getValue() +"'");
     }
-
-    public String getUserName() {
-        return userName.get();
-    }
-
     public void setUserName(String userName) {
         Submit submit = new Submit(this.mainApp);
         if(!submit.exist(userName)) {
@@ -124,11 +136,6 @@ public abstract class User {
             alert.showAndWait();
         }
     }
-
-    public String getPassword() {
-        return password.get();
-    }
-
     public void setPassword(String password) {
         if (this.password.getValue() != null) {
             this.password.set(password);
@@ -142,11 +149,6 @@ public abstract class User {
             this.password.set(password);
         }
     }
-
-    public String getEmail() {
-        return email.get();
-    }
-
     public void setEmail(String email) {
         this.email.set(email);
         DAO obj_DAO = mainApp.getDAO();
@@ -155,11 +157,6 @@ public abstract class User {
                         + email + "' WHERE `user`.`username` = '"
                         + this.userName.getValue() +"'");
     }
-
-    public LocalDate getBirthday() {
-        return birthday.get();
-    }
-
     public void setBirthday(LocalDate birthday) {
         this.birthday.set(birthday);
         DAO obj_DAO = mainApp.getDAO();
@@ -167,17 +164,5 @@ public abstract class User {
                 "UPDATE `user` SET `birthday` = '"
                         + birthday.toString() + "' WHERE `user`.`username` = '"
                         + this.userName.getValue() +"'");
-    }
-
-    public String getGymName() {
-        return gymName.get();
-    }
-
-    public String getAddress() {
-        return address.get();
-    }
-
-    public String getPhone() {
-        return phone.get();
     }
 }
