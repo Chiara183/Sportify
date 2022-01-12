@@ -15,6 +15,7 @@ import java.util.Objects;
 
 public abstract class User {
 
+    // StringProperty
     protected final StringProperty firstName;
     protected final StringProperty lastName;
     protected final StringProperty userName;
@@ -28,25 +29,20 @@ public abstract class User {
     protected StringProperty longitude;
     protected StringProperty phone;
 
+    // Main-app
     protected MainApp mainApp;
 
     /**
-     * Is called by the main application to give a reference back to itself.
+     * Is called to give a reference back to main app.
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    /**
-     * Default constructor.
-     */
     public User() {
         this(null, null);
     }
 
-    /**
-     * Constructor with some initial data.
-     */
     public User(String userName, String password) {
         this.firstName = new SimpleStringProperty(null);
         this.lastName = new SimpleStringProperty(null);
@@ -185,15 +181,7 @@ public abstract class User {
 
     protected abstract void setAddress(String address);
 
-    public String getLatitude() {
-        return latitude.get();
-    }
-
     protected abstract void setLatitude(String latitude);
-
-    public String getLongitude() {
-        return longitude.get();
-    }
 
     protected abstract void setLongitude(String longitude);
 

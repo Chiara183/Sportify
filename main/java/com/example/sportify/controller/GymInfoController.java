@@ -126,11 +126,6 @@ public class GymInfoController extends Controller {
         };
     }
 
-    // Get gym name
-    public String getGymName(){
-        return this.gym_name.getText();
-    }
-
     // Load the review of gym
     private void loadReview(ResultSet rs){
         this.review.getChildren().remove(0, this.review.getChildren().size());
@@ -265,17 +260,7 @@ public class GymInfoController extends Controller {
         this.gym_name.setText(name);
 
         // Set visible or not area new review and new course
-        Runnable task7 = () -> Platform.runLater(() -> {
-            // Set the area where create a new review
-            setReview();
-
-            // Set the area where create a new course
-            setCourse();
-        });
-        Task<Void> task8 = createTask(task7);
-        task8.setOnRunning(e -> this.mainApp.getPrimaryPane().getCenter().setCursor(Cursor.WAIT));
-        task8.setOnSucceeded(e -> this.mainApp.getPrimaryPane().getCenter().setCursor(Cursor.DEFAULT));
-        task8.setOnFailed(e -> this.mainApp.getPrimaryPane().getCenter().setCursor(Cursor.DEFAULT));
+        settingPage();
 
         // set ComboBox
         Runnable task0 = () -> Platform.runLater(() -> {
@@ -302,9 +287,15 @@ public class GymInfoController extends Controller {
                                 "FROM gym " +
                                 "WHERE gym.name = \"" + name + "\"");
                 if (rs.next()) {
-                    this.gym_description.setText(
-                            "ADDRESS: " + rs.getString("address") +
-                                    "\n\nTELEPHONE: " + rs.getString("phone"));
+                    if(Objects.equals(rs.getString("phone"), "null")){
+                        this.gym_description.setText(
+                                "ADDRESS: " + rs.getString("address") +
+                                        "\n\nTELEPHONE: \\\\");
+                    } else {
+                        this.gym_description.setText(
+                                "ADDRESS: " + rs.getString("address") +
+                                        "\n\nTELEPHONE: " + rs.getString("phone"));
+                    }
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
@@ -340,7 +331,6 @@ public class GymInfoController extends Controller {
         });
 
         // Run Thread and set DEFAULT review and course
-        new Thread(task8).start();
         new Thread(task00).start();
         new Thread(task4).start();
         new Thread(task5).start();
@@ -456,5 +446,10 @@ public class GymInfoController extends Controller {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    // Get gym name
+    public String getGymName(){
+        return this.gym_name.getText();
     }
 }

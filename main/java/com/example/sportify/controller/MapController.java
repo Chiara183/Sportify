@@ -272,6 +272,9 @@ public class MapController extends Controller{
         }
     }
 
+    /**
+     * load a gym info overview
+     */
     private void loadGymInfo(MapLabelEvent event){
         event.consume();
         if(Objects.equals(event.getMapLabel().getText(), "You are Here!")) {

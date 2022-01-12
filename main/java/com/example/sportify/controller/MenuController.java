@@ -141,6 +141,8 @@ public class MenuController extends Controller {
     @FXML
     private void homeAction() {
         this.view = "home";
+        this.mainApp.setMenu(this);
+        this.mainApp.setUser(this.user);
         this.mainApp.showHomeOverview();
     }
 
@@ -148,6 +150,8 @@ public class MenuController extends Controller {
     private void sportQuizAction() {
         this.view = "sportQuiz";
         setButton(findGym, signIn, signUp, sportQuiz);
+        this.mainApp.setMenu(this);
+        this.mainApp.setUser(this.user);
         this.mainApp.showSportQuizOverview(this);
     }
 
@@ -155,6 +159,8 @@ public class MenuController extends Controller {
     private void findGymAction() {
         this.view = "findGym";
         setButton(signIn, sportQuiz, signUp, findGym);
+        this.mainApp.setMenu(this);
+        this.mainApp.setUser(this.user);
         this.mainApp.showFindGymOverview(this);
     }
 
@@ -163,6 +169,7 @@ public class MenuController extends Controller {
         setButton(findGym, sportQuiz, signUp, signIn);
         this.mainApp.setExternal_login(true);
         this.mainApp.setMenu(this);
+        this.mainApp.setUser(this.user);
         this.mainApp.showLoginOverview();
     }
 
@@ -170,6 +177,8 @@ public class MenuController extends Controller {
     private void signUpAction() {
         this.view = "signUp";
         setButton(findGym, sportQuiz, signIn, signUp);
+        this.mainApp.setMenu(this);
+        this.mainApp.setUser(this.user);
         this.mainApp.showSignUpOverview();
     }
 
