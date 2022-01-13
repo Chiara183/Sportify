@@ -43,7 +43,7 @@ public class HomeController extends Controller {
         MenuController controllerB = null;
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
-            loaderMenu.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("Menu.fxml")));
+            loaderMenu.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("DesktopView/Menu.fxml")));
             Pane paneMenu = loaderMenu.load();
 
             // Set menu overview into the top of root layout.
@@ -81,7 +81,7 @@ public class HomeController extends Controller {
 
             // Load sport quiz overview.
             FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("SportQuiz.fxml")));
+            loaderSport.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("DesktopView/SportQuiz.fxml")));
             Pane paneSport = loaderSport.load();
 
             // Set sport quiz overview into the center of root layout.
@@ -105,7 +105,7 @@ public class HomeController extends Controller {
 
             // Load find gym overview.
             FXMLLoader loaderGym = new FXMLLoader();
-            loaderGym.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("FindGym.fxml")));
+            loaderGym.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("DesktopView/FindGym.fxml")));
             Pane paneGym = loaderGym.load();
 
             // Set find gym overview into the center of root layout.
@@ -130,7 +130,7 @@ public class HomeController extends Controller {
 
             // Load login overview.
             FXMLLoader loaderLogin = new FXMLLoader();
-            loaderLogin.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("Login.fxml")));
+            loaderLogin.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("DesktopView/Login.fxml")));
             Pane paneLogin = loaderLogin.load();
 
             // Set login overview into the center of root layout.

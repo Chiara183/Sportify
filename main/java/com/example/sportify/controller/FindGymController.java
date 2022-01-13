@@ -32,7 +32,7 @@ public class FindGymController extends Controller{
         try {
             // Load find map overview.
             FXMLLoader loaderGym = new FXMLLoader();
-            loaderGym.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("Map.fxml")));
+            loaderGym.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("DesktopView/Map.fxml")));
             AnchorPane paneMap = loaderGym.load();
 
             // Set menu overview into the top of root layout.

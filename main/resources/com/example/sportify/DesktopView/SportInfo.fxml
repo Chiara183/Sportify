@@ -22,7 +22,7 @@
             </rowConstraints>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
              <ImageView fitHeight="53.0" fitWidth="222.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                 <Image url="@Images/Sportify_logo.png" />
+                 <Image url="@../Images/Sportify_logo.png" />
              </ImageView>
          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What about " GridPane.columnIndex="1" GridPane.halignment="LEFT">
             <font>
@@ -62,7 +62,7 @@
         </GridPane>
     </VBox>
    <stylesheets>
-      <URL value="@Style/Button.css" />
-      <URL value="@Style/SportQuizType.css" />
+      <URL value="@../Style/Button.css" />
+      <URL value="@../Style/SportQuizType.css" />
    </stylesheets>
 </Pane>

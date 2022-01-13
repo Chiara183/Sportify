@@ -33,7 +33,7 @@
    </BorderPane>
    <HBox layoutX="15.0" layoutY="9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="763.0">
       <ImageView fitHeight="112.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-         <Image url="@Images/Sportify_logo.png" />
+         <Image url="@../Images/Sportify_logo.png" />
          <GridPane.margin>
             <Insets bottom="10.0" top="20.0" />
          </GridPane.margin>
@@ -52,7 +52,7 @@
       <Button maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#searchAction" prefHeight="45.0" prefWidth="45.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="23.0">
-               <Image url="@Images/1638265809410.png" />
+               <Image url="@../Images/1638265809410.png" />
             </ImageView>
          </graphic>
          <HBox.margin>
@@ -72,7 +72,7 @@
       </ComboBox>
    </HBox>
    <stylesheets>
-      <URL value="@Style/Map.css" />
-      <URL value="@Style/Button.css" />
+      <URL value="@../Style/Map.css" />
+      <URL value="@../Style/Button.css" />
    </stylesheets>
 </AnchorPane>

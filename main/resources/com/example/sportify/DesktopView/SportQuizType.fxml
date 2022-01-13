@@ -21,7 +21,7 @@
                 <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <ImageView fitHeight="263.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS">
-                <Image url="@Images/Sportify_logo.png" />
+                <Image url="@../Images/Sportify_logo.png" />
                 <GridPane.margin>
                     <Insets />
                 </GridPane.margin>
@@ -53,7 +53,7 @@
         </GridPane>
     </VBox>
     <stylesheets>
-        <URL value="@Style/Button.css" />
-        <URL value="@Style/SportQuizType.css" />
+        <URL value="@../Style/Button.css" />
+        <URL value="@../Style/SportQuizType.css" />
     </stylesheets>
 </Pane>

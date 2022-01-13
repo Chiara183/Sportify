@@ -83,7 +83,7 @@ public class MainApp{
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("RootLayout.fxml"));
+            loader.setLocation(MainApp.class.getResource("DesktopView/RootLayout.fxml"));
             rootLayout = loader.load();
 
             // Show the scene containing the root layout.
@@ -101,7 +101,7 @@ public class MainApp{
         MenuController controllerB = null;
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
-            loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("Menu.fxml")));
+            loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("DesktopView/Menu.fxml")));
             Pane paneMenu = loaderMenu.load();
 
             // Set menu overview into the top of root layout.
@@ -123,7 +123,7 @@ public class MainApp{
             this.primaryStage.setTitle("Sportify - Home");
             // Load home overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("Home.fxml"));
+            loader.setLocation(MainApp.class.getResource("DesktopView/Home.fxml"));
             Pane homeOverview = loader.load();
 
             // Set home overview into the center of root layout.
@@ -160,7 +160,7 @@ public class MainApp{
 
             // Load login overview.
             FXMLLoader loaderLogin = new FXMLLoader();
-            loaderLogin.setLocation(MainApp.class.getResource("Login.fxml"));
+            loaderLogin.setLocation(MainApp.class.getResource("DesktopView/Login.fxml"));
             Pane pane = loaderLogin.load();
 
             if(!external_login) {
@@ -181,7 +181,7 @@ public class MainApp{
 
                 // Load root layout from fxml file.
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("RootLayout.fxml"));
+                loader.setLocation(getClass().getResource("DesktopView/RootLayout.fxml"));
                 BorderPane root = loader.load();
 
                 // SetWindowModal
@@ -216,7 +216,7 @@ public class MainApp{
             this.getPrimaryStage().setTitle("Sportify - Sport Quiz");
             // Load sport quiz overview.
             FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("SportQuiz.fxml"));
+            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuiz.fxml"));
             Pane pane = loaderSport.load();
 
             // Set sport quiz overview into the center of root layout.
@@ -239,7 +239,7 @@ public class MainApp{
             this.getPrimaryStage().setTitle("Sportify - Find Gym");
             // Load find gym overview.
             FXMLLoader loaderGym = new FXMLLoader();
-            loaderGym.setLocation(MainApp.class.getResource("FindGym.fxml"));
+            loaderGym.setLocation(MainApp.class.getResource("DesktopView/FindGym.fxml"));
             Pane pane = loaderGym.load();
 
             // Set find gym overview into the center of root layout.
@@ -263,7 +263,7 @@ public class MainApp{
             this.getPrimaryStage().setTitle("Sportify - Sign Up");
             // Load sign up overview.
             FXMLLoader loaderSignUp = new FXMLLoader();
-            loaderSignUp.setLocation(MainApp.class.getResource("SignUp.fxml"));
+            loaderSignUp.setLocation(MainApp.class.getResource("DesktopView/SignUp.fxml"));
             Pane pane = loaderSignUp.load();
 
             // Set sign up overview into the center of root layout.

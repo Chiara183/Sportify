@@ -155,7 +155,7 @@ public class SignUpController extends AccessController {
         try {
             // Load login overview.
             FXMLLoader loaderSignUp = new FXMLLoader();
-            loaderSignUp.setLocation(MainApp.class.getResource("SignUpGym.fxml"));
+            loaderSignUp.setLocation(MainApp.class.getResource("DesktopView/SignUpGym.fxml"));
             Pane pane = loaderSignUp.load();
 
             // Set login overview into the center of root layout.

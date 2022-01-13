@@ -188,7 +188,7 @@ public class SportQuizController extends Controller {
         try {
             // Load sport quiz overview.
             FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("SportQuizEnv.fxml"));
+            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizEnv.fxml"));
             Pane pane = loaderSport.load();
 
             // Set sport quiz overview into the center of root layout.
@@ -210,7 +210,7 @@ public class SportQuizController extends Controller {
         try {
             // Load sport quiz overview.
             FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("SportQuizType.fxml"));
+            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizType.fxml"));
             Pane pane = loaderSport.load();
 
             // Set sport quiz overview into the center of root layout.

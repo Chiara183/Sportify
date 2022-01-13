@@ -26,7 +26,7 @@
         </GridPane>
     </VBox>
     <stylesheets>
-        <URL value="@Style/Button.css" />
-        <URL value="@Style/FindGym.css" />
+        <URL value="@../Style/Button.css" />
+        <URL value="@../Style/FindGym.css" />
     </stylesheets>
 </Pane>

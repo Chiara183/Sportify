@@ -432,7 +432,7 @@ public class GymInfoController extends Controller {
         try {
             // Load test result overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(this.mainApp.getClass().getResource("GymInfo.fxml"));
+            loader.setLocation(this.mainApp.getClass().getResource("DesktopView/GymInfo.fxml"));
             Pane pane = loader.load();
 
             // Set test result overview into the center of root layout.

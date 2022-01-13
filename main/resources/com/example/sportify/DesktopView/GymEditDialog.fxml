@@ -148,7 +148,7 @@
      </buttons>
    </ButtonBar>
    <stylesheets>
-      <URL value="@Style/Button.css" />
-      <URL value="@Style/UserIcon.css" />
+      <URL value="@../Style/Button.css" />
+      <URL value="@../Style/UserIcon.css" />
    </stylesheets>
 </AnchorPane>
