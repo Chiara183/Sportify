@@ -14,6 +14,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+//import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -75,6 +76,10 @@ public class MainApp{
 
     /** Initializes the root layout.*/
     public void initRootLayout() {
+        /*Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        *int width = (int) screenSize.getWidth();
+        int height = (int) screenSize.getHeight();
+        System.out.println("Dimension of screen is: " + width + "x" + height);*/
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
