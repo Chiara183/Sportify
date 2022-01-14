@@ -1,6 +1,7 @@
 package com.example.sportify;
 
 import com.example.sportify.controller.*;
+import com.example.sportify.controller.graphic.FindGymGraphicController;
 import com.example.sportify.user.User;
 import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXMLLoader;
@@ -246,7 +247,9 @@ public class MainApp{
             this.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
-            FindGymController controller = loaderGym.getController();
+            FindGymGraphicController graphicController = loaderGym.getController();
+            FindGymController controller = new FindGymController();
+            graphicController.setController(controller);
             controller.setMainApp(this);
             controller.setSearchCache(this.search_cache);
             controller.setMenu(menu);

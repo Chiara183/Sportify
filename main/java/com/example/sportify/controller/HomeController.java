@@ -1,5 +1,6 @@
 package com.example.sportify.controller;
 
+import com.example.sportify.controller.graphic.FindGymGraphicController;
 import com.example.sportify.user.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -112,7 +113,9 @@ public class HomeController extends Controller {
             this.mainApp.getPrimaryPane().setCenter(paneGym);
 
             // Give the controller access to the main app.
-            FindGymController controllerGym = loaderGym.getController();
+            FindGymGraphicController graphicController = loaderGym.getController();
+            FindGymController controllerGym = new FindGymController();
+            graphicController.setController(controllerGym);
             controllerGym.setMainApp(this.mainApp);
             controllerGym.setUser(this.user);
             controllerGym.setMenu(menuController);

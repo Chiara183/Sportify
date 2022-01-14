@@ -44,4 +44,14 @@ public abstract class Controller{
     public ControllerType getType() {
         return this.type;
     }
+
+    /** Is called to get mainApp reference.*/
+    public MainApp getMainApp() {
+        return this.mainApp;
+    }
+
+    /** Is called to get user.*/
+    public User getUser() {
+        return this.user;
+    }
 }
