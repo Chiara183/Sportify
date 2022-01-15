@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public class FindGymController extends Controller{
 
+    /** Reference to graphic controller*/
     private FindGymGraphicController graphicController;
 
     /** The constructor.*/

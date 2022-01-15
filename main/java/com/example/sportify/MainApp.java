@@ -2,6 +2,7 @@ package com.example.sportify;
 
 import com.example.sportify.controller.*;
 import com.example.sportify.controller.graphic.FindGymGraphicController;
+import com.example.sportify.controller.graphic.HomeGraphicController;
 import com.example.sportify.user.User;
 import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXMLLoader;
@@ -132,9 +133,12 @@ public class MainApp{
             rootLayout.setTop(null);
 
             // Give the controller access to the main app.
-            HomeController controller = loader.getController();
+            HomeGraphicController graphicController = loader.getController();
+            HomeController controller = new HomeController();
+            graphicController.setController(controller);
             controller.setUser(this.user);
             controller.setMainApp(this);
+            controller.setGraphicController(graphicController);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -254,6 +258,7 @@ public class MainApp{
             controller.setSearchCache(this.search_cache);
             controller.setMenu(menu);
             controller.setProjection(this.projection);
+            controller.setGraphicController(graphicController);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

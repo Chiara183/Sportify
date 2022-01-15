@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="CENTER" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.HomeController">
+<GridPane alignment="CENTER" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.HomeGraphicController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="150.0" prefWidth="216.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="301.0" prefWidth="301.0" />
