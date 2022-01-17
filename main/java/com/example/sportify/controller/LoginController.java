@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.OAuth.OAuthGoogleAuthenticator;
 import com.example.sportify.Submit;
+import com.example.sportify.controller.graphic.GymInfoGraphicController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
@@ -86,9 +87,12 @@ public class LoginController extends AccessController{
                 this.menu.setUser(this.user);
                 MenuController menu = this.mainApp.Menu();
                 menu.setUser(this.user);
+                GymInfoGraphicController graphicController = new GymInfoGraphicController();
+                GymInfoController gym = new GymInfoController();
+                graphicController.setController(gym);
+                gym.setGraphicController(graphicController);
                 if (Objects.equals(this.menu.getView(), ControllerType.GYM_INFO)){
                     menu.setGymInfo(this.menu.getGym());
-                    GymInfoController gym = new GymInfoController();
                     gym.setMainApp(this.mainApp);
                     gym.setUser(this.user);
                     gym.setMenu(menu);
@@ -97,7 +101,6 @@ public class LoginController extends AccessController{
                 } else if (Objects.equals(this.menu.getView(), ControllerType.FIND_GYM)){
                     menu.setFindGym();
                     menu.setGym(this.menu.getGym());
-                    GymInfoController gym = new GymInfoController();
                     gym.setMainApp(this.mainApp);
                     gym.setUser(this.user);
                     gym.setMenu(menu);

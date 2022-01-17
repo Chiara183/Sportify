@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
 import com.example.sportify.OpenStreetMapUtils;
+import com.example.sportify.controller.graphic.GymInfoGraphicController;
 import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.event.MapLabelEvent;
 import com.sothawo.mapjfx.event.MarkerEvent;
@@ -270,7 +271,10 @@ public class MapController extends Controller{
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Marker is not a gym.", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
+            GymInfoGraphicController graphicController = new GymInfoGraphicController();
             GymInfoController gym = new GymInfoController();
+            graphicController.setController(gym);
+            gym.setGraphicController(graphicController);
             gym.setMainApp(this.mainApp);
             gym.setUser(this.user);
             gym.setMenu(this.menu);

@@ -25,7 +25,10 @@ public class HomeGraphicController extends GraphicController{
     private void loadGymInfo(){
         MenuController menu = controller.Menu();
         menu.setGymInfo(controller.getUser().getGymName());
+        GymInfoGraphicController graphicController = new GymInfoGraphicController();
         GymInfoController gym = new GymInfoController();
+        graphicController.setController(gym);
+        gym.setGraphicController(graphicController);
         gym.setMainApp(controller.getMainApp());
         gym.setUser(controller.getUser());
         gym.setMenu(menu);

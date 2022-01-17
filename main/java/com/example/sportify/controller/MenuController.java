@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
+import com.example.sportify.controller.graphic.GymInfoGraphicController;
 import com.example.sportify.user.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -115,7 +116,10 @@ public class MenuController extends Controller {
     @FXML
     private void loadGymInfo(){
         setButton(findGym, sportQuiz, signOut, gymInfo);
+        GymInfoGraphicController graphicController = new GymInfoGraphicController();
         GymInfoController gym = new GymInfoController();
+        graphicController.setController(gym);
+        gym.setGraphicController(graphicController);
         this.view = ControllerType.GYM_INFO;
         gym.setMainApp(this.mainApp);
         gym.setUser(this.user);
