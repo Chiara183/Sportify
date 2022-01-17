@@ -3,6 +3,7 @@ package com.example.sportify;
 import com.example.sportify.controller.*;
 import com.example.sportify.controller.graphic.FindGymGraphicController;
 import com.example.sportify.controller.graphic.HomeGraphicController;
+import com.example.sportify.controller.graphic.LoginGraphicController;
 import com.example.sportify.user.User;
 import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXMLLoader;
@@ -156,7 +157,8 @@ public class MainApp{
 
     /** Shows login overview inside the root layout.*/
     public void showLoginOverview() {
-        LoginController controller;
+        LoginController controller = new LoginController();
+        LoginGraphicController graphicController;
         try {
             this.primaryStage.setTitle("Sportify - Login");
 
@@ -168,16 +170,18 @@ public class MainApp{
             loaderLogin.setLocation(MainApp.class.getResource("DesktopView/Login.fxml"));
             Pane pane = loaderLogin.load();
 
+            // Setting controller
+            graphicController = loaderLogin.getController();
+            controller.setGraphicController(graphicController);
+            graphicController.setController(controller);
+            controller.setMainApp(this);
+            controller.setSubmit(this.submit);
+            controller.setUser(this.user);
+            controller.setExternal(this.external_login);
+
             if(!external_login) {
                 // Set login overview into the center of root layout.
                 this.getPrimaryPane().setCenter(pane);
-
-                // Give the controller access to the main app.
-                controller = loaderLogin.getController();
-                controller.setMainApp(this);
-                controller.setSubmit(this.submit);
-                controller.setUser(this.user);
-                controller.setExternal(this.external_login);
             } else {
                 // Create the dialog Stage.
                 Stage dialogStage = new Stage();
@@ -198,11 +202,6 @@ public class MainApp{
                 dialogStage.setResizable(false);
 
                 // Set the person into the controller.
-                controller = loaderLogin.getController();
-                controller.setMainApp(this);
-                controller.setSubmit(this.submit);
-                controller.setUser(this.user);
-                controller.setExternal(this.external_login);
                 controller.setMenu(this.menu);
                 controller.setStage(dialogStage);
 

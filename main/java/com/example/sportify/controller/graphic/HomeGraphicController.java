@@ -103,7 +103,10 @@ public class HomeGraphicController extends GraphicController{
             controller.getMainApp().getPrimaryPane().setCenter(paneLogin);
 
             // Give the controller access to the main app.
-            LoginController controllerLogin = loaderLogin.getController();
+            LoginGraphicController graphicController = loaderLogin.getController();
+            LoginController controllerLogin = new LoginController();
+            controllerLogin.setGraphicController(graphicController);
+            graphicController.setController(controllerLogin);
             controllerLogin.setMainApp(controller.getMainApp());
             controllerLogin.setUser(controller.getUser());
         } catch (IOException e) {
