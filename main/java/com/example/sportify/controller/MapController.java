@@ -1,67 +1,31 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
-import com.example.sportify.OpenStreetMapUtils;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymInfoGraphicController;
+import com.example.sportify.controller.graphic.MapGraphicController;
 import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.event.MapLabelEvent;
 import com.sothawo.mapjfx.event.MarkerEvent;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.control.*;
 
 import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
-import static org.apache.commons.lang3.StringUtils.isNumeric;
-
 public class MapController extends Controller{
+
+    /** Reference to graphic controller*/
+    private MapGraphicController graphicController;
 
     /** default zoom value. */
     private static final int ZOOM_DEFAULT = 11;
 
-    // ObservableList
-    private final ObservableList<String> radius = FXCollections.observableArrayList("1", "5", "10", "20", "50");
-
     /** All the HashMap of the map*/
     private final HashMap<Coordinate, String> all_gym = new HashMap<>();
     private final HashMap<String, Marker> mark = new HashMap<>();
-
-    // MapCircle
-    MapCircle circle;
-
-    // ComboBox
-    @FXML
-    private ComboBox<String> km;
-
-    // MapView
-    @FXML
-    private MapView mapView;
-
-    // Accordion
-    @FXML
-    private Accordion leftControls;
-
-    // TextField
-    @FXML
-    private TextField search;
-
-    /** All radio button of the interface*/
-    @FXML
-    private RadioButton radioMsOSM;
-    @FXML
-    private RadioButton radioMsWMS;
-
-    // ToggleGroup
-    @FXML
-    private ToggleGroup mapTypeGroup;
 
     /** params for the WMS server. */
     private final WMSParam wmsParam = new WMSParam().setUrl("https://ows.terrestris.de/osm/service?")
@@ -78,57 +42,13 @@ public class MapController extends Controller{
     /** It's called to set search cache*/
     @Override
     public void setSearchCache(String[] search) {
-        if(search!=null) {
-            this.search.setText(search[0]);
-            this.km.setValue(search[1]);
-        }
+        graphicController.setSearchCache(search);
     }
 
+    /** Is called to set graphic controller*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        //TODO
-    }
-
-    /** The action of the button*/
-    @FXML
-    public void searchAction() {
-        Map<String, Double> coords;
-        coords = OpenStreetMapUtils.getInstance().getCoordinates(search.getText());
-        if (coords.get("lat") != null && coords.get("lon") != null){
-            if(this.circle!=null) {
-                mapView.removeMapCircle(this.circle);
-                mark.forEach((id, marker) -> mapView.removeMarker(marker));
-                mark.clear();
-            }
-            Coordinate latLong = new Coordinate(coords.get("lat"), coords.get("lon"));
-
-            if (isNumeric(km.getValue())){
-                double distance = Double.parseDouble(km.getValue());
-                this.circle = new MapCircle(latLong, (distance+2)*1000.0).setVisible(true);
-                mapView.addMapCircle(this.circle);
-                mapView.setZoom(MapView.MAX_ZOOM - distance/5.0 - 14);
-                all_gym.forEach((key, value) -> {
-                    if(OpenStreetMapUtils.getInstance().getDistance(key,latLong)<=distance){
-                        Marker myMarker = Marker.createProvided(Marker.Provided.GREEN).setPosition(key).setVisible(true);
-                        mark.put(myMarker.getId(), myMarker);
-                        mapView.addMarker(myMarker);
-                    }
-                });
-            }
-
-            Marker myMarker = Marker.createProvided(Marker.Provided.RED).setPosition(latLong).setVisible(true);
-            mark.put(myMarker.getId(), myMarker);
-            mapView.setCenter(latLong);
-            mapView.addMarker(myMarker);
-        }else{
-            //show error message
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainApp.getPrimaryStage());
-            alert.setTitle("Wrong address");
-            alert.setHeaderText("Sorry, we can't find your address");
-            alert.setContentText("Please enter valid address");
-            alert.showAndWait();
-        }
+        this.graphicController = (MapGraphicController) graphicController;
     }
 
     /**
@@ -139,42 +59,28 @@ public class MapController extends Controller{
      */
     public void initMapAndControls(Projection projection) {
         // set ComboBox
-        km.setValue("Km");
-        km.setItems(radius);
+        graphicController.setKmCombo();
 
         // set all_gym list
         new Thread(this::loadCoordinate).start();
 
         // set the controls to disabled, this will be changed when the MapView is initialized
-        setControlsDisable(true);
+        graphicController.setControlsDisable(true);
 
         // watch the MapView's initialized property to finish initialization
-        mapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
+        graphicController.getMapView().initializedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 afterMapIsInitialized();
             }
         });
 
         // observe the map type radiobutton
-        mapTypeGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            MapType mapType;
-            if (newValue == radioMsOSM) {
-                mapType = MapType.OSM;
-            } else if (newValue == radioMsWMS) {
-                mapView.setWMSParam(wmsParam);
-                mapType = MapType.WMS;
-            } else {
-                mapView.setXYZParam(xyzParams);
-                mapType = MapType.XYZ;
-            }
-            mapView.setMapType(mapType);
-        });
-        mapTypeGroup.selectToggle(radioMsOSM);
+        graphicController.setMapTypeGroup(wmsParam,xyzParams);
 
         setupEventHandlers();
 
         // finally, initialize the map view
-        mapView.initialize(Configuration.builder()
+        graphicController.getMapView().initialize(Configuration.builder()
                 .projection(projection)
                 .showZoomControls(false)
                 .build());
@@ -182,7 +88,7 @@ public class MapController extends Controller{
 
     /** initializes the event handlers.*/
     private void setupEventHandlers() {
-        mapView.addEventHandler(MarkerEvent.MARKER_CLICKED, event -> {
+        graphicController.getMapView().addEventHandler(MarkerEvent.MARKER_CLICKED, event -> {
             event.consume();
             Coordinate coords = event.getMarker().getPosition();
             if(event.getMarker().getMapLabel().isEmpty()) {
@@ -192,62 +98,57 @@ public class MapController extends Controller{
                         if (all_gym.get(gym.getPosition()) != null) {
                             String name = all_gym.get(gym.getPosition());
                             MapLabel labelGym = new MapLabel(name, 10, -10).setCssClass("label");
-                            mapView.removeMarker(event.getMarker());
+                            graphicController.getMapView().removeMarker(event.getMarker());
                             event.getMarker().attachLabel(labelGym);
-                            mapView.addMarker(event.getMarker());
+                            graphicController.getMapView().addMarker(event.getMarker());
                         } else {
                             MapLabel labelGym = new MapLabel("You are Here!", 10, -10).setCssClass("label");
-                            mapView.removeMarker(event.getMarker());
+                            graphicController.getMapView().removeMarker(event.getMarker());
                             event.getMarker().attachLabel(labelGym);
-                            mapView.addMarker(event.getMarker());
+                            graphicController.getMapView().addMarker(event.getMarker());
                         }
                     } else {
                         gym.detachLabel();
                     }
                 });
             } else {
-                mapView.removeMarker(event.getMarker());
+                graphicController.getMapView().removeMarker(event.getMarker());
                 event.getMarker().detachLabel();
-                mapView.addMarker(event.getMarker());
+                graphicController.getMapView().addMarker(event.getMarker());
             }
         });
-        mapView.addEventHandler(MarkerEvent.MARKER_RIGHTCLICKED, event -> {
+        graphicController.getMapView().addEventHandler(MarkerEvent.MARKER_RIGHTCLICKED, event -> {
             //TODO
         });
-        mapView.addEventHandler(MarkerEvent.MARKER_ENTERED, event -> {
-            mapView.setCursor(Cursor.HAND);
+        graphicController.getMapView().addEventHandler(MarkerEvent.MARKER_ENTERED, event -> {
+            graphicController.getMapView().setCursor(Cursor.HAND);
             mainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.HAND);
         });
-        mapView.addEventHandler(MarkerEvent.MARKER_EXITED, event -> {
-            mapView.setCursor(Cursor.DEFAULT);
+        graphicController.getMapView().addEventHandler(MarkerEvent.MARKER_EXITED, event -> {
+            graphicController.getMapView().setCursor(Cursor.DEFAULT);
             mainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.DEFAULT);
         });
 
-        mapView.addEventHandler(MapLabelEvent.MAPLABEL_CLICKED, this::loadGymInfo);
-        mapView.addEventHandler(MapLabelEvent.MAPLABEL_RIGHTCLICKED, this::loadGymInfo);
-        mapView.addEventHandler(MapLabelEvent.MAPLABEL_ENTERED, event -> {
-            mapView.setCursor(Cursor.HAND);
+        graphicController.getMapView().addEventHandler(MapLabelEvent.MAPLABEL_CLICKED, this::loadGymInfo);
+        graphicController.getMapView().addEventHandler(MapLabelEvent.MAPLABEL_RIGHTCLICKED, this::loadGymInfo);
+        graphicController.getMapView().addEventHandler(MapLabelEvent.MAPLABEL_ENTERED, event -> {
+            graphicController.getMapView().setCursor(Cursor.HAND);
             mainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.HAND);
         });
-        mapView.addEventHandler(MapLabelEvent.MAPLABEL_EXITED, event -> {
-            mapView.setCursor(Cursor.DEFAULT);
+        graphicController.getMapView().addEventHandler(MapLabelEvent.MAPLABEL_EXITED, event -> {
+            graphicController.getMapView().setCursor(Cursor.DEFAULT);
             mainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.DEFAULT);
         });
-    }
-
-    /** enables / disables the different controls*/
-    private void setControlsDisable(boolean flag) {
-        leftControls.setDisable(flag);
     }
 
     /** finishes setup after the mpa is initialized*/
     private void afterMapIsInitialized() {
         // start at the harbour with default zoom
-        mapView.setZoom(ZOOM_DEFAULT);
-        mapView.setCenter(new Coordinate(41.9109, 12.4818));
+        graphicController.getMapView().setZoom(ZOOM_DEFAULT);
+        graphicController.getMapView().setCenter(new Coordinate(41.9109, 12.4818));
 
         // now enable the controls
-        setControlsDisable(false);
+        graphicController.setControlsDisable(false);
     }
 
     /** load the coordinate of all gym*/
@@ -285,12 +186,22 @@ public class MapController extends Controller{
             gym.setUser(this.user);
             gym.setMenu(this.menu);
             String[] search_cache = new String[2];
-            search_cache[0] = this.search.getText();
-            search_cache[1] = this.km.getValue();
+            search_cache[0] = this.graphicController.getSearch();
+            search_cache[1] = this.graphicController.getKm();
             gym.setSearchCache(search_cache);
             this.menu.setGym(event.getMapLabel().getText());
             this.menu.setFindGym();
             gym.loadingGymName(event.getMapLabel().getText());
         }
+    }
+
+    /** Is called to get mark hashmap*/
+    public HashMap<String, Marker> getMark(){
+        return this.mark;
+    }
+
+    /** Is called to get gym hashmap*/
+    public HashMap<Coordinate, String> getAllGym(){
+        return this.all_gym;
     }
 }

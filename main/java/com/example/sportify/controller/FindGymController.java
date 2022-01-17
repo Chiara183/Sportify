@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.controller.graphic.FindGymGraphicController;
 import com.example.sportify.controller.graphic.GraphicController;
+import com.example.sportify.controller.graphic.MapGraphicController;
 import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -36,14 +37,17 @@ public class FindGymController extends Controller{
             this.graphicController.getMap().getChildren().add(paneMap);
 
             // Give the controller access to the main app.
-            MapController controller = loaderGym.getController();
+            MapGraphicController graphicController = loaderGym.getController();
+            MapController controller = new MapController();
+            controller.setGraphicController(graphicController);
+            graphicController.setController(controller);
             controller.setMainApp(this.mainApp);
             controller.setUser(this.user);
             controller.setMenu(this.menu);
             controller.initMapAndControls(projection);
             controller.setSearchCache(this.search_cache);
             if(search_cache!=null){
-                controller.searchAction();
+                graphicController.searchAction();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
