@@ -1,5 +1,6 @@
 package com.example.sportify.controller;
 
+import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.HomeGraphicController;
 import com.example.sportify.user.User;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +35,12 @@ public class HomeController extends Controller {
         }
     }
 
+    /** Is called to set graphic controller*/
+    @Override
+    public void setGraphicController(GraphicController graphicController) {
+        this.graphicController = (HomeGraphicController) graphicController;
+    }
+
     /** It's called to create and ad a new menu in the window*/
     public MenuController Menu() {
         MenuController controllerB = null;
@@ -54,10 +61,5 @@ public class HomeController extends Controller {
             System.out.println(e.getLocalizedMessage());
         }
         return controllerB;
-    }
-
-    /** Is called to set graphic controller*/
-    public void setGraphicController(HomeGraphicController graphicController) {
-        this.graphicController = graphicController;
     }
 }

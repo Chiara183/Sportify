@@ -1,5 +1,6 @@
 package com.example.sportify.controller;
 
+import com.example.sportify.controller.graphic.GraphicController;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
@@ -37,5 +38,10 @@ public class UserEditController extends EditController{
         menu.setUser(user);
         Stage stage = (Stage) ok.getScene().getWindow();
         stage.close();
+    }
+
+    @Override
+    public void setGraphicController(GraphicController graphicController) {
+        //TODO
     }
 }

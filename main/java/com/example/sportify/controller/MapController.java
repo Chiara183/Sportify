@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
 import com.example.sportify.OpenStreetMapUtils;
+import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymInfoGraphicController;
 import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.event.MapLabelEvent;
@@ -81,6 +82,11 @@ public class MapController extends Controller{
             this.search.setText(search[0]);
             this.km.setValue(search[1]);
         }
+    }
+
+    @Override
+    public void setGraphicController(GraphicController graphicController) {
+        //TODO
     }
 
     /** The action of the button*/
@@ -273,8 +279,8 @@ public class MapController extends Controller{
         } else {
             GymInfoGraphicController graphicController = new GymInfoGraphicController();
             GymInfoController gym = new GymInfoController();
-            graphicController.setController(gym);
             gym.setGraphicController(graphicController);
+            graphicController.setController(gym);
             gym.setMainApp(this.mainApp);
             gym.setUser(this.user);
             gym.setMenu(this.menu);
@@ -283,6 +289,7 @@ public class MapController extends Controller{
             search_cache[1] = this.km.getValue();
             gym.setSearchCache(search_cache);
             this.menu.setGym(event.getMapLabel().getText());
+            this.menu.setFindGym();
             gym.loadingGymName(event.getMapLabel().getText());
         }
     }

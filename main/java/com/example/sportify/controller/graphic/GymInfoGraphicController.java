@@ -1,6 +1,8 @@
 package com.example.sportify.controller.graphic;
 
+import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.GymInfoController;
+import com.example.sportify.controller.MenuController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -10,6 +12,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 public class GymInfoGraphicController extends GraphicController{
+
+    /** Reference to controller*/
+    private GymInfoController controller;
+
     /** All the label of interface*/
     @FXML
     private Label gym_name;
@@ -53,13 +59,16 @@ public class GymInfoGraphicController extends GraphicController{
     private void share_review(){
         String gym = this.gym_name.getText();
         StringBuilder review = new StringBuilder(this.review_area.getText(0, this.review_area.getLength()));
-        controller.shareReview(gym, review);
+        this.controller.shareReview(gym, review);
     }
     @FXML
     private void findGym(){
+        MenuController menu = controller.getMainApp().Menu();
+        menu.setFindGym();
         controller.getMainApp().setUser(controller.getUser());
         controller.getMainApp().setSearchCache(controller.getMainApp().getSearchCache());
-        controller.getMainApp().showFindGymOverview(controller.getMainApp().Menu());
+        controller.getMainApp().showFindGymOverview(menu);
+
     }
     @FXML
     private void add_course(){
@@ -99,14 +108,6 @@ public class GymInfoGraphicController extends GraphicController{
         } else {
             this.min.setText(min);
         }
-    }
-
-    /** Reference to controller*/
-    private GymInfoController controller;
-
-    /** Is called to set controller*/
-    public void setController(GymInfoController controller) {
-        this.controller = controller;
     }
 
     /** Is called to set review pane visible or not, true = visible*/
@@ -183,5 +184,11 @@ public class GymInfoGraphicController extends GraphicController{
     /** Is called to set cursor on sport comboBox*/
     public void comboSport_setCursor(Cursor cursor){
         this.combo_sport.setCursor(cursor);
+    }
+
+    /** Is called to set controller*/
+    @Override
+    public void setController(Controller controller) {
+        this.controller = (GymInfoController) controller;
     }
 }

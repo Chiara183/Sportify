@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
+import com.example.sportify.controller.graphic.GraphicController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -223,6 +224,11 @@ public class SportQuizController extends Controller {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public void setGraphicController(GraphicController graphicController) {
+        //TODO
     }
 }
 

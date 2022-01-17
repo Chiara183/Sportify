@@ -1,5 +1,6 @@
 package com.example.sportify.controller;
 
+import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.user.User;
 import com.example.sportify.user.gymUser;
 import javafx.fxml.FXML;
@@ -19,6 +20,12 @@ public class GymEditController extends EditController{
         super.setUser(user);
         setUser((gymUser) user);
     }
+
+    @Override
+    public void setGraphicController(GraphicController graphicController) {
+        //TODO
+    }
+
     public void setUser(gymUser user) {
         gymName.setText(user.getGymName());
         address.setText(user.getAddress());

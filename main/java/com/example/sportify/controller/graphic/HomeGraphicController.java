@@ -12,7 +12,7 @@ import java.util.Objects;
 public class HomeGraphicController extends GraphicController{
 
     /** Reference to controller*/
-    HomeController controller;
+    private HomeController controller;
 
     /** All the button of the interface*/
     @FXML
@@ -77,12 +77,12 @@ public class HomeGraphicController extends GraphicController{
             // Give the controller access to the main app.
             FindGymGraphicController graphicController = loaderGym.getController();
             FindGymController controllerGym = new FindGymController();
+            controllerGym.setGraphicController(graphicController);
             graphicController.setController(controllerGym);
             controllerGym.setMainApp(controller.getMainApp());
             controllerGym.setUser(controller.getUser());
             controllerGym.setMenu(menuController);
             controllerGym.setProjection(controller.getMainApp().getProjection());
-            controllerGym.setGraphicController(graphicController);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -111,15 +111,15 @@ public class HomeGraphicController extends GraphicController{
         }
     }
 
-    /** Is called to set controller*/
-    public void setController(HomeController controller){
-        this.controller = controller;
-        controller.setGraphicController(this);
-    }
-
     /** Is called to get signIn button*/
     public Button getSignIn(){return this.signIn;}
 
     /** Is called to get gymInfo button*/
     public Button getGymInfo(){return this.gymInfo;}
+
+    /** Is called to set controller*/
+    @Override
+    public void setController(Controller controller) {
+        this.controller = (HomeController) controller;
+    }
 }

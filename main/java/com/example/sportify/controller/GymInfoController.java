@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
+import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymInfoGraphicController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -30,11 +31,6 @@ public class GymInfoController extends Controller {
 
     // ObservableList
     private ObservableList<String> sport;
-
-    /** Is called to set graphic controller*/
-    public void setGraphicController(GymInfoGraphicController graphicController) {
-        this.graphicController = graphicController;
-    }
 
     /** The constructor.*/
     public GymInfoController(){
@@ -367,10 +363,18 @@ public class GymInfoController extends Controller {
             // Give the controller access to the main app.
             GymInfoGraphicController graphicController = loader.getController();
             this.setGraphicController(graphicController);
+            graphicController.setController(this);
             this.gym = name;
+            this.mainApp.setSearchCache(this.search_cache);
             setGym(name);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /** Is called to set graphic controller*/
+    @Override
+    public void setGraphicController(GraphicController graphicController) {
+        this.graphicController = (GymInfoGraphicController) graphicController;
     }
 }

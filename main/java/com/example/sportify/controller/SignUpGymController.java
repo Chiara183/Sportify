@@ -4,6 +4,7 @@ import com.example.sportify.DAO;
 import com.example.sportify.IO;
 import com.example.sportify.OpenStreetMapUtils;
 import com.example.sportify.Submit;
+import com.example.sportify.controller.graphic.GraphicController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -95,6 +96,11 @@ public class SignUpGymController extends Controller {
     private void login(){
         this.mainApp.setSubmit(this.submit);
         this.mainApp.showLoginOverview();
+    }
+
+    @Override
+    public void setGraphicController(GraphicController graphicController) {
+        //TODO
     }
 }
 

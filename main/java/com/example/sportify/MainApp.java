@@ -135,10 +135,10 @@ public class MainApp{
             // Give the controller access to the main app.
             HomeGraphicController graphicController = loader.getController();
             HomeController controller = new HomeController();
+            controller.setGraphicController(graphicController);
             graphicController.setController(controller);
             controller.setUser(this.user);
             controller.setMainApp(this);
-            controller.setGraphicController(graphicController);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -253,12 +253,12 @@ public class MainApp{
             // Give the controller access to the main app.
             FindGymGraphicController graphicController = loaderGym.getController();
             FindGymController controller = new FindGymController();
+            controller.setGraphicController(graphicController);
             graphicController.setController(controller);
             controller.setMainApp(this);
             controller.setSearchCache(this.search_cache);
             controller.setMenu(menu);
             controller.setProjection(this.projection);
-            controller.setGraphicController(graphicController);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

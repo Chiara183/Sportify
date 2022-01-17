@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.controller.graphic.FindGymGraphicController;
+import com.example.sportify.controller.graphic.GraphicController;
 import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -47,6 +48,12 @@ public class FindGymController extends Controller{
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /** Is called to set graphic controller*/
+    @Override
+    public void setGraphicController(GraphicController graphicController) {
+        this.graphicController = (FindGymGraphicController) graphicController;
     }
 }
 

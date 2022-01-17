@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
+import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.user.User;
 
 public abstract class Controller{
@@ -39,6 +40,9 @@ public abstract class Controller{
     public void setSearchCache(String[] search) {
         this.search_cache = search;
     }
+
+    /** Is called to set graphic controller*/
+    abstract public void setGraphicController(GraphicController graphicController);
 
     /** Is called to get type.*/
     public ControllerType getType() {

@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
+import com.example.sportify.controller.graphic.GraphicController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -121,5 +122,10 @@ public class SportController extends Controller{
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public void setGraphicController(GraphicController graphicController) {
+        //TODO
     }
 }
