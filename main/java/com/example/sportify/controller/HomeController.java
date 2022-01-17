@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.HomeGraphicController;
+import com.example.sportify.controller.graphic.MenuGraphicController;
 import com.example.sportify.user.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -43,7 +44,8 @@ public class HomeController extends Controller {
 
     /** It's called to create and ad a new menu in the window*/
     public MenuController Menu() {
-        MenuController controllerB = null;
+        MenuController controller = new MenuController();
+        controller.setMainApp(this.mainApp);
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
             loaderMenu.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("DesktopView/Menu.fxml")));
@@ -53,13 +55,14 @@ public class HomeController extends Controller {
             this.mainApp.getPrimaryPane().setTop(paneMenu);
 
             // Give the controller access to the main app.
-            controllerB = loaderMenu.getController();
-            controllerB.setMainApp(this.mainApp);
-            controllerB.setUser(this.user);
+            MenuGraphicController graphicController = loaderMenu.getController();
+            controller.setGraphicController(graphicController);
+            graphicController.setController(controller);
+            controller.setUser(this.user);
         } catch (IOException e) {
             System.out.println(e.getMessage());
             System.out.println(e.getLocalizedMessage());
         }
-        return controllerB;
+        return controller;
     }
 }

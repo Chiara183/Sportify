@@ -4,6 +4,7 @@ import com.example.sportify.controller.*;
 import com.example.sportify.controller.graphic.FindGymGraphicController;
 import com.example.sportify.controller.graphic.HomeGraphicController;
 import com.example.sportify.controller.graphic.LoginGraphicController;
+import com.example.sportify.controller.graphic.MenuGraphicController;
 import com.example.sportify.user.User;
 import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXMLLoader;
@@ -101,7 +102,9 @@ public class MainApp{
 
     /** Shows menu overview inside the root layout.*/
     public MenuController Menu() {
-        MenuController controllerB = null;
+        MenuController controller = new MenuController();
+        MenuGraphicController graphicController;
+        controller.setMainApp(this);
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
             loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("DesktopView/Menu.fxml")));
@@ -111,13 +114,14 @@ public class MainApp{
             this.getPrimaryPane().setTop(paneMenu);
 
             // Give the controller access to the main app.
-            controllerB = loaderMenu.getController();
-            controllerB.setMainApp(this);
-            controllerB.setUser(this.user);
+            graphicController = loaderMenu.getController();
+            controller.setGraphicController(graphicController);
+            graphicController.setController(controller);
+            controller.setUser(this.user);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        return controllerB;
+        return controller;
     }
 
     /** Shows home overview inside the root layout.*/
