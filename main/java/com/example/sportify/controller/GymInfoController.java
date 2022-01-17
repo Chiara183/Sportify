@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,6 +24,9 @@ public class GymInfoController extends Controller {
 
     /** Reference to graphic controller*/
     private GymInfoGraphicController graphicController;
+
+    /** The name of the gym*/
+    private String gym;
 
     // ObservableList
     private ObservableList<String> sport;
@@ -41,19 +45,19 @@ public class GymInfoController extends Controller {
     private void setReview(){
         if(this.user != null){
             if(Objects.equals(this.user.getRole(), "user")){
-                graphicController.getReview_pane().setVisible(true);
-            } else graphicController.getReview_pane().setVisible(!Objects.equals(this.user.getGymName(), getGymName()));
+                graphicController.reviewPane_isVisible(true);
+            } else graphicController.reviewPane_isVisible(!Objects.equals(this.user.getGymName(), this.gym));
         } else {
-            graphicController.getReview_pane().setVisible(false);
+            graphicController.reviewPane_isVisible(false);
         }
     }
     private void setCourse(){
         if(this.user != null){
             if(Objects.equals(this.user.getRole(), "user")){
-                graphicController.getCourse_pane().setVisible(false);
-            } else graphicController.getCourse_pane().setVisible(Objects.equals(this.user.getGymName(), getGymName()));
+                graphicController.coursePane_isVisible(false);
+            } else graphicController.coursePane_isVisible(Objects.equals(this.user.getGymName(), this.gym));
         } else {
-            graphicController.getCourse_pane().setVisible(false);
+            graphicController.coursePane_isVisible(false);
         }
     }
     private void settingPage(){
@@ -85,6 +89,78 @@ public class GymInfoController extends Controller {
         return sport;
     }
 
+    /** Cancel a review of gym*/
+    private void cancelReview(MouseEvent e){
+        Label event = (Label) e.getSource();
+        DAO obj_DAO = this.mainApp.getDAO();
+        obj_DAO.updateDB("DELETE FROM `review` WHERE `review`.`writer` = '" +
+                event.getEllipsisString().split(";")[0] +
+                "' AND `review`.`gym` = '" +
+                this.gym +
+                "' AND `review`.`timestamp` = '" +
+                event.getEllipsisString().split(";")[1] +
+                "'");
+        loadingGymName(this.gym);
+    }
+
+    /** Cancel a course of gym*/
+    private void cancelCourse(MouseEvent e){
+        Label event = (Label) e.getSource();
+        DAO obj_DAO = this.mainApp.getDAO();
+        obj_DAO.updateDB("DELETE FROM `course` WHERE `course`.`sport` = '" +
+                event.getEllipsisString().split(";")[0] +
+                "' AND `course`.`gym` = '" +
+                this.gym +
+                "' AND `course`.`time` = '" +
+                event.getEllipsisString().split(";")[1] +
+                "'");
+        loadingGymName(this.gym);
+    }
+
+    /** Cancel a review of gym*/
+    public void shareReview(String gym, StringBuilder review){
+        String[] reviewList = review.toString().split("'");
+        review = new StringBuilder();
+        int i = 0;
+        while(i!=reviewList.length){
+            review.append(reviewList[i]);
+            if(i!=reviewList.length-1){
+                review.append("\\'");
+            }
+            i++;
+        }
+        String user = this.user.getUserName();
+        if(!review.toString().equals("")) {
+            DAO obj_DAO = this.mainApp.getDAO();
+            obj_DAO.updateDB(
+                    "INSERT INTO `review` (`gym`, `review`, `writer`, `timestamp`) VALUES ('"
+                            + gym + "', '"
+                            + review + "', '"
+                            + user + "', " +
+                            "CURRENT_TIMESTAMP);");
+        } else {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Review is empty.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        loadingGymName(gym);
+    }
+
+    /** Cancel a course of gym*/
+    public void addCourse(String sport, String gym, String time){
+        if(!sport.equals("select sport")) {
+            DAO obj_DAO = this.mainApp.getDAO();
+            obj_DAO.updateDB(
+                    "INSERT INTO `course` (`sport`, `gym`, `time`) VALUES ('" +
+                            sport + "', '" +
+                            gym + "', '" +
+                            time + "');");
+            loadingGymName(gym);
+        } else {
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "Insert all value.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     /** initializes the event handlers.*/
     private void setupEventHandlers() {
         this.menu.getSignOut().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> settingPage());
@@ -103,7 +179,7 @@ public class GymInfoController extends Controller {
 
     /** Load the review of gym*/
     private void loadReview(ResultSet rs){
-        graphicController.getReview().getChildren().remove(0, graphicController.getReview().getChildren().size());
+        graphicController.cleanReview();
         try {
             while (rs.next()) {
                 Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
@@ -112,17 +188,17 @@ public class GymInfoController extends Controller {
                 Label labelReview = new Label(rs.getString("review"));
                 Label blankSpace = new Label();
                 VBox vbox = new VBox(labelTitle, labelReview, blankSpace);
-                if (this.user != null && Objects.equals(this.user.getRole(), "gym") && Objects.equals(this.user.getGymName(), getGymName())) {
+                if (this.user != null && Objects.equals(this.user.getRole(), "gym") && Objects.equals(this.user.getGymName(), this.gym)) {
                     Label cancel = new Label("⮿");
                     cancel.setStyle("-fx-text-fill: red; ");
                     cancel.setEllipsisString(string);
-                    cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> graphicController.cancelReview(e));
+                    cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, this::cancelReview);
                     cancel.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> cancel.setCursor(Cursor.HAND));
                     cancel.addEventHandler(MouseEvent.MOUSE_EXITED, e -> cancel.setCursor(Cursor.DEFAULT));
                     HBox hbox = new HBox(vbox, new Label(), new Label(), new Label(), new Label(), cancel);
-                    graphicController.getReview().getChildren().add(hbox);
+                    graphicController.setReview(hbox);
                 } else {
-                    graphicController.getReview().getChildren().add(vbox);
+                    graphicController.setReview(vbox);
                 }
             }
         }catch (SQLException e){
@@ -136,33 +212,33 @@ public class GymInfoController extends Controller {
         ResultSet rs = obj_DAO.Check_Data(
                 "SELECT * " +
                         "FROM review " +
-                        "WHERE review.gym = \"" + getGymName() + "\"");
+                        "WHERE review.gym = \"" + this.gym + "\"");
         loadReview(rs);
-        if(graphicController.getReview().getChildren().size()<1) {
+        if(graphicController.getSizeReview()<1) {
             Label labelNotFound = new Label("There are no reviews");
             labelNotFound.setStyle("-fx-font-weight: bold;");
-            graphicController.getReview().getChildren().add(labelNotFound);
+            graphicController.setReview(labelNotFound);
         }
     }
 
     /** Load the course of gym*/
     private void loadCourse(ResultSet rs){
-        graphicController.getCourse().getChildren().remove(1, graphicController.getCourse().getChildren().size());
+        graphicController.cleanCourse();
         try {
             Label label = new Label(rs.getString("sport") + " " + rs.getTime("time").toString().substring(0, 5));
             String s = rs.getString("sport") + ";" + rs.getTime("time").toString();
             label.setStyle("-fx-text-fill: white;");
-            if (this.user != null && Objects.equals(this.user.getGymName(), getGymName())) {
+            if (this.user != null && Objects.equals(this.user.getGymName(), this.gym)) {
                 Label cancel = new Label("⮿");
                 cancel.setStyle("-fx-text-fill: red;");
                 cancel.setEllipsisString(s);
-                cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> graphicController.cancelCourse(e));
+                cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, this::cancelCourse);
                 cancel.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> cancel.setCursor(Cursor.HAND));
                 cancel.addEventHandler(MouseEvent.MOUSE_EXITED, e -> cancel.setCursor(Cursor.DEFAULT));
                 HBox hbox = new HBox(label, new Label(), new Label(), cancel);
-                graphicController.getCourse().getChildren().add(hbox);
+                graphicController.setCourse(hbox);
             } else {
-                graphicController.getCourse().getChildren().add(label);
+                graphicController.setCourse(label);
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());
@@ -176,14 +252,14 @@ public class GymInfoController extends Controller {
             ResultSet rs = obj_DAO.Check_Data(
                     "SELECT * " +
                             "FROM course " +
-                            "WHERE course.gym = \"" + getGymName() + "\"");
+                            "WHERE course.gym = \"" + this.gym + "\"");
             while (rs.next()) {
                 loadCourse(rs);
             }
-            if(graphicController.getCourse().getChildren().size()<2) {
+            if(graphicController.getSizeCourse()<2) {
                 Label label = new Label("There are no course");
                 label.setStyle("-fx-font-weight: bold;");
-                graphicController.getCourse().getChildren().add(label);
+                graphicController.setCourse(label);
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());
@@ -197,7 +273,7 @@ public class GymInfoController extends Controller {
         setupEventHandlers();
 
         // Window Title
-        graphicController.getGym_name().setText(name);
+        graphicController.setGym_name(name);
 
         // Set visible or not area new review and new course
         settingPage();
@@ -205,16 +281,15 @@ public class GymInfoController extends Controller {
         // set ComboBox
         Runnable task0 = () -> Platform.runLater(() -> {
             this.sport = getSport();
-            graphicController.getCombo_sport().setValue("select sport");
-            graphicController.getCombo_sport().setItems(this.sport);
+            graphicController.setComboSport(this.sport);
         });
         Task<Void> task00 = createTask(task0);
-        task00.setOnRunning(e -> graphicController.getCombo_sport().setCursor(Cursor.WAIT));
-        task00.setOnSucceeded(e -> graphicController.getCombo_sport().setCursor(Cursor.DEFAULT));
-        task00.setOnFailed(e -> graphicController.getCombo_sport().setCursor(Cursor.DEFAULT));
+        task00.setOnRunning(e -> graphicController.comboSport_setCursor(Cursor.WAIT));
+        task00.setOnSucceeded(e -> graphicController.comboSport_setCursor(Cursor.DEFAULT));
+        task00.setOnFailed(e -> graphicController.comboSport_setCursor(Cursor.DEFAULT));
 
         // Set gym_description
-        graphicController.getGym_description().setText(
+        graphicController.setGymDescription(
                 """
                         ADDRESS:\s
 
@@ -228,11 +303,11 @@ public class GymInfoController extends Controller {
                                 "WHERE gym.name = \"" + name + "\"");
                 if (rs.next()) {
                     if(Objects.equals(rs.getString("phone"), "null")){
-                        graphicController.getGym_description().setText(
+                        graphicController.setGymDescription(
                                 "ADDRESS: " + rs.getString("address") +
                                         "\n\nTELEPHONE: \\\\");
                     } else {
-                        graphicController.getGym_description().setText(
+                        graphicController.setGymDescription(
                                 "ADDRESS: " + rs.getString("address") +
                                         "\n\nTELEPHONE: " + rs.getString("phone"));
                     }
@@ -242,32 +317,32 @@ public class GymInfoController extends Controller {
             }
         });
         Task<Void> task4 = createTask(task1);
-        task4.setOnRunning(e -> graphicController.getGym_description().setCursor(Cursor.WAIT));
-        task4.setOnSucceeded(e -> graphicController.getGym_description().setCursor(Cursor.DEFAULT));
-        task4.setOnFailed(e -> graphicController.getGym_description().setCursor(Cursor.DEFAULT));
+        task4.setOnRunning(e -> graphicController.gymDescription_setCursor(Cursor.WAIT));
+        task4.setOnSucceeded(e -> graphicController.gymDescription_setCursor(Cursor.DEFAULT));
+        task4.setOnFailed(e -> graphicController.gymDescription_setCursor(Cursor.DEFAULT));
 
         // Set review
         Runnable task2 = () -> Platform.runLater(this::downloadReview);
         Task<Void> task5 = createTask(task2);
-        task5.setOnRunning(e -> graphicController.getReview().setCursor(Cursor.WAIT));
-        task5.setOnSucceeded(e -> graphicController.getReview().setCursor(Cursor.DEFAULT));
+        task5.setOnRunning(e -> graphicController.review_setCursor(Cursor.WAIT));
+        task5.setOnSucceeded(e -> graphicController.review_setCursor(Cursor.DEFAULT));
         task5.setOnFailed(e -> {
-            graphicController.getReview().setCursor(Cursor.DEFAULT);
+            graphicController.review_setCursor(Cursor.DEFAULT);
             Label labelNotFound = new Label("There are no reviews");
             labelNotFound.setStyle("-fx-font-weight: bold;");
-            graphicController.getReview().getChildren().add(labelNotFound);
+            graphicController.setReview(labelNotFound);
         });
 
         // Set course
         Runnable task3 = () -> Platform.runLater(this::downloadCourse);
         Task<Void> task6 = createTask(task3);
-        task6.setOnRunning(e -> graphicController.getCourse().setCursor(Cursor.WAIT));
-        task6.setOnSucceeded(e -> graphicController.getCourse().setCursor(Cursor.DEFAULT));
+        task6.setOnRunning(e -> graphicController.course_setCursor(Cursor.WAIT));
+        task6.setOnSucceeded(e -> graphicController.course_setCursor(Cursor.DEFAULT));
         task6.setOnFailed(e -> {
-            graphicController.getCourse().setCursor(Cursor.DEFAULT);
+            graphicController.course_setCursor(Cursor.DEFAULT);
             Label label = new Label("There are no course");
             label.setStyle("-fx-font-weight: bold;");
-            graphicController.getCourse().getChildren().add(label);
+            graphicController.setCourse(label);
         });
 
         // Run Thread and set DEFAULT review and course
@@ -292,14 +367,10 @@ public class GymInfoController extends Controller {
             // Give the controller access to the main app.
             GymInfoGraphicController graphicController = loader.getController();
             this.setGraphicController(graphicController);
+            this.gym = name;
             setGym(name);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    /** It's called to get gym name*/
-    public String getGymName(){
-        return graphicController.getGym_name().getText();
     }
 }

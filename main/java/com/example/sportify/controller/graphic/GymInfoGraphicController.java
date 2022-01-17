@@ -1,14 +1,13 @@
 package com.example.sportify.controller.graphic;
 
-import com.example.sportify.DAO;
 import com.example.sportify.controller.GymInfoController;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-
-import javax.swing.*;
 
 public class GymInfoGraphicController extends GraphicController{
     /** All the label of interface*/
@@ -49,65 +48,12 @@ public class GymInfoGraphicController extends GraphicController{
     @FXML
     private Slider min_slider;
 
-    /** Cancel a review of gym*/
-    @FXML
-    public void cancelReview(MouseEvent e){
-        Label event = (Label) e.getSource();
-        DAO obj_DAO = controller.getMainApp().getDAO();
-        obj_DAO.updateDB("DELETE FROM `review` WHERE `review`.`writer` = '" +
-                event.getEllipsisString().split(";")[0] +
-                "' AND `review`.`gym` = '" +
-                this.gym_name.getText() +
-                "' AND `review`.`timestamp` = '" +
-                event.getEllipsisString().split(";")[1] +
-                "'");
-        controller.loadingGymName(gym_name.getText());
-    }
-
-    /** Cancel a course of gym*/
-    @FXML
-    public void cancelCourse(MouseEvent e){
-        Label event = (Label) e.getSource();
-        DAO obj_DAO = controller.getMainApp().getDAO();
-        obj_DAO.updateDB("DELETE FROM `course` WHERE `course`.`sport` = '" +
-                event.getEllipsisString().split(";")[0] +
-                "' AND `course`.`gym` = '" +
-                this.gym_name.getText() +
-                "' AND `course`.`time` = '" +
-                event.getEllipsisString().split(";")[1] +
-                "'");
-        controller.loadingGymName(gym_name.getText());
-    }
-
     /** The action of the button*/
     @FXML
     private void share_review(){
         String gym = this.gym_name.getText();
         StringBuilder review = new StringBuilder(this.review_area.getText(0, this.review_area.getLength()));
-        String[] reviewList = review.toString().split("'");
-        review = new StringBuilder();
-        int i = 0;
-        while(i!=reviewList.length){
-            review.append(reviewList[i]);
-            if(i!=reviewList.length-1){
-                review.append("\\'");
-            }
-            i++;
-        }
-        String user = controller.getUser().getUserName();
-        if(!review.toString().equals("")) {
-            DAO obj_DAO = controller.getMainApp().getDAO();
-            obj_DAO.updateDB(
-                    "INSERT INTO `review` (`gym`, `review`, `writer`, `timestamp`) VALUES ('"
-                            + gym + "', '"
-                            + review + "', '"
-                            + user + "', " +
-                            "CURRENT_TIMESTAMP);");
-        } else {
-            JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "Review is empty.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        controller.loadingGymName(gym);
+        controller.shareReview(gym, review);
     }
     @FXML
     private void findGym(){
@@ -132,18 +78,7 @@ public class GymInfoGraphicController extends GraphicController{
             min = this.min.getText();
         }
         String time = hour + ':' + min + ":00";
-        if(!sport.equals("select sport")) {
-            DAO obj_DAO = controller.getMainApp().getDAO();
-            obj_DAO.updateDB(
-                    "INSERT INTO `course` (`sport`, `gym`, `time`) VALUES ('" +
-                            sport + "', '" +
-                            gym + "', '" +
-                            time + "');");
-            controller.loadingGymName(gym_name.getText());
-        } else {
-            JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "Insert all value.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
+        controller.addCourse(sport, gym, time);
     }
 
     /** The action that change the value of text field*/
@@ -174,38 +109,79 @@ public class GymInfoGraphicController extends GraphicController{
         this.controller = controller;
     }
 
-    /** Is called to get review pane*/
-    public BorderPane getReview_pane(){
-        return this.review_pane;
+    /** Is called to set review pane visible or not, true = visible*/
+    public void reviewPane_isVisible(boolean visible){
+        this.review_pane.setVisible(visible);
     }
 
-    /** Is called to get course pane*/
-    public BorderPane getCourse_pane(){
-        return this.course_pane;
+    /** Is called to set course pane visible or not, true = visible*/
+    public void coursePane_isVisible(boolean visible){
+        this.course_pane.setVisible(visible);
     }
 
-    /** Is called to get gym name label*/
-    public Label getGym_name(){
-        return this.gym_name;
+    /** Is called to get gym name*/
+    public void setGym_name(String name){
+        this.gym_name.setText(name);
     }
 
-    /** Is called to get gym description label*/
-    public Label getGym_description(){
-        return this.gym_description;
+    /** Is called to set gym description*/
+    public void setGymDescription(String description){
+        this.gym_description.setText(description);
+    }
+
+    /** Is called to set cursor on gym description label*/
+    public void gymDescription_setCursor(Cursor cursor){
+        this.gym_description.setCursor(cursor);
+    }
+
+    /** Is called to clean all course on view*/
+    public void cleanCourse(){
+        this.course.getChildren().remove(1, this.course.getChildren().size());
     }
 
     /** Is called to get course vbox*/
-    public VBox getCourse(){
-        return this.course;
+    public void setCourse(Node node){
+        this.course.getChildren().add(node);
+    }
+
+    /** Is called to get size of course vbox*/
+    public int getSizeCourse(){
+        return this.course.getChildren().size();
+    }
+
+    /** Is called to set cursor on course vbox*/
+    public void course_setCursor(Cursor cursor){
+        this.course.setCursor(cursor);
+    }
+
+    /** Is called to clean all course on view*/
+    public void cleanReview(){
+        this.review.getChildren().remove(0, this.review.getChildren().size());
     }
 
     /** Is called to get course vbox*/
-    public VBox getReview(){
-        return this.review;
+    public void setReview(Node node){
+        this.review.getChildren().add(node);
     }
 
-    /** Is called to get sport comboBox*/
-    public ComboBox<String> getCombo_sport(){
-        return this.combo_sport;
+    /** Is called to get size of course vbox*/
+    public int getSizeReview(){
+        return this.review.getChildren().size();
+    }
+
+    /** Is called to set cursor on course vbox*/
+    public void review_setCursor(Cursor cursor){
+        this.review.setCursor(cursor);
+    }
+
+    /** Is called to set sport comboBox*/
+    public void setComboSport(ObservableList<String> sport){
+        this.combo_sport.setValue("select sport");
+        this.combo_sport.setItems(sport);
+    }
+
+    /** Is called to set cursor on sport comboBox*/
+    public void comboSport_setCursor(Cursor cursor){
+        this.combo_sport.setCursor(cursor);
     }
 }
