@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javax.swing.*;
 import java.util.Map;
 
-public class SignUpGymGraphicController extends GraphicController{
+public class SignUpGymGraphicController extends RegisterGraphicController{
 
     /** All the text field of the interface*/
     @FXML
@@ -59,14 +59,11 @@ public class SignUpGymGraphicController extends GraphicController{
             }
         }
     }
-    @FXML
-    private void skipAction(){
-        controller.login();
-    }
 
     /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.controller = (SignUpGymController) controller;
+        super.setController(controller);
     }
 }

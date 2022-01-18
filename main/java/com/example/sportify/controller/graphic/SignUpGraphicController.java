@@ -5,12 +5,11 @@ import com.example.sportify.controller.SignUpController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.sql.Timestamp;
 
-public class SignUpGraphicController extends GraphicController{
+public class SignUpGraphicController extends RegisterGraphicController{
 
     /** Reference to controller*/
     private SignUpController controller;
@@ -19,41 +18,17 @@ public class SignUpGraphicController extends GraphicController{
     @FXML
     private TextField username;
     @FXML
-    private TextField password;
-    @FXML
     private TextField firstName;
     @FXML
     private TextField lastName;
     @FXML
     private TextField email;
-    @FXML
-    private TextField pass_text;
-
-    //Label
-    @FXML
-    private Label eye;
 
     /** All the checkbox of the interface*/
-    @FXML
-    private CheckBox pass_toggle;
     @FXML
     private CheckBox gymTick;
     @FXML
     private CheckBox userTick;
-
-    /** Controls the visibility of the password*/
-    @FXML
-    private void set_toggle_pass(){
-        if(!this.pass_toggle.isSelected()) {
-            eye.setStyle("-fx-text-fill: #06B7C5;");
-            pass_toggle.setSelected(true);
-            controller.getMainApp().togglevisiblePassword(this.pass_toggle, this.pass_text, this.password);
-        } else {
-            eye.setStyle("-fx-text-fill: black;");
-            pass_toggle.setSelected(false);
-            controller.getMainApp().togglevisiblePassword(this.pass_toggle, this.pass_text, this.password);
-        }
-    }
 
     /** Controls the sign-up method (user, gym)*/
     @FXML
@@ -82,10 +57,6 @@ public class SignUpGraphicController extends GraphicController{
         date = date.substring(0,10);
         controller.submitActionSignUp(userValue, passValue, nameValue, lastNameValue, email, date);
     }
-    @FXML
-    private void skipAction(){
-        controller.login();
-    }
 
     /** Is called to understand if it's a user*/
     public boolean isUser(){
@@ -96,5 +67,6 @@ public class SignUpGraphicController extends GraphicController{
     @Override
     public void setController(Controller controller) {
         this.controller = (SignUpController) controller;
+        super.setController(controller);
     }
 }

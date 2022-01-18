@@ -3,7 +3,7 @@ package com.example.sportify.controller;
 import com.example.sportify.MainApp;
 import com.example.sportify.Submit;
 
-abstract class AccessController extends Controller{
+public abstract class AccessController extends Controller{
 
     /** Reference to submit.*/
     protected Submit submit;

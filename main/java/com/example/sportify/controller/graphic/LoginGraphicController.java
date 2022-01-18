@@ -4,44 +4,16 @@ import com.example.sportify.OAuth.OAuthGoogleAuthenticator;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.LoginController;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class LoginGraphicController extends GraphicController{
+public class LoginGraphicController extends AccessGraphicController{
 
     /** All the text field of the interface*/
     @FXML
     private TextField username;
-    @FXML
-    private TextField password;
-    @FXML
-    private TextField pass_text;
-
-    //Label
-    @FXML
-    private Label eye;
-
-    //CheckBox
-    @FXML
-    private CheckBox pass_toggle;
 
     /** Reference to controller*/
     private LoginController controller;
-
-    /** Controls the visibility of the password*/
-    @FXML
-    private void set_toggle_pass(){
-        if(!pass_toggle.isSelected()) {
-            eye.setStyle("-fx-text-fill: #06B7C5;");
-            pass_toggle.setSelected(true);
-            controller.getMainApp().togglevisiblePassword(this.pass_toggle, this.pass_text, this.password);
-        } else {
-            eye.setStyle("-fx-text-fill: black;");
-            pass_toggle.setSelected(false);
-            controller.getMainApp().togglevisiblePassword(this.pass_toggle, this.pass_text, this.password);
-        }
-    }
 
     /** The action of the buttons*/
     @FXML
@@ -75,5 +47,6 @@ public class LoginGraphicController extends GraphicController{
     @Override
     public void setController(Controller controller) {
         this.controller = (LoginController) controller;
+        super.setController(controller);
     }
 }
