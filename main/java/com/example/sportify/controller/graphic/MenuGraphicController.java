@@ -107,24 +107,29 @@ public class MenuGraphicController extends GraphicController{
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            if(Objects.equals(controller.getUser().getRole(), "gym")) {
-                loader.setLocation(MainApp.class.getResource("GymEditDialog.fxml"));
+            EditController controller;
+            if(Objects.equals(this.controller.getUser().getRole(), "gym")) {
+                loader.setLocation(MainApp.class.getResource("DesktopView/GymEditDialog.fxml"));
+                controller = new GymEditController();
             } else {
-                loader.setLocation(MainApp.class.getResource("UserEditDialog.fxml"));
+                loader.setLocation(MainApp.class.getResource("DesktopView/UserEditDialog.fxml"));
+                controller = new UserEditController();
             }
             AnchorPane page = loader.load();
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle(controller.getUser().getUserName());
-            dialogStage.getIcons().add(new Image(Objects.requireNonNull(controller.getMainApp().getClass().getResourceAsStream("Images/Sportify icon.png"))));
+            dialogStage.setTitle(this.controller.getUser().getUserName());
+            dialogStage.getIcons().add(new Image(Objects.requireNonNull(this.controller.getMainApp().getClass().getResourceAsStream("Images/Sportify icon.png"))));
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(controller.getMainApp().getPrimaryStage());
+            dialogStage.initOwner(this.controller.getMainApp().getPrimaryStage());
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
-            EditController controller = loader.getController();
+            EditGraphicController graphicController = loader.getController();
+            controller.setGraphicController(graphicController);
+            graphicController.setController(controller);
             controller.setUser(this.controller.getUser());
             controller.setMenu(this.controller);
 

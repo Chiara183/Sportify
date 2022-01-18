@@ -11,7 +11,6 @@ import javafx.scene.control.Alert;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Objects;
 
 public abstract class User {
 
@@ -116,12 +115,6 @@ public abstract class User {
                     "UPDATE `user` SET `username` = '"
                             + userName + "' WHERE `user`.`username` = '"
                             + this.userName.getValue() + "'");
-            if (Objects.equals(this.role.get(), "gym")) {
-                obj_DAO.updateDB(
-                        "UPDATE `gym` SET `owner` = '"
-                                + userName + "' WHERE `gym`.`owner` = '"
-                                + this.userName.getValue() + "'");
-            }
             this.userName.set(userName);
         } else if (this.userName.getValue() == null){
             assert false;

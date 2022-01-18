@@ -6,7 +6,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="335.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.GymEditController">
+<AnchorPane prefHeight="335.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.GymEditGraphicController">
     <GridPane prefHeight="275.0" prefWidth="391.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.0" minWidth="10.0" prefWidth="102.0" />

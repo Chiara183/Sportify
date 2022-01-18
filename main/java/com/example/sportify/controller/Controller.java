@@ -58,4 +58,9 @@ public abstract class Controller{
     public User getUser() {
         return this.user;
     }
+
+    /** Is called to get menu.*/
+    public MenuController getMenu() {
+        return this.menu;
+    }
 }
