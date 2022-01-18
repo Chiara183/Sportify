@@ -1,10 +1,7 @@
 package com.example.sportify;
 
 import com.example.sportify.controller.*;
-import com.example.sportify.controller.graphic.FindGymGraphicController;
-import com.example.sportify.controller.graphic.HomeGraphicController;
-import com.example.sportify.controller.graphic.LoginGraphicController;
-import com.example.sportify.controller.graphic.MenuGraphicController;
+import com.example.sportify.controller.graphic.*;
 import com.example.sportify.user.User;
 import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXMLLoader;
@@ -281,7 +278,10 @@ public class MainApp{
             this.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
-            SignUpController controller = loaderSignUp.getController();
+            SignUpGraphicController graphicController = loaderSignUp.getController();
+            SignUpController controller = new SignUpController();
+            controller.setGraphicController(graphicController);
+            graphicController.setController(controller);
             controller.setMainApp(this);
 
         } catch (IOException e) {

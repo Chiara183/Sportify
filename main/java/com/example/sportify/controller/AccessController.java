@@ -19,4 +19,9 @@ abstract class AccessController extends Controller{
     public void setSubmit(Submit submit) {
         this.submit = submit;
     }
+
+    /** Is called to get submit.*/
+    public Submit getSubmit() {
+        return this.submit;
+    }
 }
