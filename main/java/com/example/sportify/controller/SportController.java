@@ -3,9 +3,8 @@ package com.example.sportify.controller;
 import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
-import javafx.fxml.FXML;
+import com.example.sportify.controller.graphic.SportGraphicController;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -14,51 +13,12 @@ import java.sql.SQLException;
 
 public class SportController extends Controller{
 
-    /** All the label of the interface*/
-    @FXML
-    private Label sport_name;
-    @FXML
-    private Label sport_description;
-    @FXML
-    private Label sportName;
+    /** Reference to graphic controller*/
+    private SportGraphicController graphicController;
 
     /** The constructor.*/
     public SportController(){
         this.type = ControllerType.SPORT;
-    }
-
-    /** The action of the buttons*/
-    @FXML
-    private void home(){
-        this.mainApp.setUser(this.user);
-        this.mainApp.showHomeOverview();
-    }
-    @FXML
-    private void getInfo(){
-        if(this.sportName.getText().equals("Volleyball") ){
-            loadDescriptionFromDB("Volleyball");
-        }
-        if(this.sportName.getText().equals("Trekking")){
-            loadDescriptionFromDB("Trekking");
-        }
-        if(this.sportName.getText().equals("Tennis")){
-            loadDescriptionFromDB("Tennis");
-        }
-        if(this.sportName.getText().equals("Swimming")){
-            loadDescriptionFromDB("Swimming");
-        }
-        if(this.sportName.getText().equals("Golf")){
-            loadDescriptionFromDB("Golf");
-        }
-        if(this.sportName.getText().equals("Football")){
-            loadDescriptionFromDB("Football");
-        }
-        if(this.sportName.getText().equals("Dance")){
-            loadDescriptionFromDB("Dance");
-        }
-        if(this.sportName.getText().equals("Athletics")){
-            loadDescriptionFromDB("Athletics");
-        }
     }
 
     /** It's called to load the sport description from DB*/
@@ -90,10 +50,13 @@ public class SportController extends Controller{
             this.mainApp.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
-            SportController controller = loaderSport.getController();
+            SportGraphicController graphicController = loaderSport.getController();
+            SportController controller = new SportController();
+            graphicController.setController(controller);
+            controller.setGraphicController(graphicController);
             controller.setUser(this.user);
             controller.setMainApp(this.mainApp);
-            controller.sportName.setText(sport);
+            graphicController.setSportName(sport);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -113,19 +76,23 @@ public class SportController extends Controller{
             this.mainApp.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
-            SportController controller = loaderSport.getController();
+            SportGraphicController graphicController = loaderSport.getController();
+            SportController controller = new SportController();
+            controller.setGraphicController(graphicController);
+            graphicController.setController(controller);
             controller.setUser(this.user);
             controller.setMainApp(this.mainApp);
             controller.setMenu(this.menu);
-            controller.sport_name.setText(sport);
-            controller.sport_description.setText(Description);
+            graphicController.setSportName(sport);
+            graphicController.setSportDescription(Description);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
+    /** Is called to set graphic  controller*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        //TODO
+        this.graphicController = (SportGraphicController) graphicController;
     }
 }
