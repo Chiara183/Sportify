@@ -111,11 +111,11 @@ public abstract class OAuthAuthenticator {
                             account.put("firstName", first_name);
                             account.put("lastName", last_name);
                             account.put("email", email);
-                            account.put("ruolo", "user");
                             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                             String date = timestamp.toString();
                             date = date.substring(0,10);
                             account.put("birthday", date);
+                            account.put("ruolo", "user");
                             submit.signUp(account);
                         }
                         user = submit.setUser(username);
