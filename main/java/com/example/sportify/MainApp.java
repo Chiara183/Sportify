@@ -15,8 +15,8 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-//import java.awt.*;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class MainApp{
@@ -287,6 +287,18 @@ public class MainApp{
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /** Is called to create account hashmap*/
+    public HashMap<String, String> createAccount(String username, String password, String first_name, String last_name, String email, String date){
+        HashMap<String, String> account = new HashMap<>();
+        account.put("username", username);
+        account.put("password", password);
+        account.put("firstName", first_name);
+        account.put("lastName", last_name);
+        account.put("email", email);
+        account.put("birthday", date);
+        return account;
     }
 
     /** Controls the visibility of the Password field*/

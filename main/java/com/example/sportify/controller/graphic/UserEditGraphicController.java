@@ -39,6 +39,7 @@ public class UserEditGraphicController extends EditGraphicController{
         stage.close();
     }
 
+    /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.controller = (UserEditController) controller;

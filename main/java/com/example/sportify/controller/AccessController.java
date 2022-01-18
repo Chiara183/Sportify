@@ -24,4 +24,10 @@ abstract class AccessController extends Controller{
     public Submit getSubmit() {
         return this.submit;
     }
+
+    /** It's called to load login overview*/
+    public void login(){
+        this.mainApp.setSubmit(this.submit);
+        this.mainApp.showLoginOverview();
+    }
 }

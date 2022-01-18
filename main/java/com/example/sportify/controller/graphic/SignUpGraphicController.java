@@ -4,14 +4,11 @@ import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.SignUpController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import javax.swing.*;
 import java.sql.Timestamp;
-import java.util.HashMap;
 
 public class SignUpGraphicController extends GraphicController{
 
@@ -75,7 +72,6 @@ public class SignUpGraphicController extends GraphicController{
     /** The action of the buttons*/
     @FXML
     protected void submitActionSignUp() {
-        HashMap<String, String> userAccount = new HashMap<>();  //initialize list of string 'userAccount'
         String userValue = username.getText();                  //get user entered username
         String passValue = password.getText();                  //get user entered password
         String nameValue = firstName.getText();                 //get user entered first name
@@ -84,61 +80,19 @@ public class SignUpGraphicController extends GraphicController{
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String date = timestamp.toString();
         date = date.substring(0,10);
-        userAccount.put("username", userValue);                 //put userValue in userAccount
-        userAccount.put("password", passValue);                 //put user password in userAccount
-        userAccount.put("firstName", nameValue);                //put user firstName in userAccount
-        userAccount.put("lastName", lastNameValue);             //put user lastName in userAccount
-        userAccount.put("email", email);                           //put user email in userAccount
-        userAccount.put("birthday", date);                      //put user birthday in userAccount
-
-        //check whether the credentials are authentic or not
-        if (!email.equals("") && !userValue.equals("") && !passValue.equals("") &&
-                !controller.getSubmit().exist(userValue) &&
-                !controller.getSubmit().existEmail(email)) {    //if authentic, navigate user to a new page
-            if (userTick.isSelected()) {
-                userAccount.put("ruolo", "user");
-                controller.getSubmit().signUp(userAccount);
-                JFrame jFrame = new JFrame();
-                JOptionPane.showMessageDialog(jFrame, "You're registered!");
-                controller.login();
-            } else if (gymTick.isSelected()) {
-                userAccount.put("ruolo", "gym");
-                controller.getSubmit().signUp(userAccount);
-                controller.signUpGymAction();
-            }
-        } else {
-            if (controller.getSubmit().exist(userValue)){
-                //show error message
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(controller.getMainApp().getPrimaryStage());
-                alert.setTitle("User already exists");
-                alert.setHeaderText("The user already exists");
-                alert.setContentText("Please enter a different username or login.");
-                alert.showAndWait();
-            } else if (controller.getSubmit().existEmail(email)){
-                //show error message
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(controller.getMainApp().getPrimaryStage());
-                alert.setTitle("User already exists");
-                alert.setHeaderText("The email is already registered");
-                alert.setContentText("Please enter a different email or login.");
-                alert.showAndWait();
-            } else {
-                //show error message
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(controller.getMainApp().getPrimaryStage());
-                alert.setTitle("Empty field");
-                alert.setHeaderText("Some obligatory value are empty");
-                alert.setContentText("Please enter all obligatory value.");
-                alert.showAndWait();
-            }
-        }
+        controller.submitActionSignUp(userValue, passValue, nameValue, lastNameValue, email, date);
     }
     @FXML
     private void skipAction(){
         controller.login();
     }
 
+    /** Is called to understand if it's a user*/
+    public boolean isUser(){
+        return userTick.isSelected();
+    }
+
+    /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.controller = (SignUpController) controller;

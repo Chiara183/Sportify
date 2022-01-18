@@ -97,6 +97,7 @@ public class GymEditGraphicController extends EditGraphicController{
         }
     }
 
+    /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.controller = (GymEditController) controller;

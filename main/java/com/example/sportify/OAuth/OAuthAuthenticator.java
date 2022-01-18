@@ -105,16 +105,10 @@ public abstract class OAuthAuthenticator {
                             String first_name = accessedJsonData.getString("given_name");
                             String last_name = accessedJsonData.getString("family_name");
                             String password = submit.generateStrongPassword(32);
-                            HashMap<String, String> account = new HashMap<>();
-                            account.put("username", username);
-                            account.put("password", password);
-                            account.put("firstName", first_name);
-                            account.put("lastName", last_name);
-                            account.put("email", email);
                             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                             String date = timestamp.toString();
                             date = date.substring(0,10);
-                            account.put("birthday", date);
+                            HashMap<String, String> account = mainApp.createAccount(username, password, first_name, last_name, email, date);
                             account.put("ruolo", "user");
                             submit.signUp(account);
                         }

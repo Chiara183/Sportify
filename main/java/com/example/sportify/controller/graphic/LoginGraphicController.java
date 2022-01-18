@@ -71,6 +71,7 @@ public class LoginGraphicController extends GraphicController{
         controller.home();
     }
 
+    /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.controller = (LoginController) controller;
