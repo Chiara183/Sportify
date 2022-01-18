@@ -51,7 +51,10 @@ public class HomeGraphicController extends GraphicController{
             controller.getMainApp().getPrimaryPane().setCenter(paneSport);
 
             // Give the controller access to the main app.
-            SportQuizController controllerSport = loaderSport.getController();
+            SportQuizGraphicController graphicController = loaderSport.getController();
+            SportQuizController controllerSport = new SportQuizController();
+            controllerSport.setGraphicController(graphicController);
+            graphicController.setController(controllerSport);
             controllerSport.setMainApp(controller.getMainApp());
             controllerSport.setUser(controller.getUser());
             controllerSport.setMenu(menuController);

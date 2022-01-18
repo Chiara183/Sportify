@@ -2,46 +2,15 @@ package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import com.example.sportify.controller.graphic.SportQuizGraphicController;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.util.Objects;
 
 public class SportQuizController extends Controller {
-
-    /** All the button of the interface*/
-    @FXML
-    private Button backQuiz;
-    @FXML
-    private Button backQuizEnv;
-    @FXML
-    private Button nextQuiz;
-    @FXML
-    private Button backQuizType;
-    @FXML
-    private Button nextQuizEnv;
-    @FXML
-    private Button endQuiz;
-    @FXML
-    private Button age1;
-    @FXML
-    private Button age2;
-    @FXML
-    private Button age3;
-    @FXML
-    private Button age4;
-    @FXML
-    private Button indoor;
-    @FXML
-    private Button outdoor;
-    @FXML
-    private Button group;
-    @FXML
-    private Button single;
 
     /** The variable that identify the user choice*/
     private static boolean buttonAge1 = false;
@@ -58,46 +27,32 @@ public class SportQuizController extends Controller {
         this.type = ControllerType.SPORT_QUIZ;
     }
 
-    /** The action of the buttons*/
-    @FXML
-    public void backQuizAction(ActionEvent event) {
-        Button b = (Button) event.getSource();
-        if(b == backQuiz){
-            home();
-        }else if(b == backQuizEnv){
-            sportQuiz();
-        }else if(b == backQuizType){
-            sportQuizEnv();
-        }
-    }
-    @FXML
-    public void takeQuiz(ActionEvent event) {
-        Button b = (Button) event.getSource();
-        if (b == age1) {
+    public void takeQuiz(String b) {
+        if (Objects.equals(b, "age1")) {
             buttonAge1 = true;
             sportQuizEnv();
-        } else if (b == age2) {
+        } else if (Objects.equals(b, "age2")) {
             buttonAge2 = true;
             sportQuizEnv();
-        } else if (b == age3) {
+        } else if (Objects.equals(b, "age3")) {
             buttonAge3 = true;
             sportQuizEnv();
-        } else if (b == age4) {
+        } else if (Objects.equals(b, "age4")) {
             buttonAge4 = true;
             sportQuizEnv();
-        } else if (b == indoor) {
+        } else if (Objects.equals(b, "indoor")) {
             buttonIndoor = true;
             sportQuizType();
-        } else if (b == outdoor) {
+        } else if (Objects.equals(b, "outdoor")) {
             buttonOutdoor = true;
             sportQuizType();
-        } else if (b == group) {
+        } else if (Objects.equals(b, "group")) {
             buttonGroup = true;
             quizLogic();
-        } else if (b == single) {
+        } else if (Objects.equals(b, "single")) {
             buttonSingle = true;
             quizLogic();
-        } else if (b == endQuiz || b == nextQuiz || b == nextQuizEnv) {
+        } else if (Objects.equals(b, "endQuiz") || Objects.equals(b, "nextQuiz") || Objects.equals(b, "nextQuizEnv")) {
             warning();
         }
     }
@@ -171,54 +126,50 @@ public class SportQuizController extends Controller {
     }
 
     /** It's called to load home overview*/
-    private void home(){
+    public void home(){
         this.mainApp.setUser(this.user);
         this.mainApp.showHomeOverview();
     }
 
     /** It's called to load sport quiz overview*/
-    private void sportQuiz(){
+    public void sportQuiz(){
         this.mainApp.setUser(this.user);
         this.mainApp.showSportQuizOverview(this.menu);
     }
 
     /** It's called to load sport quiz env overview*/
-    private void sportQuizEnv(){
+    public void sportQuizEnv(){
         this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
-        try {
-            // Load sport quiz overview.
-            FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizEnv.fxml"));
-            Pane pane = loaderSport.load();
-
-            // Set sport quiz overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
-
-            // Give the controller access to the main app.
-            SportQuizController controller = loaderSport.getController();
-            controller.setMainApp(this.mainApp);
-            controller.setMenu(this.menu);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        // Load sport quiz overview.
+        FXMLLoader loaderSport = new FXMLLoader();
+        loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizEnv.fxml"));
+        createController(loaderSport);
     }
 
     /** It's called to load sport quiz type overview*/
     private void sportQuizType(){
         this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
+        // Load sport quiz overview.
+        FXMLLoader loaderSport = new FXMLLoader();
+        loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizType.fxml"));
+        createController(loaderSport);
+    }
+
+    /** Is called to create controllers*/
+    private void createController(FXMLLoader loaderSport){
         try {
-            // Load sport quiz overview.
-            FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizType.fxml"));
             Pane pane = loaderSport.load();
 
             // Set sport quiz overview into the center of root layout.
             this.mainApp.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
-            SportQuizController controller = loaderSport.getController();
+            SportQuizGraphicController graphicController = loaderSport.getController();
+            SportQuizController controller = new SportQuizController();
+            controller.setGraphicController(graphicController);
+            graphicController.setController(controller);
             controller.setMainApp(this.mainApp);
             controller.setMenu(this.menu);
         } catch (IOException e) {

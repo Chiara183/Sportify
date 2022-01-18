@@ -228,7 +228,10 @@ public class MainApp{
             this.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
-            SportQuizController controller = loaderSport.getController();
+            SportQuizGraphicController graphicController = loaderSport.getController();
+            SportQuizController controller = new SportQuizController();
+            controller.setGraphicController(graphicController);
+            graphicController.setController(controller);
             controller.setMainApp(this);
             controller.setUser(this.user);
             controller.setMenu(menu);

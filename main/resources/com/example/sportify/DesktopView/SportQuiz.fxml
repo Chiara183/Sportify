@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="830.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.SportQuizController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="830.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.SportQuizGraphicController">
     <VBox alignment="CENTER" layoutY="1.0" prefHeight="450.0" prefWidth="830.0">
         <GridPane prefHeight="450.0" prefWidth="830.0">
             <columnConstraints>
@@ -33,12 +33,13 @@
                     </font>
                 </Text>
                 <Button fx:id="age1" layoutY="40.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="0 - 18">
-               <font>
-                  <Font name="Comic Sans MS" size="22.0" />
-               </font></Button>
-                <Button fx:id="age2" layoutX="180.0" layoutY="40.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="18 - 30" />
-                <Button fx:id="age3" layoutY="120.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="30 - 50" />
-                <Button fx:id="age4" layoutX="180.0" layoutY="120.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="over 60" />
+                   <font>
+                      <Font name="Comic Sans MS" size="22.0" />
+                   </font>
+                </Button>
+                <Button fx:id="age2" layoutX="180.0" layoutY="40.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="19 - 30" />
+                <Button fx:id="age3" layoutY="120.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="31 - 50" />
+                <Button fx:id="age4" layoutX="180.0" layoutY="120.0" mnemonicParsing="false" onAction="#takeQuiz" prefHeight="70.0" prefWidth="150.0" text="over 50" />
             <GridPane.margin>
                <Insets />
             </GridPane.margin>
