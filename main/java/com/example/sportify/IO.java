@@ -63,7 +63,7 @@ public class IO {
                 map.put(userValue, gymAccount);
             }
         } catch (SQLException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return map;
     }
