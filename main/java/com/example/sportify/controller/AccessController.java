@@ -6,7 +6,7 @@ import com.example.sportify.Submit;
 public abstract class AccessController extends Controller{
 
     /** Reference to submit.*/
-    protected Submit submit;
+    public Submit submit;
 
     /** Is called by the main application to give a reference back to itself.*/
     @Override

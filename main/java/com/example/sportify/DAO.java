@@ -10,6 +10,15 @@ public class DAO {
     /** The main connection of the project*/
     Connection connection = null;
 
+    /** Implementing Singleton pattern*/
+    private static DAO instance = null;
+
+    public static DAO getSingletonInstance() {
+        if (DAO.instance == null)
+            DAO.instance = new DAO();
+        return instance;
+    }
+
     /** It's called to set connection*/
     public void setConnection(Connection connection) {
         this.connection = connection;

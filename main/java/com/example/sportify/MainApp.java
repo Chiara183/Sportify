@@ -27,7 +27,7 @@ public class MainApp{
     private Submit submit;
     private User user = null;
     private String[] search_cache;
-    private final DAO dao = new DAO();
+    private DAO dao = DAO.getSingletonInstance();
     private boolean external_login = false;
     private MenuController menu;
     private Projection projection;

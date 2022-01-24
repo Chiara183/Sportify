@@ -2,9 +2,14 @@ package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
 import com.example.sportify.IO;
+import com.example.sportify.MainApp;
+import com.example.sportify.Submit;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.SignUpGymGraphicController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,10 +18,38 @@ public class SignUpGymController extends AccessController {
 
     /** Reference to graphic controller*/
     private SignUpGymGraphicController graphicController;
+    private MainApp mainApp;
 
     /** The constructor.*/
-    public SignUpGymController() {
+    public SignUpGymController(MainApp mainApp) {
         this.type = ControllerType.SIGN_UP_GYM;
+        this.submit = new Submit(null);
+        this.mainApp = mainApp;
+    }
+
+    /** It's called to load sign up gym overview*/
+    public void signUpGymAction(){
+        mainApp.getPrimaryStage().setTitle("Sportify - Sign Up");
+        try {
+            // Load login overview.
+            FXMLLoader loaderSignUp = new FXMLLoader();
+            loaderSignUp.setLocation(MainApp.class.getResource("DesktopView/SignUpGym.fxml"));
+            Pane pane = loaderSignUp.load();
+
+            // Set login overview into the center of root layout.
+            this.mainApp.getPrimaryPane().setCenter(pane);
+
+            // Give the controller access to the main app.
+            SignUpGymGraphicController graphicController = loaderSignUp.getController();
+            SignUpGymController controller = new SignUpGymController(this.mainApp);
+            controller.setGraphicController(graphicController);
+            graphicController.setController(controller);
+            controller.setMainApp(this.mainApp);
+            controller.setSubmit(this.submit);
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void submitActionSignUpGym(String gymValue, String address, Map<String, Double> coords) {
