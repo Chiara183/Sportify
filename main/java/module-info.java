@@ -16,8 +16,8 @@ module com.example.sportify {
     exports com.example.sportify;
     exports com.example.sportify.controller;
     opens com.example.sportify.controller to javafx.fxml;
-    exports com.example.sportify.oauth;
-    opens com.example.sportify.oauth to javafx.fxml;
+    exports com.example.sportify.auth;
+    opens com.example.sportify.oAuth to javafx.fxml;
     exports com.example.sportify.user;
     opens com.example.sportify.user to javafx.fxml;
     exports com.example.sportify.controller.graphic;

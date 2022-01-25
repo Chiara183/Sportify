@@ -1,6 +1,6 @@
 package com.example.sportify.controller.graphic;
 
-import com.example.sportify.oauth.OAuthGoogleAuthenticator;
+import com.example.sportify.auth.OAuthGoogleAuthenticator;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.LoginController;
 import javafx.fxml.FXML;
