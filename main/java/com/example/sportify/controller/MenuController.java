@@ -74,7 +74,7 @@ public class MenuController extends Controller {
     }
 
     /** It's called to set the color and disable/able of the buttons*/
-    public void setButton(Button button1, Button button2, Button button3, Button button4, Button button5, Button button_off){
+    public void setButton(Button button1, Button button2, Button button3, Button button4, Button button5, Button buttonOff){
         button1.setStyle("");
         button1.setDisable(false);
         button2.setStyle("");
@@ -85,8 +85,8 @@ public class MenuController extends Controller {
         button4.setDisable(false);
         button5.setStyle("");
         button5.setDisable(false);
-        button_off.setDisable(true);
-        button_off.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
+        buttonOff.setDisable(true);
+        buttonOff.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
     }
 }
 

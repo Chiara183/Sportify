@@ -17,7 +17,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainApp{
 
@@ -26,9 +29,9 @@ public class MainApp{
     private BorderPane rootLayout;
     private Submit submit;
     private User user = null;
-    private String[] search_cache;
+    private String[] searchCache;
     private DAO dao = DAO.getSingletonInstance();
-    private boolean external_login = false;
+    private boolean externalLogin = false;
     private MenuController menu;
     private Projection projection;
 
@@ -52,15 +55,15 @@ public class MainApp{
         this.primaryStage = stage;
     }
     public void setSearchCache(String[] search) {
-        this.search_cache = search;
+        this.searchCache = search;
     }
-    public void setExternal_login(boolean login) {
-        this.external_login = login;
+    public void setExternalLogin(boolean login) {
+        this.externalLogin = login;
     }
 
     /** Get method*/
     public String[] getSearchCache() {
-        return this.search_cache;
+        return this.searchCache;
     }
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -93,12 +96,13 @@ public class MainApp{
             primaryStage.setFullScreen(true);
             primaryStage.show();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(MainApp.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
     /** Shows menu overview inside the root layout.*/
-    public MenuController Menu() {
+    public MenuController menu() {
         MenuController controller = new MenuController();
         MenuGraphicController graphicController;
         controller.setMainApp(this);
@@ -116,8 +120,8 @@ public class MainApp{
             graphicController.setController(controller);
             controller.setUser(this.user);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+            Logger logger = Logger.getLogger(MainApp.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());        }
         return controller;
     }
 
@@ -142,7 +146,8 @@ public class MainApp{
             controller.setUser(this.user);
             controller.setMainApp(this);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(MainApp.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -163,7 +168,7 @@ public class MainApp{
         try {
             this.primaryStage.setTitle("Sportify - Login");
 
-            MenuController menuController = Menu();
+            MenuController menuController = menu();
             menuController.setLogin();
 
             // Load login overview.
@@ -178,9 +183,9 @@ public class MainApp{
             controller.setMainApp(this);
             controller.setSubmit(this.submit);
             controller.setUser(this.user);
-            controller.setExternal(this.external_login);
+            controller.setExternal(this.externalLogin);
 
-            if(!external_login) {
+            if(!externalLogin) {
                 // Set login overview into the center of root layout.
                 this.getPrimaryPane().setCenter(pane);
             } else {
@@ -211,7 +216,8 @@ public class MainApp{
             }
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(MainApp.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -237,7 +243,8 @@ public class MainApp{
             controller.setMenu(menu);
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(MainApp.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -259,12 +266,13 @@ public class MainApp{
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
             controller.setMainApp(this);
-            controller.setSearchCache(this.search_cache);
+            controller.setSearchCache(this.searchCache);
             controller.setMenu(menu);
             controller.setProjection(this.projection);
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(MainApp.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -288,33 +296,34 @@ public class MainApp{
             controller.setMainApp(this);
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(MainApp.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
     /** Is called to create account hashmap*/
-    public HashMap<String, String> createAccount(String username, String password, String first_name, String last_name, String email, String date){
+    public Map<String, String> createAccount(String username, String password, String firstName, String lastName, String email, String date){
         HashMap<String, String> account = new HashMap<>();
         account.put("username", username);
         account.put("password", password);
-        account.put("firstName", first_name);
-        account.put("lastName", last_name);
+        account.put("firstName", firstName);
+        account.put("lastName", lastName);
         account.put("email", email);
         account.put("birthday", date);
         return account;
     }
 
     /** Controls the visibility of the Password field*/
-    public void togglevisiblePassword(CheckBox pass_toggle, TextField pass_text, TextField password) {
-        if (pass_toggle.isSelected()) {
-            pass_text.setText(password.getText());
-            pass_text.setVisible(true);
+    public void togglevisiblePassword(CheckBox passToggle, TextField passText, TextField password) {
+        if (passToggle.isSelected()) {
+            passText.setText(password.getText());
+            passText.setVisible(true);
             password.setVisible(false);
             return;
         }
-        password.setText(pass_text.getText());
+        password.setText(passText.getText());
         password.setVisible(true);
-        pass_text.setVisible(false);
+        passText.setVisible(false);
     }
 
 }

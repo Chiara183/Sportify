@@ -19,16 +19,16 @@ public abstract class EditController extends Controller{
         graphicController.setUser(user);
     }
 
-    public void togglevisible(CheckBox pass_toggle, Label pass_text, TextField password) {
-        if (!pass_toggle.isSelected()) {
-            pass_text.setText(password.getText());
-            pass_text.setVisible(true);
+    public void togglevisible(CheckBox passToggle, Label passText, TextField password) {
+        if (!passToggle.isSelected()) {
+            passText.setText(password.getText());
+            passText.setVisible(true);
             password.setVisible(false);
             return;
         }
-        password.setText(pass_text.getText());
+        password.setText(passText.getText());
         password.setVisible(true);
-        pass_text.setVisible(false);
+        passText.setVisible(false);
     }
 
     @Override

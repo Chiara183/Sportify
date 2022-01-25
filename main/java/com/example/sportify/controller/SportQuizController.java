@@ -1,5 +1,6 @@
 package com.example.sportify.controller;
 
+import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.SportQuizGraphicController;
@@ -9,18 +10,20 @@ import javafx.scene.layout.Pane;
 import javax.swing.*;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SportQuizController extends Controller {
 
     /** The variable that identify the user choice*/
-    private static boolean buttonAge1 = false;
-    private static boolean buttonAge2 = false;
-    private static boolean buttonAge3 = false;
-    private static boolean buttonAge4 = false;
-    private static boolean buttonIndoor = false;
-    private static boolean buttonOutdoor = false;
-    private static boolean buttonGroup = false;
-    private static boolean buttonSingle = false;
+    private  boolean buttonAge1 = false;
+    private  boolean buttonAge2 = false;
+    private  boolean buttonAge3 = false;
+    private  boolean buttonAge4 = false;
+    private  boolean buttonIndoor = false;
+    private  boolean buttonOutdoor = false;
+    private  boolean buttonGroup = false;
+    private  boolean buttonSingle = false;
 
     /** The constructor.*/
     public SportQuizController(){
@@ -173,13 +176,12 @@ public class SportQuizController extends Controller {
             controller.setMainApp(this.mainApp);
             controller.setMenu(this.menu);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+            Logger logger = Logger.getLogger(SportQuizController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());        }
     }
 
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        //TODO
     }
 }
 

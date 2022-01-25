@@ -11,14 +11,16 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.ResultSet;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SignUpGymController extends AccessController {
 
     /** Reference to graphic controller*/
     private SignUpGymGraphicController graphicController;
     private MainApp mainApp;
+    private Submit submit;
 
     /** The constructor.*/
     public SignUpGymController(MainApp mainApp) {
@@ -40,29 +42,29 @@ public class SignUpGymController extends AccessController {
             this.mainApp.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
-            SignUpGymGraphicController graphicController = loaderSignUp.getController();
+            SignUpGymGraphicController signUpGymGraphicController = loaderSignUp.getController();
             SignUpGymController controller = new SignUpGymController(this.mainApp);
-            controller.setGraphicController(graphicController);
-            graphicController.setController(controller);
+            controller.setGraphicController(signUpGymGraphicController);
+            signUpGymGraphicController.setController(controller);
             controller.setMainApp(this.mainApp);
             controller.setSubmit(this.submit);
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+            Logger logger = Logger.getLogger(SignUpGymController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());        }
     }
 
     public void submitActionSignUpGym(String gymValue, String address, Map<String, Double> coords) {
-        DAO obj_DAO = mainApp.getDAO();
-        IO obj_IO = new IO();
-        obj_IO.setMainApp(this.mainApp);
-        HashMap<String, String> gymAccount;
-        ResultSet rs = obj_DAO.Check_Data(
+        DAO objDAO = mainApp.getDAO();
+        IO objIO = new IO();
+        objIO.setMainApp(this.mainApp);
+        Map<String, String> gymAccount;
+        ResultSet rs = objDAO.checkData(
                 "SELECT * " +
                         "FROM user " +
                         "LEFT JOIN gym ON gym.owner = user.username " +
                         "WHERE user.ruolo = \"gym\"");
-        gymAccount = obj_IO.getInfoUser(rs);
+        gymAccount = objIO.getInfoUser(rs);
         gymAccount.put("gymName", gymValue);            //put gymName in userAccount
         gymAccount.put("address", address);             //put gymAddress in userAccount
         gymAccount.put("latitude", String.valueOf(coords.get("lat")));
@@ -74,6 +76,10 @@ public class SignUpGymController extends AccessController {
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (SignUpGymGraphicController) graphicController;
+    }
+
+    public SignUpGymGraphicController getGraphicController() {
+        return graphicController;
     }
 }
 

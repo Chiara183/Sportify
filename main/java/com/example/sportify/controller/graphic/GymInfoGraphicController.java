@@ -11,7 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-public class GymInfoGraphicController extends GraphicController{
+public class GymInfoGraphicController implements GraphicController{
 
     /** Reference to controller*/
     private GymInfoController controller;
@@ -63,7 +63,7 @@ public class GymInfoGraphicController extends GraphicController{
     }
     @FXML
     private void findGym(){
-        MenuController menu = controller.getMainApp().Menu();
+        MenuController menu = controller.getMainApp().menu();
         menu.setFindGym();
         controller.getMainApp().setUser(controller.getUser());
         controller.getMainApp().setSearchCache(controller.getMainApp().getSearchCache());

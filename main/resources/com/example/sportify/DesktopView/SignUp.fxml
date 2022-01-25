@@ -75,7 +75,7 @@
                         <Font name="Comic Sans MS" size="16.0" />
                     </font>
                 </Label>
-                <TextField fx:id="pass_text" maxWidth="273.0" prefHeight="33.0" prefWidth="273.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                <TextField fx:id="passText" maxWidth="273.0" prefHeight="33.0" prefWidth="273.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>
@@ -103,7 +103,7 @@
                      <Cursor fx:constant="HAND" />
                   </cursor>
                     </Label>
-                    <CheckBox fx:id="pass_toggle" mnemonicParsing="false" visible="false" />
+                    <CheckBox fx:id="passToggle" mnemonicParsing="false" visible="false" />
                 </HBox>
             <Label text="*Email" GridPane.rowIndex="4">
                <font>

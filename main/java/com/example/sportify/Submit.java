@@ -1,43 +1,46 @@
 package com.example.sportify;
 
+import com.example.sportify.user.ClassicUser;
 import com.example.sportify.user.User;
-import com.example.sportify.user.classicUser;
 import com.example.sportify.user.gymUser;
 
 import java.security.SecureRandom;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Submit{
 
-    private final IO DB;
+    private final IO dB;
     private final MainApp mainApp;
+    private static final String RUOLO = "ruolo";
 
     /** The constructor.*/
     public Submit(MainApp mainApp){
         this.mainApp = mainApp;
-        this.DB = new IO();
-        this.DB.setMainApp(mainApp);
+        this.dB = new IO();
+        this.dB.setMainApp(mainApp);
     }
 
     /** Login and SignUp method*/
     public boolean login(String userValue, String passValue) {
-        HashMap<String, HashMap<String, String>> account = this.DB.read();
+        Map<String, Map<String, String>> account = this.dB.read();
         return !account.isEmpty() && account.containsKey(userValue) &&
                 userValue.equals(account.get(userValue).get("username")) &&
                 passValue.equals(account.get(userValue).get("password"));
     }
-    public void signUp(HashMap<String, String> userAccount) {
-        this.DB.write(userAccount);
+    public void signUp(Map<String, String> userAccount) {
+        this.dB.write(userAccount);
     }
 
     /** The 'exists' method*/
     public boolean exist(String username){
-        HashMap<String, HashMap<String, String>> account = this.DB.read();
+        Map<String, Map<String, String>> account = this.dB.read();
         return !account.isEmpty() && account.containsKey(username);
     }
     public boolean existEmail(String email){
-        HashMap<String, HashMap<String, String>> account = this.DB.read();
+        Map<String, Map<String, String>> account = this.dB.read();
         AtomicBoolean exist = new AtomicBoolean(false);
         account.forEach( (key, value) -> {
             if(Objects.equals(account.get(key).get("email"), email)){
@@ -49,17 +52,17 @@ public class Submit{
 
     /** It's called to set user in the app*/
     public User setUser(String username){
-        HashMap<String, HashMap<String, String>> account = this.DB.read();
+        Map<String, Map<String, String>> account = this.dB.read();
         User user = null;
         if (account.containsKey(username)) {
-            user = writeUser(account,username);
+            user = writeUser((HashMap<String, Map<String, String>>) account,username);
         }
         return user;
     }
-    private User writeUser(HashMap<String, HashMap<String, String>> account, String username){
+    private User writeUser(HashMap<String, Map<String, String>> account, String username){
         User user;
-        if (Objects.equals(account.get(username).get("ruolo"), "user")) {
-            user = new classicUser();
+        if (Objects.equals(account.get(username).get(RUOLO), "user")) {
+            user = new ClassicUser();
         } else {
             user = new gymUser();
         }
@@ -72,8 +75,8 @@ public class Submit{
         if (!Objects.equals(account.get(username).get("birthday"), "")) {
             user.setBirthday(DateUtil.parse(account.get(username).get("birthday")));
         }
-        user.setRole(account.get(username).get("ruolo"));
-        if (Objects.equals(account.get(username).get("ruolo"), "gym")) {
+        user.setRole(account.get(username).get(RUOLO));
+        if (Objects.equals(account.get(username).get(RUOLO), "gym")) {
             assert user instanceof gymUser;
             ((gymUser) user).setGymName(account.get(username).get("gymName"));
             ((gymUser) user).setAddress(account.get(username).get("address"));
@@ -85,42 +88,42 @@ public class Submit{
     }
 
     /** Method to generate a random alphanumeric password of a specific length*/
-    public String generateStrongPassword(int PASSWORD_LENGTH) {
+    public String generateStrongPassword(int passwordLength) {
 
-        String CHAR_LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
-        String CHAR_UPPERCASE = CHAR_LOWERCASE.toUpperCase();
-        String DIGIT = "0123456789";
-        String OTHER_PUNCTUATION = "!@#&()–[{}]:;',?/*";
-        String OTHER_SYMBOL = "~$^+=<>";
-        String OTHER_SPECIAL = OTHER_PUNCTUATION + OTHER_SYMBOL;
-        String PASSWORD_ALLOW = CHAR_LOWERCASE + CHAR_UPPERCASE + DIGIT + OTHER_SPECIAL;
+        String charLowercase = "abcdefghijklmnopqrstuvwxyz";
+        String charUppercase = charLowercase.toUpperCase();
+        String digit = "0123456789";
+        String otherPunctuation = "!@#&()–[{}]:;',?/*";
+        String otherSymbol = "~$^+=<>";
+        String otherSpecial = otherPunctuation + otherSymbol;
+        String passwordAllow = charLowercase + charUppercase + digit + otherSpecial;
 
-        StringBuilder result = new StringBuilder(PASSWORD_LENGTH);
+        StringBuilder result = new StringBuilder(passwordLength);
 
         // at least 2 chars (lowercase)
-        String strLowerCase = generateRandomString(CHAR_LOWERCASE, 2);
+        String strLowerCase = generateRandomString(charLowercase, 2);
         result.append(strLowerCase);
 
         // at least 2 chars (uppercase)
-        String strUppercaseCase = generateRandomString(CHAR_UPPERCASE, 2);
+        String strUppercaseCase = generateRandomString(charUppercase, 2);
         result.append(strUppercaseCase);
 
         // at least 2 digits
-        String strDigit = generateRandomString(DIGIT, 2);
+        String strDigit = generateRandomString(digit, 2);
         result.append(strDigit);
 
         // at least 2 special characters (punctuation + symbols)
-        String strSpecialChar = generateRandomString(OTHER_SPECIAL, 2);
+        String strSpecialChar = generateRandomString(otherSpecial, 2);
         result.append(strSpecialChar);
 
         // remaining, just random
-        String strOther = generateRandomString(PASSWORD_ALLOW, PASSWORD_LENGTH - 8);
+        String strOther = generateRandomString(passwordAllow, passwordLength - 8);
         result.append(strOther);
 
         String password = result.toString();
         // shuffle again
-        System.out.format("%-20s: %s%n", "Final Password", shuffleString(password));
-
+        Logger logger = Logger.getLogger(DAO.class.getName());
+        logger.log(Level.INFO, "Final Password: [%s][%n]", shuffleString(password));
         return password;
     }
     private String generateRandomString(String input, int size) {

@@ -17,8 +17,7 @@ public class LoginController extends AccessController{
     /** Set up the external stage*/
     private Stage externalStage;
 
-    /** Reference to graphic controller*/
-    private LoginGraphicController graphicController;
+    private Submit submit;
 
     /** The constructor.*/
     public LoginController() {
@@ -51,18 +50,18 @@ public class LoginController extends AccessController{
             } else {
                 this.mainApp.setUser(this.user);
                 this.menu.setUser(this.user);
-                MenuController menu = this.mainApp.Menu();
+                MenuController menu = this.mainApp.menu();
                 menu.setUser(this.user);
-                GymInfoGraphicController graphicController = new GymInfoGraphicController();
+                GymInfoGraphicController gymInfoGraphicController = new GymInfoGraphicController();
                 GymInfoController gym = new GymInfoController();
-                graphicController.setController(gym);
-                gym.setGraphicController(graphicController);
+                gymInfoGraphicController.setController(gym);
+                gym.setGraphicController(gymInfoGraphicController);
                 if (Objects.equals(this.menu.getView(), ControllerType.GYM_INFO)){
                     menu.setGymInfo(this.menu.getGym());
                     gym.setMainApp(this.mainApp);
                     gym.setUser(this.user);
                     gym.setMenu(menu);
-                    gym.setSearchCache(this.search_cache);
+                    gym.setSearchCache(this.searchCache);
                     gym.loadingGymName(this.menu.getGym());
                 } else if (Objects.equals(this.menu.getView(), ControllerType.FIND_GYM) && this.menu.getGym() != null){
                     menu.setFindGym();
@@ -70,7 +69,7 @@ public class LoginController extends AccessController{
                     gym.setMainApp(this.mainApp);
                     gym.setUser(this.user);
                     gym.setMenu(menu);
-                    gym.setSearchCache(this.search_cache);
+                    gym.setSearchCache(this.searchCache);
                     gym.loadingGymName(this.menu.getGym());
                 }
                 Stage stage = this.externalStage;
@@ -89,7 +88,7 @@ public class LoginController extends AccessController{
 
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        this.graphicController = (LoginGraphicController) graphicController;
+        /* Reference to graphic controller*/
     }
 }
 

@@ -15,8 +15,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class MenuGraphicController extends GraphicController{
+public class MenuGraphicController implements GraphicController{
 
     /** Reference to controller*/
     private MenuController controller;
@@ -89,7 +91,7 @@ public class MenuGraphicController extends GraphicController{
     }
     @FXML
     private void signLoginAction() {
-        controller.getMainApp().setExternal_login(true);
+        controller.getMainApp().setExternalLogin(true);
         controller.getMainApp().setMenu(controller);
         controller.getMainApp().setUser(controller.getUser());
         controller.getMainApp().showLoginOverview();
@@ -107,13 +109,13 @@ public class MenuGraphicController extends GraphicController{
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            EditController controller;
+            EditController editController;
             if(Objects.equals(this.controller.getUser().getRole(), "gym")) {
                 loader.setLocation(MainApp.class.getResource("DesktopView/GymEditDialog.fxml"));
-                controller = new GymEditController();
+                editController = new GymEditController();
             } else {
                 loader.setLocation(MainApp.class.getResource("DesktopView/UserEditDialog.fxml"));
-                controller = new UserEditController();
+                editController = new UserEditController();
             }
             AnchorPane page = loader.load();
 
@@ -126,18 +128,18 @@ public class MenuGraphicController extends GraphicController{
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            // Set the person into the controller.
+            // Set the person into the editController.
             EditGraphicController graphicController = loader.getController();
-            controller.setGraphicController(graphicController);
-            graphicController.setController(controller);
-            controller.setUser(this.controller.getUser());
-            controller.setMenu(this.controller);
+            editController.setGraphicController(graphicController);
+            graphicController.setController(editController);
+            editController.setUser(this.controller.getUser());
+            editController.setMenu(this.controller);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+            Logger logger = Logger.getLogger(MenuGraphicController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());        }
     }
 
     /** The method called to set the view*/

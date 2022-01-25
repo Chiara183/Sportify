@@ -1,6 +1,6 @@
 package com.example.sportify.controller.graphic;
 
-import com.example.sportify.OAuth.OAuthGoogleAuthenticator;
+import com.example.sportify.oauth.OAuthGoogleAuthenticator;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.LoginController;
 import javafx.fxml.FXML;
@@ -20,8 +20,8 @@ public class LoginGraphicController extends AccessGraphicController{
     protected void submitActionLogin() {
         String userValue = username.getText();      //get user entered username from the textField1
         String passValue;
-        if(pass_toggle.isSelected()) {
-            passValue = pass_text.getText();      //get user entered password from the textField2
+        if(passToggle.isSelected()) {
+            passValue = passText.getText();      //get user entered password from the textField2
         } else {
             passValue = password.getText();      //get user entered password from the textField2
         }
@@ -30,7 +30,7 @@ public class LoginGraphicController extends AccessGraphicController{
         controller.submit(userValue, passValue);
     }
     @FXML
-    private void login_with_google(){
+    private void loginWithGoogle(){
         String gClientId = "941217546228-08fmsjebj3jn1a0agnt9tu9tnijgn2pq.apps.googleusercontent.com";
         String gRedir = "https://localhost:8080/oauth2";
         String gScope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";

@@ -2,14 +2,17 @@ package com.example.sportify;
 
 import com.example.sportify.controller.SignUpController;
 import com.example.sportify.controller.SignUpGymController;
+import com.example.sportify.controller.graphic.SignUpGraphicController;
 
 import javax.swing.*;
-import java.util.HashMap;
+import java.util.Map;
 
 public class Adapter implements SignUp{
 
     private SignUpController userController;
     private SignUpGymController gymController;
+    private SignUpGraphicController userGraphicController;
+    private Submit submit;
     
     public Adapter(SignUpController user, SignUpGymController gym){
         this.userController = user;
@@ -19,19 +22,25 @@ public class Adapter implements SignUp{
         this.userController = user;
         this.gymController = new SignUpGymController(userController.getMainApp());
     }
+    public Adapter(SignUpController user, SignUpGraphicController graphicController, Submit submit) {
+        this.userController = user;
+        this.gymController = new SignUpGymController(userController.getMainApp());
+        this.userGraphicController = graphicController;
+        this.submit = submit;
+    }
 
     
     @Override
-    public void userKind(HashMap<String, String> userAccount) {
-        if (this.userController.graphicController.isUser()) {
+    public void userKind(Map<String, String> userAccount) {
+        if (this.userGraphicController.isUser()) {
             userAccount.put("ruolo", "user");
-            this.userController.submit.signUp(userAccount);
+            this.submit.signUp(userAccount);
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "You're registered!");
             this.userController.login();
         } else {
             userAccount.put("ruolo", "gym");
-            this.userController.submit.signUp(userAccount);
+            this.submit.signUp(userAccount);
             gymController.signUpGymAction();
         }
     }

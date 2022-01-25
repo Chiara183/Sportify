@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class SportQuizGraphicController extends GraphicController{
+public class SportQuizGraphicController implements GraphicController{
 
     /** Reference to controller*/
     private SportQuizController controller;

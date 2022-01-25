@@ -13,11 +13,13 @@ import javafx.scene.layout.Pane;
 import javax.swing.*;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpController extends AccessController {
 
     /** Reference to graphic controller*/
-    public SignUpGraphicController graphicController;
+    private SignUpGraphicController graphicController;
+    private Submit submit;
 
     /** The constructor.*/
     public SignUpController() {
@@ -28,12 +30,12 @@ public class SignUpController extends AccessController {
 
     /** Is called to sign up*/
     public void submitActionSignUp(String userValue, String passValue, String nameValue, String lastNameValue, String email, String date) {
-        HashMap<String, String> userAccount =
+        Map<String, String> userAccount =
                 mainApp.createAccount(userValue, passValue, nameValue, lastNameValue, email, date);
         if (!email.equals("") && !userValue.equals("") && !passValue.equals("") &&
                 !submit.exist(userValue) &&
                 !submit.existEmail(email)) { //if authentic, navigate user to a new page
-              Adapter adapter = new Adapter(this);
+              Adapter adapter = new Adapter(this, this.graphicController, this.submit);
               adapter.userKind(userAccount);
         } else {
             if (submit.exist(userValue)){

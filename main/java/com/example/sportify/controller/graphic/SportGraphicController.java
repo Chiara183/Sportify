@@ -5,16 +5,16 @@ import com.example.sportify.controller.SportController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class SportGraphicController extends GraphicController{
+public class SportGraphicController implements GraphicController{
 
     /** Reference to controller*/
     private SportController controller;
 
     /** All the label of the interface*/
     @FXML
-    private Label sport_name;
+    private Label sport;
     @FXML
-    private Label sport_description;
+    private Label sportDescription;
     @FXML
     private Label sportName;
 
@@ -57,13 +57,13 @@ public class SportGraphicController extends GraphicController{
         if(sportName != null) {
             sportName.setText(name);
         } else {
-            sport_name.setText(name);
+            sport.setText(name);
         }
     }
 
     /** Is called to set sport description*/
     public void setSportDescription(String description){
-        sport_description.setText(description);
+        sportDescription.setText(description);
     }
 
     /** Is called to set controller*/

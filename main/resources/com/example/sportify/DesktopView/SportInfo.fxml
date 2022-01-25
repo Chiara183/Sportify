@@ -36,7 +36,7 @@
             <GridPane.margin>
                <Insets bottom="20.0" />
             </GridPane.margin></Button>
-         <Label fx:id="sport_name" prefWidth="150.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+         <Label fx:id="sport" prefWidth="150.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="LEFT">
             <font>
                <Font name="Comic Sans MS" size="32.0" />
             </font>
@@ -52,7 +52,7 @@
                <Font size="32.0" />
             </font>
          </Text>
-         <Label fx:id="sport_description" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="293.0" prefWidth="522.0" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <Label fx:id="sportDescription" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="293.0" prefWidth="522.0" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <font>
                <Font size="16.0" />
             </font>

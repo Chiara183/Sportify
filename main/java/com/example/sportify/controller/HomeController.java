@@ -1,5 +1,6 @@
 package com.example.sportify.controller;
 
+import com.example.sportify.DAO;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.HomeGraphicController;
 import com.example.sportify.controller.graphic.MenuGraphicController;
@@ -9,11 +10,13 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HomeController extends Controller {
 
     /** Reference to graphic controller*/
-    private HomeGraphicController graphicController;
+    private HomeGraphicController homeGraphicController;
 
     /** The constructor.*/
     public HomeController() {
@@ -24,22 +27,22 @@ public class HomeController extends Controller {
     @Override
     public void setUser(User user) {
         this.user = user;
-        graphicController.getSignIn().setVisible(this.user == null);
+        homeGraphicController.getSignIn().setVisible(this.user == null);
         if(this.user!= null && this.user.getRole().equals("gym")){
-            graphicController.getGymInfo().setVisible(true);
-            graphicController.getGymInfo().setPrefWidth(141);
-            graphicController.getSignIn().setPrefWidth(0);
+            homeGraphicController.getGymInfo().setVisible(true);
+            homeGraphicController.getGymInfo().setPrefWidth(141);
+            homeGraphicController.getSignIn().setPrefWidth(0);
         } else {
-            graphicController.getGymInfo().setVisible(false);
-            graphicController.getGymInfo().setPrefWidth(0);
-            graphicController.getSignIn().setPrefWidth(141);
+            homeGraphicController.getGymInfo().setVisible(false);
+            homeGraphicController.getGymInfo().setPrefWidth(0);
+            homeGraphicController.getSignIn().setPrefWidth(141);
         }
     }
 
     /** Is called to set graphic controller*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        this.graphicController = (HomeGraphicController) graphicController;
+        this.homeGraphicController = (HomeGraphicController) graphicController;
     }
 
     /** It's called to create and ad a new menu in the window*/
@@ -60,8 +63,10 @@ public class HomeController extends Controller {
             graphicController.setController(controller);
             controller.setUser(this.user);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-            System.out.println(e.getLocalizedMessage());
+            Logger logger = Logger.getLogger(HomeController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+            Logger logger1 = Logger.getLogger(HomeController.class.getName());
+            logger1.log(Level.SEVERE, e.getLocalizedMessage());
         }
         return controller;
     }

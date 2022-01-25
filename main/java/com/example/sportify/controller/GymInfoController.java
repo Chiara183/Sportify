@@ -20,11 +20,16 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GymInfoController extends Controller {
 
     /** Reference to graphic controller*/
     private GymInfoGraphicController graphicController;
+
+    private static final String SELECT = "SELECT * ";
+    private static final String FONT = "-fx-font-weight: bold;";
 
     /** The name of the gym*/
     private String gym;
@@ -69,27 +74,27 @@ public class GymInfoController extends Controller {
         new Thread(task1).start();
     }
     private ObservableList<String> getSport(){
-        ObservableList<String> sport = FXCollections.observableArrayList();
+        ObservableList<String> sports = FXCollections.observableArrayList();
         try {
             assert this.mainApp != null;
-            DAO obj_DAO = this.mainApp.getDAO();
-            ResultSet rs = obj_DAO.Check_Data(
-                    "SELECT * " +
+            DAO objDAO = this.mainApp.getDAO();
+            ResultSet rs = objDAO.checkData(
+                    SELECT +
                             "FROM sport ");
             while (rs.next()) {
-                sport.add(rs.getString("name"));
+                sports.add(rs.getString("name"));
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return sport;
+            Logger logger = Logger.getLogger(GymInfoController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());        }
+        return sports;
     }
 
     /** Cancel a review of gym*/
     private void cancelReview(MouseEvent e){
         Label event = (Label) e.getSource();
-        DAO obj_DAO = this.mainApp.getDAO();
-        obj_DAO.updateDB("DELETE FROM `review` WHERE `review`.`writer` = '" +
+        DAO objDAO = this.mainApp.getDAO();
+        objDAO.updateDB("DELETE FROM `review` WHERE `review`.`writer` = '" +
                 event.getEllipsisString().split(";")[0] +
                 "' AND `review`.`gym` = '" +
                 this.gym +
@@ -102,8 +107,8 @@ public class GymInfoController extends Controller {
     /** Cancel a course of gym*/
     private void cancelCourse(MouseEvent e){
         Label event = (Label) e.getSource();
-        DAO obj_DAO = this.mainApp.getDAO();
-        obj_DAO.updateDB("DELETE FROM `course` WHERE `course`.`sport` = '" +
+        DAO objDAO = this.mainApp.getDAO();
+        objDAO.updateDB("DELETE FROM `course` WHERE `course`.`sport` = '" +
                 event.getEllipsisString().split(";")[0] +
                 "' AND `course`.`gym` = '" +
                 this.gym +
@@ -127,8 +132,8 @@ public class GymInfoController extends Controller {
         }
         String user = this.user.getUserName();
         if(!review.toString().equals("")) {
-            DAO obj_DAO = this.mainApp.getDAO();
-            obj_DAO.updateDB(
+            DAO objDAO = this.mainApp.getDAO();
+            objDAO.updateDB(
                     "INSERT INTO `review` (`gym`, `review`, `writer`, `timestamp`) VALUES ('"
                             + gym + "', '"
                             + review + "', '"
@@ -144,8 +149,8 @@ public class GymInfoController extends Controller {
     /** Cancel a course of gym*/
     public void addCourse(String sport, String gym, String time){
         if(!sport.equals("select sport")) {
-            DAO obj_DAO = this.mainApp.getDAO();
-            obj_DAO.updateDB(
+            DAO objDAO = this.mainApp.getDAO();
+            objDAO.updateDB(
                     "INSERT INTO `course` (`sport`, `gym`, `time`) VALUES ('" +
                             sport + "', '" +
                             gym + "', '" +
@@ -180,7 +185,7 @@ public class GymInfoController extends Controller {
             while (rs.next()) {
                 Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
                 String string = rs.getString("writer") + ";" + rs.getTimestamp("timestamp").toString();
-                labelTitle.setStyle("-fx-font-weight: bold;");
+                labelTitle.setStyle(FONT);
                 Label labelReview = new Label(rs.getString("review"));
                 Label blankSpace = new Label();
                 VBox vbox = new VBox(labelTitle, labelReview, blankSpace);
@@ -198,21 +203,21 @@ public class GymInfoController extends Controller {
                 }
             }
         }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
+            Logger logger = Logger.getLogger(GymInfoController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());        }
     }
 
     /** Download the review*/
     private void downloadReview(){
-        DAO obj_DAO = this.mainApp.getDAO();
-        ResultSet rs = obj_DAO.Check_Data(
-                "SELECT * " +
+        DAO objDAO = this.mainApp.getDAO();
+        ResultSet rs = objDAO.checkData(
+                SELECT +
                         "FROM review " +
                         "WHERE review.gym = \"" + this.gym + "\"");
         loadReview(rs);
         if(graphicController.getSizeReview()<1) {
             Label labelNotFound = new Label("There are no reviews");
-            labelNotFound.setStyle("-fx-font-weight: bold;");
+            labelNotFound.setStyle(FONT);
             graphicController.setReview(labelNotFound);
         }
     }
@@ -237,16 +242,16 @@ public class GymInfoController extends Controller {
                 graphicController.setCourse(label);
             }
         } catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
+            Logger logger = Logger.getLogger(GymInfoController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());        }
     }
 
     /** Download Course*/
     private void downloadCourse(){
         try {
-            DAO obj_DAO = this.mainApp.getDAO();
-            ResultSet rs = obj_DAO.Check_Data(
-                    "SELECT * " +
+            DAO objDAO = this.mainApp.getDAO();
+            ResultSet rs = objDAO.checkData(
+                    SELECT +
                             "FROM course " +
                             "WHERE course.gym = \"" + this.gym + "\"");
             while (rs.next()) {
@@ -254,12 +259,12 @@ public class GymInfoController extends Controller {
             }
             if(graphicController.getSizeCourse()<2) {
                 Label label = new Label("There are no course");
-                label.setStyle("-fx-font-weight: bold;");
+                label.setStyle(FONT);
                 graphicController.setCourse(label);
             }
         }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
+            Logger logger = Logger.getLogger(GymInfoController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());        }
     }
 
     /** Set Gym View*/
@@ -292,9 +297,9 @@ public class GymInfoController extends Controller {
                         TELEPHONE:\s""");
         Runnable task1 = () -> Platform.runLater(() -> {
             try {
-                DAO obj_DAO = this.mainApp.getDAO();
-                ResultSet rs = obj_DAO.Check_Data(
-                        "SELECT * " +
+                DAO objDAO = this.mainApp.getDAO();
+                ResultSet rs = objDAO.checkData(
+                        SELECT +
                                 "FROM gym " +
                                 "WHERE gym.name = \"" + name + "\"");
                 if (rs.next()) {
@@ -309,8 +314,8 @@ public class GymInfoController extends Controller {
                     }
                 }
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+                Logger logger = Logger.getLogger(GymInfoController.class.getName());
+                logger.log(Level.SEVERE, e.getMessage());            }
         });
         Task<Void> task4 = createTask(task1);
         task4.setOnRunning(e -> graphicController.gymDescription_setCursor(Cursor.WAIT));
@@ -325,7 +330,7 @@ public class GymInfoController extends Controller {
         task5.setOnFailed(e -> {
             graphicController.review_setCursor(Cursor.DEFAULT);
             Label labelNotFound = new Label("There are no reviews");
-            labelNotFound.setStyle("-fx-font-weight: bold;");
+            labelNotFound.setStyle(FONT);
             graphicController.setReview(labelNotFound);
         });
 
@@ -337,7 +342,7 @@ public class GymInfoController extends Controller {
         task6.setOnFailed(e -> {
             graphicController.course_setCursor(Cursor.DEFAULT);
             Label label = new Label("There are no course");
-            label.setStyle("-fx-font-weight: bold;");
+            label.setStyle(FONT);
             graphicController.setCourse(label);
         });
 
@@ -361,15 +366,15 @@ public class GymInfoController extends Controller {
             this.mainApp.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
-            GymInfoGraphicController graphicController = loader.getController();
-            this.setGraphicController(graphicController);
-            graphicController.setController(this);
+            GymInfoGraphicController gymInfoGraphicController = loader.getController();
+            this.setGraphicController(gymInfoGraphicController);
+            gymInfoGraphicController.setController(this);
             this.gym = name;
-            this.mainApp.setSearchCache(this.search_cache);
+            this.mainApp.setSearchCache(this.searchCache);
             setGym(name);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+            Logger logger = Logger.getLogger(GymInfoController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());        }
     }
 
     /** Is called to set graphic controller*/

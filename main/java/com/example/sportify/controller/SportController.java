@@ -10,11 +10,10 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SportController extends Controller{
-
-    /** Reference to graphic controller*/
-    private SportGraphicController graphicController;
 
     /** The constructor.*/
     public SportController(){
@@ -23,8 +22,8 @@ public class SportController extends Controller{
 
     /** It's called to load the sport description from DB*/
     public void loadDescriptionFromDB(String sport){
-        DAO obj_DAO = mainApp.getDAO();
-        ResultSet rs = obj_DAO.Check_Data("SELECT * FROM sport WHERE '"+ sport + "' = sport.name");
+        DAO objDAO = mainApp.getDAO();
+        ResultSet rs = objDAO.checkData("SELECT * FROM sport WHERE '"+ sport + "' = sport.name");
         String description  = null;
         try {
             while(rs.next()) {
@@ -50,20 +49,21 @@ public class SportController extends Controller{
             this.mainApp.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
-            SportGraphicController graphicController = loaderSport.getController();
+            SportGraphicController sportGraphicController = loaderSport.getController();
             SportController controller = new SportController();
-            graphicController.setController(controller);
-            controller.setGraphicController(graphicController);
+            sportGraphicController.setController(controller);
+            controller.setGraphicController(sportGraphicController);
             controller.setUser(this.user);
             controller.setMainApp(this.mainApp);
-            graphicController.setSportName(sport);
+            sportGraphicController.setSportName(sport);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(SportController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
     /** It's called to load the sport from DB*/
-    public void loadingSport(String sport, String Description) {
+    public void loadingSport(String sport, String descript) {
         this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
         try {
@@ -76,23 +76,23 @@ public class SportController extends Controller{
             this.mainApp.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
-            SportGraphicController graphicController = loaderSport.getController();
+            SportGraphicController sportGraphicController = loaderSport.getController();
             SportController controller = new SportController();
-            controller.setGraphicController(graphicController);
-            graphicController.setController(controller);
+            controller.setGraphicController(sportGraphicController);
+            sportGraphicController.setController(controller);
             controller.setUser(this.user);
             controller.setMainApp(this.mainApp);
             controller.setMenu(this.menu);
-            graphicController.setSportName(sport);
-            graphicController.setSportDescription(Description);
+            sportGraphicController.setSportName(sport);
+            sportGraphicController.setSportDescription(descript);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+            Logger logger = Logger.getLogger(SportController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());        }
     }
 
     /** Is called to set graphic  controller*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        this.graphicController = (SportGraphicController) graphicController;
+        /** Reference to graphic controller*/
     }
 }

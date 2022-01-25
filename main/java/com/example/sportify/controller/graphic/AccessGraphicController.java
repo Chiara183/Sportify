@@ -7,14 +7,14 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-abstract class AccessGraphicController extends GraphicController{
+abstract class AccessGraphicController implements GraphicController{
 
     /** Reference to controller*/
     protected AccessController controller;
 
     /** Text field of the interface*/
     @FXML
-    protected TextField pass_text;
+    protected TextField passText;
     @FXML
     protected TextField password;
 
@@ -24,19 +24,19 @@ abstract class AccessGraphicController extends GraphicController{
 
     /** All the checkbox of the interface*/
     @FXML
-    protected CheckBox pass_toggle;
+    protected CheckBox passToggle;
 
     /** Controls the visibility of the password*/
     @FXML
     protected void set_toggle_pass(){
-        if(!this.pass_toggle.isSelected()) {
+        if(!this.passToggle.isSelected()) {
             eye.setStyle("-fx-text-fill: #06B7C5;");
-            pass_toggle.setSelected(true);
-            controller.getMainApp().togglevisiblePassword(this.pass_toggle, this.pass_text, this.password);
+            passToggle.setSelected(true);
+            controller.getMainApp().togglevisiblePassword(this.passToggle, this.passText, this.password);
         } else {
             eye.setStyle("-fx-text-fill: black;");
-            pass_toggle.setSelected(false);
-            controller.getMainApp().togglevisiblePassword(this.pass_toggle, this.pass_text, this.password);
+            passToggle.setSelected(false);
+            controller.getMainApp().togglevisiblePassword(this.passToggle, this.passText, this.password);
         }
     }
 

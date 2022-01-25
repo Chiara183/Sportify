@@ -56,7 +56,7 @@
       <TextField fx:id="username" maxWidth="233.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <TextField fx:id="password" maxWidth="233.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Label fx:id="emailLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Label fx:id="modify_firstName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+      <Label fx:id="modifyFirstName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font>
@@ -64,7 +64,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-        <Label fx:id="modify_lastName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+        <Label fx:id="modifyLastName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
             <font>
                 <Font name="Comic Sans MS Bold" size="24.0" />
             </font>
@@ -72,7 +72,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
-        <Label fx:id="modify_username" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+        <Label fx:id="modifyUsername" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
             <font>
                 <Font name="Comic Sans MS Bold" size="24.0" />
             </font>
@@ -80,7 +80,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
-        <Label fx:id="modify_password" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+        <Label fx:id="modifyPassword" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
             <font>
                 <Font name="Comic Sans MS Bold" size="24.0" />
             </font>
@@ -88,7 +88,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
-        <Label fx:id="modify_email" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+        <Label fx:id="modifyEmail" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
             <font>
                 <Font name="Comic Sans MS Bold" size="24.0" />
             </font>
@@ -96,11 +96,11 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
-      <CheckBox fx:id="toggle_firstName" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
-        <CheckBox fx:id="toggle_lastName" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-        <CheckBox fx:id="toggle_username" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-        <CheckBox fx:id="toggle_password" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-        <CheckBox fx:id="toggle_email" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+      <CheckBox fx:id="toggleFirstName" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+        <CheckBox fx:id="toggleLastName" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <CheckBox fx:id="toggleUsername" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+        <CheckBox fx:id="togglePassword" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+        <CheckBox fx:id="toggleEmail" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
     </GridPane>
    <ButtonBar layoutX="164.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="180.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
      <buttons>

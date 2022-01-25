@@ -6,6 +6,8 @@ import java.time.format.DateTimeParseException;
 
 public class DateUtil {
 
+    private DateUtil(){}
+
     /** The date pattern that is used for conversion.*/
     private static final String DATE_PATTERN = "yyyy-MM-dd";
 

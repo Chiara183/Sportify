@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
-public class MapGraphicController extends GraphicController{
+public class MapGraphicController implements GraphicController{
 
     // ComboBox
     @FXML

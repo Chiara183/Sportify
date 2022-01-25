@@ -1,5 +1,6 @@
 package com.example.sportify.controller;
 
+import com.example.sportify.DAO;
 import com.example.sportify.controller.graphic.FindGymGraphicController;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.MapGraphicController;
@@ -9,11 +10,13 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FindGymController extends Controller{
 
     /** Reference to graphic controller*/
-    private FindGymGraphicController graphicController;
+    private FindGymGraphicController findGymGraphicController;
 
     /** The constructor.*/
     public FindGymController() {
@@ -22,7 +25,7 @@ public class FindGymController extends Controller{
 
     /** Is called to set graphic controller*/
     public void setGraphicController(FindGymGraphicController graphicController) {
-        this.graphicController = graphicController;
+        this.findGymGraphicController = graphicController;
     }
 
     /** Set the map*/
@@ -34,7 +37,7 @@ public class FindGymController extends Controller{
             AnchorPane paneMap = loaderGym.load();
 
             // Set menu overview into the top of root layout.
-            this.graphicController.getMap().getChildren().add(paneMap);
+            this.findGymGraphicController.getMap().getChildren().add(paneMap);
 
             // Give the controller access to the main app.
             MapGraphicController graphicController = loaderGym.getController();
@@ -45,19 +48,20 @@ public class FindGymController extends Controller{
             controller.setUser(this.user);
             controller.setMenu(this.menu);
             controller.initMapAndControls(projection);
-            controller.setSearchCache(this.search_cache);
-            if(search_cache!=null){
+            controller.setSearchCache(this.searchCache);
+            if(searchCache !=null){
                 graphicController.searchAction();
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(FindGymController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
     /** Is called to set graphic controller*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        this.graphicController = (FindGymGraphicController) graphicController;
+        this.findGymGraphicController = (FindGymGraphicController) graphicController;
     }
 }
 

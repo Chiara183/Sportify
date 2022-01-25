@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 public class GymEditGraphicController extends EditGraphicController{
+    private static final String STYLE = "-fx-text-fill: #06B7C5;";
+    private static final String COLOR = "-fx-text-fill: black;";
 
     /** Reference to controller*/
     private GymEditController controller;
@@ -62,35 +64,35 @@ public class GymEditGraphicController extends EditGraphicController{
     /** Controls the modifiability of all field*/
     @FXML
     protected void set_toggle_pass_gym(MouseEvent modify) {
-        if (modify.getSource() == modify_gymName) {
-            if (!toggle_gymName.isSelected()) {
-                modify_gymName.setStyle("-fx-text-fill: #06B7C5;");
-                toggle_gymName.setSelected(true);
-                controller.togglevisible(this.toggle_gymName, this.gymNameLabel, this.gymName);
+        if (modify.getSource() == modifyGymName) {
+            if (!toggleGymName.isSelected()) {
+                modifyGymName.setStyle(STYLE);
+                toggleGymName.setSelected(true);
+                controller.togglevisible(this.toggleGymName, this.gymNameLabel, this.gymName);
             } else {
-                modify_gymName.setStyle("-fx-text-fill: black;");
-                toggle_gymName.setSelected(false);
-                controller.togglevisible(this.toggle_gymName, this.gymNameLabel, this.gymName);
+                modifyGymName.setStyle(COLOR);
+                toggleGymName.setSelected(false);
+                controller.togglevisible(this.toggleGymName, this.gymNameLabel, this.gymName);
             }
-        } else if (modify.getSource() == modify_address) {
-            if (!toggle_address.isSelected()) {
-                modify_address.setStyle("-fx-text-fill: #06B7C5;");
-                toggle_address.setSelected(true);
-                controller.togglevisible(this.toggle_address, this.addressLabel, this.address);
+        } else if (modify.getSource() == modifyAddress) {
+            if (!toggleAddress.isSelected()) {
+                modifyAddress.setStyle(STYLE);
+                toggleAddress.setSelected(true);
+                controller.togglevisible(this.toggleAddress, this.addressLabel, this.address);
             } else {
-                modify_address.setStyle("-fx-text-fill: black;");
-                toggle_address.setSelected(false);
-                controller.togglevisible(this.toggle_address, this.addressLabel, this.address);
+                modifyAddress.setStyle(COLOR);
+                toggleAddress.setSelected(false);
+                controller.togglevisible(this.toggleAddress, this.addressLabel, this.address);
             }
-        } else if (modify.getSource() == modify_telephone) {
-            if (!toggle_telephone.isSelected()) {
-                modify_telephone.setStyle("-fx-text-fill: #06B7C5;");
-                toggle_telephone.setSelected(true);
-                controller.togglevisible(this.toggle_telephone, this.telephoneLabel, this.telephone);
+        } else if (modify.getSource() == modifyTelephone) {
+            if (!toggleTelephone.isSelected()) {
+                modifyTelephone.setStyle(STYLE);
+                toggleTelephone.setSelected(true);
+                controller.togglevisible(this.toggleTelephone, this.telephoneLabel, this.telephone);
             } else {
-                modify_telephone.setStyle("-fx-text-fill: black;");
-                toggle_telephone.setSelected(false);
-                controller.togglevisible(this.toggle_telephone, this.telephoneLabel, this.telephone);
+                modifyTelephone.setStyle(COLOR);
+                toggleTelephone.setSelected(false);
+                controller.togglevisible(this.toggleTelephone, this.telephoneLabel, this.telephone);
             }
         } else {
             super.set_toggle_pass(modify);

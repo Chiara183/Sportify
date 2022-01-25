@@ -1,8 +1,8 @@
 package com.example.sportify;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public interface SignUp {
-    public void userKind(HashMap<String, String> userAccount);
+    void userKind(Map<String, String> userAccount);
 
 }

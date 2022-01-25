@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MapController extends Controller{
 
@@ -24,7 +26,7 @@ public class MapController extends Controller{
     private static final int ZOOM_DEFAULT = 11;
 
     /** All the HashMap of the map*/
-    private final HashMap<Coordinate, String> all_gym = new HashMap<>();
+    private final HashMap<Coordinate, String> allGym = new HashMap<>();
     private final HashMap<String, Marker> mark = new HashMap<>();
 
     /** params for the WMS server. */
@@ -61,7 +63,7 @@ public class MapController extends Controller{
         // set ComboBox
         graphicController.setKmCombo();
 
-        // set all_gym list
+        // set allGym list
         new Thread(this::loadCoordinate).start();
 
         // set the controls to disabled, this will be changed when the MapView is initialized
@@ -94,9 +96,10 @@ public class MapController extends Controller{
             if(event.getMarker().getMapLabel().isEmpty()) {
                 mark.forEach((id, gym) -> {
                     if (coords == gym.getPosition()) {
-                        System.out.println("Marker number: " + id);
-                        if (all_gym.get(gym.getPosition()) != null) {
-                            String name = all_gym.get(gym.getPosition());
+                        Logger logger = Logger.getLogger(MapController.class.getName());
+                        logger.log(Level.INFO, "Marker number: " + id);
+                        if (allGym.get(gym.getPosition()) != null) {
+                            String name = allGym.get(gym.getPosition());
                             MapLabel labelGym = new MapLabel(name, 10, -10).setCssClass("label");
                             graphicController.getMapView().removeMarker(event.getMarker());
                             event.getMarker().attachLabel(labelGym);
@@ -116,9 +119,6 @@ public class MapController extends Controller{
                 event.getMarker().detachLabel();
                 graphicController.getMapView().addMarker(event.getMarker());
             }
-        });
-        graphicController.getMapView().addEventHandler(MarkerEvent.MARKER_RIGHTCLICKED, event -> {
-            //TODO
         });
         graphicController.getMapView().addEventHandler(MarkerEvent.MARKER_ENTERED, event -> {
             graphicController.getMapView().setCursor(Cursor.HAND);
@@ -154,8 +154,8 @@ public class MapController extends Controller{
     /** load the coordinate of all gym*/
     private void loadCoordinate() {
         try {
-            DAO obj_DAO = mainApp.getDAO();
-            ResultSet rs = obj_DAO.Check_Data(
+            DAO objDAO = mainApp.getDAO();
+            ResultSet rs = objDAO.checkData(
                     "SELECT * " +
                             "FROM user " +
                             "LEFT JOIN gym ON gym.owner = user.username " +
@@ -164,11 +164,11 @@ public class MapController extends Controller{
                 Coordinate gym = new Coordinate(
                         Double.parseDouble(rs.getString("latitude")),
                         Double.parseDouble(rs.getString("longitude")));
-                this.all_gym.put(gym, rs.getString("name"));
+                this.allGym.put(gym, rs.getString("name"));
             }
         }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
+            Logger logger = Logger.getLogger(MapController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());        }
     }
 
     /** load a gym info overview*/
@@ -178,17 +178,17 @@ public class MapController extends Controller{
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Marker is not a gym.", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            GymInfoGraphicController graphicController = new GymInfoGraphicController();
+            GymInfoGraphicController gymInfoGraphicController = new GymInfoGraphicController();
             GymInfoController gym = new GymInfoController();
-            gym.setGraphicController(graphicController);
-            graphicController.setController(gym);
+            gym.setGraphicController(gymInfoGraphicController);
+            gymInfoGraphicController.setController(gym);
             gym.setMainApp(this.mainApp);
             gym.setUser(this.user);
             gym.setMenu(this.menu);
-            String[] search_cache = new String[2];
-            search_cache[0] = this.graphicController.getSearch();
-            search_cache[1] = this.graphicController.getKm();
-            gym.setSearchCache(search_cache);
+            String[] searchCache = new String[2];
+            searchCache[0] = this.graphicController.getSearch();
+            searchCache[1] = this.graphicController.getKm();
+            gym.setSearchCache(searchCache);
             this.menu.setGym(event.getMapLabel().getText());
             this.menu.setFindGym();
             gym.loadingGymName(event.getMapLabel().getText());
@@ -202,6 +202,6 @@ public class MapController extends Controller{
 
     /** Is called to get gym hashmap*/
     public HashMap<Coordinate, String> getAllGym(){
-        return this.all_gym;
+        return this.allGym;
     }
 }

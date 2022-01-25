@@ -3,15 +3,20 @@ package com.example.sportify;
 import javafx.scene.control.Alert;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class DB_Connection {
+
+public class DBConnection {
+    private static final String ERROR = "Error";
+    private static final String ERROR_DETECTED = "Error detected!";
+    private int count = 0;
 
     /**
      * It's called to create a new connection to the DB.
      * @return null if it gives an error
      */
-    public Connection get_connection(){
-        int count = 0;
+    public Connection getConnection(){
         Connection connection = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -19,33 +24,30 @@ public class DB_Connection {
                     "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11462781",
                     "sql11462781", "SK44uxGzTJ");
         }catch (ClassNotFoundException e){
-            System.err.println(e.getMessage());
+            Logger logger = Logger.getLogger(DBConnection.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            //alert.initOwner(mainApp.getPrimaryStage());
-            alert.setTitle("Error");
-            alert.setHeaderText("Error detected!");
+            alert.setTitle(ERROR);
+            alert.setHeaderText(ERROR_DETECTED);
             alert.setContentText("No JDBC driver found. Please check class name.");
             alert.showAndWait();
         }catch (SQLException e){
-            if(count == 0){
-                count++;
+            if(this.count == 0){
+                this.count++;
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Error detected!");
+                alert.setTitle(ERROR);
+                alert.setHeaderText(ERROR_DETECTED);
                 alert.setContentText("Connection to DB failed. I'll retry one more time... ");
                 alert.showAndWait();
-                this.get_connection();
+                this.getConnection();
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Error detected!");
+                alert.setTitle(ERROR);
+                alert.setHeaderText(ERROR_DETECTED);
                 alert.setContentText("Connection to DB failed again. Check if there is an error in url, user or password.");
                 alert.showAndWait();
-                System.err.println("Error Code = " + e.getErrorCode());
-                System.err.println("SQL state = " + e.getSQLState());
-                System.err.println("Message = " + e.getMessage());
-                System.err.println("Print Stack Trace/n");
-                e.printStackTrace();
+                Logger logger = Logger.getLogger(DBConnection.class.getName());
+                logger.log(Level.SEVERE, e.getMessage());
             }
         }
         return connection;

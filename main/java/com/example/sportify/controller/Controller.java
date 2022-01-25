@@ -19,7 +19,7 @@ public abstract class Controller{
     protected MenuController menu;
 
     /** The cache from last gym search*/
-    protected String[] search_cache;
+    protected String[] searchCache;
 
     /** Is called by the main application to give a reference back to itself.*/
     public void setMainApp(MainApp mainApp) {
@@ -36,13 +36,13 @@ public abstract class Controller{
         this.menu = menu;
     }
 
-    /** Is called to set search_cache.*/
+    /** Is called to set searchCache.*/
     public void setSearchCache(String[] search) {
-        this.search_cache = search;
+        this.searchCache = search;
     }
 
     /** Is called to set graphic controller*/
-    abstract public void setGraphicController(GraphicController graphicController);
+    public abstract void setGraphicController(GraphicController graphicController);
 
     /** Is called to get type.*/
     public ControllerType getType() {

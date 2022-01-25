@@ -13,7 +13,7 @@ public class MainAppLauncher extends Application {
         Projection projection = getParameters().getUnnamed().contains("wgs84")
                 ? Projection.WGS_84 : Projection.WEB_MERCATOR;
         MainApp mainApp = new MainApp();
-        mainApp.getDAO().setConnection(new DB_Connection().get_connection());
+        mainApp.getDAO().setConnection(new DBConnection().getConnection());
         mainApp.setSubmit(new Submit(mainApp));
         mainApp.setPrimaryStage(primaryStage);
         mainApp.setProjection(projection);

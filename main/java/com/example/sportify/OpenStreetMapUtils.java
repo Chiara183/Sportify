@@ -10,8 +10,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OpenStreetMapUtils {
 
@@ -48,8 +51,8 @@ public class OpenStreetMapUtils {
             }
             in.close();
         } catch(IOException e){
-            System.out.println(e.getMessage());
-        }
+            Logger logger = Logger.getLogger(OpenStreetMapUtils.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());        }
 
         return response.toString();
     }
@@ -65,7 +68,7 @@ public class OpenStreetMapUtils {
         query.append("https://nominatim.openstreetmap.org/search?q=");
 
         if (split.length == 0) {
-            return null;
+            return Collections.emptyMap();
         }
 
         for (int i = 0; i < split.length; i++) {
@@ -79,13 +82,13 @@ public class OpenStreetMapUtils {
         String queryResult = getRequest(query.toString());
 
         if (queryResult == null) {
-            return null;
+            return Collections.emptyMap();
         }
 
         Object obj = JSONValue.parse(queryResult);
 
-        if (obj instanceof JSONArray array) {
-            if (array.size() > 0) {
+        if (obj instanceof JSONArray array && array.size() > 0) {
+
                 JSONObject jsonObject = (JSONObject) array.get(0);
 
                 String lon = (String) jsonObject.get("lon");
@@ -93,21 +96,20 @@ public class OpenStreetMapUtils {
                 res.put("lon", Double.parseDouble(lon));
                 res.put("lat", Double.parseDouble(lat));
 
-            }
         }
         return res;
     }
 
     /** It's called to get distance from given two coordinates*/
-    public Double getDistance (Coordinate start_point, Coordinate endpoint){
+    public Double getDistance (Coordinate startPoint, Coordinate endpoint){
         double d2r = Math.PI / 180;
-        double d_long = (endpoint.getLongitude() - start_point.getLongitude()) * d2r;
-        double d_lat = (endpoint.getLatitude() - start_point.getLatitude()) * d2r;
+        double dLong = (endpoint.getLongitude() - startPoint.getLongitude()) * d2r;
+        double dLat = (endpoint.getLatitude() - startPoint.getLatitude()) * d2r;
         double a =
-                Math.pow(Math.sin(d_lat / 2.0), 2)
-                        + Math.cos(start_point.getLatitude() * d2r)
+                Math.pow(Math.sin(dLat / 2.0), 2)
+                        + Math.cos(startPoint.getLatitude() * d2r)
                         * Math.cos(endpoint.getLatitude() * d2r)
-                        * Math.pow(Math.sin(d_long / 2.0), 2);
+                        * Math.pow(Math.sin(dLong / 2.0), 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return 6367 * c;
     }

@@ -51,11 +51,11 @@ public class SignUpGraphicController extends RegisterGraphicController{
         String passValue = password.getText();                  //get user entered password
         String nameValue = firstName.getText();                 //get user entered first name
         String lastNameValue = lastName.getText();              //get user entered last name
-        String email = this.email.getText();
+        String emailString = this.email.getText();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String date = timestamp.toString();
         date = date.substring(0,10);
-        controller.submitActionSignUp(userValue, passValue, nameValue, lastNameValue, email, date);
+        controller.submitActionSignUp(userValue, passValue, nameValue, lastNameValue, emailString, date);
     }
 
     /** Is called to understand if it's a user*/

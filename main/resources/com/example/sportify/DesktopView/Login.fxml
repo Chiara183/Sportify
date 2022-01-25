@@ -51,7 +51,7 @@
                         <Font name="Comic Sans MS" size="18.0" />
                     </font>
                 </Text>
-                <TextField fx:id="pass_text" maxWidth="233.0" prefHeight="33.0" prefWidth="226.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                <TextField fx:id="passText" maxWidth="233.0" prefHeight="33.0" prefWidth="226.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>
@@ -76,7 +76,7 @@
                      <Cursor fx:constant="HAND" />
                   </cursor>
                     </Label>
-                    <CheckBox fx:id="pass_toggle" mnemonicParsing="false" visible="false" />
+                    <CheckBox fx:id="passToggle" mnemonicParsing="false" visible="false" />
                 </HBox>
                 <padding>
                     <Insets bottom="10.0" />
@@ -95,7 +95,7 @@
                 </Button>
             </HBox>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                <ImageView accessibleRole="BUTTON" fitHeight="45.0" fitWidth="145.0" onMouseClicked="#login_with_google">
+                <ImageView accessibleRole="BUTTON" fitHeight="45.0" fitWidth="145.0" onMouseClicked="#loginWithGoogle">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>

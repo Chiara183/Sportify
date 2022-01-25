@@ -8,7 +8,11 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public abstract class EditGraphicController extends GraphicController{
+public abstract class EditGraphicController implements GraphicController{
+
+    private static final String FILL = "-fx-text-fill: #06B7C5;";
+    private static final String BLACK = "-fx-text-fill: black;";
+
     /** All the Label of interface */
     @FXML
     protected Label usernameLabel;
@@ -23,15 +27,15 @@ public abstract class EditGraphicController extends GraphicController{
     @FXML
     protected Label birthday;
     @FXML
-    protected Label modify_username;
+    protected Label modifyUsername;
     @FXML
-    protected Label modify_password;
+    protected Label modifyPassword;
     @FXML
-    protected Label modify_firstName;
+    protected Label modifyFirstName;
     @FXML
-    protected Label modify_lastName;
+    protected Label modifyLastName;
     @FXML
-    protected Label modify_email;
+    protected Label modifyEmail;
     @FXML
     protected Label gymNameLabel;
     @FXML
@@ -39,11 +43,11 @@ public abstract class EditGraphicController extends GraphicController{
     @FXML
     protected Label telephoneLabel;
     @FXML
-    protected Label modify_gymName;
+    protected Label modifyGymName;
     @FXML
-    protected Label modify_address;
+    protected Label modifyAddress;
     @FXML
-    protected Label modify_telephone;
+    protected Label modifyTelephone;
 
     /** All the TextField of interface*/
     @FXML
@@ -65,21 +69,21 @@ public abstract class EditGraphicController extends GraphicController{
 
     /** All the CheckBox of interface*/
     @FXML
-    protected CheckBox toggle_firstName;
+    protected CheckBox toggleFirstName;
     @FXML
-    protected CheckBox toggle_lastName;
+    protected CheckBox toggleLastName;
     @FXML
-    protected CheckBox toggle_username;
+    protected CheckBox toggleUsername;
     @FXML
-    protected CheckBox toggle_password;
+    protected CheckBox togglePassword;
     @FXML
-    protected CheckBox toggle_email;
+    protected CheckBox toggleEmail;
     @FXML
-    protected CheckBox toggle_gymName;
+    protected CheckBox toggleGymName;
     @FXML
-    protected CheckBox toggle_address;
+    protected CheckBox toggleAddress;
     @FXML
-    protected CheckBox toggle_telephone;
+    protected CheckBox toggleTelephone;
 
     /** All the Button of the interface*/
     @FXML
@@ -121,55 +125,55 @@ public abstract class EditGraphicController extends GraphicController{
     /** Controls the modifiability of all field*/
     @FXML
     protected void set_toggle_pass(MouseEvent modify) {
-        if (modify.getSource() == modify_username) {
-            if (!toggle_username.isSelected()) {
-                modify_username.setStyle("-fx-text-fill: #06B7C5;");
-                toggle_username.setSelected(true);
-                controller.togglevisible(this.toggle_username, this.usernameLabel, this.username);
+        if (modify.getSource() == modifyUsername) {
+            if (!toggleUsername.isSelected()) {
+                modifyUsername.setStyle(FILL);
+                toggleUsername.setSelected(true);
+                controller.togglevisible(this.toggleUsername, this.usernameLabel, this.username);
             } else {
-                modify_username.setStyle("-fx-text-fill: black;");
-                toggle_username.setSelected(false);
-                controller.togglevisible(this.toggle_username, this.usernameLabel, this.username);
+                modifyUsername.setStyle(BLACK);
+                toggleUsername.setSelected(false);
+                controller.togglevisible(this.toggleUsername, this.usernameLabel, this.username);
             }
-        } else if (modify.getSource() == modify_email) {
-            if (!toggle_email.isSelected()) {
-                modify_email.setStyle("-fx-text-fill: #06B7C5;");
-                toggle_email.setSelected(true);
-                controller.togglevisible(this.toggle_email, this.emailLabel, this.email);
+        } else if (modify.getSource() == modifyEmail) {
+            if (!toggleEmail.isSelected()) {
+                modifyEmail.setStyle(FILL);
+                toggleEmail.setSelected(true);
+                controller.togglevisible(this.toggleEmail, this.emailLabel, this.email);
             } else {
-                modify_email.setStyle("-fx-text-fill: black;");
-                toggle_email.setSelected(false);
-                controller.togglevisible(this.toggle_email, this.emailLabel, this.email);
+                modifyEmail.setStyle(BLACK);
+                toggleEmail.setSelected(false);
+                controller.togglevisible(this.toggleEmail, this.emailLabel, this.email);
             }
-        } else if (modify.getSource() == modify_firstName) {
-            if (!toggle_firstName.isSelected()) {
-                modify_firstName.setStyle("-fx-text-fill: #06B7C5;");
-                toggle_firstName.setSelected(true);
-                controller.togglevisible(this.toggle_firstName, this.firstNameLabel, this.firstName);
+        } else if (modify.getSource() == modifyFirstName) {
+            if (!toggleFirstName.isSelected()) {
+                modifyFirstName.setStyle(FILL);
+                toggleFirstName.setSelected(true);
+                controller.togglevisible(this.toggleFirstName, this.firstNameLabel, this.firstName);
             } else {
-                modify_firstName.setStyle("-fx-text-fill: black;");
-                toggle_firstName.setSelected(false);
-                controller.togglevisible(this.toggle_firstName, this.firstNameLabel, this.firstName);
+                modifyFirstName.setStyle(BLACK);
+                toggleFirstName.setSelected(false);
+                controller.togglevisible(this.toggleFirstName, this.firstNameLabel, this.firstName);
             }
-        } else if (modify.getSource() == modify_password) {
-            if (!toggle_password.isSelected()) {
-                modify_password.setStyle("-fx-text-fill: #06B7C5;");
-                toggle_password.setSelected(true);
-                controller.togglevisible(this.toggle_password, this.passwordLabel, this.password);
+        } else if (modify.getSource() == modifyPassword) {
+            if (!togglePassword.isSelected()) {
+                modifyPassword.setStyle(FILL);
+                togglePassword.setSelected(true);
+                controller.togglevisible(this.togglePassword, this.passwordLabel, this.password);
             } else {
-                modify_password.setStyle("-fx-text-fill: black;");
-                toggle_password.setSelected(false);
-                controller.togglevisible(this.toggle_password, this.passwordLabel, this.password);
+                modifyPassword.setStyle(BLACK);
+                togglePassword.setSelected(false);
+                controller.togglevisible(this.togglePassword, this.passwordLabel, this.password);
             }
-        } else if (modify.getSource() == modify_lastName) {
-            if (!toggle_lastName.isSelected()) {
-                modify_lastName.setStyle("-fx-text-fill: #06B7C5;");
-                toggle_lastName.setSelected(true);
-                controller.togglevisible(this.toggle_lastName, this.lastNameLabel, this.lastName);
+        } else if (modify.getSource() == modifyLastName) {
+            if (!toggleLastName.isSelected()) {
+                modifyLastName.setStyle(FILL);
+                toggleLastName.setSelected(true);
+                controller.togglevisible(this.toggleLastName, this.lastNameLabel, this.lastName);
             } else {
-                modify_lastName.setStyle("-fx-text-fill: black;");
-                toggle_lastName.setSelected(false);
-                controller.togglevisible(this.toggle_lastName, this.lastNameLabel, this.lastName);
+                modifyLastName.setStyle(BLACK);
+                toggleLastName.setSelected(false);
+                controller.togglevisible(this.toggleLastName, this.lastNameLabel, this.lastName);
             }
         }
     }

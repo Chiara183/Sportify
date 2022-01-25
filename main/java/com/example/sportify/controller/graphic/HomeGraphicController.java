@@ -1,5 +1,6 @@
 package com.example.sportify.controller.graphic;
 
+import com.example.sportify.DAO;
 import com.example.sportify.controller.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,8 +9,10 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class HomeGraphicController extends GraphicController{
+public class HomeGraphicController implements GraphicController{
 
     /** Reference to controller*/
     private HomeController controller;
@@ -59,7 +62,8 @@ public class HomeGraphicController extends GraphicController{
             controllerSport.setUser(controller.getUser());
             controllerSport.setMenu(menuController);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(HomeGraphicController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
     @FXML
@@ -87,7 +91,8 @@ public class HomeGraphicController extends GraphicController{
             controllerGym.setMenu(menuController);
             controllerGym.setProjection(controller.getMainApp().getProjection());
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(HomeGraphicController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
     @FXML
@@ -113,7 +118,8 @@ public class HomeGraphicController extends GraphicController{
             controllerLogin.setMainApp(controller.getMainApp());
             controllerLogin.setUser(controller.getUser());
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(HomeGraphicController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
