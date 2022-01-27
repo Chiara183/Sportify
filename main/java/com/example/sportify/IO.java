@@ -1,5 +1,7 @@
 package com.example.sportify;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -67,17 +69,31 @@ public class IO {
     /** It's called to read users in the DB.*/
     public Map<String, Map<String, String>> read(){
         HashMap<String, Map<String, String>> map = new HashMap<>();
-        try {
-            DAO objDAO = mainApp.getDAO();
-            ResultSet rs = objDAO.checkData("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");
-            while (rs.next()) {
-                Map<String, String> gymAccount = getInfoUser(rs);
-                String userValue = rs.getString(USERNAME);                    //get user username
-                map.put(userValue, gymAccount);
+            /*DAO objDAO = mainApp.getDAO();
+            ResultSet rs = objDAO.checkData("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");*/
+            PreparedStatement ps = null;
+            ResultSet rs;
+            Connection connection = new DBConnection().getConnection();
+            try{
+                ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    Map<String, String> gymAccount = getInfoUser(rs);
+                    String userValue = rs.getString(USERNAME);                    //get user username
+                    map.put(userValue, gymAccount);
+                }
+            }catch (SQLException e) {
+                Logger logger = Logger.getLogger(IO.class.getName());
+                logger.log(Level.SEVERE, e.getMessage());
+            }finally {
+                try {
+                    if (ps != null) {
+                        ps.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (SQLException e){
-            Logger logger = Logger.getLogger(IO.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
         return map;
     }
 

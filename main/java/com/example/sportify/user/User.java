@@ -95,7 +95,7 @@ public abstract class User {
     }
     public void setFirstName(String firstName) {
         this.firstName.set(firstName);
-        DAO objDAO = mainApp.getDAO();
+        DAO objDAO = this.mainApp.getDAO();
         objDAO.updateDB(
                 "UPDATE `user` SET `first_name` = '"
                         + firstName + WHERECLAUSE

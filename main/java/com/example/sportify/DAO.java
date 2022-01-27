@@ -28,12 +28,16 @@ public class DAO {
     }
 
     /** It's called to get data from DB*/
-    public ResultSet checkData(String query){
+    public String checkData(String query, String column){
         PreparedStatement ps = null;
         ResultSet rs = null;
+        String result = "";
         try{
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
+            while(rs.next()){
+                result = rs.getString(column);
+            }
         }catch (SQLException e) {
             Logger logger = Logger.getLogger(DAO.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
@@ -46,7 +50,7 @@ public class DAO {
                 e.printStackTrace();
             }
         }
-        return rs;
+        return result;
     }
 
     /** It's called to update data in DB*/

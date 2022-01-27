@@ -23,16 +23,16 @@ public class SportController extends Controller{
     /** It's called to load the sport description from DB*/
     public void loadDescriptionFromDB(String sport){
         DAO objDAO = mainApp.getDAO();
-        ResultSet rs = objDAO.checkData("SELECT * FROM sport WHERE '"+ sport + "' = sport.name");
-        String description  = null;
+        String rs = objDAO.checkData("SELECT * FROM sport WHERE '"+ sport + "' = sport.name", "description");
+        /*String description  = null;
         try {
             while(rs.next()) {
                 description = rs.getString("description");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        this.loadingSport(sport, description);
+        }*/
+        this.loadingSport(sport, rs);
     }
 
     /** It's called to load the sport name from DB*/

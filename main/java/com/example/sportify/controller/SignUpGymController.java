@@ -1,16 +1,16 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.DAO;
-import com.example.sportify.IO;
-import com.example.sportify.MainApp;
-import com.example.sportify.Submit;
+import com.example.sportify.*;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.SignUpGymGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,15 +55,18 @@ public class SignUpGymController extends AccessController {
     }
 
     public void submitActionSignUpGym(String gymValue, String address, Map<String, Double> coords) {
-        DAO objDAO = mainApp.getDAO();
         IO objIO = new IO();
         objIO.setMainApp(this.mainApp);
         Map<String, String> gymAccount;
-        ResultSet rs = objDAO.checkData(
-                "SELECT * " +
-                        "FROM user " +
-                        "LEFT JOIN gym ON gym.owner = user.username " +
-                        "WHERE user.ruolo = \"gym\"");
+        PreparedStatement ps = null;
+        ResultSet rs;
+        Connection connection  = new DBConnection().getConnection();
+        try{
+            ps = connection.prepareStatement("SELECT * " +
+                    "FROM user " +
+                    "LEFT JOIN gym ON gym.owner = user.username " +
+                    "WHERE user.ruolo = \"gym\"");
+            rs = ps.executeQuery();
         gymAccount = objIO.getInfoUser(rs);
         gymAccount.put("gymName", gymValue);            //put gymName in userAccount
         gymAccount.put("address", address);             //put gymAddress in userAccount
@@ -71,6 +74,18 @@ public class SignUpGymController extends AccessController {
         gymAccount.put("longitude", String.valueOf(coords.get("lon")));
 
         this.submit.signUp(gymAccount);
+        }catch (SQLException e) {
+            Logger logger = Logger.getLogger(DAO.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override

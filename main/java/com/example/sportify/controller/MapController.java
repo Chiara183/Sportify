@@ -153,22 +153,28 @@ public class MapController extends Controller{
 
     /** load the coordinate of all gym*/
     private void loadCoordinate() {
-        try {
             DAO objDAO = mainApp.getDAO();
-            ResultSet rs = objDAO.checkData(
+            String rs = objDAO.checkData(
                     "SELECT * " +
                             "FROM user " +
                             "LEFT JOIN gym ON gym.owner = user.username " +
-                            "WHERE user.ruolo = \"gym\"");
-            while (rs.next()) {
-                Coordinate gym = new Coordinate(
-                        Double.parseDouble(rs.getString("latitude")),
-                        Double.parseDouble(rs.getString("longitude")));
-                this.allGym.put(gym, rs.getString("name"));
-            }
-        }catch (SQLException e){
-            Logger logger = Logger.getLogger(MapController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
+                            "WHERE user.ruolo = \"gym\"", "latitude");
+            String rs1 = objDAO.checkData(
+                    "SELECT * " +
+                            "FROM user " +
+                            "LEFT JOIN gym ON gym.owner = user.username " +
+                            "WHERE user.ruolo = \"gym\"", "longitude");
+            String rs2 = objDAO.checkData(
+                    "SELECT * " +
+                            "FROM user " +
+                            "LEFT JOIN gym ON gym.owner = user.username " +
+                            "WHERE user.ruolo = \"gym\"", "name");
+
+            Coordinate gym = new Coordinate(
+                        Double.parseDouble(rs),
+                        Double.parseDouble(rs1));
+                this.allGym.put(gym, rs2);
+
     }
 
     /** load a gym info overview*/

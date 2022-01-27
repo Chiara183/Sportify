@@ -96,29 +96,29 @@ public abstract class OAuthAuthenticator {
                         Submit submit = new Submit(mainApp);
                         User user;
                         DAO objDAO = mainApp.getDAO();
-                        ResultSet rs = objDAO.checkData(
+                        String rs = objDAO.checkData(
                                 "SELECT * " +
                                         "FROM user " +
-                                        "WHERE user.email = \"" + email + "\"");
-                        try {
+                                        "WHERE user.email = \"" + email + "\"", "username");
+                        /*try {
                             if (rs.next()) {
                                 username = rs.getString("username");
                             }
                         }catch (SQLException e){
                             Logger logger1 = Logger.getLogger(OAuthAuthenticator.class.getName());
-                            logger1.log(Level.SEVERE, e.getMessage());                        }
-                        if (!submit.exist(username)) {
+                            logger1.log(Level.SEVERE, e.getMessage());                        }*/
+                        if (!submit.exist(rs)) {
                             String firstName = accessedJsonData.getString("given_name");
                             String lastName = accessedJsonData.getString("family_name");
                             String password = submit.generateStrongPassword(32);
                             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                             String date = timestamp.toString();
                             date = date.substring(0,10);
-                            Map<String, String> account = mainApp.createAccount(username, password, firstName, lastName, email, date);
+                            Map<String, String> account = mainApp.createAccount(rs, password, firstName, lastName, email, date);
                             account.put("ruolo", "user");
                             submit.signUp(account);
                         }
-                        user = submit.setUser(username);
+                        user = submit.setUser(rs);
                         if(Objects.equals(user.getFirstName(), "")){
                             String firstName = accessedJsonData.getString("given_name");
                             user.setFirstName(firstName);

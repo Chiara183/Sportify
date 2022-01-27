@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
+import com.example.sportify.DBConnection;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymInfoGraphicController;
 import javafx.application.Platform;
@@ -17,6 +18,8 @@ import javafx.scene.layout.VBox;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
@@ -75,18 +78,14 @@ public class GymInfoController extends Controller {
     }
     private ObservableList<String> getSport(){
         ObservableList<String> sports = FXCollections.observableArrayList();
-        try {
-            assert this.mainApp != null;
-            DAO objDAO = this.mainApp.getDAO();
-            ResultSet rs = objDAO.checkData(
-                    SELECT +
-                            "FROM sport ");
-            while (rs.next()) {
-                sports.add(rs.getString("name"));
-            }
-        } catch (SQLException e) {
-            Logger logger = Logger.getLogger(GymInfoController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
+        assert this.mainApp != null;
+        DAO objDAO = this.mainApp.getDAO();
+        String rs = objDAO.checkData(
+                SELECT +
+                        "FROM sport ", "name");
+
+        sports.add(rs);
+
         return sports;
     }
 
@@ -209,17 +208,41 @@ public class GymInfoController extends Controller {
 
     /** Download the review*/
     private void downloadReview(){
-        DAO objDAO = this.mainApp.getDAO();
-        ResultSet rs = objDAO.checkData(
+        //DAO objDAO = this.mainApp.getDAO();
+        /*ResultSet rs = objDAO.checkData(
                 SELECT +
                         "FROM review " +
                         "WHERE review.gym = \"" + this.gym + "\"");
-        loadReview(rs);
+        loadReview(rs);*/
+            Connection connection = new DBConnection().getConnection();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            try{
+                ps = connection.prepareStatement(SELECT +
+                        "FROM course " +
+                        "WHERE course.gym = \"" + this.gym + "\"");
+                rs = ps.executeQuery();
+                while(rs.next()){
+                    loadReview(rs);
+                }
+            }catch (SQLException e) {
+                Logger logger = Logger.getLogger(DAO.class.getName());
+                logger.log(Level.SEVERE, e.getMessage());
+            }finally {
+                try {
+                    if (ps != null) {
+                        ps.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         if(graphicController.getSizeReview()<1) {
             Label labelNotFound = new Label("There are no reviews");
             labelNotFound.setStyle(FONT);
             graphicController.setReview(labelNotFound);
         }
+
     }
 
     /** Load the course of gym*/
@@ -248,23 +271,34 @@ public class GymInfoController extends Controller {
 
     /** Download Course*/
     private void downloadCourse(){
-        try {
-            DAO objDAO = this.mainApp.getDAO();
-            ResultSet rs = objDAO.checkData(
-                    SELECT +
-                            "FROM course " +
-                            "WHERE course.gym = \"" + this.gym + "\"");
-            while (rs.next()) {
+        Connection connection = new DBConnection().getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try{
+            ps = connection.prepareStatement(SELECT +
+                    "FROM course " +
+                    "WHERE course.gym = \"" + this.gym + "\"");
+            rs = ps.executeQuery();
+            while(rs.next()){
                 loadCourse(rs);
             }
-            if(graphicController.getSizeCourse()<2) {
-                Label label = new Label("There are no course");
-                label.setStyle(FONT);
-                graphicController.setCourse(label);
+        }catch (SQLException e) {
+            Logger logger = Logger.getLogger(DAO.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        }catch (SQLException e){
-            Logger logger = Logger.getLogger(GymInfoController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
+        }
+        if(graphicController.getSizeCourse()<2) {
+            Label label = new Label("There are no course");
+            label.setStyle(FONT);
+            graphicController.setCourse(label);
+        }
     }
 
     /** Set Gym View*/
@@ -296,13 +330,13 @@ public class GymInfoController extends Controller {
 
                         TELEPHONE:\s""");
         Runnable task1 = () -> Platform.runLater(() -> {
-            try {
-                DAO objDAO = this.mainApp.getDAO();
-                ResultSet rs = objDAO.checkData(
-                        SELECT +
-                                "FROM gym " +
-                                "WHERE gym.name = \"" + name + "\"");
-                if (rs.next()) {
+
+                    DAO objDAO = this.mainApp.getDAO();
+                    String rs = objDAO.checkData(
+                            SELECT +
+                                    "FROM gym " +
+                                    "WHERE gym.name = \"" + name + "\"", "phone");
+                /*if (rs.next()) {
                     if(Objects.equals(rs.getString("phone"), "null")){
                         graphicController.setGymDescription(
                                 "ADDRESS: " + rs.getString("address") +
@@ -316,7 +350,18 @@ public class GymInfoController extends Controller {
             } catch (SQLException e) {
                 Logger logger = Logger.getLogger(GymInfoController.class.getName());
                 logger.log(Level.SEVERE, e.getMessage());            }
-        });
+        });*/
+                    if (Objects.equals(rs, "null")) {
+                        DAO objDAO1 = this.mainApp.getDAO();
+                        String rs1 = objDAO1.checkData(
+                                SELECT +
+                                        "FROM gym " +
+                                        "WHERE gym.name = \"" + name + "\"", "address");
+                        graphicController.setGymDescription(
+                                "ADDRESS: " + rs1 +
+                                        "\n\nTELEPHONE: \\\\");
+                    }
+                });
         Task<Void> task4 = createTask(task1);
         task4.setOnRunning(e -> graphicController.gymDescription_setCursor(Cursor.WAIT));
         task4.setOnSucceeded(e -> graphicController.gymDescription_setCursor(Cursor.DEFAULT));
