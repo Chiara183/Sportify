@@ -14,6 +14,8 @@ import java.time.LocalDate;
 
 public abstract class User {
 
+    private static final String WHERECLAUSE = "' WHERE `user`.`username` = '";
+
     /** All parameter of user*/
     protected final StringProperty firstName;
     protected final StringProperty lastName;
@@ -37,10 +39,10 @@ public abstract class User {
     }
 
     /** The constructor.*/
-    public User() {
+    protected User() {
         this(null, null);
     }
-    public User(String userName, String password) {
+    protected User(String userName, String password) {
         this.firstName = new SimpleStringProperty(null);
         this.lastName = new SimpleStringProperty(null);
         this.email = new SimpleStringProperty(null);
@@ -93,27 +95,27 @@ public abstract class User {
     }
     public void setFirstName(String firstName) {
         this.firstName.set(firstName);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
+        DAO objDAO = mainApp.getDAO();
+        objDAO.updateDB(
                 "UPDATE `user` SET `first_name` = '"
-                        + firstName + "' WHERE `user`.`username` = '"
+                        + firstName + WHERECLAUSE
                         + this.userName.getValue() +"'");
     }
     public void setLastName(String lastName) {
         this.lastName.set(lastName);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
+        DAO objDAO = mainApp.getDAO();
+        objDAO.updateDB(
                 "UPDATE `user` SET `last_name` = '"
-                        + lastName + "' WHERE `user`.`username` = '"
+                        + lastName + WHERECLAUSE
                         + this.userName.getValue() +"'");
     }
     public void setUserName(String userName) {
         Submit submit = new Submit(this.mainApp);
         if(!submit.exist(userName)) {
-            DAO obj_DAO = mainApp.getDAO();
-            obj_DAO.updateDB(
+            DAO objDAO = mainApp.getDAO();
+            objDAO.updateDB(
                     "UPDATE `user` SET `username` = '"
-                            + userName + "' WHERE `user`.`username` = '"
+                            + userName + WHERECLAUSE
                             + this.userName.getValue() + "'");
             this.userName.set(userName);
         } else if (this.userName.getValue() == null){
@@ -132,10 +134,10 @@ public abstract class User {
     public void setPassword(String password) {
         if (this.password.getValue() != null) {
             this.password.set(password);
-            DAO obj_DAO = mainApp.getDAO();
-            obj_DAO.updateDB(
+            DAO objDAO = mainApp.getDAO();
+            objDAO.updateDB(
                     "UPDATE `user` SET `password` = '"
-                            + password + "' WHERE `user`.`username` = '"
+                            + password + WHERECLAUSE
                             + this.userName.getValue() + "'");
         } else {
             assert false;
@@ -144,18 +146,18 @@ public abstract class User {
     }
     public void setEmail(String email) {
         this.email.set(email);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
+        DAO objDAO = mainApp.getDAO();
+        objDAO.updateDB(
                 "UPDATE `user` SET `email` = '"
-                        + email + "' WHERE `user`.`username` = '"
+                        + email + WHERECLAUSE
                         + this.userName.getValue() +"'");
     }
     public void setBirthday(LocalDate birthday) {
         this.birthday.set(birthday);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
+        DAO objDAO = mainApp.getDAO();
+        objDAO.updateDB(
                 "UPDATE `user` SET `birthday` = '"
-                        + birthday.toString() + "' WHERE `user`.`username` = '"
+                        + birthday.toString() + WHERECLAUSE
                         + this.userName.getValue() +"'");
     }
 }

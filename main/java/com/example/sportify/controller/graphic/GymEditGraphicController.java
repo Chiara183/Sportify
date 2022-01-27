@@ -2,7 +2,7 @@ package com.example.sportify.controller.graphic;
 
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.GymEditController;
-import com.example.sportify.user.gymUser;
+import com.example.sportify.user.GymUser;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -16,7 +16,7 @@ public class GymEditGraphicController extends EditGraphicController{
     /** Reference to controller*/
     private GymEditController controller;
 
-    public void setUser(gymUser user) {
+    public void setUser(GymUser user) {
         gymName.setText(user.getGymName());
         address.setText(user.getAddress());
         telephone.setText(user.getPhone());

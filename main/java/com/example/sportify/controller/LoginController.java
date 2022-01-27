@@ -22,7 +22,7 @@ public class LoginController extends AccessController{
     /** The constructor.*/
     public LoginController() {
         this.type = ControllerType.LOGIN;
-        this.submit = new Submit(null);
+        this.submit = new Submit(this.mainApp);
     }
 
     /** It's called to set external stage.*/

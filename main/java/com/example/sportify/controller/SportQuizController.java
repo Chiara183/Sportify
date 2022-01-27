@@ -16,14 +16,14 @@ import java.util.logging.Logger;
 public class SportQuizController extends Controller {
 
     /** The variable that identify the user choice*/
-    private  boolean buttonAge1 = false;
-    private  boolean buttonAge2 = false;
-    private  boolean buttonAge3 = false;
-    private  boolean buttonAge4 = false;
-    private  boolean buttonIndoor = false;
-    private  boolean buttonOutdoor = false;
-    private  boolean buttonGroup = false;
-    private  boolean buttonSingle = false;
+    private  static boolean buttonAge1 = false;
+    private  static boolean buttonAge2 = false;
+    private  static boolean buttonAge3 = false;
+    private  static boolean buttonAge4 = false;
+    private  static boolean buttonIndoor = false;
+    private  static boolean buttonOutdoor = false;
+    private  static boolean buttonGroup = false;
+    private  static boolean buttonSingle = false;
 
     /** The constructor.*/
     public SportQuizController(){
@@ -33,28 +33,28 @@ public class SportQuizController extends Controller {
     public void takeQuiz(String b) {
         if (Objects.equals(b, "age1")) {
             buttonAge1 = true;
-            sportQuizEnv();
+            this.sportQuizEnv();
         } else if (Objects.equals(b, "age2")) {
             buttonAge2 = true;
-            sportQuizEnv();
+            this.sportQuizEnv();
         } else if (Objects.equals(b, "age3")) {
             buttonAge3 = true;
-            sportQuizEnv();
+            this.sportQuizEnv();
         } else if (Objects.equals(b, "age4")) {
             buttonAge4 = true;
-            sportQuizEnv();
+            this.sportQuizEnv();
         } else if (Objects.equals(b, "indoor")) {
             buttonIndoor = true;
-            sportQuizType();
+            this.sportQuizType();
         } else if (Objects.equals(b, "outdoor")) {
             buttonOutdoor = true;
-            sportQuizType();
+            this.sportQuizType();
         } else if (Objects.equals(b, "group")) {
             buttonGroup = true;
-            quizLogic();
+            this.quizLogic();
         } else if (Objects.equals(b, "single")) {
             buttonSingle = true;
-            quizLogic();
+            this.quizLogic();
         } else if (Objects.equals(b, "endQuiz") || Objects.equals(b, "nextQuiz") || Objects.equals(b, "nextQuizEnv")) {
             warning();
         }
@@ -147,7 +147,7 @@ public class SportQuizController extends Controller {
         // Load sport quiz overview.
         FXMLLoader loaderSport = new FXMLLoader();
         loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizEnv.fxml"));
-        createController(loaderSport);
+        this.createController(loaderSport);
     }
 
     /** It's called to load sport quiz type overview*/
@@ -157,7 +157,7 @@ public class SportQuizController extends Controller {
         // Load sport quiz overview.
         FXMLLoader loaderSport = new FXMLLoader();
         loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizType.fxml"));
-        createController(loaderSport);
+        this.createController(loaderSport);
     }
 
     /** Is called to create controllers*/
@@ -182,6 +182,7 @@ public class SportQuizController extends Controller {
 
     @Override
     public void setGraphicController(GraphicController graphicController) {
+        //Do nothing, but it has to exist given that this class extends Controller
     }
 }
 

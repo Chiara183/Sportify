@@ -3,7 +3,7 @@ package com.example.sportify.controller;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymEditGraphicController;
 import com.example.sportify.user.User;
-import com.example.sportify.user.gymUser;
+import com.example.sportify.user.GymUser;
 
 public class GymEditController extends EditController{
 
@@ -17,7 +17,7 @@ public class GymEditController extends EditController{
     @Override
     public void setUser(User user) {
         super.setUser(user);
-        graphicController.setUser((gymUser) user);
+        graphicController.setUser((GymUser) user);
     }
 
     @Override

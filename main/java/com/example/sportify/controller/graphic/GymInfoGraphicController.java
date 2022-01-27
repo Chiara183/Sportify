@@ -18,13 +18,13 @@ public class GymInfoGraphicController implements GraphicController{
 
     /** All the label of interface*/
     @FXML
-    private Label gym_name;
+    private Label gymName;
     @FXML
-    private Label gym_description;
+    private Label gymDescription;
 
     // TextArea
     @FXML
-    private TextArea review_area;
+    private TextArea reviewArea;
 
     /** All the text field of interface*/
     @FXML
@@ -34,9 +34,9 @@ public class GymInfoGraphicController implements GraphicController{
 
     /** All the border pane of interface*/
     @FXML
-    private BorderPane review_pane;
+    private BorderPane reviewPane;
     @FXML
-    private BorderPane course_pane;
+    private BorderPane coursePane;
 
     /** All the vbox of interface*/
     @FXML
@@ -46,20 +46,20 @@ public class GymInfoGraphicController implements GraphicController{
 
     // ComboBox
     @FXML
-    private ComboBox<String> combo_sport;
+    private ComboBox<String> comboSport;
 
     /** All the slider of interface*/
     @FXML
-    private Slider hour_slider;
+    private Slider hourSlider;
     @FXML
-    private Slider min_slider;
+    private Slider minSlider;
 
     /** The action of the button*/
     @FXML
-    private void share_review(){
-        String gym = this.gym_name.getText();
-        StringBuilder review = new StringBuilder(this.review_area.getText(0, this.review_area.getLength()));
-        this.controller.shareReview(gym, review);
+    private void shareReview(){
+        String gym = this.gymName.getText();
+        StringBuilder reviews = new StringBuilder(this.reviewArea.getText(0, this.reviewArea.getLength()));
+        this.controller.shareReview(gym, reviews);
     }
     @FXML
     private void findGym(){
@@ -71,68 +71,68 @@ public class GymInfoGraphicController implements GraphicController{
 
     }
     @FXML
-    private void add_course(){
-        String gym = this.gym_name.getText();
-        String sport = this.combo_sport.getValue();
-        String hour;
+    private void addCourse(){
+        String gym = this.gymName.getText();
+        String sport = this.comboSport.getValue();
+        String hours;
         if(this.hour.getText().equals("")){
-            hour = "01";
+            hours = "01";
         } else {
-            hour = this.hour.getText();
+            hours = this.hour.getText();
         }
-        String min;
+        String mins;
         if(this.min.getText().equals("")){
-            min = "00";
+            mins = "00";
         } else {
-            min = this.min.getText();
+            mins = this.min.getText();
         }
-        String time = hour + ':' + min + ":00";
+        String time = hours + ':' + mins + ":00";
         controller.addCourse(sport, gym, time);
     }
 
     /** The action that change the value of text field*/
     @FXML
-    private void change_hour(){
-        String hour = String.valueOf((int) hour_slider.getValue());
-        if(Integer.parseInt(hour)<10) {
-            this.hour.setText("0" + hour);
+    private void changeHour(){
+        String hourSet = String.valueOf((int) hourSlider.getValue());
+        if(Integer.parseInt(hourSet)<10) {
+            this.hour.setText("0" + hourSet);
         } else {
-            this.hour.setText(hour);
+            this.hour.setText(hourSet);
         }
     }
     @FXML
-    private void change_min(){
-        String min = String.valueOf((int) min_slider.getValue());
-        if(Integer.parseInt(min)<10) {
-            this.min.setText("0" + min);
+    private void changeMin(){
+        String minSet = String.valueOf((int) minSlider.getValue());
+        if(Integer.parseInt(minSet)<10) {
+            this.min.setText("0" + minSet);
         } else {
-            this.min.setText(min);
+            this.min.setText(minSet);
         }
     }
 
     /** Is called to set review pane visible or not, true = visible*/
     public void reviewPane_isVisible(boolean visible){
-        this.review_pane.setVisible(visible);
+        this.reviewPane.setVisible(visible);
     }
 
     /** Is called to set course pane visible or not, true = visible*/
     public void coursePane_isVisible(boolean visible){
-        this.course_pane.setVisible(visible);
+        this.coursePane.setVisible(visible);
     }
 
     /** Is called to get gym name*/
     public void setGym_name(String name){
-        this.gym_name.setText(name);
+        this.gymName.setText(name);
     }
 
     /** Is called to set gym description*/
     public void setGymDescription(String description){
-        this.gym_description.setText(description);
+        this.gymDescription.setText(description);
     }
 
     /** Is called to set cursor on gym description label*/
     public void gymDescription_setCursor(Cursor cursor){
-        this.gym_description.setCursor(cursor);
+        this.gymDescription.setCursor(cursor);
     }
 
     /** Is called to clean all course on view*/
@@ -177,13 +177,13 @@ public class GymInfoGraphicController implements GraphicController{
 
     /** Is called to set sport comboBox*/
     public void setComboSport(ObservableList<String> sport){
-        this.combo_sport.setValue("select sport");
-        this.combo_sport.setItems(sport);
+        this.comboSport.setValue("select sport");
+        this.comboSport.setItems(sport);
     }
 
     /** Is called to set cursor on sport comboBox*/
     public void comboSport_setCursor(Cursor cursor){
-        this.combo_sport.setCursor(cursor);
+        this.comboSport.setCursor(cursor);
     }
 
     /** Is called to set controller*/

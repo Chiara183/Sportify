@@ -28,7 +28,7 @@
                 <GridPane.margin>
                     <Insets />
                 </GridPane.margin></Button>
-            <Label fx:id="gym_name" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label fx:id="gymName" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                 <font>
                     <Font name="Comic Sans MS" size="32.0" />
                 </font>
@@ -41,7 +41,7 @@
                <Font name="Comic Sans MS Bold" size="18.0" />
             </font>
          </Label>
-            <Label fx:id="gym_description" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" wrapText="true" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <Label fx:id="gymDescription" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" wrapText="true" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                 <GridPane.margin>
                     <Insets left="10.0" right="10.0" top="40.0" />
                 </GridPane.margin>
@@ -56,7 +56,7 @@
                     </font>
                 </Label>
             </VBox>
-         <BorderPane fx:id="review_pane" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <BorderPane fx:id="reviewPane" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <top>
                <Label text="New Review" BorderPane.alignment="CENTER">
                   <font>
@@ -65,10 +65,10 @@
                </Label>
             </top>
             <center>
-               <TextArea fx:id="review_area" prefHeight="200.0" prefWidth="200.0" promptText="write a review..." BorderPane.alignment="CENTER" />
+               <TextArea fx:id="reviewArea" prefHeight="200.0" prefWidth="200.0" promptText="write a review..." BorderPane.alignment="CENTER" />
             </center>
             <bottom>
-               <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#share_review" prefHeight="35.0" prefWidth="38.0" BorderPane.alignment="CENTER">
+               <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#shareReview" prefHeight="35.0" prefWidth="38.0" BorderPane.alignment="CENTER">
                   <font>
                      <Font name="Comic Sans MS Bold" size="17.0" />
                   </font>
@@ -83,7 +83,7 @@
                </Button>
             </bottom>
          </BorderPane>
-            <BorderPane fx:id="course_pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <BorderPane fx:id="coursePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
                 <top>
                     <Label text="New Course" BorderPane.alignment="CENTER">
                         <font>
@@ -92,7 +92,7 @@
                     </Label>
                 </top>
                 <bottom>
-                    <Button alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#add_course" prefHeight="35.0" prefWidth="43.0" text="✔" BorderPane.alignment="CENTER">
+                    <Button alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addCourse" prefHeight="35.0" prefWidth="43.0" text="✔" BorderPane.alignment="CENTER">
                         <font>
                             <Font name="Comic Sans MS Bold" size="23.0" />
                         </font>
@@ -109,7 +109,7 @@
                                 <Insets right="5.0" top="8.0" />
                             </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="combo_sport" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" stylesheets="@../Style/ComboBox.css" />
+                        <ComboBox fx:id="comboSport" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" stylesheets="@../Style/ComboBox.css" />
                     </HBox>
                     <HBox prefHeight="40.0" prefWidth="192.0">
                         <VBox.margin>
@@ -122,14 +122,14 @@
                         </Label>
                         <VBox prefHeight="39.0" prefWidth="147.0">
                             <HBox prefHeight="100.0" prefWidth="200.0">
-                                <Slider fx:id="hour_slider" majorTickUnit="24.0" max="24.0" min="1.0" minorTickCount="1" onDragDetected="#change_hour" onDragDone="#change_hour" onMouseDragged="#change_hour" prefHeight="14.0" prefWidth="115.0" showTickLabels="true" />
+                                <Slider fx:id="hourSlider" majorTickUnit="24.0" max="24.0" min="1.0" minorTickCount="1" onDragDetected="#changeHour" onDragDone="#changeHour" onMouseDragged="#changeHour" prefHeight="14.0" prefWidth="115.0" showTickLabels="true" />
                                 <TextField fx:id="hour" editable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="41.0" promptText="hour" />
                             </HBox>
                             <HBox prefHeight="100.0" prefWidth="200.0">
                                 <opaqueInsets>
                                     <Insets top="3.0" />
                                 </opaqueInsets>
-                                <Slider fx:id="min_slider" majorTickUnit="59.0" max="59.0" minorTickCount="0" onDragDetected="#change_min" onDragDone="#change_min" onMouseClicked="#change_min" onMouseDragged="#change_min" prefHeight="14.0" prefWidth="115.0" showTickLabels="true">
+                                <Slider fx:id="minSlider" majorTickUnit="59.0" max="59.0" minorTickCount="0" onDragDetected="#changeMin" onDragDone="#changeMin" onMouseClicked="#changeMin" onMouseDragged="#changeMin" prefHeight="14.0" prefWidth="115.0" showTickLabels="true">
                                     <HBox.margin>
                                         <Insets top="5.0" />
                                     </HBox.margin>

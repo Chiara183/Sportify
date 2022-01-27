@@ -34,16 +34,18 @@ public class DAO {
         try{
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
-        }catch (SQLException e){
+        }catch (SQLException e) {
             Logger logger = Logger.getLogger(DAO.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
-        }/*finally{
+        }finally {
             try {
-                Objects.requireNonNull(ps).close();
+                if (ps != null) {
+                    ps.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
         return rs;
     }
 

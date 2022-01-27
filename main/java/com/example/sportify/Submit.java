@@ -1,8 +1,8 @@
 package com.example.sportify;
 
 import com.example.sportify.user.ClassicUser;
+import com.example.sportify.user.GymUser;
 import com.example.sportify.user.User;
-import com.example.sportify.user.gymUser;
 
 import java.security.SecureRandom;
 import java.util.*;
@@ -64,7 +64,7 @@ public class Submit{
         if (Objects.equals(account.get(username).get(RUOLO), "user")) {
             user = new ClassicUser();
         } else {
-            user = new gymUser();
+            user = new GymUser();
         }
         user.setMainApp(mainApp);
         user.setUserName(account.get(username).get("username"));
@@ -77,12 +77,12 @@ public class Submit{
         }
         user.setRole(account.get(username).get(RUOLO));
         if (Objects.equals(account.get(username).get(RUOLO), "gym")) {
-            assert user instanceof gymUser;
-            ((gymUser) user).setGymName(account.get(username).get("gymName"));
-            ((gymUser) user).setAddress(account.get(username).get("address"));
-            ((gymUser) user).setLatitude(account.get(username).get("latitude"));
-            ((gymUser) user).setLongitude(account.get(username).get("longitude"));
-            ((gymUser) user).setPhone(account.get(username).get("phone"));
+            assert user instanceof GymUser;
+            ((GymUser) user).setGymName(account.get(username).get("gymName"));
+            ((GymUser) user).setAddress(account.get(username).get("address"));
+            ((GymUser) user).setLatitude(account.get(username).get("latitude"));
+            ((GymUser) user).setLongitude(account.get(username).get("longitude"));
+            ((GymUser) user).setPhone(account.get(username).get("phone"));
         }
         return user;
     }
@@ -123,7 +123,7 @@ public class Submit{
         String password = result.toString();
         // shuffle again
         Logger logger = Logger.getLogger(DAO.class.getName());
-        logger.log(Level.INFO, "Final Password: [%s][%n]", shuffleString(password));
+        logger.log(Level.INFO, "Final Password: {}", shuffleString(password));
         return password;
     }
     private String generateRandomString(String input, int size) {

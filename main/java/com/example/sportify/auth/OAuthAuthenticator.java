@@ -21,6 +21,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Map;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class OAuthAuthenticator {
 
@@ -38,7 +40,7 @@ public abstract class OAuthAuthenticator {
     private final String clientSecret;
 
 
-    public OAuthAuthenticator (String clientID, String redirectUri, String clientSecret) {
+    protected OAuthAuthenticator (String clientID, String redirectUri, String clientSecret) {
         this.clientID = clientID;
         this.redirectUri = redirectUri;
         this.clientSecret = clientSecret;
@@ -76,12 +78,16 @@ public abstract class OAuthAuthenticator {
                 if (location.contains("code") && location.startsWith(getRedirectUri())) {
                     attemptReceived = true;
                     accessCode = location.substring(location.indexOf("code=") + 5);
-                    accessToken = doGetAccessTokenRequest();
+                    try {
+                        accessToken = doGetAccessTokenRequest();
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
                     String returnedJson = doGetAccountInfo();
                     assert returnedJson != null;
                     accessedJsonData = new JSONObject(returnedJson);
-                    System.out.println("Login Success!");
-                    //System.out.println(returnedJson);
+                    Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
+                    logger.log(Level.INFO, "Login Success!");
                     if(type == OAuthType.GOOGLE) {
                         String email = accessedJsonData.getString("email");
                         String[] s = email.split("@");
@@ -89,8 +95,8 @@ public abstract class OAuthAuthenticator {
                         accessedJsonData.getString("picture");
                         Submit submit = new Submit(mainApp);
                         User user;
-                        DAO obj_DAO = mainApp.getDAO();
-                        ResultSet rs = obj_DAO.checkData(
+                        DAO objDAO = mainApp.getDAO();
+                        ResultSet rs = objDAO.checkData(
                                 "SELECT * " +
                                         "FROM user " +
                                         "WHERE user.email = \"" + email + "\"");
@@ -99,27 +105,27 @@ public abstract class OAuthAuthenticator {
                                 username = rs.getString("username");
                             }
                         }catch (SQLException e){
-                            System.out.println("SQLException: " + e.getMessage());
-                        }
+                            Logger logger1 = Logger.getLogger(OAuthAuthenticator.class.getName());
+                            logger1.log(Level.SEVERE, e.getMessage());                        }
                         if (!submit.exist(username)) {
-                            String first_name = accessedJsonData.getString("given_name");
-                            String last_name = accessedJsonData.getString("family_name");
+                            String firstName = accessedJsonData.getString("given_name");
+                            String lastName = accessedJsonData.getString("family_name");
                             String password = submit.generateStrongPassword(32);
                             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                             String date = timestamp.toString();
                             date = date.substring(0,10);
-                            Map<String, String> account = mainApp.createAccount(username, password, first_name, last_name, email, date);
+                            Map<String, String> account = mainApp.createAccount(username, password, firstName, lastName, email, date);
                             account.put("ruolo", "user");
                             submit.signUp(account);
                         }
                         user = submit.setUser(username);
                         if(Objects.equals(user.getFirstName(), "")){
-                            String first_name = accessedJsonData.getString("given_name");
-                            user.setFirstName(first_name);
+                            String firstName = accessedJsonData.getString("given_name");
+                            user.setFirstName(firstName);
                         }
                         if(Objects.equals(user.getLastName(), "")){
-                            String last_name = accessedJsonData.getString("family_name");
-                            user.setLastName(last_name);
+                            String lastName = accessedJsonData.getString("family_name");
+                            user.setLastName(lastName);
                         }
                         mainApp.setUser(user);
                     }
@@ -166,16 +172,18 @@ public abstract class OAuthAuthenticator {
                     return response2.toString();
                 }
             } else {
-                System.out.println("Error retrieving api data!: " + responseCode2);
+                Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
+                logger.log(Level.SEVERE, "Error retrieving api data!: {}", responseCode2);
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-            System.err.println("####### ERROR GETTING ACCOUNT INFO ##############");
+            Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+            logger.log(Level.SEVERE, "####### ERROR GETTING ACCOUNT INFO ##############");
         }
         return null;
     }
 
-    private String doGetAccessTokenRequest() {
+    private String doGetAccessTokenRequest() throws JSONException {
         try {
             URL url = new URL(getApiAccessUrl());
             String urlParams = getApiAccessParams();
@@ -205,7 +213,8 @@ public abstract class OAuthAuthenticator {
             int responseCode = connection.getResponseCode();
 
             if (responseCode != HttpURLConnection.HTTP_OK) { // success
-                System.err.println("Error getting access token for OAuth Login!");
+                Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
+                logger.log(Level.SEVERE,"Error getting access token for OAuth Login!");
             }
             StringBuilder response = getResponse(connection);
             String fullResponse = "";
@@ -213,23 +222,12 @@ public abstract class OAuthAuthenticator {
                 fullResponse = response.toString();
             }
 
-            JSONObject json = null;
-            try {
-                json = new JSONObject(fullResponse);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            //System.out.println("ACCESS TOKEN: " + json.getString("access_token"));
-
-            try {
-                assert json != null;
-                return json.getString("access_token");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            JSONObject json = new JSONObject(fullResponse);
+            assert json != null;
+            return json.getString("access_token");
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
         return null;
     }
@@ -248,7 +246,8 @@ public abstract class OAuthAuthenticator {
             in.close();
             connection.disconnect();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
         return response;
     }
