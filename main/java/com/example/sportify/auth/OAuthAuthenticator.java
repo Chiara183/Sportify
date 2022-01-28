@@ -17,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -94,10 +95,11 @@ public abstract class OAuthAuthenticator {
                         Submit submit = new Submit(mainApp);
                         User user;
                         DAO objDAO = mainApp.getDAO();
-                        String rs = objDAO.checkData(
+                        List<String> list = objDAO.checkData(
                                 "SELECT * " +
                                         "FROM user " +
                                         "WHERE user.email = \"" + email + "\"", "username");
+                        String rs = list.get(list.size() - 1);
                         if (!submit.exist(rs)) {
                             String firstName = accessedJsonData.getString("given_name");
                             String lastName = accessedJsonData.getString("family_name");

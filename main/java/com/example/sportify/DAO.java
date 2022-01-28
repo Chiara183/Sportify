@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,16 +31,17 @@ public class DAO {
     }
 
     /** It's called to get data from DB*/
-    public String checkData(String query, String column){
+    public List<String> checkData(String query, String column){
         PreparedStatement ps = null;
         ResultSet rs;
-        String result = "";
+        List<String> result = new ArrayList<>();
         try{
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                result = rs.getString(column);
+                result.add(rs.getString(column));
             }
+            result.remove(0);
         }catch (SQLException e) {
             LOGGER.log(Level.SEVERE, e.getMessage());
         }finally {

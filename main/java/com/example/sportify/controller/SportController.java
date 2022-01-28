@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +22,8 @@ public class SportController extends Controller{
     /** It's called to load the sport description from DB*/
     public void loadDescriptionFromDB(String sport){
         DAO objDAO = mainApp.getDAO();
-        String rs = objDAO.checkData("SELECT * FROM sport WHERE '"+ sport + "' = sport.name", "description");
+        List<String> list = objDAO.checkData("SELECT * FROM sport WHERE '"+ sport + "' = sport.name", "description");
+        String rs = list.get(list.size() - 1);
         this.loadingSport(sport, rs);
     }
 

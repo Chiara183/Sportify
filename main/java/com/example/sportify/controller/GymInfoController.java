@@ -23,6 +23,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,9 +83,10 @@ public class GymInfoController extends Controller {
         ObservableList<String> sports = FXCollections.observableArrayList();
         assert this.mainApp != null;
         DAO objDAO = this.mainApp.getDAO();
-        String rs = objDAO.checkData(
+        List<String> list = objDAO.checkData(
                 SELECT +
                         "FROM sport ", "name");
+        String rs = list.get(list.size() - 1);
 
         sports.add(rs);
 
@@ -340,16 +342,18 @@ public class GymInfoController extends Controller {
         Runnable task1 = () -> Platform.runLater(() -> {
 
                     DAO objDAO = this.mainApp.getDAO();
-                    String rs = objDAO.checkData(
+                    List<String> list = objDAO.checkData(
                             SELECT +
                                     "FROM gym " +
                                     "WHERE gym.name = \"" + name + "\"", "phone");
+                    String rs = list.get(list.size() - 1);
                     if (Objects.equals(rs, "null")) {
                         DAO objDAO1 = this.mainApp.getDAO();
-                        String rs1 = objDAO1.checkData(
+                        List<String> list1 = objDAO1.checkData(
                                 SELECT +
                                         "FROM gym " +
                                         "WHERE gym.name = \"" + name + "\"", "address");
+                        String rs1 = list1.get(list1.size() - 1);
                         graphicController.setGymDescription(
                                 "ADDRESS: " + rs1 +
                                         "\n\nTELEPHONE: \\\\");

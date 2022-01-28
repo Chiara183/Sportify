@@ -182,6 +182,7 @@ public class SportQuizController extends Controller {
             SportQuizController controller = new SportQuizController();
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
+            controller.setUser(this.user);
             controller.setMainApp(this.mainApp);
             controller.setMenu(this.menu);
         } catch (IOException e) {

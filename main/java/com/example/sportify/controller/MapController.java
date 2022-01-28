@@ -11,6 +11,7 @@ import javafx.scene.Cursor;
 
 import javax.swing.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
 public class MapController extends Controller{
 
     private static final String SELECTALL = "SELECT * " + "FROM user " +
-            "LEFT JOIN gym ON gym.owner = user.username " +
+            "LEFT JOIN `gym` ON `gym`.owner = user.username " +
             "WHERE user.ruolo = \"gym\"";
     /** Reference to graphic controller*/
     private MapGraphicController graphicController;
@@ -154,15 +155,22 @@ public class MapController extends Controller{
 
     /** load the coordinate of all gym*/
     private void loadCoordinate() {
-            DAO objDAO = mainApp.getDAO();
-            String rs = objDAO.checkData(SELECTALL, "latitude");
-            String rs1 = objDAO.checkData(SELECTALL, "longitude");
-            String rs2 = objDAO.checkData(SELECTALL, "name");
+        DAO objDAO = mainApp.getDAO();
+        List<String> list = objDAO.checkData(SELECTALL, "latitude");
+        List<String> list1 = objDAO.checkData(SELECTALL, "longitude");
+        List<String> list2 = objDAO.checkData(SELECTALL, "name");
 
+        int i = 0;
+        for (String rs2 : list2) {
+            String rs = list.get(i);
+            String rs1 = list1.get(i);
+            //System.out.println("Coordinate " + i + " of gym " + rs2 + " : " + rs + ", " + rs1 + ";");
             Coordinate gym = new Coordinate(
-                        Double.parseDouble(rs),
-                        Double.parseDouble(rs1));
-                this.allGym.put(gym, rs2);
+                    Double.parseDouble(rs),
+                    Double.parseDouble(rs1));
+            this.allGym.put(gym, rs2);
+            i++;
+        }
 
     }
 
