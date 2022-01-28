@@ -1,6 +1,5 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.DAO;
 import com.example.sportify.controller.graphic.FindGymGraphicController;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.MapGraphicController;

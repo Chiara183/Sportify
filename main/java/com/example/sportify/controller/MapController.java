@@ -10,8 +10,6 @@ import com.sothawo.mapjfx.event.MarkerEvent;
 import javafx.scene.Cursor;
 
 import javax.swing.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.logging.Level;

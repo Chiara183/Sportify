@@ -1,25 +1,18 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.Adapter;
-import com.example.sportify.MainApp;
 import com.example.sportify.Submit;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.SignUpGraphicController;
-import com.example.sportify.controller.graphic.SignUpGymGraphicController;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
-import javafx.scene.layout.Pane;
 
-import javax.swing.*;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 public class SignUpController extends AccessController {
 
     /** Reference to graphic controller*/
     private SignUpGraphicController graphicController;
-    private Submit submit;
+    private final Submit submit;
 
     /** The constructor.*/
     public SignUpController() {

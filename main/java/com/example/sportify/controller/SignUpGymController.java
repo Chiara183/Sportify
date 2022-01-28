@@ -22,8 +22,8 @@ public class SignUpGymController extends AccessController {
 
     /** Reference to graphic controller*/
     private SignUpGymGraphicController graphicController;
-    private MainApp mainApp;
-    private Submit submit;
+    private final MainApp mainApp;
+    private final Submit submit;
 
     /** The constructor.*/
     public SignUpGymController(MainApp mainApp) {
@@ -69,6 +69,7 @@ public class SignUpGymController extends AccessController {
             LOGGER.info(e.toString());
         }
         try{
+            assert connection != null;
             ps = connection.prepareStatement("SELECT * " +
                     "FROM user " +
                     "LEFT JOIN gym ON gym.owner = user.username " +

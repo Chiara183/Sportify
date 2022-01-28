@@ -213,30 +213,32 @@ public class GymInfoController extends Controller {
         try {
             connection = new DBConnection().getConnection();
         } catch (FileNotFoundException e) {
-            LOGGER.info(e.toString());        }
+            LOGGER.info(e.toString());
+        }
+        ResultSet rs;
         PreparedStatement ps = null;
-            ResultSet rs;
-            String query = SELECT +
-                    "FROM course " +
-                    "WHERE course.gym = \"?\"";
-            try{
-                ps = connection.prepareStatement(query);
-                ps.setString(1, this.gym);
-                rs = ps.executeQuery();
-                while(rs.next()){
-                    loadReview(rs);
-                }
-            }catch (SQLException e) {
-                LOGGER.log(Level.SEVERE, e.getMessage());
-            }finally {
-                try {
-                    if (ps != null) {
-                        ps.close();
-                    }
-                } catch (SQLException e) {
-                    LOGGER.info(e.toString());
-                }
+        String query = SELECT +
+                "FROM course " +
+                "WHERE course.gym = \"?\"";
+        try{
+            assert connection != null;
+            ps = connection.prepareStatement(query);
+            ps.setString(1, this.gym);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                loadReview(rs);
             }
+        }catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, e.getMessage());
+        }finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.info(e.toString());
+            }
+        }
         if(graphicController.getSizeReview()<1) {
             Label labelNotFound = new Label("There are no reviews");
             labelNotFound.setStyle(FONT);
@@ -282,6 +284,7 @@ public class GymInfoController extends Controller {
                 "FROM course " +
                 "WHERE course.gym = \"?\"";
         try{
+            assert connection != null;
             ps = connection.prepareStatement(query);
             ps.setString(1, this.gym);
             rs = ps.executeQuery();
@@ -357,7 +360,7 @@ public class GymInfoController extends Controller {
         task4.setOnSucceeded(e -> graphicController.gymDescription_setCursor(Cursor.DEFAULT));
         task4.setOnFailed(e -> graphicController.gymDescription_setCursor(Cursor.DEFAULT));
 
-        /** Set review*/
+        // Set review
         Runnable task2 = () -> Platform.runLater(this::downloadReview);
         Task<Void> task5 = createTask(task2);
         task5.setOnRunning(e -> graphicController.review_setCursor(Cursor.WAIT));
@@ -369,7 +372,7 @@ public class GymInfoController extends Controller {
             graphicController.setReview(labelNotFound);
         });
 
-        /** Set course*/
+        // Set course
         Runnable task3 = () -> Platform.runLater(this::downloadCourse);
         Task<Void> task6 = createTask(task3);
         task6.setOnRunning(e -> graphicController.course_setCursor(Cursor.WAIT));

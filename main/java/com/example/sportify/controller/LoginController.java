@@ -3,7 +3,6 @@ package com.example.sportify.controller;
 import com.example.sportify.Submit;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymInfoGraphicController;
-import com.example.sportify.controller.graphic.LoginGraphicController;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
@@ -17,7 +16,7 @@ public class LoginController extends AccessController{
     /** Set up the external stage*/
     private Stage externalStage;
 
-    private Submit submit;
+    private final Submit submit;
 
     /** The constructor.*/
     public LoginController() {
