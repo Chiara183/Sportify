@@ -6,7 +6,6 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-DECLARE administrator CONSTANT VARCHAR(13) := 'administrator';
 -- -----------------------------------------------------
 -- Schema sql11462781
 -- -----------------------------------------------------
@@ -25,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `sql11462781`.`user` (
   `password` VARCHAR(32) NOT NULL,
   `first_name` VARCHAR(45) NULL DEFAULT NULL,
   `last_name` VARCHAR(45) NULL DEFAULT NULL,
-  `ruolo` ENUM(administrator 'gym', 'user') NOT NULL,
+  `ruolo` ENUM('administrator', 'gym', 'user') NOT NULL,
   `birthday` DATE NULL,
   PRIMARY KEY (`username`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))
@@ -113,7 +112,7 @@ DELIMITER $$
 USE `sql11462781`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `login`(in var_username varchar(45), in var_pass varchar(45), out var_role INT)
 BEGIN
-	declare var_user_role ENUM(administrator, 'gym');
+	declare var_user_role ENUM('administrator', 'gym');
     
     select `ruolo` from `user`
 		where `username` = var_username
@@ -121,7 +120,7 @@ BEGIN
         into var_user_role;
         
 	-- See the corresponding enum in the client
-		if var_user_role = administrator then
+		if var_user_role = 'administrator' then
 			set var_role = 1;
 		elseif var_user_role = 'gym' then
 			set var_role = 2;
