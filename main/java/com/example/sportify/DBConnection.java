@@ -37,7 +37,7 @@ public class DBConnection {
                 throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
             }
 
-            /** get the property value and print it out*/
+            // get the property value and print it out
             String user = prop.getProperty("user");
             String password = prop.getProperty("password");
             String url = prop.getProperty("url");

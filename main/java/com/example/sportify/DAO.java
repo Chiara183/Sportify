@@ -31,7 +31,7 @@ public class DAO {
     /** It's called to get data from DB*/
     public String checkData(String query, String column){
         PreparedStatement ps = null;
-        ResultSet rs = null;
+        ResultSet rs;
         String result = "";
         try{
             ps = connection.prepareStatement(query);

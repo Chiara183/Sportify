@@ -79,24 +79,25 @@ public class IO {
         } catch (FileNotFoundException e) {
             LOGGER.info(e.toString());        }
         try{
-                ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");
-                rs = ps.executeQuery();
-                while (rs.next()) {
-                    Map<String, String> gymAccount = getInfoUser(rs);
-                    String userValue = rs.getString(USERNAME);                    //get user username
-                    map.put(userValue, gymAccount);
-                }
-            }catch (SQLException e) {
-                LOGGER.log(Level.SEVERE, e.getMessage());
-            }finally {
-                try {
-                    if (ps != null) {
-                        ps.close();
-                    }
-                } catch (SQLException e) {
-                    LOGGER.info(e.toString());
-                }
+            assert connection != null;
+            ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Map<String, String> gymAccount = getInfoUser(rs);
+                String userValue = rs.getString(USERNAME);                    //get user username
+                map.put(userValue, gymAccount);
             }
+        }catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, e.getMessage());
+        }finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.info(e.toString());
+            }
+        }
         return map;
     }
 
