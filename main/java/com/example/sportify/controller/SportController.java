@@ -53,7 +53,7 @@ public class SportController extends Controller{
     }
 
     /** It's called to load the sport from DB*/
-    public void loadingSport(String sport, String descript) {
+    public void loadingSport(String sport, String description) {
         this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
         try {
@@ -74,7 +74,7 @@ public class SportController extends Controller{
             controller.setMainApp(this.mainApp);
             controller.setMenu(this.menu);
             sportGraphicController.setSportName(sport);
-            sportGraphicController.setSportDescription(descript);
+            sportGraphicController.setSportDescription(description);
         } catch (IOException e) {
             Logger logger = Logger.getLogger(SportController.class.getName());
             logger.log(Level.SEVERE, e.getMessage());        }
