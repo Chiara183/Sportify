@@ -1,6 +1,5 @@
 package com.example.sportify.controller.graphic;
 
-import com.example.sportify.DAO;
 import com.example.sportify.controller.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
