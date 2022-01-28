@@ -16,8 +16,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Map;
 import java.util.Objects;
@@ -107,7 +105,7 @@ public abstract class OAuthAuthenticator {
                             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                             String date = timestamp.toString();
                             date = date.substring(0,10);
-                            Map<String, String> account = mainApp.createAccount(rs, password, firstName, lastName, email, date);
+                            Map<String, String> account = mainApp.createAccount(username, password, firstName, lastName, email, date);
                             account.put("ruolo", "user");
                             submit.signUp(account);
                         }
@@ -216,7 +214,6 @@ public abstract class OAuthAuthenticator {
             }
 
             JSONObject json = new JSONObject(fullResponse);
-            assert json != null;
             return json.getString("access_token");
         } catch (IOException e) {
             Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());

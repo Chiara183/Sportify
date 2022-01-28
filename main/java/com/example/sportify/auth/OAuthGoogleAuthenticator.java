@@ -1,7 +1,6 @@
 package com.example.sportify.auth;
 
 import com.example.sportify.MainApp;
-import com.example.sportify.auth.OAuthType;
 
 /**
  * Created by max on 13/08/2017.
