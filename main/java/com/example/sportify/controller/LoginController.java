@@ -1,6 +1,5 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.Submit;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymInfoGraphicController;
 import javafx.scene.control.Alert;
@@ -16,12 +15,9 @@ public class LoginController extends AccessController{
     /** Set up the external stage*/
     private Stage externalStage;
 
-    private final Submit submit;
-
     /** The constructor.*/
     public LoginController() {
         this.type = ControllerType.LOGIN;
-        this.submit = new Submit(this.mainApp);
     }
 
     /** It's called to set external stage.*/
