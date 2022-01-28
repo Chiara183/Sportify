@@ -24,14 +24,6 @@ public class SportController extends Controller{
     public void loadDescriptionFromDB(String sport){
         DAO objDAO = mainApp.getDAO();
         String rs = objDAO.checkData("SELECT * FROM sport WHERE '"+ sport + "' = sport.name", "description");
-        /*String description  = null;
-        try {
-            while(rs.next()) {
-                description = rs.getString("description");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
         this.loadingSport(sport, rs);
     }
 

@@ -209,12 +209,6 @@ public class GymInfoController extends Controller {
 
     /** Download the review*/
     private void downloadReview(){
-        //DAO objDAO = this.mainApp.getDAO();
-        /*ResultSet rs = objDAO.checkData(
-                SELECT +
-                        "FROM review " +
-                        "WHERE review.gym = \"" + this.gym + "\"");
-        loadReview(rs);*/
         Connection connection = null;
         try {
             connection = new DBConnection().getConnection();
@@ -347,21 +341,6 @@ public class GymInfoController extends Controller {
                             SELECT +
                                     "FROM gym " +
                                     "WHERE gym.name = \"" + name + "\"", "phone");
-                /*if (rs.next()) {
-                    if(Objects.equals(rs.getString("phone"), "null")){
-                        graphicController.setGymDescription(
-                                "ADDRESS: " + rs.getString("address") +
-                                        "\n\nTELEPHONE: \\\\");
-                    } else {
-                        graphicController.setGymDescription(
-                                "ADDRESS: " + rs.getString("address") +
-                                        "\n\nTELEPHONE: " + rs.getString("phone"));
-                    }
-                }
-            } catch (SQLException e) {
-                Logger logger = Logger.getLogger(GymInfoController.class.getName());
-                logger.log(Level.SEVERE, e.getMessage());            }
-        });*/
                     if (Objects.equals(rs, "null")) {
                         DAO objDAO1 = this.mainApp.getDAO();
                         String rs1 = objDAO1.checkData(
@@ -378,7 +357,7 @@ public class GymInfoController extends Controller {
         task4.setOnSucceeded(e -> graphicController.gymDescription_setCursor(Cursor.DEFAULT));
         task4.setOnFailed(e -> graphicController.gymDescription_setCursor(Cursor.DEFAULT));
 
-        // Set review
+        /** Set review*/
         Runnable task2 = () -> Platform.runLater(this::downloadReview);
         Task<Void> task5 = createTask(task2);
         task5.setOnRunning(e -> graphicController.review_setCursor(Cursor.WAIT));
@@ -390,7 +369,7 @@ public class GymInfoController extends Controller {
             graphicController.setReview(labelNotFound);
         });
 
-        // Set course
+        /** Set course*/
         Runnable task3 = () -> Platform.runLater(this::downloadCourse);
         Task<Void> task6 = createTask(task3);
         task6.setOnRunning(e -> graphicController.course_setCursor(Cursor.WAIT));

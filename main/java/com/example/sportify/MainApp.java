@@ -25,6 +25,8 @@ import java.util.logging.Logger;
 
 public class MainApp{
 
+    private static final Logger LOGGER = Logger.getLogger(MainApp.class.getName());
+
     /** The variable of all application*/
     private Stage primaryStage;
     private BorderPane rootLayout;
@@ -84,7 +86,8 @@ public class MainApp{
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int) screenSize.getWidth();
         int height = (int) screenSize.getHeight();
-        System.out.println("Dimension of screen is: " + width + "x" + height);
+        String dim = "Dimension of screen is: " + width + "x" + height;
+        LOGGER.log(Level.INFO, dim);
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();

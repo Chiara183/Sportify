@@ -71,8 +71,6 @@ public class IO {
     /** It's called to read users in the DB.*/
     public Map<String, Map<String, String>> read(){
         HashMap<String, Map<String, String>> map = new HashMap<>();
-            /*DAO objDAO = mainApp.getDAO();
-            ResultSet rs = objDAO.checkData("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");*/
             PreparedStatement ps = null;
             ResultSet rs;
         Connection connection = null;

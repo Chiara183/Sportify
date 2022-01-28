@@ -100,13 +100,6 @@ public abstract class OAuthAuthenticator {
                                 "SELECT * " +
                                         "FROM user " +
                                         "WHERE user.email = \"" + email + "\"", "username");
-                        /*try {
-                            if (rs.next()) {
-                                username = rs.getString("username");
-                            }
-                        }catch (SQLException e){
-                            Logger logger1 = Logger.getLogger(OAuthAuthenticator.class.getName());
-                            logger1.log(Level.SEVERE, e.getMessage());                        }*/
                         if (!submit.exist(rs)) {
                             String firstName = accessedJsonData.getString("given_name");
                             String lastName = accessedJsonData.getString("family_name");

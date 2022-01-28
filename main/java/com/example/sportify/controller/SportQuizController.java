@@ -1,6 +1,5 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.SportQuizGraphicController;
@@ -25,6 +24,8 @@ public class SportQuizController extends Controller {
     private  static boolean buttonGroup = false;
     private  static boolean buttonSingle = false;
 
+    private final Object lockObj = new Object();
+
     /** The constructor.*/
     public SportQuizController(){
         this.type = ControllerType.SPORT_QUIZ;
@@ -32,29 +33,37 @@ public class SportQuizController extends Controller {
 
     public void takeQuiz(String b) {
         if (Objects.equals(b, "age1")) {
-            buttonAge1 = true;
-            this.sportQuizEnv();
+            synchronized (lockObj) {
+            buttonAge1 = true;}
+            sportQuizEnv();
         } else if (Objects.equals(b, "age2")) {
-            buttonAge2 = true;
-            this.sportQuizEnv();
+            synchronized (lockObj) {
+            buttonAge2 = true;}
+            sportQuizEnv();
         } else if (Objects.equals(b, "age3")) {
-            buttonAge3 = true;
-            this.sportQuizEnv();
+            synchronized (lockObj) {
+            buttonAge3 = true;}
+            sportQuizEnv();
         } else if (Objects.equals(b, "age4")) {
-            buttonAge4 = true;
-            this.sportQuizEnv();
+            synchronized (lockObj) {
+            buttonAge4 = true;}
+            sportQuizEnv();
         } else if (Objects.equals(b, "indoor")) {
-            buttonIndoor = true;
-            this.sportQuizType();
+            synchronized (lockObj) {
+            buttonIndoor = true;}
+            sportQuizType();
         } else if (Objects.equals(b, "outdoor")) {
-            buttonOutdoor = true;
-            this.sportQuizType();
+            synchronized (lockObj) {
+            buttonOutdoor = true;}
+           sportQuizType();
         } else if (Objects.equals(b, "group")) {
-            buttonGroup = true;
-            this.quizLogic();
+            synchronized (lockObj) {
+            buttonGroup = true;}
+            quizLogic();
         } else if (Objects.equals(b, "single")) {
-            buttonSingle = true;
-            this.quizLogic();
+            synchronized (lockObj) {
+            buttonSingle = true;}
+            quizLogic();
         } else if (Objects.equals(b, "endQuiz") || Objects.equals(b, "nextQuiz") || Objects.equals(b, "nextQuizEnv")) {
             warning();
         }

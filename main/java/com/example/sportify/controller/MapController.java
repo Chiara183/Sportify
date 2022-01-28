@@ -19,6 +19,9 @@ import java.util.logging.Logger;
 
 public class MapController extends Controller{
 
+    private static final String SELECTALL = "SELECT * " + "FROM user " +
+            "LEFT JOIN gym ON gym.owner = user.username " +
+            "WHERE user.ruolo = \"gym\"";
     /** Reference to graphic controller*/
     private MapGraphicController graphicController;
 
@@ -154,21 +157,9 @@ public class MapController extends Controller{
     /** load the coordinate of all gym*/
     private void loadCoordinate() {
             DAO objDAO = mainApp.getDAO();
-            String rs = objDAO.checkData(
-                    "SELECT * " +
-                            "FROM user " +
-                            "LEFT JOIN gym ON gym.owner = user.username " +
-                            "WHERE user.ruolo = \"gym\"", "latitude");
-            String rs1 = objDAO.checkData(
-                    "SELECT * " +
-                            "FROM user " +
-                            "LEFT JOIN gym ON gym.owner = user.username " +
-                            "WHERE user.ruolo = \"gym\"", "longitude");
-            String rs2 = objDAO.checkData(
-                    "SELECT * " +
-                            "FROM user " +
-                            "LEFT JOIN gym ON gym.owner = user.username " +
-                            "WHERE user.ruolo = \"gym\"", "name");
+            String rs = objDAO.checkData(SELECTALL, "latitude");
+            String rs1 = objDAO.checkData(SELECTALL, "longitude");
+            String rs2 = objDAO.checkData(SELECTALL, "name");
 
             Coordinate gym = new Coordinate(
                         Double.parseDouble(rs),
