@@ -2,12 +2,31 @@ package com.example.sportify.controller;
 
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymInfoGraphicController;
+import com.example.sportify.controller.graphic.LoginGraphicController;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.util.Objects;
 
 public class LoginController extends AccessController{
+
+    /** Reference to graphic controller*/
+    private LoginGraphicController graphicController;
+
+    /** Delay error login variable, initialize at 3*/
+    int delay = 3;
+    int seconds = delay;
+    Label label = new Label();
 
     /** Is true when login is in external window*/
     private boolean external;
@@ -78,12 +97,56 @@ public class LoginController extends AccessController{
             alert.setHeaderText("You wrote wrong username or password");
             alert.setContentText("Please enter valid username and password or Signup");
             alert.showAndWait();
+            graphicController.getUsernameField().setDisable(true);
+            graphicController.getPassField().setDisable(true);
+            graphicController.getPasswordField().setDisable(true);
+            graphicController.getSubmitButton().setDisable(true);
+            Stage stage = new Stage();
+            stage.setAlwaysOnTop(true);
+            stage.getIcons().add(
+                    new Image(
+                            Objects.requireNonNull(
+                                    mainApp.getClass().getResourceAsStream("Images/Sportify icon.png"))));
+            stage.initOwner(mainApp.getPrimaryStage());
+            stage.setResizable(false);
+            stage.setTitle("WRONG LOGIN");
+            stage.initStyle(StageStyle.UNDECORATED);
+            label.setTextFill(Color.BLACK);
+            label.setFont(Font.font(20));
+            seconds = delay;
+            label.setText("Waiting... " + seconds);
+            doTime();
+            StackPane root = new StackPane();
+            root.getChildren().add(label);
+            stage.setScene(new Scene(root,300, 70));
+            stage.showAndWait();
+            delay = delay*delay;
+            graphicController.getUsernameField().setDisable(false);
+            graphicController.getPassField().setDisable(false);
+            graphicController.getPasswordField().setDisable(false);
+            graphicController.getSubmitButton().setDisable(false);
         }
+    }
+
+    private void doTime(){
+        Timeline time = new Timeline();
+        time.setCycleCount(Timeline.INDEFINITE);
+        KeyFrame frame = new KeyFrame(Duration.seconds(delay), event -> {
+            seconds--;
+            label.setText("Waiting... " + seconds);
+            if(seconds<=0){
+                Stage stage = (Stage)label.getParent().getScene().getWindow();
+                stage.close();
+                time.stop();
+            }
+        });
+        time.getKeyFrames().add(frame);
+        time.playFromStart();
     }
 
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        /* Reference to graphic controller*/
+        this.graphicController = (LoginGraphicController) graphicController;
     }
 }
 

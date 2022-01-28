@@ -4,6 +4,7 @@ import com.example.sportify.auth.OAuthGoogleAuthenticator;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.LoginController;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class LoginGraphicController extends AccessGraphicController{
@@ -12,8 +13,26 @@ public class LoginGraphicController extends AccessGraphicController{
     @FXML
     private TextField username;
 
+    /** All the button of the interface*/
+    @FXML
+    private Button submit;
+
     /** Reference to controller*/
     private LoginController controller;
+
+    /** Get method*/
+    public TextField getUsernameField(){
+        return this.username;
+    }
+    public TextField getPassField(){
+        return this.passText;
+    }
+    public TextField getPasswordField(){
+        return this.password;
+    }
+    public Button getSubmitButton(){
+        return this.submit;
+    }
 
     /** The action of the buttons*/
     @FXML
