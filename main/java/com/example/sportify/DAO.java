@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 public class DAO {
 
+    private static final Logger LOGGER  =   Logger.getLogger(DAO.class.getName());
     /** The main connection of the project*/
     Connection connection = null;
 
@@ -39,16 +40,14 @@ public class DAO {
                 result = rs.getString(column);
             }
         }catch (SQLException e) {
-            Logger logger = Logger.getLogger(DAO.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }finally {
             try {
                 if (ps != null) {
                     ps.close();
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
-            }
+                LOGGER.info(e.toString());            }
         }
         return result;
     }
@@ -60,14 +59,12 @@ public class DAO {
             ps = connection.prepareStatement(query);
             ps.execute();
         }catch (SQLException e){
-            Logger logger = Logger.getLogger(DAO.class.getName());
-            logger.log(Level.WARNING, e.getMessage());
+            LOGGER.log(Level.WARNING, e.getMessage());
         }finally{
             try {
                 Objects.requireNonNull(ps).close();
             } catch (SQLException e) {
-                e.printStackTrace();
-            }
+                LOGGER.info(e.toString());            }
         }
     }
 }

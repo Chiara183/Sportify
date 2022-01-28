@@ -6,6 +6,7 @@ import com.example.sportify.controller.graphic.SignUpGymGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SignUpGymController extends AccessController {
+
+    private static final Logger LOGGER = Logger.getLogger(SignUpGymController.class.getName());
 
     /** Reference to graphic controller*/
     private SignUpGymGraphicController graphicController;
@@ -50,8 +53,7 @@ public class SignUpGymController extends AccessController {
             controller.setSubmit(this.submit);
 
         } catch (IOException e) {
-            Logger logger = Logger.getLogger(SignUpGymController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
+            LOGGER.log(Level.SEVERE, e.getMessage());        }
     }
 
     public void submitActionSignUpGym(String gymValue, String address, Map<String, Double> coords) {
@@ -60,7 +62,12 @@ public class SignUpGymController extends AccessController {
         Map<String, String> gymAccount;
         PreparedStatement ps = null;
         ResultSet rs;
-        Connection connection  = new DBConnection().getConnection();
+        Connection connection  = null;
+        try {
+            connection = new DBConnection().getConnection();
+        } catch (FileNotFoundException e) {
+            LOGGER.info(e.toString());
+        }
         try{
             ps = connection.prepareStatement("SELECT * " +
                     "FROM user " +
@@ -75,15 +82,14 @@ public class SignUpGymController extends AccessController {
 
         this.submit.signUp(gymAccount);
         }catch (SQLException e) {
-            Logger logger = Logger.getLogger(DAO.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }finally {
             try {
                 if (ps != null) {
                     ps.close();
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.info(e.toString());
             }
         }
     }

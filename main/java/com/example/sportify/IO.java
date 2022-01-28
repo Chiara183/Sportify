@@ -1,5 +1,6 @@
 package com.example.sportify;
 
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.util.logging.Logger;
 
 public class IO {
 
+    private static final Logger LOGGER = Logger.getLogger(IO.class.getName());
     /** Reference to MainApp.*/
     private MainApp mainApp;
     private static final String USERNAME = "username";
@@ -73,8 +75,12 @@ public class IO {
             ResultSet rs = objDAO.checkData("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");*/
             PreparedStatement ps = null;
             ResultSet rs;
-            Connection connection = new DBConnection().getConnection();
-            try{
+        Connection connection = null;
+        try {
+            connection = new DBConnection().getConnection();
+        } catch (FileNotFoundException e) {
+            LOGGER.info(e.toString());        }
+        try{
                 ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");
                 rs = ps.executeQuery();
                 while (rs.next()) {
@@ -83,15 +89,14 @@ public class IO {
                     map.put(userValue, gymAccount);
                 }
             }catch (SQLException e) {
-                Logger logger = Logger.getLogger(IO.class.getName());
-                logger.log(Level.SEVERE, e.getMessage());
+                LOGGER.log(Level.SEVERE, e.getMessage());
             }finally {
                 try {
                     if (ps != null) {
                         ps.close();
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    LOGGER.info(e.toString());
                 }
             }
         return map;
@@ -129,8 +134,7 @@ public class IO {
                 gymAccount.put(PHONE, phone);                                            //put user phone in userAccount
                 gymAccount.put(RUOLO, ruolo);                                            //put user ruolo in userAccount
         } catch (SQLException e){
-            Logger logger = Logger.getLogger(IO.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
+            LOGGER.log(Level.SEVERE, e.getMessage());        }
         return gymAccount;
     }
 }

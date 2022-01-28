@@ -5,15 +5,22 @@ import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 public class MainAppLauncher extends Application {
+    private static final Logger LOGGER = Logger.getLogger(MainAppLauncher.class.getName());
     @Override
     public void start(Stage primaryStage) {
         Projection projection = getParameters().getUnnamed().contains("wgs84")
                 ? Projection.WGS_84 : Projection.WEB_MERCATOR;
         MainApp mainApp = new MainApp();
-        mainApp.getDAO().setConnection(new DBConnection().getConnection());
+        try {
+            mainApp.getDAO().setConnection(new DBConnection().getConnection());
+        } catch (FileNotFoundException e) {
+            LOGGER.info(e.toString());
+        }
         mainApp.setSubmit(new Submit(mainApp));
         mainApp.setPrimaryStage(primaryStage);
         mainApp.setProjection(projection);

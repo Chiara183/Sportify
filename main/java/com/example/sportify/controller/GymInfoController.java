@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import javax.swing.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,6 +34,7 @@ public class GymInfoController extends Controller {
 
     private static final String SELECT = "SELECT * ";
     private static final String FONT = "-fx-font-weight: bold;";
+    private static final Logger LOGGER = Logger.getLogger(GymInfoController.class.getName());
 
     /** The name of the gym*/
     private String gym;
@@ -202,8 +204,7 @@ public class GymInfoController extends Controller {
                 }
             }
         }catch (SQLException e){
-            Logger logger = Logger.getLogger(GymInfoController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
+            LOGGER.log(Level.SEVERE, e.getMessage());        }
     }
 
     /** Download the review*/
@@ -214,27 +215,32 @@ public class GymInfoController extends Controller {
                         "FROM review " +
                         "WHERE review.gym = \"" + this.gym + "\"");
         loadReview(rs);*/
-            Connection connection = new DBConnection().getConnection();
-            PreparedStatement ps = null;
-            ResultSet rs = null;
+        Connection connection = null;
+        try {
+            connection = new DBConnection().getConnection();
+        } catch (FileNotFoundException e) {
+            LOGGER.info(e.toString());        }
+        PreparedStatement ps = null;
+            ResultSet rs;
+            String query = SELECT +
+                    "FROM course " +
+                    "WHERE course.gym = \"?\"";
             try{
-                ps = connection.prepareStatement(SELECT +
-                        "FROM course " +
-                        "WHERE course.gym = \"" + this.gym + "\"");
+                ps = connection.prepareStatement(query);
+                ps.setString(1, this.gym);
                 rs = ps.executeQuery();
                 while(rs.next()){
                     loadReview(rs);
                 }
             }catch (SQLException e) {
-                Logger logger = Logger.getLogger(DAO.class.getName());
-                logger.log(Level.SEVERE, e.getMessage());
+                LOGGER.log(Level.SEVERE, e.getMessage());
             }finally {
                 try {
                     if (ps != null) {
                         ps.close();
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    LOGGER.info(e.toString());
                 }
             }
         if(graphicController.getSizeReview()<1) {
@@ -265,33 +271,38 @@ public class GymInfoController extends Controller {
                 graphicController.setCourse(label);
             }
         } catch (SQLException e){
-            Logger logger = Logger.getLogger(GymInfoController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
+            LOGGER.log(Level.SEVERE, e.getMessage());        }
     }
 
     /** Download Course*/
     private void downloadCourse(){
-        Connection connection = new DBConnection().getConnection();
+        Connection connection = null;
+        try {
+            connection = new DBConnection().getConnection();
+        } catch (FileNotFoundException e) {
+            LOGGER.info(e.toString());
+        }
         PreparedStatement ps = null;
-        ResultSet rs = null;
+        ResultSet rs;
+        String query = SELECT +
+                "FROM course " +
+                "WHERE course.gym = \"?\"";
         try{
-            ps = connection.prepareStatement(SELECT +
-                    "FROM course " +
-                    "WHERE course.gym = \"" + this.gym + "\"");
+            ps = connection.prepareStatement(query);
+            ps.setString(1, this.gym);
             rs = ps.executeQuery();
             while(rs.next()){
                 loadCourse(rs);
             }
         }catch (SQLException e) {
-            Logger logger = Logger.getLogger(DAO.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }finally {
             try {
                 if (ps != null) {
                     ps.close();
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.info(e.toString());
             }
         }
         if(graphicController.getSizeCourse()<2) {
@@ -418,8 +429,7 @@ public class GymInfoController extends Controller {
             this.mainApp.setSearchCache(this.searchCache);
             setGym(name);
         } catch (IOException e) {
-            Logger logger = Logger.getLogger(GymInfoController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
+            LOGGER.log(Level.SEVERE, e.getMessage());        }
     }
 
     /** Is called to set graphic controller*/

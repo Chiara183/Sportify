@@ -2,7 +2,11 @@ package com.example.sportify;
 
 import javafx.scene.control.Alert;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,21 +15,36 @@ public class DBConnection {
     private static final String ERROR = "Error";
     private static final String ERROR_DETECTED = "Error detected!";
     private int count = 0;
+    private static final Logger LOGGER = Logger.getLogger(DBConnection.class.getName());
 
     /**
      * It's called to create a new connection to the DB.
      * @return null if it gives an error
      */
-    public Connection getConnection(){
+    public Connection getConnection() throws FileNotFoundException {
         Connection connection = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(
-                    "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11462781",
-                    "sql11462781", "SK44uxGzTJ");
+
+            Properties prop = new Properties();
+            String propFileName = "server.properties";
+
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+            if (inputStream != null) {
+                prop.load(inputStream);
+            } else {
+                throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            }
+
+            /** get the property value and print it out*/
+            String user = prop.getProperty("user");
+            String password = prop.getProperty("password");
+            String url = prop.getProperty("url");
+            inputStream.close();
+            connection = DriverManager.getConnection(url, user, password);
         }catch (ClassNotFoundException e){
-            Logger logger = Logger.getLogger(DBConnection.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+            LOGGER.log(Level.SEVERE, e.getMessage());
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(ERROR);
             alert.setHeaderText(ERROR_DETECTED);
@@ -46,9 +65,10 @@ public class DBConnection {
                 alert.setHeaderText(ERROR_DETECTED);
                 alert.setContentText("Connection to DB failed again. Check if there is an error in url, user or password.");
                 alert.showAndWait();
-                Logger logger = Logger.getLogger(DBConnection.class.getName());
-                logger.log(Level.SEVERE, e.getMessage());
+                LOGGER.log(Level.SEVERE, e.getMessage());
             }
+        } catch (IOException e) {
+            LOGGER.info(e.toString());
         }
         return connection;
     }
