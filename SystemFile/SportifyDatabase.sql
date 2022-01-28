@@ -18,13 +18,15 @@ USE `sql11462781` ;
 -- -----------------------------------------------------
 -- Table `sql11462781`.`user`
 -- -----------------------------------------------------
+DECLARE
+    admin CONSTANT VARCHAR(13) = 'administrator';
 CREATE TABLE IF NOT EXISTS `sql11462781`.`user` (
   `username` VARCHAR(16) NOT NULL,
   `email` VARCHAR(45) NULL,
   `password` VARCHAR(32) NOT NULL,
   `first_name` VARCHAR(45) NULL DEFAULT NULL,
   `last_name` VARCHAR(45) NULL DEFAULT NULL,
-  `ruolo` ENUM('administrator', 'gym', 'user') NOT NULL,
+  `ruolo` ENUM(admin, 'gym', 'user') NOT NULL,
   `birthday` DATE NULL,
   PRIMARY KEY (`username`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))
@@ -112,7 +114,7 @@ DELIMITER $$
 USE `sql11462781`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `login`(in var_username varchar(45), in var_pass varchar(45), out var_role INT)
 BEGIN
-	declare var_user_role ENUM('administrator', 'gym');
+	declare var_user_role ENUM(admin, 'gym');
     
     select `ruolo` from `user`
 		where `username` = var_username
@@ -120,7 +122,7 @@ BEGIN
         into var_user_role;
         
 	-- See the corresponding enum in the client
-		if var_user_role = 'administrator' then
+		if var_user_role = admin then
 			set var_role = 1;
 		elseif var_user_role = 'gym' then
 			set var_role = 2;

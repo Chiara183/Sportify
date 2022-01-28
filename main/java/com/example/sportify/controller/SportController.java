@@ -85,6 +85,6 @@ public class SportController extends Controller{
     /** Is called to set graphic  controller*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        // TODO Reference to graphic controller
+        //Do nothing because it doesn't need to, just override operation
     }
 }

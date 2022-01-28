@@ -24,32 +24,10 @@ public class SportGraphicController implements GraphicController{
         controller.getMainApp().setUser(controller.getUser());
         controller.getMainApp().showHomeOverview();
     }
+
     @FXML
     private void getInfo(){
-        if(this.sportName.getText().equals("Volleyball") ){
-            controller.loadDescriptionFromDB("Volleyball");
-        }
-        if(this.sportName.getText().equals("Trekking")){
-            controller.loadDescriptionFromDB("Trekking");
-        }
-        if(this.sportName.getText().equals("Tennis")){
-            controller.loadDescriptionFromDB("Tennis");
-        }
-        if(this.sportName.getText().equals("Swimming")){
-            controller.loadDescriptionFromDB("Swimming");
-        }
-        if(this.sportName.getText().equals("Golf")){
-            controller.loadDescriptionFromDB("Golf");
-        }
-        if(this.sportName.getText().equals("Football")){
-            controller.loadDescriptionFromDB("Football");
-        }
-        if(this.sportName.getText().equals("Dance")){
-            controller.loadDescriptionFromDB("Dance");
-        }
-        if(this.sportName.getText().equals("Athletics")){
-            controller.loadDescriptionFromDB("Athletics");
-        }
+        controller.loadDescriptionFromDB(this.sportName.getText());
     }
 
     /** Is called to set sport name*/

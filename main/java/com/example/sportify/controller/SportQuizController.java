@@ -18,11 +18,7 @@ public class SportQuizController extends Controller {
     private  static boolean buttonAge1 = false;
     private  static boolean buttonAge2 = false;
     private  static boolean buttonAge3 = false;
-    private  static boolean buttonAge4 = false;
     private  static boolean buttonIndoor = false;
-    private  static boolean buttonOutdoor = false;
-    private  static boolean buttonGroup = false;
-    private  static boolean buttonSingle = false;
 
     private final Object lockObj = new Object();
 
@@ -45,92 +41,76 @@ public class SportQuizController extends Controller {
             buttonAge3 = true;}
             sportQuizEnv();
         } else if (Objects.equals(b, "age4")) {
-            synchronized (lockObj) {
-            buttonAge4 = true;}
             sportQuizEnv();
         } else if (Objects.equals(b, "indoor")) {
             synchronized (lockObj) {
             buttonIndoor = true;}
             sportQuizType();
         } else if (Objects.equals(b, "outdoor")) {
-            synchronized (lockObj) {
-            buttonOutdoor = true;}
            sportQuizType();
         } else if (Objects.equals(b, "group")) {
-            synchronized (lockObj) {
-            buttonGroup = true;}
-            quizLogic();
+            groupAction();
         } else if (Objects.equals(b, "single")) {
-            synchronized (lockObj) {
-            buttonSingle = true;}
-            quizLogic();
+            singleAction();
         } else if (Objects.equals(b, "endQuiz") || Objects.equals(b, "nextQuiz") || Objects.equals(b, "nextQuizEnv")) {
             warning();
         }
     }
 
-    /** The logic of the quiz*/
-    private void quizLogic(){
-        if((buttonAge1 && buttonIndoor && buttonGroup) || (buttonAge2 && buttonIndoor && buttonGroup)){
-            SportController sport = new SportController();
-            sport.setMainApp(this.mainApp);
-            sport.setUser(this.user);
-            sport.setMenu(this.menu);
-            sport.loadingSportName("Volleyball");
-        }
-
-        if((buttonAge1 && buttonIndoor && buttonSingle) || (buttonAge2 && buttonIndoor && buttonSingle) || (buttonAge3 && buttonIndoor && buttonSingle) || (buttonAge4 && buttonIndoor && buttonSingle)){
-            SportController sport = new SportController();
-            sport.setMainApp(this.mainApp);
-            sport.setUser(this.user);
-            sport.setMenu(this.menu);
-            sport.loadingSportName("Swimming");
-        }
-        if((buttonAge1 && buttonOutdoor && buttonGroup) || (buttonAge2 && buttonOutdoor && buttonGroup)){
-            SportController sport = new SportController();
-            sport.setMainApp(this.mainApp);
-            sport.setUser(this.user);
-            sport.setMenu(this.menu);
-            sport.loadingSportName("Football");
-        }
-        if(buttonAge1 && buttonOutdoor && buttonSingle) {
-            SportController sport = new SportController();
-            sport.setMainApp(this.mainApp);
-            sport.setUser(this.user);
-            sport.setMenu(this.menu);
-            sport.loadingSportName("Athletics");
-        }
-        if((buttonAge2 && buttonOutdoor && buttonSingle) || (buttonAge3 && buttonOutdoor && buttonSingle)){
-            SportController sport = new SportController();
-            sport.setMainApp(this.mainApp);
-            sport.setUser(this.user);
-            sport.setMenu(this.menu);
-            sport.loadingSportName("Tennis");
-        }
-
-        if((buttonAge3 && buttonIndoor && buttonGroup) || (buttonAge4 && buttonIndoor && buttonGroup)){
-            SportController sport = new SportController();
-            sport.setMainApp(this.mainApp);
-            sport.setUser(this.user);
-            sport.setMenu(this.menu);
-            sport.loadingSportName("Dance");
-        }
-        if((buttonAge3 && buttonOutdoor && buttonGroup) || (buttonAge4 && buttonOutdoor && buttonGroup)){
-            SportController sport = new SportController();
-            sport.setMainApp(this.mainApp);
-            sport.setUser(this.user);
-            sport.setMenu(this.menu);
-            sport.loadingSportName("Trekking");
-        }
-        if(buttonAge4 && buttonOutdoor && buttonSingle){
-            SportController sport = new SportController();
-            sport.setMainApp(this.mainApp);
-            sport.setUser(this.user);
-            sport.setMenu(this.menu);
-            sport.loadingSportName("Golf");
+    private void groupAction(){
+        if(buttonIndoor){
+            groupIndoorAction();
+        }else{
+            groupOutdoorAction();
         }
     }
 
+    private void singleAction(){
+        if(buttonIndoor){
+            singleIndoorAction();
+        }else{
+            singleOutdoorAction();
+        }
+    }
+    private void groupIndoorAction(){
+        if(buttonAge1 || buttonAge2){
+            setSport("Volleyball");
+        }else{
+            setSport("Dance");
+        }
+    }
+
+    private void singleIndoorAction(){
+        setSport("Swimming");
+    }
+
+    private void groupOutdoorAction(){
+        if(buttonAge1 || buttonAge2){
+            setSport("Football");
+        }
+        else{
+            setSport("Trekking");
+        }
+    }
+
+    private void singleOutdoorAction(){
+        if(buttonAge1){
+            setSport("Athletics");
+        }
+        else if(buttonAge2 || buttonAge3){
+            setSport("Tennis");
+        }else{
+            setSport("Golf");
+        }
+    }
+
+    private void setSport(String nameOfSport){
+        SportController sport = new SportController();
+        sport.setMainApp(this.mainApp);
+        sport.setUser(this.user);
+        sport.setMenu(this.menu);
+        sport.loadingSportName(nameOfSport);
+    }
     /** It's called to give the warning to user*/
     private void warning(){
         JFrame jFrame = new JFrame();

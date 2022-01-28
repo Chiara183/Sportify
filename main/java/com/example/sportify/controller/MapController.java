@@ -164,7 +164,6 @@ public class MapController extends Controller{
         for (String rs2 : list2) {
             String rs = list.get(i);
             String rs1 = list1.get(i);
-            //System.out.println("Coordinate " + i + " of gym " + rs2 + " : " + rs + ", " + rs1 + ";");
             Coordinate gym = new Coordinate(
                     Double.parseDouble(rs),
                     Double.parseDouble(rs1));

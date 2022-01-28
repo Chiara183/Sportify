@@ -41,7 +41,9 @@ public class DAO {
             while(rs.next()){
                 result.add(rs.getString(column));
             }
-            result.remove(0);
+            if(result.get(0) == null){
+                result.remove(0);
+            }
         }catch (SQLException e) {
             LOGGER.log(Level.SEVERE, e.getMessage());
         }finally {

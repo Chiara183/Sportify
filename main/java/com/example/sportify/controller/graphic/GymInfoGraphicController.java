@@ -80,13 +80,13 @@ public class GymInfoGraphicController implements GraphicController{
         } else {
             hours = this.hour.getText();
         }
-        String min;
+        String mins;
         if(this.min.getText().equals("")){
-            min = "00";
+            mins = "00";
         } else {
-            min = this.min.getText();
+            mins = this.min.getText();
         }
-        String time = hours + ':' + min + ":00";
+        String time = hours + ':' + mins + ":00";
         controller.addCourse(sport, gym, time);
     }
 
