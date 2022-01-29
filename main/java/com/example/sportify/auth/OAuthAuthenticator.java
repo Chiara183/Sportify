@@ -27,13 +27,12 @@ public abstract class OAuthAuthenticator {
 
     private JSONObject accessedJsonData;
 
-    private boolean gotData = false;
-    private boolean attemptReceived = false;
     private boolean loginAttempted = false;
 
     private String accessToken;
     private String accessCode;
-
+    private boolean attemptReceived = false;
+    private boolean gotData = false;
     private final String clientID;
     private final String redirectUri;
     private final String clientSecret;
@@ -43,6 +42,14 @@ public abstract class OAuthAuthenticator {
         this.clientID = clientID;
         this.redirectUri = redirectUri;
         this.clientSecret = clientSecret;
+    }
+
+    private boolean getGotData(){
+        return this.gotData;
+    }
+
+    private boolean getAttemptReceived(){
+        return attemptReceived;
     }
 
     public String getClientID() {
@@ -69,61 +76,13 @@ public abstract class OAuthAuthenticator {
         engine.load(getWebUrl());
 
         engine.setOnStatusChanged(event -> {
-            if (gotData || attemptReceived) {
+            if (getGotData() || getAttemptReceived()) {
                 return;
             }
             if (event.getSource() instanceof WebEngine we) {
                 String location = we.getLocation();
                 if (location.contains("code") && location.startsWith(getRedirectUri())) {
-                    attemptReceived = true;
-                    accessCode = location.substring(location.indexOf("code=") + 5);
-                    try {
-                        accessToken = doGetAccessTokenRequest();
-                    }catch(JSONException e){
-                        e.printStackTrace();
-                    }
-                    String returnedJson = doGetAccountInfo();
-                    assert returnedJson != null;
-                    accessedJsonData = new JSONObject(returnedJson);
-                    Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
-                    logger.log(Level.INFO, "Login Success!");
-                    if(type == OAuthType.GOOGLE) {
-                        String email = accessedJsonData.getString("email");
-                        String[] s = email.split("@");
-                        String username = s[0];
-                        accessedJsonData.getString("picture");
-                        Submit submit = new Submit(mainApp);
-                        User user;
-                        DAO objDAO = mainApp.getDAO();
-                        List<String> list = objDAO.checkData(
-                                "SELECT * " +
-                                        "FROM user " +
-                                        "WHERE user.email = \"" + email + "\"", "username");
-                        String rs = list.get(list.size() - 1);
-                        if (!submit.exist(rs)) {
-                            String firstName = accessedJsonData.getString("given_name");
-                            String lastName = accessedJsonData.getString("family_name");
-                            String password = submit.generateStrongPassword(32);
-                            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                            String date = timestamp.toString();
-                            date = date.substring(0,10);
-                            Map<String, String> account = mainApp.createAccount(username, password, firstName, lastName, email, date);
-                            account.put("ruolo", "user");
-                            submit.signUp(account);
-                        }
-                        user = submit.setUser(rs);
-                        if(Objects.equals(user.getFirstName(), "")){
-                            String firstName = accessedJsonData.getString("given_name");
-                            user.setFirstName(firstName);
-                        }
-                        if(Objects.equals(user.getLastName(), "")){
-                            String lastName = accessedJsonData.getString("family_name");
-                            user.setLastName(lastName);
-                        }
-                        mainApp.setUser(user);
-                    }
-                    mainApp.showHomeOverview();
-                    this.gotData = true;
+                    helpMethod(mainApp, type, location);
                 }
             }
         });
@@ -131,6 +90,65 @@ public abstract class OAuthAuthenticator {
         mainApp.showOAuthAuthenticator(root, name);
     }
 
+    public void helpMethod(MainApp mainApp, OAuthType type, String location){
+        if(!getAttemptReceived()){
+        attemptReceived = true;
+        }
+        accessCode = location.substring(location.indexOf("code=") + 5);
+        try {
+            accessToken = doGetAccessTokenRequest();
+        }catch(JSONException e){
+            e.printStackTrace();
+        }
+        String returnedJson = doGetAccountInfo();
+        assert returnedJson != null;
+        accessedJsonData = new JSONObject(returnedJson);
+        Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
+        logger.log(Level.INFO, "Login Success!");
+        if(type == OAuthType.GOOGLE) {
+            googleAuth(mainApp);
+        }
+        mainApp.showHomeOverview();
+        if(!getGotData()){
+            this.gotData = true;
+        }
+    }
+
+    public void googleAuth(MainApp mainApp){
+        String email = accessedJsonData.getString("email");
+        String[] s = email.split("@");
+        String username = s[0];
+        accessedJsonData.getString("picture");
+        Submit submit = new Submit(mainApp);
+        User user;
+        DAO objDAO = mainApp.getDAO();
+        List<String> list = objDAO.checkData(
+                "SELECT * " +
+                        "FROM user " +
+                        "WHERE user.email = \"" + email + "\"", "username");
+        String rs = list.get(list.size() - 1);
+        if (!submit.exist(rs)) {
+            String firstName = accessedJsonData.getString("given_name");
+            String lastName = accessedJsonData.getString("family_name");
+            String password = submit.generateStrongPassword(32);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            String date = timestamp.toString();
+            date = date.substring(0,10);
+            Map<String, String> account = mainApp.createAccount(username, password, firstName, lastName, email, date);
+            account.put("ruolo", "user");
+            submit.signUp(account);
+        }
+        user = submit.setUser(rs);
+        if(Objects.equals(user.getFirstName(), "")){
+            String firstName = accessedJsonData.getString("given_name");
+            user.setFirstName(firstName);
+        }
+        if(Objects.equals(user.getLastName(), "")){
+            String lastName = accessedJsonData.getString("family_name");
+            user.setLastName(lastName);
+        }
+        mainApp.setUser(user);
+    }
     abstract String getWebUrl();
 
     abstract String getApiTokenUrl();

@@ -126,55 +126,74 @@ public abstract class EditGraphicController implements GraphicController{
     @FXML
     protected void set_toggle_pass(MouseEvent modify) {
         if (modify.getSource() == modifyUsername) {
-            if (!toggleUsername.isSelected()) {
-                modifyUsername.setStyle(FILL);
-                toggleUsername.setSelected(true);
-                controller.togglevisible(this.toggleUsername, this.usernameLabel, this.username);
-            } else {
-                modifyUsername.setStyle(BLACK);
-                toggleUsername.setSelected(false);
-                controller.togglevisible(this.toggleUsername, this.usernameLabel, this.username);
-            }
+            modifyLabelUsername();
         } else if (modify.getSource() == modifyEmail) {
-            if (!toggleEmail.isSelected()) {
-                modifyEmail.setStyle(FILL);
-                toggleEmail.setSelected(true);
-                controller.togglevisible(this.toggleEmail, this.emailLabel, this.email);
-            } else {
-                modifyEmail.setStyle(BLACK);
-                toggleEmail.setSelected(false);
-                controller.togglevisible(this.toggleEmail, this.emailLabel, this.email);
-            }
+            modifyLabelEmail();
         } else if (modify.getSource() == modifyFirstName) {
-            if (!toggleFirstName.isSelected()) {
-                modifyFirstName.setStyle(FILL);
-                toggleFirstName.setSelected(true);
-                controller.togglevisible(this.toggleFirstName, this.firstNameLabel, this.firstName);
-            } else {
-                modifyFirstName.setStyle(BLACK);
-                toggleFirstName.setSelected(false);
-                controller.togglevisible(this.toggleFirstName, this.firstNameLabel, this.firstName);
-            }
+            modifyLabelFirstName();
         } else if (modify.getSource() == modifyPassword) {
-            if (!togglePassword.isSelected()) {
-                modifyPassword.setStyle(FILL);
-                togglePassword.setSelected(true);
-                controller.togglevisible(this.togglePassword, this.passwordLabel, this.password);
-            } else {
-                modifyPassword.setStyle(BLACK);
-                togglePassword.setSelected(false);
-                controller.togglevisible(this.togglePassword, this.passwordLabel, this.password);
-            }
+            modifyLabelPassword();
         } else if (modify.getSource() == modifyLastName) {
-            if (!toggleLastName.isSelected()) {
-                modifyLastName.setStyle(FILL);
-                toggleLastName.setSelected(true);
-                controller.togglevisible(this.toggleLastName, this.lastNameLabel, this.lastName);
-            } else {
-                modifyLastName.setStyle(BLACK);
-                toggleLastName.setSelected(false);
-                controller.togglevisible(this.toggleLastName, this.lastNameLabel, this.lastName);
-            }
+            modifyLabelLastName();
+        }
+    }
+    protected void modifyLabelUsername(){
+        if (!toggleUsername.isSelected()) {
+            modifyUsername.setStyle(FILL);
+            toggleUsername.setSelected(true);
+            controller.togglevisible(this.toggleUsername, this.usernameLabel, this.username);
+        } else {
+            modifyUsername.setStyle(BLACK);
+            toggleUsername.setSelected(false);
+            controller.togglevisible(this.toggleUsername, this.usernameLabel, this.username);
+        }
+    }
+
+    protected void modifyLabelEmail(){
+        if (!toggleEmail.isSelected()) {
+            modifyEmail.setStyle(FILL);
+            toggleEmail.setSelected(true);
+            controller.togglevisible(this.toggleEmail, this.emailLabel, this.email);
+        } else {
+            modifyEmail.setStyle(BLACK);
+            toggleEmail.setSelected(false);
+            controller.togglevisible(this.toggleEmail, this.emailLabel, this.email);
+        }
+    }
+
+    protected void modifyLabelFirstName(){
+        if (!toggleFirstName.isSelected()) {
+            modifyFirstName.setStyle(FILL);
+            toggleFirstName.setSelected(true);
+            controller.togglevisible(this.toggleFirstName, this.firstNameLabel, this.firstName);
+        } else {
+            modifyFirstName.setStyle(BLACK);
+            toggleFirstName.setSelected(false);
+            controller.togglevisible(this.toggleFirstName, this.firstNameLabel, this.firstName);
+        }
+    }
+
+    protected void modifyLabelPassword(){
+        if (!togglePassword.isSelected()) {
+            modifyPassword.setStyle(FILL);
+            togglePassword.setSelected(true);
+            controller.togglevisible(this.togglePassword, this.passwordLabel, this.password);
+        } else {
+            modifyPassword.setStyle(BLACK);
+            togglePassword.setSelected(false);
+            controller.togglevisible(this.togglePassword, this.passwordLabel, this.password);
+        }
+    }
+
+    protected void modifyLabelLastName(){
+        if (!toggleLastName.isSelected()) {
+            modifyLastName.setStyle(FILL);
+            toggleLastName.setSelected(true);
+            controller.togglevisible(this.toggleLastName, this.lastNameLabel, this.lastName);
+        } else {
+            modifyLastName.setStyle(BLACK);
+            toggleLastName.setSelected(false);
+            controller.togglevisible(this.toggleLastName, this.lastNameLabel, this.lastName);
         }
     }
 
