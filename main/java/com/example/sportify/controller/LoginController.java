@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -132,6 +133,7 @@ public class LoginController extends AccessController{
         graphicController.getPassField().setDisable(bool);
         graphicController.getPasswordField().setDisable(bool);
         graphicController.getSubmitButton().setDisable(bool);
+        graphicController.getSkipButton().setDisable(bool);
         menu.setMenuDisable(bool);
     }
 
@@ -145,6 +147,7 @@ public class LoginController extends AccessController{
         seconds = delay.intValue();
         label.setTextFill(Color.BLACK);
         label.setFont(Font.font(20));
+        label.setTextAlignment(TextAlignment.CENTER);
         label.setText("Waiting... " + seconds);
         doTime();
         Pane root = new Pane();

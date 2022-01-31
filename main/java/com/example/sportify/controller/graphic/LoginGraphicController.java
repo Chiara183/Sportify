@@ -18,6 +18,8 @@ public class LoginGraphicController extends AccessGraphicController{
     /** All the button of the interface*/
     @FXML
     private Button submit;
+    @FXML
+    private Button skip;
 
     /** Reference to controller*/
     private LoginController controller;
@@ -31,6 +33,9 @@ public class LoginGraphicController extends AccessGraphicController{
     }
     public TextField getPasswordField(){
         return this.password;
+    }
+    public Button getSkipButton(){
+        return this.skip;
     }
     public Button getSubmitButton(){
         return this.submit;
