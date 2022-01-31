@@ -8,8 +8,7 @@ import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -23,9 +22,9 @@ public class LoginController extends AccessController{
     /** Reference to graphic controller*/
     private LoginGraphicController graphicController;
 
-    /** Delay error login variable, initialize at 3*/
-    int delay = 3;
-    int seconds = delay;
+    /** Error login variable*/
+    Double delay = 3.0;
+    Integer seconds = delay.intValue();
     Label label = new Label();
 
     /** Is true when login is in external window*/
@@ -70,22 +69,7 @@ public class LoginController extends AccessController{
                 GymInfoController gym = new GymInfoController();
                 gymInfoGraphicController.setController(gym);
                 gym.setGraphicController(gymInfoGraphicController);
-                if (Objects.equals(this.menu.getView(), ControllerType.GYM_INFO)){
-                    menu.setGymInfo(this.menu.getGym());
-                    gym.setMainApp(this.mainApp);
-                    gym.setUser(this.user);
-                    gym.setMenu(menu);
-                    gym.setSearchCache(this.searchCache);
-                    gym.loadingGymName(this.menu.getGym());
-                } else if (Objects.equals(this.menu.getView(), ControllerType.FIND_GYM) && this.menu.getGym() != null){
-                    menu.setFindGym();
-                    menu.setGym(this.menu.getGym());
-                    gym.setMainApp(this.mainApp);
-                    gym.setUser(this.user);
-                    gym.setMenu(menu);
-                    gym.setSearchCache(this.searchCache);
-                    gym.loadingGymName(this.menu.getGym());
-                }
+                loadUser(gym);
                 Stage stage = this.externalStage;
                 stage.close();
             }
@@ -96,38 +80,16 @@ public class LoginController extends AccessController{
             alert.setTitle("Wrong Username or Password");
             alert.setHeaderText("You wrote wrong username or password");
             alert.setContentText("Please enter valid username and password or Signup");
+            setLoginDisable(true);
+            Stage stage = createCountdown();
             alert.showAndWait();
-            graphicController.getUsernameField().setDisable(true);
-            graphicController.getPassField().setDisable(true);
-            graphicController.getPasswordField().setDisable(true);
-            graphicController.getSubmitButton().setDisable(true);
-            Stage stage = new Stage();
-            stage.setAlwaysOnTop(true);
-            stage.getIcons().add(
-                    new Image(
-                            Objects.requireNonNull(
-                                    mainApp.getClass().getResourceAsStream("Images/Sportify icon.png"))));
-            stage.initOwner(mainApp.getPrimaryStage());
-            stage.setResizable(false);
-            stage.setTitle("WRONG LOGIN");
-            stage.initStyle(StageStyle.UNDECORATED);
-            label.setTextFill(Color.BLACK);
-            label.setFont(Font.font(20));
-            seconds = delay;
-            label.setText("Waiting... " + seconds);
-            doTime();
-            StackPane root = new StackPane();
-            root.getChildren().add(label);
-            stage.setScene(new Scene(root,300, 70));
             stage.showAndWait();
-            delay = delay*delay;
-            graphicController.getUsernameField().setDisable(false);
-            graphicController.getPassField().setDisable(false);
-            graphicController.getPasswordField().setDisable(false);
-            graphicController.getSubmitButton().setDisable(false);
+            delay = delay*(delay/2.0);
+            setLoginDisable(false);
         }
     }
 
+    /** Countdown of error login*/
     private void doTime(){
         Timeline time = new Timeline();
         time.setCycleCount(Timeline.INDEFINITE);
@@ -144,6 +106,54 @@ public class LoginController extends AccessController{
         time.playFromStart();
     }
 
+    /** Load user in current view*/
+    private void loadUser(GymInfoController gym){
+        if (Objects.equals(this.menu.getView(), ControllerType.GYM_INFO)){
+            menu.setGymInfo(this.menu.getGym());
+            gym.setMainApp(this.mainApp);
+            gym.setUser(this.user);
+            gym.setMenu(menu);
+            gym.setSearchCache(this.searchCache);
+            gym.loadingGymName(this.menu.getGym());
+        } else if (Objects.equals(this.menu.getView(), ControllerType.FIND_GYM) && this.menu.getGym() != null){
+            menu.setFindGym();
+            menu.setGym(this.menu.getGym());
+            gym.setMainApp(this.mainApp);
+            gym.setUser(this.user);
+            gym.setMenu(menu);
+            gym.setSearchCache(this.searchCache);
+            gym.loadingGymName(this.menu.getGym());
+        }
+    }
+
+    /** Is called to activate or disable the login interface*/
+    private void setLoginDisable(boolean bool){
+        graphicController.getUsernameField().setDisable(bool);
+        graphicController.getPassField().setDisable(bool);
+        graphicController.getPasswordField().setDisable(bool);
+        graphicController.getSubmitButton().setDisable(bool);
+        menu.setMenuDisable(bool);
+    }
+
+    /** Is called to create countdown window*/
+    private Stage createCountdown(){
+        Stage stage = new Stage();
+        stage.setAlwaysOnTop(true);
+        stage.initOwner(mainApp.getPrimaryStage());
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        seconds = delay.intValue();
+        label.setTextFill(Color.BLACK);
+        label.setFont(Font.font(20));
+        label.setText("Waiting... " + seconds);
+        doTime();
+        Pane root = new Pane();
+        root.getChildren().add(label);
+        stage.setScene(new Scene(root,300, 70));
+        return stage;
+    }
+
+    /** Is called to set graphic controller*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (LoginGraphicController) graphicController;

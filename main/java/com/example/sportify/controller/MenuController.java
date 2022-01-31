@@ -72,6 +72,9 @@ public class MenuController extends Controller {
     public void setGymInfo(String gym){
         graphicController.setGymInfo(gym);
     }
+    public void setMenuDisable(boolean bool){
+        mainApp.getPrimaryPane().getTop().setDisable(bool);
+    }
 
     /** It's called to set the color and disable/able of the buttons*/
     public void setButton(Button button1, Button button2, Button button3, Button button4, Button button5, Button buttonOff){

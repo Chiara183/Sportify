@@ -116,6 +116,7 @@ public class HomeGraphicController implements GraphicController{
             graphicController.setController(controllerLogin);
             controllerLogin.setMainApp(controller.getMainApp());
             controllerLogin.setUser(controller.getUser());
+            controllerLogin.setMenu(menuController);
         } catch (IOException e) {
             Logger logger = Logger.getLogger(HomeGraphicController.class.getName());
             logger.log(Level.SEVERE, e.getMessage());

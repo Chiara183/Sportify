@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.HomeGraphicController">
+<GridPane alignment="CENTER" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.HomeGraphicController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="150.0" prefWidth="216.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="301.0" prefWidth="301.0" />
@@ -35,7 +35,7 @@
     <ImageView fitHeight="168.0" fitWidth="439.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BASELINE">
         <Image url="@../Images/Sportify_logo.png" />
     </ImageView>
-    <Button fx:id="sportQuiz" ellipsisString="" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="78.0" prefWidth="145.0" text="Sport quiz" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+    <Button ellipsisString="" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="78.0" prefWidth="145.0" text="Sport quiz" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
         <cursor>
             <Cursor fx:constant="HAND" />
         </cursor>
@@ -54,7 +54,7 @@
         </Button>
         <Button fx:id="gymInfo" maxHeight="74.0" minWidth="0.0" mnemonicParsing="false" onAction="#loadGymInfo" prefHeight="74.0" prefWidth="0.0" text="Gym Info" visible="false" />
     </HBox>
-    <Button fx:id="findGym" ellipsisString="" mnemonicParsing="false" onAction="#findGymAction" prefHeight="74.0" prefWidth="141.0" text="Find gym" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+    <Button ellipsisString="" mnemonicParsing="false" onAction="#findGymAction" prefHeight="74.0" prefWidth="141.0" text="Find gym" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
         <cursor>
             <Cursor fx:constant="HAND" />
         </cursor>

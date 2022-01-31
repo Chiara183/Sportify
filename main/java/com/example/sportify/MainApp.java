@@ -187,6 +187,7 @@ public class MainApp{
             controller.setMainApp(this);
             controller.setSubmit(this.submit);
             controller.setUser(this.user);
+            controller.setMenu(this.menu);
             controller.setExternal(this.externalLogin);
 
             if(!externalLogin) {
