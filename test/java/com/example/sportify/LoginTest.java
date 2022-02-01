@@ -1,37 +1,32 @@
 package com.example.sportify;
 
 
-import javafx.scene.Parent;
-import javafx.scene.control.TextInputControl;
+
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.loadui.testfx.GuiTest;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.util.WaitForAsyncUtils;
-import java.util.concurrent.TimeoutException;
 
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.testfx.assertions.api.Assertions.assertThat;
+
 
 @ExtendWith(ApplicationExtension.class)
 public class LoginTest extends FxRobot {
 
-    private static GuiTest controller;
 
     @BeforeEach
     public void setUp() {
         ApplicationTest.launch(MainAppLauncher.class);
         WaitForAsyncUtils.waitForFxEvents(100);
-        /*controller = new GuiTest() {
-            @Override
-            protected Parent getRootNode() {
-                return null;
-            }
-        };*/
+
     }
 
     @AfterEach
@@ -44,17 +39,34 @@ public class LoginTest extends FxRobot {
     }
 
     @Test
-    public void logInTest(FxRobot robot){
-        robot.clickOn("#signIn");
+    public void loginTest() throws InterruptedException {
+        clickOn("#signIn");
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
         assertEquals("Sportify - Login", title);
-        /*controller.click("#username").type("Name");
-        controller.click("#password").type("name");
-        controller.click("#submit");
-        Stage stage1 = FxToolkit.toolkitContext().getRegisteredStage();
+        clickOn("#user").write("Prova");
+        clickOn("#password").write("prova");
+        clickOn("#eye");
+        clickOn("#submit");
+        TimeUnit.SECONDS.sleep(5);
+        Stage stage1= FxToolkit.toolkitContext().getRegisteredStage();
         String title1 = stage1.getTitle();
-        assertEquals("Sportify - Home", title1);*/
+        assertEquals("Sportify - Home", title1);
+    }
+
+    @Test
+    public void notLoginTest() throws InterruptedException {
+        clickOn("#signIn");
+        Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
+        String title = stage.getTitle();
+        assertEquals("Sportify - Login", title);
+        clickOn("#user").write("Ciao");
+        clickOn("#password").write("prova");
+        clickOn("#eye");
+        clickOn("#submit");
+        TimeUnit.SECONDS.sleep(5);
+        Stage stage1= FxToolkit.toolkitContext().getRegisteredStage();
+        assertThat(stage1.getTitle().contains("Wrong Username or Password"));
     }
 
 

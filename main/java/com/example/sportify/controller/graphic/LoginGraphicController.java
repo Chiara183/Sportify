@@ -11,7 +11,7 @@ public class LoginGraphicController extends AccessGraphicController{
 
     /** All the text field of the interface*/
     @FXML
-    private TextField username;
+    private TextField user;
     @FXML
     private TextField passText;
 
@@ -26,7 +26,7 @@ public class LoginGraphicController extends AccessGraphicController{
 
     /** Get method*/
     public TextField getUsernameField(){
-        return this.username;
+        return this.user;
     }
     public TextField getPassField(){
         return this.passText;
@@ -44,7 +44,7 @@ public class LoginGraphicController extends AccessGraphicController{
     /** The action of the buttons*/
     @FXML
     public void submitActionLogin() {
-        String userValue = username.getText();      //get user entered username from the textField1
+        String userValue = user.getText();      //get user entered username from the textField1
         String passValue;
         if(passToggle.isSelected()) {
             passValue = passText.getText();      //get user entered password from the textField2

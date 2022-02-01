@@ -41,7 +41,7 @@
                         <Font name="Comic Sans MS" size="18.0" />
                     </font>
                 </Text>
-                <TextField fx:id="username" maxWidth="233.0" prefHeight="33.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                <TextField fx:id="user" maxWidth="233.0" prefHeight="33.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>
