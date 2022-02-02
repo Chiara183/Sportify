@@ -11,8 +11,6 @@ import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.util.WaitForAsyncUtils;
-
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.assertions.api.Assertions.assertThat;
@@ -38,8 +36,9 @@ public class LoginTest extends FxRobot {
         }
     }
 
+    /**Test that login is successful with valid username and password*/
     @Test
-    public void loginTest() throws InterruptedException {
+    public void loginTest() {
         clickOn("#signIn");
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
@@ -48,14 +47,14 @@ public class LoginTest extends FxRobot {
         clickOn("#password").write("prova");
         clickOn("#eye");
         clickOn("#submit");
-        TimeUnit.SECONDS.sleep(5);
         Stage stage1= FxToolkit.toolkitContext().getRegisteredStage();
         String title1 = stage1.getTitle();
         assertEquals("Sportify - Home", title1);
     }
 
+    /**Test that login is NOT successful with invalid username and password*/
     @Test
-    public void notLoginTest() throws InterruptedException {
+    public void notLoginTest() {
         clickOn("#signIn");
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
@@ -64,7 +63,6 @@ public class LoginTest extends FxRobot {
         clickOn("#password").write("prova");
         clickOn("#eye");
         clickOn("#submit");
-        TimeUnit.SECONDS.sleep(5);
         Stage stage1= FxToolkit.toolkitContext().getRegisteredStage();
         assertThat(stage1.getTitle().contains("Wrong Username or Password"));
     }

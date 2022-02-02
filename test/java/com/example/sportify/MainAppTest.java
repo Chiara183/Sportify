@@ -29,6 +29,7 @@ class MainAppTest extends FxRobot {
         }
     }
 
+    /**Test that the home screen has the correct button*/
     @Test
     public void hasButtonTest() {
         assertThat(lookup("#signIn").queryButton()).hasText("Log in");
@@ -37,6 +38,7 @@ class MainAppTest extends FxRobot {
         assertThat(lookup("#sportQuiz").queryButton()).hasText("Sport quiz");
     }
 
+    /**Test that the application is launched correctly*/
     @Test
     public void titleTest(){
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();

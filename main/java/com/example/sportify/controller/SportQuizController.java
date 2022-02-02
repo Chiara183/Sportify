@@ -4,6 +4,7 @@ import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.SportQuizGraphicController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 
 import javax.swing.*;
@@ -53,7 +54,11 @@ public class SportQuizController extends Controller {
         } else if (Objects.equals(b, "single")) {
             singleAction();
         } else if (Objects.equals(b, "endQuiz") || Objects.equals(b, "nextQuiz") || Objects.equals(b, "nextQuizEnv")) {
-            warning();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("You need to make a choice first!\n Press a button or back");
+            alert.showAndWait();
         }
     }
 
@@ -111,11 +116,7 @@ public class SportQuizController extends Controller {
         sport.setMenu(this.menu);
         sport.loadingSportName(nameOfSport);
     }
-    /** It's called to give the warning to user*/
-    private void warning(){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "You need to make a choice!");
-    }
+
 
     /** It's called to load home overview*/
     public void home(){
