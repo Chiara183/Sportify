@@ -26,15 +26,19 @@ public class HomeController extends Controller {
     @Override
     public void setUser(User user) {
         this.user = user;
-        homeGraphicController.getSignIn().setVisible(this.user == null);
-        if(this.user!= null && this.user.getRole().equals("gym")){
-            homeGraphicController.getGymInfo().setVisible(true);
-            homeGraphicController.getGymInfo().setPrefWidth(141);
-            homeGraphicController.getSignIn().setPrefWidth(0);
+        if(!this.mainApp.isMobile()) {
+            homeGraphicController.getSignIn().setVisible(this.user == null);
+            if (this.user != null && this.user.getRole().equals("gym")) {
+                homeGraphicController.getGymInfo().setVisible(true);
+                homeGraphicController.getGymInfo().setPrefWidth(141);
+                homeGraphicController.getSignIn().setPrefWidth(0);
+            } else {
+                homeGraphicController.getGymInfo().setVisible(false);
+                homeGraphicController.getGymInfo().setPrefWidth(0);
+                homeGraphicController.getSignIn().setPrefWidth(141);
+            }
         } else {
-            homeGraphicController.getGymInfo().setVisible(false);
-            homeGraphicController.getGymInfo().setPrefWidth(0);
-            homeGraphicController.getSignIn().setPrefWidth(141);
+            //TODO setMobileUser
         }
     }
 

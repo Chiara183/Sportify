@@ -1,47 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="270.0" styleClass="image" stylesheets="@../StyleSmartPhone/HomePhone.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <bottom>
-      <HBox prefHeight="56.0" prefWidth="270.0" BorderPane.alignment="CENTER">
-         <ImageView accessibleRole="BUTTON" fitHeight="58.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../Images/home_preview_rev_1.png" />
-         </ImageView>
-         <ImageView accessibleRole="BUTTON" fitHeight="59.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../Images/quiz_preview_rev_1.png" />
-         </ImageView>
-         <ImageView accessibleRole="BUTTON" fitHeight="42.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../Images/Gym_preview_rev_1 (1).png" />
-         </ImageView>
-         <ImageView accessibleRole="BUTTON" fitHeight="43.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../Images/login_preview_rev_1.png" />
-         </ImageView>
-         <Label>
-            <HBox.margin>
-               <Insets left="-35.0" top="35.0" />
-            </HBox.margin>
-            <font>
-               <Font name="Comic Sans MS" size="11.0" />
-            </font>
-         </Label>
-      </HBox>
-   </bottom>
-   <top>
-      <Pane prefHeight="155.0" prefWidth="270.0" BorderPane.alignment="CENTER">
-         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../Images/Sportify_logo.png" />
-         </ImageView>
-      </Pane>
-   </top>
-   <center>
-      <Pane styleClass="rectangle" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" />
-   </center>
-</BorderPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.HomeGraphicController"
+      BorderPane.alignment="CENTER">
+   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../Images/Sportify_logo.png" />
+   </ImageView>
+</Pane>

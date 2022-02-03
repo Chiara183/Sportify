@@ -37,6 +37,7 @@ public class MainApp{
     private boolean externalLogin = false;
     private MenuController menu;
     private Projection projection;
+    private boolean mobile = true;
 
     /** Set method*/
     public void setSubmit(Submit submit) {
@@ -80,6 +81,9 @@ public class MainApp{
     public Projection getProjection() {
         return projection;
     }
+    public boolean isMobile() {
+        return mobile;
+    }
 
     /** Initializes the root layout.*/
     public void initRootLayout() {
@@ -89,15 +93,28 @@ public class MainApp{
         String dim = "Dimension of screen is: " + width + "x" + height;
         LOGGER.log(Level.INFO, dim);
         try {
-            // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("DesktopView/RootLayout.fxml"));
-            rootLayout = loader.load();
+            if(width>height) {
+            //if(!mobile) {
+                this.mobile = false;
+                // Load root layout from fxml file.
+                loader.setLocation(MainApp.class.getResource("DesktopView/RootLayout.fxml"));
+                rootLayout = loader.load();
 
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout, 830, 550);
-            primaryStage.setScene(scene);
-            primaryStage.setFullScreen(true);
+                // Show the scene containing the root layout.
+                Scene scene = new Scene(rootLayout, 830, 550);
+                primaryStage.setScene(scene);
+                primaryStage.setFullScreen(true);
+            } else {
+                this.mobile = true;
+                // Load root layout from fxml file.
+                loader.setLocation(MainApp.class.getResource("SmartphoneView/RootLayoutPhone.fxml"));
+                rootLayout = loader.load();
+
+                // Show the scene containing the root layout.
+                Scene scene = new Scene(rootLayout, 270, 450);
+                primaryStage.setScene(scene);
+            }
             primaryStage.show();
         } catch (IOException e) {
             Logger logger = Logger.getLogger(MainApp.class.getName());
@@ -112,12 +129,21 @@ public class MainApp{
         controller.setMainApp(this);
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
-            loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("DesktopView/Menu.fxml")));
-            Pane paneMenu = loaderMenu.load();
+            if(!mobile) {
+                loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("DesktopView/Menu.fxml")));
+                Pane paneMenu = loaderMenu.load();
 
-            // Set menu overview into the top of root layout.
-            this.getPrimaryPane().setTop(paneMenu);
+                // Set menu overview into the top of root layout.
+                this.getPrimaryPane().setTop(paneMenu);
 
+                // Give the controller access to the main app.
+            } else {
+                loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("SmartphoneView/MenuPhone.fxml")));
+                Pane paneMenu = loaderMenu.load();
+
+                // Set menu overview into the top of root layout.
+                this.getPrimaryPane().setBottom(paneMenu);
+            }
             // Give the controller access to the main app.
             graphicController = loaderMenu.getController();
             controller.setGraphicController(graphicController);
@@ -132,10 +158,18 @@ public class MainApp{
     /** Shows home overview inside the root layout.*/
     public void showHomeOverview() {
         try {
-            this.primaryStage.setTitle("Sportify - Home");
-            // Load home overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("DesktopView/Home.fxml"));
+            this.primaryStage.setTitle("Sportify - Home");
+            HomeController controller = new HomeController();
+            if(!mobile) {
+                // Load home overview.
+                loader.setLocation(MainApp.class.getResource("DesktopView/Home.fxml"));
+            } else {
+                // Load home overview.
+                loader.setLocation(MainApp.class.getResource("SmartphoneView/HomePhone.fxml"));
+                MenuController menu = menu();
+                controller.setMenu(menu);
+            }
             Pane homeOverview = loader.load();
 
             // Set home overview into the center of root layout.
@@ -144,11 +178,10 @@ public class MainApp{
 
             // Give the controller access to the main app.
             HomeGraphicController graphicController = loader.getController();
-            HomeController controller = new HomeController();
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
-            controller.setUser(this.user);
             controller.setMainApp(this);
+            controller.setUser(this.user);
         } catch (IOException e) {
             Logger logger = Logger.getLogger(MainApp.class.getName());
             logger.log(Level.SEVERE, e.getMessage());

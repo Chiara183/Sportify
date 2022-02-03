@@ -1,26 +1,26 @@
 .button1 {
-    padding: 1.3em 3em;
+    /*padding: 1.3em 3em;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-weight: 500;
+    font-weight: 500;*/
     color: #000;
     background-color: #fff;
-    border: none;
+    /*border: none;
     border-radius: 45px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-    outline: none;
+    transition: all 0.3s ease 0s;*/
+    cursor: hand;
+    /*outline: none;*/
 }
 
 .button1:hover {
     background-color: #2EE59D;
-    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     color: #fff;
-    transform: translateY(-7px);
+    /*box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    transform: translateY(-7px);*/
 }
 
-.button1:active {
+/*.button1:active {
     transform: translateY(-1px);
-}
+}*/
