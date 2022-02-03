@@ -56,8 +56,8 @@
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
             </Text>
-            <Button layoutX="161.0" layoutY="157.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-radius: 30px;" text="Gym" />
-            <Button layoutX="56.0" layoutY="157.0" mnemonicParsing="false" style="-fx-background-radius: 30px;" text="Normal" />
+            <Button layoutX="153.0" layoutY="140.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="74.0" style="-fx-background-radius: 30px;" text="Gym" />
+            <Button layoutX="33.0" layoutY="140.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="74.0" style="-fx-background-radius: 30px;" text="Normal" />
          </children></Pane>
     </center>
 </BorderPane>
