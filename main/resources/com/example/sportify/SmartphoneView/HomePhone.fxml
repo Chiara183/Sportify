@@ -8,62 +8,40 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="270.0" styleClass="image" stylesheets="@../StyleSmartPhone/Home.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="270.0" styleClass="image" stylesheets="@../StyleSmartPhone/HomePhone.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
       <HBox prefHeight="56.0" prefWidth="270.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView accessibleRole="BUTTON" fitHeight="58.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/home_preview_rev_1.png" />
-               </image>
-            </ImageView>
-            <ImageView accessibleRole="BUTTON" fitHeight="59.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/quiz_preview_rev_1.png" />
-               </image>
-            </ImageView>
-            <ImageView accessibleRole="BUTTON" fitHeight="42.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/Gym_preview_rev_1 (1).png" />
-               </image>
-            </ImageView>
-            <ImageView accessibleRole="BUTTON" fitHeight="43.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/login_preview_rev_1.png" />
-               </image>
-            </ImageView>
-            <Label>
-               <HBox.margin>
-                  <Insets left="-35.0" top="35.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="Comic Sans MS" size="11.0" />
-               </font>
-            </Label>
-         </children>
+         <ImageView accessibleRole="BUTTON" fitHeight="58.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../Images/home_preview_rev_1.png" />
+         </ImageView>
+         <ImageView accessibleRole="BUTTON" fitHeight="59.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../Images/quiz_preview_rev_1.png" />
+         </ImageView>
+         <ImageView accessibleRole="BUTTON" fitHeight="42.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../Images/Gym_preview_rev_1 (1).png" />
+         </ImageView>
+         <ImageView accessibleRole="BUTTON" fitHeight="43.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../Images/login_preview_rev_1.png" />
+         </ImageView>
+         <Label>
+            <HBox.margin>
+               <Insets left="-35.0" top="35.0" />
+            </HBox.margin>
+            <font>
+               <Font name="Comic Sans MS" size="11.0" />
+            </font>
+         </Label>
       </HBox>
    </bottom>
-   <center>
-      <Pane prefHeight="200.0" prefWidth="266.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/Sportify_logo.png" />
-               </image>
-            </ImageView>
-            <Text fontSmoothingType="LCD" layoutX="32.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Sportify!" textAlignment="CENTER" wrappingWidth="205.74609375">
-               <font>
-                  <Font name="Comic Sans MS Bold Italic" size="30.0" />
-               </font>
-            </Text>
-            <Text fontSmoothingType="LCD" layoutX="24.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose an activity and join our beautiful community!" textAlignment="CENTER" wrappingWidth="221.5673828125">
-               <font>
-                  <Font name="Comic Sans MS Italic" size="18.0" />
-               </font>
-            </Text>
-         </children>
+   <top>
+      <Pane prefHeight="155.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../Images/Sportify_logo.png" />
+         </ImageView>
       </Pane>
+   </top>
+   <center>
+      <Pane styleClass="rectangle" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
