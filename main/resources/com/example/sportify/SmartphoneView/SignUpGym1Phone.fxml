@@ -1,99 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="270.0" styleClass="image" stylesheets="@../StyleSmartPhone/HomePhone.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-    <bottom>
-        <HBox prefHeight="56.0" prefWidth="270.0" BorderPane.alignment="CENTER">
-            <ImageView accessibleRole="BUTTON" fitHeight="58.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../Images/home_preview_rev_1.png" />
-            </ImageView>
-            <ImageView accessibleRole="BUTTON" fitHeight="59.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../Images/quiz_preview_rev_1.png" />
-            </ImageView>
-            <ImageView accessibleRole="BUTTON" fitHeight="42.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../Images/Gym_preview_rev_1 (1).png" />
-            </ImageView>
-            <ImageView accessibleRole="BUTTON" fitHeight="43.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../Images/login_preview_rev_1.png" />
-            </ImageView>
-            <Label>
-                <HBox.margin>
-                    <Insets left="-35.0" top="35.0" />
-                </HBox.margin>
-                <font>
-                    <Font name="Comic Sans MS" size="11.0" />
-                </font>
-            </Label>
-        </HBox>
-    </bottom>
-    <top>
-        <Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER">
-            <ImageView fitHeight="54.0" fitWidth="168.0" layoutX="60.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../Images/Sportify_logo.png" />
-            </ImageView>
-            <ImageView accessibleRole="BUTTON" fitHeight="21.0" fitWidth="26.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../Images/backArrow.png" />
-                </image>
-            </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="107.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true" />
-         <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="230.0" layoutY="22.0">
-            <image>
-               <Image url="@../Images/backArrowRight.png" />
-            </image>
-         </ImageView>
-        </Pane>
-    </top>
-    <center>
-        <Pane styleClass="rectangle" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER">
-            <children>
-                <TextField alignment="CENTER" layoutX="40.0" layoutY="136.0" prefHeight="27.0" prefWidth="197.0" promptText="*Username" style="-fx-background-radius: 30px;">
-                    <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                    </cursor>
-                </TextField>
-                <PasswordField alignment="CENTER" layoutX="40.0" layoutY="168.0" prefHeight="27.0" prefWidth="197.0" promptText="*Password" style="-fx-background-radius: 30px;" />
-                <Label layoutX="237.0" layoutY="166.0" prefHeight="21.0" prefWidth="23.0" text="👁">
-                    <font>
-                        <Font name="Comic Sans MS" size="22.0" />
-                    </font>
-                </Label>
-                <TextField alignment="CENTER" layoutX="40.0" layoutY="104.0" prefHeight="27.0" prefWidth="197.0" promptText="Last name" style="-fx-background-radius: 30px;">
-                    <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                    </cursor>
-                </TextField>
-                <TextField alignment="CENTER" layoutX="40.0" layoutY="72.0" prefHeight="27.0" prefWidth="197.0" promptText="First name" style="-fx-background-radius: 30px;">
-                    <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                    </cursor>
-                    <opaqueInsets>
-                        <Insets />
-                    </opaqueInsets>
-                </TextField>
-                <TextField alignment="CENTER" layoutX="40.0" layoutY="200.0" prefHeight="27.0" prefWidth="197.0" promptText="*Email" style="-fx-background-radius: 30px;">
-                    <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                    </cursor>
-                </TextField>
-                <Text fill="#070707" layoutX="65.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
-                    <font>
-                        <Font name="Comic Sans MS" size="39.0" />
-                    </font>
-                </Text>
-            </children>
-        </Pane>
-    </center>
-</BorderPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="270.0" styleClass="image" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <TextField alignment="CENTER" layoutX="36.0" layoutY="166.0" prefHeight="27.0" prefWidth="197.0" promptText="*Username" style="-fx-background-radius: 30px;">
+        <cursor>
+            <Cursor fx:constant="DEFAULT" />
+        </cursor>
+    </TextField>
+    <PasswordField alignment="CENTER" layoutX="36.0" layoutY="198.0" prefHeight="27.0" prefWidth="197.0" promptText="*Password" style="-fx-background-radius: 30px;" />
+    <Label layoutX="233.0" layoutY="196.0" prefHeight="21.0" prefWidth="23.0" text="👁">
+        <font>
+            <Font name="Comic Sans MS" size="22.0" />
+        </font>
+    </Label>
+    <TextField alignment="CENTER" layoutX="36.0" layoutY="134.0" prefHeight="27.0" prefWidth="197.0" promptText="Last name" style="-fx-background-radius: 30px;">
+        <cursor>
+            <Cursor fx:constant="DEFAULT" />
+        </cursor>
+    </TextField>
+    <TextField alignment="CENTER" layoutX="36.0" layoutY="102.0" prefHeight="27.0" prefWidth="197.0" promptText="First name" style="-fx-background-radius: 30px;">
+        <cursor>
+            <Cursor fx:constant="DEFAULT" />
+        </cursor>
+        <opaqueInsets>
+            <Insets />
+        </opaqueInsets>
+    </TextField>
+    <TextField alignment="CENTER" layoutX="36.0" layoutY="230.0" prefHeight="27.0" prefWidth="197.0" promptText="*Email" style="-fx-background-radius: 30px;">
+        <cursor>
+            <Cursor fx:constant="DEFAULT" />
+        </cursor>
+    </TextField>
+    <Text fill="#070707" layoutX="61.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
+        <font>
+            <Font name="Comic Sans MS" size="39.0" />
+        </font>
+    </Text>
+</Pane>
