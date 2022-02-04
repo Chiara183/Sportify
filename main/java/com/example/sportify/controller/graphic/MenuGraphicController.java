@@ -168,7 +168,7 @@ public class MenuGraphicController implements GraphicController{
 
     /** Is called to set user view*/
     public void setUser(boolean bool) {
-        if (!this.controller.getMainApp().isMobile()) {
+        if (this.controller.getMainApp().isNotMobile()) {
             if (bool) {
                 signOut.setVisible(true);
                 signOut.setPrefWidth(112);

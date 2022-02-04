@@ -5,8 +5,10 @@ import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.Objects;
+import java.util.concurrent.CountDownLatch;
 import java.util.logging.Logger;
 
 public class MainAppLauncher extends Application {
@@ -30,6 +32,18 @@ public class MainAppLauncher extends Application {
                 new Image(
                         Objects.requireNonNull(
                                 getClass().getResourceAsStream("Images/Sportify icon.png"))));
+        CountDownLatch modalitySignal = new CountDownLatch(1);
+        new Thread(() -> {
+            Dialog dialog = new Dialog();
+            dialog.setMainApp(mainApp);
+            dialog.setWait(modalitySignal);
+            dialog.createAndShowGUI();
+        }).start();
+        try {
+            modalitySignal.await();
+        } catch(InterruptedException e){
+            e.printStackTrace();
+        }
         mainApp.initRootLayout();
         mainApp.showHomeOverview();
     }

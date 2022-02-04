@@ -37,9 +37,12 @@ public class MainApp{
     private boolean externalLogin = false;
     private MenuController menu;
     private Projection projection;
-    private boolean mobile = true;
+    private boolean mobile;
 
     /** Set method*/
+    public void setMobile(boolean bool) {
+        this.mobile = bool;
+    }
     public void setSubmit(Submit submit) {
         this.submit = submit;
     }
@@ -81,8 +84,8 @@ public class MainApp{
     public Projection getProjection() {
         return projection;
     }
-    public boolean isMobile() {
-        return mobile;
+    public boolean isNotMobile() {
+        return !mobile;
     }
 
     /** Initializes the root layout.*/
@@ -94,9 +97,9 @@ public class MainApp{
         LOGGER.log(Level.INFO, dim);
         try {
             FXMLLoader loader = new FXMLLoader();
-            if(width>height) {
-            //if(!mobile) {
-                this.mobile = false;
+            //if(width>height) {
+            if(!mobile) {
+                //this.mobile = false;
                 // Load root layout from fxml file.
                 loader.setLocation(MainApp.class.getResource("DesktopView/RootLayout.fxml"));
                 rootLayout = loader.load();
@@ -106,7 +109,7 @@ public class MainApp{
                 primaryStage.setScene(scene);
                 primaryStage.setFullScreen(true);
             } else {
-                this.mobile = true;
+                //this.mobile = true;
                 // Load root layout from fxml file.
                 loader.setLocation(MainApp.class.getResource("SmartphoneView/RootLayoutPhone.fxml"));
                 rootLayout = loader.load();
