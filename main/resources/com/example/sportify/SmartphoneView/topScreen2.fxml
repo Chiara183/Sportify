@@ -3,8 +3,8 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<Pane xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
+<Pane xmlns="http://javafx.com/javafx/11.0.2"
+      xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.sportify.controller.graphic.MenuGraphicController"
       prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER">
     <ImageView fitHeight="54.0" fitWidth="168.0" layoutX="60.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
