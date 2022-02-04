@@ -214,6 +214,7 @@ public class MainApp{
             // Load login overview.
             FXMLLoader loaderLogin = new FXMLLoader();
             Pane paneTopScreen = null;
+            MenuGraphicController graphicMenuController = null;
             if(!mobile) {
                 loaderLogin.setLocation(MainApp.class.getResource("DesktopView/Login.fxml"));
             } else {
@@ -221,6 +222,7 @@ public class MainApp{
                 FXMLLoader loaderTopScreen = new FXMLLoader();
                 loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen1.fxml"));
                 paneTopScreen = loaderTopScreen.load();
+                graphicMenuController = loaderTopScreen.getController();
             }
             Pane pane = loaderLogin.load();
 
@@ -239,6 +241,8 @@ public class MainApp{
                 this.getPrimaryPane().setCenter(pane);
                 if(mobile){
                     this.getPrimaryPane().setTop(paneTopScreen);
+                    assert graphicMenuController != null;
+                    graphicMenuController.setController(menuController);
                 }
             } else {
                 // Create the dialog Stage.
