@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="270.0" styleClass="image" stylesheets="@../StyleSmartPhone/HomePhone.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Pane prefHeight="95.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="219.0" layoutY="14.0">
+               <image>
+                  <Image url="@../Images/tick.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-79.0" layoutY="-43.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="26.0" fitWidth="34.0" layoutX="14.0" layoutY="19.0">
+               <image>
+                  <Image url="@../Images/backArrow.png" />
+               </image>
+            </ImageView>
+               <ImageView accessibleRole="BUTTON" fitHeight="71.0" fitWidth="80.0" layoutX="99.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                   <Image url="@../Images/login_preview_rev_1.png" />
+               </ImageView>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField alignment="CENTER" layoutX="19.0" layoutY="52.0" prefHeight="25.0" prefWidth="191.0" promptText="First Name" />
+            <TextField alignment="CENTER" layoutX="19.0" layoutY="82.0" prefHeight="25.0" prefWidth="191.0" promptText="Last Name" />
+            <TextField alignment="CENTER" layoutX="19.0" layoutY="112.0" prefHeight="25.0" prefWidth="191.0" promptText="Username" />
+            <TextField alignment="CENTER" layoutX="19.0" layoutY="142.0" prefHeight="25.0" prefWidth="191.0" promptText="Password" />
+            <TextField alignment="CENTER" layoutX="19.0" layoutY="172.0" prefHeight="25.0" prefWidth="191.0" promptText="Email" />
+            <TextField alignment="CENTER" layoutX="19.0" layoutY="202.0" prefHeight="25.0" prefWidth="191.0" promptText="Birthday (GG/MM/AAAA)" />
+            <TextField alignment="CENTER" layoutX="19.0" layoutY="232.0" prefHeight="25.0" prefWidth="191.0" promptText="Gym Name" />
+            <TextField alignment="CENTER" layoutX="19.0" layoutY="262.0" prefHeight="25.0" prefWidth="191.0" promptText="Address" />
+            <TextField alignment="CENTER" layoutX="19.0" layoutY="292.0" prefHeight="25.0" prefWidth="191.0" promptText="Telephone" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="51.0" text="🖉" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="81.0" text="🖉" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="111.0" text="🖉" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="141.0" text="🖉" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="171.0" text="🖉" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="201.0" text="🖉" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="231.0" text="🖉" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="261.0" text="🖉" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="291.0" prefWidth="21.0" text="🖉" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Label>
+            <CheckBox layoutX="230.0" layoutY="55.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="229.0" layoutY="85.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="229.0" layoutY="115.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="230.0" layoutY="145.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="230.0" layoutY="175.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="230.0" layoutY="205.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="230.0" layoutY="235.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="230.0" layoutY="265.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="230.0" layoutY="295.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
