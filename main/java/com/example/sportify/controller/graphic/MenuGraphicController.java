@@ -47,6 +47,22 @@ public class MenuGraphicController implements GraphicController{
 
     /** The action of the buttons*/
     @FXML
+    private void back(){
+        if(controller.getView()==ControllerType.LOGIN){
+            homeAction();
+        } else if(controller.getView()==null){
+            //TODO other view
+        }
+    }
+    @FXML
+    private void signAction(){
+        if(controller.getUser()==null){
+            signLoginAction();
+        } else {
+            openUserInterface();
+        }
+    }
+    @FXML
     private void signOut() {
         controller.setUser(null);
         controller.getMainApp().setUser(null);
@@ -91,7 +107,9 @@ public class MenuGraphicController implements GraphicController{
     }
     @FXML
     private void signLoginAction() {
-        controller.getMainApp().setExternalLogin(true);
+        if(controller.getMainApp().isNotMobile()) {
+            controller.getMainApp().setExternalLogin(true);
+        }
         controller.getMainApp().setMenu(controller);
         controller.getMainApp().setUser(controller.getUser());
         controller.getMainApp().showLoginOverview();
@@ -145,20 +163,28 @@ public class MenuGraphicController implements GraphicController{
     /** The method called to set the view*/
     public void setSportQuiz() {
         controller.setView(ControllerType.SPORT_QUIZ);
-        controller.setButton(findGym, signOut, signIn, signUp, gymInfo, sportQuiz);
+        if(controller.getMainApp().isNotMobile()) {
+            controller.setButton(findGym, signOut, signIn, signUp, gymInfo, sportQuiz);
+        }
     }
     public void setFindGym() {
         controller.setView(ControllerType.FIND_GYM);
-        controller.setButton(signOut, signIn, signUp, gymInfo, sportQuiz, findGym);
+        if(controller.getMainApp().isNotMobile()) {
+            controller.setButton(signOut, signIn, signUp, gymInfo, sportQuiz, findGym);
+        }
     }
     public void setLogin() {
         controller.setView(ControllerType.LOGIN);
-        controller.setButton(signOut, gymInfo, sportQuiz, findGym, signUp, signIn);
+        if(controller.getMainApp().isNotMobile()) {
+            controller.setButton(signOut, gymInfo, sportQuiz, findGym, signUp, signIn);
+        }
     }
     public void setGymInfo(String gym){
         controller.setView(ControllerType.GYM_INFO);
         controller.setGym(gym);
-        controller.setButton(findGym, sportQuiz, signOut, signIn, signUp, gymInfo);
+        if(controller.getMainApp().isNotMobile()) {
+            controller.setButton(findGym, sportQuiz, signOut, signIn, signUp, gymInfo);
+        }
     }
 
     /** Is called to get signOut button.*/
@@ -193,8 +219,6 @@ public class MenuGraphicController implements GraphicController{
                 gymInfo.setPrefWidth(0);
                 userIcon.setVisible(false);
             }
-        } else {
-            //TODO setMobileUser
         }
     }
 

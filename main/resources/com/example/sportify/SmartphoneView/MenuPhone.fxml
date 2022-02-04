@@ -27,7 +27,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </ImageView>
-        <ImageView accessibleRole="BUTTON" fitHeight="43.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" styleClass="button1">
+        <ImageView accessibleRole="BUTTON" fitHeight="43.0" fitWidth="39.0" onMouseClicked="#signAction" onSwipeUp="#signAction" onTouchPressed="#signAction" pickOnBounds="true" preserveRatio="true" styleClass="button1">
             <Image url="@../Images/login_preview_rev_1.png" />
          <cursor>
             <Cursor fx:constant="HAND" />

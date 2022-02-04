@@ -213,7 +213,15 @@ public class MainApp{
 
             // Load login overview.
             FXMLLoader loaderLogin = new FXMLLoader();
-            loaderLogin.setLocation(MainApp.class.getResource("DesktopView/Login.fxml"));
+            Pane paneTopScreen = null;
+            if(!mobile) {
+                loaderLogin.setLocation(MainApp.class.getResource("DesktopView/Login.fxml"));
+            } else {
+                loaderLogin.setLocation(MainApp.class.getResource("SmartphoneView/LoginPhone1.fxml"));
+                FXMLLoader loaderTopScreen = new FXMLLoader();
+                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen1.fxml"));
+                paneTopScreen = loaderTopScreen.load();
+            }
             Pane pane = loaderLogin.load();
 
             // Setting controller
@@ -229,6 +237,9 @@ public class MainApp{
             if(!externalLogin) {
                 // Set login overview into the center of root layout.
                 this.getPrimaryPane().setCenter(pane);
+                if(mobile){
+                    this.getPrimaryPane().setTop(paneTopScreen);
+                }
             } else {
                 // Create the dialog Stage.
                 Stage dialogStage = new Stage();

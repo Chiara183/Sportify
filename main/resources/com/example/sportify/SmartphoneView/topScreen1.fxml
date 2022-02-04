@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.image.*?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<Pane xmlns="http://javafx.com/javafx/11.0.2"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.sportify.controller.graphic.MenuGraphicController"
-      prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.MenuGraphicController">
     <ImageView fitHeight="54.0" fitWidth="168.0" layoutX="60.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../Images/Sportify_logo.png" />
     </ImageView>
-    <ImageView accessibleRole="BUTTON" fitHeight="21.0" fitWidth="26.0" layoutX="14.0" layoutY="22.0"
-               pickOnBounds="true" preserveRatio="true">
-        <Image url="@../Images/backArrow.png"/>
+    <ImageView fx:id="back" accessibleRole="BUTTON" fitHeight="21.0" fitWidth="26.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../Images/backArrow.png" />
     </ImageView>
     <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="107.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView fitHeight="21.0" fitWidth="26.0" layoutX="230.0" layoutY="22.0">
-        <Image url="@../Images/backArrowRight.png"/>
+        <Image url="@../Images/backArrowRight.png" />
     </ImageView>
 </Pane>
