@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="270.0" styleClass="image" stylesheets="@../StyleSmartPhone/HomePhone.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <Pane prefHeight="95.0" prefWidth="270.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="219.0" layoutY="14.0">
+            <ImageView fx:id="ok" fitHeight="37.0" fitWidth="37.0" layoutX="219.0" layoutY="14.0">
                <image>
                   <Image url="@../Images/tick.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-79.0" layoutY="-43.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="26.0" fitWidth="34.0" layoutX="14.0" layoutY="19.0">
+            <ImageView fx:id="cancel" fitHeight="26.0" fitWidth="34.0" layoutX="14.0" layoutY="19.0">
                <image>
                   <Image url="@../Images/backArrow.png" />
                </image>
@@ -33,105 +33,126 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField alignment="CENTER" layoutX="19.0" layoutY="52.0" prefHeight="25.0" prefWidth="191.0" promptText="First Name" />
-            <TextField alignment="CENTER" layoutX="19.0" layoutY="82.0" prefHeight="25.0" prefWidth="191.0" promptText="Last Name" />
-            <TextField alignment="CENTER" layoutX="19.0" layoutY="112.0" prefHeight="25.0" prefWidth="191.0" promptText="Username" />
-            <TextField alignment="CENTER" layoutX="19.0" layoutY="142.0" prefHeight="25.0" prefWidth="191.0" promptText="Password" />
-            <TextField alignment="CENTER" layoutX="19.0" layoutY="172.0" prefHeight="25.0" prefWidth="191.0" promptText="Email" />
-            <TextField alignment="CENTER" layoutX="19.0" layoutY="202.0" prefHeight="25.0" prefWidth="191.0" promptText="Birthday (GG/MM/AAAA)" />
-            <TextField alignment="CENTER" layoutX="19.0" layoutY="232.0" prefHeight="25.0" prefWidth="191.0" promptText="Gym Name" />
-            <TextField alignment="CENTER" layoutX="19.0" layoutY="262.0" prefHeight="25.0" prefWidth="191.0" promptText="Address" />
-            <TextField alignment="CENTER" layoutX="19.0" layoutY="292.0" prefHeight="25.0" prefWidth="191.0" promptText="Telephone" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="51.0" text="🖉" textAlignment="CENTER">
+            <TextField fx:id="firstName" alignment="CENTER" layoutX="19.0" layoutY="52.0" prefHeight="25.0" prefWidth="191.0" promptText="First Name" />
+            <TextField fx:id="lastName" alignment="CENTER" layoutX="19.0" layoutY="82.0" prefHeight="25.0" prefWidth="191.0" promptText="Last Name" />
+            <TextField fx:id="username" alignment="CENTER" layoutX="19.0" layoutY="112.0" prefHeight="25.0" prefWidth="191.0" promptText="Username" />
+            <TextField fx:id="password" alignment="CENTER" layoutX="19.0" layoutY="142.0" prefHeight="25.0" prefWidth="191.0" promptText="Password" />
+            <TextField fx:id="email" alignment="CENTER" layoutX="19.0" layoutY="172.0" prefHeight="25.0" prefWidth="191.0" promptText="Email" />
+            <TextField fx:id="gymName" alignment="CENTER" layoutX="19.0" layoutY="232.0" prefHeight="25.0" prefWidth="191.0" promptText="Gym Name" />
+            <TextField fx:id="address" alignment="CENTER" layoutX="19.0" layoutY="262.0" prefHeight="25.0" prefWidth="191.0" promptText="Gym Address" />
+            <TextField fx:id="telephone" alignment="CENTER" layoutX="19.0" layoutY="292.0" prefHeight="25.0" prefWidth="191.0" promptText="Gym Telephone" />
+            <Label fx:id="modifyFirstName" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="51.0" text="🖉" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="81.0" text="🖉" textAlignment="CENTER">
+            <Label fx:id="modifyLastName" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="81.0" text="🖉" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="111.0" text="🖉" textAlignment="CENTER">
+            <Label fx:id="modifyUsername" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="111.0" text="🖉" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="141.0" text="🖉" textAlignment="CENTER">
+            <Label fx:id="modifyPassword" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="141.0" text="🖉" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="171.0" text="🖉" textAlignment="CENTER">
+            <Label fx:id="modifyEmail" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="171.0" text="🖉" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="201.0" text="🖉" textAlignment="CENTER">
+            <Label fx:id="modifyBirthday" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="201.0" text="🖉" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="231.0" text="🖉" textAlignment="CENTER">
+            <Label fx:id="modifyGymName" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="231.0" text="🖉" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="261.0" text="🖉" textAlignment="CENTER">
+            <Label fx:id="modifyAddress" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="261.0" text="🖉" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="291.0" prefWidth="21.0" text="🖉" textAlignment="CENTER">
+            <Label fx:id="modifyTelephone" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="291.0" prefWidth="21.0" text="🖉" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Label>
-            <CheckBox layoutX="230.0" layoutY="55.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+            <CheckBox fx:id="toggleFirstName" layoutX="230.0" layoutY="55.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="229.0" layoutY="85.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+            <CheckBox fx:id="toggleLastName" layoutX="229.0" layoutY="85.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="229.0" layoutY="115.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+            <CheckBox fx:id="toggleUsername" layoutX="229.0" layoutY="115.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="230.0" layoutY="145.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+            <CheckBox fx:id="togglePassword" layoutX="230.0" layoutY="145.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="230.0" layoutY="175.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+            <CheckBox fx:id="toggleEmail" layoutX="230.0" layoutY="175.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="230.0" layoutY="205.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+            <CheckBox fx:id="toggleBirthday" layoutX="230.0" layoutY="205.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="230.0" layoutY="235.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+            <CheckBox fx:id="toggleGymName" layoutX="230.0" layoutY="235.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="230.0" layoutY="265.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+            <CheckBox fx:id="toggleAddress" layoutX="230.0" layoutY="265.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="230.0" layoutY="295.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+            <CheckBox fx:id="toggleTelephone" layoutX="230.0" layoutY="295.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
+            <TextField fx:id="birthMonth" layoutX="121.0" layoutY="203.0" prefHeight="25.0" prefWidth="37.0" promptText="mm" />
+            <TextField fx:id="birthYear" layoutX="170.0" layoutY="203.0" prefHeight="25.0" prefWidth="40.0" promptText="aaaa" />
+            <TextField fx:id="birthDay" layoutX="71.0" layoutY="203.0" prefHeight="25.0" prefWidth="37.0" promptText="gg">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </TextField>
+            <Text layoutX="110.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="9.67578125">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="160.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="9.67578125">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="19.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthday">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </center>

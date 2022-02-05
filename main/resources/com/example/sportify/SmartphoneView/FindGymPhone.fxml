@@ -58,7 +58,7 @@
                   <Image url="@../Images/backArrow.png" />
                </image>
             </ImageView>
-            <TextField layoutX="6.0" layoutY="73.0" prefHeight="32.0" prefWidth="158.0" promptText="Search..." style="-fx-background-radius: 30px;" />
+            <TextField fx:id="search" layoutX="6.0" layoutY="73.0" prefHeight="32.0" prefWidth="158.0" promptText="Search..." style="-fx-background-radius: 30px;" />
             <Button layoutX="164.0" layoutY="73.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="37.0" style="-fx-background-radius: 30px;">
                  <cursor>
                      <Cursor fx:constant="HAND" />
@@ -78,7 +78,7 @@
     <center>
         <Pane prefHeight="200.0" prefWidth="270.0" BorderPane.alignment="CENTER">
          <children>
-            <Accordion layoutX="34.0" layoutY="193.0">
+            <Accordion fx:id="leftControls" layoutX="34.0" layoutY="193.0">
               <panes>
                 <TitledPane animated="false" prefHeight="118.0" prefWidth="200.0" text="map style">
                     <VBox spacing="10.0">
@@ -95,7 +95,7 @@
                 </TitledPane>
               </panes>
             </Accordion>
-            <Pane layoutY="7.0" prefHeight="182.0" prefWidth="270.0" >
+            <Pane fx:id="map" layoutY="7.0" prefHeight="182.0" prefWidth="270.0" >
                 <MapView fx:id="mapView"/>
             </Pane>
          </children>
