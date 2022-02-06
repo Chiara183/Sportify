@@ -218,9 +218,9 @@ public class MainApp{
             if(!mobile) {
                 loaderLogin.setLocation(MainApp.class.getResource("DesktopView/Login.fxml"));
             } else {
-                loaderLogin.setLocation(MainApp.class.getResource("SmartphoneView/LoginPhone1.fxml"));
+                loaderLogin.setLocation(MainApp.class.getResource("SmartphoneView/LoginPhone0.fxml"));
                 FXMLLoader loaderTopScreen = new FXMLLoader();
-                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen1.fxml"));
+                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen0.fxml"));
                 paneTopScreen = loaderTopScreen.load();
                 graphicMenuController = loaderTopScreen.getController();
             }
