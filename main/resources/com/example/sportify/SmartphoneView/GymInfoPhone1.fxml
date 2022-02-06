@@ -23,7 +23,7 @@
                     <Separator prefWidth="200.0"/>
                 </graphic>
             </MenuItem>
-            <MenuItem mnemonicParsing="false" style="-fx-background-radius: 30px;" text="Reviiew"/>
+            <MenuItem mnemonicParsing="false" style="-fx-background-radius: 30px;" text="Review"/>
         </items>
         <font>
             <Font name="Comic Sans MS" size="14.0"/>

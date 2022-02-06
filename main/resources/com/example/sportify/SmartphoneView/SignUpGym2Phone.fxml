@@ -8,7 +8,8 @@
 <?import javafx.scene.text.Text?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0"
       prefWidth="270.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
-      stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER">
+      stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER"
+      fx:controller="com.example.sportify.controller.graphic.SignUpGymGraphicController">
     <TextField alignment="CENTER" layoutX="40.0" layoutY="136.0" prefHeight="27.0" prefWidth="197.0"
                promptText="*Gym address" style="-fx-background-radius: 30px;">
         <cursor>

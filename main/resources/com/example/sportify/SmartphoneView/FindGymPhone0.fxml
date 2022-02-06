@@ -2,9 +2,9 @@
 
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="280.0" prefWidth="270.0"
-      stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER"
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="280.0" prefWidth="270.0" BorderPane.alignment="CENTER"
+      stylesheets="@../StyleSmartPhone/HomePhone.css"
       xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.sportify.controller.graphic.FindGymGraphicController">
     <Pane fx:id="map" layoutY="34.0" prefHeight="182.0" prefWidth="270.0"/>

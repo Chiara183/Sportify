@@ -3,7 +3,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.MenuGraphicController">
+<Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER"
+      xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.sportify.controller.graphic.MenuGraphicController">
     <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="219.0" layoutY="14.0">
         <Image url="@../Images/tick.png"/>
     </ImageView>

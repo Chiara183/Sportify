@@ -87,6 +87,6 @@
     </CheckBox>
     <ImageView accessibleRole="BUTTON" fitHeight="71.0" fitWidth="80.0" layoutX="99.0" layoutY="-35.0"
                pickOnBounds="true" preserveRatio="true">
-        <Image url="@../Images/login_preview_rev_1.png"/>
+        <Image url="@../Images/login_preview_rev_1.png" />
     </ImageView>
 </Pane>

@@ -4,10 +4,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0"
-      prefWidth="270.0" fx:controller="com.example.sportify.controller.graphic.SportGraphicController"
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="280.0" prefWidth="270.0" BorderPane.alignment="CENTER"
+      fx:controller="com.example.sportify.controller.graphic.SportGraphicController"
       xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
-      stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER">
+      stylesheets="@../StyleSmartPhone/HomePhone.css">
     <Text layoutX="14.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The right sport for you is..."
           textAlignment="CENTER" wrappingWidth="242.61328125">
         <font>
