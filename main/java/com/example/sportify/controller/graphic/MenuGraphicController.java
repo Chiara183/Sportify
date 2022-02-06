@@ -50,8 +50,8 @@ public class MenuGraphicController implements GraphicController{
     private void back(){
         if(controller.getView()==ControllerType.LOGIN){
             homeAction();
-        } else if(controller.getView()==null){
-            //TODO other view
+        } else if(controller.getView()==ControllerType.SPORT_QUIZ){
+            homeAction();
         }
     }
     @FXML
@@ -92,7 +92,9 @@ public class MenuGraphicController implements GraphicController{
     @FXML
     private void sportQuizAction() {
         controller.setView(ControllerType.SPORT_QUIZ);
-        controller.setButton(findGym, signOut, signIn, signUp, gymInfo, sportQuiz);
+        if(controller.getMainApp().isNotMobile()) {
+            controller.setButton(findGym, signOut, signIn, signUp, gymInfo, sportQuiz);
+        }
         controller.getMainApp().setMenu(controller);
         controller.getMainApp().setUser(controller.getUser());
         controller.getMainApp().showSportQuizOverview(controller);

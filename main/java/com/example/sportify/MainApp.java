@@ -283,11 +283,26 @@ public class MainApp{
             this.getPrimaryStage().setTitle("Sportify - Sport Quiz");
             // Load sport quiz overview.
             FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuiz.fxml"));
+            Pane paneTopScreen = null;
+            MenuGraphicController graphicMenuController = null;
+            if(isNotMobile()) {
+                loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuiz.fxml"));
+            } else {
+                loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportQuizPhone1.fxml"));
+                FXMLLoader loaderTopScreen = new FXMLLoader();
+                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen1.fxml"));
+                paneTopScreen = loaderTopScreen.load();
+                graphicMenuController = loaderTopScreen.getController();
+            }
             Pane pane = loaderSport.load();
 
             // Set sport quiz overview into the center of root layout.
             this.getPrimaryPane().setCenter(pane);
+            if(mobile){
+                this.getPrimaryPane().setTop(paneTopScreen);
+                assert graphicMenuController != null;
+                graphicMenuController.setController(menu);
+            }
 
             // Give the controller access to the main app.
             SportQuizGraphicController graphicController = loaderSport.getController();
