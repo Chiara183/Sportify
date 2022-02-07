@@ -332,18 +332,18 @@ public class GymInfoController extends Controller {
                             SELECT +
                                     "FROM gym " +
                                     "WHERE gym.name = \"" + name + "\"", "phone");
-                    String rs = list.get(list.size() - 1);
-                    if (Objects.equals(rs, "null")) {
-                        DAO objDAO1 = this.mainApp.getDAO();
-                        List<String> list1 = objDAO1.checkData(
-                                SELECT +
-                                        "FROM gym " +
-                                        "WHERE gym.name = \"" + name + "\"", "address");
-                        String rs1 = list1.get(list1.size() - 1);
-                        graphicController.setGymDescription(
-                                "ADDRESS: " + rs1 +
-                                        "\n\nTELEPHONE: \\\\");
-                    }
+                    String rs = list.get(0);
+                    System.out.println(list.get(0));
+                    DAO objDAO1 = this.mainApp.getDAO();
+                    List<String> list1 = objDAO1.checkData(
+                            SELECT +
+                                    "FROM gym " +
+                                    "WHERE gym.name = \"" + name + "\"", "address");
+                    String rs1 = list1.get(0);
+                    System.out.println(list1.get(0));
+                    graphicController.setGymDescription(
+                            "ADDRESS: " + rs1 +
+                                    "\n\nTELEPHONE: " + rs);
                 });
         Task<Void> task4 = createTask(task1);
         task4.setOnRunning(e -> graphicController.gymDescription_setCursor(Cursor.WAIT));
