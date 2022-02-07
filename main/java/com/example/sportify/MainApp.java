@@ -2,6 +2,7 @@ package com.example.sportify;
 
 import com.example.sportify.controller.*;
 import com.example.sportify.controller.graphic.*;
+import com.example.sportify.controller.graphicPhone.SportQuizPhoneGraphicController;
 import com.example.sportify.user.User;
 import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXMLLoader;
@@ -305,10 +306,16 @@ public class MainApp{
             }
 
             // Give the controller access to the main app.
-            SportQuizGraphicController graphicController = loaderSport.getController();
             SportQuizController controller = new SportQuizController();
-            controller.setGraphicController(graphicController);
-            graphicController.setController(controller);
+            if(isNotMobile()) {
+                SportQuizGraphicController graphicController = loaderSport.getController();
+                controller.setGraphicController(graphicController);
+                graphicController.setController(controller);
+            } else {
+                SportQuizPhoneGraphicController graphicController = loaderSport.getController();
+                controller.setGraphicController(graphicController);
+                graphicController.setController(controller);
+            }
             controller.setMainApp(this);
             controller.setUser(this.user);
             controller.setMenu(menu);

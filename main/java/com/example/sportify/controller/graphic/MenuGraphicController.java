@@ -49,9 +49,11 @@ public class MenuGraphicController implements GraphicController{
     /** The action of the buttons*/
     @FXML
     private void back(){
-        if(controller.getView()==ControllerType.LOGIN){
+        if(controller.getView()==ControllerType.LOGIN) {
             homeAction();
-        } else if(controller.getView()==ControllerType.SPORT_QUIZ){
+        } else if(controller.getView()==ControllerType.SPORT_QUIZ) {
+            homeAction();
+        } else if(controller.getView()==ControllerType.FIND_GYM) {
             homeAction();
         }
     }
