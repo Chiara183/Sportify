@@ -1,5 +1,6 @@
 package com.example.sportify.controller;
 
+import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.FindGymGraphicController;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.MapGraphicController;
@@ -32,7 +33,11 @@ public class FindGymController extends Controller{
         try {
             // Load find map overview.
             FXMLLoader loaderGym = new FXMLLoader();
-            loaderGym.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("DesktopView/Map.fxml")));
+            if(mainApp.isNotMobile()) {
+                loaderGym.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("DesktopView/Map.fxml")));
+            } else {
+                loaderGym.setLocation(MainApp.class.getResource("SmartphoneView/MapPhone.fxml"));
+            }
             AnchorPane paneMap = loaderGym.load();
 
             // Set menu overview into the top of root layout.

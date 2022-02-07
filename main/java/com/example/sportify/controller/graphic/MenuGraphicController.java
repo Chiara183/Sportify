@@ -103,7 +103,9 @@ public class MenuGraphicController implements GraphicController{
     @FXML
     private void findGymAction() {
         controller.setView(ControllerType.FIND_GYM);
-        controller.setButton(signOut, signIn, signUp, gymInfo, sportQuiz, findGym);
+        if(controller.getMainApp().isNotMobile()) {
+            controller.setButton(signOut, signIn, signUp, gymInfo, sportQuiz, findGym);
+        }
         controller.getMainApp().setMenu(controller);
         controller.getMainApp().setUser(controller.getUser());
         controller.getMainApp().showFindGymOverview(controller);

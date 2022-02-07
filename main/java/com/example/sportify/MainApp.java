@@ -325,11 +325,26 @@ public class MainApp{
             this.getPrimaryStage().setTitle("Sportify - Find Gym");
             // Load find gym overview.
             FXMLLoader loaderGym = new FXMLLoader();
-            loaderGym.setLocation(MainApp.class.getResource("DesktopView/FindGym.fxml"));
+            Pane paneTopScreen = null;
+            MenuGraphicController graphicMenuController = null;
+            if(isNotMobile()) {
+                loaderGym.setLocation(MainApp.class.getResource("DesktopView/FindGym.fxml"));
+            } else {
+                loaderGym.setLocation(MainApp.class.getResource("SmartphoneView/FindGymPhone0.fxml"));
+                FXMLLoader loaderTopScreen = new FXMLLoader();
+                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen0.fxml"));
+                paneTopScreen = loaderTopScreen.load();
+                graphicMenuController = loaderTopScreen.getController();
+            }
             Pane pane = loaderGym.load();
 
             // Set find gym overview into the center of root layout.
             this.getPrimaryPane().setCenter(pane);
+            if(mobile){
+                this.getPrimaryPane().setTop(paneTopScreen);
+                assert graphicMenuController != null;
+                graphicMenuController.setController(menu);
+            }
 
             // Give the controller access to the main app.
             FindGymGraphicController graphicController = loaderGym.getController();

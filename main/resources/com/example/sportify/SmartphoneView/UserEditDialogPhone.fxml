@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="336.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.UserEditGraphicController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="336.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.UserEditGraphicController">
     <TextField fx:id="firstName" alignment="CENTER" layoutX="19.0" layoutY="72.0" prefHeight="25.0" prefWidth="191.0" promptText="First Name" style="-fx-background-radius: 30;" />
     <TextField fx:id="lastName" alignment="CENTER" layoutX="19.0" layoutY="112.0" prefHeight="25.0" prefWidth="191.0" promptText="Last Name" style="-fx-background-radius: 30;" />
     <TextField fx:id="username" alignment="CENTER" layoutX="19.0" layoutY="152.0" prefHeight="25.0" prefWidth="191.0" promptText="Username" style="-fx-background-radius: 30;" />
