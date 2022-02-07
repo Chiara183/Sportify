@@ -2,7 +2,6 @@ package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
 import com.example.sportify.DBConnection;
-import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymInfoGraphicController;
 import com.example.sportify.controller.graphic.MenuGraphicController;
