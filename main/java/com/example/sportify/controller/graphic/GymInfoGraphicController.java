@@ -120,7 +120,7 @@ public class GymInfoGraphicController implements GraphicController{
         this.coursePane.setVisible(visible);
     }
 
-    /** Is called to get gym name*/
+    /** Is called to set gym name*/
     public void setGym_name(String name){
         this.gymName.setText(name);
     }

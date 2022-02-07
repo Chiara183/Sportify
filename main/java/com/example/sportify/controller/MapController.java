@@ -192,7 +192,11 @@ public class MapController extends Controller{
             searchCache[1] = this.graphicController.getKm();
             gym.setSearchCache(searchCache);
             this.menu.setGym(event.getMapLabel().getText());
-            this.menu.setFindGym();
+            if(mainApp.isNotMobile()) {
+                this.menu.setFindGym();
+            } else {
+                this.menu.setGymInfo(event.getMapLabel().getText());
+            }
             gym.loadingGymName(event.getMapLabel().getText());
         }
     }

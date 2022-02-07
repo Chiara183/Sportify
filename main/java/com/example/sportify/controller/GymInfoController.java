@@ -2,8 +2,10 @@ package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
 import com.example.sportify.DBConnection;
+import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymInfoGraphicController;
+import com.example.sportify.controller.graphic.MenuGraphicController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -314,24 +316,8 @@ public class GymInfoController extends Controller {
     /** Set Gym View*/
     private void setGym(String name){
 
-        // Handlers
-        setupEventHandlers();
-
         // Window Title
         graphicController.setGym_name(name);
-
-        // Set visible or not area new review and new course
-        settingPage();
-
-        // set ComboBox
-        Runnable task0 = () -> Platform.runLater(() -> {
-            this.sport = getSport();
-            graphicController.setComboSport(this.sport);
-        });
-        Task<Void> task00 = createTask(task0);
-        task00.setOnRunning(e -> graphicController.comboSport_setCursor(Cursor.WAIT));
-        task00.setOnSucceeded(e -> graphicController.comboSport_setCursor(Cursor.DEFAULT));
-        task00.setOnFailed(e -> graphicController.comboSport_setCursor(Cursor.DEFAULT));
 
         // Set gym_description
         graphicController.setGymDescription(
@@ -364,35 +350,55 @@ public class GymInfoController extends Controller {
         task4.setOnSucceeded(e -> graphicController.gymDescription_setCursor(Cursor.DEFAULT));
         task4.setOnFailed(e -> graphicController.gymDescription_setCursor(Cursor.DEFAULT));
 
-        // Set review
-        Runnable task2 = () -> Platform.runLater(this::downloadReview);
-        Task<Void> task5 = createTask(task2);
-        task5.setOnRunning(e -> graphicController.review_setCursor(Cursor.WAIT));
-        task5.setOnSucceeded(e -> graphicController.review_setCursor(Cursor.DEFAULT));
-        task5.setOnFailed(e -> {
-            graphicController.review_setCursor(Cursor.DEFAULT);
-            Label labelNotFound = new Label("There are no reviews");
-            labelNotFound.setStyle(FONT);
-            graphicController.setReview(labelNotFound);
-        });
+        if(mainApp.isNotMobile()) {
+            // Handlers
+            setupEventHandlers();
 
-        // Set course
-        Runnable task3 = () -> Platform.runLater(this::downloadCourse);
-        Task<Void> task6 = createTask(task3);
-        task6.setOnRunning(e -> graphicController.course_setCursor(Cursor.WAIT));
-        task6.setOnSucceeded(e -> graphicController.course_setCursor(Cursor.DEFAULT));
-        task6.setOnFailed(e -> {
-            graphicController.course_setCursor(Cursor.DEFAULT);
-            Label label = new Label("There are no course");
-            label.setStyle(FONT);
-            graphicController.setCourse(label);
-        });
+            // Set visible or not area new review and new course
+            settingPage();
+
+            // set ComboBox
+            Runnable task0 = () -> Platform.runLater(() -> {
+                this.sport = getSport();
+                graphicController.setComboSport(this.sport);
+            });
+            Task<Void> task00 = createTask(task0);
+            task00.setOnRunning(e -> graphicController.comboSport_setCursor(Cursor.WAIT));
+            task00.setOnSucceeded(e -> graphicController.comboSport_setCursor(Cursor.DEFAULT));
+            task00.setOnFailed(e -> graphicController.comboSport_setCursor(Cursor.DEFAULT));
+
+            // Set review
+            Runnable task2 = () -> Platform.runLater(this::downloadReview);
+            Task<Void> task5 = createTask(task2);
+            task5.setOnRunning(e -> graphicController.review_setCursor(Cursor.WAIT));
+            task5.setOnSucceeded(e -> graphicController.review_setCursor(Cursor.DEFAULT));
+            task5.setOnFailed(e -> {
+                graphicController.review_setCursor(Cursor.DEFAULT);
+                Label labelNotFound = new Label("There are no reviews");
+                labelNotFound.setStyle(FONT);
+                graphicController.setReview(labelNotFound);
+            });
+
+            // Set course
+            Runnable task3 = () -> Platform.runLater(this::downloadCourse);
+            Task<Void> task6 = createTask(task3);
+            task6.setOnRunning(e -> graphicController.course_setCursor(Cursor.WAIT));
+            task6.setOnSucceeded(e -> graphicController.course_setCursor(Cursor.DEFAULT));
+            task6.setOnFailed(e -> {
+                graphicController.course_setCursor(Cursor.DEFAULT);
+                Label label = new Label("There are no course");
+                label.setStyle(FONT);
+                graphicController.setCourse(label);
+            });
+
+            // Run Thread and set DEFAULT review and course
+            new Thread(task00).start();
+            new Thread(task5).start();
+            new Thread(task6).start();
+        }
 
         // Run Thread and set DEFAULT review and course
-        new Thread(task00).start();
         new Thread(task4).start();
-        new Thread(task5).start();
-        new Thread(task6).start();
     }
 
     /** It's called to set the controller and view*/
@@ -401,11 +407,26 @@ public class GymInfoController extends Controller {
         try {
             // Load test result overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(this.mainApp.getClass().getResource("DesktopView/GymInfo.fxml"));
+            Pane paneTopScreen = null;
+            MenuGraphicController graphicMenuController = null;
+            if(mainApp.isNotMobile()) {
+                loader.setLocation(this.mainApp.getClass().getResource("DesktopView/GymInfo.fxml"));
+            } else {
+                loader.setLocation(this.mainApp.getClass().getResource("SmartphoneView/GymInfoPhone1.fxml"));
+                FXMLLoader loaderTopScreen = new FXMLLoader();
+                loaderTopScreen.setLocation(this.mainApp.getClass().getResource("SmartphoneView/topScreen1.fxml"));
+                paneTopScreen = loaderTopScreen.load();
+                graphicMenuController = loaderTopScreen.getController();
+            }
             Pane pane = loader.load();
 
             // Set test result overview into the center of root layout.
             this.mainApp.getPrimaryPane().setCenter(pane);
+            if(!mainApp.isNotMobile()){
+                mainApp.getPrimaryPane().setTop(paneTopScreen);
+                assert graphicMenuController != null;
+                graphicMenuController.setController(menu);
+            }
 
             // Give the controller access to the main app.
             GymInfoGraphicController gymInfoGraphicController = loader.getController();

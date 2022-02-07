@@ -53,6 +53,8 @@ public class MenuGraphicController implements GraphicController{
             homeAction();
         } else if(controller.getView()==ControllerType.SPORT_QUIZ) {
             homeAction();
+        } else if(controller.getView()==ControllerType.GYM_INFO) {
+            findGymAction();
         } else if(controller.getView()==ControllerType.FIND_GYM) {
             homeAction();
         }

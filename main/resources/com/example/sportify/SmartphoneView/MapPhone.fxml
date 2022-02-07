@@ -37,7 +37,7 @@
         </bottom>
     </BorderPane>
     <TextField fx:id="search" layoutX="6.0" prefHeight="32.0" prefWidth="158.0" promptText="Search..." style="-fx-background-radius: 30px;" />
-    <Button layoutX="164.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="37.0" style="-fx-background-radius: 30px;">
+    <Button layoutX="164.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="37.0" style="-fx-background-radius: 30px;" onMouseClicked="#searchAction" onSwipeUp="#searchAction" onTouchPressed="#searchAction">
         <cursor>
             <Cursor fx:constant="HAND" />
         </cursor>
