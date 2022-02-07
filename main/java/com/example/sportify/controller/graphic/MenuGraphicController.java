@@ -168,6 +168,10 @@ public class MenuGraphicController implements GraphicController{
             Logger logger = Logger.getLogger(MenuGraphicController.class.getName());
             logger.log(Level.SEVERE, e.getMessage());        }
     }
+    @FXML
+    private void submit(){
+        controller.getLogin().submitActionLogin();
+    }
 
     /** The method called to set the view*/
     public void setSportQuiz() {

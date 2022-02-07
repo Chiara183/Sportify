@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.controller.graphic.GraphicController;
+import com.example.sportify.controller.graphic.LoginGraphicController;
 import com.example.sportify.controller.graphic.MenuGraphicController;
 import com.example.sportify.user.User;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ public class MenuController extends Controller {
 
     /** The variable that identify the name of the view*/
     private ControllerType view;
+    private LoginGraphicController login;
 
     /** String that identify the name of last gym loaded*/
     private String gym;
@@ -25,10 +27,16 @@ public class MenuController extends Controller {
     public void setView(ControllerType view) {
         this.view = view;
     }
+    public void setLogin(LoginGraphicController login) {
+        this.login = login;
+    }
 
     /** Is called to get the name of the view.*/
     public ControllerType getView() {
         return this.view;
+    }
+    public LoginGraphicController getLogin() {
+        return this.login;
     }
 
     /** Is called to get the name of gym.*/

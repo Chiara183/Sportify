@@ -132,9 +132,11 @@ public class LoginController extends AccessController{
         graphicController.getUsernameField().setDisable(bool);
         graphicController.getPassField().setDisable(bool);
         graphicController.getPasswordField().setDisable(bool);
-        graphicController.getSubmitButton().setDisable(bool);
-        graphicController.getSkipButton().setDisable(bool);
-        menu.setMenuDisable(bool);
+        if(mainApp.isNotMobile()) {
+            graphicController.getSubmitButton().setDisable(bool);
+            graphicController.getSkipButton().setDisable(bool);
+            menu.setMenuDisable(bool);
+        }
     }
 
     /** Is called to create countdown window*/
@@ -152,7 +154,11 @@ public class LoginController extends AccessController{
         doTime();
         Pane root = new Pane();
         root.getChildren().add(label);
-        stage.setScene(new Scene(root,300, 70));
+        if(mainApp.isNotMobile()) {
+            stage.setScene(new Scene(root, 300, 70));
+        } else {
+            stage.setScene(new Scene(root, 100, 40));
+        }
         return stage;
     }
 

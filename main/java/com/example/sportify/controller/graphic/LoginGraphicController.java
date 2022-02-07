@@ -68,6 +68,10 @@ public class LoginGraphicController extends AccessGraphicController{
     private void skipAction() {
         controller.home();
     }
+    @FXML
+    private void signUpAction(){
+        controller.getMainApp().showSignUpOverview();
+    }
 
     /** Is called to set controller*/
     @Override

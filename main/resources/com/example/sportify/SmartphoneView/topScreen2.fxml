@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
 <Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.MenuGraphicController">
     <ImageView fitHeight="54.0" fitWidth="168.0" layoutX="60.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
@@ -16,7 +14,10 @@
          <Cursor fx:constant="HAND" />
       </cursor>
     </ImageView>
-    <ImageView fx:id="done" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="219.0" layoutY="10.0">
+    <ImageView fx:id="done" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="219.0" layoutY="10.0" onMouseClicked="#submit" onSwipeDown="#submit" onSwipeLeft="#submit" onSwipeRight="#submit" onTouchPressed="#submit">
         <Image url="@../Images/tick.png" />
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
     </ImageView>
 </Pane>
