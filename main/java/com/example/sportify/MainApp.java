@@ -376,11 +376,27 @@ public class MainApp{
             this.getPrimaryStage().setTitle("Sportify - Sign Up");
             // Load sign up overview.
             FXMLLoader loaderSignUp = new FXMLLoader();
-            loaderSignUp.setLocation(MainApp.class.getResource("DesktopView/SignUp.fxml"));
+            Pane paneTopScreen = null;
+            MenuGraphicController graphicMenuController = null;
+            if(isNotMobile()) {
+                loaderSignUp.setLocation(MainApp.class.getResource("DesktopView/SignUp.fxml"));
+            } else {
+                loaderSignUp.setLocation(MainApp.class.getResource("SmartphoneView/UserKind0.fxml"));
+                FXMLLoader loaderTopScreen = new FXMLLoader();
+                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen0.fxml"));
+                paneTopScreen = loaderTopScreen.load();
+                graphicMenuController = loaderTopScreen.getController();
+            }
             Pane pane = loaderSignUp.load();
 
             // Set sign up overview into the center of root layout.
             this.getPrimaryPane().setCenter(pane);
+            if(mobile){
+                this.getPrimaryPane().setTop(paneTopScreen);
+                assert graphicMenuController != null;
+                graphicMenuController.setController(menu);
+                graphicMenuController.setUserKind();
+            }
 
             // Give the controller access to the main app.
             SignUpGraphicController graphicController = loaderSignUp.getController();

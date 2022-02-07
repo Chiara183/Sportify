@@ -57,6 +57,8 @@ public class MenuGraphicController implements GraphicController{
             findGymAction();
         } else if(controller.getView()==ControllerType.FIND_GYM) {
             homeAction();
+        } else if(controller.getView()==ControllerType.USER_KIND) {
+            signAction();
         }
     }
     @FXML
@@ -198,6 +200,9 @@ public class MenuGraphicController implements GraphicController{
         if(controller.getMainApp().isNotMobile()) {
             controller.setButton(findGym, sportQuiz, signOut, signIn, signUp, gymInfo);
         }
+    }
+    public void setUserKind() {
+        controller.setView(ControllerType.USER_KIND);
     }
 
     /** Is called to get signOut button.*/
