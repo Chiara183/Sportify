@@ -1,53 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="280.0" prefWidth="270.0" xmlns="http://javafx.com/javafx/11.0.2" BorderPane.alignment="CENTER"
-      xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../StyleSmartPhone/HomePhone.css"
-      fx:controller="com.example.sportify.controller.graphic.SignUpGraphicController">
-    <TextField alignment="CENTER" layoutX="40.0" layoutY="136.0" prefHeight="27.0" prefWidth="197.0"
-               promptText="*Username" style="-fx-background-radius: 30px;">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.SignUpGraphicController">
+    <TextField fx:id="username" alignment="CENTER" layoutX="40.0" layoutY="136.0" prefHeight="27.0" prefWidth="197.0" promptText="*Username" style="-fx-background-radius: 30px;">
         <cursor>
-            <Cursor fx:constant="DEFAULT"/>
+            <Cursor fx:constant="DEFAULT" />
         </cursor>
     </TextField>
-    <PasswordField alignment="CENTER" layoutX="40.0" layoutY="168.0" prefHeight="27.0" prefWidth="197.0"
-                   promptText="*Password" style="-fx-background-radius: 30px;"/>
-    <Label layoutX="237.0" layoutY="166.0" prefHeight="21.0" prefWidth="23.0" text="👁">
+    <PasswordField fx:id="password" alignment="CENTER" layoutX="40.0" layoutY="168.0" prefHeight="27.0" prefWidth="197.0" promptText="*Password" style="-fx-background-radius: 30px;" />
+    <Label fx:id="eye" accessibleRole="BUTTON" layoutX="237.0" layoutY="166.0" prefHeight="21.0" prefWidth="23.0" text="👁">
         <font>
-            <Font name="Comic Sans MS" size="22.0"/>
+            <Font name="Comic Sans MS" size="22.0" />
         </font>
     </Label>
-    <TextField alignment="CENTER" layoutX="40.0" layoutY="104.0" prefHeight="27.0" prefWidth="197.0"
-               promptText="Last name" style="-fx-background-radius: 30px;">
+    <TextField fx:id="lastName" alignment="CENTER" layoutX="40.0" layoutY="104.0" prefHeight="27.0" prefWidth="197.0" promptText="Last name" style="-fx-background-radius: 30px;">
         <cursor>
-            <Cursor fx:constant="DEFAULT"/>
+            <Cursor fx:constant="DEFAULT" />
         </cursor>
     </TextField>
-    <TextField alignment="CENTER" layoutX="40.0" layoutY="72.0" prefHeight="27.0" prefWidth="197.0"
-               promptText="First name" style="-fx-background-radius: 30px;">
+    <TextField fx:id="firstName" alignment="CENTER" layoutX="40.0" layoutY="72.0" prefHeight="27.0" prefWidth="197.0" promptText="First name" style="-fx-background-radius: 30px;">
         <cursor>
-            <Cursor fx:constant="DEFAULT"/>
+            <Cursor fx:constant="DEFAULT" />
         </cursor>
         <opaqueInsets>
-            <Insets/>
+            <Insets />
         </opaqueInsets>
     </TextField>
-    <TextField alignment="CENTER" layoutX="40.0" layoutY="200.0" prefHeight="27.0" prefWidth="197.0" promptText="*Email"
-               style="-fx-background-radius: 30px;">
+    <TextField fx:id="email" alignment="CENTER" layoutX="40.0" layoutY="200.0" prefHeight="27.0" prefWidth="197.0" promptText="*Email" style="-fx-background-radius: 30px;">
         <cursor>
-            <Cursor fx:constant="DEFAULT"/>
+            <Cursor fx:constant="DEFAULT" />
         </cursor>
     </TextField>
     <Text fill="#070707" layoutX="65.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
         <font>
-            <Font name="Comic Sans MS" size="39.0"/>
+            <Font name="Comic Sans MS" size="39.0" />
         </font>
     </Text>
+   <TextField fx:id="passText" alignment="CENTER" layoutX="40.0" layoutY="169.0" prefHeight="27.0" prefWidth="197.0" style="-fx-background-radius: 30px;" visible="false">
+      <cursor>
+         <Cursor fx:constant="DEFAULT" />
+      </cursor>
+   </TextField>
+   <CheckBox fx:id="passToggle" layoutX="241.0" layoutY="173.0" mnemonicParsing="false" visible="false" />
 </Pane>

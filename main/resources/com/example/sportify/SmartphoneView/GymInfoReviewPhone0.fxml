@@ -11,53 +11,41 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="336.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css"
-            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.sportify.controller.graphic.GymInfoGraphicController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="336.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.GymInfoGraphicController">
     <top>
         <Pane prefHeight="116.0" prefWidth="270.0" BorderPane.alignment="CENTER">
-            <Label fx:id="GymName" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="75.0"
-                   prefHeight="32.0" prefWidth="225.0" text="Review" textAlignment="CENTER">
+            <Label fx:id="GymName" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="8.0" prefHeight="32.0" prefWidth="225.0" text="Review" textAlignment="CENTER">
                 <font>
-                    <Font name="Comic Sans MS" size="22.0"/>
+                    <Font name="Comic Sans MS" size="22.0" />
                 </font>
             </Label>
-        </Pane>
-    </top>
-    <center>
-        <Pane prefHeight="321.0" prefWidth="270.0" BorderPane.alignment="CENTER">
-            <ScrollPane layoutX="10.0" layoutY="-4.0" prefHeight="129.0" prefWidth="251.0">
-                <VBox fx:id="review" alignment="CENTER" minWidth="-Infinity" translateX="80.0"/>
+            <ScrollPane layoutX="10.0" layoutY="38.0" prefHeight="108.0" prefWidth="251.0">
+                <VBox fx:id="review" alignment="CENTER" minWidth="-Infinity" translateX="80.0" />
             </ScrollPane>
         </Pane>
-    </center>
+    </top>
    <bottom>
-       <Pane prefHeight="206.0" prefWidth="270.0" BorderPane.alignment="CENTER">
-           <BorderPane layoutX="35.0" layoutY="4.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+       <Pane prefHeight="183.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+           <BorderPane fx:id="reviewPane" layoutX="35.0" layoutY="4.0" prefHeight="200.0" prefWidth="200.0" visible="false">
               <top>
                   <Label text="New Review" BorderPane.alignment="CENTER">
                       <font>
-                          <Font name="Comic Sans MS" size="13.0"/>
+                          <Font name="Comic Sans MS" size="13.0" />
                       </font>
                   </Label>
               </top>
               <center>
                   <Pane prefHeight="132.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                       <children>
-                          <TextArea layoutX="-1.0" layoutY="6.0" prefHeight="103.0" prefWidth="202.0"
-                                    promptText="Write a review...">
+                          <TextArea fx:id="reviewArea" layoutX="-1.0" layoutY="6.0" prefHeight="103.0" prefWidth="202.0" promptText="Write a review...">
                               <font>
-                                  <Font name="Comic Sans MS" size="13.0"/>
+                                  <Font name="Comic Sans MS" size="13.0" />
                               </font>
                           </TextArea>
-                          <ImageView fitHeight="150.0" fitWidth="200.0" layoutY="57.0" pickOnBounds="true"
-                                     preserveRatio="true"/>
-                          <Button layoutX="80.0" layoutY="118.0" mnemonicParsing="false" prefHeight="28.0"
-                                  prefWidth="41.0" style="-fx-background-radius: 30;"/>
+                          <Button fx:id="shareButton" layoutX="80.0" layoutY="118.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="41.0" style="-fx-background-radius: 30;" />
                           <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="88.0" layoutY="119.0">
                               <image>
-                                  <Image url="@../Images/Share.png"/>
+                                  <Image url="@../Images/Share.png" />
                               </image>
                           </ImageView>
                       </children>

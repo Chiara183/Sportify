@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0"
-      prefWidth="270.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
-      stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER"
-      fx:controller="com.example.sportify.controller.graphic.SignUpGymGraphicController">
-    <TextField alignment="CENTER" layoutX="40.0" layoutY="136.0" prefHeight="27.0" prefWidth="197.0"
-               promptText="*Gym address" style="-fx-background-radius: 30px;">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.SignUpGymGraphicController">
+    <TextField fx:id="gymAddress" alignment="CENTER" layoutX="40.0" layoutY="136.0" prefHeight="27.0" prefWidth="197.0" promptText="*Gym address" style="-fx-background-radius: 30px;">
         <cursor>
-            <Cursor fx:constant="DEFAULT"/>
+            <Cursor fx:constant="DEFAULT" />
         </cursor>
     </TextField>
-    <TextField alignment="CENTER" layoutX="40.0" layoutY="104.0" prefHeight="27.0" prefWidth="197.0"
-               promptText="*Gym name" style="-fx-background-radius: 30px;">
+    <TextField fx:id="gymName" alignment="CENTER" layoutX="40.0" layoutY="104.0" prefHeight="27.0" prefWidth="197.0" promptText="*Gym name" style="-fx-background-radius: 30px;">
         <cursor>
-            <Cursor fx:constant="DEFAULT"/>
+            <Cursor fx:constant="DEFAULT" />
         </cursor>
     </TextField>
     <Text fill="#070707" layoutX="65.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
         <font>
-            <Font name="Comic Sans MS" size="39.0"/>
+            <Font name="Comic Sans MS" size="39.0" />
         </font>
     </Text>
-    <TextField alignment="CENTER" layoutX="40.0" layoutY="168.0" prefHeight="27.0" prefWidth="197.0"
-               promptText="*Gym city" style="-fx-background-radius: 30px;">
+    <TextField fx:id="gymCity" alignment="CENTER" layoutX="40.0" layoutY="168.0" prefHeight="27.0" prefWidth="197.0" promptText="*Gym city" style="-fx-background-radius: 30px;">
         <cursor>
-            <Cursor fx:constant="DEFAULT"/>
+            <Cursor fx:constant="DEFAULT" />
         </cursor>
     </TextField>
 </Pane>
