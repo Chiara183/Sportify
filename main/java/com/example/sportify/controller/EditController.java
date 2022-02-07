@@ -6,6 +6,7 @@ import com.example.sportify.user.User;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 public abstract class EditController extends Controller{
 
@@ -27,6 +28,24 @@ public abstract class EditController extends Controller{
             return;
         }
         password.setText(passText.getText());
+        password.setVisible(true);
+        passText.setVisible(false);
+    }
+
+    public void togglevisibleBirthday(CheckBox passToggle, Label passText, Pane password, TextField birthDay, TextField birthMonth, TextField birthYear) {
+        if (!passToggle.isSelected()) {
+            passText.setText(birthDay.getText() +
+                    "/" + birthMonth.getText() +
+                    "/" + birthYear.getText());
+            passText.setVisible(true);
+            password.setVisible(false);
+            return;
+        }
+        String birth = passText.getText();
+        String[] birth1 = birth.split("/");
+        birthDay.setText(birth1[0]);
+        birthMonth.setText(birth1[1]);
+        birthYear.setText(birth1[2]);
         password.setVisible(true);
         passText.setVisible(false);
     }

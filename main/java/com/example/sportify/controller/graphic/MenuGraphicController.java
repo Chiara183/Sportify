@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -59,6 +58,8 @@ public class MenuGraphicController implements GraphicController{
             homeAction();
         } else if(controller.getView()==ControllerType.USER_KIND) {
             signAction();
+        } else if(controller.getView()==ControllerType.USER_EDIT) {
+            homeAction();
         }
     }
     @FXML
@@ -139,33 +140,59 @@ public class MenuGraphicController implements GraphicController{
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             EditController editController;
-            if(Objects.equals(this.controller.getUser().getRole(), "gym")) {
-                loader.setLocation(MainApp.class.getResource("DesktopView/GymEditDialog.fxml"));
-                editController = new GymEditController();
+            Pane paneTopScreen = null;
+            MenuGraphicController graphicMenuController = null;
+            if(controller.getMainApp().isNotMobile()) {
+                if (Objects.equals(this.controller.getUser().getRole(), "gym")) {
+                    loader.setLocation(MainApp.class.getResource("DesktopView/GymEditDialog.fxml"));
+                    editController = new GymEditController();
+                } else {
+                    loader.setLocation(MainApp.class.getResource("DesktopView/UserEditDialog.fxml"));
+                    editController = new UserEditController();
+                }
             } else {
-                loader.setLocation(MainApp.class.getResource("DesktopView/UserEditDialog.fxml"));
-                editController = new UserEditController();
+                if (Objects.equals(this.controller.getUser().getRole(), "gym")) {
+                    loader.setLocation(MainApp.class.getResource("SmartphoneView/GymEditDialogPhone5.fxml"));
+                    editController = new GymEditController();
+                } else {
+                    loader.setLocation(MainApp.class.getResource("SmartphoneView/UserEditDialogPhone.fxml"));
+                    editController = new UserEditController();
+                }
+                FXMLLoader loaderTopScreen = new FXMLLoader();
+                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen5.fxml"));
+                paneTopScreen = loaderTopScreen.load();
+                graphicMenuController = loaderTopScreen.getController();
             }
             AnchorPane page = loader.load();
-
-            // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle(this.controller.getUser().getUserName());
-            dialogStage.getIcons().add(new Image(Objects.requireNonNull(this.controller.getMainApp().getClass().getResourceAsStream("Images/Sportify icon.png"))));
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(this.controller.getMainApp().getPrimaryStage());
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
+
+            if(controller.getMainApp().isNotMobile()) {
+                // Create the dialog Stage.
+                dialogStage.setTitle(this.controller.getUser().getUserName());
+                dialogStage.getIcons().add(new Image(Objects.requireNonNull(this.controller.getMainApp().getClass().getResourceAsStream("Images/Sportify icon.png"))));
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.initOwner(this.controller.getMainApp().getPrimaryStage());
+                Scene scene = new Scene(page);
+                dialogStage.setScene(scene);
+            } else {
+                controller.getMainApp().getPrimaryPane().setCenter(page);
+                controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
+                assert graphicMenuController != null;
+                graphicMenuController.setController(controller.getMenu());
+            }
 
             // Set the person into the editController.
             EditGraphicController graphicController = loader.getController();
             editController.setGraphicController(graphicController);
             graphicController.setController(editController);
+            editController.setMainApp(this.controller.getMainApp());
             editController.setUser(this.controller.getUser());
             editController.setMenu(this.controller);
 
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
+            if(controller.getMainApp().isNotMobile()) {
+                // Show the dialog and wait until the user closes it
+                dialogStage.showAndWait();
+            }
         } catch (IOException e) {
             Logger logger = Logger.getLogger(MenuGraphicController.class.getName());
             logger.log(Level.SEVERE, e.getMessage());        }

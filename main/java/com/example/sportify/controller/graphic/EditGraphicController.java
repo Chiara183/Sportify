@@ -6,12 +6,17 @@ import com.example.sportify.user.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public abstract class EditGraphicController implements GraphicController{
 
     private static final String FILL = "-fx-text-fill: #06B7C5;";
     private static final String BLACK = "-fx-text-fill: black;";
+
+    /** All the Pane of interface*/
+    @FXML
+    protected Pane birthdayPane;
 
     /** All the Label of interface */
     @FXML
@@ -48,6 +53,8 @@ public abstract class EditGraphicController implements GraphicController{
     protected Label modifyAddress;
     @FXML
     protected Label modifyTelephone;
+    @FXML
+    protected Label modifyBirthday;
 
     /** All the TextField of interface*/
     @FXML
@@ -66,6 +73,12 @@ public abstract class EditGraphicController implements GraphicController{
     protected TextField address;
     @FXML
     protected TextField telephone;
+    @FXML
+    protected TextField birthDay;
+    @FXML
+    protected TextField birthMonth;
+    @FXML
+    protected TextField birthYear;
 
     /** All the CheckBox of interface*/
     @FXML
@@ -84,6 +97,8 @@ public abstract class EditGraphicController implements GraphicController{
     protected CheckBox toggleAddress;
     @FXML
     protected CheckBox toggleTelephone;
+    @FXML
+    protected CheckBox toggleBirthday;
 
     /** All the Button of the interface*/
     @FXML
@@ -107,7 +122,16 @@ public abstract class EditGraphicController implements GraphicController{
         username.setText(user.getUserName());
         password.setText(user.getPassword());
         email.setText(user.getEmail());
-        date.setValue(user.getBirthday());
+        if(controller.getMainApp().isNotMobile()) {
+            date.setValue(user.getBirthday());
+        } else {
+            birthDay.setText(String.valueOf(user.getBirthday().getDayOfMonth()));
+            birthMonth.setText(String.valueOf(user.getBirthday().getMonth().getValue()));
+            birthYear.setText(String.valueOf(user.getBirthday().getYear()));
+            birthday.setText(user.getBirthday().getDayOfMonth() +
+                    "/" + user.getBirthday().getMonth().getValue() +
+                    "/" + user.getBirthday().getYear());
+        }
     }
 
     /** The action of the button.*/
@@ -135,8 +159,23 @@ public abstract class EditGraphicController implements GraphicController{
             modifyLabelPassword();
         } else if (modify.getSource() == modifyLastName) {
             modifyLabelLastName();
+        } else if (modify.getSource() == modifyBirthday) {
+            modifyLabelBirthday();
         }
     }
+
+    private void modifyLabelBirthday() {
+        if (!toggleBirthday.isSelected()) {
+            modifyBirthday.setStyle(FILL);
+            toggleBirthday.setSelected(true);
+            controller.togglevisibleBirthday(this.toggleBirthday, this.birthday, this.birthdayPane, this.birthDay, this.birthMonth, this.birthYear);
+        } else {
+            modifyBirthday.setStyle(BLACK);
+            toggleBirthday.setSelected(false);
+            controller.togglevisibleBirthday(this.toggleBirthday, this.birthday, this.birthdayPane, this.birthDay, this.birthMonth, this.birthYear);
+        }
+    }
+
     protected void modifyLabelUsername(){
         if (!toggleUsername.isSelected()) {
             modifyUsername.setStyle(FILL);
