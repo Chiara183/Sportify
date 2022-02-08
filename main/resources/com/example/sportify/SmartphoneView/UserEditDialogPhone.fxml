@@ -18,27 +18,30 @@
     <TextField fx:id="email" alignment="CENTER" layoutX="19.0" layoutY="232.0" prefHeight="25.0" prefWidth="191.0" promptText="Email" style="-fx-background-radius: 30;" visible="false" />
     <Label fx:id="emailLabel" alignment="CENTER" layoutX="19.0" layoutY="232.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-radius: 30;" />
     <Label fx:id="birthday" layoutX="69.0" layoutY="272.0" prefHeight="25.0" prefWidth="141.0" />
-      <Pane fx:id="birthdayPane" layoutX="100.0" layoutY="271.0" prefHeight="28.0" prefWidth="111.0" visible="false">
-         <children>
-          <Text layoutX="39.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="9.67578125">
-              <font>
-                  <Font name="Comic Sans MS" size="18.0" />
-              </font>
-          </Text>
-          <Text layoutX="89.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="9.67578125">
-              <font>
-                  <Font name="Comic Sans MS" size="18.0" />
-              </font>
-          </Text>
-          <TextField fx:id="birthDay" alignment="CENTER" prefHeight="25.0" prefWidth="37.0" promptText="gg" style="-fx-background-radius: 30;">
-              <font>
-                  <Font name="Comic Sans MS" size="12.0" />
-              </font>
-          </TextField>
-          <TextField fx:id="birthYear" layoutX="99.0" layoutY="2.0" prefHeight="25.0" prefWidth="40.0" promptText="aaaa" style="-fx-background-radius: 30;" />
-          <TextField fx:id="birthMonth" layoutX="52.0" layoutY="1.0" prefHeight="25.0" prefWidth="37.0" promptText="mm" style="-fx-background-radius: 30;" />
-         </children>
-      </Pane>
+        <Pane fx:id="birthdayPane" layoutX="100.0" layoutY="271.0" prefHeight="28.0" prefWidth="111.0" visible="false">
+            <Text layoutX="39.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/"
+                  wrappingWidth="9.67578125">
+                <font>
+                    <Font name="Comic Sans MS" size="18.0"/>
+                </font>
+            </Text>
+            <Text layoutX="89.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/"
+                  wrappingWidth="9.67578125">
+                <font>
+                    <Font name="Comic Sans MS" size="18.0"/>
+                </font>
+            </Text>
+            <TextField fx:id="birthDay" alignment="CENTER" prefHeight="25.0" prefWidth="37.0" promptText="gg"
+                       style="-fx-background-radius: 30;">
+                <font>
+                    <Font name="Comic Sans MS" size="12.0"/>
+                </font>
+            </TextField>
+            <TextField fx:id="birthYear" layoutX="99.0" layoutY="2.0" prefHeight="25.0" prefWidth="40.0"
+                       promptText="aaaa" style="-fx-background-radius: 30;"/>
+            <TextField fx:id="birthMonth" layoutX="52.0" layoutY="1.0" prefHeight="25.0" prefWidth="37.0"
+                       promptText="mm" style="-fx-background-radius: 30;"/>
+        </Pane>
     <Text layoutX="19.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthday">
         <font>
             <Font name="Comic Sans MS" size="12.0" />
