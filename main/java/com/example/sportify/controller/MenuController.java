@@ -16,6 +16,7 @@ public class MenuController extends Controller {
     private LoginGraphicController login;
     private EditGraphicController edit;
     private SignUpGraphicController signUp;
+    private SignUpGymGraphicController signUpGym;
 
     /** String that identify the name of last gym loaded*/
     private String gym;
@@ -37,6 +38,9 @@ public class MenuController extends Controller {
     public void setSignUp(SignUpGraphicController signUp) {
         this.signUp = signUp;
     }
+    public void setSignUpGym(SignUpGymGraphicController signUpGym) {
+        this.signUpGym = signUpGym;
+    }
     public void setEdit(EditGraphicController edit) {
         this.edit = edit;
     }
@@ -52,6 +56,9 @@ public class MenuController extends Controller {
     }
     public SignUpGraphicController getSignUp() {
         return this.signUp;
+    }
+    public SignUpGymGraphicController getSignUpGym() {
+        return this.signUpGym;
     }
     public EditGraphicController getEdit() {
         return this.edit;

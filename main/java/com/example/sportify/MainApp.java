@@ -129,6 +129,7 @@ public class MainApp{
     /** Shows menu overview inside the root layout.*/
     public MenuController menu() {
         MenuController controller = new MenuController();
+        menu = controller;
         MenuGraphicController graphicController;
         controller.setMainApp(this);
         try {

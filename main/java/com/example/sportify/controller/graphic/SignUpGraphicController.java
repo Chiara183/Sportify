@@ -124,6 +124,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
             // Set sign up overview into the center of root layout.
             SignUpGraphicController graphicController = loaderSignUp.getController();
             SignUpController controller = new SignUpController();
+            controller.setMenu(this.controller.getMenu());
             this.controller.getMainApp().getPrimaryPane().setCenter(pane);
             this.controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
             this.controller.getMenu().setSignUp(graphicController);

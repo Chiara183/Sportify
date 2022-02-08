@@ -36,8 +36,10 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
         if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("") && coords.get("lat") != null && coords.get("lon") != null) {
             //if authentic, navigate user to a new page
             controller.submitActionSignUpGym(gymValue, address, coords);
-            JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "You're registered!");
+            if(controller.getMainApp().isNotMobile()) {
+                JFrame jFrame = new JFrame();
+                JOptionPane.showMessageDialog(jFrame, "You're registered!");
+            }
             controller.login();
         } else {
             if (coords.get("lat") == null && coords.get("lon") == null){

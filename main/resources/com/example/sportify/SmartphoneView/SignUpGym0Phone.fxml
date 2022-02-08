@@ -17,6 +17,9 @@
         <font>
             <Font name="Comic Sans MS" size="22.0" />
         </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
     </Label>
     <TextField fx:id="lastName" alignment="CENTER" layoutX="36.0" layoutY="134.0" prefHeight="27.0" prefWidth="197.0" promptText="Last name" style="-fx-background-radius: 30px;">
         <cursor>

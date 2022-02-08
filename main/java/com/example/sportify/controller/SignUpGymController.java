@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.*;
 import com.example.sportify.controller.graphic.GraphicController;
+import com.example.sportify.controller.graphic.MenuGraphicController;
 import com.example.sportify.controller.graphic.SignUpGymGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -28,7 +29,7 @@ public class SignUpGymController extends AccessController {
     /** The constructor.*/
     public SignUpGymController(MainApp mainApp) {
         this.type = ControllerType.SIGN_UP_GYM;
-        this.submit = new Submit(null);
+        this.submit = new Submit(mainApp);
         this.mainApp = mainApp;
     }
 
@@ -38,11 +39,26 @@ public class SignUpGymController extends AccessController {
         try {
             // Load login overview.
             FXMLLoader loaderSignUp = new FXMLLoader();
-            loaderSignUp.setLocation(MainApp.class.getResource("DesktopView/SignUpGym.fxml"));
+            Pane paneTopScreen = null;
+            MenuGraphicController graphicMenuController = null;
+            if(mainApp.isNotMobile()) {
+                loaderSignUp.setLocation(MainApp.class.getResource("DesktopView/SignUpGym.fxml"));
+            } else {
+                loaderSignUp.setLocation(MainApp.class.getResource("SmartphoneView/SignUpGym2Phone.fxml"));
+                FXMLLoader loaderTopScreen = new FXMLLoader();
+                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen2.fxml"));
+                paneTopScreen = loaderTopScreen.load();
+                graphicMenuController = loaderTopScreen.getController();
+            }
             Pane pane = loaderSignUp.load();
 
             // Set login overview into the center of root layout.
             this.mainApp.getPrimaryPane().setCenter(pane);
+            if(!mainApp.isNotMobile()){
+                this.mainApp.getPrimaryPane().setTop(paneTopScreen);
+                assert graphicMenuController != null;
+                graphicMenuController.setController(menu);
+            }
 
             // Give the controller access to the main app.
             SignUpGymGraphicController signUpGymGraphicController = loaderSignUp.getController();
@@ -51,6 +67,8 @@ public class SignUpGymController extends AccessController {
             signUpGymGraphicController.setController(controller);
             controller.setMainApp(this.mainApp);
             controller.setSubmit(this.submit);
+            menu.setSignUpGym(signUpGymGraphicController);
+            menu.setView(ControllerType.SIGN_UP_GYM2);
 
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.getMessage());        }

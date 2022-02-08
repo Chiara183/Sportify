@@ -72,7 +72,7 @@ public class MenuGraphicController implements GraphicController{
             } else {
                 homeAction();
             }
-        } else if(controller.getView()==ControllerType.SIGN_UP && controller.getView()==ControllerType.SIGN_UP_GYM) {
+        } else if(controller.getView()==ControllerType.SIGN_UP || controller.getView()==ControllerType.SIGN_UP_GYM) {
             signUpAction();
         }
     }
@@ -224,6 +224,8 @@ public class MenuGraphicController implements GraphicController{
             controller.getEdit().okAction();
         } else if(controller.getView()==ControllerType.SIGN_UP || controller.getView()==ControllerType.SIGN_UP_GYM) {
             controller.getSignUp().submit(controller.getView());
+        } else if (controller.getView()==ControllerType.SIGN_UP_GYM2){
+            controller.getSignUpGym().submitActionSignUpGym();
         }
     }
 

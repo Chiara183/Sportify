@@ -25,6 +25,8 @@ public class Adapter implements SignUp{
     public Adapter(SignUpController user, SignUpGraphicController graphicController, Submit submit) {
         this.userController = user;
         this.gymController = new SignUpGymController(userController.getMainApp());
+        System.out.println(user.getMenu());
+        this.gymController.setMenu(user.getMenu());
         this.userGraphicController = graphicController;
         this.submit = submit;
     }
