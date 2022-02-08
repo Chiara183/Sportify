@@ -23,9 +23,9 @@
             <Font name="Comic Sans MS" size="24.0" />
         </font>
     </Text>
-   <Button fx:id="okButton" layoutX="204.0" layoutY="128.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" />
+   <Button layoutX="204.0" layoutY="128.0" onAction="#getAge" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" />
    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="104.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="201.0" layoutY="124.0">
-        <Image url="@../Images/tick.png"/>
+        <Image url="@../Images/tick.png" />
     </ImageView>
 </Pane>

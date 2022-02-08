@@ -3,11 +3,11 @@ package com.example.sportify.controller;
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.SportQuizGraphicController;
+import com.example.sportify.controller.graphicPhone.SportQuizPhoneGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -58,6 +58,12 @@ public class SportQuizController extends Controller {
             alert.setTitle("Warning");
             alert.setHeaderText(null);
             alert.setContentText("You need to make a choice first!\n Press a button or back");
+            alert.showAndWait();
+        }else if(Objects.equals(b, "invalid input")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("Invalid input, please retry!");
             alert.showAndWait();
         }
     }
@@ -135,9 +141,15 @@ public class SportQuizController extends Controller {
         this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
         // Load sport quiz overview.
-        FXMLLoader loaderSport = new FXMLLoader();
-        loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizEnv.fxml"));
-        this.createController(loaderSport);
+        if(getMainApp().isNotMobile()) {
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizEnv.fxml"));
+            this.createController(loaderSport);
+        }else{
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizEnvPhone1.fxml"));
+            this.createController(loaderSport);
+        }
     }
 
     /** It's called to load sport quiz type overview*/
@@ -159,13 +171,20 @@ public class SportQuizController extends Controller {
             this.mainApp.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
-            SportQuizGraphicController graphicController = loaderSport.getController();
             SportQuizController controller = new SportQuizController();
-            controller.setGraphicController(graphicController);
-            graphicController.setController(controller);
+            if(getMainApp().isNotMobile()) {
+                SportQuizGraphicController graphicController = loaderSport.getController();
+                controller.setGraphicController(graphicController);
+                graphicController.setController(controller);
+            }else{
+                SportQuizPhoneGraphicController graphicController = loaderSport.getController();
+                controller.setGraphicController(graphicController);
+                graphicController.setController(controller);
+            }
             controller.setUser(this.user);
             controller.setMainApp(this.mainApp);
             controller.setMenu(this.menu);
+
         } catch (IOException e) {
             Logger logger = Logger.getLogger(SportQuizController.class.getName());
             logger.log(Level.SEVERE, e.getMessage());        }

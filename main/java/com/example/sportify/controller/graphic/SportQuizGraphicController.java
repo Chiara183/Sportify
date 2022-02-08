@@ -17,29 +17,8 @@ public class SportQuizGraphicController implements GraphicController{
     @FXML
     private Button backQuizEnv;
     @FXML
-    private Button nextQuiz;
-    @FXML
     private Button backQuizType;
-    @FXML
-    private Button nextQuizEnv;
-    @FXML
-    private Button endQuiz;
-    @FXML
-    private Button age1;
-    @FXML
-    private Button age2;
-    @FXML
-    private Button age3;
-    @FXML
-    private Button age4;
-    @FXML
-    private Button indoor;
-    @FXML
-    private Button outdoor;
-    @FXML
-    private Button group;
-    @FXML
-    private Button single;
+
 
     /** The action of the buttons*/
     @FXML

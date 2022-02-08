@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.SportQuizGraphicController">
-    <TextField fx:id="environment" alignment="CENTER" layoutX="35.0" layoutY="120.0" prefHeight="40.0" prefWidth="200.0" promptText="Type &quot;indoor&quot; or &quot;outdoor&quot;">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphicPhone.SportQuizPhoneGraphicController">
+    <TextField fx:id="environment" alignment="CENTER" layoutX="35.0" layoutY="120.0" prefHeight="40.0" prefWidth="165.0" promptText="Type &quot;indoor&quot; or &quot;outdoor&quot;">
         <cursor>
             <Cursor fx:constant="TEXT" />
         </cursor>
@@ -20,4 +23,8 @@
             <Font name="Comic Sans MS" size="24.0" />
         </font>
     </Text>
+    <Button fx:id="okButton" layoutX="204.0" layoutY="128.0" onAction="#getEnvironment" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" />
+    <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="201.0" layoutY="124.0">
+        <Image url="@../Images/tick.png" />
+    </ImageView>
 </Pane>
