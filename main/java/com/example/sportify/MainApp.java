@@ -402,6 +402,7 @@ public class MainApp{
             SignUpGraphicController graphicController = loaderSignUp.getController();
             SignUpController controller = new SignUpController();
             controller.setGraphicController(graphicController);
+            controller.setMenu(menu);
             graphicController.setController(controller);
             controller.setMainApp(this);
 

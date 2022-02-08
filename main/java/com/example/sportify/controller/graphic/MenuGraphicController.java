@@ -72,6 +72,8 @@ public class MenuGraphicController implements GraphicController{
             } else {
                 homeAction();
             }
+        } else if(controller.getView()==ControllerType.SIGN_UP && controller.getView()==ControllerType.SIGN_UP_GYM) {
+            signUpAction();
         }
     }
     @FXML
@@ -147,7 +149,9 @@ public class MenuGraphicController implements GraphicController{
     @FXML
     private void signUpAction() {
         controller.setView(ControllerType.SIGN_UP);
-        controller.setButton(signOut, signIn, gymInfo, sportQuiz, findGym, signUp);
+        if(controller.getMainApp().isNotMobile()) {
+            controller.setButton(signOut, signIn, gymInfo, sportQuiz, findGym, signUp);
+        }
         controller.getMainApp().setMenu(controller);
         controller.getMainApp().setUser(controller.getUser());
         controller.getMainApp().showSignUpOverview();
