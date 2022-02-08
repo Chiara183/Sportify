@@ -37,29 +37,41 @@ public class UserEditGraphicController extends EditGraphicController{
                 controller.getUser().setBirthday(date.getValue());
             }
         } else {
-            if (!toggleBirthday.isSelected() && !Objects.equals((controller.getUser().getBirthday().getDayOfMonth() +
-                    "/" + controller.getUser().getBirthday().getMonth().getValue() +
-                    "/" + controller.getUser().getBirthday().getYear()), birthday.getText())) {
+            String day = String.valueOf(controller.getUser().getBirthday().getDayOfMonth());
+            String month = String.valueOf(controller.getUser().getBirthday().getMonth().getValue());
+            String year = String.valueOf(controller.getUser().getBirthday().getYear());
+            if (!toggleBirthday.isSelected() && !Objects.equals(day + "/" + month + "/" + year, birthday.getText())) {
                 String birth = birthday.getText();
                 String[] list = birth.split("/");
-                birth = list[2] + "-" + list[1] + "-" + list[0];
-                System.out.println(birth);
-                System.out.println(DateUtil.parse(birth));
+                year = list[2];
+                if(list[1].length() < 2){
+                    month = "0" + list[1];
+                } else {
+                    month = list[1];
+                }
+
+                if(list[0].length() < 2){
+                    day = "0" + list[0];
+                } else {
+                    day = list[0];
+                }
+                birth = year + "-" + month + "-" + day;
                 controller.getUser().setBirthday(DateUtil.parse(birth));
-            } else if (toggleBirthday.isSelected() && !Objects.equals((controller.getUser().getBirthday().getDayOfMonth() +
-                    "/" + controller.getUser().getBirthday().getMonth().getValue() +
-                    "/" + controller.getUser().getBirthday().getYear()), (birthDay.getText() +
-                    "/" + birthMonth.getText() +
-                    "/" + birthYear.getText()))){
-                System.out.println((birthYear.getText() +
-                        "-" + birthMonth.getText() +
-                        "-" + birthDay.getText()));
-                System.out.println(DateUtil.parse((birthYear.getText() +
-                        "-" + birthMonth.getText() +
-                        "-" + birthDay.getText())));
-                controller.getUser().setBirthday(DateUtil.parse((birthYear.getText() +
-                        "-" + birthMonth.getText() +
-                        "-" + birthDay.getText())));
+            } else if (toggleBirthday.isSelected() && !Objects.equals(day + "/" + month + "/" + year,
+                    (birthDay.getText() + "/" + birthMonth.getText() + "/" + birthYear.getText()))){
+                year = birthYear.getText();
+                if(birthMonth.getText().length() < 2){
+                    month = "0" + birthMonth.getText();
+                } else {
+                    month = birthMonth.getText();
+                }
+
+                if(birthDay.getText().length() < 2){
+                    day = "0" + birthDay.getText();
+                } else {
+                    day = birthDay.getText();
+                }
+                controller.getUser().setBirthday(DateUtil.parse(year + "-" + month + "-" + day));
             }
         }
         controller.getMenu().setUser(controller.getUser());
