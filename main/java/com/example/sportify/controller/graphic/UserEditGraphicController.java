@@ -40,19 +40,26 @@ public class UserEditGraphicController extends EditGraphicController{
             if (!toggleBirthday.isSelected() && !Objects.equals((controller.getUser().getBirthday().getDayOfMonth() +
                     "/" + controller.getUser().getBirthday().getMonth().getValue() +
                     "/" + controller.getUser().getBirthday().getYear()), birthday.getText())) {
-                System.out.println(birthday.getText());
-                System.out.println(DateUtil.parse(birthday.getText()));
-                controller.getUser().setBirthday(DateUtil.parse(birthday.getText()));
+                String birth = birthday.getText();
+                String[] list = birth.split("/");
+                birth = list[2] + "-" + list[1] + "-" + list[0];
+                System.out.println(birth);
+                System.out.println(DateUtil.parse(birth));
+                controller.getUser().setBirthday(DateUtil.parse(birth));
             } else if (toggleBirthday.isSelected() && !Objects.equals((controller.getUser().getBirthday().getDayOfMonth() +
                     "/" + controller.getUser().getBirthday().getMonth().getValue() +
                     "/" + controller.getUser().getBirthday().getYear()), (birthDay.getText() +
                     "/" + birthMonth.getText() +
                     "/" + birthYear.getText()))){
-                System.out.println(birthday.getText());
-                System.out.println(DateUtil.parse(birthday.getText()));
-                controller.getUser().setBirthday(DateUtil.parse((birthDay.getText() +
-                        "/" + birthMonth.getText() +
-                        "/" + birthYear.getText())));
+                System.out.println((birthYear.getText() +
+                        "-" + birthMonth.getText() +
+                        "-" + birthDay.getText()));
+                System.out.println(DateUtil.parse((birthYear.getText() +
+                        "-" + birthMonth.getText() +
+                        "-" + birthDay.getText())));
+                controller.getUser().setBirthday(DateUtil.parse((birthYear.getText() +
+                        "-" + birthMonth.getText() +
+                        "-" + birthDay.getText())));
             }
         }
         controller.getMenu().setUser(controller.getUser());
