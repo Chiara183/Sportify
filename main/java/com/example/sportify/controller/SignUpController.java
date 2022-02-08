@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.Adapter;
+import com.example.sportify.MainApp;
 import com.example.sportify.Submit;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.SignUpGraphicController;
@@ -12,12 +13,18 @@ public class SignUpController extends AccessController {
 
     /** Reference to graphic controller*/
     private SignUpGraphicController graphicController;
-    private final Submit submit;
+    private Submit submit;
 
     /** The constructor.*/
     public SignUpController() {
         this.type = ControllerType.SIGN_UP;
         this.submit = new Submit(null);
+    }
+
+    @Override
+    public void setMainApp(MainApp mainApp){
+        this.mainApp = mainApp;
+        this.submit = new Submit(mainApp);
     }
 
 

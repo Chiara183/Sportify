@@ -42,6 +42,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
     private CheckBox gymTick;
     @FXML
     private CheckBox userTick;
+    private boolean user = true;
 
     /** Controls the sign-up method (user, gym)*/
     @FXML
@@ -70,10 +71,22 @@ public class SignUpGraphicController extends RegisterGraphicController{
         date = date.substring(0,10);
         controller.submitActionSignUp(userValue, passValue, nameValue, lastNameValue, emailString, date);
     }
+    public void submit(ControllerType type){
+        if(type == ControllerType.SIGN_UP){
+            submitActionSignUp();
+        } else {
+            user = false;
+            submitActionSignUp();
+        }
+    }
 
     /** Is called to understand if it's a user*/
     public boolean isUser(){
-        return userTick.isSelected();
+        if(controller.getMainApp().isNotMobile()) {
+            return userTick.isSelected();
+        } else {
+            return user;
+        }
     }
 
     /** Is called to set controller*/
@@ -89,8 +102,6 @@ public class SignUpGraphicController extends RegisterGraphicController{
         Pane pane = null;
         Pane paneTopScreen = null;
         MenuGraphicController graphicMenuController = null;
-        AccessGraphicController graphicController = null;
-        AccessController controller = null;
         try {
             if (event.getSource() == gymUser) {
                 loaderSignUp.setLocation(MainApp.class.getResource("SmartphoneView/SignUpGym0Phone.fxml"));
@@ -99,8 +110,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
                 paneTopScreen = loaderTopScreen.load();
                 graphicMenuController = loaderTopScreen.getController();
                 pane = loaderSignUp.load();
-                graphicController = loaderSignUp.getController();
-                controller = new SignUpGymController(this.controller.getMainApp());
+                this.controller.getMenu().setView(ControllerType.SIGN_UP_GYM);
             } else if (event.getSource() == normalUser) {
                 loaderSignUp.setLocation(MainApp.class.getResource("SmartphoneView/SignUpPhone2.fxml"));
                 FXMLLoader loaderTopScreen = new FXMLLoader();
@@ -108,15 +118,16 @@ public class SignUpGraphicController extends RegisterGraphicController{
                 paneTopScreen = loaderTopScreen.load();
                 graphicMenuController = loaderTopScreen.getController();
                 pane = loaderSignUp.load();
-                graphicController = loaderSignUp.getController();
-                controller = new SignUpController();
+                this.controller.getMenu().setView(ControllerType.SIGN_UP);
             }
 
             // Set sign up overview into the center of root layout.
+            SignUpGraphicController graphicController = loaderSignUp.getController();
+            SignUpController controller = new SignUpController();
             this.controller.getMainApp().getPrimaryPane().setCenter(pane);
             this.controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
+            this.controller.getMenu().setSignUp(graphicController);
             assert graphicMenuController != null;
-            this.controller.getMenu().setView(ControllerType.SIGN_UP);
             graphicMenuController.setController(this.controller.getMenu());
 
             // Give the controller access to the main app.

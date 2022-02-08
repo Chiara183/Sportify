@@ -77,12 +77,6 @@ public class MenuGraphicController implements GraphicController{
         }
     }
     @FXML
-    private void done(){
-        if(controller.getView()==ControllerType.USER_EDIT) {
-            controller.getEdit().okAction();
-        }
-    }
-    @FXML
     private void signAction(){
         if(controller.getUser()==null){
             signLoginAction();
@@ -224,7 +218,13 @@ public class MenuGraphicController implements GraphicController{
     }
     @FXML
     private void submit(){
-        controller.getLogin().submitActionLogin();
+        if(controller.getView()==ControllerType.LOGIN) {
+            controller.getLogin().submitActionLogin();
+        } else if(controller.getView()==ControllerType.USER_EDIT) {
+            controller.getEdit().okAction();
+        } else if(controller.getView()==ControllerType.SIGN_UP || controller.getView()==ControllerType.SIGN_UP_GYM) {
+            controller.getSignUp().submit(controller.getView());
+        }
     }
 
     /** The method called to set the view*/

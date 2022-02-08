@@ -35,8 +35,10 @@ public class Adapter implements SignUp{
         if (this.userGraphicController.isUser()) {
             userAccount.put("ruolo", "user");
             this.submit.signUp(userAccount);
-            JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "You're registered!");
+            if(userController.getMainApp().isNotMobile()) {
+                JFrame jFrame = new JFrame();
+                JOptionPane.showMessageDialog(jFrame, "You're registered!");
+            }
             this.userController.login();
         } else {
             userAccount.put("ruolo", "gym");
