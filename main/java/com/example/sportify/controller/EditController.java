@@ -13,6 +13,19 @@ public abstract class EditController extends Controller{
     /** Reference to graphic controller*/
     protected EditGraphicController graphicController;
 
+    /** The variable that identify the name of the view*/
+    protected ControllerType view;
+
+    /** Is called to set the name of the view.*/
+    public void setView(ControllerType view) {
+        this.view = view;
+    }
+
+    /** Is called to get the name of the view.*/
+    public ControllerType getView() {
+        return this.view;
+    }
+
     /** Sets the user to be edited in the dialog.*/
     @Override
     public void setUser(User user){

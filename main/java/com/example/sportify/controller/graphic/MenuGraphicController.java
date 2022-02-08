@@ -47,7 +47,7 @@ public class MenuGraphicController implements GraphicController{
 
     /** The action of the buttons*/
     @FXML
-    private void back(){
+    public void back(){
         if(controller.getView()==ControllerType.LOGIN) {
             homeAction();
         } else if(controller.getView()==ControllerType.SPORT_QUIZ) {
@@ -59,7 +59,25 @@ public class MenuGraphicController implements GraphicController{
         } else if(controller.getView()==ControllerType.USER_KIND) {
             signAction();
         } else if(controller.getView()==ControllerType.USER_EDIT) {
-            homeAction();
+            if(controller.getEdit().controller.getView()==ControllerType.FIND_GYM) {
+                findGymAction();
+            } else if(controller.getEdit().controller.getView()==ControllerType.GYM_INFO) {
+                setGymInfo(controller.getGym());
+            } else if(controller.getEdit().controller.getView()==ControllerType.SPORT_QUIZ) {
+                sportQuizAction();
+            } else if(controller.getEdit().controller.getView()==ControllerType.SPORT_QUIZ_TYPE) {
+                sportQuizAction();
+            } else if(controller.getEdit().controller.getView()==ControllerType.SPORT_QUIZ_ENV) {
+                sportQuizAction();
+            } else {
+                homeAction();
+            }
+        }
+    }
+    @FXML
+    private void done(){
+        if(controller.getView()==ControllerType.USER_EDIT) {
+            controller.getEdit().okAction();
         }
     }
     @FXML
@@ -178,7 +196,7 @@ public class MenuGraphicController implements GraphicController{
                 controller.getMainApp().getPrimaryPane().setCenter(page);
                 controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
                 assert graphicMenuController != null;
-                graphicMenuController.setController(controller.getMenu());
+                graphicMenuController.setController(this.controller);
             }
 
             // Set the person into the editController.
@@ -188,6 +206,9 @@ public class MenuGraphicController implements GraphicController{
             editController.setMainApp(this.controller.getMainApp());
             editController.setUser(this.controller.getUser());
             editController.setMenu(this.controller);
+            this.controller.setEdit(graphicController);
+            editController.setView(controller.getView());
+            this.controller.setView(ControllerType.USER_EDIT);
 
             if(controller.getMainApp().isNotMobile()) {
                 // Show the dialog and wait until the user closes it

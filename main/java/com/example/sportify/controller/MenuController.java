@@ -1,5 +1,6 @@
 package com.example.sportify.controller;
 
+import com.example.sportify.controller.graphic.EditGraphicController;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.LoginGraphicController;
 import com.example.sportify.controller.graphic.MenuGraphicController;
@@ -14,6 +15,7 @@ public class MenuController extends Controller {
     /** The variable that identify the name of the view*/
     private ControllerType view;
     private LoginGraphicController login;
+    private EditGraphicController edit;
 
     /** String that identify the name of last gym loaded*/
     private String gym;
@@ -30,6 +32,9 @@ public class MenuController extends Controller {
     public void setLogin(LoginGraphicController login) {
         this.login = login;
     }
+    public void setEdit(EditGraphicController edit) {
+        this.edit = edit;
+    }
 
     /** Is called to get the name of the view.*/
     public ControllerType getView() {
@@ -37,6 +42,9 @@ public class MenuController extends Controller {
     }
     public LoginGraphicController getLogin() {
         return this.login;
+    }
+    public EditGraphicController getEdit() {
+        return this.edit;
     }
 
     /** Is called to get the name of gym.*/
@@ -98,6 +106,10 @@ public class MenuController extends Controller {
         button5.setDisable(false);
         buttonOff.setDisable(true);
         buttonOff.setStyle("-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #194432 0%, #16704a 100%),#16704a,#119a60, radial-gradient(center 50% 50%, radius 100%, #119a60, #25b97b);");
+    }
+
+    public void back() {
+        graphicController.back();
     }
 }
 

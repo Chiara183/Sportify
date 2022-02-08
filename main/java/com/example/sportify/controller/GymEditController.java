@@ -11,7 +11,7 @@ public class GymEditController extends EditController{
     private GymEditGraphicController graphicController;
 
     /** The constructor.*/
-    public GymEditController(){this.type = ControllerType.GYM_EDIT;}
+    public GymEditController(){this.type = ControllerType.USER_EDIT;}
 
     /** Sets the user to be edited in the dialog.*/
     @Override
