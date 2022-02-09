@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 public class MenuController extends Controller {
 
     /** Reference to graphic controller*/
-    private MenuGraphicController graphicController;
+    public MenuGraphicController graphicController;
 
     /** The variable that identify the name of the view*/
     private ControllerType view;

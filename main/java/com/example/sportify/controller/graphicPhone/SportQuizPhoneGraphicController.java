@@ -89,7 +89,7 @@ public class SportQuizPhoneGraphicController implements GraphicController {
         } else {
             endText = type.getText();
         }
-        if(endText.equals("alone") || endText.equals("group")){
+        if(endText.equals("single") || endText.equals("group")){
             input = endText;
         }else{
             input = "invalid input";

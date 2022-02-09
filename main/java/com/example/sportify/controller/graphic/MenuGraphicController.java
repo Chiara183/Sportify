@@ -58,7 +58,9 @@ public class MenuGraphicController implements GraphicController{
             homeAction();
         } else if(controller.getView()==ControllerType.USER_KIND) {
             signAction();
-        } else if(controller.getView()==ControllerType.USER_EDIT) {
+        } else if(controller.getView()==ControllerType.SPORT_INFO) {
+            homeAction();
+        }else if(controller.getView()==ControllerType.USER_EDIT) {
             if(controller.getEdit().controller.getView()==ControllerType.FIND_GYM) {
                 findGymAction();
             } else if(controller.getEdit().controller.getView()==ControllerType.GYM_INFO) {
@@ -116,7 +118,7 @@ public class MenuGraphicController implements GraphicController{
         controller.getMainApp().showHomeOverview();
     }
     @FXML
-    private void sportQuizAction() {
+    public void sportQuizAction() {
         controller.setView(ControllerType.SPORT_QUIZ);
         if(controller.getMainApp().isNotMobile()) {
             controller.setButton(findGym, signOut, signIn, signUp, gymInfo, sportQuiz);
@@ -126,7 +128,7 @@ public class MenuGraphicController implements GraphicController{
         controller.getMainApp().showSportQuizOverview(controller);
     }
     @FXML
-    private void findGymAction() {
+    public void findGymAction() {
         controller.setView(ControllerType.FIND_GYM);
         if(controller.getMainApp().isNotMobile()) {
             controller.setButton(signOut, signIn, signUp, gymInfo, sportQuiz, findGym);
@@ -136,7 +138,7 @@ public class MenuGraphicController implements GraphicController{
         controller.getMainApp().showFindGymOverview(controller);
     }
     @FXML
-    private void signLoginAction() {
+    public void signLoginAction() {
         if(controller.getMainApp().isNotMobile()) {
             controller.getMainApp().setExternalLogin(true);
         }

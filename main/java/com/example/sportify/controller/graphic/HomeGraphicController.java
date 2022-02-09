@@ -4,6 +4,7 @@ import com.example.sportify.controller.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 
 public class HomeGraphicController implements GraphicController{
 
+    public ComboBox comboActivity;
     /** Reference to controller*/
     private HomeController controller;
 
@@ -21,6 +23,20 @@ public class HomeGraphicController implements GraphicController{
     private Button signIn;
     @FXML
     private Button gymInfo;
+
+    /** The action of comboBox*/
+    @FXML
+    private void comboAction(){
+        Object selectedItem = comboActivity.getSelectionModel().getSelectedItem();
+        String choice = selectedItem.toString();
+        if(choice.equals("Take sport quiz")){
+            this.controller.getMenu().graphicController.sportQuizAction();
+        }else if(choice.equals("Login")){
+            this.controller.getMenu().graphicController.signLoginAction();
+        }else{
+            this.controller.getMenu().graphicController.findGymAction();
+        }
+    }
 
     /** The action of the button*/
     @FXML
@@ -134,4 +150,5 @@ public class HomeGraphicController implements GraphicController{
     public void setController(Controller controller) {
         this.controller = (HomeController) controller;
     }
+
 }

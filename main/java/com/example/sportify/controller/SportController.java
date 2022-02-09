@@ -3,6 +3,7 @@ package com.example.sportify.controller;
 import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
+import com.example.sportify.controller.graphic.MenuGraphicController;
 import com.example.sportify.controller.graphic.SportGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -89,22 +90,52 @@ public class SportController extends Controller{
         this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
         try {
             // Load test result overview.
-            FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportInfo.fxml"));
-            Pane pane = loaderSport.load();
+            if(getMainApp().isNotMobile()) {
+                FXMLLoader loaderSport = new FXMLLoader();
+                loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportInfo.fxml"));
+                Pane pane = loaderSport.load();
+                // Set test result overview into the center of root layout.
+                this.mainApp.getPrimaryPane().setCenter(pane);
 
-            // Set test result overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
+                // Give the controller access to the main app.
+                SportGraphicController sportGraphicController = loaderSport.getController();
+                this.setGraphicController(sportGraphicController);
+                sportGraphicController.setController(this);
+                this.setUser(this.user);
+                this.setMainApp(this.mainApp);
+                this.setMenu(this.menu);
+                sportGraphicController.setSportName(sport);
+                sportGraphicController.setSportDescription(description);
+            }else {
+                FXMLLoader loaderSport = new FXMLLoader();
+                loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportInfoPhone0.fxml"));
+                FXMLLoader loaderTopScreen = new FXMLLoader();
+                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen0.fxml"));
+                Pane paneTopScreen = null;
+                try {
+                    paneTopScreen = loaderTopScreen.load();
+                } catch (IOException e) {
+                    Logger logger = Logger.getLogger(MainApp.class.getName());
+                    logger.log(Level.SEVERE, e.getMessage());
+                }
+                this.mainApp.getPrimaryPane().setTop(paneTopScreen);
+                menu.setView(ControllerType.SPORT_INFO);
+                MenuGraphicController graphicMenuController = loaderTopScreen.getController();
+                graphicMenuController.setController(menu);
+                Pane pane = loaderSport.load();
+                // Set test result overview into the center of root layout.
+                this.mainApp.getPrimaryPane().setCenter(pane);
 
-            // Give the controller access to the main app.
-            SportGraphicController sportGraphicController = loaderSport.getController();
-            this.setGraphicController(sportGraphicController);
-            sportGraphicController.setController(this);
-            this.setUser(this.user);
-            this.setMainApp(this.mainApp);
-            this.setMenu(this.menu);
-            sportGraphicController.setSportName(sport);
-            sportGraphicController.setSportDescription(description);
+                // Give the controller access to the main app.
+                SportGraphicController sportGraphicController = loaderSport.getController();
+                this.setGraphicController(sportGraphicController);
+                sportGraphicController.setController(this);
+                this.setUser(this.user);
+                this.setMainApp(this.mainApp);
+                this.setMenu(this.menu);
+                sportGraphicController.setSportName(sport);
+                sportGraphicController.setSportDescription(description);
+            }
         } catch (IOException e) {
             Logger logger = Logger.getLogger(SportController.class.getName());
             logger.log(Level.SEVERE, e.getMessage());        }
