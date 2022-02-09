@@ -16,7 +16,6 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -91,10 +90,11 @@ public class MainApp{
 
     /** Initializes the root layout.*/
     public void initRootLayout() {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = (int) screenSize.getWidth();
-        int height = (int) screenSize.getHeight();
-        String dim = "Dimension of screen is: " + width + "x" + height;
+        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        //*int width = (int) screenSize.getWidth();
+        //int height = (int) screenSize.getHeight();
+        String OS = System.getProperty("os.name");
+        String dim = "The OS of device is: " + OS;
         LOGGER.log(Level.INFO, dim);
         try {
             FXMLLoader loader = new FXMLLoader();
