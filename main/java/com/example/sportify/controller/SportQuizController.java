@@ -147,7 +147,7 @@ public class SportQuizController extends Controller {
             this.createController(loaderSport);
         }else{
             FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizEnvPhone1.fxml"));
+            loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportQuizEnvPhone1.fxml"));
             this.createController(loaderSport);
         }
     }
@@ -157,9 +157,15 @@ public class SportQuizController extends Controller {
         this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
         // Load sport quiz overview.
-        FXMLLoader loaderSport = new FXMLLoader();
-        loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizType.fxml"));
-        this.createController(loaderSport);
+        if(getMainApp().isNotMobile()) {
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizType.fxml"));
+            this.createController(loaderSport);
+        }else{
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportQuizTypePhone4.fxml"));
+            this.createController(loaderSport);
+        }
     }
 
     /** Is called to create controllers*/

@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 
 public class SportQuizPhoneGraphicController implements GraphicController {
 
+    public TextField type;
     /** Reference to controller*/
     private SportQuizController controller;
 
@@ -48,6 +49,23 @@ public class SportQuizPhoneGraphicController implements GraphicController {
             input = envText;
         }else if(envText.equals("outdoor")){
             input = envText;
+        }else{
+            input = "invalid input";
+        }
+        controller.takeQuiz(input);
+    }
+
+    @FXML
+    public void back(){
+        controller.sportQuizEnv();
+    }
+
+    @FXML
+    public void end(){
+        String input;
+        String endText = type.getText();
+        if(endText.equals("single") || endText.equals("outdoor")){
+            input = endText;
         }else{
             input = "invalid input";
         }

@@ -34,7 +34,11 @@ public class SportController extends Controller{
         try {
             // Load test result overview.
             FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("DesktopView/Sport.fxml"));
+            if(this.getMainApp().isNotMobile()) {
+                loaderSport.setLocation(MainApp.class.getResource("DesktopView/Sport.fxml"));
+            }else{
+                loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportPhone3.fxml"));
+            }
             Pane pane = loaderSport.load();
 
             // Set test result overview into the center of root layout.

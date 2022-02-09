@@ -76,6 +76,8 @@ public class MenuGraphicController implements GraphicController{
             signUpAction();
         }
     }
+
+
     @FXML
     private void signAction(){
         if(controller.getUser()==null){
