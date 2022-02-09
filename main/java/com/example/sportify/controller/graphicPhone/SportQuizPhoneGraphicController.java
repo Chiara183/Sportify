@@ -3,14 +3,20 @@ package com.example.sportify.controller.graphicPhone;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.SportQuizController;
 import com.example.sportify.controller.graphic.GraphicController;
+import com.example.sportify.controller.graphic.SportQuizGraphicController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+
+import javax.swing.*;
 
 public class SportQuizPhoneGraphicController implements GraphicController {
 
 
     /** Reference to controller*/
     private SportQuizController controller;
+
+    /** Reference to quiz*/
+    private SportQuizPhoneGraphicController graphicController;
 
     @FXML
     private TextField age;
@@ -24,11 +30,15 @@ public class SportQuizPhoneGraphicController implements GraphicController {
         this.controller = (SportQuizController) controller;
     }
 
+    public void setQuiz(SportQuizPhoneGraphicController graphicController) {
+        this.graphicController = graphicController;
+    }
+
     @FXML
     public void getAge(){
         String ageRange;
         String ageText = age.getText();
-        int num = 0;
+        int num;
         try{
             num = Integer.parseInt(ageText);
         }catch(NumberFormatException e){
@@ -73,12 +83,21 @@ public class SportQuizPhoneGraphicController implements GraphicController {
     @FXML
     public void end(){
         String input;
-        String endText = type.getText();
-        if(endText.equals("single") || endText.equals("group")){
+        String endText;
+        if(graphicController!=null) {
+            endText = graphicController.getType().getText();
+        } else {
+            endText = type.getText();
+        }
+        if(endText.equals("alone") || endText.equals("group")){
             input = endText;
         }else{
             input = "invalid input";
         }
         controller.takeQuiz(input);
+    }
+
+    private TextField getType() {
+        return this.type;
     }
 }

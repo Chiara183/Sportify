@@ -74,6 +74,8 @@ public class MenuGraphicController implements GraphicController{
             }
         } else if(controller.getView()==ControllerType.SIGN_UP || controller.getView()==ControllerType.SIGN_UP_GYM) {
             signUpAction();
+        } else if(controller.getView()==ControllerType.SPORT_QUIZ_ENV) {
+            sportQuizAction();
         }
     }
 

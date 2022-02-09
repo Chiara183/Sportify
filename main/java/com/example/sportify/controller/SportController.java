@@ -4,7 +4,6 @@ import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.SportGraphicController;
-import com.example.sportify.controller.graphicPhone.SportQuizPhoneGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
@@ -14,6 +13,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SportController extends Controller{
+
+    /** Reference to the sport quiz*/
+    private SportQuizController quiz;
+
+    /** Is called to set quiz controller*/
+    public void setQuiz(SportQuizController quiz) {
+        this.quiz = quiz;
+    }
+
+    /** Is called to get quiz controller*/
+    public SportQuizController getQuiz() {
+        return this.quiz;
+    }
 
     /** The constructor.*/
     public SportController(){
@@ -48,9 +60,10 @@ public class SportController extends Controller{
                     Logger logger = Logger.getLogger(MainApp.class.getName());
                     logger.log(Level.SEVERE, e.getMessage());
                 }
-                /*SportQuizPhoneGraphicController graphicMenuController = loaderTopScreen.getController();
+                SportGraphicController graphicMenuController = loaderTopScreen.getController();
                 this.mainApp.getPrimaryPane().setTop(paneTopScreen);
-                graphicMenuController.setController(this);*/
+                graphicMenuController.setController(this);
+                graphicMenuController.setSportName(sport);
             }
             Pane pane = loaderSport.load();
 
@@ -59,11 +72,10 @@ public class SportController extends Controller{
 
             // Give the controller access to the main app.
             SportGraphicController sportGraphicController = loaderSport.getController();
-            SportController controller = new SportController();
-            sportGraphicController.setController(controller);
-            controller.setGraphicController(sportGraphicController);
-            controller.setUser(this.user);
-            controller.setMainApp(this.mainApp);
+            sportGraphicController.setController(this);
+            this.setGraphicController(sportGraphicController);
+            this.setUser(this.user);
+            this.setMainApp(this.mainApp);
             sportGraphicController.setSportName(sport);
         } catch (IOException e) {
             Logger logger = Logger.getLogger(SportController.class.getName());
@@ -86,12 +98,11 @@ public class SportController extends Controller{
 
             // Give the controller access to the main app.
             SportGraphicController sportGraphicController = loaderSport.getController();
-            SportController controller = new SportController();
-            controller.setGraphicController(sportGraphicController);
-            sportGraphicController.setController(controller);
-            controller.setUser(this.user);
-            controller.setMainApp(this.mainApp);
-            controller.setMenu(this.menu);
+            this.setGraphicController(sportGraphicController);
+            sportGraphicController.setController(this);
+            this.setUser(this.user);
+            this.setMainApp(this.mainApp);
+            this.setMenu(this.menu);
             sportGraphicController.setSportName(sport);
             sportGraphicController.setSportDescription(description);
         } catch (IOException e) {

@@ -26,6 +26,11 @@ public class SportGraphicController implements GraphicController{
     }
 
     @FXML
+    private void back(){
+        controller.getQuiz().sportQuizType();
+    }
+
+    @FXML
     private void getInfo(){
         controller.loadDescriptionFromDB(this.sportName.getText());
     }
@@ -34,7 +39,12 @@ public class SportGraphicController implements GraphicController{
     public void setSportName(String name){
         if(sportName != null) {
             sportName.setText(name);
+        } else if (sport != null){
+            sport.setText(name);
         } else {
+            sportName = new Label();
+            sport = new Label();
+            sportName.setText(name);
             sport.setText(name);
         }
     }

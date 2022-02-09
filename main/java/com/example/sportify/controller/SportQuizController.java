@@ -2,6 +2,7 @@ package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
+import com.example.sportify.controller.graphic.MenuGraphicController;
 import com.example.sportify.controller.graphic.SportQuizGraphicController;
 import com.example.sportify.controller.graphicPhone.SportQuizPhoneGraphicController;
 import javafx.fxml.FXMLLoader;
@@ -51,7 +52,7 @@ public class SportQuizController extends Controller {
            sportQuizType();
         } else if (Objects.equals(b, "group")) {
             groupAction();
-        } else if (Objects.equals(b, "single")) {
+        } else if (Objects.equals(b, "alone")) {
             singleAction();
         } else if (Objects.equals(b, "endQuiz") || Objects.equals(b, "nextQuiz") || Objects.equals(b, "nextQuizEnv")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -120,6 +121,7 @@ public class SportQuizController extends Controller {
         sport.setMainApp(this.mainApp);
         sport.setUser(this.user);
         sport.setMenu(this.menu);
+        sport.setQuiz(this);
         sport.loadingSportName(nameOfSport);
     }
 
@@ -151,6 +153,9 @@ public class SportQuizController extends Controller {
             FXMLLoader loaderTopScreen = new FXMLLoader();
             loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen1.fxml"));
             setTopMenu(loaderTopScreen);
+            menu.setView(ControllerType.SPORT_QUIZ_ENV);
+            MenuGraphicController graphicMenuController = loaderTopScreen.getController();
+            graphicMenuController.setController(menu);
             this.createController(loaderSport);
         }
     }
@@ -170,12 +175,17 @@ public class SportQuizController extends Controller {
             FXMLLoader loaderTopScreen = new FXMLLoader();
             loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen4.fxml"));
             setTopMenu(loaderTopScreen);
-            this.createController(loaderSport);
+            menu.setView(ControllerType.SPORT_QUIZ_TYPE);
+            SportQuizPhoneGraphicController graphicMenuController = loaderTopScreen.getController();
+            graphicMenuController.setController(this);
+            SportQuizPhoneGraphicController graphicQuizController = this.createController(loaderSport);
+            graphicMenuController.setQuiz(graphicQuizController);
         }
     }
 
     /** Is called to create controllers*/
-    private void createController(FXMLLoader loaderSport){
+    private SportQuizPhoneGraphicController createController(FXMLLoader loaderSport){
+        SportQuizPhoneGraphicController graphicPhoneController = null;
         try {
             Pane pane = loaderSport.load();
 
@@ -188,9 +198,9 @@ public class SportQuizController extends Controller {
                 this.setGraphicController(graphicController);
                 graphicController.setController(this);
             }else{
-                SportQuizPhoneGraphicController graphicController = loaderSport.getController();
-                this.setGraphicController(graphicController);
-                graphicController.setController(this);
+                graphicPhoneController = loaderSport.getController();
+                this.setGraphicController(graphicPhoneController);
+                graphicPhoneController.setController(this);
             }
             this.setUser(this.user);
             this.setMainApp(this.mainApp);
@@ -198,7 +208,9 @@ public class SportQuizController extends Controller {
 
         } catch (IOException e) {
             Logger logger = Logger.getLogger(SportQuizController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        return graphicPhoneController;
     }
 
     /** Is called to set top menu*/
@@ -210,9 +222,7 @@ public class SportQuizController extends Controller {
             Logger logger = Logger.getLogger(MainApp.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
-        SportQuizPhoneGraphicController graphicMenuController = loaderTopScreen.getController();
         this.mainApp.getPrimaryPane().setTop(paneTopScreen);
-        graphicMenuController.setController(this);
     }
 
     @Override
