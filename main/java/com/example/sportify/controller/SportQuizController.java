@@ -164,6 +164,18 @@ public class SportQuizController extends Controller {
         }else{
             FXMLLoader loaderSport = new FXMLLoader();
             loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportQuizTypePhone4.fxml"));
+            FXMLLoader loaderTopScreen = new FXMLLoader();
+            loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen4.fxml"));
+            Pane paneTopScreen = null;
+            try {
+                paneTopScreen = loaderTopScreen.load();
+            } catch (IOException e) {
+                Logger logger = Logger.getLogger(MainApp.class.getName());
+                logger.log(Level.SEVERE, e.getMessage());
+            }
+            SportQuizPhoneGraphicController graphicMenuController = loaderTopScreen.getController();
+            this.mainApp.getPrimaryPane().setTop(paneTopScreen);
+            graphicMenuController.setController(this);
             this.createController(loaderSport);
         }
     }
@@ -177,19 +189,18 @@ public class SportQuizController extends Controller {
             this.mainApp.getPrimaryPane().setCenter(pane);
 
             // Give the controller access to the main app.
-            SportQuizController controller = new SportQuizController();
             if(getMainApp().isNotMobile()) {
                 SportQuizGraphicController graphicController = loaderSport.getController();
-                controller.setGraphicController(graphicController);
-                graphicController.setController(controller);
+                this.setGraphicController(graphicController);
+                graphicController.setController(this);
             }else{
                 SportQuizPhoneGraphicController graphicController = loaderSport.getController();
-                controller.setGraphicController(graphicController);
-                graphicController.setController(controller);
+                this.setGraphicController(graphicController);
+                graphicController.setController(this);
             }
-            controller.setUser(this.user);
-            controller.setMainApp(this.mainApp);
-            controller.setMenu(this.menu);
+            this.setUser(this.user);
+            this.setMainApp(this.mainApp);
+            this.setMenu(this.menu);
 
         } catch (IOException e) {
             Logger logger = Logger.getLogger(SportQuizController.class.getName());
