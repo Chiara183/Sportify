@@ -4,6 +4,7 @@ import com.example.sportify.DAO;
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.SportGraphicController;
+import com.example.sportify.controller.graphicPhone.SportQuizPhoneGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
@@ -38,6 +39,18 @@ public class SportController extends Controller{
                 loaderSport.setLocation(MainApp.class.getResource("DesktopView/Sport.fxml"));
             }else{
                 loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportPhone3.fxml"));
+                FXMLLoader loaderTopScreen = new FXMLLoader();
+                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen3.fxml"));
+                Pane paneTopScreen = null;
+                try {
+                    paneTopScreen = loaderTopScreen.load();
+                } catch (IOException e) {
+                    Logger logger = Logger.getLogger(MainApp.class.getName());
+                    logger.log(Level.SEVERE, e.getMessage());
+                }
+                /*SportQuizPhoneGraphicController graphicMenuController = loaderTopScreen.getController();
+                this.mainApp.getPrimaryPane().setTop(paneTopScreen);
+                graphicMenuController.setController(this);*/
             }
             Pane pane = loaderSport.load();
 

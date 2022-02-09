@@ -153,7 +153,7 @@ public class SportQuizController extends Controller {
     }
 
     /** It's called to load sport quiz type overview*/
-    private void sportQuizType(){
+    public void sportQuizType(){
         this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
         // Load sport quiz overview.

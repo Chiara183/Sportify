@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 
 public class SportQuizPhoneGraphicController implements GraphicController {
 
-    public TextField type;
+
     /** Reference to controller*/
     private SportQuizController controller;
 
@@ -16,6 +16,8 @@ public class SportQuizPhoneGraphicController implements GraphicController {
     private TextField age;
     @FXML
     public TextField environment;
+    @FXML
+    private TextField type;
 
     @Override
     public void setController(Controller controller) {
@@ -26,7 +28,14 @@ public class SportQuizPhoneGraphicController implements GraphicController {
     public void getAge(){
         String ageRange;
         String ageText = age.getText();
-        int num = Integer.parseInt(ageText);
+        int num = 0;
+        try{
+            num = Integer.parseInt(ageText);
+        }catch(NumberFormatException e){
+            ageRange = "invalid input";
+            controller.takeQuiz(ageRange);
+            return;
+        }
         if(num >= 0 && num <= 18){
             ageRange = "age1";
         }else if(num >= 19 && num <= 30){
@@ -60,11 +69,12 @@ public class SportQuizPhoneGraphicController implements GraphicController {
         controller.sportQuizEnv();
     }
 
+
     @FXML
     public void end(){
         String input;
         String endText = type.getText();
-        if(endText.equals("single") || endText.equals("outdoor")){
+        if(endText.equals("single") || endText.equals("group")){
             input = endText;
         }else{
             input = "invalid input";
