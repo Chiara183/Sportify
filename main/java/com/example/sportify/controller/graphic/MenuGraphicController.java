@@ -2,6 +2,7 @@ package com.example.sportify.controller.graphic;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.*;
+import com.example.sportify.controller.graphicPhone.SportQuizPhoneGraphicController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -61,15 +62,16 @@ public class MenuGraphicController implements GraphicController{
         } else if(controller.getView()==ControllerType.SPORT_INFO) {
             homeAction();
         }else if(controller.getView()==ControllerType.USER_EDIT) {
-            if(controller.getEdit().controller.getView()==ControllerType.FIND_GYM) {
+            EditGraphicController edit = (EditGraphicController) controller.getInstance();
+            if(edit.controller.getView()==ControllerType.FIND_GYM) {
                 findGymAction();
-            } else if(controller.getEdit().controller.getView()==ControllerType.GYM_INFO) {
+            } else if(edit.controller.getView()==ControllerType.GYM_INFO) {
                 setGymInfo(controller.getGym());
-            } else if(controller.getEdit().controller.getView()==ControllerType.SPORT_QUIZ) {
+            } else if(edit.controller.getView()==ControllerType.SPORT_QUIZ) {
                 sportQuizAction();
-            } else if(controller.getEdit().controller.getView()==ControllerType.SPORT_QUIZ_TYPE) {
+            } else if(edit.controller.getView()==ControllerType.SPORT_QUIZ_TYPE) {
                 sportQuizAction();
-            } else if(controller.getEdit().controller.getView()==ControllerType.SPORT_QUIZ_ENV) {
+            } else if(edit.controller.getView()==ControllerType.SPORT_QUIZ_ENV) {
                 sportQuizAction();
             } else {
                 homeAction();
@@ -80,8 +82,6 @@ public class MenuGraphicController implements GraphicController{
             sportQuizAction();
         }
     }
-
-
     @FXML
     private void signAction(){
         if(controller.getUser()==null){
@@ -210,7 +210,7 @@ public class MenuGraphicController implements GraphicController{
             editController.setMainApp(this.controller.getMainApp());
             editController.setUser(this.controller.getUser());
             editController.setMenu(this.controller);
-            this.controller.setEdit(graphicController);
+            this.controller.setInstance(graphicController);
             editController.setView(controller.getView());
             this.controller.setView(ControllerType.USER_EDIT);
 
@@ -225,13 +225,27 @@ public class MenuGraphicController implements GraphicController{
     @FXML
     private void submit(){
         if(controller.getView()==ControllerType.LOGIN) {
-            controller.getLogin().submitActionLogin();
+            LoginGraphicController login = (LoginGraphicController) controller.getInstance();
+            login.submitActionLogin();
         } else if(controller.getView()==ControllerType.USER_EDIT) {
-            controller.getEdit().okAction();
+            EditGraphicController edit = (EditGraphicController) controller.getInstance();
+            edit.okAction();
         } else if(controller.getView()==ControllerType.SIGN_UP || controller.getView()==ControllerType.SIGN_UP_GYM) {
-            controller.getSignUp().submit(controller.getView());
+            SignUpGraphicController signUp = (SignUpGraphicController) controller.getInstance();
+            signUp.submit(controller.getView());
         } else if (controller.getView()==ControllerType.SIGN_UP_GYM2){
-            controller.getSignUpGym().submitActionSignUpGym();
+            SignUpGymGraphicController gym = (SignUpGymGraphicController) controller.getInstance();
+            gym.submitActionSignUpGym();
+        }
+    }
+    @FXML
+    private void next(){
+        if(controller.getView()==ControllerType.SPORT_QUIZ) {
+            SportQuizPhoneGraphicController quiz = (SportQuizPhoneGraphicController) controller.getInstance();
+            quiz.getAge();
+        } else if(controller.getView()==ControllerType.SPORT_QUIZ_ENV) {
+            SportQuizPhoneGraphicController quiz = (SportQuizPhoneGraphicController) controller.getInstance();
+            quiz.getEnvironment();
         }
     }
 
@@ -304,5 +318,11 @@ public class MenuGraphicController implements GraphicController{
     @Override
     public void setController(Controller controller) {
         this.controller = (MenuController) controller;
+    }
+
+    /** Is called to get controller type*/
+    @Override
+    public ControllerType getGraphicType(){
+        return controller.getType();
     }
 }

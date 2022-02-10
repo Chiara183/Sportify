@@ -201,6 +201,7 @@ public class SportQuizController extends Controller {
                 graphicPhoneController = loaderSport.getController();
                 this.setGraphicController(graphicPhoneController);
                 graphicPhoneController.setController(this);
+                menu.setInstance(graphicPhoneController);
             }
             this.setUser(this.user);
             this.setMainApp(this.mainApp);

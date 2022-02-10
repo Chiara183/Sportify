@@ -1,6 +1,7 @@
 package com.example.sportify.controller.graphic;
 
 import com.example.sportify.controller.Controller;
+import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.EditController;
 import com.example.sportify.user.User;
 import javafx.fxml.FXML;
@@ -240,5 +241,11 @@ public abstract class EditGraphicController implements GraphicController{
     @Override
     public void setController(Controller controller) {
         this.controller = (EditController) controller;
+    }
+
+    /** Is called to get controller type*/
+    @Override
+    public ControllerType getGraphicType(){
+        return controller.getType();
     }
 }

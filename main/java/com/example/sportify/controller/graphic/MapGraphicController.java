@@ -2,6 +2,7 @@ package com.example.sportify.controller.graphic;
 
 import com.example.sportify.OpenStreetMapUtils;
 import com.example.sportify.controller.Controller;
+import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.MapController;
 import com.sothawo.mapjfx.*;
 import javafx.collections.FXCollections;
@@ -149,5 +150,11 @@ public class MapGraphicController implements GraphicController{
             alert.setContentText("Please enter valid address");
             alert.showAndWait();
         }
+    }
+
+    /** Is called to get controller type*/
+    @Override
+    public ControllerType getGraphicType(){
+        return controller.getType();
     }
 }

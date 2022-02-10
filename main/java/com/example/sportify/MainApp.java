@@ -238,7 +238,7 @@ public class MainApp{
             controller.setMainApp(this);
             controller.setSubmit(this.submit);
             controller.setUser(this.user);
-            menuController.setLogin(graphicController);
+            menuController.setInstance(graphicController);
             controller.setMenu(this.menu);
             controller.setExternal(this.externalLogin);
 
@@ -320,6 +320,7 @@ public class MainApp{
                 SportQuizPhoneGraphicController graphicController = loaderSport.getController();
                 controller.setGraphicController(graphicController);
                 graphicController.setController(controller);
+                menu.setInstance(graphicController);
             }
             controller.setMainApp(this);
             controller.setUser(this.user);

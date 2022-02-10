@@ -1,6 +1,7 @@
 package com.example.sportify.controller.graphic;
 
 import com.example.sportify.controller.Controller;
+import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.GymInfoController;
 import com.example.sportify.controller.MenuController;
 import javafx.collections.ObservableList;
@@ -190,5 +191,11 @@ public class GymInfoGraphicController implements GraphicController{
     @Override
     public void setController(Controller controller) {
         this.controller = (GymInfoController) controller;
+    }
+
+    /** Is called to get controller type*/
+    @Override
+    public ControllerType getGraphicType(){
+        return controller.getType();
     }
 }

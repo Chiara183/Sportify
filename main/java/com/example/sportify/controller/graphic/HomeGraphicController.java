@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class HomeGraphicController implements GraphicController{
 
-    public ComboBox comboActivity;
+    public ComboBox<String> comboActivity;
     /** Reference to controller*/
     private HomeController controller;
 
@@ -151,4 +151,9 @@ public class HomeGraphicController implements GraphicController{
         this.controller = (HomeController) controller;
     }
 
+    /** Is called to get controller type*/
+    @Override
+    public ControllerType getGraphicType(){
+        return controller.getType();
+    }
 }

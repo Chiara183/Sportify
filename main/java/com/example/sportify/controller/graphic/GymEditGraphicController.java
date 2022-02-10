@@ -1,6 +1,7 @@
 package com.example.sportify.controller.graphic;
 
 import com.example.sportify.controller.Controller;
+import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.GymEditController;
 import com.example.sportify.user.GymUser;
 import javafx.fxml.FXML;
@@ -104,5 +105,11 @@ public class GymEditGraphicController extends EditGraphicController{
     public void setController(Controller controller) {
         this.controller = (GymEditController) controller;
         super.setController(controller);
+    }
+
+    /** Is called to get controller type*/
+    @Override
+    public ControllerType getGraphicType(){
+        return controller.getType();
     }
 }

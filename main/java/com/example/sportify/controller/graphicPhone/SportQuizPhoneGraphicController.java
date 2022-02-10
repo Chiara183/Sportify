@@ -1,6 +1,7 @@
 package com.example.sportify.controller.graphicPhone;
 
 import com.example.sportify.controller.Controller;
+import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.SportQuizController;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.SportQuizGraphicController;
@@ -99,5 +100,11 @@ public class SportQuizPhoneGraphicController implements GraphicController {
 
     private TextField getType() {
         return this.type;
+    }
+
+    /** Is called to get controller type*/
+    @Override
+    public ControllerType getGraphicType(){
+        return controller.getType();
     }
 }

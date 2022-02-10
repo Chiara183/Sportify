@@ -1,10 +1,11 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.controller.graphic.*;
+import com.example.sportify.controller.graphicPhone.SportQuizPhoneGraphicController;
 import com.example.sportify.user.User;
 import javafx.scene.control.Button;
 
-public class MenuController extends Controller {
+public class MenuController extends Controller{
 
     /** Reference to graphic controller*/
     public MenuGraphicController graphicController;
@@ -17,6 +18,7 @@ public class MenuController extends Controller {
     private EditGraphicController edit;
     private SignUpGraphicController signUp;
     private SignUpGymGraphicController signUpGym;
+    private SportQuizPhoneGraphicController quiz;
 
     /** String that identify the name of last gym loaded*/
     private String gym;
@@ -32,17 +34,53 @@ public class MenuController extends Controller {
     }
 
     /** Method to set the instance of the view.*/
-    public void setLogin(LoginGraphicController login) {
+    private void setLogin(LoginGraphicController login) {
         this.login = login;
+        this.signUp = null;
+        this.signUpGym = null;
+        this.edit = null;
+        this.quiz = null;
     }
-    public void setSignUp(SignUpGraphicController signUp) {
+    private void setSignUp(SignUpGraphicController signUp) {
         this.signUp = signUp;
+        this.login = null;
+        this.signUpGym = null;
+        this.edit = null;
+        this.quiz = null;
     }
-    public void setSignUpGym(SignUpGymGraphicController signUpGym) {
+    private void setSignUpGym(SignUpGymGraphicController signUpGym) {
         this.signUpGym = signUpGym;
+        this.signUp = null;
+        this.login = null;
+        this.edit = null;
+        this.quiz = null;
     }
-    public void setEdit(EditGraphicController edit) {
+    private void setEdit(EditGraphicController edit) {
         this.edit = edit;
+        this.signUp = null;
+        this.signUpGym = null;
+        this.login = null;
+        this.quiz = null;
+    }
+    private void setQuiz(SportQuizPhoneGraphicController quiz) {
+        this.quiz = quiz;
+        this.signUp = null;
+        this.signUpGym = null;
+        this.edit = null;
+        this.login = null;
+    }
+    public <T extends GraphicController> void setInstance(T instance){
+        if (instance.getGraphicType() ==ControllerType.LOGIN){
+            setLogin((LoginGraphicController) instance);
+        } else if (instance.getGraphicType() ==ControllerType.SIGN_UP){
+            setSignUp((SignUpGraphicController) instance);
+        } else if (instance.getGraphicType() ==ControllerType.SIGN_UP_GYM || instance.getGraphicType() ==ControllerType.SIGN_UP_GYM2){
+            setSignUpGym((SignUpGymGraphicController) instance);
+        } else if (instance.getGraphicType() ==ControllerType.USER_EDIT){
+            setEdit((EditGraphicController) instance);
+        } else if (instance.getGraphicType() ==ControllerType.SPORT_QUIZ || instance.getGraphicType() ==ControllerType.SPORT_QUIZ_TYPE || instance.getGraphicType() ==ControllerType.SPORT_QUIZ_ENV){
+            setQuiz((SportQuizPhoneGraphicController) instance);
+        }
     }
 
     /** Is called to get the name of the view.*/
@@ -51,17 +89,35 @@ public class MenuController extends Controller {
     }
 
     /** Method to get the instance of the view.*/
-    public LoginGraphicController getLogin() {
+    private LoginGraphicController getLogin() {
         return this.login;
     }
-    public SignUpGraphicController getSignUp() {
+    private SignUpGraphicController getSignUp() {
         return this.signUp;
     }
-    public SignUpGymGraphicController getSignUpGym() {
+    private SignUpGymGraphicController getSignUpGym() {
         return this.signUpGym;
     }
-    public EditGraphicController getEdit() {
+    private EditGraphicController getEdit() {
         return this.edit;
+    }
+    private SportQuizPhoneGraphicController getQuiz() {
+        return this.quiz;
+    }
+    public GraphicController getInstance(){
+        if (login!=null){
+            return getLogin();
+        } else if (signUp!=null){
+           return getSignUp();
+        } else if (signUpGym!=null){
+            return getSignUpGym();
+        } else if (edit!=null){
+            return getEdit();
+        } else if (quiz!= null){
+            return getQuiz();
+        } else {
+            return null;
+        }
     }
 
     /** Is called to get the name of gym.*/

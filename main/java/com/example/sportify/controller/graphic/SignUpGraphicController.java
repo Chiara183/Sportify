@@ -127,7 +127,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
             controller.setMenu(this.controller.getMenu());
             this.controller.getMainApp().getPrimaryPane().setCenter(pane);
             this.controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
-            this.controller.getMenu().setSignUp(graphicController);
+            this.controller.getMenu().setInstance(graphicController);
             assert graphicMenuController != null;
             graphicMenuController.setController(this.controller.getMenu());
 

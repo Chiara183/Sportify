@@ -1,6 +1,7 @@
 package com.example.sportify.controller.graphic;
 
 import com.example.sportify.controller.Controller;
+import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.SportQuizController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,5 +42,11 @@ public class SportQuizGraphicController implements GraphicController{
     @Override
     public void setController(Controller controller) {
         this.controller = (SportQuizController) controller;
+    }
+
+    /** Is called to get controller type*/
+    @Override
+    public ControllerType getGraphicType(){
+        return controller.getType();
     }
 }

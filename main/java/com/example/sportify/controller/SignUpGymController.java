@@ -67,7 +67,7 @@ public class SignUpGymController extends AccessController {
             signUpGymGraphicController.setController(controller);
             controller.setMainApp(this.mainApp);
             controller.setSubmit(this.submit);
-            menu.setSignUpGym(signUpGymGraphicController);
+            menu.setInstance(signUpGymGraphicController);
             menu.setView(ControllerType.SIGN_UP_GYM2);
 
         } catch (IOException e) {
