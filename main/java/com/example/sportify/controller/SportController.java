@@ -88,62 +88,55 @@ public class SportController extends Controller{
     public void loadingSport(String sport, String description) {
         this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
-        try {
-            // Load test result overview.
-            if(getMainApp().isNotMobile()) {
-                FXMLLoader loaderSport = new FXMLLoader();
-                loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportInfo.fxml"));
-                Pane pane = loaderSport.load();
-                // Set test result overview into the center of root layout.
-                this.mainApp.getPrimaryPane().setCenter(pane);
-
-                // Give the controller access to the main app.
-                SportGraphicController sportGraphicController = loaderSport.getController();
-                this.setGraphicController(sportGraphicController);
-                sportGraphicController.setController(this);
-                this.setUser(this.user);
-                this.setMainApp(this.mainApp);
-                this.setMenu(this.menu);
-                sportGraphicController.setSportName(sport);
-                sportGraphicController.setSportDescription(description);
-            }else {
-                FXMLLoader loaderSport = new FXMLLoader();
-                loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportInfoPhone0.fxml"));
-                FXMLLoader loaderTopScreen = new FXMLLoader();
-                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen0.fxml"));
-                Pane paneTopScreen = null;
-                try {
-                    paneTopScreen = loaderTopScreen.load();
-                } catch (IOException e) {
-                    Logger logger = Logger.getLogger(MainApp.class.getName());
-                    logger.log(Level.SEVERE, e.getMessage());
-                }
-                this.mainApp.getPrimaryPane().setTop(paneTopScreen);
-                menu.setView(ControllerType.SPORT_INFO);
-                MenuGraphicController graphicMenuController = loaderTopScreen.getController();
-                graphicMenuController.setController(menu);
-                Pane pane = loaderSport.load();
-                // Set test result overview into the center of root layout.
-                this.mainApp.getPrimaryPane().setCenter(pane);
-
-                // Give the controller access to the main app.
-                SportGraphicController sportGraphicController = loaderSport.getController();
-                this.setGraphicController(sportGraphicController);
-                sportGraphicController.setController(this);
-                this.setUser(this.user);
-                this.setMainApp(this.mainApp);
-                this.setMenu(this.menu);
-                sportGraphicController.setSportName(sport);
-                sportGraphicController.setSportDescription(description);
-            }
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(SportController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
+        // Load test result overview.
+        if(getMainApp().isNotMobile()) {
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportInfo.fxml"));
+            // Give the controller access to the main app.
+            SportGraphicController sportGraphicController = setCenterPane(loaderSport);
+            sportGraphicController.setSportName(sport);
+            sportGraphicController.setSportDescription(description);
+        }else {
+            FXMLLoader loaderSport = new FXMLLoader();
+            loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportInfoPhone0.fxml"));
+            FXMLLoader loaderTopScreen = new FXMLLoader();
+            loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen0.fxml"));
+            mainApp.setTopMenu(loaderTopScreen);
+            menu.setView(ControllerType.SPORT_INFO);
+            MenuGraphicController graphicMenuController = loaderTopScreen.getController();
+            graphicMenuController.setController(menu);
+            // Give the controller access to the main app.
+            SportGraphicController sportGraphicController = setCenterPane(loaderSport);
+            sportGraphicController.setSportName(sport);
+            sportGraphicController.setSportDescription(description);
+        }
     }
 
     /** Is called to set graphic  controller*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         //Do nothing because it doesn't need to, just override operation
+    }
+
+    /** Is called to set center pane*/
+    private SportGraphicController setCenterPane(FXMLLoader loaderSport){
+        Pane pane = null;
+        try {
+            pane = loaderSport.load();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(MainApp.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        // Set test result overview into the center of root layout.
+        this.mainApp.getPrimaryPane().setCenter(pane);
+
+        // Give the controller access to the main app.
+        SportGraphicController sportGraphicController = loaderSport.getController();
+        this.setGraphicController(sportGraphicController);
+        sportGraphicController.setController(this);
+        this.setUser(this.user);
+        this.setMainApp(this.mainApp);
+        this.setMenu(this.menu);
+        return sportGraphicController;
     }
 }

@@ -442,4 +442,15 @@ public class MainApp{
         passText.setVisible(false);
     }
 
+    /** Is called to set top menu*/
+    public void setTopMenu(FXMLLoader loaderTopScreen){
+        Pane paneTopScreen = null;
+        try {
+            paneTopScreen = loaderTopScreen.load();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(MainApp.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        this.getPrimaryPane().setTop(paneTopScreen);
+    }
 }

@@ -152,7 +152,7 @@ public class SportQuizController extends Controller {
             loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportQuizEnvPhone1.fxml"));
             FXMLLoader loaderTopScreen = new FXMLLoader();
             loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen1.fxml"));
-            setTopMenu(loaderTopScreen);
+            mainApp.setTopMenu(loaderTopScreen);
             menu.setView(ControllerType.SPORT_QUIZ_ENV);
             MenuGraphicController graphicMenuController = loaderTopScreen.getController();
             graphicMenuController.setController(menu);
@@ -174,7 +174,7 @@ public class SportQuizController extends Controller {
             loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportQuizTypePhone4.fxml"));
             FXMLLoader loaderTopScreen = new FXMLLoader();
             loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen4.fxml"));
-            setTopMenu(loaderTopScreen);
+            mainApp.setTopMenu(loaderTopScreen);
             menu.setView(ControllerType.SPORT_QUIZ_TYPE);
             SportQuizPhoneGraphicController graphicMenuController = loaderTopScreen.getController();
             graphicMenuController.setController(this);
