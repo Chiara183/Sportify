@@ -214,18 +214,6 @@ public class SportQuizController extends Controller {
         return graphicPhoneController;
     }
 
-    /** Is called to set top menu*/
-    private void setTopMenu(FXMLLoader loaderTopScreen){
-        Pane paneTopScreen = null;
-        try {
-            paneTopScreen = loaderTopScreen.load();
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(MainApp.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
-        this.mainApp.getPrimaryPane().setTop(paneTopScreen);
-    }
-
     @Override
     public void setGraphicController(GraphicController graphicController) {
         //Do nothing, but it has to exist given that this class extends Controller

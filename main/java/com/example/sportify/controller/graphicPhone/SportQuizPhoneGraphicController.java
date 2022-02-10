@@ -4,11 +4,8 @@ import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.SportQuizController;
 import com.example.sportify.controller.graphic.GraphicController;
-import com.example.sportify.controller.graphic.SportQuizGraphicController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
-import javax.swing.*;
 
 public class SportQuizPhoneGraphicController implements GraphicController {
 
