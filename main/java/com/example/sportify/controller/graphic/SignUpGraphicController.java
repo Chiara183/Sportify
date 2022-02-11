@@ -127,7 +127,6 @@ public class SignUpGraphicController extends RegisterGraphicController{
             controller.setMenu(this.controller.getMenu());
             this.controller.getMainApp().getPrimaryPane().setCenter(pane);
             this.controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
-            this.controller.getMenu().setInstance(graphicController);
             assert graphicMenuController != null;
             graphicMenuController.setController(this.controller.getMenu());
 
@@ -135,6 +134,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
             controller.setMainApp(this.controller.getMainApp());
+            this.controller.getMenu().setInstance(graphicController);
         } catch(IOException e){
             Logger logger = Logger.getLogger(MainApp.class.getName());
             logger.log(Level.SEVERE, e.getMessage());

@@ -70,15 +70,15 @@ public class MenuController extends Controller{
         this.login = null;
     }
     public <T extends GraphicController> void setInstance(T instance){
-        if (instance.getGraphicType() ==ControllerType.LOGIN){
+        if (instance.getGraphicType() == ControllerType.LOGIN){
             setLogin((LoginGraphicController) instance);
-        } else if (instance.getGraphicType() ==ControllerType.SIGN_UP){
+        } else if (instance.getGraphicType() == ControllerType.SIGN_UP){
             setSignUp((SignUpGraphicController) instance);
-        } else if (instance.getGraphicType() ==ControllerType.SIGN_UP_GYM || instance.getGraphicType() ==ControllerType.SIGN_UP_GYM2){
+        } else if (instance.getGraphicType() == ControllerType.SIGN_UP_GYM || instance.getGraphicType() == ControllerType.SIGN_UP_GYM2){
             setSignUpGym((SignUpGymGraphicController) instance);
-        } else if (instance.getGraphicType() ==ControllerType.USER_EDIT){
+        } else if (instance.getGraphicType() == ControllerType.USER_EDIT){
             setEdit((EditGraphicController) instance);
-        } else if (instance.getGraphicType() ==ControllerType.SPORT_QUIZ || instance.getGraphicType() ==ControllerType.SPORT_QUIZ_TYPE || instance.getGraphicType() ==ControllerType.SPORT_QUIZ_ENV){
+        } else if (instance.getGraphicType() == ControllerType.SPORT_QUIZ || instance.getGraphicType() == ControllerType.SPORT_QUIZ_TYPE || instance.getGraphicType() ==ControllerType.SPORT_QUIZ_ENV){
             setQuiz((SportQuizPhoneGraphicController) instance);
         }
     }
