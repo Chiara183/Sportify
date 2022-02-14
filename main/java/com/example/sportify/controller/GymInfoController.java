@@ -207,21 +207,15 @@ public class GymInfoController extends Controller {
 
     /** Download the review*/
     private void downloadReview(){
-        Connection connection = null;
-        try {
-            connection = new DBConnection().getConnection();
-        } catch (FileNotFoundException e) {
-            LOGGER.info(e.toString());
-        }
+        Connection connection = mainApp.getDAO().getConnection();
         ResultSet rs;
         PreparedStatement ps = null;
         String query = SELECT +
                 "FROM course " +
                 "WHERE course.gym = \"?\"";
         try{
-            assert connection != null;
             ps = connection.prepareStatement(query);
-            ps.setString(1, this.gym);
+            //ps.setString(1, this.gym);
             rs = ps.executeQuery();
             while(rs.next()){
                 loadReview(rs);
@@ -316,7 +310,7 @@ public class GymInfoController extends Controller {
 
     /** Is called to set phone course window*/
     public void settingPhoneCourse(){
-        // Set visible or not area new review and new course
+        // Set visible or not area new course
         setCourse();
 
         // Set info course
@@ -369,19 +363,7 @@ public class GymInfoController extends Controller {
             setInfoCourse();
 
             // Set review
-            Runnable task2 = () -> Platform.runLater(this::downloadReview);
-            Task<Void> task5 = createTask(task2);
-            task5.setOnRunning(e -> graphicController.review_setCursor(Cursor.WAIT));
-            task5.setOnSucceeded(e -> graphicController.review_setCursor(Cursor.DEFAULT));
-            task5.setOnFailed(e -> {
-                graphicController.review_setCursor(Cursor.DEFAULT);
-                Label labelNotFound = new Label("There are no reviews");
-                labelNotFound.setStyle(FONT);
-                graphicController.setReview(labelNotFound);
-            });
-
-            // Run Thread and set DEFAULT review and course
-            new Thread(task5).start();
+            setInfoReview();
         }
 
         // Run Thread and set DEFAULT review and course
@@ -430,5 +412,45 @@ public class GymInfoController extends Controller {
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (GymInfoGraphicController) graphicController;
+    }
+
+    /** Is called to set top menu*/
+    public Pane setTopMenu(){
+        FXMLLoader loaderTopScreen = new FXMLLoader();
+        loaderTopScreen.setLocation(this.mainApp.getClass().getResource("SmartphoneView/topScreen0.fxml"));
+        Pane paneTopScreen = null;
+        try {
+            paneTopScreen = loaderTopScreen.load();
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, e.getMessage());
+        }
+        MenuGraphicController graphicMenuController = loaderTopScreen.getController();
+        graphicMenuController.setController(this.menu);
+        return paneTopScreen;
+    }
+
+    /** Is called to set phone review window*/
+    public void settingPhoneReview() {
+        // Set visible or not area new review
+        setReview();
+
+        //Set review
+        setInfoReview();
+    }
+
+    private void setInfoReview() {
+        Runnable task2 = () -> Platform.runLater(this::downloadReview);
+        Task<Void> task5 = createTask(task2);
+        task5.setOnRunning(e -> graphicController.review_setCursor(Cursor.WAIT));
+        task5.setOnSucceeded(e -> graphicController.review_setCursor(Cursor.DEFAULT));
+        task5.setOnFailed(e -> {
+            graphicController.review_setCursor(Cursor.DEFAULT);
+            Label labelNotFound = new Label("There are no reviews");
+            labelNotFound.setStyle(FONT);
+            graphicController.setReview(labelNotFound);
+        });
+
+        // Run Thread and set DEFAULT review and course
+        new Thread(task5).start();
     }
 }

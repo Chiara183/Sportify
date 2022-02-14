@@ -30,6 +30,11 @@ public class DAO {
         this.connection = connection;
     }
 
+    /** It's called to get connection*/
+    public Connection getConnection() {
+        return this.connection;
+    }
+
     /** It's called to get data from DB*/
     public List<String> checkData(String query, String column){
         PreparedStatement ps = null;
