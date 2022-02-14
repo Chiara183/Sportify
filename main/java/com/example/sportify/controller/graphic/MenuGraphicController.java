@@ -80,6 +80,17 @@ public class MenuGraphicController implements GraphicController{
             signUpAction();
         } else if(controller.getView()==ControllerType.SPORT_QUIZ_ENV) {
             sportQuizAction();
+        } else if(controller.getView()==ControllerType.COURSE_GYM || controller.getView()==ControllerType.REVIEW_GYM){
+            setGymInfo(controller.getGym());
+            GymInfoGraphicController gymInfoGraphicController = new GymInfoGraphicController();
+            GymInfoController gym = new GymInfoController();
+            gym.setGraphicController(gymInfoGraphicController);
+            gymInfoGraphicController.setController(gym);
+            gym.setMainApp(this.controller.getMainApp());
+            gym.setUser(this.controller.getUser());
+            gym.setMenu(this.controller);
+            gym.setSearchCache(this.controller.getMainApp().getSearchCache());
+            gym.loadingGymName(controller.getGym());
         }
     }
     @FXML

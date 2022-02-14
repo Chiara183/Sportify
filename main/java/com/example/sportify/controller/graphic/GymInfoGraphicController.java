@@ -5,14 +5,23 @@ import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.GymInfoController;
 import com.example.sportify.controller.MenuController;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class GymInfoGraphicController implements GraphicController{
+
+    private static final Logger LOGGER = Logger.getLogger(GymInfoController.class.getName());
 
     /** Reference to controller*/
     private GymInfoController controller;
@@ -197,5 +206,41 @@ public class GymInfoGraphicController implements GraphicController{
     @Override
     public ControllerType getGraphicType(){
         return controller.getType();
+    }
+
+    /** Is called to show course window*/
+    @FXML
+    private void courseAction() {
+        try {
+            // Load test result overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(this.controller.getMainApp().getClass().getResource("SmartphoneView/GymInfoCoursePhone0.fxml"));
+            FXMLLoader loaderTopScreen = new FXMLLoader();
+            loaderTopScreen.setLocation(this.controller.getMainApp().getClass().getResource("SmartphoneView/topScreen0.fxml"));
+            Pane paneTopScreen = loaderTopScreen.load();
+            MenuGraphicController graphicMenuController = loaderTopScreen.getController();
+            Pane pane = loader.load();
+
+            // Set test result overview into the center of root layout.
+            this.controller.getMainApp().getPrimaryPane().setCenter(pane);
+            controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
+            controller.getMenu().setView(ControllerType.COURSE_GYM);
+            assert graphicMenuController != null;
+            graphicMenuController.setController(controller.getMenu());
+
+            // Give the controller access to the main app.
+            GymInfoGraphicController gymInfoGraphicController = loader.getController();
+            this.controller.setGraphicController(gymInfoGraphicController);
+            gymInfoGraphicController.setController(this.controller);
+
+            // Set info course
+            controller.settingPhoneCourse();
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, e.getMessage());        }
+    }
+
+    @FXML
+    private void reviewAction() {
+        //TODO
     }
 }

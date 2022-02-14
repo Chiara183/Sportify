@@ -81,17 +81,12 @@ public class GymInfoController extends Controller {
         new Thread(task1).start();
     }
     private ObservableList<String> getSport(){
-        ObservableList<String> sports = FXCollections.observableArrayList();
         assert this.mainApp != null;
         DAO objDAO = this.mainApp.getDAO();
         List<String> list = objDAO.checkData(
                 SELECT +
                         "FROM sport ", "name");
-        String rs = list.get(list.size() - 1);
-
-        sports.add(rs);
-
-        return sports;
+        return FXCollections.observableArrayList(list);
     }
 
     /** Cancel a review of gym*/
@@ -251,65 +246,81 @@ public class GymInfoController extends Controller {
     }
 
     /** Load the course of gym*/
-    private void loadCourse(ResultSet rs){
+    private void loadCourse(String sport, String time){
         graphicController.cleanCourse();
-        try {
-            Label label = new Label(rs.getString("sport") + " " + rs.getTime("time").toString().substring(0, 5));
-            String s = rs.getString("sport") + ";" + rs.getTime("time").toString();
-            label.setStyle("-fx-text-fill: white;");
-            if (this.user != null && Objects.equals(this.user.getGymName(), this.gym)) {
-                Label cancel = new Label("⮿");
-                cancel.setStyle("-fx-text-fill: red;");
-                cancel.setEllipsisString(s);
-                cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, this::cancelCourse);
-                cancel.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> cancel.setCursor(Cursor.HAND));
-                cancel.addEventHandler(MouseEvent.MOUSE_EXITED, e -> cancel.setCursor(Cursor.DEFAULT));
-                HBox hbox = new HBox(label, new Label(), new Label(), cancel);
-                graphicController.setCourse(hbox);
-            } else {
-                graphicController.setCourse(label);
-            }
-        } catch (SQLException e){
-            LOGGER.log(Level.SEVERE, e.getMessage());        }
+        Label label = new Label(sport + " " + time.substring(0, 5));
+        String s = sport + ";" + time;
+        label.setStyle("-fx-text-fill: white;");
+        if (this.user != null && Objects.equals(this.user.getGymName(), this.gym)) {
+            Label cancel = new Label("⮿");
+            cancel.setStyle("-fx-text-fill: red;");
+            cancel.setEllipsisString(s);
+            cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, this::cancelCourse);
+            cancel.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> cancel.setCursor(Cursor.HAND));
+            cancel.addEventHandler(MouseEvent.MOUSE_EXITED, e -> cancel.setCursor(Cursor.DEFAULT));
+            HBox hbox = new HBox(label, new Label(), new Label(), cancel);
+            graphicController.setCourse(hbox);
+        } else {
+            graphicController.setCourse(label);
+        }
     }
 
     /** Download Course*/
     private void downloadCourse(){
-        Connection connection = null;
-        try {
-            connection = new DBConnection().getConnection();
-        } catch (FileNotFoundException e) {
-            LOGGER.info(e.toString());
-        }
-        PreparedStatement ps = null;
-        ResultSet rs;
+        DAO dao = mainApp.getDAO();
         String query = SELECT +
                 "FROM course " +
                 "WHERE course.gym = \"?\"";
-        try{
-            assert connection != null;
-            ps = connection.prepareStatement(query);
-            ps.setString(1, this.gym);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                loadCourse(rs);
-            }
-        }catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
-        }finally {
-            try {
-                if (ps != null) {
-                    ps.close();
-                }
-            } catch (SQLException e) {
-                LOGGER.info(e.toString());
-            }
+        List<String> sport = dao.checkData(query, "sport");
+        List<String> time = dao.checkData(query, "time");
+        int i = 0;
+        while(i != sport.size()){
+            loadCourse(sport.get(i), time.get(i));
+            i++;
         }
         if(graphicController.getSizeCourse()<2) {
             Label label = new Label("There are no course");
             label.setStyle(FONT);
             graphicController.setCourse(label);
         }
+    }
+
+    /** Set course*/
+    private void setInfoCourse(){
+        // set ComboBox
+        Runnable task = () -> Platform.runLater(() -> {
+            this.sport = getSport();
+            graphicController.setComboSport(this.sport);
+        });
+        Task<Void> task0 = createTask(task);
+        task0.setOnRunning(e -> graphicController.comboSport_setCursor(Cursor.WAIT));
+        task0.setOnSucceeded(e -> graphicController.comboSport_setCursor(Cursor.DEFAULT));
+        task0.setOnFailed(e -> graphicController.comboSport_setCursor(Cursor.DEFAULT));
+
+        // Set course
+        Runnable task1 = () -> Platform.runLater(this::downloadCourse);
+        Task<Void> task2 = createTask(task1);
+        task2.setOnRunning(e -> graphicController.course_setCursor(Cursor.WAIT));
+        task2.setOnSucceeded(e -> graphicController.course_setCursor(Cursor.DEFAULT));
+        task2.setOnFailed(e -> {
+            graphicController.course_setCursor(Cursor.DEFAULT);
+            Label label = new Label("There are no course");
+            label.setStyle(FONT);
+            graphicController.setCourse(label);
+        });
+
+        // Run Thread and set DEFAULT review and course
+        //new Thread(task0).start();
+        new Thread(task2).start();
+    }
+
+    /** Is called to set phone course window*/
+    public void settingPhoneCourse(){
+        // Set visible or not area new review and new course
+        setCourse();
+
+        // Set info course
+        setInfoCourse();
     }
 
     /** Set Gym View*/
@@ -332,14 +343,12 @@ public class GymInfoController extends Controller {
                                     "FROM gym " +
                                     "WHERE gym.name = \"" + name + "\"", "phone");
                     String rs = list.get(0);
-                    System.out.println(list.get(0));
                     DAO objDAO1 = this.mainApp.getDAO();
                     List<String> list1 = objDAO1.checkData(
                             SELECT +
                                     "FROM gym " +
                                     "WHERE gym.name = \"" + name + "\"", "address");
                     String rs1 = list1.get(0);
-                    System.out.println(list1.get(0));
                     graphicController.setGymDescription(
                             "ADDRESS: " + rs1 +
                                     "\n\nTELEPHONE: " + rs);
@@ -356,15 +365,8 @@ public class GymInfoController extends Controller {
             // Set visible or not area new review and new course
             settingPage();
 
-            // set ComboBox
-            Runnable task0 = () -> Platform.runLater(() -> {
-                this.sport = getSport();
-                graphicController.setComboSport(this.sport);
-            });
-            Task<Void> task00 = createTask(task0);
-            task00.setOnRunning(e -> graphicController.comboSport_setCursor(Cursor.WAIT));
-            task00.setOnSucceeded(e -> graphicController.comboSport_setCursor(Cursor.DEFAULT));
-            task00.setOnFailed(e -> graphicController.comboSport_setCursor(Cursor.DEFAULT));
+            // Set info course
+            setInfoCourse();
 
             // Set review
             Runnable task2 = () -> Platform.runLater(this::downloadReview);
@@ -378,22 +380,8 @@ public class GymInfoController extends Controller {
                 graphicController.setReview(labelNotFound);
             });
 
-            // Set course
-            Runnable task3 = () -> Platform.runLater(this::downloadCourse);
-            Task<Void> task6 = createTask(task3);
-            task6.setOnRunning(e -> graphicController.course_setCursor(Cursor.WAIT));
-            task6.setOnSucceeded(e -> graphicController.course_setCursor(Cursor.DEFAULT));
-            task6.setOnFailed(e -> {
-                graphicController.course_setCursor(Cursor.DEFAULT);
-                Label label = new Label("There are no course");
-                label.setStyle(FONT);
-                graphicController.setCourse(label);
-            });
-
             // Run Thread and set DEFAULT review and course
-            new Thread(task00).start();
             new Thread(task5).start();
-            new Thread(task6).start();
         }
 
         // Run Thread and set DEFAULT review and course
