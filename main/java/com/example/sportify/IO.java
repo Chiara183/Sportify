@@ -1,6 +1,5 @@
 package com.example.sportify;
 
-import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -73,11 +72,7 @@ public class IO {
         HashMap<String, Map<String, String>> map = new HashMap<>();
             PreparedStatement ps = null;
             ResultSet rs;
-        Connection connection = null;
-        try {
-            connection = new DBConnection().getConnection();
-        } catch (FileNotFoundException e) {
-            LOGGER.info(e.toString());        }
+        Connection connection = new DBConnection().getConnection();
         try{
             assert connection != null;
             ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");

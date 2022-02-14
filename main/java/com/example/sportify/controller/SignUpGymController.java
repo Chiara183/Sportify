@@ -82,8 +82,7 @@ public class SignUpGymController extends AccessController {
         Map<String, String> gymAccount;
         PreparedStatement ps = null;
         ResultSet rs;
-        Connection connection;
-        connection = new DBConnection().getConnection();
+        Connection connection = new DBConnection().getConnection();
         try{
             assert connection != null;
             ps = connection.prepareStatement("SELECT * " +
