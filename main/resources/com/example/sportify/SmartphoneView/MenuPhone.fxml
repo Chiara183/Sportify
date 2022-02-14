@@ -38,8 +38,8 @@
              <Font name="Comic Sans MS" size="11.0" />
          </font>
      </Label>
-   <Button fx:id="home" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="65.0" visible="false" />
+   <Button layoutX="3.0" layoutY="4.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="65.0" visible="false" />
    <Button fx:id="sportQuiz" layoutX="70.0" layoutY="4.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="65.0" visible="false" />
    <Button fx:id="findGym" layoutX="141.0" layoutY="4.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="65.0" visible="false" />
-   <Button fx:id="login" layoutX="206.0" layoutY="4.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="65.0" visible="false" />
+   <Button layoutX="206.0" layoutY="4.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="65.0" visible="false" />
 </Pane>

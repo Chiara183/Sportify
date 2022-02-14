@@ -24,9 +24,9 @@ public class LoginController extends AccessController{
     private LoginGraphicController graphicController;
 
     /** Error login variable*/
-    Double delay = 3.0;
-    Integer seconds = delay.intValue();
-    Label label = new Label();
+    private Double delay = 3.0;
+    private Integer seconds = delay.intValue();
+    private final Label label = new Label();
 
     /** Is true when login is in external window*/
     private boolean external;

@@ -1,7 +1,6 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
-import com.example.sportify.DBConnection;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymInfoGraphicController;
 import com.example.sportify.controller.graphic.MenuGraphicController;
@@ -18,7 +17,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import javax.swing.*;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

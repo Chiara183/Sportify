@@ -37,8 +37,6 @@ public class HomeController extends Controller {
                 homeGraphicController.getGymInfo().setPrefWidth(0);
                 homeGraphicController.getSignIn().setPrefWidth(141);
             }
-        } else {
-            //TODO setMobileUser
         }
     }
 

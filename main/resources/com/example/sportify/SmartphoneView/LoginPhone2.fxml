@@ -30,7 +30,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
     </Label>
-    <Button fx:id="signUp" layoutX="196.0" layoutY="221.0" mnemonicParsing="false" onAction="#signUpAction" onMouseClicked="#signUpAction" onSwipeUp="#signUpAction" onTouchPressed="#signUpAction" style="-fx-background-radius: 30px; -fx-background-color: #ffffff;" text="Join us">
+    <Button layoutX="196.0" layoutY="221.0" mnemonicParsing="false" onAction="#signUpAction" onMouseClicked="#signUpAction" onSwipeUp="#signUpAction" onTouchPressed="#signUpAction" style="-fx-background-radius: 30px; -fx-background-color: #ffffff;" text="Join us">
         <font>
             <Font name="Comic Sans MS" size="12.0" />
         </font>

@@ -21,7 +21,7 @@ public class DBConnection {
      * It's called to create a new connection to the DB.
      * @return null if it gives an error
      */
-    public Connection getConnection() throws FileNotFoundException {
+    public Connection getConnection() {
         Connection connection = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");

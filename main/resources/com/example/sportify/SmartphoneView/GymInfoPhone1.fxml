@@ -33,9 +33,9 @@
                 <Font name="Comic Sans MS" size="14.0" />
             </font>
         </Label>
-        <MenuButton fx:id="menuButton" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="194.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="140.0" style="-fx-background-radius: 30;" text="Select..." GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+        <MenuButton alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="194.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="140.0" style="-fx-background-radius: 30;" text="Select..." GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
             <items>
-                <MenuItem fx:id="courseMenu" mnemonicParsing="false" onAction="#courseAction" style="-fx-background-radius: 30px;" text="Course">
+                <MenuItem mnemonicParsing="false" onAction="#courseAction" style="-fx-background-radius: 30px;" text="Course">
                     <graphic>
                         <Separator prefWidth="200.0">
                      <cursor>
@@ -43,7 +43,7 @@
                      </cursor></Separator>
                     </graphic>
                 </MenuItem>
-                <MenuItem fx:id="reviewMenu" mnemonicParsing="false" onAction="#reviewAction" style="-fx-background-radius: 30px;" text="Review">
+                <MenuItem mnemonicParsing="false" onAction="#reviewAction" style="-fx-background-radius: 30px;" text="Review">
                <graphic>
                   <Separator prefWidth="200.0">
                      <cursor>
