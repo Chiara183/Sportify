@@ -1,13 +1,15 @@
 package com.example.sportify.controller;
 
-import com.example.sportify.*;
+import com.example.sportify.DBConnection;
+import com.example.sportify.IO;
+import com.example.sportify.MainApp;
+import com.example.sportify.Submit;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.MenuGraphicController;
 import com.example.sportify.controller.graphic.SignUpGymGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -80,12 +82,8 @@ public class SignUpGymController extends AccessController {
         Map<String, String> gymAccount;
         PreparedStatement ps = null;
         ResultSet rs;
-        Connection connection  = null;
-        try {
-            connection = new DBConnection().getConnection();
-        } catch (FileNotFoundException e) {
-            LOGGER.info(e.toString());
-        }
+        Connection connection;
+        connection = new DBConnection().getConnection();
         try{
             assert connection != null;
             ps = connection.prepareStatement("SELECT * " +
