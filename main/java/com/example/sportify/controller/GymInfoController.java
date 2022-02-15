@@ -117,6 +117,7 @@ public class GymInfoController extends Controller {
 
     /** Cancel a review of gym*/
     public void shareReview(String gym, StringBuilder review){
+        System.out.println(gym + ": " + review);
         String[] reviewList = review.toString().split("'");
         review = new StringBuilder();
         int i = 0;
@@ -130,17 +131,23 @@ public class GymInfoController extends Controller {
         String user = this.user.getUserName();
         if(!review.toString().equals("")) {
             DAO objDAO = this.mainApp.getDAO();
-            objDAO.updateDB(
-                    "INSERT INTO `review` (`gym`, `review`, `writer`, `timestamp`) VALUES ('"
-                            + gym + "', '"
-                            + review + "', '"
-                            + user + "', " +
-                            "CURRENT_TIMESTAMP);");
+            String query = "INSERT INTO `review` (`gym`, `review`, `writer`, `timestamp`) " +
+                    "VALUES ('"
+                    + gym + "', '"
+                    + review + "', '"
+                    + user + "', " +
+                    "CURRENT_TIMESTAMP);";
+            System.out.println(query);
+            objDAO.updateDB(query);
         } else {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Review is empty.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        loadingGymName(gym);
+        if(mainApp.isNotMobile()) {
+            loadingGymName(gym);
+        } else {
+            settingPhoneReview();
+        }
     }
 
     /** Cancel a course of gym*/
@@ -176,59 +183,44 @@ public class GymInfoController extends Controller {
     }
 
     /** Load the review of gym*/
-    private void loadReview(ResultSet rs){
+    private void loadReview(List<String> writer, List<String> time, List<String> review){
         graphicController.cleanReview();
-        try {
-            while (rs.next()) {
-                Label labelTitle = new Label(rs.getString("writer") + " " + rs.getTimestamp("timestamp").toString());
-                String string = rs.getString("writer") + ";" + rs.getTimestamp("timestamp").toString();
-                labelTitle.setStyle(FONT);
-                Label labelReview = new Label(rs.getString("review"));
-                Label blankSpace = new Label();
-                VBox vbox = new VBox(labelTitle, labelReview, blankSpace);
-                if (this.user != null && Objects.equals(this.user.getRole(), "gym") && Objects.equals(this.user.getGymName(), this.gym)) {
-                    Label cancel = new Label("⮿");
-                    cancel.setStyle("-fx-text-fill: red; ");
-                    cancel.setEllipsisString(string);
-                    cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, this::cancelReview);
-                    cancel.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> cancel.setCursor(Cursor.HAND));
-                    cancel.addEventHandler(MouseEvent.MOUSE_EXITED, e -> cancel.setCursor(Cursor.DEFAULT));
-                    HBox hbox = new HBox(vbox, new Label(), new Label(), new Label(), new Label(), cancel);
-                    graphicController.setReview(hbox);
-                } else {
-                    graphicController.setReview(vbox);
-                }
+        int i = 0;
+        while (i != review.size()) {
+            System.out.println(writer.get(i) + " " + time.get(i));
+            System.out.println(review.get(i));
+            Label labelTitle = new Label(writer.get(i) + " " + time.get(i));
+            String string = writer.get(i) + ";" + time.get(i);
+            labelTitle.setStyle(FONT);
+            Label labelReview = new Label(review.get(i));
+            Label blankSpace = new Label();
+            VBox vbox = new VBox(labelTitle, labelReview, blankSpace);
+            if (this.user != null && Objects.equals(this.user.getRole(), "gym") && Objects.equals(this.user.getGymName(), this.gym)) {
+                Label cancel = new Label("⮿");
+                cancel.setStyle("-fx-text-fill: red; ");
+                cancel.setEllipsisString(string);
+                cancel.addEventHandler(MouseEvent.MOUSE_CLICKED, this::cancelReview);
+                cancel.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> cancel.setCursor(Cursor.HAND));
+                cancel.addEventHandler(MouseEvent.MOUSE_EXITED, e -> cancel.setCursor(Cursor.DEFAULT));
+                HBox hbox = new HBox(vbox, new Label(), new Label(), new Label(), new Label(), cancel);
+                graphicController.setReview(hbox);
+            } else {
+                graphicController.setReview(vbox);
             }
-        }catch (SQLException e){
-            LOGGER.log(Level.SEVERE, e.getMessage());        }
+            i++;
+        }
     }
 
     /** Download the review*/
     private void downloadReview(){
-        Connection connection = mainApp.getDAO().getConnection();
-        ResultSet rs;
-        PreparedStatement ps = null;
+        DAO dao = mainApp.getDAO();
         String query = SELECT +
                 "FROM course " +
                 "WHERE course.gym = \"?\"";
-        try{
-            ps = connection.prepareStatement(query);
-            //ps.setString(1, this.gym);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                loadReview(rs);
-            }
-        }catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
-        }finally {
-            try {
-                if (ps != null) {
-                    ps.close();
-                }
-            } catch (SQLException e) {
-                LOGGER.info(e.toString());
-            }
-        }
+        List<String> review = dao.checkData(query, "review");
+        List<String> writer = dao.checkData(query, "writer");
+        List<String> time = dao.checkData(query, "timestamp");
+        loadReview(writer, time, review);
         if(graphicController.getSizeReview()<1) {
             Label labelNotFound = new Label("There are no reviews");
             labelNotFound.setStyle(FONT);

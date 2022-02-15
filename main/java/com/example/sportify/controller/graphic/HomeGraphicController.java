@@ -7,6 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Pane;
 
+import javax.swing.text.html.ImageView;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.logging.Level;

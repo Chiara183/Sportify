@@ -99,7 +99,7 @@ public class MainApp{
         try {
             FXMLLoader loader = new FXMLLoader();
             //if(width>height) {
-            if(!mobile) {
+            if(isNotMobile()) {
                 //this.mobile = false;
                 // Load root layout from fxml file.
                 loader.setLocation(MainApp.class.getResource("DesktopView/RootLayout.fxml"));
@@ -118,6 +118,7 @@ public class MainApp{
                 // Show the scene containing the root layout.
                 Scene scene = new Scene(rootLayout, 270, 450);
                 primaryStage.setScene(scene);
+                primaryStage.setResizable(false);
             }
             primaryStage.show();
         } catch (IOException e) {
@@ -134,7 +135,7 @@ public class MainApp{
         controller.setMainApp(this);
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
-            if(!mobile) {
+            if(isNotMobile()) {
                 loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("DesktopView/Menu.fxml")));
                 Pane paneMenu = loaderMenu.load();
 
