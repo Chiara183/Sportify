@@ -31,7 +31,7 @@ abstract class AccessGraphicController implements GraphicController{
     @FXML
     protected void set_toggle_pass(){
         if(!this.passToggle.isSelected()) {
-            eye.setStyle("-fx-text-fill: #06B7C5;");
+            eye.setStyle("-fx-text-fill: #6c6b6b;");
             passToggle.setSelected(true);
             controller.getMainApp().togglevisiblePassword(this.passToggle, this.passText, this.password);
         } else {
