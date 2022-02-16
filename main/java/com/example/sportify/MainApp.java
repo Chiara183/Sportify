@@ -188,9 +188,11 @@ public class MainApp{
             graphicController.setController(controller);
             controller.setMainApp(this);
             controller.setUser(this.user);
-            graphicController.comboActivity.getItems().add("Take sport quiz");
-            graphicController.comboActivity.getItems().add("Find gym");
-            graphicController.comboActivity.getItems().add("Login");
+            if(!this.isNotMobile()) {
+                graphicController.comboActivity.getItems().add("Take sport quiz");
+                graphicController.comboActivity.getItems().add("Find gym");
+                graphicController.comboActivity.getItems().add("Login");
+            }
         } catch (IOException e) {
             Logger logger = Logger.getLogger(MainApp.class.getName());
             logger.log(Level.SEVERE, e.getMessage());

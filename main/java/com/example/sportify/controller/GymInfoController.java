@@ -394,6 +394,10 @@ public class GymInfoController extends Controller {
             this.gym = name;
             this.mainApp.setSearchCache(this.searchCache);
             setGym(name);
+            if(!this.getMainApp().isNotMobile()) {
+                graphicController.comboGymInfo.getItems().add("Course");
+                graphicController.comboGymInfo.getItems().add("Review");
+            }
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.getMessage());        }
     }
