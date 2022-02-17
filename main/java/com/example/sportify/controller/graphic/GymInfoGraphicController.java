@@ -72,7 +72,7 @@ public class GymInfoGraphicController implements GraphicController{
         if(choice.equals("Course")){
             courseAction();
         }else if(choice.equals("Review")){
-            reviewAction();
+            reviewAction(gymName.getText());
         }
     }
 
@@ -260,7 +260,7 @@ public class GymInfoGraphicController implements GraphicController{
     }
 
     @FXML
-    private void reviewAction() {
+    private void reviewAction(String gymName) {
         try {
             // Load test result overview.
             FXMLLoader loader = new FXMLLoader();
@@ -280,7 +280,7 @@ public class GymInfoGraphicController implements GraphicController{
             gymInfoGraphicController.setController(this.controller);
 
             // Set info course
-            controller.settingPhoneReview();
+            controller.settingPhoneReview(gymName);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.getMessage());
         }

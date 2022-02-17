@@ -18,10 +18,6 @@ import javafx.scene.layout.VBox;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -146,7 +142,7 @@ public class GymInfoController extends Controller {
         if(mainApp.isNotMobile()) {
             loadingGymName(gym);
         } else {
-            settingPhoneReview();
+            settingPhoneReview(gym);
         }
     }
 
@@ -212,11 +208,11 @@ public class GymInfoController extends Controller {
     }
 
     /** Download the review*/
-    private void downloadReview(){
+    private Runnable downloadReview(String gym){
         DAO dao = mainApp.getDAO();
         String query = SELECT +
                 "FROM course " +
-                "WHERE course.gym = \"?\"";
+                "WHERE course.gym = \""+ gym +"\"";
         List<String> review = dao.checkData(query, "review");
         List<String> writer = dao.checkData(query, "writer");
         List<String> time = dao.checkData(query, "timestamp");
@@ -227,6 +223,7 @@ public class GymInfoController extends Controller {
             graphicController.setReview(labelNotFound);
         }
 
+        return null;
     }
 
     /** Load the course of gym*/
@@ -353,7 +350,7 @@ public class GymInfoController extends Controller {
             setInfoCourse();
 
             // Set review
-            setInfoReview();
+            setInfoReview(name);
         }
 
         // Run Thread and set DEFAULT review and course
@@ -424,16 +421,16 @@ public class GymInfoController extends Controller {
     }
 
     /** Is called to set phone review window*/
-    public void settingPhoneReview() {
+    public void settingPhoneReview(String gymName) {
         // Set visible or not area new review
         setReview();
 
         //Set review
-        setInfoReview();
+        setInfoReview(gymName);
     }
 
-    private void setInfoReview() {
-        Runnable task2 = () -> Platform.runLater(this::downloadReview);
+    private void setInfoReview(String gym) {
+        Runnable task2 = () -> Platform.runLater(() -> {downloadReview(gym);});
         Task<Void> task5 = createTask(task2);
         task5.setOnRunning(e -> graphicController.review_setCursor(Cursor.WAIT));
         task5.setOnSucceeded(e -> graphicController.review_setCursor(Cursor.DEFAULT));
