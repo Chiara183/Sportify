@@ -183,8 +183,8 @@ public class GymInfoController extends Controller {
         graphicController.cleanReview();
         int i = 0;
         while (i != review.size()) {
-            System.out.println(writer.get(i) + " " + time.get(i));
-            System.out.println(review.get(i));
+            //System.out.println(writer.get(i) + " " + time.get(i));
+            //System.out.println(review.get(i));
             Label labelTitle = new Label(writer.get(i) + " " + time.get(i));
             String string = writer.get(i) + ";" + time.get(i);
             labelTitle.setStyle(FONT);
@@ -208,11 +208,11 @@ public class GymInfoController extends Controller {
     }
 
     /** Download the review*/
-    private Runnable downloadReview(String gym){
+    private void downloadReview(String gym){
         DAO dao = mainApp.getDAO();
         String query = SELECT +
-                "FROM course " +
-                "WHERE course.gym = \""+ gym +"\"";
+                "FROM review " +
+                "WHERE review.gym = \""+ gym +"\"";
         List<String> review = dao.checkData(query, "review");
         List<String> writer = dao.checkData(query, "writer");
         List<String> time = dao.checkData(query, "timestamp");
@@ -223,7 +223,6 @@ public class GymInfoController extends Controller {
             graphicController.setReview(labelNotFound);
         }
 
-        return null;
     }
 
     /** Load the course of gym*/
@@ -251,7 +250,7 @@ public class GymInfoController extends Controller {
         DAO dao = mainApp.getDAO();
         String query = SELECT +
                 "FROM course " +
-                "WHERE course.gym = \"?\"";
+                "WHERE course.gym = \""+ this.gym +"\"";
         List<String> sport = dao.checkData(query, "sport");
         List<String> time = dao.checkData(query, "time");
         int i = 0;
@@ -430,7 +429,7 @@ public class GymInfoController extends Controller {
     }
 
     private void setInfoReview(String gym) {
-        Runnable task2 = () -> Platform.runLater(() -> {downloadReview(gym);});
+        Runnable task2 = () -> Platform.runLater(() -> downloadReview(gym));
         Task<Void> task5 = createTask(task2);
         task5.setOnRunning(e -> graphicController.review_setCursor(Cursor.WAIT));
         task5.setOnSucceeded(e -> graphicController.review_setCursor(Cursor.DEFAULT));
