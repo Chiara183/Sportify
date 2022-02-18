@@ -22,7 +22,7 @@ public class GymInfoGraphicController implements GraphicController{
 
     private static final Logger LOGGER = Logger.getLogger(GymInfoController.class.getName());
 
-    public ComboBox comboGymInfo;
+    public ComboBox<String> comboGymInfo;
 
     /** Reference to controller*/
     private GymInfoController controller;

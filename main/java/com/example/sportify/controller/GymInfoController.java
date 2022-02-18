@@ -183,8 +183,6 @@ public class GymInfoController extends Controller {
         graphicController.cleanReview();
         int i = 0;
         while (i != review.size()) {
-            //System.out.println(writer.get(i) + " " + time.get(i));
-            //System.out.println(review.get(i));
             Label labelTitle = new Label(writer.get(i) + " " + time.get(i));
             String string = writer.get(i) + ";" + time.get(i);
             labelTitle.setStyle(FONT);
