@@ -18,6 +18,7 @@ public class Dialog extends JPanel{
     public Dialog(JFrame frame) {
         this.frame = frame;
         JPanel frequentPanel = createSimpleDialogBox();
+        frequentPanel.setName("dialogPanel");
         Border padding = BorderFactory.createEmptyBorder(20,20,5,20);
         frequentPanel.setBorder(padding);
         add(frequentPanel, BorderLayout.CENTER);
@@ -28,15 +29,17 @@ public class Dialog extends JPanel{
         JRadioButton[] radioButtons = new JRadioButton[2];
         ButtonGroup group = new ButtonGroup();
 
-        JButton showItButton;
+        JButton showItButton = new JButton("Next");
 
         String desktop = "Desktop";
         String mobile = "Mobile";
 
         radioButtons[0] = new JRadioButton("Desktop");
+        radioButtons[0].setName("desktop");
         radioButtons[0].setActionCommand(desktop);
 
         radioButtons[1] = new JRadioButton("Mobile");
+        radioButtons[1].setName("mobile");
         radioButtons[1].setActionCommand(mobile);
 
         for (int i = 0; i < 2; i++) {
@@ -44,7 +47,7 @@ public class Dialog extends JPanel{
         }
         radioButtons[0].setSelected(true);
 
-        showItButton = new JButton("Next");
+        showItButton.setName("nextButton");
         showItButton.addActionListener(e -> {
             String command = group.getSelection().getActionCommand();
             //desktop
