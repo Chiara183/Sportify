@@ -19,7 +19,7 @@
         </font>
     </Text>
     <Button fx:id="okButton" layoutX="204.0" onAction="#getEnvironment" layoutY="128.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" />
-    <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="201.0" layoutY="124.0" onMouseClicked="#getEnvironment">
+    <ImageView fx:id="ok" fitHeight="33.0" fitWidth="35.0" layoutX="201.0" layoutY="124.0" onMouseClicked="#getEnvironment">
         <Image url="@../Images/tick.png" />
       <cursor>
          <Cursor fx:constant="HAND" />

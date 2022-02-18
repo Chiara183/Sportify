@@ -14,7 +14,8 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SportQuizController extends Controller {
+public class
+SportQuizController extends Controller {
 
     /** The variable that identify the user choice*/
     private  static boolean buttonAge1 = false;

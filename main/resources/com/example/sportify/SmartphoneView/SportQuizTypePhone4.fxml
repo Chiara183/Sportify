@@ -24,7 +24,7 @@
         </font>
     </Text>
     <Button layoutX="204.0" layoutY="128.0" mnemonicParsing="false" onAction="#end" prefHeight="25.0" prefWidth="29.0" />
-    <ImageView accessibleRole="BUTTON" fitHeight="33.0" fitWidth="35.0" layoutX="201.0" layoutY="124.0" onMouseClicked="#end">
+    <ImageView fx:id="ok" accessibleRole="BUTTON" fitHeight="33.0" fitWidth="35.0" layoutX="201.0" layoutY="124.0" onMouseClicked="#end">
         <Image url="@../Images/tick.png" />
         <cursor>
             <Cursor fx:constant="HAND" />
