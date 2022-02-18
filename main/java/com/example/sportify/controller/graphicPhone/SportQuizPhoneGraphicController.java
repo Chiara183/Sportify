@@ -1,5 +1,6 @@
 package com.example.sportify.controller.graphicPhone;
 
+import com.example.sportify.NewException;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.SportQuizController;
@@ -53,7 +54,14 @@ public class SportQuizPhoneGraphicController implements GraphicController {
         }else if(num >= 51 && num <= 99) {
             ageRange = "age4";
         }else{
-            ageRange = "invalid input";
+            Throwable cause = new Throwable("The cause of the exception is in getAge()");
+            String message = "Exception rose in getAge() method";
+            NewException ne = new NewException(message,cause);
+            try {
+                throw ne;
+            } catch (NewException e) {
+                ageRange = "invalid input";
+            }
         }
         controller.takeQuiz(ageRange);
     }

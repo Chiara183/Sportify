@@ -1,5 +1,6 @@
 package com.example.sportify.controller;
 
+import com.example.sportify.NewException;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymInfoGraphicController;
 import com.example.sportify.controller.graphic.LoginGraphicController;
@@ -75,18 +76,25 @@ public class LoginController extends AccessController{
                 stage.close();
             }
         } else {
-            //show error message
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainApp.getPrimaryStage());
-            alert.setTitle("Wrong Username or Password");
-            alert.setHeaderText("You wrote wrong username or password");
-            alert.setContentText("Please enter valid username and password or Signup");
-            setLoginDisable(true);
-            Stage stage = createCountdown();
-            alert.showAndWait();
-            stage.showAndWait();
-            delay = delay*(delay/2.0);
-            setLoginDisable(false);
+            Throwable cause = new Throwable("The cause of the exception is in submit(), Login Class");
+            String message = "Exception rose in submit() method, Login Class";
+            NewException ne = new NewException(message,cause);
+            try {
+                throw ne;
+            } catch (NewException e) {
+                //show error message
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Wrong Username or Password");
+                alert.setHeaderText("You wrote wrong username or password");
+                alert.setContentText("Please enter valid username and password or Signup");
+                setLoginDisable(true);
+                Stage stage = createCountdown();
+                alert.showAndWait();
+                stage.showAndWait();
+                delay = delay*(delay/2.0);
+                setLoginDisable(false);
+            }
         }
     }
 
