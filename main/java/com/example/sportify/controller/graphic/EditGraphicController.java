@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public abstract class EditGraphicController implements GraphicController{
 
-    private static final String FILL = "-fx-text-fill: #06B7C5;";
+    private static final String FILL = "-fx-text-fill: #6c6b6b;";
     private static final String BLACK = "-fx-text-fill: black;";
 
     /** All the Pane of interface*/
