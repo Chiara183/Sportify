@@ -288,7 +288,7 @@ public class GymInfoController extends Controller {
         });
 
         // Run Thread and set DEFAULT review and course
-        //new Thread(task0).start();
+        new Thread(task0).start();
         new Thread(task2).start();
     }
 
