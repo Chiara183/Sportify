@@ -94,7 +94,7 @@ public class MenuGraphicController implements GraphicController{
         }
     }
     @FXML
-    private void signAction(){
+    public void signAction(){
         if(controller.getUser()==null){
             signLoginAction();
         } else {
