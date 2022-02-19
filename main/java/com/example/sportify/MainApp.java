@@ -167,7 +167,7 @@ public class MainApp{
             FXMLLoader loader = new FXMLLoader();
             this.primaryStage.setTitle("Sportify - Home");
             HomeController controller = new HomeController();
-            if(!mobile) {
+            if(isNotMobile()) {
                 // Load home overview.
                 loader.setLocation(MainApp.class.getResource("DesktopView/Home.fxml"));
             } else {
@@ -188,7 +188,7 @@ public class MainApp{
             graphicController.setController(controller);
             controller.setMainApp(this);
             controller.setUser(this.user);
-            if(!this.isNotMobile()) {
+            if(!isNotMobile()) {
                 graphicController.comboActivity.getItems().add("Take sport quiz");
                 graphicController.comboActivity.getItems().add("Find gym");
                 graphicController.comboActivity.getItems().add("Login");
