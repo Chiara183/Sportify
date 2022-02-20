@@ -1,5 +1,7 @@
 package com.example.sportify.controller.graphic;
 
+import com.example.sportify.Observer;
+import com.example.sportify.Subject;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.GymInfoController;
@@ -15,10 +17,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GymInfoGraphicController implements GraphicController{
+public class GymInfoGraphicController extends Subject implements GraphicController{
 
     private static final Logger LOGGER = Logger.getLogger(GymInfoController.class.getName());
 
@@ -26,6 +31,9 @@ public class GymInfoGraphicController implements GraphicController{
 
     /** Reference to controller*/
     private GymInfoController controller;
+
+    /**Attribute of concrete subject*/
+    private String subjectState = "Unchanged";
 
     /** All the label of interface*/
     @FXML
@@ -99,7 +107,7 @@ public class GymInfoGraphicController implements GraphicController{
 
     }
     @FXML
-    private void addCourse(){
+    protected void notifyAddCourse(){
         String gym;
         if(controller.getMainApp().isNotMobile()) {
             gym = this.gymName.getText();
@@ -120,7 +128,16 @@ public class GymInfoGraphicController implements GraphicController{
             mins = this.min.getText();
         }
         String time = hours + ':' + mins + ":00";
+        this.setState("Changed");
         controller.addCourse(sport, gym, time);
+    }
+
+    public void setState(String newState){
+        this.subjectState = newState;
+    }
+
+    public String getState(){
+        return subjectState;
     }
 
     /** The action that change the value of text field*/

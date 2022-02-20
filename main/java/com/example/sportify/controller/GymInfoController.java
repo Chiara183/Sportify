@@ -1,6 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.DAO;
+import com.example.sportify.Observer;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.GymInfoGraphicController;
 import com.example.sportify.controller.graphic.MenuGraphicController;
@@ -23,7 +24,7 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GymInfoController extends Controller {
+public class GymInfoController extends Controller implements Observer {
 
     /** Reference to graphic controller*/
     private GymInfoGraphicController graphicController;
@@ -35,7 +36,6 @@ public class GymInfoController extends Controller {
     /** The name of the gym*/
     private String gym;
 
-    // ObservableList
     private ObservableList<String> sport;
 
     /** The constructor.*/
@@ -148,6 +148,10 @@ public class GymInfoController extends Controller {
 
     /** Cancel a course of gym*/
     public void addCourse(String sport, String gym, String time){
+        String observerState = graphicController.getState();
+        if(observerState.equals("Unchanged")){
+            return;
+        }
         if(!sport.equals("select sport")) {
             DAO objDAO = this.mainApp.getDAO();
             objDAO.updateDB(

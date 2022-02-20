@@ -92,7 +92,7 @@
                     </Label>
                 </top>
                 <bottom>
-                    <Button alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addCourse" prefHeight="35.0" prefWidth="43.0" text="✔" BorderPane.alignment="CENTER">
+                    <Button alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#notifyAddCourse" prefHeight="35.0" prefWidth="43.0" text="✔" BorderPane.alignment="CENTER">
                         <font>
                             <Font name="Comic Sans MS Bold" size="23.0" />
                         </font>
