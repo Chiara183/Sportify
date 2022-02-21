@@ -2,9 +2,7 @@ package com.example.sportify.auth;
 
 import com.example.sportify.MainApp;
 
-/**
- * Created by max on 13/08/2017.
- */
+
 public class OAuthGoogleAuthenticator extends OAuthAuthenticator{
 
     private final String googleApiScope;

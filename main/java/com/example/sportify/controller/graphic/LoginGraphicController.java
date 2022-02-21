@@ -1,5 +1,6 @@
 package com.example.sportify.controller.graphic;
 
+import com.example.sportify.AdapterLogin;
 import com.example.sportify.auth.OAuthGoogleAuthenticator;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 
 public class LoginGraphicController extends AccessGraphicController{
 
+    private boolean google;
     /** All the text field of the interface*/
     @FXML
     private TextField user;
@@ -42,8 +44,24 @@ public class LoginGraphicController extends AccessGraphicController{
         return this.submit;
     }
 
-    /** The action of the buttons*/
+
     @FXML
+    public void setGoogle(){
+        this.google = true;
+        makeLogin();
+    }
+
+    @FXML
+    public void makeLogin(){
+        AdapterLogin adapterLogin;
+        if(this.google){
+            adapterLogin = new AdapterLogin(this, true);
+        }else{
+            adapterLogin = new AdapterLogin(this, false);
+        }
+        adapterLogin.doLogin();
+    }
+    /** The action of the buttons*/
     public void submitActionLogin() {
         String userValue = user.getText();      //get user entered username from the textField1
         String passValue;
@@ -56,8 +74,9 @@ public class LoginGraphicController extends AccessGraphicController{
         //check whether the credentials are authentic or not
         controller.submit(userValue, passValue);
     }
-    @FXML
-    private void loginWithGoogle(){
+
+
+    public void loginWithGoogle(){
         String gClientId = "941217546228-08fmsjebj3jn1a0agnt9tu9tnijgn2pq.apps.googleusercontent.com";
         String gRedir = "https://localhost:8080/oauth2";
         String gScope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
