@@ -72,7 +72,7 @@ public class IO {
         HashMap<String, Map<String, String>> map = new HashMap<>();
             PreparedStatement ps = null;
             ResultSet rs;
-        Connection connection = new DBConnection().getConnection();
+        Connection connection = DBConnection.getSingletonInstance().getConnection();
         try{
             assert connection != null;
             ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");

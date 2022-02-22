@@ -12,10 +12,23 @@ import java.util.logging.Logger;
 
 
 public class DBConnection {
+
     private static final String ERROR = "Error";
     private static final String ERROR_DETECTED = "Error detected!";
     private int count = 0;
     private static final Logger LOGGER = Logger.getLogger(DBConnection.class.getName());
+
+    /** Implementing Singleton pattern*/
+
+    private DBConnection(){}
+
+    private static DBConnection instance = null;
+
+    public static DBConnection getSingletonInstance() {
+        if (DBConnection.instance == null)
+            DBConnection.instance = new DBConnection();
+        return instance;
+    }
 
     /**
      * It's called to create a new connection to the DB.
@@ -58,7 +71,7 @@ public class DBConnection {
                 alert.setHeaderText(ERROR_DETECTED);
                 alert.setContentText("Connection to DB failed. I'll retry one more time... ");
                 alert.showAndWait();
-                this.getConnection();
+                instance.getConnection();
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle(ERROR);

@@ -33,7 +33,7 @@ public class MainApp{
     private Submit submit;
     private User user = null;
     private String[] searchCache;
-    private final DAO dao = DAO.getSingletonInstance();
+    private final DAO dao = new DAO();
     private boolean externalLogin = false;
     private MenuController menu;
     private Projection projection;
