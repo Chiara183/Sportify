@@ -192,6 +192,7 @@ public class MainApp{
                 graphicController.comboActivity.getItems().add("Take sport quiz");
                 graphicController.comboActivity.getItems().add("Find gym");
                 graphicController.comboActivity.getItems().add("Login");
+                graphicController.comboActivity.getItems().add("Login with Google");
             }
         } catch (IOException e) {
             Logger logger = Logger.getLogger(MainApp.class.getName());

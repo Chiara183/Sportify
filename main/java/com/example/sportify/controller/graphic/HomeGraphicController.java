@@ -1,5 +1,6 @@
 package com.example.sportify.controller.graphic;
 
+import com.example.sportify.auth.OAuthGoogleAuthenticator;
 import com.example.sportify.controller.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,8 +32,15 @@ public class HomeGraphicController implements GraphicController{
         String choice = selectedItem.toString();
         if(choice.equals("Take sport quiz")){
             this.controller.getMenu().graphicController.sportQuizAction();
-        }else if(choice.equals("Login")){
+        }else if(choice.equals("Login")) {
             this.controller.getMenu().graphicController.signAction();
+        }else if(choice.equals("Login with Google")){
+            String gClientId = "941217546228-08fmsjebj3jn1a0agnt9tu9tnijgn2pq.apps.googleusercontent.com";
+            String gRedir = "https://localhost:8080/oauth2";
+            String gScope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
+            String gSecret = "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";
+            OAuthGoogleAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
+            auth.startLogin(controller.getMainApp());
         }else{
             this.controller.getMenu().graphicController.findGymAction();
         }
