@@ -18,9 +18,7 @@ import java.util.logging.Logger;
 
 public class MapController extends Controller{
 
-    private static final String SELECTALL = "SELECT * " + "FROM user " +
-            "LEFT JOIN `gym` ON `gym`.owner = user.username " +
-            "WHERE user.ruolo = \"gym\"";
+    private static final String SELECTALL = "SELECT * " + "FROM gym ";
     /** Reference to graphic controller*/
     private MapGraphicController graphicController;
 
@@ -164,7 +162,7 @@ public class MapController extends Controller{
         for (String rs2 : list2) {
             String rs = list.get(i);
             String rs1 = list1.get(i);
-            System.out.println(rs+ " now rs1 " + rs1);
+            //System.out.println(rs+ " now rs1 " + rs1);
             Coordinate gym = new Coordinate(
                     Double.parseDouble(rs),
                     Double.parseDouble(rs1));
