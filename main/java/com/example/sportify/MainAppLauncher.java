@@ -20,9 +20,7 @@ public class MainAppLauncher extends Application {
         mainApp.setProjection(projection);
 
         // Set the application.
-        mainApp.getPrimaryStage().getIcons().add(
-                new Image(
-                        Objects.requireNonNull(
+        mainApp.getPrimaryStage().getIcons().add( new Image( Objects.requireNonNull(
                                 getClass().getResourceAsStream("Images/Sportify icon.png"))));
         CountDownLatch modalitySignal = new CountDownLatch(1);
         new Thread(() -> {

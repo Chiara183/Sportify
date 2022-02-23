@@ -26,7 +26,7 @@ public class HomeController extends Controller {
     @Override
     public void setUser(User user) {
         this.user = user;
-        if(this.mainApp.isNotMobile()) {
+        if(mainApp.isNotMobile()) {
             homeGraphicController.getSignIn().setVisible(this.user == null);
             if (this.user != null && this.user.getRole().equals("gym")) {
                 homeGraphicController.getGymInfo().setVisible(true);

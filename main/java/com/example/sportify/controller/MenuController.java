@@ -134,7 +134,9 @@ public class MenuController extends Controller{
     @Override
     public void setUser(User user) {
         this.user = user;
-        graphicController.setUser(this.user!=null);
+        if(mainApp.isNotMobile()) {
+            graphicController.setUser(this.user != null);
+        }
     }
 
     /** Is called to set graphic controller*/

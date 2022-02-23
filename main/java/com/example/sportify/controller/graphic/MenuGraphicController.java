@@ -300,31 +300,29 @@ public class MenuGraphicController implements GraphicController{
 
     /** Is called to set user view*/
     public void setUser(boolean bool) {
-        if (this.controller.getMainApp().isNotMobile()) {
-            if (bool) {
-                signOut.setVisible(true);
-                signOut.setPrefWidth(112);
-                signUp.setVisible(false);
-                signUp.setPrefWidth(0);
-                signIn.setVisible(false);
-                signIn.setPrefWidth(0);
-                userIcon.setVisible(true);
-                username.setText(controller.getUser().getUserName());
-                if (controller.getUser().getRole().equals("gym")) {
-                    gymInfo.setVisible(true);
-                    gymInfo.setPrefWidth(112);
-                }
-            } else {
-                signOut.setPrefWidth(0);
-                signOut.setVisible(false);
-                signUp.setPrefWidth(112);
-                signUp.setVisible(true);
-                signIn.setPrefWidth(112);
-                signIn.setVisible(true);
-                gymInfo.setVisible(false);
-                gymInfo.setPrefWidth(0);
-                userIcon.setVisible(false);
+        if (bool) {
+            signOut.setVisible(true);
+            signOut.setPrefWidth(112);
+            signUp.setVisible(false);
+            signUp.setPrefWidth(0);
+            signIn.setVisible(false);
+            signIn.setPrefWidth(0);
+            userIcon.setVisible(true);
+            username.setText(controller.getUser().getUserName());
+            if (controller.getUser().getRole().equals("gym")) {
+                gymInfo.setVisible(true);
+                gymInfo.setPrefWidth(112);
             }
+        } else {
+            signOut.setPrefWidth(0);
+            signOut.setVisible(false);
+            signUp.setPrefWidth(112);
+            signUp.setVisible(true);
+            signIn.setPrefWidth(112);
+            signIn.setVisible(true);
+            gymInfo.setVisible(false);
+            gymInfo.setPrefWidth(0);
+            userIcon.setVisible(false);
         }
     }
 
