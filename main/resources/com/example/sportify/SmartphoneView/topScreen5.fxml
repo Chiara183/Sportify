@@ -5,28 +5,25 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.MenuGraphicController">
+<Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.MenuGraphicController">
     <HBox layoutX="191.0" layoutY="4.0" prefHeight="61.0" prefWidth="79.0">
-        <ImageView fitHeight="37.0" fitWidth="37.0" onMouseClicked="#submit" onSwipeLeft="#submit"
-                   onSwipeRight="#submit" onTouchPressed="#submit">
-            <Image url="@../Images/tick.png"/>
-          <cursor>
-              <Cursor fx:constant="HAND"/>
-          </cursor>
-          <HBox.margin>
-              <Insets top="10.0"/>
-          </HBox.margin>
-        </ImageView>
-        <ImageView accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#signOut"
-                   onSwipeLeft="#signOut" onSwipeRight="#signOut" onTouchPressed="#signOut" pickOnBounds="true"
-                   preserveRatio="true">
+        <ImageView accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#signOut" onSwipeLeft="#signOut" onSwipeRight="#signOut" onTouchPressed="#signOut" pickOnBounds="true" preserveRatio="true">
             <HBox.margin>
-                <Insets left="10.0" top="13.0"/>
+                <Insets top="13.0" />
             </HBox.margin>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
-            <Image url="@../Images/logout.png"/>
+            <Image url="@../Images/logout.png" />
+        </ImageView>
+        <ImageView fitHeight="37.0" fitWidth="37.0" onMouseClicked="#submit" onSwipeLeft="#submit" onSwipeRight="#submit" onTouchPressed="#submit">
+            <Image url="@../Images/tick.png" />
+          <cursor>
+              <Cursor fx:constant="HAND" />
+          </cursor>
+          <HBox.margin>
+              <Insets left="10.0" top="10.0" />
+          </HBox.margin>
         </ImageView>
     </HBox>
     <ImageView fx:id="back" fitHeight="22.0" fitWidth="28.0" layoutX="14.0" layoutY="23.0" onMouseClicked="#back" onSwipeDown="#back" onSwipeLeft="#back" onSwipeRight="#back" onTouchPressed="#back">
