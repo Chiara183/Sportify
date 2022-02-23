@@ -26,7 +26,7 @@ public class GymEditGraphicController extends EditGraphicController{
         telephoneLabel.setText(user.getPhone());
     }
 
-    /** Go to gym info inetrface*/
+    /** Go to gym info interface*/
     @FXML
     private void gymInfoAction() {
         controller.getMenu().loadGymInfo();

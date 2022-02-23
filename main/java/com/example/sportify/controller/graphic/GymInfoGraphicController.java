@@ -1,6 +1,5 @@
 package com.example.sportify.controller.graphic;
 
-import com.example.sportify.Observer;
 import com.example.sportify.Subject;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
@@ -17,9 +16,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

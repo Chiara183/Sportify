@@ -1,14 +1,16 @@
 package com.example.sportify.controller.graphic;
 
 import com.example.sportify.MainApp;
-import com.example.sportify.controller.*;
+import com.example.sportify.controller.Controller;
+import com.example.sportify.controller.ControllerType;
+import com.example.sportify.controller.SignUpController;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -96,7 +98,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
         super.setController(controller);
     }
 
-    public void setSignUp(MouseEvent event) {
+    public void setSignUp(Event event) {
         // Load sign up overview.
         FXMLLoader loaderSignUp = new FXMLLoader();
         Pane pane = null;

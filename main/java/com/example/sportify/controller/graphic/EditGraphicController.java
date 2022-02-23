@@ -4,9 +4,9 @@ import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.EditController;
 import com.example.sportify.user.User;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -149,7 +149,7 @@ public abstract class EditGraphicController implements GraphicController{
 
     /** Controls the modifiability of all field*/
     @FXML
-    protected void set_toggle_pass(MouseEvent modify) {
+    protected void set_toggle_pass(Event modify) {
         if (modify.getSource() == modifyUsername) {
             modifyLabelUsername();
         } else if (modify.getSource() == modifyEmail) {

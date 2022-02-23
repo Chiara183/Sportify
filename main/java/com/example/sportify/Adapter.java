@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class Adapter implements SignUp{
 
-    private SignUpController userController;
-    private SignUpGymController gymController;
+    private final SignUpController userController;
+    private final SignUpGymController gymController;
     private SignUpGraphicController userGraphicController;
     private Submit submit;
     

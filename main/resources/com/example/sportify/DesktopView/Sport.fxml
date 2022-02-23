@@ -47,7 +47,7 @@
                         <Font name="Comic Sans MS" size="24.0" />
                     </font>
                 </Text>
-                <Button fx:id="info" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="83.0" mnemonicParsing="false" onAction="#getInfo" prefHeight="27.0" prefWidth="50.0" text="here" />
+                <Button alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="83.0" mnemonicParsing="false" onAction="#getInfo" prefHeight="27.0" prefWidth="50.0" text="here" />
             </Pane>
          <Label fx:id="sportName" alignment="CENTER" prefHeight="75.0" prefWidth="339.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
             <font>

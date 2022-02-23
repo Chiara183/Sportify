@@ -14,7 +14,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
     </ImageView>
-    <ImageView fx:id="endQuiz" accessibleRole="BUTTON" fitHeight="40.0" fitWidth="40.0" layoutX="221.0" layoutY="15.0" onMouseClicked="#end" onSwipeLeft="#end" onSwipeRight="#end" onTouchPressed="#end">
+    <ImageView accessibleRole="BUTTON" fitHeight="40.0" fitWidth="40.0" layoutX="221.0" layoutY="15.0" onMouseClicked="#end" onSwipeLeft="#end" onSwipeRight="#end" onTouchPressed="#end">
         <Image url="@../Images/end1_preview_rev_1.png" />
       <cursor>
          <Cursor fx:constant="HAND" />

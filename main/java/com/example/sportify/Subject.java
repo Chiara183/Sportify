@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public abstract class Subject {
 
-    protected List<Observer> observers;
+    protected final List<Observer> observers;
     protected final Object MUTEX = new Object();
 
     public Subject() {
@@ -13,7 +13,7 @@ public abstract class Subject {
     }
 
     public Subject(Observer obs) {
-        this(new Vector<Observer>());
+        this(new Vector<>());
         if (obs != null)
             this.observers.add(obs);
     }

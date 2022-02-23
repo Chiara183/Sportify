@@ -15,7 +15,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="780.0" style="-fx-background-radius: 8px;" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-            <Button fx:id="home" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#homeAction" prefHeight="37.0" prefWidth="112.0" text="Home" />
+            <Button maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#homeAction" prefHeight="37.0" prefWidth="112.0" text="Home" />
             <Button fx:id="sportQuiz" maxHeight="27.0" minHeight="40.0" mnemonicParsing="false" onAction="#sportQuizAction" prefHeight="27.0" prefWidth="112.0" text="Sport Quiz">
                 <HBox.margin>
                     <Insets left="10.0" />

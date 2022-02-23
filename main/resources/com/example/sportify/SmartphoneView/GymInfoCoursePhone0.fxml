@@ -10,14 +10,14 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="336.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.GymInfoGraphicController">
     <center>
         <Pane prefHeight="116.0" prefWidth="270.0" BorderPane.alignment="CENTER">
-         <VBox fx:id="course" layoutX="23.0" layoutY="5.0" prefHeight="123.0" prefWidth="226.0">
-            <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="225.0" text="Course" textAlignment="CENTER">
-                      <font>
-                          <Font name="Comic Sans MS" size="22.0" />
-                      </font>
-                  </Label>
-            </children></VBox>
+            <VBox fx:id="course" layoutX="23.0" layoutY="5.0" prefHeight="123.0" prefWidth="226.0">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="225.0" text="Course"
+                       textAlignment="CENTER">
+                    <font>
+                        <Font name="Comic Sans MS" size="22.0"/>
+                    </font>
+                </Label>
+            </VBox>
         </Pane>
     </center>
     <bottom>

@@ -14,7 +14,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
     </ImageView>
-    <ImageView fx:id="done" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="219.0" layoutY="10.0" onMouseClicked="#submit" onSwipeDown="#submit" onSwipeLeft="#submit" onSwipeRight="#submit" onTouchPressed="#submit">
+    <ImageView accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="219.0" layoutY="10.0" onMouseClicked="#submit" onSwipeDown="#submit" onSwipeLeft="#submit" onSwipeRight="#submit" onTouchPressed="#submit">
         <Image url="@../Images/tick.png" />
       <cursor>
          <Cursor fx:constant="HAND" />
