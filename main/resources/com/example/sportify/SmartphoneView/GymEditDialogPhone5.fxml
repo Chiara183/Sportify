@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -141,5 +142,13 @@
    <ImageView accessibleRole="BUTTON" fitHeight="71.0" fitWidth="80.0" layoutX="99.0" layoutY="-35.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../Images/login_preview_rev_1.png" />
    </ImageView>
+      <ImageView fitHeight="28.0" fitWidth="30.0" layoutX="173.0" layoutY="2.0" onMouseClicked="#gymInfoAction" onTouchPressed="#gymInfoAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/info_preview_rev_1.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
 </Pane>
 </AnchorPane>

@@ -110,8 +110,10 @@ public class MenuGraphicController implements GraphicController{
         }
     }
     @FXML
-    private void loadGymInfo(){
-        controller.setButton(findGym, sportQuiz, signOut, signIn, signUp, gymInfo);
+    public void loadGymInfo(){
+        if(controller.getMainApp().isNotMobile()) {
+            controller.setButton(findGym, sportQuiz, signOut, signIn, signUp, gymInfo);
+        }
         GymInfoGraphicController graphicController = new GymInfoGraphicController();
         GymInfoController gym = new GymInfoController();
         graphicController.setController(gym);

@@ -150,6 +150,11 @@ public class MenuController extends Controller{
         return this.graphicController.getSignOut();
     }
 
+    /** Is called to load gym info interface*/
+    public void loadGymInfo(){
+        graphicController.loadGymInfo();
+    }
+
     /** The method called to set the view*/
     public void setSportQuiz() {
         graphicController.setSportQuiz();
