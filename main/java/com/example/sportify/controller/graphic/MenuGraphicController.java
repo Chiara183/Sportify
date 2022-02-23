@@ -105,6 +105,9 @@ public class MenuGraphicController implements GraphicController{
     private void signOut() {
         controller.setUser(null);
         controller.getMainApp().setUser(null);
+        if(!controller.getMainApp().isNotMobile()){
+            homeAction();
+        }
     }
     @FXML
     private void loadGymInfo(){
