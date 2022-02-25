@@ -41,6 +41,17 @@ public class SportController extends Controller{
         this.loadingSport(sport, rs);
     }
 
+    public Pane tryCatch(FXMLLoader loaderTopScreen){
+        Pane paneTopScreen = null;
+        try {
+            paneTopScreen = loaderTopScreen.load();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(MainApp.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        return paneTopScreen;
+    }
+
     /** It's called to load the sport name from DB*/
     public void loadingSportName(String sport) {
         this.mainApp.setUser(this.user);
@@ -54,13 +65,7 @@ public class SportController extends Controller{
                 loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportPhone3.fxml"));
                 FXMLLoader loaderTopScreen = new FXMLLoader();
                 loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen3.fxml"));
-                Pane paneTopScreen = null;
-                try {
-                    paneTopScreen = loaderTopScreen.load();
-                } catch (IOException e) {
-                    Logger logger = Logger.getLogger(MainApp.class.getName());
-                    logger.log(Level.SEVERE, e.getMessage());
-                }
+                Pane paneTopScreen =  tryCatch(loaderTopScreen);
                 SportGraphicController graphicMenuController = loaderTopScreen.getController();
                 this.mainApp.getPrimaryPane().setTop(paneTopScreen);
                 graphicMenuController.setController(this);

@@ -1,15 +1,15 @@
-package com.example.sportify.controller.graphicPhone;
+package com.example.sportify.controller.graphic;
 
 import com.example.sportify.NewException;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.SportQuizController;
-import com.example.sportify.controller.graphic.GraphicController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 public class SportQuizPhoneGraphicController implements GraphicController {
 
+    private static final String INVALID = "invalid input";
 
     /** Reference to controller*/
     private SportQuizController controller;
@@ -41,7 +41,7 @@ public class SportQuizPhoneGraphicController implements GraphicController {
         try{
             num = Integer.parseInt(ageText);
         }catch(NumberFormatException e){
-            ageRange = "invalid input";
+            ageRange = INVALID;
             controller.takeQuiz(ageRange);
             return;
         }
@@ -60,7 +60,7 @@ public class SportQuizPhoneGraphicController implements GraphicController {
             try {
                 throw ne;
             } catch (NewException e) {
-                ageRange = "invalid input";
+                ageRange = INVALID;
             }
         }
         controller.takeQuiz(ageRange);
@@ -75,7 +75,7 @@ public class SportQuizPhoneGraphicController implements GraphicController {
         }else if(envText.equals("outdoor")){
             input = envText;
         }else{
-            input = "invalid input";
+            input = INVALID;
         }
         controller.takeQuiz(input);
     }
@@ -98,7 +98,7 @@ public class SportQuizPhoneGraphicController implements GraphicController {
         if(endText.equals("single") || endText.equals("group")){
             input = endText;
         }else{
-            input = "invalid input";
+            input = INVALID;
         }
         controller.takeQuiz(input);
     }

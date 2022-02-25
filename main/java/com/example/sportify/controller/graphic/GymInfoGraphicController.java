@@ -21,9 +21,9 @@ import java.util.logging.Logger;
 
 public class GymInfoGraphicController extends Subject implements GraphicController{
 
-    private static final Logger LOGGER = Logger.getLogger(GymInfoController.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(GymInfoGraphicController.class.getName());
 
-    public ComboBox<String> comboGymInfo;
+    private ComboBox<String> comboGymInfo;
 
     /** Reference to controller*/
     private GymInfoController controller;
@@ -297,5 +297,9 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.getMessage());
         }
+    }
+
+    public ComboBox<String> getComboGymInfo() {
+        return this.comboGymInfo;
     }
 }

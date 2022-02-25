@@ -2,7 +2,7 @@ package com.example.sportify;
 
 import com.example.sportify.controller.*;
 import com.example.sportify.controller.graphic.*;
-import com.example.sportify.controller.graphicPhone.SportQuizPhoneGraphicController;
+import com.example.sportify.controller.graphic.SportQuizPhoneGraphicController;
 import com.example.sportify.user.User;
 import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXMLLoader;
@@ -90,17 +90,12 @@ public class MainApp{
 
     /** Initializes the root layout.*/
     public void initRootLayout() {
-        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        //*int width = (int) screenSize.getWidth();
-        //int height = (int) screenSize.getHeight();
-        String OS = System.getProperty("os.name");
-        String dim = "The OS of device is: " + OS;
+        String os = System.getProperty("os.name");
+        String dim = "The OS of device is: " + os;
         LOGGER.log(Level.INFO, dim);
         try {
             FXMLLoader loader = new FXMLLoader();
-            //if(width>height) {
             if(isNotMobile()) {
-                //this.mobile = false;
                 // Load root layout from fxml file.
                 loader.setLocation(MainApp.class.getResource("DesktopView/RootLayout.fxml"));
                 rootLayout = loader.load();
@@ -110,7 +105,6 @@ public class MainApp{
                 primaryStage.setScene(scene);
                 primaryStage.setFullScreen(true);
             } else {
-                //this.mobile = true;
                 // Load root layout from fxml file.
                 loader.setLocation(MainApp.class.getResource("SmartphoneView/RootLayoutPhone.fxml"));
                 rootLayout = loader.load();
@@ -173,8 +167,8 @@ public class MainApp{
             } else {
                 // Load home overview.
                 loader.setLocation(MainApp.class.getResource("SmartphoneView/HomePhone.fxml"));
-                MenuController menu = menu();
-                controller.setMenu(menu);
+                MenuController menuController = menu();
+                controller.setMenu(menuController);
             }
             Pane homeOverview = loader.load();
 

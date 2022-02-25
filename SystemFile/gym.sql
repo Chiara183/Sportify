@@ -5,7 +5,7 @@
 INSERT INTO `gym` (`name`,`owner`,`address`,`latitude`,`longitude`,`phone`) VALUES ('Viktory Gym','test','Via Arrigo Davila, 37/A, 00179 Roma RM',41.869610,12.526360,'06 787976');
 INSERT INTO `gym` (`name`,`owner`,`address`,`latitude`,`longitude`,`phone`) VALUES ('Palestra Roma X Training','test','Viale Leonardo da Vinci, 80, 00145 Roma RM',41.858760,12.480450,'331 450 3419');
 INSERT INTO `gym` (`name`,`owner`,`address`,`latitude`,`longitude`,`phone`) VALUES ('Kb Gym - Fitness & Boxe Roma Prati','test','Via Crescenzio, 21, 00193 Roma RM',41.905491,12.465360,'06 683 3971');
-INSERT INTO `gym` (`name`,`owner`,`address`,`latitude`,`longitude`,`phone`) VALUES ('Palestra Agora\' Roma','test','Via Francesco Valagussa, 45, 00151 Roma RM',41.857900,12.445570,'06 6574 3845');
+INSERT INTO `gym` (`name`,`owner`,`address`,`latitude`,`longitude`,`phone`) VALUES ('Palestra Agora Roma','test','Via Francesco Valagussa, 45, 00151 Roma RM',41.857900,12.445570,'06 6574 3845');
 INSERT INTO `gym` (`name`,`owner`,`address`,`latitude`,`longitude`,`phone`) VALUES ('H2O Concept','test','Via della Pilotta, 16/18, 00187 Roma RM',41.897360,12.484930,'06 8917 1923');
 INSERT INTO `gym` (`name`,`owner`,`address`,`latitude`,`longitude`,`phone`) VALUES ('Very Yeah Fitness Club','test','Via Francesco Massi, 10, 00152 Roma RM',41.87318420410156,12.459868431091309,'06 8987 1406');
 INSERT INTO `gym` (`name`,`owner`,`address`,`latitude`,`longitude`,`phone`) VALUES ('Corpea Fitness Club','test','Via Rodolfo Lanciani, 15, 00162 Roma RM',41.92097473144531,12.52242660522461,'06 8620 0616');

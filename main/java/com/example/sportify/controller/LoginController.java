@@ -26,7 +26,6 @@ public class LoginController extends AccessController{
 
     /** Error login variable*/
     private Double delay = 3.0;
-    private Integer seconds = delay.intValue();
     private final Label label = new Label();
 
     /** Is true when login is in external window*/
@@ -100,12 +99,13 @@ public class LoginController extends AccessController{
 
     /** Countdown of error login*/
     private void doTime(){
+        final int[] seconds = {delay.intValue()};
         Timeline time = new Timeline();
         time.setCycleCount(Timeline.INDEFINITE);
         KeyFrame frame = new KeyFrame(Duration.seconds(delay), event -> {
-            seconds--;
-            label.setText("Waiting... " + seconds);
-            if(seconds<=0){
+            seconds[0]--;
+            label.setText("Waiting... " + seconds[0]);
+            if(seconds[0] <=0){
                 Stage stage = (Stage)label.getParent().getScene().getWindow();
                 stage.close();
                 time.stop();
@@ -149,6 +149,7 @@ public class LoginController extends AccessController{
 
     /** Is called to create countdown window*/
     private Stage createCountdown(){
+        int seconds;
         Stage stage = new Stage();
         stage.setAlwaysOnTop(true);
         stage.initOwner(mainApp.getPrimaryStage());

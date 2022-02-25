@@ -6,6 +6,8 @@ import com.example.sportify.controller.graphic.SignUpGraphicController;
 
 import javax.swing.*;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Adapter implements SignUp{
 
@@ -25,7 +27,7 @@ public class Adapter implements SignUp{
     public Adapter(SignUpController user, SignUpGraphicController graphicController, Submit submit) {
         this.userController = user;
         this.gymController = new SignUpGymController(userController.getMainApp());
-        System.out.println(user.getMenu());
+        user.getMenu();
         this.gymController.setMenu(user.getMenu());
         this.userGraphicController = graphicController;
         this.submit = submit;
@@ -49,4 +51,5 @@ public class Adapter implements SignUp{
         }
     }
 }
+
 

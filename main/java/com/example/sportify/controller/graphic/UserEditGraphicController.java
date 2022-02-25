@@ -59,7 +59,7 @@ public class UserEditGraphicController extends EditGraphicController{
                 birth = year + "-" + month + "-" + day;
                 controller.getUser().setBirthday(DateUtil.parse(birth));
             } else if (toggleBirthday.isSelected() && !Objects.equals(day + "/" + month + "/" + year,
-                    (birthDay.getText() + "/" + birthMonth.getText() + "/" + birthYear.getText()))){
+                    (dayOfBirth.getText() + "/" + birthMonth.getText() + "/" + birthYear.getText()))){
                 year = birthYear.getText();
                 if(birthMonth.getText().length() < 2){
                     month = "0" + birthMonth.getText();
@@ -67,10 +67,10 @@ public class UserEditGraphicController extends EditGraphicController{
                     month = birthMonth.getText();
                 }
 
-                if(birthDay.getText().length() < 2){
-                    day = "0" + birthDay.getText();
+                if(dayOfBirth.getText().length() < 2){
+                    day = "0" + dayOfBirth.getText();
                 } else {
-                    day = birthDay.getText();
+                    day = dayOfBirth.getText();
                 }
                 controller.getUser().setBirthday(DateUtil.parse(year + "-" + month + "-" + day));
             }

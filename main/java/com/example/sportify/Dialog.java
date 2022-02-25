@@ -9,7 +9,7 @@ import java.util.concurrent.CountDownLatch;
 public class Dialog extends JPanel{
     private JFrame frame;
     private MainApp mainApp;
-    private CountDownLatch modalitySignal;
+    private transient CountDownLatch modalitySignal;
 
     /** Creates the instance*/
     public Dialog() {}
@@ -88,19 +88,19 @@ public class Dialog extends JPanel{
     /** Create the GUI and show it*/
     public void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("Modality");
+        JFrame fr = new JFrame("Modality");
 
         //Create and set up the content pane.
-        Dialog newContentPane = new Dialog(frame);
+        Dialog newContentPane = new Dialog(fr);
         newContentPane.setMainApp(this.mainApp);
         newContentPane.setWait(this.modalitySignal);
         newContentPane.setPreferredSize(new Dimension(220,100));
-        frame.setContentPane(newContentPane);
+        fr.setContentPane(newContentPane);
 
         //Display the window.
-        frame.setResizable(false);
-        frame.pack();
-        frame.setVisible(true);
+        fr.setResizable(false);
+        fr.pack();
+        fr.setVisible(true);
     }
 
     /** Is called to set mainApp*/

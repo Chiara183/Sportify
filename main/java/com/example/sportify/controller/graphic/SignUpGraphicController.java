@@ -93,9 +93,9 @@ public class SignUpGraphicController extends RegisterGraphicController{
 
     /** Is called to set controller*/
     @Override
-    public void setController(Controller controller) {
-        this.controller = (SignUpController) controller;
-        super.setController(controller);
+    public void setController(Controller contr) {
+        this.controller = (SignUpController) contr;
+        super.setController(contr);
     }
 
     public void setSignUp(Event event) {
@@ -125,17 +125,17 @@ public class SignUpGraphicController extends RegisterGraphicController{
 
             // Set sign up overview into the center of root layout.
             SignUpGraphicController graphicController = loaderSignUp.getController();
-            SignUpController controller = new SignUpController();
-            controller.setMenu(this.controller.getMenu());
+            SignUpController controllerSignUp = new SignUpController();
+            controllerSignUp.setMenu(this.controller.getMenu());
             this.controller.getMainApp().getPrimaryPane().setCenter(pane);
             this.controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
             assert graphicMenuController != null;
             graphicMenuController.setController(this.controller.getMenu());
 
-            // Give the controller access to the main app.
-            controller.setGraphicController(graphicController);
-            graphicController.setController(controller);
-            controller.setMainApp(this.controller.getMainApp());
+            // Give the controllerSignUp access to the main app.
+            controllerSignUp.setGraphicController(graphicController);
+            graphicController.setController(controllerSignUp);
+            controllerSignUp.setMainApp(this.controller.getMainApp());
             this.controller.getMenu().setInstance(graphicController);
         } catch(IOException e){
             Logger logger = Logger.getLogger(MainApp.class.getName());

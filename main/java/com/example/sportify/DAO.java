@@ -33,7 +33,7 @@ public class DAO {
             while(rs.next()){
                 result.add(rs.getString(column));
             }
-            if(result.size()!=0 && result.get(0) == null){
+            if(!result.isEmpty() && result.get(0) == null){
                 result.remove(0);
             }
         }catch (SQLException e) {

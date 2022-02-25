@@ -1,14 +1,14 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.controller.graphic.*;
-import com.example.sportify.controller.graphicPhone.SportQuizPhoneGraphicController;
+import com.example.sportify.controller.graphic.SportQuizPhoneGraphicController;
 import com.example.sportify.user.User;
 import javafx.scene.control.Button;
 
 public class MenuController extends Controller{
 
     /** Reference to graphic controller*/
-    public MenuGraphicController graphicController;
+    private MenuGraphicController graphicController;
 
     /** The variable that identify the name of the view*/
     private ControllerType view;
@@ -26,6 +26,10 @@ public class MenuController extends Controller{
     /** The constructor.*/
     public MenuController() {
         this.type = ControllerType.MENU;
+    }
+
+    public MenuGraphicController getGraphicController() {
+        return this.graphicController;
     }
 
     /** Is called to set the name of the view.*/

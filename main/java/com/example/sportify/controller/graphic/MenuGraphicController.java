@@ -2,7 +2,6 @@ package com.example.sportify.controller.graphic;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.*;
-import com.example.sportify.controller.graphicPhone.SportQuizPhoneGraphicController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -247,8 +246,8 @@ public class MenuGraphicController implements GraphicController{
             EditGraphicController edit = (EditGraphicController) controller.getInstance();
             edit.okAction();
         } else if(controller.getView()==ControllerType.SIGN_UP || controller.getView()==ControllerType.SIGN_UP_GYM) {
-            SignUpGraphicController signUp = (SignUpGraphicController) controller.getInstance();
-            signUp.submit(controller.getView());
+            SignUpGraphicController sU = (SignUpGraphicController) controller.getInstance();
+            sU.submit(controller.getView());
         } else if (controller.getView()==ControllerType.SIGN_UP_GYM2){
             SignUpGymGraphicController gym = (SignUpGymGraphicController) controller.getInstance();
             gym.submitActionSignUpGym();

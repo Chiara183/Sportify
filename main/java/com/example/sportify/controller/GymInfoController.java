@@ -113,7 +113,8 @@ public class GymInfoController extends Controller implements Observer {
 
     /** Cancel a review of gym*/
     public void shareReview(String gym, StringBuilder review){
-        System.out.println(gym + ": " + review);
+        String str = gym + ": " + review;
+        LOGGER.log(Level.INFO, str);
         String[] reviewList = review.toString().split("'");
         review = new StringBuilder();
         int i = 0;
@@ -133,7 +134,6 @@ public class GymInfoController extends Controller implements Observer {
                     + review + "', '"
                     + user + "', " +
                     "CURRENT_TIMESTAMP);";
-            System.out.println(query);
             objDAO.updateDB(query);
         } else {
             JFrame jFrame = new JFrame();
@@ -253,11 +253,11 @@ public class GymInfoController extends Controller implements Observer {
         String query = SELECT +
                 "FROM course " +
                 "WHERE course.gym = \""+ this.gym +"\"";
-        List<String> sport = dao.checkData(query, "sport");
+        List<String> sportList = dao.checkData(query, "sport");
         List<String> time = dao.checkData(query, "time");
         int i = 0;
-        while(i != sport.size()){
-            loadCourse(sport.get(i), time.get(i));
+        while(i != sportList.size()){
+            loadCourse(sportList.get(i), time.get(i));
             i++;
         }
         if(graphicController.getSizeCourse()<2) {
@@ -393,8 +393,8 @@ public class GymInfoController extends Controller implements Observer {
             this.mainApp.setSearchCache(this.searchCache);
             setGym(name);
             if(!this.getMainApp().isNotMobile()) {
-                graphicController.comboGymInfo.getItems().add("Course");
-                graphicController.comboGymInfo.getItems().add("Review");
+                graphicController.getComboGymInfo().getItems().add("Course");
+                graphicController.getComboGymInfo().getItems().add("Review");
             }
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.getMessage());        }

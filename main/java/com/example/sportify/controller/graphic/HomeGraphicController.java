@@ -32,8 +32,8 @@ public class HomeGraphicController implements GraphicController{
         Object selectedItem = comboActivity.getSelectionModel().getSelectedItem();
         String choice = selectedItem.toString();
         switch (choice) {
-            case "Take sport quiz" -> this.controller.getMenu().graphicController.sportQuizAction();
-            case "Login" -> this.controller.getMenu().graphicController.signAction();
+            case "Take sport quiz" -> this.controller.getMenu().getGraphicController().sportQuizAction();
+            case "Login" -> this.controller.getMenu().getGraphicController().signAction();
             case "Login with Google" -> {
                 String gClientId = "941217546228-08fmsjebj3jn1a0agnt9tu9tnijgn2pq.apps.googleusercontent.com";
                 String gRedir = "https://localhost:8080/oauth2";

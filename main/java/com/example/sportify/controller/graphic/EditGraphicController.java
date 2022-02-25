@@ -75,7 +75,7 @@ public abstract class EditGraphicController implements GraphicController{
     @FXML
     protected TextField telephone;
     @FXML
-    protected TextField birthDay;
+    protected TextField dayOfBirth;
     @FXML
     protected TextField birthMonth;
     @FXML
@@ -126,7 +126,7 @@ public abstract class EditGraphicController implements GraphicController{
         if(controller.getMainApp().isNotMobile()) {
             date.setValue(user.getBirthday());
         } else {
-            birthDay.setText(String.valueOf(user.getBirthday().getDayOfMonth()));
+            dayOfBirth.setText(String.valueOf(user.getBirthday().getDayOfMonth()));
             birthMonth.setText(String.valueOf(user.getBirthday().getMonth().getValue()));
             birthYear.setText(String.valueOf(user.getBirthday().getYear()));
             birthday.setText(user.getBirthday().getDayOfMonth() +
@@ -169,11 +169,11 @@ public abstract class EditGraphicController implements GraphicController{
         if (!toggleBirthday.isSelected()) {
             modifyBirthday.setStyle(FILL);
             toggleBirthday.setSelected(true);
-            controller.togglevisibleBirthday(this.toggleBirthday, this.birthday, this.birthdayPane, this.birthDay, this.birthMonth, this.birthYear);
+            controller.togglevisibleBirthday(this.toggleBirthday, this.birthday, this.birthdayPane, this.dayOfBirth, this.birthMonth, this.birthYear);
         } else {
             modifyBirthday.setStyle(BLACK);
             toggleBirthday.setSelected(false);
-            controller.togglevisibleBirthday(this.toggleBirthday, this.birthday, this.birthdayPane, this.birthDay, this.birthMonth, this.birthYear);
+            controller.togglevisibleBirthday(this.toggleBirthday, this.birthday, this.birthdayPane, this.dayOfBirth, this.birthMonth, this.birthYear);
         }
     }
 

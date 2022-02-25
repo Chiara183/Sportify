@@ -4,7 +4,7 @@ import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.MenuGraphicController;
 import com.example.sportify.controller.graphic.SportQuizGraphicController;
-import com.example.sportify.controller.graphicPhone.SportQuizPhoneGraphicController;
+import com.example.sportify.controller.graphic.SportQuizPhoneGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
@@ -117,10 +117,6 @@ SportQuizController extends Controller {
     }
 
     private void setSport(String nameOfSport){
-        buttonAge1 = false;
-        buttonAge2 = false;
-        buttonAge3 = false;
-        buttonIndoor = false;
         SportController sport = new SportController();
         sport.setMainApp(this.mainApp);
         sport.setUser(this.user);
@@ -144,19 +140,9 @@ SportQuizController extends Controller {
 
     /** It's called to load sport quiz env overview*/
     public void sportQuizEnv(){
-        this.mainApp.setUser(this.user);
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
-        // Load sport quiz overview.
-        if(getMainApp().isNotMobile()) {
-            FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizEnv.fxml"));
-            this.createController(loaderSport);
-        }else{
-            FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportQuizEnvPhone1.fxml"));
-            FXMLLoader loaderTopScreen = new FXMLLoader();
-            loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen1.fxml"));
-            mainApp.setTopMenu(loaderTopScreen);
+        FXMLLoader loaderTopScreen = new FXMLLoader();
+        FXMLLoader loaderSport = new FXMLLoader();
+        if(setScene("Env", loaderSport, loaderTopScreen)){
             menu.setView(ControllerType.SPORT_QUIZ_ENV);
             MenuGraphicController graphicMenuController = loaderTopScreen.getController();
             graphicMenuController.setController(menu);
@@ -166,25 +152,42 @@ SportQuizController extends Controller {
 
     /** It's called to load sport quiz type overview*/
     public void sportQuizType(){
-        this.mainApp.setUser(this.user);
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
-        // Load sport quiz overview.
-        if(getMainApp().isNotMobile()) {
-            FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizType.fxml"));
-            this.createController(loaderSport);
-        }else{
-            FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportQuizTypePhone4.fxml"));
-            FXMLLoader loaderTopScreen = new FXMLLoader();
-            loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen4.fxml"));
-            mainApp.setTopMenu(loaderTopScreen);
-            menu.setView(ControllerType.SPORT_QUIZ_TYPE);
+        FXMLLoader loaderSport = new FXMLLoader();
+        FXMLLoader loaderTopScreen = new FXMLLoader();
+        if(setScene("Type", loaderSport, loaderTopScreen)){
             SportQuizPhoneGraphicController graphicMenuController = loaderTopScreen.getController();
             graphicMenuController.setController(this);
             SportQuizPhoneGraphicController graphicQuizController = this.createController(loaderSport);
             graphicMenuController.setQuiz(graphicQuizController);
         }
+    }
+
+    public boolean setScene(String kindOfScene, FXMLLoader loaderSport, FXMLLoader loaderTopScreen){
+        boolean result = false;
+        this.mainApp.setUser(this.user);
+        this.mainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
+        if(getMainApp().isNotMobile()) {
+            if(kindOfScene.equals("Env")) {
+                loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizEnv.fxml"));
+            }else{
+                loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuizType.fxml"));
+            }
+            this.createController(loaderSport);
+        }else{
+            result = true;
+            if(kindOfScene.equals("Env")) {
+                loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportQuizEnvPhone1.fxml"));
+            }else{
+                loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportQuizTypePhone4.fxml"));
+            }
+            if(kindOfScene.equals("Env")) {
+                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen1.fxml"));
+            }else{
+                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen4.fxml"));
+            }
+            mainApp.setTopMenu(loaderTopScreen);
+        }
+        return result;
     }
 
     /** Is called to create controllers*/

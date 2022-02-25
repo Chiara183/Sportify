@@ -5,7 +5,7 @@ import com.example.sportify.controller.graphic.LoginGraphicController;
 public class AdapterLogin implements Login{
 
     private LoginGraphicController controller;
-    public boolean google;
+    private boolean google;
 
     public AdapterLogin(){}
 
