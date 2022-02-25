@@ -7,8 +7,13 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainAppLauncher extends Application {
+
+    private static final Logger LOGGER = Logger.getLogger(MainAppLauncher.class.getName());
+
     @Override
     public void start(Stage primaryStage) {
         Projection projection = getParameters().getUnnamed().contains("wgs84")
@@ -32,7 +37,8 @@ public class MainAppLauncher extends Application {
         try {
             modalitySignal.await();
         } catch(InterruptedException e){
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, e.getMessage());
+            Thread.currentThread().interrupt();
         }
         mainApp.initRootLayout();
         mainApp.showHomeOverview();

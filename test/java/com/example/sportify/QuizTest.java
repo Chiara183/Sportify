@@ -11,6 +11,8 @@ import org.testfx.util.WaitForAsyncUtils;
 
 import javax.swing.*;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,6 +20,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class QuizTest extends FxRobot {
+
+    private static final Logger LOGGER = Logger.getLogger(QuizTest.class.getName());
+
 
     @BeforeAll
     static void versionControl(){
@@ -37,7 +42,7 @@ public class QuizTest extends FxRobot {
         try {
             FxToolkit.cleanupStages();
         } catch (TimeoutException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, e.getMessage());
         }
     }
 
