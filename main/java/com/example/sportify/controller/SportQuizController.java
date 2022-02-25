@@ -18,10 +18,10 @@ public class
 SportQuizController extends Controller {
 
     /** The variable that identify the user choice*/
-    private  static boolean buttonAge1 = false;
-    private  static boolean buttonAge2 = false;
-    private  static boolean buttonAge3 = false;
-    private  static boolean buttonIndoor = false;
+    private static boolean buttonAge1 = false;
+    private static boolean buttonAge2 = false;
+    private static boolean buttonAge3 = false;
+    private static boolean buttonIndoor = false;
 
     private final Object lockObj = new Object();
 
@@ -109,15 +109,18 @@ SportQuizController extends Controller {
     private void singleOutdoorAction(){
         if(buttonAge1){
             setSport("Athletics");
-        }
-        else if(buttonAge2 || buttonAge3){
+        } else if(buttonAge2 || buttonAge3){
             setSport("Tennis");
-        }else{
+        } else {
             setSport("Golf");
         }
     }
 
     private void setSport(String nameOfSport){
+        buttonAge1 = false;
+        buttonAge2 = false;
+        buttonAge3 = false;
+        buttonIndoor = false;
         SportController sport = new SportController();
         sport.setMainApp(this.mainApp);
         sport.setUser(this.user);
