@@ -20,36 +20,20 @@ import java.util.logging.Logger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(ApplicationExtension.class)
-public class HomePhoneTest  extends FxRobot {
+public class HomePhoneTest  extends StartingTest{
 
-    private static final Logger LOGGER = Logger.getLogger(HomePhoneTest.class.getName());
-
+    private static final String COMBOBOX = "#comboActivity";
+    private FxRobot robot;
 
     @BeforeAll
-    static void versionControl() {
+    static void versionControl1() {
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "You have to click 'Mobile' and then 'Next' everytime the next pop up window appears during the test to execute the correct testing");
     }
 
-    @BeforeEach
-    public void setUp() {
-        ApplicationTest.launch(MainAppLauncher.class);
-        WaitForAsyncUtils.waitForFxEvents(100);
-
-    }
-
-    @AfterEach
-    public void tearDown() {
-        try {
-            FxToolkit.cleanupStages();
-        } catch (TimeoutException e) {
-            LOGGER.log(Level.WARNING, e.getMessage());
-        }
-    }
-
     @Test
     public void openSportQuizTest() {
-        clickOn("#comboActivity").write("Take sport quiz").press(KeyCode.ENTER).release(KeyCode.ENTER);
+        robot.clickOn(COMBOBOX).write("Take sport quiz").press(KeyCode.ENTER).release(KeyCode.ENTER);
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
         assertEquals("Sportify - Sport Quiz", title);
@@ -57,7 +41,7 @@ public class HomePhoneTest  extends FxRobot {
 
     @Test
     public void openLoginWindow() {
-        clickOn("#comboActivity").write("Login").press(KeyCode.ENTER).release(KeyCode.ENTER);
+        robot.clickOn(COMBOBOX).write("Login").press(KeyCode.ENTER).release(KeyCode.ENTER);
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
         assertEquals("Sportify - Login", title);
@@ -65,7 +49,7 @@ public class HomePhoneTest  extends FxRobot {
 
     @Test
     public void openGymFinderWindow() {
-        clickOn("#comboActivity").write("Find gym").press(KeyCode.ENTER).release(KeyCode.ENTER);
+        robot.clickOn(COMBOBOX).write("Find gym").press(KeyCode.ENTER).release(KeyCode.ENTER);
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
         assertEquals("Sportify - Find Gym", title);

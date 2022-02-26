@@ -1,27 +1,21 @@
 package com.example.sportify;
 
 import javafx.stage.Stage;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
-import org.testfx.util.WaitForAsyncUtils;
 
 import javax.swing.*;
-import java.util.concurrent.TimeoutException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.assertions.api.Assertions.assertThat;
 
 
-class MainAppTest extends FxRobot {
+class MainAppTest extends StartingTest{
 
-    private static final Logger LOGGER = Logger.getLogger(ApplicationTest.class.getName());
 
+    private FxRobot robot;
 
     @BeforeAll
     static void versionControl(){
@@ -29,28 +23,14 @@ class MainAppTest extends FxRobot {
         JOptionPane.showMessageDialog(jFrame, "You have to click 'Desktop' and then 'Next' everytime the next pop up window appears during the test to execute the correct testing");
     }
 
-    @BeforeEach
-    public void setUp() {
-        ApplicationTest.launch(MainAppLauncher.class);
-        WaitForAsyncUtils.waitForFxEvents(100);
-    }
-
-    @AfterEach
-    public void tearDown() {
-        try {
-            FxToolkit.cleanupStages();
-        } catch (TimeoutException e) {
-            LOGGER.log(Level.WARNING, e.getMessage());
-        }
-    }
 
     /**Test that the home screen has the correct button*/
     @Test
     public void hasButtonTest() {
-        assertThat(lookup("#signIn").queryButton()).hasText("Log in");
-        assertThat(lookup("#gymInfo").queryButton()).hasText("Gym Info");
-        assertThat(lookup("#findGym").queryButton()).hasText("Find gym");
-        assertThat(lookup("#sportQuiz").queryButton()).hasText("Sport quiz");
+        assertThat(robot.lookup("#signIn").queryButton()).hasText("Log in");
+        assertThat(robot.lookup("#gymInfo").queryButton()).hasText("Gym Info");
+        assertThat(robot.lookup("#findGym").queryButton()).hasText("Find gym");
+        assertThat(robot.lookup("#sportQuiz").queryButton()).hasText("Sport quiz");
     }
 
     /**Test that the application is launched correctly*/

@@ -2,28 +2,25 @@ package com.example.sportify;
 
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
-import org.testfx.util.WaitForAsyncUtils;
 
 import javax.swing.*;
-import java.util.concurrent.TimeoutException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(ApplicationExtension.class)
-public class QuizPhoneTest extends FxRobot {
+public class QuizPhoneTest extends StartingTest {
 
-    private static final Logger LOGGER = Logger.getLogger(QuizPhoneTest.class.getName());
+    private FxRobot robot;
+    private static final String COMBOBOX = "#comboActivity";
+    private static final String QUIZ = "Take sport quiz";
+    private static final String FOOTBALL = "Football";
 
 
     @BeforeAll
@@ -32,62 +29,41 @@ public class QuizPhoneTest extends FxRobot {
         JOptionPane.showMessageDialog(jFrame, "You have to click 'Mobile' and then 'Next' everytime the next pop up window appears during the test to execute the correct testing");
     }
 
-    @BeforeEach
-    public void setUp() {
-        ApplicationTest.launch(MainAppLauncher.class);
-        WaitForAsyncUtils.waitForFxEvents(100);
 
-    }
 
-    @AfterEach
-    public void tearDown() {
-        try {
-            FxToolkit.cleanupStages();
-        } catch (TimeoutException e) {
-            LOGGER.log(Level.WARNING, e.getMessage());
-        }
-    }
-
-    @Test
-    public void openSportQuizTest(){
-        clickOn("#comboActivity").write("Take sport quiz").press(KeyCode.ENTER).release(KeyCode.ENTER);
-        Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
-        String title = stage.getTitle();
-        assertEquals("Sportify - Sport Quiz", title);
-    }
 
     @Test
     public void SportQuizTest(){
-        clickOn("#comboActivity").write("Take sport quiz").press(KeyCode.ENTER).release(KeyCode.ENTER);
-        clickOn("#age").write("14");
-        clickOn("#ok");
-        clickOn("#environment").write("outdoor");
-        clickOn("#ok");
-        clickOn("#type").write("group");
-        clickOn("#ok");
-        assertEquals("Football", lookup("#sportName").queryLabeled().getText());
+        robot.clickOn(COMBOBOX).write(QUIZ).press(KeyCode.ENTER).release(KeyCode.ENTER);
+        robot.clickOn("#age").write("14");
+        robot.clickOn("#ok");
+        robot.clickOn("#environment").write("outdoor");
+        robot.clickOn("#ok");
+        robot.clickOn("#type").write("group");
+        robot.clickOn("#ok");
+        assertEquals(FOOTBALL, robot.lookup("#sportName").queryLabeled().getText());
     }
 
     @Test
     public void infoSportQuizTest(){
-        clickOn("#comboActivity").write("Take sport quiz").press(KeyCode.ENTER).release(KeyCode.ENTER);
-        clickOn("#age").write("14");
-        clickOn("#ok");
-        clickOn("#environment").write("outdoor");
-        clickOn("#ok");
-        clickOn("#type").write("group");
-        clickOn("#ok");
-        assertEquals("Football", lookup("#sportName").queryLabeled().getText());
-        clickOn("#info");
-        assertEquals("Football", lookup("#sport").queryLabeled().getText());
-        assertThat(lookup("#sportDescription").queryLabeled().getText().contains("Il calcio è uno sport di squadra giocato all'aperto"));
+        robot.clickOn(COMBOBOX).write(QUIZ).press(KeyCode.ENTER).release(KeyCode.ENTER);
+        robot.clickOn("#age").write("14");
+        robot.clickOn("#ok");
+        robot.clickOn("#environment").write("outdoor");
+        robot.clickOn("#ok");
+        robot.clickOn("#type").write("group");
+        robot.clickOn("#ok");
+        assertEquals(FOOTBALL, robot.lookup("#sportName").queryLabeled().getText());
+        robot.clickOn("#info");
+        assertEquals(FOOTBALL, robot.lookup("#sport").queryLabeled().getText());
+        assertThat(robot.lookup("#sportDescription").queryLabeled().getText().contains("Il calcio è uno sport di squadra giocato all'aperto"));
     }
 
     @Test
     public void wrongInputQuiz(){
-        clickOn("#comboActivity").write("Take sport quiz").press(KeyCode.ENTER).release(KeyCode.ENTER);
-        clickOn("#age").write("abc");
-        clickOn("#ok");
+        robot.clickOn(COMBOBOX).write(QUIZ).press(KeyCode.ENTER).release(KeyCode.ENTER);
+        robot.clickOn("#age").write("abc");
+        robot.clickOn("#ok");
         Stage registeredStage = FxToolkit.toolkitContext().getRegisteredStage();
         assertThat(registeredStage.getTitle().contains("Warning"));
     }

@@ -61,20 +61,7 @@ public class MenuGraphicController implements GraphicController{
         } else if(controller.getView()==ControllerType.SPORT_INFO) {
             homeAction();
         }else if(controller.getView()==ControllerType.USER_EDIT) {
-            EditGraphicController edit = (EditGraphicController) controller.getInstance();
-            if(edit.controller.getView()==ControllerType.FIND_GYM) {
-                findGymAction();
-            } else if(edit.controller.getView()==ControllerType.GYM_INFO) {
-                setGymInfo(controller.getGym());
-            } else if(edit.controller.getView()==ControllerType.SPORT_QUIZ) {
-                sportQuizAction();
-            } else if(edit.controller.getView()==ControllerType.SPORT_QUIZ_TYPE) {
-                sportQuizAction();
-            } else if(edit.controller.getView()==ControllerType.SPORT_QUIZ_ENV) {
-                sportQuizAction();
-            } else {
-                homeAction();
-            }
+            helpMethod();
         } else if(controller.getView()==ControllerType.SIGN_UP || controller.getView()==ControllerType.SIGN_UP_GYM) {
             signUpAction();
         } else if(controller.getView()==ControllerType.SPORT_QUIZ_ENV) {
@@ -92,6 +79,24 @@ public class MenuGraphicController implements GraphicController{
             gym.loadingGymName(controller.getGym());
         }
     }
+
+    public void helpMethod(){
+        EditGraphicController edit = (EditGraphicController) controller.getInstance();
+        if(edit.controller.getView()==ControllerType.FIND_GYM) {
+            findGymAction();
+        } else if(edit.controller.getView()==ControllerType.GYM_INFO) {
+            setGymInfo(controller.getGym());
+        } else if(edit.controller.getView()==ControllerType.SPORT_QUIZ) {
+            sportQuizAction();
+        } else if(edit.controller.getView()==ControllerType.SPORT_QUIZ_TYPE) {
+            sportQuizAction();
+        } else if(edit.controller.getView()==ControllerType.SPORT_QUIZ_ENV) {
+            sportQuizAction();
+        } else {
+            homeAction();
+        }
+    }
+
     @FXML
     public void signAction(){
         if(controller.getUser()==null){
