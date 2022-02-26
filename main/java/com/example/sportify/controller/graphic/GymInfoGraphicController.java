@@ -21,53 +21,54 @@ import java.util.logging.Logger;
 
 public class GymInfoGraphicController extends Subject implements GraphicController{
 
-    private static final Logger LOGGER = Logger.getLogger(GymInfoGraphicController.class.getName());
+    protected static final Logger LOGGER = Logger.getLogger(GymInfoGraphicController.class.getName());
 
+    @FXML
     private ComboBox<String> comboGymInfo;
 
     /** Reference to controller*/
-    private GymInfoController controller;
+    protected GymInfoController controller;
 
     /**Attribute of concrete subject*/
-    private String subjectState = "Unchanged";
+    protected String subjectState = "Unchanged";
 
     /** All the label of interface*/
     @FXML
-    private Label gymName;
+    protected Label gymName;
     @FXML
-    private Label gymDescription;
+    protected Label gymDescription;
 
     // TextArea
     @FXML
-    private TextArea reviewArea;
+    protected TextArea reviewArea;
 
     /** All the text field of interface*/
     @FXML
-    private TextField hour;
+    protected TextField hour;
     @FXML
-    private TextField min;
+    protected TextField min;
 
     /** All the border pane of interface*/
     @FXML
-    private BorderPane reviewPane;
+    protected BorderPane reviewPane;
     @FXML
-    private BorderPane coursePane;
+    protected BorderPane coursePane;
 
     /** All the vbox of interface*/
     @FXML
-    private VBox course;
+    protected VBox course;
     @FXML
-    private VBox review;
+    protected VBox review;
 
     // ComboBox
     @FXML
-    private ComboBox<String> comboSport;
+    protected ComboBox<String> comboSport;
 
     /** All the slider of interface*/
     @FXML
-    private Slider hourSlider;
+    protected Slider hourSlider;
     @FXML
-    private Slider minSlider;
+    protected Slider minSlider;
 
     @FXML
     public void comboActivity(){
@@ -83,13 +84,9 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
 
     /** The action of the button*/
     @FXML
-    private void shareReview(){
+    protected void shareReview(){
         String gym;
-        if(controller.getMainApp().isNotMobile()) {
-            gym = this.gymName.getText();
-        } else {
-            gym = this.controller.getMenu().getGym();
-        }
+        gym = this.gymName.getText();
         StringBuilder reviews = new StringBuilder(this.reviewArea.getText(0, this.reviewArea.getLength()));
         this.controller.shareReview(gym, reviews);
     }
@@ -105,11 +102,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     @FXML
     protected void notifyAddCourse(){
         String gym;
-        if(controller.getMainApp().isNotMobile()) {
-            gym = this.gymName.getText();
-        } else {
-            gym = this.controller.getMenu().getGym();
-        }
+        gym = this.gymName.getText();
         String sport = this.comboSport.getValue();
         String hours;
         if(this.hour.getText().equals("")){
@@ -246,18 +239,10 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
 
     /** Is called to show course window*/
     @FXML
-    private void courseAction() {
+    protected void courseAction() {
         try {
-            // Load test result overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(this.controller.getMainApp().getClass().getResource("SmartphoneView/GymInfoCoursePhone0.fxml"));
-            Pane paneTopScreen = controller.setTopMenu();
-            Pane pane = loader.load();
-
-            // Set test result overview into the center of root layout.
-            this.controller.getMainApp().getPrimaryPane().setCenter(pane);
-            controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
-            controller.getMenu().setView(ControllerType.COURSE_GYM);
+            helpMethod(loader);
 
             // Give the controller access to the main app.
             GymInfoGraphicController gymInfoGraphicController = loader.getController();
@@ -272,19 +257,24 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
         }
     }
 
+    public void helpMethod(FXMLLoader loader) throws IOException {
+        // Load test result overview.
+        loader.setLocation(this.controller.getMainApp().getClass().getResource("SmartphoneView/GymInfoCoursePhone0.fxml"));
+        Pane paneTopScreen = controller.setTopMenu();
+        Pane pane = loader.load();
+
+        // Set test result overview into the center of root layout.
+        this.controller.getMainApp().getPrimaryPane().setCenter(pane);
+        controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
+        controller.getMenu().setView(ControllerType.COURSE_GYM);
+    }
+
     @FXML
-    private void reviewAction(String gymName) {
+    protected void reviewAction(String gymName) {
         try {
             // Load test result overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(this.controller.getMainApp().getClass().getResource("SmartphoneView/GymInfoReviewPhone0.fxml"));
-            Pane paneTopScreen = controller.setTopMenu();
-            Pane pane = loader.load();
-
-            // Set test result overview into the center of root layout.
-            this.controller.getMainApp().getPrimaryPane().setCenter(pane);
-            controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
-            controller.getMenu().setView(ControllerType.REVIEW_GYM);
+            helpMethod1(loader);
 
             // Give the controller access to the main app.
             GymInfoGraphicController gymInfoGraphicController = loader.getController();
@@ -297,6 +287,17 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.getMessage());
         }
+    }
+
+    public void helpMethod1(FXMLLoader loader) throws IOException {
+        loader.setLocation(this.controller.getMainApp().getClass().getResource("SmartphoneView/GymInfoReviewPhone0.fxml"));
+        Pane paneTopScreen = controller.setTopMenu();
+        Pane pane = loader.load();
+
+        // Set test result overview into the center of root layout.
+        this.controller.getMainApp().getPrimaryPane().setCenter(pane);
+        controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
+        controller.getMenu().setView(ControllerType.REVIEW_GYM);
     }
 
     public ComboBox<String> getComboGymInfo() {

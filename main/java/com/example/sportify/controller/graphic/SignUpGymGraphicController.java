@@ -14,14 +14,14 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
 
     /** All the text field of the interface*/
     @FXML
-    private TextField gymName;
+    protected TextField gymName;
     @FXML
-    private TextField gymAddress;
+    protected TextField gymAddress;
     @FXML
-    private TextField gymCity;
+    protected TextField gymCity;
 
     /** Reference to controller*/
-    private SignUpGymController controller;
+    protected SignUpGymController controller;
 
     /** The action of the buttons*/
     @FXML
@@ -36,29 +36,31 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
         if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("") && coords.get("lat") != null && coords.get("lon") != null) {
             //if authentic, navigate user to a new page
             controller.submitActionSignUpGym(gymValue, address, coords);
-            if(controller.getMainApp().isNotMobile()) {
-                JFrame jFrame = new JFrame();
-                JOptionPane.showMessageDialog(jFrame, "You're registered!");
-            }
+            JFrame jFrame = new JFrame();
+            JOptionPane.showMessageDialog(jFrame, "You're registered!");
             controller.login();
         } else {
-            if (coords.get("lat") == null && coords.get("lon") == null){
-                //show error message
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(controller.getMainApp().getPrimaryStage());
-                alert.setTitle("Wrong address");
-                alert.setHeaderText("Sorry, we can't find your address");
-                alert.setContentText("Please enter valid address");
-                alert.showAndWait();
-            } else {
-                //show error message
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(controller.getMainApp().getPrimaryStage());
-                alert.setTitle("Empty field");
-                alert.setHeaderText("Some obligatory value are empty");
-                alert.setContentText("Please enter all value.");
-                alert.showAndWait();
-            }
+            helpMethod(coords);
+        }
+    }
+
+    protected void helpMethod(Map<String, Double> coords){
+        if (coords.get("lat") == null && coords.get("lon") == null){
+            //show error message
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.setTitle("Wrong address");
+            alert.setHeaderText("Sorry, we can't find your address");
+            alert.setContentText("Please enter valid address");
+            alert.showAndWait();
+        } else {
+            //show error message
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.setTitle("Empty field");
+            alert.setHeaderText("Some obligatory value are empty");
+            alert.setContentText("Please enter all value.");
+            alert.showAndWait();
         }
     }
 

@@ -21,29 +21,29 @@ import java.util.logging.Logger;
 public class MenuGraphicController implements GraphicController{
 
     /** Reference to controller*/
-    private MenuController controller;
+    protected MenuController controller;
 
     /** All the button of the menu*/
     @FXML
-    private Button sportQuiz;
+    protected Button sportQuiz;
     @FXML
-    private Button findGym;
+    protected Button findGym;
     @FXML
-    private Button signIn;
+    protected Button signIn;
     @FXML
-    private Button signUp;
+    protected Button signUp;
     @FXML
-    private Button signOut;
+    protected Button signOut;
     @FXML
-    private Button gymInfo;
+    protected Button gymInfo;
 
     // Pane
     @FXML
-    private Pane userIcon;
+    protected Pane userIcon;
 
     // Label
     @FXML
-    private Label username;
+    protected Label username;
 
     /** The action of the buttons*/
     @FXML
@@ -69,15 +69,19 @@ public class MenuGraphicController implements GraphicController{
         } else if(controller.getView()==ControllerType.COURSE_GYM || controller.getView()==ControllerType.REVIEW_GYM){
             setGymInfo(controller.getGym());
             GymInfoGraphicController gymInfoGraphicController = new GymInfoGraphicController();
-            GymInfoController gym = new GymInfoController();
-            gym.setGraphicController(gymInfoGraphicController);
-            gymInfoGraphicController.setController(gym);
-            gym.setMainApp(this.controller.getMainApp());
-            gym.setUser(this.controller.getUser());
-            gym.setMenu(this.controller);
-            gym.setSearchCache(this.controller.getMainApp().getSearchCache());
-            gym.loadingGymName(controller.getGym());
+            helpMethod4(gymInfoGraphicController);
         }
+    }
+
+    public void helpMethod4(GymInfoGraphicController gymInfoGraphicController){
+        GymInfoController gym = new GymInfoController();
+        gym.setGraphicController(gymInfoGraphicController);
+        gymInfoGraphicController.setController(gym);
+        gym.setMainApp(this.controller.getMainApp());
+        gym.setUser(this.controller.getUser());
+        gym.setMenu(this.controller);
+        gym.setSearchCache(this.controller.getMainApp().getSearchCache());
+        gym.loadingGymName(controller.getGym());
     }
 
     public void helpMethod(){
@@ -106,21 +110,22 @@ public class MenuGraphicController implements GraphicController{
         }
     }
     @FXML
-    private void signOut() {
+    protected void signOut() {
         controller.setUser(null);
         controller.getMainApp().setUser(null);
-        if(!controller.getMainApp().isNotMobile()){
-            homeAction();
-        }
+        homeAction();
+
     }
     @FXML
     public void loadGymInfo(){
-        if(controller.getMainApp().isNotMobile()) {
-            controller.setButton(findGym, sportQuiz, signOut, signIn, signUp, gymInfo);
-        }
+        controller.setButton(findGym, sportQuiz, signOut, signIn, signUp, gymInfo);
         GymInfoGraphicController graphicController = new GymInfoGraphicController();
         GymInfoController gym = new GymInfoController();
         graphicController.setController(gym);
+        helpMethod1(gym, graphicController);
+    }
+
+    public void helpMethod1(GymInfoController gym, GymInfoGraphicController graphicController){
         controller.setView(ControllerType.GYM_INFO);
         gym.setGraphicController(graphicController);
         gym.setMainApp(controller.getMainApp());
@@ -130,8 +135,9 @@ public class MenuGraphicController implements GraphicController{
         gym.loadingGymName(controller.getUser().getGymName());
         controller.setGym(controller.getUser().getGymName());
     }
+
     @FXML
-    private void homeAction() {
+    protected void homeAction() {
         controller.setView(ControllerType.HOME);
         controller.getMainApp().setMenu(controller);
         controller.getMainApp().setUser(controller.getUser());
@@ -140,9 +146,7 @@ public class MenuGraphicController implements GraphicController{
     @FXML
     public void sportQuizAction() {
         controller.setView(ControllerType.SPORT_QUIZ);
-        if(controller.getMainApp().isNotMobile()) {
-            controller.setButton(findGym, signOut, signIn, signUp, gymInfo, sportQuiz);
-        }
+        controller.setButton(findGym, signOut, signIn, signUp, gymInfo, sportQuiz);
         controller.getMainApp().setMenu(controller);
         controller.getMainApp().setUser(controller.getUser());
         controller.getMainApp().showSportQuizOverview(controller);
@@ -150,100 +154,76 @@ public class MenuGraphicController implements GraphicController{
     @FXML
     public void findGymAction() {
         controller.setView(ControllerType.FIND_GYM);
-        if(controller.getMainApp().isNotMobile()) {
-            controller.setButton(signOut, signIn, signUp, gymInfo, sportQuiz, findGym);
-        }
+        controller.setButton(signOut, signIn, signUp, gymInfo, sportQuiz, findGym);
         controller.getMainApp().setMenu(controller);
         controller.getMainApp().setUser(controller.getUser());
         controller.getMainApp().showFindGymOverview(controller);
     }
     @FXML
     public void signLoginAction() {
-        if(controller.getMainApp().isNotMobile()) {
-            controller.getMainApp().setExternalLogin(true);
-        }
+        controller.getMainApp().setExternalLogin(true);
         controller.getMainApp().setMenu(controller);
         controller.getMainApp().setUser(controller.getUser());
         controller.getMainApp().showLoginOverview();
     }
     @FXML
-    private void signUpAction() {
+    protected void signUpAction() {
         controller.setView(ControllerType.SIGN_UP);
-        if(controller.getMainApp().isNotMobile()) {
-            controller.setButton(signOut, signIn, gymInfo, sportQuiz, findGym, signUp);
-        }
+        controller.setButton(signOut, signIn, gymInfo, sportQuiz, findGym, signUp);
         controller.getMainApp().setMenu(controller);
         controller.getMainApp().setUser(controller.getUser());
         controller.getMainApp().showSignUpOverview();
     }
     @FXML
-    private void openUserInterface() {
+    protected void openUserInterface() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             EditController editController;
-            Pane paneTopScreen = null;
-            MenuGraphicController graphicMenuController = null;
-            if(controller.getMainApp().isNotMobile()) {
-                if (Objects.equals(this.controller.getUser().getRole(), "gym")) {
-                    loader.setLocation(MainApp.class.getResource("DesktopView/GymEditDialog.fxml"));
-                    editController = new GymEditController();
-                } else {
-                    loader.setLocation(MainApp.class.getResource("DesktopView/UserEditDialog.fxml"));
-                    editController = new UserEditController();
-                }
+            if (Objects.equals(this.controller.getUser().getRole(), "gym")) {
+                loader.setLocation(MainApp.class.getResource("DesktopView/GymEditDialog.fxml"));
+                editController = new GymEditController();
             } else {
-                if (Objects.equals(this.controller.getUser().getRole(), "gym")) {
-                    loader.setLocation(MainApp.class.getResource("SmartphoneView/GymEditDialogPhone5.fxml"));
-                    editController = new GymEditController();
-                } else {
-                    loader.setLocation(MainApp.class.getResource("SmartphoneView/UserEditDialogPhone.fxml"));
-                    editController = new UserEditController();
-                }
-                FXMLLoader loaderTopScreen = new FXMLLoader();
-                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen5.fxml"));
-                paneTopScreen = loaderTopScreen.load();
-                graphicMenuController = loaderTopScreen.getController();
+                loader.setLocation(MainApp.class.getResource("DesktopView/UserEditDialog.fxml"));
+                editController = new UserEditController();
             }
             AnchorPane page = loader.load();
             Stage dialogStage = new Stage();
 
-            if(controller.getMainApp().isNotMobile()) {
-                // Create the dialog Stage.
-                dialogStage.setTitle(this.controller.getUser().getUserName());
-                dialogStage.getIcons().add(new Image(Objects.requireNonNull(this.controller.getMainApp().getClass().getResourceAsStream("Images/Sportify icon.png"))));
-                dialogStage.initModality(Modality.WINDOW_MODAL);
-                dialogStage.initOwner(this.controller.getMainApp().getPrimaryStage());
-                Scene scene = new Scene(page);
-                dialogStage.setScene(scene);
-            } else {
-                controller.getMainApp().getPrimaryPane().setCenter(page);
-                controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
-                assert graphicMenuController != null;
-                graphicMenuController.setController(this.controller);
-            }
+
+            // Create the dialog Stage.
+            dialogStage.setTitle(this.controller.getUser().getUserName());
+            dialogStage.getIcons().add(new Image(Objects.requireNonNull(this.controller.getMainApp().getClass().getResourceAsStream("Images/Sportify icon.png"))));
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(this.controller.getMainApp().getPrimaryStage());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
 
             // Set the person into the editController.
-            EditGraphicController graphicController = loader.getController();
-            editController.setGraphicController(graphicController);
-            graphicController.setController(editController);
-            editController.setMainApp(this.controller.getMainApp());
-            editController.setUser(this.controller.getUser());
-            editController.setMenu(this.controller);
-            this.controller.setInstance(graphicController);
-            editController.setView(controller.getView());
-            this.controller.setView(ControllerType.USER_EDIT);
+            helpMethod2(loader, editController);
 
-            if(controller.getMainApp().isNotMobile()) {
-                // Show the dialog and wait until the user closes it
-                dialogStage.showAndWait();
-            }
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
         } catch (IOException e) {
             Logger logger = Logger.getLogger(MenuGraphicController.class.getName());
             logger.log(Level.SEVERE, e.getMessage());        }
     }
+
+    public void helpMethod2(FXMLLoader loader, EditController editController){
+        EditGraphicController graphicController = loader.getController();
+        editController.setGraphicController(graphicController);
+        graphicController.setController(editController);
+        editController.setMainApp(this.controller.getMainApp());
+        editController.setUser(this.controller.getUser());
+        editController.setMenu(this.controller);
+        this.controller.setInstance(graphicController);
+        editController.setView(controller.getView());
+        this.controller.setView(ControllerType.USER_EDIT);
+    }
+
     @FXML
-    private void submit(){
+    protected void submit(){
         if(controller.getView()==ControllerType.LOGIN) {
             LoginGraphicController login = (LoginGraphicController) controller.getInstance();
             login.submitActionLogin();
@@ -272,28 +252,21 @@ public class MenuGraphicController implements GraphicController{
     /** The method called to set the view*/
     public void setSportQuiz() {
         controller.setView(ControllerType.SPORT_QUIZ);
-        if(controller.getMainApp().isNotMobile()) {
-            controller.setButton(findGym, signOut, signIn, signUp, gymInfo, sportQuiz);
-        }
+        controller.setButton(findGym, signOut, signIn, signUp, gymInfo, sportQuiz);
     }
+
     public void setFindGym() {
         controller.setView(ControllerType.FIND_GYM);
-        if(controller.getMainApp().isNotMobile()) {
-            controller.setButton(signOut, signIn, signUp, gymInfo, sportQuiz, findGym);
-        }
+        controller.setButton(signOut, signIn, signUp, gymInfo, sportQuiz, findGym);
     }
     public void setLogin() {
         controller.setView(ControllerType.LOGIN);
-        if(controller.getMainApp().isNotMobile()) {
-            controller.setButton(signOut, gymInfo, sportQuiz, findGym, signUp, signIn);
-        }
+        controller.setButton(signOut, gymInfo, sportQuiz, findGym, signUp, signIn);
     }
     public void setGymInfo(String gym){
         controller.setView(ControllerType.GYM_INFO);
         controller.setGym(gym);
-        if(controller.getMainApp().isNotMobile()) {
-            controller.setButton(findGym, sportQuiz, signOut, signIn, signUp, gymInfo);
-        }
+        controller.setButton(findGym, sportQuiz, signOut, signIn, signUp, gymInfo);
     }
     public void setUserKind() {
         controller.setView(ControllerType.USER_KIND);

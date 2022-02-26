@@ -125,7 +125,7 @@ public class MainApp{
     public MenuController menu() {
         MenuController controller = new MenuController();
         menu = controller;
-        MenuGraphicController graphicController;
+        MenuPhoneGraphicController graphicController;
         controller.setMainApp(this);
         try {
             FXMLLoader loaderMenu = new FXMLLoader();

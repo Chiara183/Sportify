@@ -42,6 +42,7 @@ public class HomeGraphicController implements GraphicController{
                 OAuthGoogleAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
                 auth.startLogin(controller.getMainApp());
             }
+            case "Find gym" -> this.controller.getMenu().getGraphicController().setFindGym();
         }
     }
 

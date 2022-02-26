@@ -15,19 +15,20 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class SignUpGraphicController extends RegisterGraphicController{
 
     /** Reference to controller*/
-    private SignUpController controller;
+    protected SignUpController controller;
+    protected Pane pane;
+    private MenuGraphicController graphicMenuController;
+    protected Pane paneTopScreen;
 
     /** All the button of the interface*/
     @FXML
-    private Button gymUser;
+    protected Button gymUser;
     @FXML
-    private Button normalUser;
+    protected Button normalUser;
 
     /** All the text field of the interface*/
     @FXML
@@ -44,7 +45,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
     private CheckBox gymTick;
     @FXML
     private CheckBox userTick;
-    private boolean user = true;
+    protected boolean user = true;
 
     /** Controls the sign-up method (user, gym)*/
     @FXML
@@ -84,11 +85,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
 
     /** Is called to understand if it's a user*/
     public boolean isUser(){
-        if(controller.getMainApp().isNotMobile()) {
-            return userTick.isSelected();
-        } else {
-            return user;
-        }
+        return userTick.isSelected();
     }
 
     /** Is called to set controller*/
@@ -101,45 +98,53 @@ public class SignUpGraphicController extends RegisterGraphicController{
     public void setSignUp(Event event) {
         // Load sign up overview.
         FXMLLoader loaderSignUp = new FXMLLoader();
-        Pane pane = null;
-        Pane paneTopScreen = null;
-        MenuGraphicController graphicMenuController = null;
+        helpMethod(event, loaderSignUp);
+
+        // Set sign up overview into the center of root layout.
+        SignUpGraphicController graphicController = loaderSignUp.getController();
+        helpMethod3(graphicController);
+    }
+
+    public void helpMethod3(SignUpGraphicController graphicController){
+        SignUpController controllerSignUp = new SignUpController();
+        controllerSignUp.setMenu(this.controller.getMenu());
+        this.controller.getMainApp().getPrimaryPane().setCenter(pane);
+        this.controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
+        assert this.graphicMenuController != null;
+        this.graphicMenuController.setController(this.controller.getMenu());
+
+        // Give the controllerSignUp access to the main app.
+        controllerSignUp.setGraphicController(graphicController);
+        graphicController.setController(controllerSignUp);
+        controllerSignUp.setMainApp(this.controller.getMainApp());
+        this.controller.getMenu().setInstance(graphicController);
+    }
+
+    public void helpMethod(Event event, FXMLLoader loaderSignUp){
+        if (event.getSource() == gymUser) {
+            loaderSignUp.setLocation(MainApp.class.getResource("SmartphoneView/SignUpGym0Phone.fxml"));
+            helpMethod2(loaderSignUp);
+            this.controller.getMenu().setView(ControllerType.SIGN_UP_GYM);
+        } else if (event.getSource() == normalUser) {
+            loaderSignUp.setLocation(MainApp.class.getResource("SmartphoneView/SignUpPhone2.fxml"));
+            helpMethod2(loaderSignUp);
+            this.controller.getMenu().setView(ControllerType.SIGN_UP);
+        }
+    }
+
+    public void helpMethod2(FXMLLoader loaderSignUp){
+        FXMLLoader loaderTopScreen = new FXMLLoader();
+        loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen2.fxml"));
         try {
-            if (event.getSource() == gymUser) {
-                loaderSignUp.setLocation(MainApp.class.getResource("SmartphoneView/SignUpGym0Phone.fxml"));
-                FXMLLoader loaderTopScreen = new FXMLLoader();
-                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen2.fxml"));
-                paneTopScreen = loaderTopScreen.load();
-                graphicMenuController = loaderTopScreen.getController();
-                pane = loaderSignUp.load();
-                this.controller.getMenu().setView(ControllerType.SIGN_UP_GYM);
-            } else if (event.getSource() == normalUser) {
-                loaderSignUp.setLocation(MainApp.class.getResource("SmartphoneView/SignUpPhone2.fxml"));
-                FXMLLoader loaderTopScreen = new FXMLLoader();
-                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen2.fxml"));
-                paneTopScreen = loaderTopScreen.load();
-                graphicMenuController = loaderTopScreen.getController();
-                pane = loaderSignUp.load();
-                this.controller.getMenu().setView(ControllerType.SIGN_UP);
-            }
-
-            // Set sign up overview into the center of root layout.
-            SignUpGraphicController graphicController = loaderSignUp.getController();
-            SignUpController controllerSignUp = new SignUpController();
-            controllerSignUp.setMenu(this.controller.getMenu());
-            this.controller.getMainApp().getPrimaryPane().setCenter(pane);
-            this.controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
-            assert graphicMenuController != null;
-            graphicMenuController.setController(this.controller.getMenu());
-
-            // Give the controllerSignUp access to the main app.
-            controllerSignUp.setGraphicController(graphicController);
-            graphicController.setController(controllerSignUp);
-            controllerSignUp.setMainApp(this.controller.getMainApp());
-            this.controller.getMenu().setInstance(graphicController);
-        } catch(IOException e){
-            Logger logger = Logger.getLogger(MainApp.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+            paneTopScreen = loaderTopScreen.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.graphicMenuController = loaderTopScreen.getController();
+        try {
+            pane = loaderSignUp.load();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
