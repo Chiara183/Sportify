@@ -108,7 +108,7 @@ public class MenuPhoneGraphicController extends MenuGraphicController {
         }else if(controller.getView()==ControllerType.USER_EDIT) {
             helpMethod();
         } else if(controller.getView()==ControllerType.SIGN_UP || controller.getView()==ControllerType.SIGN_UP_GYM) {
-            signUpAction();
+            signLoginAction();
         } else if(controller.getView()==ControllerType.SPORT_QUIZ_ENV) {
             sportQuizAction();
         } else if(controller.getView()==ControllerType.COURSE_GYM || controller.getView()==ControllerType.REVIEW_GYM){
