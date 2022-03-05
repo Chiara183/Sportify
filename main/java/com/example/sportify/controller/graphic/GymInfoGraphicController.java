@@ -1,6 +1,7 @@
 package com.example.sportify.controller.graphic;
 
 import com.example.sportify.Subject;
+import com.example.sportify.bean.GymInfoBean;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.GymInfoController;
@@ -28,6 +29,9 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
 
     /** Reference to controller*/
     protected GymInfoController controller;
+
+    /** Reference to bean*/
+    protected final GymInfoBean bean = new GymInfoBean();
 
     /**Attribute of concrete subject*/
     protected String subjectState = "Unchanged";
@@ -85,6 +89,15 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     /** The action of the button*/
     @FXML
     protected void shareReview(){
+        if(!this.bean.checkReview(this.gymName, this.reviewArea)){
+            //show error message
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.setTitle("Field empty");
+            alert.setHeaderText("A field is empty");
+            alert.setContentText("Please fill gym name field and review field");
+            alert.showAndWait();
+        }
         String gym;
         gym = this.gymName.getText();
         StringBuilder reviews = new StringBuilder(this.reviewArea.getText(0, this.reviewArea.getLength()));
@@ -132,7 +145,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     /** The action that change the value of text field*/
     @FXML
     private void changeHour(){
-        String hourSet = String.valueOf((int) hourSlider.getValue());
+        String hourSet = bean.getHour(this.hourSlider);
         if(Integer.parseInt(hourSet)<10) {
             this.hour.setText("0" + hourSet);
         } else {
@@ -141,7 +154,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     }
     @FXML
     private void changeMin(){
-        String minSet = String.valueOf((int) minSlider.getValue());
+        String minSet = bean.getMin(this.minSlider);
         if(Integer.parseInt(minSet)<10) {
             this.min.setText("0" + minSet);
         } else {

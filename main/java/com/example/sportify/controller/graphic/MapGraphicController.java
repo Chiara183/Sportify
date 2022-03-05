@@ -1,6 +1,7 @@
 package com.example.sportify.controller.graphic;
 
 import com.example.sportify.OpenStreetMapUtils;
+import com.example.sportify.bean.MapBean;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.MapController;
@@ -47,6 +48,9 @@ public class MapGraphicController implements GraphicController{
 
     /** Reference to controller*/
     private MapController controller;
+
+    /**Reference to bean*/
+    private final MapBean bean = new MapBean();
 
     // ObservableList
     private final ObservableList<String> radius = FXCollections.observableArrayList("1", "5", "10", "20", "50");
@@ -102,11 +106,29 @@ public class MapGraphicController implements GraphicController{
 
     /** It's called to get search string*/
     public String getSearch(){
+        while(!bean.checkSearch(this.search)){
+            //show error message
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.setTitle("Field empty");
+            alert.setHeaderText("Field is empty");
+            alert.setContentText("Please fill search field");
+            alert.showAndWait();
+        }
         return this.search.getText();
     }
 
     /** It's called to get km round value*/
     public String getKm(){
+        while(!bean.checkKm(this.km)){
+            //show error message
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.setTitle("Field empty");
+            alert.setHeaderText("km field is empty");
+            alert.setContentText("Please select a km range");
+            alert.showAndWait();
+        }
         return this.km.getValue();
     }
 

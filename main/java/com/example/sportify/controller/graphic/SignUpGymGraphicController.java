@@ -1,6 +1,7 @@
 package com.example.sportify.controller.graphic;
 
 import com.example.sportify.OpenStreetMapUtils;
+import com.example.sportify.bean.SignUpBean;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.SignUpGymController;
 import javafx.fxml.FXML;
@@ -23,9 +24,15 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
     /** Reference to controller*/
     protected SignUpGymController controller;
 
+    /** Reference to bean*/
+    protected SignUpBean bean = new SignUpBean();
+
     /** The action of the buttons*/
     @FXML
     protected void submitActionSignUpGym() {
+        if(!this.bean.checkEmpty(gymName) || !this.bean.checkEmpty(gymAddress) || !this.bean.checkEmpty(gymCity)){
+            alert();
+        }
         String gymValue = gymName.getText();            //get user entered gym name
         String addressValue = gymAddress.getText();     //get user entered gym address
         String cityValue = gymCity.getText();           //get user entered gym city
@@ -33,7 +40,7 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
         Map<String, Double> coords = OpenStreetMapUtils.getInstance().getCoordinates(address);
 
         //check whether the credentials are authentic or not
-        if (!gymValue.equals("") && !addressValue.equals("") && !cityValue.equals("") && coords.get("lat") != null && coords.get("lon") != null) {
+        if (coords.get("lat") != null && coords.get("lon") != null) {
             //if authentic, navigate user to a new page
             controller.submitActionSignUpGym(gymValue, address, coords);
             JFrame jFrame = new JFrame();
@@ -44,6 +51,15 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
         }
     }
 
+    protected void alert(){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.setTitle("Field empty");
+            alert.setHeaderText("A field is empty");
+            alert.setContentText("Please fill gym name, address and city field");
+            alert.showAndWait();
+    }
+
     protected void helpMethod(Map<String, Double> coords){
         if (coords.get("lat") == null && coords.get("lon") == null){
             //show error message
@@ -52,14 +68,6 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
             alert.setTitle("Wrong address");
             alert.setHeaderText("Sorry, we can't find your address");
             alert.setContentText("Please enter valid address");
-            alert.showAndWait();
-        } else {
-            //show error message
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(controller.getMainApp().getPrimaryStage());
-            alert.setTitle("Empty field");
-            alert.setHeaderText("Some obligatory value are empty");
-            alert.setContentText("Please enter all value.");
             alert.showAndWait();
         }
     }

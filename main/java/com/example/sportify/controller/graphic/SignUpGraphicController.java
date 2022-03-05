@@ -1,6 +1,7 @@
 package com.example.sportify.controller.graphic;
 
 import com.example.sportify.MainApp;
+import com.example.sportify.bean.SignUpBean;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.SignUpController;
@@ -8,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -40,6 +42,9 @@ public class SignUpGraphicController extends RegisterGraphicController{
     @FXML
     private TextField email;
 
+    /**Reference to bean*/
+    protected SignUpBean bean = new SignUpBean();
+
     /** All the checkbox of the interface*/
     @FXML
     private CheckBox gymTick;
@@ -64,6 +69,24 @@ public class SignUpGraphicController extends RegisterGraphicController{
     /** The action of the buttons*/
     @FXML
     protected void submitActionSignUp() {
+        if(!this.bean.checkEmpty(username) || !this.bean.checkEmpty(password) || !this.bean.checkEmpty(email)){
+            //show error message
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.setTitle("Field empty");
+            alert.setHeaderText("A field is empty");
+            alert.setContentText("Please fill username, email and password field");
+            alert.showAndWait();
+        }
+        if(!bean.checkForNumbers(firstName) || !bean.checkForNumbers(lastName)){
+            //show error message
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.setTitle("Field empty");
+            alert.setHeaderText("A field is empty");
+            alert.setContentText("Please fill first name and last name fields with letters or leave them empty");
+            alert.showAndWait();
+        }
         String userValue = username.getText();                  //get user entered username
         String passValue = password.getText();                  //get user entered password
         String nameValue = firstName.getText();                 //get user entered first name

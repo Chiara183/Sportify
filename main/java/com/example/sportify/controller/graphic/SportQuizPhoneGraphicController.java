@@ -1,6 +1,7 @@
 package com.example.sportify.controller.graphic;
 
 import com.example.sportify.NewException;
+import com.example.sportify.bean.SportQuizBean;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.SportQuizController;
@@ -13,6 +14,9 @@ public class SportQuizPhoneGraphicController implements GraphicController {
 
     /** Reference to controller*/
     private SportQuizController controller;
+
+    /** Reference to controller*/
+    private final SportQuizBean bean = new SportQuizBean();
 
     /** Reference to quiz*/
     private SportQuizPhoneGraphicController graphicController;
@@ -37,14 +41,12 @@ public class SportQuizPhoneGraphicController implements GraphicController {
     public void getAge(){
         String ageRange;
         String ageText = age.getText();
-        int num;
-        try{
-            num = Integer.parseInt(ageText);
-        }catch(NumberFormatException e){
+        if(!bean.checkIsNumeric(ageText)){
             ageRange = INVALID;
             controller.takeQuiz(ageRange);
             return;
         }
+        int num = Integer.parseInt(ageText);
         if(num >= 0 && num <= 18){
             ageRange = "age1";
         }else if(num >= 19 && num <= 30){
@@ -70,12 +72,10 @@ public class SportQuizPhoneGraphicController implements GraphicController {
     public void getEnvironment() {
         String input;
         String envText = environment.getText();
-        if(envText.equals("indoor")){
-            input = envText;
-        }else if(envText.equals("outdoor")){
-            input = envText;
-        }else{
+        if(!bean.checkEnv(envText)){
             input = INVALID;
+        }else{
+            input = envText;
         }
         controller.takeQuiz(input);
     }
@@ -95,10 +95,10 @@ public class SportQuizPhoneGraphicController implements GraphicController {
         } else {
             endText = type.getText();
         }
-        if(endText.equals("single") || endText.equals("group")){
-            input = endText;
-        }else{
+        if(!bean.checkType(endText)){
             input = INVALID;
+        }else{
+            input = endText;
         }
         controller.takeQuiz(input);
     }

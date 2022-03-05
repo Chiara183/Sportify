@@ -238,6 +238,7 @@ public class MenuGraphicController implements GraphicController{
             gym.submitActionSignUpGym();
         }
     }
+
     @FXML
     private void next(){
         if(controller.getView()==ControllerType.SPORT_QUIZ) {
