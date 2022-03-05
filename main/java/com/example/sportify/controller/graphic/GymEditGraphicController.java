@@ -1,5 +1,6 @@
 package com.example.sportify.controller.graphic;
 
+import com.example.sportify.bean.GymEditBean;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.GymEditController;
@@ -17,6 +18,10 @@ public class GymEditGraphicController extends EditGraphicController{
     /** Reference to controller*/
     private GymEditController controller;
 
+    /** Reference to bean*/
+    private final GymEditBean bean = new GymEditBean();
+
+
     public void setUser(GymUser user) {
         gymName.setText(user.getGymName());
         address.setText(user.getAddress());
@@ -32,10 +37,21 @@ public class GymEditGraphicController extends EditGraphicController{
         controller.getMenu().loadGymInfo();
     }
 
+    public void checkSyntax(){
+        bean.checkUser(super.username.getText());
+        bean.checkPass(super.password.getText());
+        bean.checkEmail(super.email.getText());
+        bean.checkGymName(super.gymName.getText());
+        bean.checkTel(super.telephone.getText());
+        bean.checkAddress(super.address.getText());
+        //TODO birthady bean check
+    }
+
     /** The action of the button.*/
     @Override
     @FXML
     protected void okAction(){
+        this.checkSyntax();
         if (!Objects.equals(controller.getUser().getUserName(), super.username.getText())) {
             controller.getUser().setUserName(super.username.getText());
         }

@@ -2,10 +2,12 @@ package com.example.sportify.controller.graphic;
 
 import com.example.sportify.AdapterLogin;
 import com.example.sportify.auth.OAuthGoogleAuthenticator;
+import com.example.sportify.bean.LoginBean;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.LoginController;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -26,6 +28,9 @@ public class LoginGraphicController extends AccessGraphicController{
 
     /** Reference to controller*/
     private LoginController controller;
+
+    /**Reference to bean instance*/
+    private final LoginBean bean = new LoginBean();
 
     /** Get method*/
     public TextField getUsernameField(){
@@ -63,18 +68,45 @@ public class LoginGraphicController extends AccessGraphicController{
     }
     /** The action of the buttons*/
     public void submitActionLogin() {
-        String userValue = user.getText();      //get user entered username from the textField1
+        String userValue = "";
+        if(bean.userCheck(user.getText())) {
+            userValue = user.getText(); //get user entered username from the textField1
+        }else{
+            //show error message
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.setTitle("User is empty");
+            alert.setHeaderText("The user field is empty");
+            alert.setContentText("Please enter a username.");
+            alert.showAndWait();
+        }
         String passValue;
         if(passToggle.isSelected()) {
-            passValue = passText.getText();      //get user entered password from the textField2
+            if(bean.passCheck(passText.getText())){
+                passValue = passText.getText(); //get user entered password from the textField2
+                controller.submit(userValue, passValue);
+            }else{
+                alert();
+            }
         } else {
-            passValue = password.getText();      //get user entered password from the textField2
+            if(bean.passCheck(password.getText())){
+                passValue = password.getText(); //get user entered password from the textField2
+                controller.submit(userValue, passValue);
+            }else{
+                alert();
+            }
         }
-
-        //check whether the credentials are authentic or not
-        controller.submit(userValue, passValue);
     }
 
+    public void alert(){
+        //show error message
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initOwner(controller.getMainApp().getPrimaryStage());
+        alert.setTitle("Password is empty");
+        alert.setHeaderText("The password field is empty");
+        alert.setContentText("Please enter a password.");
+        alert.showAndWait();
+    }
 
     public void loginWithGoogle(){
         String gClientId = "941217546228-08fmsjebj3jn1a0agnt9tu9tnijgn2pq.apps.googleusercontent.com";
