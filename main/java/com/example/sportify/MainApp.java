@@ -177,7 +177,7 @@ public class MainApp{
             rootLayout.setTop(null);
 
             // Give the controller access to the main app.
-            HomeGraphicController graphicController = loader.getController();
+            HomePhoneGraphicController graphicController = loader.getController();
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
             controller.setMainApp(this);
@@ -358,7 +358,7 @@ public class MainApp{
             }
 
             // Give the controller access to the main app.
-            FindGymGraphicController graphicController = loaderGym.getController();
+            FindGymPhoneGraphicController graphicController = loaderGym.getController();
             FindGymController controller = new FindGymController();
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);

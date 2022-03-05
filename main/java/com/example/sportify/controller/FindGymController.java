@@ -1,7 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
-import com.example.sportify.controller.graphic.FindGymGraphicController;
+import com.example.sportify.controller.graphic.FindGymPhoneGraphicController;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.MapGraphicController;
 import com.sothawo.mapjfx.Projection;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class FindGymController extends Controller{
 
     /** Reference to graphic controller*/
-    private FindGymGraphicController findGymGraphicController;
+    private FindGymPhoneGraphicController findGymGraphicController;
 
     /** The constructor.*/
     public FindGymController() {
@@ -24,7 +24,7 @@ public class FindGymController extends Controller{
     }
 
     /** Is called to set graphic controller*/
-    public void setGraphicController(FindGymGraphicController graphicController) {
+    public void setGraphicController(FindGymPhoneGraphicController graphicController) {
         this.findGymGraphicController = graphicController;
     }
 
@@ -65,7 +65,7 @@ public class FindGymController extends Controller{
     /** Is called to set graphic controller*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        this.findGymGraphicController = (FindGymGraphicController) graphicController;
+        this.findGymGraphicController = (FindGymPhoneGraphicController) graphicController;
     }
 }
 

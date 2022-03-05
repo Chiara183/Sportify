@@ -1,7 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.controller.graphic.GraphicController;
-import com.example.sportify.controller.graphic.HomeGraphicController;
+import com.example.sportify.controller.graphic.HomePhoneGraphicController;
 import com.example.sportify.controller.graphic.MenuGraphicController;
 import com.example.sportify.user.User;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class HomeController extends Controller {
 
     /** Reference to graphic controller*/
-    private HomeGraphicController homeGraphicController;
+    private HomePhoneGraphicController homeGraphicController;
 
     /** The constructor.*/
     public HomeController() {
@@ -43,7 +43,7 @@ public class HomeController extends Controller {
     /** Is called to set graphic controller*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        this.homeGraphicController = (HomeGraphicController) graphicController;
+        this.homeGraphicController = (HomePhoneGraphicController) graphicController;
     }
 
     /** It's called to create and ad a new menu in the window*/

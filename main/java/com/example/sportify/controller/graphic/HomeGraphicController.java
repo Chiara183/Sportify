@@ -1,11 +1,8 @@
 package com.example.sportify.controller.graphic;
 
-import com.example.sportify.auth.OAuthGoogleAuthenticator;
 import com.example.sportify.controller.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -13,38 +10,8 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class HomeGraphicController implements GraphicController{
+public class HomeGraphicController extends HomePhoneGraphicController implements GraphicController{
 
-    public ComboBox<String> comboActivity;
-
-    /** Reference to controller*/
-    private HomeController controller;
-
-    /** All the button of the interface*/
-    @FXML
-    private Button signIn;
-    @FXML
-    private Button gymInfo;
-
-    /** The action of comboBox*/
-    @FXML
-    private void comboAction(){
-        Object selectedItem = comboActivity.getSelectionModel().getSelectedItem();
-        String choice = selectedItem.toString();
-        switch (choice) {
-            case "Take sport quiz" -> this.controller.getMenu().getGraphicController().sportQuizAction();
-            case "Login" -> this.controller.getMenu().getGraphicController().signAction();
-            case "Login with Google" -> {
-                String gClientId = "941217546228-08fmsjebj3jn1a0agnt9tu9tnijgn2pq.apps.googleusercontent.com";
-                String gRedir = "https://localhost:8080/oauth2";
-                String gScope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
-                String gSecret = "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";
-                OAuthGoogleAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
-                auth.startLogin(controller.getMainApp());
-            }
-            case "Find gym" -> this.controller.getMenu().getGraphicController().findGymAction();
-        }
-    }
 
     /** The action of the button*/
     @FXML
@@ -147,21 +114,4 @@ public class HomeGraphicController implements GraphicController{
         }
     }
 
-    /** Is called to get signIn button*/
-    public Button getSignIn(){return this.signIn;}
-
-    /** Is called to get gymInfo button*/
-    public Button getGymInfo(){return this.gymInfo;}
-
-    /** Is called to set controller*/
-    @Override
-    public void setController(Controller controller) {
-        this.controller = (HomeController) controller;
-    }
-
-    /** Is called to get controller type*/
-    @Override
-    public ControllerType getGraphicType(){
-        return controller.getType();
-    }
 }

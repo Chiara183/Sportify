@@ -27,11 +27,6 @@ public class SportGraphicController implements GraphicController{
     }
 
     @FXML
-    private void back(){
-        controller.getQuiz().sportQuizType();
-    }
-
-    @FXML
     private void getInfo(){
         controller.loadDescriptionFromDB(this.sportName.getText());
     }
