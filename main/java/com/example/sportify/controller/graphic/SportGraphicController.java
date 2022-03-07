@@ -45,6 +45,11 @@ public class SportGraphicController implements GraphicController{
         }
     }
 
+    @FXML
+    protected void back() {
+        controller.getMenu().back();
+    }
+
     /** Is called to set sport description*/
     public void setSportDescription(String description){
         sportDescription.setText(description);

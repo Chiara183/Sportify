@@ -144,4 +144,7 @@ public class SportController extends Controller{
         this.setMenu(this.menu);
         return sportGraphicController;
     }
+
+    public void back() {
+    }
 }

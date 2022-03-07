@@ -11,6 +11,6 @@ public class SportQuizBean {
     }
 
     public boolean checkType(String type){
-        return type.equals("single") || type.equals("group");
+        return type.equals("alone") || type.equals("group");
     }
 }

@@ -8,6 +8,8 @@ import com.example.sportify.controller.SportQuizController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+import java.util.Locale;
+
 public class SportQuizPhoneGraphicController implements GraphicController {
 
     private static final String INVALID = "invalid input";
@@ -72,10 +74,10 @@ public class SportQuizPhoneGraphicController implements GraphicController {
     public void getEnvironment() {
         String input;
         String envText = environment.getText();
-        if(!bean.checkEnv(envText)){
+        if(!bean.checkEnv(envText.toLowerCase())){
             input = INVALID;
         }else{
-            input = envText;
+            input = envText.toLowerCase();
         }
         controller.takeQuiz(input);
     }
@@ -95,10 +97,10 @@ public class SportQuizPhoneGraphicController implements GraphicController {
         } else {
             endText = type.getText();
         }
-        if(!bean.checkType(endText)){
+        if(!bean.checkType(endText.toLowerCase())){
             input = INVALID;
         }else{
-            input = endText;
+            input = endText.toLowerCase();
         }
         controller.takeQuiz(input);
     }
