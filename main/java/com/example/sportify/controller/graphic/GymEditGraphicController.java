@@ -6,21 +6,18 @@ import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.GymEditController;
 import com.example.sportify.user.GymUser;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class GymEditGraphicController extends EditGraphicController{
-    private static final String STYLE = "-fx-text-fill: #06B7C5;";
-    private static final String COLOR = "-fx-text-fill: black;";
+    protected static final String STYLE = "-fx-text-fill: #06B7C5;";
+    protected static final String COLOR = "-fx-text-fill: black;";
 
     /** Reference to controller*/
-    private GymEditController controller;
+    protected GymEditController controller;
 
     /** Reference to bean*/
-    private final GymEditBean bean = new GymEditBean();
+    protected final GymEditBean bean = new GymEditBean();
 
 
     public void setUser(GymUser user) {
@@ -30,12 +27,6 @@ public class GymEditGraphicController extends EditGraphicController{
         gymNameLabel.setText(user.getGymName());
         addressLabel.setText(user.getAddress());
         telephoneLabel.setText(user.getPhone());
-    }
-
-    /** Go to gym info interface*/
-    @FXML
-    private void gymInfoAction() {
-        controller.getMenu().loadGymInfo();
     }
 
     public void checkSyntax(){
@@ -68,15 +59,6 @@ public class GymEditGraphicController extends EditGraphicController{
         if (!Objects.equals(controller.getUser().getEmail(), super.email.getText())) {
             controller.getUser().setEmail(super.email.getText());
         }
-        if (controller.getMainApp().isNotMobile() && !Objects.equals(controller.getUser().getBirthday(), super.date.getValue())) {
-            controller.getUser().setBirthday(super.date.getValue());
-        }
-        if (!controller.getMainApp().isNotMobile()){
-            LocalDate bday = super.settingBday();
-            if(!Objects.equals(controller.getUser().getBirthday(), bday)) {
-                controller.getUser().setBirthday(bday);
-            }
-        }
         if (!Objects.equals(controller.getUser().getGymName(), gymName.getText())) {
             controller.getUser().setFirstName(gymName.getText());
         }
@@ -85,49 +67,6 @@ public class GymEditGraphicController extends EditGraphicController{
         }
         if (!Objects.equals(controller.getUser().getPhone(), telephone.getText())) {
             controller.getUser().setEmail(telephone.getText());
-        }
-        controller.getMenu().setUser(controller.getUser());
-        if(controller.getMainApp().isNotMobile()) {
-            Stage stage = (Stage) ok.getScene().getWindow();
-            stage.close();
-        }
-    }
-
-    /** Controls the modifiability of all field*/
-    @FXML
-    protected void set_toggle_pass_gym(MouseEvent modify) {
-        if (modify.getSource() == modifyGymName) {
-            if (!toggleGymName.isSelected()) {
-                modifyGymName.setStyle(STYLE);
-                toggleGymName.setSelected(true);
-                controller.togglevisible(this.toggleGymName, this.gymNameLabel, this.gymName);
-            } else {
-                modifyGymName.setStyle(COLOR);
-                toggleGymName.setSelected(false);
-                controller.togglevisible(this.toggleGymName, this.gymNameLabel, this.gymName);
-            }
-        } else if (modify.getSource() == modifyAddress) {
-            if (!toggleAddress.isSelected()) {
-                modifyAddress.setStyle(STYLE);
-                toggleAddress.setSelected(true);
-                controller.togglevisible(this.toggleAddress, this.addressLabel, this.address);
-            } else {
-                modifyAddress.setStyle(COLOR);
-                toggleAddress.setSelected(false);
-                controller.togglevisible(this.toggleAddress, this.addressLabel, this.address);
-            }
-        } else if (modify.getSource() == modifyTelephone) {
-            if (!toggleTelephone.isSelected()) {
-                modifyTelephone.setStyle(STYLE);
-                toggleTelephone.setSelected(true);
-                controller.togglevisible(this.toggleTelephone, this.telephoneLabel, this.telephone);
-            } else {
-                modifyTelephone.setStyle(COLOR);
-                toggleTelephone.setSelected(false);
-                controller.togglevisible(this.toggleTelephone, this.telephoneLabel, this.telephone);
-            }
-        } else {
-            super.set_toggle_pass(modify);
         }
     }
 
