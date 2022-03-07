@@ -1,5 +1,6 @@
 package com.example.sportify.controller.graphic;
 
+import com.example.sportify.DateUtil;
 import com.example.sportify.controller.Controller;
 import com.example.sportify.controller.ControllerType;
 import com.example.sportify.controller.EditController;
@@ -9,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
 
 public abstract class EditGraphicController implements GraphicController{
 
@@ -107,7 +110,7 @@ public abstract class EditGraphicController implements GraphicController{
     @FXML
     protected Button cancel;
 
-    // DatePicker
+    /** DatePicker*/
     @FXML
     protected DatePicker date;
 
@@ -235,6 +238,24 @@ public abstract class EditGraphicController implements GraphicController{
             toggleLastName.setSelected(false);
             controller.togglevisible(this.toggleLastName, this.lastNameLabel, this.lastName);
         }
+    }
+
+    protected LocalDate settingBday(){
+        String year = birthYear.getText();
+        String month;
+        if(birthMonth.getText().length() < 2){
+            month = "0" + birthMonth.getText();
+        } else {
+            month = birthMonth.getText();
+        }
+
+        String day;
+        if(dayOfBirth.getText().length() < 2){
+            day = "0" + dayOfBirth.getText();
+        } else {
+            day = dayOfBirth.getText();
+        }
+        return DateUtil.parse(year + "-" + month + "-" + day);
     }
 
     /** Is called to set controller*/

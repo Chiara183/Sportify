@@ -113,8 +113,6 @@ public class MenuGraphicController implements GraphicController{
     protected void signOut() {
         controller.setUser(null);
         controller.getMainApp().setUser(null);
-        homeAction();
-
     }
     @FXML
     public void loadGymInfo(){

@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class GymEditGraphicController extends EditGraphicController{
@@ -67,8 +68,14 @@ public class GymEditGraphicController extends EditGraphicController{
         if (!Objects.equals(controller.getUser().getEmail(), super.email.getText())) {
             controller.getUser().setEmail(super.email.getText());
         }
-        if (!Objects.equals(controller.getUser().getBirthday(), super.date.getValue())) {
+        if (controller.getMainApp().isNotMobile() && !Objects.equals(controller.getUser().getBirthday(), super.date.getValue())) {
             controller.getUser().setBirthday(super.date.getValue());
+        }
+        if (!controller.getMainApp().isNotMobile()){
+            LocalDate bday = super.settingBday();
+            if(!Objects.equals(controller.getUser().getBirthday(), bday)) {
+                controller.getUser().setBirthday(bday);
+            }
         }
         if (!Objects.equals(controller.getUser().getGymName(), gymName.getText())) {
             controller.getUser().setFirstName(gymName.getText());
@@ -80,8 +87,10 @@ public class GymEditGraphicController extends EditGraphicController{
             controller.getUser().setEmail(telephone.getText());
         }
         controller.getMenu().setUser(controller.getUser());
-        Stage stage = (Stage) ok.getScene().getWindow();
-        stage.close();
+        if(controller.getMainApp().isNotMobile()) {
+            Stage stage = (Stage) ok.getScene().getWindow();
+            stage.close();
+        }
     }
 
     /** Controls the modifiability of all field*/

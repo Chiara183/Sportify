@@ -7,6 +7,7 @@ import com.example.sportify.controller.UserEditController;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class UserEditGraphicController extends EditGraphicController{
@@ -77,21 +78,8 @@ public class UserEditGraphicController extends EditGraphicController{
     }
 
     public void helpMethod1(){
-        String year = birthYear.getText();
-        String month;
-        if(birthMonth.getText().length() < 2){
-            month = "0" + birthMonth.getText();
-        } else {
-            month = birthMonth.getText();
-        }
-
-        String day;
-        if(dayOfBirth.getText().length() < 2){
-            day = "0" + dayOfBirth.getText();
-        } else {
-            day = dayOfBirth.getText();
-        }
-        controller.getUser().setBirthday(DateUtil.parse(year + "-" + month + "-" + day));
+        LocalDate bday = super.settingBday();
+        controller.getUser().setBirthday(bday);
     }
 
     /** Is called to set controller*/

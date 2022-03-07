@@ -19,6 +19,7 @@ public class MenuPhoneGraphicController extends MenuGraphicController {
     protected void signOut() {
         controller.setUser(null);
         controller.getMainApp().setUser(null);
+        homeAction();
     }
 
     @Override
