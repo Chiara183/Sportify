@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.UserEditGraphicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.UserEditPhoneGraphicController">
     <Pane prefHeight="336.0" prefWidth="270.0">
     <TextField fx:id="firstName" alignment="CENTER" layoutX="19.0" layoutY="72.0" prefHeight="25.0" prefWidth="191.0" promptText="First Name" style="-fx-background-radius: 30;" visible="false" />
     <Label fx:id="firstNameLabel" alignment="CENTER" layoutX="19.0" layoutY="72.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-radius: 30;" />

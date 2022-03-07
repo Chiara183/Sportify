@@ -22,5 +22,6 @@ public class GymEditPhoneGraphicController extends GymEditGraphicController{
             controller.getUser().setBirthday(bday);
         }
         controller.getMenu().setUser(controller.getUser());
+        controller.getMenu().back();
     }
 }
