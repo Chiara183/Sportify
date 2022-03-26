@@ -23,4 +23,6 @@ module com.example.sportify {
     opens com.example.sportify.user to javafx.fxml;
     exports com.example.sportify.controller.graphic;
     opens com.example.sportify.controller.graphic to javafx.fxml;
+    exports com.example.sportify.bean;
+    opens com.example.sportify.bean to javafx.fxml;
 }

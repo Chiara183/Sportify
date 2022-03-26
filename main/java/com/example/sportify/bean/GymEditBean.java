@@ -1,6 +1,10 @@
 package com.example.sportify.bean;
 
+import com.example.sportify.DateUtil;
+import javafx.scene.control.TextField;
 import org.apache.commons.validator.routines.EmailValidator;
+
+import java.time.LocalDate;
 
 public class GymEditBean {
 
@@ -26,5 +30,23 @@ public class GymEditBean {
 
     public boolean checkAddress(String address){
         return address.matches("\\w',-\\\\/.\\s");
+    }
+
+    public LocalDate settingBday(TextField dayOfBirth, TextField birthMonth, TextField birthYear){
+        String year = birthYear.getText();
+        String month;
+        if(birthMonth.getText().length() < 2){
+            month = "0" + birthMonth.getText();
+        } else {
+            month = birthMonth.getText();
+        }
+
+        String day;
+        if(dayOfBirth.getText().length() < 2){
+            day = "0" + dayOfBirth.getText();
+        } else {
+            day = dayOfBirth.getText();
+        }
+        return DateUtil.parse(year + "-" + month + "-" + day);
     }
 }

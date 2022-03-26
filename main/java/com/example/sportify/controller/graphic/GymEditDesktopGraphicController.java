@@ -13,7 +13,7 @@ public class GymEditDesktopGraphicController extends GymEditGraphicController{
     @FXML
     protected void okAction(){
         super.okAction();
-        LocalDate bday = super.settingBday();
+        LocalDate bday = super.date.getValue();
         if(!Objects.equals(controller.getUser().getBirthday(), bday)) {
             controller.getUser().setBirthday(bday);
         }
