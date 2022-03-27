@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestJUnitSelenium1 {
+public class TestJUnitSeleniumTranslation {
     @Test
-    public void TestNumCitation() throws InterruptedException {
-        String str = testSelenium3.Translation();
+    public void TestTranslation() throws InterruptedException {
+        String str = testSelenium.Translation();
         String[] split = str.split(" ");
         int ResultA = split.length;
         assertTrue(ResultA > 3);
