@@ -8,8 +8,6 @@ import com.example.sportify.controller.SportQuizController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-import java.util.Locale;
-
 public class SportQuizPhoneGraphicController implements GraphicController {
 
     private static final String INVALID = "invalid input";

@@ -128,7 +128,7 @@ public class Submit{
     }
     private String generateRandomString(String input, int size) {
 
-        if (input == null || input.length() <= 0) {
+        if (input == null || input.length() == 0) {
             throw new IllegalArgumentException("Invalid input.");
         }
         if (size < 1){

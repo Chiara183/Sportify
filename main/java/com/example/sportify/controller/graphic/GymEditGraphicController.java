@@ -36,7 +36,7 @@ public class GymEditGraphicController extends EditGraphicController{
         bean.checkGymName(super.gymName.getText());
         bean.checkTel(super.telephone.getText());
         bean.checkAddress(super.address.getText());
-        //TODO birthady bean check
+        //TODO birthday bean check
     }
 
     /** The action of the button.*/

@@ -25,7 +25,7 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
     protected SignUpGymController controller;
 
     /** Reference to bean*/
-    protected SignUpBean bean = new SignUpBean();
+    protected final SignUpBean bean = new SignUpBean();
 
     /** The action of the buttons*/
     @FXML

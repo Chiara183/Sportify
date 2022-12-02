@@ -43,7 +43,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
     private TextField email;
 
     /**Reference to bean*/
-    protected SignUpBean bean = new SignUpBean();
+    protected final SignUpBean bean = new SignUpBean();
 
     /** All the checkbox of the interface*/
     @FXML

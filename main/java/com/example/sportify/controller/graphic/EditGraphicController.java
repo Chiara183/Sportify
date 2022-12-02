@@ -237,24 +237,6 @@ public abstract class EditGraphicController implements GraphicController{
         }
     }
 
-    /*protected LocalDate settingBday(){
-        String year = birthYear.getText();
-        String month;
-        if(birthMonth.getText().length() < 2){
-            month = "0" + birthMonth.getText();
-        } else {
-            month = birthMonth.getText();
-        }
-
-        String day;
-        if(dayOfBirth.getText().length() < 2){
-            day = "0" + dayOfBirth.getText();
-        } else {
-            day = dayOfBirth.getText();
-        }
-        return DateUtil.parse(year + "-" + month + "-" + day);
-    }*/
-
     /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {

@@ -6,8 +6,6 @@ import com.example.sportify.controller.graphic.SignUpGraphicController;
 
 import javax.swing.*;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Adapter implements SignUp{
 

@@ -146,5 +146,6 @@ public class SportController extends Controller{
     }
 
     public void back() {
+        System.out.println("--back--");
     }
 }

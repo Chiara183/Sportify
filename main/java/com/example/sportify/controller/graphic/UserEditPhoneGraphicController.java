@@ -12,9 +12,9 @@ public class UserEditPhoneGraphicController extends UserEditGraphicController{
     /** Reference to bean*/
     protected final UserEditBean bean = new UserEditBean();
 
-    int  day = controller.getUser().getBirthday().getDayOfMonth();
-    int month = controller.getUser().getBirthday().getMonth().getValue();
-    int year = controller.getUser().getBirthday().getYear();
+    final int  day = controller.getUser().getBirthday().getDayOfMonth();
+    final int month = controller.getUser().getBirthday().getMonth().getValue();
+    final int year = controller.getUser().getBirthday().getYear();
 
     /** The action of the button.*/
     @Override
