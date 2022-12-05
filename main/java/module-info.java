@@ -10,8 +10,8 @@ module com.example.sportify {
     requires org.apache.commons.lang3;
     requires org.json;
     requires mysql.connector.java;
-    requires commons.validator;
     requires json.simple;
+    requires commons.validator;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;
