@@ -5,13 +5,13 @@ module com.example.sportify {
     requires javafx.graphics;
     requires java.desktop;
     requires java.sql;
-    requires json.simple;
     requires com.sothawo.mapjfx;
     requires javafx.web;
     requires org.apache.commons.lang3;
     requires org.json;
-    requires commons.validator;
     requires mysql.connector.java;
+    requires commons.validator;
+    requires json.simple;
 
     opens com.example.sportify to javafx.fxml;
     exports com.example.sportify;

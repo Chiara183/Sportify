@@ -125,11 +125,11 @@ public class MainApp{
     public MenuController menu() {
         MenuController controller = new MenuController();
         menu = controller;
-        MenuPhoneGraphicController graphicController;
         controller.setMainApp(this);
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
             if(isNotMobile()) {
+                MenuGraphicController graphicController;
                 loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("DesktopView/Menu.fxml")));
                 Pane paneMenu = loaderMenu.load();
 
@@ -137,17 +137,21 @@ public class MainApp{
                 this.getPrimaryPane().setTop(paneMenu);
 
                 // Give the controller access to the main app.
+                graphicController = loaderMenu.getController();
+                controller.setGraphicController(graphicController);
+                graphicController.setController(controller);
             } else {
+                MenuPhoneGraphicController graphicController;
                 loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("SmartphoneView/MenuPhone.fxml")));
                 Pane paneMenu = loaderMenu.load();
 
                 // Set menu overview into the top of root layout.
                 this.getPrimaryPane().setBottom(paneMenu);
+                graphicController = loaderMenu.getController();
+                controller.setGraphicController(graphicController);
+                graphicController.setController(controller);
             }
             // Give the controller access to the main app.
-            graphicController = loaderMenu.getController();
-            controller.setGraphicController(graphicController);
-            graphicController.setController(controller);
             controller.setUser(this.user);
         } catch (IOException e) {
             Logger logger = Logger.getLogger(MainApp.class.getName());
