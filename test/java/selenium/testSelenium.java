@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class testSelenium {
     public static Double RateValue () {
+        System.setProperty("webdriver.chrome.whitelistedIps", "");
         System.setProperty("webdriver.chrome.driver", "trunk/drivers/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.imdb.com/title/tt0273255/");
