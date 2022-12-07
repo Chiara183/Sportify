@@ -11,7 +11,7 @@ public class testSelenium {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.imdb.com/title/tt0273255/");
 
-        String TxtBoxContent = driver.findElement(By.xpath("//*[@id=\"__next\"]/main/div/section[1]/section/div[3]/section/section/div[1]/div[2]/div/div[1]/a/div/div/div[2]/div[1]/span[1]")).getAttribute("innerText");
+        String TxtBoxContent = driver.findElement(By.xpath("/html/body/div[2]/main/div/section[1]/section/div[3]/section/section/div[2]/div[2]/div/div[1]/a/div/div/div[2]/div[1]/span[1]")).getAttribute("innerText");
         String rateS = TxtBoxContent.replace(",",".");
         Double rate = Double.parseDouble(rateS);
 
