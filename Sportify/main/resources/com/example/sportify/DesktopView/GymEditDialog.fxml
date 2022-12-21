@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="335.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.desktop.GymEditDesktopGraphicController">
+    <GridPane prefHeight="275.0" prefWidth="391.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.0" minWidth="10.0" prefWidth="102.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.0" minWidth="10.0" prefWidth="326.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <Label text="First Name">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <Label text="Last Name" GridPane.rowIndex="1">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <Label text="Username" GridPane.rowIndex="2">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <Label text="Password" GridPane.rowIndex="3">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <Label text="Email" GridPane.rowIndex="4">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <Label text="Birthday" GridPane.rowIndex="5">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <TextField fx:id="firstName" maxWidth="233.0" visible="false" GridPane.columnIndex="1" />
+        <TextField fx:id="lastName" maxWidth="233.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label fx:id="usernameLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label fx:id="passwordLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <TextField fx:id="email" maxWidth="233.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Label fx:id="birthday" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <Label fx:id="firstNameLabel" GridPane.columnIndex="1" />
+        <Label fx:id="lastNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="username" maxWidth="233.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextField fx:id="password" maxWidth="233.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label fx:id="emailLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Label fx:id="modifyFirstName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+            <font>
+                <Font name="Comic Sans MS Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <Label fx:id="modifyLastName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <font>
+                <Font name="Comic Sans MS Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <Label fx:id="modifyUsername" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <font>
+                <Font name="Comic Sans MS Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <Label fx:id="modifyPassword" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <font>
+                <Font name="Comic Sans MS Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <Label fx:id="modifyEmail" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <font>
+                <Font name="Comic Sans MS Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <CheckBox fx:id="toggleFirstName" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+        <CheckBox fx:id="toggleLastName" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <CheckBox fx:id="toggleUsername" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+        <CheckBox fx:id="togglePassword" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+        <CheckBox fx:id="toggleEmail" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+      <Label text="Gym name" GridPane.rowIndex="6" />
+      <TextField fx:id="gymName" maxWidth="233.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <TextField fx:id="address" maxWidth="233.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label text="Address" GridPane.rowIndex="7" />
+      <Label text="Telephone" GridPane.rowIndex="8" />
+      <TextField fx:id="telephone" maxWidth="233.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        <Label fx:id="gymNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Label fx:id="addressLabel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <Label fx:id="telephoneLabel" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        <Label fx:id="modifyGymName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+            <font>
+                <Font name="Comic Sans MS Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <Label fx:id="modifyAddress" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <font>
+                <Font name="Comic Sans MS Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <Label fx:id="modifyTelephone" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+            <font>
+                <Font name="Comic Sans MS Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <CheckBox fx:id="toggleGymName" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+        <CheckBox fx:id="toggleAddress" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+        <CheckBox fx:id="toggleTelephone" alignment="CENTER" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+    </GridPane>
+   <ButtonBar layoutX="164.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="180.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+     <buttons>
+       <Button fx:id="ok" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#okAction" text="Ok" />
+         <Button fx:id="cancel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelAction" text="Cancel" />
+     </buttons>
+   </ButtonBar>
+   <stylesheets>
+      <URL value="@../Style/Button.css" />
+      <URL value="@../Style/UserIcon.css" />
+   </stylesheets>
+</AnchorPane>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.phone.SportQuizPhoneGraphicController">
+    <TextField fx:id="age" alignment="CENTER" layoutX="35.0" layoutY="120.0" prefHeight="40.0" prefWidth="148.0"
+               promptText="Insert a number from 0 to 99"/>
+    <ProgressIndicator layoutX="78.0" layoutY="199.0" progress="0.3" />
+    <Text layoutX="40.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How old are you?" textAlignment="CENTER">
+        <font>
+            <Font name="Comic Sans MS" size="24.0" />
+        </font>
+    </Text>
+    <Button layoutX="204.0" layoutY="128.0" onAction="#getAge" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" />
+    <ImageView fx:id="ok" accessibleRole="BUTTON" fitHeight="33.0" fitWidth="35.0" layoutX="201.0" layoutY="124.0" onMouseClicked="#getAge">
+        <Image url="@../Images/tick.png" />
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+    </ImageView>
+</Pane>

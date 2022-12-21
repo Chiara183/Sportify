@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.phone.GymEditPhoneGraphicController">
+   <Pane prefHeight="336.0" prefWidth="270.0">
+   <TextField fx:id="firstName" alignment="CENTER" layoutX="19.0" layoutY="52.0" prefHeight="25.0" prefWidth="191.0" promptText="First Name" style="-fx-background-radius: 30;" visible="false" />
+   <Label fx:id="firstNameLabel" alignment="CENTER" layoutX="19.0" layoutY="52.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-radius: 30;" />
+   <TextField fx:id="lastName" alignment="CENTER" layoutX="19.0" layoutY="82.0" prefHeight="25.0" prefWidth="191.0" promptText="Last Name" style="-fx-background-radius: 30;" visible="false" />
+   <Label fx:id="lastNameLabel" alignment="CENTER" layoutX="19.0" layoutY="82.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-radius: 30;" />
+   <TextField fx:id="username" alignment="CENTER" layoutX="19.0" layoutY="112.0" prefHeight="25.0" prefWidth="191.0" promptText="Username" style="-fx-background-radius: 30;" visible="false" />
+   <Label fx:id="usernameLabel" alignment="CENTER" layoutX="19.0" layoutY="112.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-radius: 30;" />
+   <TextField fx:id="password" alignment="CENTER" layoutX="19.0" layoutY="142.0" prefHeight="25.0" prefWidth="191.0" promptText="Password" style="-fx-background-radius: 30;" visible="false" />
+   <Label fx:id="passwordLabel" alignment="CENTER" layoutX="19.0" layoutY="142.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-radius: 30;" />
+   <TextField fx:id="email" alignment="CENTER" layoutX="19.0" layoutY="172.0" prefHeight="25.0" prefWidth="191.0" promptText="Email" style="-fx-background-radius: 30;" visible="false" />
+   <Label fx:id="emailLabel" alignment="CENTER" layoutX="19.0" layoutY="172.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-radius: 30;" />
+   <TextField fx:id="gymName" alignment="CENTER" layoutX="19.0" layoutY="232.0" prefHeight="25.0" prefWidth="191.0" promptText="Gym Name" style="-fx-background-radius: 30;" visible="false" />
+   <Label fx:id="gymNameLabel" alignment="CENTER" layoutX="19.0" layoutY="232.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-radius: 30;" />
+   <TextField fx:id="address" alignment="CENTER" layoutX="19.0" layoutY="262.0" prefHeight="25.0" prefWidth="191.0" promptText="Gym Address" style="-fx-background-radius: 30;" visible="false" />
+   <Label fx:id="addressLabel" alignment="CENTER" layoutX="19.0" layoutY="262.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-radius: 30;" />
+   <TextField fx:id="telephone" alignment="CENTER" layoutX="19.0" layoutY="292.0" prefHeight="25.0" prefWidth="191.0" promptText="Gym Telephone" style="-fx-background-radius: 30;" visible="false" />
+   <Label fx:id="telephoneLabel" alignment="CENTER" layoutX="19.0" layoutY="292.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-radius: 30;" />
+   <Label fx:id="modifyFirstName" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="51.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+      <font>
+         <Font name="Comic Sans MS" size="20.0" />
+      </font>
+   </Label>
+   <Label fx:id="modifyLastName" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="81.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+      <font>
+         <Font name="Comic Sans MS" size="20.0" />
+      </font>
+   </Label>
+   <Label fx:id="modifyUsername" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="111.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+      <font>
+         <Font name="Comic Sans MS" size="20.0" />
+      </font>
+   </Label>
+   <Label fx:id="modifyPassword" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="141.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+      <font>
+         <Font name="Comic Sans MS" size="20.0" />
+      </font>
+   </Label>
+   <Label fx:id="modifyEmail" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="171.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+      <font>
+         <Font name="Comic Sans MS" size="20.0" />
+      </font>
+   </Label>
+   <Label fx:id="modifyBirthday" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="201.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+      <font>
+         <Font name="Comic Sans MS" size="20.0" />
+      </font>
+   </Label>
+   <Label fx:id="modifyGymName" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="231.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+      <font>
+         <Font name="Comic Sans MS" size="20.0" />
+      </font>
+   </Label>
+   <Label fx:id="modifyAddress" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="261.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+      <font>
+         <Font name="Comic Sans MS" size="20.0" />
+      </font>
+   </Label>
+   <Label fx:id="modifyTelephone" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="291.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" prefWidth="21.0" text="🖉" textAlignment="CENTER">
+      <font>
+         <Font name="Comic Sans MS" size="20.0" />
+      </font>
+   </Label>
+   <CheckBox fx:id="toggleFirstName" layoutX="230.0" layoutY="55.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </CheckBox>
+   <CheckBox fx:id="toggleLastName" layoutX="229.0" layoutY="85.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </CheckBox>
+   <CheckBox fx:id="toggleUsername" layoutX="229.0" layoutY="115.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </CheckBox>
+   <CheckBox fx:id="togglePassword" layoutX="230.0" layoutY="145.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </CheckBox>
+   <CheckBox fx:id="toggleEmail" layoutX="230.0" layoutY="175.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </CheckBox>
+   <CheckBox fx:id="toggleBirthday" layoutX="230.0" layoutY="205.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </CheckBox>
+   <CheckBox fx:id="toggleGymName" layoutX="230.0" layoutY="235.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </CheckBox>
+   <CheckBox fx:id="toggleAddress" layoutX="230.0" layoutY="265.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </CheckBox>
+   <CheckBox fx:id="toggleTelephone" layoutX="230.0" layoutY="295.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="0.0" visible="false">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </CheckBox>
+   <Label fx:id="birthday" layoutX="80.0" layoutY="203.0" prefHeight="25.0" prefWidth="141.0" />
+   <Pane fx:id="birthdayPane" layoutX="86.0" layoutY="201.0" prefHeight="28.0" prefWidth="111.0" visible="false">
+      <Text layoutX="39.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="9.67578125">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="89.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="9.67578125">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="dayOfBirth" alignment="CENTER" prefHeight="25.0" prefWidth="37.0" promptText="gg" style="-fx-background-radius: 30;">
+         <font>
+            <Font name="Comic Sans MS" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="birthYear" layoutX="99.0" layoutY="2.0" prefHeight="25.0" prefWidth="40.0" promptText="aaaa" style="-fx-background-radius: 30;" />
+      <TextField fx:id="birthMonth" layoutX="52.0" layoutY="1.0" prefHeight="25.0" prefWidth="37.0" promptText="mm" style="-fx-background-radius: 30;" />
+   </Pane>
+   <Text layoutX="19.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthday">
+      <font>
+         <Font name="Comic Sans MS" size="12.0" />
+      </font>
+   </Text>
+   <ImageView accessibleRole="BUTTON" fitHeight="71.0" fitWidth="80.0" layoutX="99.0" layoutY="-35.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../Images/login_preview_rev_1.png" />
+   </ImageView>
+      <ImageView fitHeight="28.0" fitWidth="30.0" layoutX="173.0" layoutY="2.0" onMouseClicked="#gymInfoAction"
+                 onTouchPressed="#gymInfoAction" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND"/>
+         </cursor>
+         <Image url="@../Images/info_preview_rev_1.png"/>
+      </ImageView>
+</Pane>
+</AnchorPane>
