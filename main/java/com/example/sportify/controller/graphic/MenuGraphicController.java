@@ -2,6 +2,7 @@ package com.example.sportify.controller.graphic;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.*;
+import com.example.sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

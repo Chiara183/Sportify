@@ -1,5 +1,6 @@
-package com.example.sportify.controller.graphic;
+package com.example.sportify.controller.graphic.desktop;
 
+import com.example.sportify.controller.graphic.GymEditGraphicController;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -7,7 +8,7 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class GymEditDesktopGraphicController extends GymEditGraphicController{
+public class GymEditDesktopGraphicController extends GymEditGraphicController {
     /** The action of the button.*/
     @Override
     @FXML

@@ -34,6 +34,5 @@ public abstract class Subject {
         }
     }
 
-
     protected abstract void notifyAddCourse();
 }

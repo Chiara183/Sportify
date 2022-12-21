@@ -1,9 +1,10 @@
-package com.example.sportify.controller.graphic;
+package com.example.sportify.controller.graphic.phone;
 
+import com.example.sportify.controller.graphic.SignUpGraphicController;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 
-public class SignUpPhoneGraphicController extends SignUpGraphicController{
+public class SignUpPhoneGraphicController extends SignUpGraphicController {
 
     protected MenuPhoneGraphicController graphicMenuController;
 

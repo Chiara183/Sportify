@@ -1,7 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.controller.graphic.GraphicController;
-import com.example.sportify.controller.graphic.HomePhoneGraphicController;
+import com.example.sportify.controller.graphic.phone.HomePhoneGraphicController;
 import com.example.sportify.controller.graphic.MenuGraphicController;
 import com.example.sportify.user.User;
 import javafx.fxml.FXMLLoader;

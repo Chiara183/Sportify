@@ -1,11 +1,12 @@
-package com.example.sportify.controller.graphic;
+package com.example.sportify.controller.graphic.desktop;
 
+import com.example.sportify.controller.graphic.UserEditGraphicController;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class UserEditDesktopGraphicController extends UserEditGraphicController{
+public class UserEditDesktopGraphicController extends UserEditGraphicController {
 
     /** The action of the button.*/
     @Override

@@ -35,4 +35,8 @@ public class SignUpGymPhoneGraphicController extends SignUpGymGraphicController{
             helpMethod(coords);
         }
     }
+
+    public void calledSubmitAction(){
+        submitActionSignUpGym();
+    }
 }

@@ -137,7 +137,11 @@ public abstract class EditGraphicController implements GraphicController{
 
     /** The action of the button.*/
     @FXML
-    abstract void okAction();
+    protected abstract void okAction();
+
+    public void calledOkAction(){
+        okAction();
+    }
     @FXML
     protected void cancelAction() {
         Stage stage = (Stage) cancel.getScene().getWindow();

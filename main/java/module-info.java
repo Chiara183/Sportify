@@ -25,4 +25,8 @@ module com.example.sportify {
     opens com.example.sportify.controller.graphic to javafx.fxml;
     exports com.example.sportify.bean;
     opens com.example.sportify.bean to javafx.fxml;
+    exports com.example.sportify.controller.graphic.phone;
+    opens com.example.sportify.controller.graphic.phone to javafx.fxml;
+    exports com.example.sportify.controller.graphic.desktop;
+    opens com.example.sportify.controller.graphic.desktop to javafx.fxml;
 }

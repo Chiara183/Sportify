@@ -1,13 +1,14 @@
-package com.example.sportify.controller.graphic;
+package com.example.sportify.controller.graphic.phone;
 
 import com.example.sportify.DateUtil;
 import com.example.sportify.bean.UserEditBean;
+import com.example.sportify.controller.graphic.UserEditGraphicController;
 import javafx.fxml.FXML;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class UserEditPhoneGraphicController extends UserEditGraphicController{
+public class UserEditPhoneGraphicController extends UserEditGraphicController {
 
     /** Reference to bean*/
     protected final UserEditBean bean = new UserEditBean();

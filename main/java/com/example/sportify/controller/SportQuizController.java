@@ -4,7 +4,7 @@ import com.example.sportify.MainApp;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.MenuGraphicController;
 import com.example.sportify.controller.graphic.SportQuizGraphicController;
-import com.example.sportify.controller.graphic.SportQuizPhoneGraphicController;
+import com.example.sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;

@@ -1,7 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.MainApp;
-import com.example.sportify.controller.graphic.FindGymPhoneGraphicController;
+import com.example.sportify.controller.graphic.phone.FindGymPhoneGraphicController;
 import com.example.sportify.controller.graphic.GraphicController;
 import com.example.sportify.controller.graphic.MapGraphicController;
 import com.sothawo.mapjfx.Projection;

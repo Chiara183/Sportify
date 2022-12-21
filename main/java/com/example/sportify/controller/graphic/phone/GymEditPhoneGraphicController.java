@@ -1,11 +1,12 @@
-package com.example.sportify.controller.graphic;
+package com.example.sportify.controller.graphic.phone;
 
+import com.example.sportify.controller.graphic.GymEditGraphicController;
 import javafx.fxml.FXML;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class GymEditPhoneGraphicController extends GymEditGraphicController{
+public class GymEditPhoneGraphicController extends GymEditGraphicController {
 
     /** Go to gym info interface*/
     @FXML

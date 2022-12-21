@@ -1,7 +1,11 @@
-package com.example.sportify.controller.graphic;
+package com.example.sportify.controller.graphic.phone;
 
 import com.example.sportify.MainApp;
 import com.example.sportify.controller.*;
+import com.example.sportify.controller.graphic.EditGraphicController;
+import com.example.sportify.controller.graphic.LoginGraphicController;
+import com.example.sportify.controller.graphic.MenuGraphicController;
+import com.example.sportify.controller.graphic.SignUpGymPhoneGraphicController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -127,13 +131,13 @@ public class MenuPhoneGraphicController extends MenuGraphicController {
             login.submitActionLogin();
         } else if(controller.getView()==ControllerType.USER_EDIT) {
             EditGraphicController edit = (EditGraphicController) controller.getInstance();
-            edit.okAction();
+            edit.calledOkAction();
         } else if(controller.getView()==ControllerType.SIGN_UP || controller.getView()==ControllerType.SIGN_UP_GYM) {
             SignUpPhoneGraphicController sU = (SignUpPhoneGraphicController) controller.getInstance();
             sU.submit(controller.getView());
         } else if (controller.getView()==ControllerType.SIGN_UP_GYM2){
             SignUpGymPhoneGraphicController gym = (SignUpGymPhoneGraphicController) controller.getInstance();
-            gym.submitActionSignUpGym();
+            gym.calledSubmitAction();
         }
     }
 

@@ -1,7 +1,7 @@
 package com.example.sportify.controller;
 
 import com.example.sportify.controller.graphic.*;
-import com.example.sportify.controller.graphic.SportQuizPhoneGraphicController;
+import com.example.sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
 import com.example.sportify.user.User;
 import javafx.scene.control.Button;
 
