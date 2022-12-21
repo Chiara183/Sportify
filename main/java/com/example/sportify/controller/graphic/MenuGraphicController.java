@@ -260,7 +260,9 @@ public class MenuGraphicController implements GraphicController{
         controller.setButton(signOut, signIn, signUp, gymInfo, sportQuiz, findGym);
     }
     public void setLogin() {
-        controller.setView(ControllerType.LOGIN);
+        if(!this.controller.getMainApp().isExternalLogin()) {
+            controller.setView(ControllerType.LOGIN);
+        }
         controller.setButton(signOut, gymInfo, sportQuiz, findGym, signUp, signIn);
     }
     public void setGymInfo(String gym){

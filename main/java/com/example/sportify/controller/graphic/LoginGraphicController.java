@@ -49,7 +49,6 @@ public class LoginGraphicController extends AccessGraphicController{
         return this.submit;
     }
 
-
     @FXML
     public void setGoogle(){
         this.google = true;

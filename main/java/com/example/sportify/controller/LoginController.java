@@ -53,6 +53,10 @@ public class LoginController extends AccessController{
     public void home(){
         this.mainApp.setUser(this.user);
         this.mainApp.showHomeOverview();
+        if(external){
+            Stage stage = this.externalStage;
+            stage.close();
+        }
     }
 
     /** Check whether the credentials are authentic or not and do the right action*/
@@ -68,6 +72,8 @@ public class LoginController extends AccessController{
                 menu.setUser(this.user);
                 GymInfoGraphicController gymInfoGraphicController = new GymInfoGraphicController();
                 GymInfoController gym = new GymInfoController();
+                gym.setMainApp(this.mainApp);
+                gym.setUser(this.user);
                 gymInfoGraphicController.setController(gym);
                 gym.setGraphicController(gymInfoGraphicController);
                 loadUser(gym);
@@ -119,16 +125,11 @@ public class LoginController extends AccessController{
     private void loadUser(GymInfoController gym){
         if (Objects.equals(this.menu.getView(), ControllerType.GYM_INFO)){
             menu.setGymInfo(this.menu.getGym());
-            gym.setMainApp(this.mainApp);
-            gym.setUser(this.user);
-            gym.setMenu(menu);
-            gym.setSearchCache(this.searchCache);
-            gym.loadingGymName(this.menu.getGym());
         } else if (Objects.equals(this.menu.getView(), ControllerType.FIND_GYM) && this.menu.getGym() != null){
             menu.setFindGym();
             menu.setGym(this.menu.getGym());
-            gym.setMainApp(this.mainApp);
-            gym.setUser(this.user);
+        }
+        if (!Objects.equals(this.menu.getView(), null)) {
             gym.setMenu(menu);
             gym.setSearchCache(this.searchCache);
             gym.loadingGymName(this.menu.getGym());

@@ -90,6 +90,7 @@ public class MainApp{
     public boolean isNotMobile() {
         return !mobile;
     }
+    public boolean isExternalLogin(){return externalLogin;}
 
     /** Initializes the root layout.*/
     public void initRootLayout() {
@@ -127,7 +128,15 @@ public class MainApp{
     /** Shows menu overview inside the root layout.*/
     public MenuController menu() {
         MenuController controller = new MenuController();
-        menu = controller;
+        if(isExternalLogin()){
+            ControllerType type = menu.getView();
+            String gym = menu.getGym();
+            menu = controller;
+            menu.setView(type);
+            menu.setGym(gym);
+        } else {
+            menu = controller;
+        }
         controller.setMainApp(this);
         try {
             FXMLLoader loaderMenu = new FXMLLoader();

@@ -196,6 +196,7 @@ public class MapController extends Controller{
                 this.menu.setGymInfo(event.getMapLabel().getText());
             }
             gym.loadingGymName(event.getMapLabel().getText());
+            gym.menu.setView(ControllerType.GYM_INFO);
         }
     }
 
