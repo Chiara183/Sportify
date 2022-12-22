@@ -17,7 +17,7 @@
     <name>${project.groupId}:${project.artifactId}</name>
 
     <properties>
-        <sonar.organization>stitchml</sonar.organization>
+        <sonar.organization>chiara183</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
