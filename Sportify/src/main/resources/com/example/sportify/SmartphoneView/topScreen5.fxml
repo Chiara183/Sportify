@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.phone.MenuPhoneGraphicController">
+<Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sportify.controller.graphic.phone.MenuPhoneGraphicController">
     <HBox layoutX="191.0" layoutY="4.0" prefHeight="61.0" prefWidth="79.0">
         <ImageView accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#signOut" onSwipeLeft="#signOut" onSwipeRight="#signOut" onTouchPressed="#signOut" pickOnBounds="true" preserveRatio="true">
             <HBox.margin>

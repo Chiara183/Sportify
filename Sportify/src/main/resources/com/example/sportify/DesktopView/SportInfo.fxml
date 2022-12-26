@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sportify.controller.graphic.SportGraphicController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sportify.controller.graphic.SportGraphicController">
     <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="-2.0" prefHeight="500.0" prefWidth="830.0">
         <GridPane prefHeight="500.0" prefWidth="830.0">
             <columnConstraints>
