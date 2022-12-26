@@ -13,20 +13,20 @@ module com.example.sportify {
     requires json.simple;
     requires commons.validator;
 
-    opens com.example.sportify to javafx.fxml;
-    exports com.example.sportify;
-    exports com.example.sportify.controller;
-    opens com.example.sportify.controller to javafx.fxml;
-    exports com.example.sportify.auth;
-    opens com.example.sportify.auth to javafx.fxml;
-    exports com.example.sportify.user;
-    opens com.example.sportify.user to javafx.fxml;
-    exports com.example.sportify.controller.graphic;
-    opens com.example.sportify.controller.graphic to javafx.fxml;
-    exports com.example.sportify.bean;
-    opens com.example.sportify.bean to javafx.fxml;
-    exports com.example.sportify.controller.graphic.phone;
-    opens com.example.sportify.controller.graphic.phone to javafx.fxml;
-    exports com.example.sportify.controller.graphic.desktop;
-    opens com.example.sportify.controller.graphic.desktop to javafx.fxml;
+    opens sportify to javafx.fxml;
+    exports sportify;
+    exports sportify.controller;
+    opens sportify.controller to javafx.fxml;
+    exports sportify.auth;
+    opens sportify.auth to javafx.fxml;
+    exports sportify.user;
+    opens sportify.user to javafx.fxml;
+    exports sportify.controller.graphic;
+    opens sportify.controller.graphic to javafx.fxml;
+    exports sportify.bean;
+    opens sportify.bean to javafx.fxml;
+    exports sportify.controller.graphic.phone;
+    opens sportify.controller.graphic.phone to javafx.fxml;
+    exports sportify.controller.graphic.desktop;
+    opens sportify.controller.graphic.desktop to javafx.fxml;
 }
