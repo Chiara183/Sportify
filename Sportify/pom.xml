@@ -259,9 +259,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
                 <configuration>
-                    <release>11</release>
-                    <source>11</source>
-                    <target>11</target>
+                    <release>16</release>
+                    <source>16</source>
+                    <target>16</target>
                 </configuration>
             </plugin>
             <plugin>
