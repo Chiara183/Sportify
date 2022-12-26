@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46e0f1a3-1531-44f5-b56f-de4677cfe1c8" name="Changes" comment="Some change">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+    <list default="true" id="46e0f1a3-1531-44f5-b56f-de4677cfe1c8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/Style/Button.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/Style/Button.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/Style/ComboBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/Style/ComboBox.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/sportify/HomePhoneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/sportify/HomePhoneTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/sportify/StartingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/sportify/StartingTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +77,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672051077633</updated>
-      <workItem from="1672051079191" duration="3924000" />
+      <workItem from="1672051079191" duration="4511000" />
     </task>
     <task id="LOCAL-00001" summary="Try to make SonarCloud analysis">
       <created>1672051207234</created>
@@ -106,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672054786621</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Some change">
+      <created>1672055489343</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1672055489343</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
