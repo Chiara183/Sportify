@@ -11,8 +11,8 @@
         <relativePath/>
     </parent>
 
-    <groupId>main.java</groupId>
-    <artifactId>sportify</artifactId>
+    <groupId>sportify</groupId>
+    <artifactId>Sportify</artifactId>
     <version>3.1.0</version>
     <name>${project.groupId}:${project.artifactId}</name>
 
