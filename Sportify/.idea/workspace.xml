@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46e0f1a3-1531-44f5-b56f-de4677cfe1c8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="46e0f1a3-1531-44f5-b56f-de4677cfe1c8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +61,7 @@
   <component name="SvnConfiguration" cleanupOnStartRun="true">
     <configuration>C:\Users\Matteo\AppData\Roaming\Subversion</configuration>
     <supportedVersion>125</supportedVersion>
+    <option name="FORCE_UPDATE" value="true" />
   </component>
   <component name="SvnFileUrlMappingImpl">
     <option name="myMappingRoots">
@@ -89,7 +88,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672051077633</updated>
-      <workItem from="1672051079191" duration="5573000" />
+      <workItem from="1672051079191" duration="6241000" />
     </task>
     <task id="LOCAL-00001" summary="Try to make SonarCloud analysis">
       <created>1672051207234</created>
@@ -140,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672056434130</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Some change">
+      <created>1672059185974</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1672059185974</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
