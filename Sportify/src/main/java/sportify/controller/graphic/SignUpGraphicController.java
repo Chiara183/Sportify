@@ -69,7 +69,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
     /** The action of the buttons*/
     @FXML
     protected void submitActionSignUp() {
-        if(!this.bean.checkEmpty(username) || !this.bean.checkEmpty(password) || !this.bean.checkEmpty(email)){
+        if(this.bean.checkEmpty(username) || this.bean.checkEmpty(password) || this.bean.checkEmpty(email)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(controller.getMainApp().getPrimaryStage());
@@ -78,7 +78,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
             alert.setContentText("Please fill username, email and password field");
             alert.showAndWait();
         }
-        if(!bean.checkForNumbers(firstName) || !bean.checkForNumbers(lastName)){
+        if(bean.checkForNumbers(firstName) || bean.checkForNumbers(lastName)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(controller.getMainApp().getPrimaryStage());

@@ -5,46 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46e0f1a3-1531-44f5-b56f-de4677cfe1c8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/FindGym.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/FindGym.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/GymEditDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/GymEditDialog.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/GymInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/GymInfo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/Home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/Map.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/Map.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/Menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/Menu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/SignUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/SignUp.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/SignUpGym.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/SignUpGym.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/Sport.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/Sport.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/SportInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/SportInfo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/SportQuiz.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/SportQuiz.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/SportQuizEnv.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/SportQuizEnv.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/SportQuizType.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/SportQuizType.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/UserEditDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/DesktopView/UserEditDialog.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/FindGymPhone0.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/FindGymPhone0.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/GymEditDialogPhone5.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/GymEditDialogPhone5.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/GymInfoCoursePhone0.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/GymInfoCoursePhone0.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/GymInfoPhone1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/GymInfoPhone1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/GymInfoReviewPhone0.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/GymInfoReviewPhone0.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/HomePhone.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/HomePhone.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/LoginPhone2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/LoginPhone2.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/MapPhone.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/MapPhone.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/MenuPhone.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/MenuPhone.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SignUpGym0Phone.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SignUpGym0Phone.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SignUpGym2Phone.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SignUpGym2Phone.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SignUpPhone2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SignUpPhone2.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SportInfoPhone0.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SportInfoPhone0.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SportPhone3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SportPhone3.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SportQuizEnvPhone1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SportQuizEnvPhone1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SportQuizPhone1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SportQuizPhone1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SportQuizTypePhone4.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/SportQuizTypePhone4.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/UserEditDialogPhone.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/UserEditDialogPhone.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/UserKind0.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/UserKind0.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/topScreen0.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/topScreen0.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/topScreen1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/topScreen1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/topScreen2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/topScreen2.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/topScreen3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/topScreen3.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/topScreen4.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/topScreen4.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/topScreen5.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sportify/SmartphoneView/topScreen5.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/bean/SignUpBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/bean/SignUpBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SignUpGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SignUpGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SignUpGymGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SignUpGymGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SignUpGymPhoneGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SignUpGymPhoneGraphicController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +24,9 @@
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2JRq7WsiYEjf0F3cAs3xCLg1RWB" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -110,7 +77,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672051077633</updated>
-      <workItem from="1672051079191" duration="2454000" />
+      <workItem from="1672051079191" duration="3209000" />
     </task>
     <task id="LOCAL-00001" summary="Try to make SonarCloud analysis">
       <created>1672051207234</created>
@@ -126,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672053246595</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Try to make SonarCloud analysis">
+      <created>1672054093681</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672054093681</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

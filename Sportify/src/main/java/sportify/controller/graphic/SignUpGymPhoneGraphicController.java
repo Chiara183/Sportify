@@ -11,7 +11,7 @@ public class SignUpGymPhoneGraphicController extends SignUpGymGraphicController{
     @Override
     @FXML
     protected void submitActionSignUpGym() {
-        if(!this.bean.checkEmpty(gymName) || !this.bean.checkEmpty(gymAddress) || !this.bean.checkEmpty(gymCity)){
+        if(this.bean.checkEmpty(gymName) || this.bean.checkEmpty(gymAddress) || this.bean.checkEmpty(gymCity)){
             //show error message
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.initOwner(controller.getMainApp().getPrimaryStage());
