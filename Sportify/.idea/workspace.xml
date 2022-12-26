@@ -4,106 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46e0f1a3-1531-44f5-b56f-de4677cfe1c8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/target" afterDir="true" />
-      <change afterPath="$PROJECT_DIR$/target/classes" afterDir="true" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com" afterDir="true" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example" afterDir="true" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify" afterDir="true" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView" afterDir="true" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/FindGym.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/GymEditDialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/GymInfo.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/Home.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/Login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/Map.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/Menu.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/RootLayout.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/SignUp.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/SignUpGym.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/Sport.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/SportInfo.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/SportQuiz.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/SportQuizEnv.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/SportQuizType.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/DesktopView/UserEditDialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images" afterDir="true" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/1638265809410.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/8675330_ic_fluent_sport_regular_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/FinalFacebookIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/Gym_preview_rev_1 (1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/Sfondo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/Share.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/Sportify icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/Sportify_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/ab04085b37bbc62f7715d74f530df8ed.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/backArrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/backArrowRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/end1_preview_rev_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/facebook-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/home_preview_rev_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/info_preview_rev_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/login_preview_rev_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/logout.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/maps.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/quiz_preview_rev_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/sign-in-with-google-icon-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/signin-google-button.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/sport_-diversi_.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/tick.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Images/user.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView" afterDir="true" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/FindGymPhone0.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/GymEditDialogPhone5.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/GymInfoCoursePhone0.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/GymInfoPhone1.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/GymInfoReviewPhone0.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/HomePhone.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/LoginPhone2.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/MapPhone.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/MenuPhone.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/RootLayoutPhone.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/SignUpGym0Phone.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/SignUpGym2Phone.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/SignUpPhone2.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/SportInfoPhone0.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/SportPhone3.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/SportQuizEnvPhone1.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/SportQuizPhone1.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/SportQuizTypePhone4.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/UserEditDialogPhone.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/UserKind0.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/topScreen0.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/topScreen1.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/topScreen2.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/topScreen3.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/topScreen4.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/SmartphoneView/topScreen5.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style" afterDir="true" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/Button.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/ComboBox.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/FindGym.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/HomeGUI.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/Login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/Map.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/RootLayout.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/SignUp.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/SignUpGym.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/SportQuiz.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/SportQuizEnv.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/SportQuizType.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/Style/UserIcon.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/StyleSmartPhone" afterDir="true" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/StyleSmartPhone/ButtonPhone.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/StyleSmartPhone/HomePhone.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/StyleSmartPhone/RootLayoutPhone.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/sportify/StyleSmartPhone/SignUpPhone.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/server.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/generated-sources" afterDir="true" />
-      <change afterPath="$PROJECT_DIR$/target/generated-sources/annotations" afterDir="true" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sonar-project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/sonar-project.properties" afterDir="false" />
-    </list>
+    <list default="true" id="46e0f1a3-1531-44f5-b56f-de4677cfe1c8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -190,7 +91,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672051077633</updated>
-      <workItem from="1672051079191" duration="13405000" />
+      <workItem from="1672051079191" duration="13712000" />
     </task>
     <task id="LOCAL-00001" summary="Try to make SonarCloud analysis">
       <created>1672051207234</created>
@@ -409,7 +310,21 @@
       <option name="project" value="LOCAL" />
       <updated>1672066984596</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Some change">
+      <created>1672070051276</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1672070051276</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Some change">
+      <created>1672070236776</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1672070236776</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
