@@ -255,7 +255,7 @@
                 <version>3.10.1</version>
                 <configuration>
                     <!--<release>17</release>-->
-                    <source>1.8</source>
+                    <source>16</source>
                     <target>1.8</target>
                 </configuration>
             </plugin>
