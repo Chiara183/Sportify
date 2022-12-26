@@ -14,7 +14,7 @@
     <groupId>sportify</groupId>
     <artifactId>Sportify</artifactId>
     <version>3.1.0</version>
-    <name>${project.groupId}:${project.artifactId}</name>
+    <name>${project.artifactId}</name>
 
     <properties>
         <sonar.organization>chiara183</sonar.organization>
