@@ -1,8 +1,8 @@
-package com.example.sportify.controller.graphic.phone;
+package sportify.controller.graphic.phone;
 
-import com.example.sportify.DateUtil;
-import com.example.sportify.bean.UserEditBean;
-import com.example.sportify.controller.graphic.UserEditGraphicController;
+import sportify.DateUtil;
+import sportify.bean.UserEditBean;
+import sportify.controller.graphic.UserEditGraphicController;
 import javafx.fxml.FXML;
 
 import java.time.LocalDate;

@@ -1,10 +1,10 @@
-package com.example.sportify.controller;
+package sportify.controller;
 
-import com.example.sportify.Adapter;
-import com.example.sportify.MainApp;
-import com.example.sportify.Submit;
-import com.example.sportify.controller.graphic.GraphicController;
-import com.example.sportify.controller.graphic.SignUpGraphicController;
+import sportify.Adapter;
+import sportify.MainApp;
+import sportify.Submit;
+import sportify.controller.graphic.GraphicController;
+import sportify.controller.graphic.SignUpGraphicController;
 import javafx.scene.control.Alert;
 
 import java.util.Map;

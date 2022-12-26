@@ -1,4 +1,4 @@
-package com.example.sportify.controller.graphic;
+package sportify.controller.graphic;
 
 import javafx.fxml.FXML;
 

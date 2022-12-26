@@ -1,9 +1,9 @@
-package com.example.sportify.controller.graphic.phone;
+package sportify.controller.graphic.phone;
 
-import com.example.sportify.controller.Controller;
-import com.example.sportify.controller.ControllerType;
-import com.example.sportify.controller.FindGymController;
-import com.example.sportify.controller.graphic.GraphicController;
+import sportify.controller.Controller;
+import sportify.controller.ControllerType;
+import sportify.controller.FindGymController;
+import sportify.controller.graphic.GraphicController;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 

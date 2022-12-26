@@ -1,6 +1,6 @@
-package com.example.sportify;
+package sportify;
 
-import com.example.sportify.controller.graphic.LoginGraphicController;
+import sportify.controller.graphic.LoginGraphicController;
 
 public class AdapterLogin implements Login{
 

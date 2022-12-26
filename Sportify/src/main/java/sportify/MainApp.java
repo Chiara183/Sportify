@@ -1,12 +1,12 @@
-package com.example.sportify;
+package sportify;
 
-import com.example.sportify.controller.*;
-import com.example.sportify.controller.graphic.*;
-import com.example.sportify.controller.graphic.phone.MenuPhoneGraphicController;
-import com.example.sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
-import com.example.sportify.controller.graphic.phone.FindGymPhoneGraphicController;
-import com.example.sportify.controller.graphic.phone.HomePhoneGraphicController;
-import com.example.sportify.user.User;
+import sportify.controller.*;
+import sportify.controller.graphic.*;
+import sportify.controller.graphic.phone.MenuPhoneGraphicController;
+import sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
+import sportify.controller.graphic.phone.FindGymPhoneGraphicController;
+import sportify.controller.graphic.phone.HomePhoneGraphicController;
+import sportify.user.User;
 import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

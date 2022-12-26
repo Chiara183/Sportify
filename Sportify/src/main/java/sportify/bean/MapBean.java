@@ -1,4 +1,4 @@
-package com.example.sportify.bean;
+package sportify.bean;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;

@@ -1,6 +1,6 @@
-package com.example.sportify.controller.graphic;
+package sportify.controller.graphic;
 
-import com.example.sportify.OpenStreetMapUtils;
+import sportify.OpenStreetMapUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 

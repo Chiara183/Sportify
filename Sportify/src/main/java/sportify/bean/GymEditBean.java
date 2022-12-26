@@ -1,6 +1,6 @@
-package com.example.sportify.bean;
+package sportify.bean;
 
-import com.example.sportify.DateUtil;
+import sportify.DateUtil;
 import javafx.scene.control.TextField;
 import org.apache.commons.validator.routines.EmailValidator;
 

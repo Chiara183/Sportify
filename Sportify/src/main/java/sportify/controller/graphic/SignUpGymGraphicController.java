@@ -1,9 +1,9 @@
-package com.example.sportify.controller.graphic;
+package sportify.controller.graphic;
 
-import com.example.sportify.OpenStreetMapUtils;
-import com.example.sportify.bean.SignUpBean;
-import com.example.sportify.controller.Controller;
-import com.example.sportify.controller.SignUpGymController;
+import sportify.OpenStreetMapUtils;
+import sportify.bean.SignUpBean;
+import sportify.controller.Controller;
+import sportify.controller.SignUpGymController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;

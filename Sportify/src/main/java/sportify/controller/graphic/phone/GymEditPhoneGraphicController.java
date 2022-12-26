@@ -1,6 +1,6 @@
-package com.example.sportify.controller.graphic.phone;
+package sportify.controller.graphic.phone;
 
-import com.example.sportify.controller.graphic.GymEditGraphicController;
+import sportify.controller.graphic.GymEditGraphicController;
 import javafx.fxml.FXML;
 
 import java.time.LocalDate;

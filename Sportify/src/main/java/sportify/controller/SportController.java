@@ -1,10 +1,10 @@
-package com.example.sportify.controller;
+package sportify.controller;
 
-import com.example.sportify.DAO;
-import com.example.sportify.MainApp;
-import com.example.sportify.controller.graphic.GraphicController;
-import com.example.sportify.controller.graphic.MenuGraphicController;
-import com.example.sportify.controller.graphic.SportGraphicController;
+import sportify.DAO;
+import sportify.MainApp;
+import sportify.controller.graphic.GraphicController;
+import sportify.controller.graphic.MenuGraphicController;
+import sportify.controller.graphic.SportGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 

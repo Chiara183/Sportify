@@ -1,8 +1,8 @@
-package com.example.sportify;
+package sportify;
 
-import com.example.sportify.user.ClassicUser;
-import com.example.sportify.user.GymUser;
-import com.example.sportify.user.User;
+import sportify.user.ClassicUser;
+import sportify.user.GymUser;
+import sportify.user.User;
 
 import java.security.SecureRandom;
 import java.util.*;

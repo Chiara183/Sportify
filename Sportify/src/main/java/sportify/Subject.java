@@ -1,4 +1,4 @@
-package com.example.sportify;
+package sportify;
 
 import java.util.List;
 import java.util.Vector;

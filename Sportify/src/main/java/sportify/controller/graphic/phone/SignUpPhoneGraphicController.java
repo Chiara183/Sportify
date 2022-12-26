@@ -1,6 +1,6 @@
-package com.example.sportify.controller.graphic.phone;
+package sportify.controller.graphic.phone;
 
-import com.example.sportify.controller.graphic.SignUpGraphicController;
+import sportify.controller.graphic.SignUpGraphicController;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 

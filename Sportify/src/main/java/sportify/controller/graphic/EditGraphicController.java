@@ -1,9 +1,9 @@
-package com.example.sportify.controller.graphic;
+package sportify.controller.graphic;
 
-import com.example.sportify.controller.Controller;
-import com.example.sportify.controller.ControllerType;
-import com.example.sportify.controller.EditController;
-import com.example.sportify.user.User;
+import sportify.controller.Controller;
+import sportify.controller.ControllerType;
+import sportify.controller.EditController;
+import sportify.user.User;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

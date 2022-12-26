@@ -1,10 +1,10 @@
-package com.example.sportify.controller.graphic;
+package sportify.controller.graphic;
 
-import com.example.sportify.bean.GymEditBean;
-import com.example.sportify.controller.Controller;
-import com.example.sportify.controller.ControllerType;
-import com.example.sportify.controller.GymEditController;
-import com.example.sportify.user.GymUser;
+import sportify.bean.GymEditBean;
+import sportify.controller.Controller;
+import sportify.controller.ControllerType;
+import sportify.controller.GymEditController;
+import sportify.user.GymUser;
 import javafx.fxml.FXML;
 
 import java.util.Objects;

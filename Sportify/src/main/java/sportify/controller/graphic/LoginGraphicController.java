@@ -1,11 +1,11 @@
-package com.example.sportify.controller.graphic;
+package sportify.controller.graphic;
 
-import com.example.sportify.AdapterLogin;
-import com.example.sportify.auth.OAuthGoogleAuthenticator;
-import com.example.sportify.bean.LoginBean;
-import com.example.sportify.controller.Controller;
-import com.example.sportify.controller.ControllerType;
-import com.example.sportify.controller.LoginController;
+import sportify.AdapterLogin;
+import sportify.auth.OAuthGoogleAuthenticator;
+import sportify.bean.LoginBean;
+import sportify.controller.Controller;
+import sportify.controller.ControllerType;
+import sportify.controller.LoginController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;

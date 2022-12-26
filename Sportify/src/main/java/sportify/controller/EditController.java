@@ -1,8 +1,8 @@
-package com.example.sportify.controller;
+package sportify.controller;
 
-import com.example.sportify.controller.graphic.EditGraphicController;
-import com.example.sportify.controller.graphic.GraphicController;
-import com.example.sportify.user.User;
+import sportify.controller.graphic.EditGraphicController;
+import sportify.controller.graphic.GraphicController;
+import sportify.user.User;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

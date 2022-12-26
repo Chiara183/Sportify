@@ -1,11 +1,11 @@
-package com.example.sportify.controller.graphic.phone;
+package sportify.controller.graphic.phone;
 
-import com.example.sportify.MainApp;
-import com.example.sportify.controller.*;
-import com.example.sportify.controller.graphic.EditGraphicController;
-import com.example.sportify.controller.graphic.LoginGraphicController;
-import com.example.sportify.controller.graphic.MenuGraphicController;
-import com.example.sportify.controller.graphic.SignUpGymPhoneGraphicController;
+import sportify.MainApp;
+import sportify.controller.*;
+import sportify.controller.graphic.EditGraphicController;
+import sportify.controller.graphic.LoginGraphicController;
+import sportify.controller.graphic.MenuGraphicController;
+import sportify.controller.graphic.SignUpGymPhoneGraphicController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;

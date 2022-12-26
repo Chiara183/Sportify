@@ -1,4 +1,4 @@
-package com.example.sportify.controller;
+package sportify.controller;
 
 public enum ControllerType {
     FIND_GYM, GYM_INFO, HOME,

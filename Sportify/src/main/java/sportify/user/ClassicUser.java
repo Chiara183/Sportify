@@ -1,4 +1,4 @@
-package com.example.sportify.user;
+package sportify.user;
 
 import javafx.beans.property.SimpleStringProperty;
 

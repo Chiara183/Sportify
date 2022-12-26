@@ -1,4 +1,4 @@
-package com.example.sportify.controller;
+package sportify.controller;
 
 public class UserEditController extends EditController{
 

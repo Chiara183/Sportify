@@ -1,6 +1,6 @@
-package com.example.sportify.controller.graphic.desktop;
+package sportify.controller.graphic.desktop;
 
-import com.example.sportify.controller.graphic.UserEditGraphicController;
+import sportify.controller.graphic.UserEditGraphicController;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 

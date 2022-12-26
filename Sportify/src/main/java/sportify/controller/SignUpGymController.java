@@ -1,12 +1,12 @@
-package com.example.sportify.controller;
+package sportify.controller;
 
-import com.example.sportify.DBConnection;
-import com.example.sportify.IO;
-import com.example.sportify.MainApp;
-import com.example.sportify.Submit;
-import com.example.sportify.controller.graphic.GraphicController;
-import com.example.sportify.controller.graphic.MenuGraphicController;
-import com.example.sportify.controller.graphic.SignUpGymGraphicController;
+import sportify.DBConnection;
+import sportify.IO;
+import sportify.MainApp;
+import sportify.Submit;
+import sportify.controller.graphic.GraphicController;
+import sportify.controller.graphic.MenuGraphicController;
+import sportify.controller.graphic.SignUpGymGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 

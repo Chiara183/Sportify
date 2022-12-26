@@ -1,9 +1,9 @@
-package com.example.sportify.auth;
+package sportify.auth;
 
-import com.example.sportify.DAO;
-import com.example.sportify.MainApp;
-import com.example.sportify.Submit;
-import com.example.sportify.user.User;
+import sportify.DAO;
+import sportify.MainApp;
+import sportify.Submit;
+import sportify.user.User;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import org.json.JSONException;

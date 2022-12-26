@@ -1,6 +1,6 @@
-package com.example.sportify.controller.graphic;
+package sportify.controller.graphic;
 
-import com.example.sportify.controller.graphic.phone.FindGymPhoneGraphicController;
+import sportify.controller.graphic.phone.FindGymPhoneGraphicController;
 import javafx.fxml.FXML;
 
 public class FindGymGraphicController extends FindGymPhoneGraphicController implements GraphicController{

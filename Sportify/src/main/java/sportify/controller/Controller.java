@@ -1,8 +1,8 @@
-package com.example.sportify.controller;
+package sportify.controller;
 
-import com.example.sportify.MainApp;
-import com.example.sportify.controller.graphic.GraphicController;
-import com.example.sportify.user.User;
+import sportify.MainApp;
+import sportify.controller.graphic.GraphicController;
+import sportify.user.User;
 
 public abstract class Controller{
 

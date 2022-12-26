@@ -1,4 +1,4 @@
-package com.example.sportify;
+package sportify;
 
 public interface Login {
 

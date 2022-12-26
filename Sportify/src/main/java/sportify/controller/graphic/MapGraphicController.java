@@ -1,10 +1,10 @@
-package com.example.sportify.controller.graphic;
+package sportify.controller.graphic;
 
-import com.example.sportify.OpenStreetMapUtils;
-import com.example.sportify.bean.MapBean;
-import com.example.sportify.controller.Controller;
-import com.example.sportify.controller.ControllerType;
-import com.example.sportify.controller.MapController;
+import sportify.OpenStreetMapUtils;
+import sportify.bean.MapBean;
+import sportify.controller.Controller;
+import sportify.controller.ControllerType;
+import sportify.controller.MapController;
 import com.sothawo.mapjfx.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

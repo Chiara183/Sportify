@@ -1,10 +1,10 @@
-package com.example.sportify.controller;
+package sportify.controller;
 
-import com.example.sportify.DAO;
-import com.example.sportify.Observer;
-import com.example.sportify.controller.graphic.GraphicController;
-import com.example.sportify.controller.graphic.GymInfoGraphicController;
-import com.example.sportify.controller.graphic.MenuGraphicController;
+import sportify.DAO;
+import sportify.Observer;
+import sportify.controller.graphic.GraphicController;
+import sportify.controller.graphic.GymInfoGraphicController;
+import sportify.controller.graphic.MenuGraphicController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

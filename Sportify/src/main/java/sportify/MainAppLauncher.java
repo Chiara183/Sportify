@@ -1,4 +1,4 @@
-package com.example.sportify;
+package sportify;
 
 import com.sothawo.mapjfx.Projection;
 import javafx.application.Application;

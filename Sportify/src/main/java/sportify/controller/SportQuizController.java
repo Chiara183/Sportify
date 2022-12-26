@@ -1,10 +1,10 @@
-package com.example.sportify.controller;
+package sportify.controller;
 
-import com.example.sportify.MainApp;
-import com.example.sportify.controller.graphic.GraphicController;
-import com.example.sportify.controller.graphic.MenuGraphicController;
-import com.example.sportify.controller.graphic.SportQuizGraphicController;
-import com.example.sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
+import sportify.MainApp;
+import sportify.controller.graphic.GraphicController;
+import sportify.controller.graphic.MenuGraphicController;
+import sportify.controller.graphic.SportQuizGraphicController;
+import sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;

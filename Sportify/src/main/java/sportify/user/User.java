@@ -1,8 +1,8 @@
-package com.example.sportify.user;
+package sportify.user;
 
-import com.example.sportify.DAO;
-import com.example.sportify.MainApp;
-import com.example.sportify.Submit;
+import sportify.DAO;
+import sportify.MainApp;
+import sportify.Submit;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;

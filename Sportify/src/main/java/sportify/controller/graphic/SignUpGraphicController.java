@@ -1,10 +1,10 @@
-package com.example.sportify.controller.graphic;
+package sportify.controller.graphic;
 
-import com.example.sportify.MainApp;
-import com.example.sportify.bean.SignUpBean;
-import com.example.sportify.controller.Controller;
-import com.example.sportify.controller.ControllerType;
-import com.example.sportify.controller.SignUpController;
+import sportify.MainApp;
+import sportify.bean.SignUpBean;
+import sportify.controller.Controller;
+import sportify.controller.ControllerType;
+import sportify.controller.SignUpController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;

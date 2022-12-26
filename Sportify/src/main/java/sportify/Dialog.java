@@ -1,4 +1,4 @@
-package com.example.sportify;
+package sportify;
 
 import javax.swing.*;
 import javax.swing.border.Border;

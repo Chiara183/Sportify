@@ -1,7 +1,7 @@
-package com.example.sportify.controller;
+package sportify.controller;
 
-import com.example.sportify.MainApp;
-import com.example.sportify.Submit;
+import sportify.MainApp;
+import sportify.Submit;
 
 public abstract class AccessController extends Controller{
 

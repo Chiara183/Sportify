@@ -1,4 +1,4 @@
-package com.example.sportify.bean;
+package sportify.bean;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;

@@ -1,4 +1,4 @@
-package com.example.sportify.auth;
+package sportify.auth;
 
 public enum OAuthType {
     FACEBOOK, GOOGLE

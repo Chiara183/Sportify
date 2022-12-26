@@ -1,8 +1,8 @@
-package com.example.sportify;
+package sportify;
 
-import com.example.sportify.controller.SignUpController;
-import com.example.sportify.controller.SignUpGymController;
-import com.example.sportify.controller.graphic.SignUpGraphicController;
+import sportify.controller.SignUpController;
+import sportify.controller.SignUpGymController;
+import sportify.controller.graphic.SignUpGraphicController;
 
 import javax.swing.*;
 import java.util.Map;

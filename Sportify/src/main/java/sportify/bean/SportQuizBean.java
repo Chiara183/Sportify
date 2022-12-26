@@ -1,4 +1,4 @@
-package com.example.sportify.bean;
+package sportify.bean;
 
 public class SportQuizBean {
 

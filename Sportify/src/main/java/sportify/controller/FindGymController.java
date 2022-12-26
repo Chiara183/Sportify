@@ -1,9 +1,9 @@
-package com.example.sportify.controller;
+package sportify.controller;
 
-import com.example.sportify.MainApp;
-import com.example.sportify.controller.graphic.phone.FindGymPhoneGraphicController;
-import com.example.sportify.controller.graphic.GraphicController;
-import com.example.sportify.controller.graphic.MapGraphicController;
+import sportify.MainApp;
+import sportify.controller.graphic.phone.FindGymPhoneGraphicController;
+import sportify.controller.graphic.GraphicController;
+import sportify.controller.graphic.MapGraphicController;
 import com.sothawo.mapjfx.Projection;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;

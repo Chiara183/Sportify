@@ -1,6 +1,6 @@
-package com.example.sportify.user;
+package sportify.user;
 
-import com.example.sportify.DAO;
+import sportify.DAO;
 import javafx.beans.property.SimpleStringProperty;
 
 public class GymUser extends User {

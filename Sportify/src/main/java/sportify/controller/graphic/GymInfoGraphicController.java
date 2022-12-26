@@ -1,11 +1,11 @@
-package com.example.sportify.controller.graphic;
+package sportify.controller.graphic;
 
-import com.example.sportify.Subject;
-import com.example.sportify.bean.GymInfoBean;
-import com.example.sportify.controller.Controller;
-import com.example.sportify.controller.ControllerType;
-import com.example.sportify.controller.GymInfoController;
-import com.example.sportify.controller.MenuController;
+import sportify.Subject;
+import sportify.bean.GymInfoBean;
+import sportify.controller.Controller;
+import sportify.controller.ControllerType;
+import sportify.controller.GymInfoController;
+import sportify.controller.MenuController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

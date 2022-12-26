@@ -1,6 +1,6 @@
-package com.example.sportify.auth;
+package sportify.auth;
 
-import com.example.sportify.MainApp;
+import sportify.MainApp;
 
 
 public class OAuthGoogleAuthenticator extends OAuthAuthenticator{

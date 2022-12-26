@@ -1,11 +1,11 @@
-package com.example.sportify.controller.graphic.phone;
+package sportify.controller.graphic.phone;
 
-import com.example.sportify.NewException;
-import com.example.sportify.bean.SportQuizBean;
-import com.example.sportify.controller.Controller;
-import com.example.sportify.controller.ControllerType;
-import com.example.sportify.controller.SportQuizController;
-import com.example.sportify.controller.graphic.GraphicController;
+import sportify.NewException;
+import sportify.bean.SportQuizBean;
+import sportify.controller.Controller;
+import sportify.controller.ControllerType;
+import sportify.controller.SportQuizController;
+import sportify.controller.graphic.GraphicController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 

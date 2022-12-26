@@ -1,4 +1,4 @@
-package com.example.sportify;
+package sportify;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

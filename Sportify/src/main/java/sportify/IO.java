@@ -1,4 +1,4 @@
-package com.example.sportify;
+package sportify;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

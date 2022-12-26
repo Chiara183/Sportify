@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="46e0f1a3-1531-44f5-b56f-de4677cfe1c8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/Adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/Adapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/AdapterLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/AdapterLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/DateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/DateUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/Dialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/Dialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/IO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/MainApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/MainAppLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/MainAppLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/NewException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/NewException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/OpenStreetMapUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/OpenStreetMapUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/SignUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/Subject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/Submit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/Submit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/auth/OAuthAuthenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/auth/OAuthAuthenticator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/auth/OAuthGoogleAuthenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/auth/OAuthGoogleAuthenticator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/auth/OAuthType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/auth/OAuthType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/bean/GymEditBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/bean/GymEditBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/bean/GymInfoBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/bean/GymInfoBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/bean/LoginBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/bean/LoginBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/bean/MapBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/bean/MapBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/bean/SignUpBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/bean/SignUpBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/bean/SportQuizBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/bean/SportQuizBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/bean/UserEditBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/bean/UserEditBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/AccessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/AccessController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/ControllerType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/ControllerType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/EditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/EditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/FindGymController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/FindGymController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/GymEditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/GymEditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/GymInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/GymInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/MapController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/SignUpGymController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/SignUpGymController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/SportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/SportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/SportQuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/SportQuizController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/UserEditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/UserEditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/AccessGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/AccessGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/EditGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/EditGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/FindGymGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/FindGymGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/GraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/GraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/GymEditGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/GymEditGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/GymInfoGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/GymInfoGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/HomeGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/HomeGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/LoginGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/LoginGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/MapGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/MapGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/MenuGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/MenuGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/RegisterGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/RegisterGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SignUpGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SignUpGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SignUpGymGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SignUpGymGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SignUpGymPhoneGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SignUpGymPhoneGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SportGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SportGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SportQuizGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/SportQuizGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/UserEditGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/UserEditGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/desktop/GymEditDesktopGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/desktop/GymEditDesktopGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/desktop/UserEditDesktopGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/desktop/UserEditDesktopGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/FindGymPhoneGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/FindGymPhoneGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/GymEditPhoneGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/GymEditPhoneGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/GymInfoPhoneGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/GymInfoPhoneGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/HomePhoneGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/HomePhoneGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/MenuPhoneGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/MenuPhoneGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/SignUpPhoneGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/SignUpPhoneGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/SportQuizPhoneGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/SportQuizPhoneGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/UserEditPhoneGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/controller/graphic/phone/UserEditPhoneGraphicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/user/ClassicUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/user/ClassicUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/user/GymUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/user/GymUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sportify/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sportify/user/User.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2JRq7WsiYEjf0F3cAs3xCLg1RWB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Matteo/IdeaProjects/Sportify.git/trunk/Sportify",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\Matteo\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Users\Matteo\IdeaProjects\Sportify.git\trunk\Sportify" />
+          <option name="myCopyRoot" value="C:\Users\Matteo\IdeaProjects\Sportify.git\trunk\Sportify" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Users\Matteo\IdeaProjects\Sportify.git\trunk\Sportify" />
+          <option name="myCopyRoot" value="C:\Users\Matteo\IdeaProjects\Sportify.git\trunk\Sportify" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="46e0f1a3-1531-44f5-b56f-de4677cfe1c8" name="Changes" comment="" />
+      <created>1672051077633</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1672051077633</updated>
+      <workItem from="1672051079191" duration="1485000" />
+    </task>
+    <task id="LOCAL-00001" summary="Try to make SonarCloud analysis">
+      <created>1672051207234</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672051207234</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Try to make SonarCloud analysis" />
+    <option name="LAST_COMMIT_MESSAGE" value="Try to make SonarCloud analysis" />
+  </component>
+</project>
