@@ -1,4 +1,4 @@
-package java.sportify;
+package sportify;
 
 
 import org.junit.Test;

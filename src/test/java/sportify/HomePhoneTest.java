@@ -1,4 +1,4 @@
-package java.sportify;
+package sportify;
 
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
