@@ -28,27 +28,27 @@ public class UserEditPhoneGraphicController extends UserEditGraphicController {
     }
 
     public void helpMethod(){
-        String day = String.valueOf(userEditController.getUser().getBirthday().getDayOfMonth());
-        String month = String.valueOf(userEditController.getUser().getBirthday().getMonth().getValue());
-        String year = String.valueOf(userEditController.getUser().getBirthday().getYear());
-        if (!toggleBirthday.isSelected() && !Objects.equals(day + "/" + month + "/" + year, birthday.getText())) {
+        String dayH = String.valueOf(userEditController.getUser().getBirthday().getDayOfMonth());
+        String monthH = String.valueOf(userEditController.getUser().getBirthday().getMonth().getValue());
+        String yearH = String.valueOf(userEditController.getUser().getBirthday().getYear());
+        if (!toggleBirthday.isSelected() && !Objects.equals(dayH + "/" + monthH + "/" + yearH, birthday.getText())) {
             String birth = birthday.getText();
             String[] list = birth.split("/");
-            year = list[2];
+            yearH = list[2];
             if(list[1].length() < 2){
-                month = "0" + list[1];
+                monthH = "0" + list[1];
             } else {
-                month = list[1];
+                monthH = list[1];
             }
 
             if(list[0].length() < 2){
-                day = "0" + list[0];
+                dayH = "0" + list[0];
             } else {
-                day = list[0];
+                dayH = list[0];
             }
-            birth = year + "-" + month + "-" + day;
+            birth = yearH + "-" + monthH + "-" + dayH;
             userEditController.getUser().setBirthday(DateUtil.parse(birth));
-        } else if (toggleBirthday.isSelected() && !Objects.equals(day + "/" + month + "/" + year,
+        } else if (toggleBirthday.isSelected() && !Objects.equals(dayH + "/" + monthH + "/" + yearH,
                 (dayOfBirth.getText() + "/" + birthMonth.getText() + "/" + birthYear.getText()))){
             helpMethod1();
         }

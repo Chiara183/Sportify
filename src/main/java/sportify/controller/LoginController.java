@@ -21,6 +21,8 @@ import java.util.Objects;
 
 public class LoginController extends AccessController{
 
+    private static final int IND = Timeline.INDEFINITE;
+
     /** Reference to graphic gymEditController*/
     private LoginGraphicController graphicController;
 
@@ -107,7 +109,7 @@ public class LoginController extends AccessController{
     private void doTime(){
         final int[] seconds = {delay.intValue()};
         Timeline time = new Timeline();
-        time.setCycleCount(Timeline.INDEFINITE);
+        time.setCycleCount(IND);
         KeyFrame frame = new KeyFrame(Duration.seconds(delay), event -> {
             seconds[0]--;
             label.setText("Waiting... " + seconds[0]);

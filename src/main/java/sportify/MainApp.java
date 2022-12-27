@@ -199,10 +199,10 @@ public class MainApp{
             controller.setMainApp(this);
             controller.setUser(this.user);
             if(!isNotMobile()) {
-                graphicController.comboActivity.getItems().add("Take sport quiz");
-                graphicController.comboActivity.getItems().add("Find gym");
-                graphicController.comboActivity.getItems().add("Login");
-                graphicController.comboActivity.getItems().add("Login with Google");
+                graphicController.getCombo().getItems().add("Take sport quiz");
+                graphicController.getCombo().getItems().add("Find gym");
+                graphicController.getCombo().getItems().add("Login");
+                graphicController.getCombo().getItems().add("Login with Google");
             }
         } catch (IOException e) {
             Logger logger = Logger.getLogger(MainApp.class.getName());

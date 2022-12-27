@@ -25,7 +25,11 @@ public class HomePhoneGraphicController implements GraphicController {
     protected Button gymInfo;
 
 
-    public ComboBox<String> comboActivity;
+    protected ComboBox<String> comboActivity;
+
+    public ComboBox<String>getCombo(){
+        return comboActivity;
+    }
 
     /** Reference to gymEditController*/
     protected HomeController controller;
