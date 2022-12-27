@@ -1,4 +1,4 @@
-package java.sportify;
+package sportify;
 
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
@@ -14,7 +14,7 @@ import javax.swing.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(ApplicationExtension.class)
-public class HomePhoneTest  extends StartingTest{
+public class HomePhoneTest  extends StartingTest {
 
     private static final String COMBOBOX = "#comboActivity";
     private FxRobot robot;
