@@ -12,6 +12,9 @@
       <sourceFolder url="file://$MODULE_DIR$/Sportify/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sportify/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/Sportify/src/main/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
