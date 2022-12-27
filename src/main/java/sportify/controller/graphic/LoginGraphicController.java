@@ -11,10 +11,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+import java.util.Properties;
+
 public class LoginGraphicController extends AccessGraphicController{
 
     private boolean google;
-    private static final String G_SECRET = "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";
+    private static final Properties prop = new Properties();
+    private static final String G_SECRET = prop.getProperty("G_SECRET");
     /** All the text field of the interface*/
     @FXML
     private TextField user;

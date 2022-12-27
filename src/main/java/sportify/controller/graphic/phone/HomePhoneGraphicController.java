@@ -9,9 +9,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
+import java.util.Properties;
+
 public class HomePhoneGraphicController implements GraphicController {
 
-    private static final String G_SECRET = "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";
+    private static final Properties prop = new Properties();
+    private static final String G_SECRET = prop.getProperty("G_SECRET");
 
     /** All the button of the interface*/
     @FXML
