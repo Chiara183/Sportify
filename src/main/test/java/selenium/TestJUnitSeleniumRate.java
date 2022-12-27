@@ -1,4 +1,4 @@
-package selenium;
+package java.selenium;
 
 import org.junit.jupiter.api.Test;
 

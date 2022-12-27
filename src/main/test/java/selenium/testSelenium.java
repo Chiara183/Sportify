@@ -1,4 +1,4 @@
-package selenium;
+package java.selenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -1,9 +1,10 @@
-package sportify;
+package java.sportify;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.testfx.api.FxToolkit;
 import org.testfx.util.WaitForAsyncUtils;
+import sportify.MainAppLauncher;
 
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;

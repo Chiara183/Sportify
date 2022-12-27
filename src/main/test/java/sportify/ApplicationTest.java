@@ -1,4 +1,4 @@
-package sportify;
+package java.sportify;
 
 import javafx.application.Application;
 import org.testfx.api.FxRobot;
