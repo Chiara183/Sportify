@@ -1,6 +1,7 @@
 package sportify.controller.graphic;
 
 import sportify.MainApp;
+import sportify.auth.OAuthAuthenticator;
 import sportify.bean.SignUpBean;
 import sportify.controller.Controller;
 import sportify.controller.ControllerType;
@@ -17,6 +18,8 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SignUpGraphicController extends RegisterGraphicController{
 
@@ -156,18 +159,19 @@ public class SignUpGraphicController extends RegisterGraphicController{
     }
 
     public void helpMethod2(FXMLLoader loaderSignUp){
+        Logger logger = Logger.getLogger(SignUpGraphicController.class.getName());
         FXMLLoader loaderTopScreen = new FXMLLoader();
         loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen2.fxml"));
         try {
             paneTopScreen = loaderTopScreen.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "I was unable to load TopScreen");
         }
         this.graphicMenuController = loaderTopScreen.getController();
         try {
             pane = loaderSignUp.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "I was unable to load SignUp");
         }
     }
 }

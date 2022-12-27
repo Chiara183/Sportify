@@ -95,11 +95,7 @@ public abstract class OAuthAuthenticator {
         attemptReceived = true;
         }
         accessCode = location.substring(location.indexOf("code=") + 5);
-        try {
-            accessToken = doGetAccessTokenRequest();
-        }catch(JSONException e){
-            e.printStackTrace();
-        }
+        accessToken = doGetAccessTokenRequest();
         String returnedJson = doGetAccountInfo();
         assert returnedJson != null;
         accessedJsonData = new JSONObject(returnedJson);

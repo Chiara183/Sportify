@@ -11,6 +11,8 @@ import javafx.scene.control.ComboBox;
 
 public class HomePhoneGraphicController implements GraphicController {
 
+    private static final String gSecret = "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";
+
     /** All the button of the interface*/
     @FXML
     protected Button signIn;
@@ -35,7 +37,7 @@ public class HomePhoneGraphicController implements GraphicController {
                 String gClientId = "941217546228-08fmsjebj3jn1a0agnt9tu9tnijgn2pq.apps.googleusercontent.com";
                 String gRedir = "https://localhost:8080/oauth2";
                 String gScope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
-                String gSecret = "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";
+                //String gSecret = "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";
                 OAuthGoogleAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
                 auth.startLogin(controller.getMainApp());
             }
