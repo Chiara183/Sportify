@@ -87,7 +87,7 @@ public class OpenStreetMapUtils {
 
         Object obj = JSONValue.parse(queryResult);
 
-        if (obj instanceof JSONArray array && array.size() > 0) {
+        if (obj instanceof JSONArray array && !array.isEmpty()) {
 
                 JSONObject jsonObject = (JSONObject) array.get(0);
 

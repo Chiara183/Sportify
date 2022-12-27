@@ -146,6 +146,7 @@ public class SportController extends Controller{
     }
 
     public void back() {
-        System.out.println("--back--");
+        Logger logger = Logger.getLogger(MainApp.class.getName());
+        logger.log(Level.WARNING, "--back--");
     }
 }

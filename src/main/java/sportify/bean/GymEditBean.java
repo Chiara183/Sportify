@@ -4,7 +4,10 @@ import sportify.DateUtil;
 import javafx.scene.control.TextField;
 import org.apache.commons.validator.routines.EmailValidator;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class GymEditBean {
 
@@ -30,6 +33,18 @@ public class GymEditBean {
 
     public boolean checkAddress(String address){
         return address.matches("\\w',-\\\\/.\\s");
+    }
+
+    public boolean checkBday(String dayOfBirth, String birthMonth, String birthYear){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        sdf.setLenient(false); // imposta il formato della data come non permissivo
+
+        try {
+            sdf.parse(dayOfBirth+'-'+birthMonth+'-'+birthYear);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
     }
 
     public LocalDate settingBday(TextField dayOfBirth, TextField birthMonth, TextField birthYear){

@@ -3,7 +3,7 @@ package sportify.bean;
 public class SportQuizBean {
 
     public boolean checkIsNumeric(String s){
-        return s.matches("[0-9]+");
+        return s.matches("\\d+");
     }
 
     public boolean checkEnv(String env){
