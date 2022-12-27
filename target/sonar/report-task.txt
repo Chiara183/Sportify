@@ -1,0 +1,7 @@
+organization=chiara183
+projectKey=Chiara183_Sportify2
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.35945
+dashboardUrl=https://sonarcloud.io/dashboard?id=Chiara183_Sportify2
+ceTaskId=AYVUYDr1HSLkiGu0Ai25
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYVUYDr1HSLkiGu0Ai25
