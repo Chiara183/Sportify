@@ -27,7 +27,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     @FXML
     private ComboBox<String> comboGymInfo;
 
-    /** Reference to controller*/
+    /** Reference to gymEditController*/
     protected GymInfoController controller;
 
     /** Reference to bean*/
@@ -163,17 +163,17 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     }
 
     /** Is called to set review pane visible or not, true = visible*/
-    public void reviewPane_isVisible(boolean visible){
+    public void reviewPaneIsVisible(boolean visible){
         this.reviewPane.setVisible(visible);
     }
 
     /** Is called to set course pane visible or not, true = visible*/
-    public void coursePane_isVisible(boolean visible){
+    public void coursePaneIsVisible(boolean visible){
         this.coursePane.setVisible(visible);
     }
 
     /** Is called to set gym name*/
-    public void setGym_name(String name){
+    public void setGymName(String name){
         this.gymName.setText(name);
     }
 
@@ -223,7 +223,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     }
 
     /** Is called to set cursor on course vbox*/
-    public void review_setCursor(Cursor cursor){
+    public void reviewSetCursor(Cursor cursor){
         this.review.setCursor(cursor);
     }
 
@@ -234,17 +234,17 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     }
 
     /** Is called to set cursor on sport comboBox*/
-    public void comboSport_setCursor(Cursor cursor){
+    public void comboSportSetCursor(Cursor cursor){
         this.comboSport.setCursor(cursor);
     }
 
-    /** Is called to set controller*/
+    /** Is called to set gymEditController*/
     @Override
     public void setController(Controller controller) {
         this.controller = (GymInfoController) controller;
     }
 
-    /** Is called to get controller type*/
+    /** Is called to get gymEditController type*/
     @Override
     public ControllerType getGraphicType(){
         return controller.getType();
@@ -257,7 +257,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
             FXMLLoader loader = new FXMLLoader();
             helpMethod(loader);
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             GymInfoGraphicController gymInfoGraphicController = loader.getController();
             this.controller.setGraphicController(gymInfoGraphicController);
             this.controller.setUser(this.controller.getMenu().getUser());
@@ -289,7 +289,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
             FXMLLoader loader = new FXMLLoader();
             helpMethod1(loader);
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             GymInfoGraphicController gymInfoGraphicController = loader.getController();
             this.controller.setGraphicController(gymInfoGraphicController);
             this.controller.setUser(this.controller.getMenu().getUser());

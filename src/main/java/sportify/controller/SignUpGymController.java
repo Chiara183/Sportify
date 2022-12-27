@@ -23,27 +23,27 @@ public class SignUpGymController extends AccessController {
 
     private static final Logger LOGGER = Logger.getLogger(SignUpGymController.class.getName());
 
-    /** Reference to graphic controller*/
+    /** Reference to graphic gymEditController*/
     private SignUpGymGraphicController graphicController;
-    private final MainApp mainApp;
-    private final Submit submit;
+    private final MainApp mainAppGym;
+    private final Submit submitGym;
 
     /** The constructor.*/
-    public SignUpGymController(MainApp mainApp) {
+    public SignUpGymController(MainApp mainAppGym) {
         this.type = ControllerType.SIGN_UP_GYM;
-        this.submit = new Submit(mainApp);
-        this.mainApp = mainApp;
+        this.submitGym = new Submit(mainAppGym);
+        this.mainAppGym = mainAppGym;
     }
 
     /** It's called to load sign up gym overview*/
     public void signUpGymAction(){
-        mainApp.getPrimaryStage().setTitle("Sportify - Sign Up");
+        mainAppGym.getPrimaryStage().setTitle("Sportify - Sign Up");
         try {
             // Load login overview.
             FXMLLoader loaderSignUp = new FXMLLoader();
             Pane paneTopScreen = null;
             MenuGraphicController graphicMenuController = null;
-            if(mainApp.isNotMobile()) {
+            if(mainAppGym.isNotMobile()) {
                 loaderSignUp.setLocation(MainApp.class.getResource("DesktopView/SignUpGym.fxml"));
             } else {
                 loaderSignUp.setLocation(MainApp.class.getResource("SmartphoneView/SignUpGym2Phone.fxml"));
@@ -55,20 +55,20 @@ public class SignUpGymController extends AccessController {
             Pane pane = loaderSignUp.load();
 
             // Set login overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
-            if(!mainApp.isNotMobile()){
-                this.mainApp.getPrimaryPane().setTop(paneTopScreen);
+            this.mainAppGym.getPrimaryPane().setCenter(pane);
+            if(!mainAppGym.isNotMobile()){
+                this.mainAppGym.getPrimaryPane().setTop(paneTopScreen);
                 assert graphicMenuController != null;
                 graphicMenuController.setController(menu);
             }
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             SignUpGymGraphicController signUpGymGraphicController = loaderSignUp.getController();
-            SignUpGymController controller = new SignUpGymController(this.mainApp);
+            SignUpGymController controller = new SignUpGymController(this.mainAppGym);
             controller.setGraphicController(signUpGymGraphicController);
             signUpGymGraphicController.setController(controller);
-            controller.setMainApp(this.mainApp);
-            controller.setSubmit(this.submit);
+            controller.setMainApp(this.mainAppGym);
+            controller.setSubmit(this.submitGym);
             menu.setInstance(signUpGymGraphicController);
             menu.setView(ControllerType.SIGN_UP_GYM2);
 
@@ -78,7 +78,7 @@ public class SignUpGymController extends AccessController {
 
     public void submitActionSignUpGym(String gymValue, String address, Map<String, Double> coords) {
         IO objIO = new IO();
-        objIO.setMainApp(this.mainApp);
+        objIO.setMainApp(this.mainAppGym);
         Map<String, String> gymAccount;
         PreparedStatement ps = null;
         ResultSet rs;
@@ -96,7 +96,7 @@ public class SignUpGymController extends AccessController {
         gymAccount.put("latitude", String.valueOf(coords.get("lat")));
         gymAccount.put("longitude", String.valueOf(coords.get("lon")));
 
-        this.submit.signUp(gymAccount);
+        this.submitGym.signUp(gymAccount);
         }catch (SQLException e) {
             LOGGER.log(Level.SEVERE, e.getMessage());
         }finally {

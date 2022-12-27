@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 
 public abstract class EditController extends Controller{
 
-    /** Reference to graphic controller*/
+    /** Reference to graphic gymEditController*/
     protected EditGraphicController graphicController;
 
     /** The variable that identify the name of the view*/

@@ -13,8 +13,8 @@ public class GymEditGraphicController extends EditGraphicController{
     protected static final String STYLE = "-fx-text-fill: #06B7C5;";
     protected static final String COLOR = "-fx-text-fill: black;";
 
-    /** Reference to controller*/
-    protected GymEditController controller;
+    /** Reference to gymEditController*/
+    protected GymEditController gymEditController;
 
     /** Reference to bean*/
     protected final GymEditBean bean = new GymEditBean();
@@ -44,42 +44,42 @@ public class GymEditGraphicController extends EditGraphicController{
     @FXML
     protected void okAction(){
         this.checkSyntax();
-        if (!Objects.equals(controller.getUser().getUserName(), super.username.getText())) {
-            controller.getUser().setUserName(super.username.getText());
+        if (!Objects.equals(gymEditController.getUser().getUserName(), super.username.getText())) {
+            gymEditController.getUser().setUserName(super.username.getText());
         }
-        if (!Objects.equals(controller.getUser().getPassword(), super.password.getText())) {
-            controller.getUser().setPassword(super.password.getText());
+        if (!Objects.equals(gymEditController.getUser().getPassword(), super.password.getText())) {
+            gymEditController.getUser().setPassword(super.password.getText());
         }
-        if (!Objects.equals(controller.getUser().getFirstName(), super.firstName.getText())) {
-            controller.getUser().setFirstName(super.firstName.getText());
+        if (!Objects.equals(gymEditController.getUser().getFirstName(), super.firstName.getText())) {
+            gymEditController.getUser().setFirstName(super.firstName.getText());
         }
-        if (!Objects.equals(controller.getUser().getLastName(), super.lastName.getText())) {
-            controller.getUser().setLastName(super.lastName.getText());
+        if (!Objects.equals(gymEditController.getUser().getLastName(), super.lastName.getText())) {
+            gymEditController.getUser().setLastName(super.lastName.getText());
         }
-        if (!Objects.equals(controller.getUser().getEmail(), super.email.getText())) {
-            controller.getUser().setEmail(super.email.getText());
+        if (!Objects.equals(gymEditController.getUser().getEmail(), super.email.getText())) {
+            gymEditController.getUser().setEmail(super.email.getText());
         }
-        if (!Objects.equals(controller.getUser().getGymName(), gymName.getText())) {
-            controller.getUser().setFirstName(gymName.getText());
+        if (!Objects.equals(gymEditController.getUser().getGymName(), gymName.getText())) {
+            gymEditController.getUser().setFirstName(gymName.getText());
         }
-        if (!Objects.equals(controller.getUser().getAddress(), address.getText())) {
-            controller.getUser().setLastName(address.getText());
+        if (!Objects.equals(gymEditController.getUser().getAddress(), address.getText())) {
+            gymEditController.getUser().setLastName(address.getText());
         }
-        if (!Objects.equals(controller.getUser().getPhone(), telephone.getText())) {
-            controller.getUser().setEmail(telephone.getText());
+        if (!Objects.equals(gymEditController.getUser().getPhone(), telephone.getText())) {
+            gymEditController.getUser().setEmail(telephone.getText());
         }
     }
 
-    /** Is called to set controller*/
+    /** Is called to set gymEditController*/
     @Override
     public void setController(Controller controller) {
-        this.controller = (GymEditController) controller;
+        this.gymEditController = (GymEditController) controller;
         super.setController(controller);
     }
 
-    /** Is called to get controller type*/
+    /** Is called to get gymEditController type*/
     @Override
     public ControllerType getGraphicType(){
-        return controller.getType();
+        return gymEditController.getType();
     }
 }

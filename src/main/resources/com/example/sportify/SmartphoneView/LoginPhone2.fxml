@@ -28,7 +28,7 @@
             <Font name="Comic Sans MS" size="39.0" />
         </font>
     </Text>
-    <Label fx:id="eye" layoutX="222.0" layoutY="155.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" prefHeight="21.0" prefWidth="23.0" text="👁">
+    <Label fx:id="eye" layoutX="222.0" layoutY="155.0" onMouseClicked="#setTogglePass" onTouchPressed="#setTogglePass" prefHeight="21.0" prefWidth="23.0" text="👁">
         <font>
             <Font name="Comic Sans MS" size="22.0" />
         </font>
@@ -44,7 +44,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
     </Button>
-   <TextField fx:id="passText" alignment="CENTER" layoutX="53.0" layoutY="153.0" prefHeight="36.0" prefWidth="165.0" style="-fx-background-radius: 30px;" visible="false">
+   <TextField fx:id="loginPassText" alignment="CENTER" layoutX="53.0" layoutY="153.0" prefHeight="36.0" prefWidth="165.0" style="-fx-background-radius: 30px;" visible="false">
       <cursor>
          <Cursor fx:constant="DEFAULT" />
       </cursor>

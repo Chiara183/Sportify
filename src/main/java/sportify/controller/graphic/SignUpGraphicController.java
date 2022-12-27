@@ -20,8 +20,8 @@ import java.sql.Timestamp;
 
 public class SignUpGraphicController extends RegisterGraphicController{
 
-    /** Reference to controller*/
-    protected SignUpController controller;
+    /** Reference to gymEditController*/
+    protected SignUpController signUpController;
     protected Pane pane;
     private MenuGraphicController graphicMenuController;
     protected Pane paneTopScreen;
@@ -72,7 +72,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
         if(this.bean.checkEmpty(username) || this.bean.checkEmpty(password) || this.bean.checkEmpty(email)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.initOwner(signUpController.getMainApp().getPrimaryStage());
             alert.setTitle("Field empty");
             alert.setHeaderText("A field is empty");
             alert.setContentText("Please fill username, email and password field");
@@ -81,7 +81,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
         if(bean.checkForNumbers(firstName) || bean.checkForNumbers(lastName)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.initOwner(signUpController.getMainApp().getPrimaryStage());
             alert.setTitle("Field empty");
             alert.setHeaderText("A field is empty");
             alert.setContentText("Please fill first name and last name fields with letters or leave them empty");
@@ -95,7 +95,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String date = timestamp.toString();
         date = date.substring(0,10);
-        controller.submitActionSignUp(userValue, passValue, nameValue, lastNameValue, emailString, date);
+        signUpController.submitActionSignUp(userValue, passValue, nameValue, lastNameValue, emailString, date);
     }
     public void submit(ControllerType type){
         if(type == ControllerType.SIGN_UP){
@@ -111,10 +111,10 @@ public class SignUpGraphicController extends RegisterGraphicController{
         return userTick.isSelected();
     }
 
-    /** Is called to set controller*/
+    /** Is called to set gymEditController*/
     @Override
     public void setController(Controller contr) {
-        this.controller = (SignUpController) contr;
+        this.signUpController = (SignUpController) contr;
         super.setController(contr);
     }
 
@@ -130,28 +130,28 @@ public class SignUpGraphicController extends RegisterGraphicController{
 
     public void helpMethod3(SignUpGraphicController graphicController){
         SignUpController controllerSignUp = new SignUpController();
-        controllerSignUp.setMenu(this.controller.getMenu());
-        this.controller.getMainApp().getPrimaryPane().setCenter(pane);
-        this.controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
+        controllerSignUp.setMenu(this.signUpController.getMenu());
+        this.signUpController.getMainApp().getPrimaryPane().setCenter(pane);
+        this.signUpController.getMainApp().getPrimaryPane().setTop(paneTopScreen);
         assert this.graphicMenuController != null;
-        this.graphicMenuController.setController(this.controller.getMenu());
+        this.graphicMenuController.setController(this.signUpController.getMenu());
 
         // Give the controllerSignUp access to the main app.
         controllerSignUp.setGraphicController(graphicController);
         graphicController.setController(controllerSignUp);
-        controllerSignUp.setMainApp(this.controller.getMainApp());
-        this.controller.getMenu().setInstance(graphicController);
+        controllerSignUp.setMainApp(this.signUpController.getMainApp());
+        this.signUpController.getMenu().setInstance(graphicController);
     }
 
     public void helpMethod(Event event, FXMLLoader loaderSignUp){
         if (event.getSource() == gymUser) {
             loaderSignUp.setLocation(MainApp.class.getResource("SmartphoneView/SignUpGym0Phone.fxml"));
             helpMethod2(loaderSignUp);
-            this.controller.getMenu().setView(ControllerType.SIGN_UP_GYM);
+            this.signUpController.getMenu().setView(ControllerType.SIGN_UP_GYM);
         } else if (event.getSource() == normalUser) {
             loaderSignUp.setLocation(MainApp.class.getResource("SmartphoneView/SignUpPhone2.fxml"));
             helpMethod2(loaderSignUp);
-            this.controller.getMenu().setView(ControllerType.SIGN_UP);
+            this.signUpController.getMenu().setView(ControllerType.SIGN_UP);
         }
     }
 

@@ -13,10 +13,10 @@ public class SportQuizPhoneGraphicController implements GraphicController {
 
     private static final String INVALID = "invalid input";
 
-    /** Reference to controller*/
+    /** Reference to gymEditController*/
     private SportQuizController controller;
 
-    /** Reference to controller*/
+    /** Reference to gymEditController*/
     private final SportQuizBean bean = new SportQuizBean();
 
     /** Reference to quiz*/
@@ -108,7 +108,7 @@ public class SportQuizPhoneGraphicController implements GraphicController {
         return this.type;
     }
 
-    /** Is called to get controller type*/
+    /** Is called to get gymEditController type*/
     @Override
     public ControllerType getGraphicType(){
         return controller.getType();

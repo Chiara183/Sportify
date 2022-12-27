@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 
 public class SportGraphicController implements GraphicController{
 
-    /** Reference to controller*/
+    /** Reference to gymEditController*/
     private SportController controller;
 
     /** All the label of the interface*/
@@ -55,13 +55,13 @@ public class SportGraphicController implements GraphicController{
         sportDescription.setText(description);
     }
 
-    /** Is called to set controller*/
+    /** Is called to set gymEditController*/
     @Override
     public void setController(Controller controller) {
         this.controller = (SportController) controller;
     }
 
-    /** Is called to get controller type*/
+    /** Is called to get gymEditController type*/
     @Override
     public ControllerType getGraphicType(){
         return controller.getType();

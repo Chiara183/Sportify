@@ -13,7 +13,7 @@
         </cursor>
     </TextField>
     <PasswordField fx:id="password" alignment="CENTER" layoutX="36.0" layoutY="198.0" prefHeight="27.0" prefWidth="197.0" promptText="*Password" style="-fx-background-radius: 30px;" />
-    <Label fx:id="eye" accessibleRole="BUTTON" layoutX="233.0" layoutY="196.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" prefHeight="21.0" prefWidth="23.0" text="👁">
+    <Label fx:id="eye" accessibleRole="BUTTON" layoutX="233.0" layoutY="196.0" onMouseClicked="#setTogglePass" onTouchPressed="#setTogglePass" prefHeight="21.0" prefWidth="23.0" text="👁">
         <font>
             <Font name="Comic Sans MS" size="22.0" />
         </font>

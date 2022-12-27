@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
 
 public class FindGymPhoneGraphicController implements GraphicController {
 
-    /** Reference to controller*/
+    /** Reference to gymEditController*/
     protected FindGymController controller;
 
     /** Reference to the map pane*/
@@ -21,13 +21,13 @@ public class FindGymPhoneGraphicController implements GraphicController {
         return this.map;
     }
 
-    /** Is called to set controller*/
+    /** Is called to set gymEditController*/
     @Override
     public void setController(Controller controller) {
         this.controller = (FindGymController) controller;
     }
 
-    /** Is called to get controller type*/
+    /** Is called to get gymEditController type*/
     @Override
     public ControllerType getGraphicType(){
         return controller.getType();

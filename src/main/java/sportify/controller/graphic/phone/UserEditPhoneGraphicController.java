@@ -13,9 +13,9 @@ public class UserEditPhoneGraphicController extends UserEditGraphicController {
     /** Reference to bean*/
     protected final UserEditBean bean = new UserEditBean();
 
-    final int  day = controller.getUser().getBirthday().getDayOfMonth();
-    final int month = controller.getUser().getBirthday().getMonth().getValue();
-    final int year = controller.getUser().getBirthday().getYear();
+    final int  day = userEditController.getUser().getBirthday().getDayOfMonth();
+    final int month = userEditController.getUser().getBirthday().getMonth().getValue();
+    final int year = userEditController.getUser().getBirthday().getYear();
 
     /** The action of the button.*/
     @Override
@@ -23,14 +23,14 @@ public class UserEditPhoneGraphicController extends UserEditGraphicController {
     protected void okAction() {
         super.okAction();
         helpMethod();
-        controller.getMenu().setUser(controller.getUser());
-        controller.getMenu().back();
+        userEditController.getMenu().setUser(userEditController.getUser());
+        userEditController.getMenu().back();
     }
 
     public void helpMethod(){
-        String day = String.valueOf(controller.getUser().getBirthday().getDayOfMonth());
-        String month = String.valueOf(controller.getUser().getBirthday().getMonth().getValue());
-        String year = String.valueOf(controller.getUser().getBirthday().getYear());
+        String day = String.valueOf(userEditController.getUser().getBirthday().getDayOfMonth());
+        String month = String.valueOf(userEditController.getUser().getBirthday().getMonth().getValue());
+        String year = String.valueOf(userEditController.getUser().getBirthday().getYear());
         if (!toggleBirthday.isSelected() && !Objects.equals(day + "/" + month + "/" + year, birthday.getText())) {
             String birth = birthday.getText();
             String[] list = birth.split("/");
@@ -47,7 +47,7 @@ public class UserEditPhoneGraphicController extends UserEditGraphicController {
                 day = list[0];
             }
             birth = year + "-" + month + "-" + day;
-            controller.getUser().setBirthday(DateUtil.parse(birth));
+            userEditController.getUser().setBirthday(DateUtil.parse(birth));
         } else if (toggleBirthday.isSelected() && !Objects.equals(day + "/" + month + "/" + year,
                 (dayOfBirth.getText() + "/" + birthMonth.getText() + "/" + birthYear.getText()))){
             helpMethod1();
@@ -56,6 +56,6 @@ public class UserEditPhoneGraphicController extends UserEditGraphicController {
 
     public void helpMethod1(){
         LocalDate bday = this.bean.settingBirthDay(day, month, year);
-        controller.getUser().setBirthday(bday);
+        userEditController.getUser().setBirthday(bday);
     }
 }

@@ -14,7 +14,7 @@ public class SignUpGymPhoneGraphicController extends SignUpGymGraphicController{
         if(this.bean.checkEmpty(gymName) || this.bean.checkEmpty(gymAddress) || this.bean.checkEmpty(gymCity)){
             //show error message
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(controller.getMainApp().getPrimaryStage());
+                alert.initOwner(signUpGymController.getMainApp().getPrimaryStage());
                 alert.setTitle("Field empty");
                 alert.setHeaderText("A field is empty");
                 alert.setContentText("Please fill gym name, address and city field");
@@ -29,8 +29,8 @@ public class SignUpGymPhoneGraphicController extends SignUpGymGraphicController{
         //check whether the credentials are authentic or not
         if (coords.get("lat") != null && coords.get("lon") != null) {
             //if authentic, navigate user to a new page
-            controller.submitActionSignUpGym(gymValue, address, coords);
-            controller.login();
+            signUpGymController.submitActionSignUpGym(gymValue, address, coords);
+            signUpGymController.login();
         } else {
             helpMethod(coords);
         }

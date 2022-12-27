@@ -5,7 +5,7 @@ import sportify.controller.ControllerType;
 
 public interface GraphicController {
 
-    /** Is called to set controller*/
+    /** Is called to set gymEditController*/
     void setController(Controller controller);
 
     /** Is called to get type*/

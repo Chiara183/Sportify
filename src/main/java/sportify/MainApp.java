@@ -142,13 +142,13 @@ public class MainApp{
             FXMLLoader loaderMenu = new FXMLLoader();
             if(isNotMobile()) {
                 MenuGraphicController graphicController;
-                loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("DesktopView/Menu.fxml")));
+                loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("DesktopView/menu.fxml")));
                 Pane paneMenu = loaderMenu.load();
 
                 // Set menu overview into the top of root layout.
                 this.getPrimaryPane().setTop(paneMenu);
 
-                // Give the controller access to the main app.
+                // Give the gymEditController access to the main app.
                 graphicController = loaderMenu.getController();
                 controller.setGraphicController(graphicController);
                 graphicController.setController(controller);
@@ -163,7 +163,7 @@ public class MainApp{
                 controller.setGraphicController(graphicController);
                 graphicController.setController(controller);
             }
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             controller.setUser(this.user);
         } catch (IOException e) {
             Logger logger = Logger.getLogger(MainApp.class.getName());
@@ -192,7 +192,7 @@ public class MainApp{
             rootLayout.setCenter(homeOverview);
             rootLayout.setTop(null);
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             HomePhoneGraphicController graphicController = loader.getController();
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
@@ -245,7 +245,7 @@ public class MainApp{
             }
             Pane pane = loaderLogin.load();
 
-            // Setting controller
+            // Setting gymEditController
             graphicController = loaderLogin.getController();
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
@@ -283,7 +283,7 @@ public class MainApp{
                 dialogStage.setScene(scene);
                 dialogStage.setResizable(false);
 
-                // Set the person into the controller.
+                // Set the person into the gymEditController.
                 controller.setMenu(this.menu);
                 controller.setStage(dialogStage);
 
@@ -324,7 +324,7 @@ public class MainApp{
                 graphicMenuController.setController(menu);
             }
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             SportQuizController controller = new SportQuizController();
             if(isNotMobile()) {
                 SportQuizGraphicController graphicController = loaderSport.getController();
@@ -373,7 +373,7 @@ public class MainApp{
                 graphicMenuController.setController(menu);
             }
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             FindGymPhoneGraphicController graphicController = loaderGym.getController();
             FindGymController controller = new FindGymController();
             controller.setGraphicController(graphicController);
@@ -417,7 +417,7 @@ public class MainApp{
                 graphicMenuController.setUserKind();
             }
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             SignUpGraphicController graphicController = loaderSignUp.getController();
             SignUpController controller = new SignUpController();
             controller.setGraphicController(graphicController);

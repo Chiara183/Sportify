@@ -7,8 +7,8 @@ import sportify.user.GymUser;
 
 public class GymEditController extends EditController{
 
-    /** Reference to graphic controller*/
-    private GymEditGraphicController graphicController;
+    /** Reference to graphic gymEditController*/
+    private GymEditGraphicController graphicGymController;
 
     /** The constructor.*/
     public GymEditController(){this.type = ControllerType.USER_EDIT;}
@@ -17,12 +17,12 @@ public class GymEditController extends EditController{
     @Override
     public void setUser(User user) {
         super.setUser(user);
-        graphicController.setUser((GymUser) user);
+        graphicGymController.setUser((GymUser) user);
     }
 
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        this.graphicController = (GymEditGraphicController) graphicController;
+        this.graphicGymController = (GymEditGraphicController) graphicController;
         super.setGraphicController(graphicController);
     }
 }

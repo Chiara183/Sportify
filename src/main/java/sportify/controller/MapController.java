@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class MapController extends Controller{
 
     private static final String SELECTALL = "SELECT * " + "FROM gym ";
-    /** Reference to graphic controller*/
+    /** Reference to graphic gymEditController*/
     private MapGraphicController graphicController;
 
     /** default zoom value. */
@@ -47,7 +47,7 @@ public class MapController extends Controller{
         graphicController.setSearchCache(search);
     }
 
-    /** Is called to set graphic controller*/
+    /** Is called to set graphic gymEditController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (MapGraphicController) graphicController;
@@ -97,7 +97,7 @@ public class MapController extends Controller{
                 mark.forEach((id, gym) -> {
                     if (coords == gym.getPosition()) {
                         Logger logger = Logger.getLogger(MapController.class.getName());
-                        logger.log(Level.INFO, "Marker number: " + id);
+                        logger.log(Level.INFO, "Marker number: ", id);
                         if (allGym.get(gym.getPosition()) != null) {
                             String name = allGym.get(gym.getPosition());
                             MapLabel labelGym = new MapLabel(name, 10, -10).setCssClass("label");

@@ -8,40 +8,40 @@ import java.util.Objects;
 
 public class UserEditGraphicController extends EditGraphicController{
 
-    /** Reference to controller*/
-    protected UserEditController controller;
+    /** Reference to gymEditController*/
+    protected UserEditController userEditController;
 
     /** The action of the button.*/
     @Override
     @FXML
     protected void okAction() {
-        if (!Objects.equals(controller.getUser().getUserName(), username.getText())) {
-            controller.getUser().setUserName(username.getText());
+        if (!Objects.equals(userEditController.getUser().getUserName(), username.getText())) {
+            userEditController.getUser().setUserName(username.getText());
         }
-        if (!Objects.equals(controller.getUser().getPassword(), password.getText())) {
-            controller.getUser().setPassword(password.getText());
+        if (!Objects.equals(userEditController.getUser().getPassword(), password.getText())) {
+            userEditController.getUser().setPassword(password.getText());
         }
-        if (!Objects.equals(controller.getUser().getFirstName(), firstName.getText())) {
-            controller.getUser().setFirstName(firstName.getText());
+        if (!Objects.equals(userEditController.getUser().getFirstName(), firstName.getText())) {
+            userEditController.getUser().setFirstName(firstName.getText());
         }
-        if (!Objects.equals(controller.getUser().getLastName(), lastName.getText())) {
-            controller.getUser().setLastName(lastName.getText());
+        if (!Objects.equals(userEditController.getUser().getLastName(), lastName.getText())) {
+            userEditController.getUser().setLastName(lastName.getText());
         }
-        if (!Objects.equals(controller.getUser().getEmail(), email.getText())) {
-            controller.getUser().setEmail(email.getText());
+        if (!Objects.equals(userEditController.getUser().getEmail(), email.getText())) {
+            userEditController.getUser().setEmail(email.getText());
         }
     }
 
-    /** Is called to set controller*/
+    /** Is called to set gymEditController*/
     @Override
     public void setController(Controller controller) {
-        this.controller = (UserEditController) controller;
+        this.userEditController = (UserEditController) controller;
         super.setController(controller);
     }
 
-    /** Is called to get controller type*/
+    /** Is called to get gymEditController type*/
     @Override
     public ControllerType getGraphicType(){
-        return controller.getType();
+        return userEditController.getType();
     }
 }

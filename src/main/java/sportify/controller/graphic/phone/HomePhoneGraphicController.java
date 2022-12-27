@@ -20,7 +20,7 @@ public class HomePhoneGraphicController implements GraphicController {
 
     public ComboBox<String> comboActivity;
 
-    /** Reference to controller*/
+    /** Reference to gymEditController*/
     protected HomeController controller;
 
     /** The action of comboBox*/
@@ -43,13 +43,13 @@ public class HomePhoneGraphicController implements GraphicController {
         }
     }
 
-    /** Is called to set controller*/
+    /** Is called to set gymEditController*/
     @Override
     public void setController(Controller controller) {
         this.controller = (HomeController) controller;
     }
 
-    /** Is called to get controller type*/
+    /** Is called to get gymEditController type*/
     @Override
     public ControllerType getGraphicType(){
         return controller.getType();

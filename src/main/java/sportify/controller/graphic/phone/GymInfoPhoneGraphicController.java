@@ -36,7 +36,7 @@ public class GymInfoPhoneGraphicController extends GymInfoGraphicController {
             FXMLLoader loader = new FXMLLoader();
             helpMethod(loader);
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             GymInfoPhoneGraphicController gymInfoGraphicController = loader.getController();
             this.controller.setGraphicController(gymInfoGraphicController);
             this.controller.setUser(this.controller.getMenu().getUser());
@@ -56,7 +56,7 @@ public class GymInfoPhoneGraphicController extends GymInfoGraphicController {
             // Load test result overview.
             FXMLLoader loader = new FXMLLoader();
             helpMethod1(loader);
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             GymInfoPhoneGraphicController gymInfoGraphicController = loader.getController();
             this.controller.setGraphicController(gymInfoGraphicController);
             this.controller.setUser(this.controller.getMenu().getUser());

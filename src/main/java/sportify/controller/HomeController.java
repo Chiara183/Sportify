@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class HomeController extends Controller {
 
-    /** Reference to graphic controller*/
+    /** Reference to graphic gymEditController*/
     private HomePhoneGraphicController homeGraphicController;
 
     /** The constructor.*/
@@ -40,25 +40,25 @@ public class HomeController extends Controller {
         }
     }
 
-    /** Is called to set graphic controller*/
+    /** Is called to set graphic gymEditController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.homeGraphicController = (HomePhoneGraphicController) graphicController;
     }
 
     /** It's called to create and ad a new menu in the window*/
-    public MenuController Menu() {
+    public MenuController menu() {
         MenuController controller = new MenuController();
         controller.setMainApp(this.mainApp);
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
-            loaderMenu.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("DesktopView/Menu.fxml")));
+            loaderMenu.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("DesktopView/menu.fxml")));
             Pane paneMenu = loaderMenu.load();
 
             // Set menu overview into the top of root layout.
             this.mainApp.getPrimaryPane().setTop(paneMenu);
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             MenuGraphicController graphicController = loaderMenu.getController();
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);

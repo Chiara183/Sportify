@@ -8,7 +8,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class Dialog extends JPanel{
     private JFrame frame;
-    private MainApp mainApp;
+    private transient MainApp mainApp;
     private transient CountDownLatch modalitySignal;
 
     /** Creates the instance*/

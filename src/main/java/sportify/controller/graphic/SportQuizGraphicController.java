@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 
 public class SportQuizGraphicController implements GraphicController{
 
-    /** Reference to controller*/
+    /** Reference to gymEditController*/
     private SportQuizController controller;
 
     /** All the button of the interface*/
@@ -44,7 +44,7 @@ public class SportQuizGraphicController implements GraphicController{
         this.controller = (SportQuizController) controller;
     }
 
-    /** Is called to get controller type*/
+    /** Is called to get gymEditController type*/
     @Override
     public ControllerType getGraphicType(){
         return controller.getType();

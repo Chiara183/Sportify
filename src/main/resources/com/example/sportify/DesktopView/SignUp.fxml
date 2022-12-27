@@ -95,7 +95,7 @@
                     <GridPane.margin>
                         <Insets />
                     </GridPane.margin>
-                    <Label fx:id="eye" onMouseClicked="#set_toggle_pass" text="👁">
+                    <Label fx:id="eye" onMouseClicked="#setTogglePass" text="👁">
                         <font>
                             <Font name="Comic Sans MS Bold" size="29.0" />
                         </font>

@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class LoginController extends AccessController{
 
-    /** Reference to graphic controller*/
+    /** Reference to graphic gymEditController*/
     private LoginGraphicController graphicController;
 
     /** Error login variable*/
@@ -172,7 +172,7 @@ public class LoginController extends AccessController{
         return stage;
     }
 
-    /** Is called to set graphic controller*/
+    /** Is called to set graphic gymEditController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (LoginGraphicController) graphicController;

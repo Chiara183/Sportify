@@ -18,7 +18,7 @@ public class LoginGraphicController extends AccessGraphicController{
     @FXML
     private TextField user;
     @FXML
-    private TextField passText;
+    private TextField loginPassText;
 
     /** All the button of the interface*/
     @FXML
@@ -26,8 +26,8 @@ public class LoginGraphicController extends AccessGraphicController{
     @FXML
     private Button skip;
 
-    /** Reference to controller*/
-    private LoginController controller;
+    /** Reference to gymEditController*/
+    private LoginController loginController;
 
     /**Reference to bean instance*/
     private final LoginBean bean = new LoginBean();
@@ -37,7 +37,7 @@ public class LoginGraphicController extends AccessGraphicController{
         return this.user;
     }
     public TextField getPassField(){
-        return this.passText;
+        return this.loginPassText;
     }
     public TextField getPasswordField(){
         return this.password;
@@ -73,7 +73,7 @@ public class LoginGraphicController extends AccessGraphicController{
         }else{
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.initOwner(loginController.getMainApp().getPrimaryStage());
             alert.setTitle("User is empty");
             alert.setHeaderText("The user field is empty");
             alert.setContentText("Please enter a username.");
@@ -81,16 +81,16 @@ public class LoginGraphicController extends AccessGraphicController{
         }
         String passValue;
         if(passToggle.isSelected()) {
-            if(bean.passCheck(passText.getText())){
-                passValue = passText.getText(); //get user entered password from the textField2
-                controller.submit(userValue, passValue);
+            if(bean.passCheck(loginPassText.getText())){
+                passValue = loginPassText.getText(); //get user entered password from the textField2
+                loginController.submit(userValue, passValue);
             }else{
                 alert();
             }
         } else {
             if(bean.passCheck(password.getText())){
                 passValue = password.getText(); //get user entered password from the textField2
-                controller.submit(userValue, passValue);
+                loginController.submit(userValue, passValue);
             }else{
                 alert();
             }
@@ -100,7 +100,7 @@ public class LoginGraphicController extends AccessGraphicController{
     public void alert(){
         //show error message
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.initOwner(controller.getMainApp().getPrimaryStage());
+        alert.initOwner(loginController.getMainApp().getPrimaryStage());
         alert.setTitle("Password is empty");
         alert.setHeaderText("The password field is empty");
         alert.setContentText("Please enter a password.");
@@ -113,27 +113,27 @@ public class LoginGraphicController extends AccessGraphicController{
         String gScope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
         String gSecret = "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";
         OAuthGoogleAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
-        auth.startLogin(controller.getMainApp());
+        auth.startLogin(loginController.getMainApp());
     }
     @FXML
     private void skipAction() {
-        controller.home();
+        loginController.home();
     }
     @FXML
     private void signUpAction(){
-        controller.getMainApp().showSignUpOverview();
+        loginController.getMainApp().showSignUpOverview();
     }
 
-    /** Is called to set controller*/
+    /** Is called to set gymEditController*/
     @Override
     public void setController(Controller controller) {
-        this.controller = (LoginController) controller;
+        this.loginController = (LoginController) controller;
         super.setController(controller);
     }
 
-    /** Is called to get controller type*/
+    /** Is called to get gymEditController type*/
     @Override
     public ControllerType getGraphicType(){
-        return controller.getType();
+        return loginController.getType();
     }
 }

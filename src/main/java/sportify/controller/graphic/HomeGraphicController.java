@@ -17,7 +17,7 @@ public class HomeGraphicController extends HomePhoneGraphicController implements
     /** The action of the button*/
     @FXML
     private void loadGymInfo(){
-        MenuController menu = controller.Menu();
+        MenuController menu = controller.menu();
         menu.setGymInfo(controller.getUser().getGymName());
         GymInfoGraphicController graphicController = new GymInfoGraphicController();
         GymInfoController gym = new GymInfoController();
@@ -33,7 +33,7 @@ public class HomeGraphicController extends HomePhoneGraphicController implements
     private void sportQuizAction(){
         controller.getMainApp().getPrimaryStage().setTitle("Sportify - Sport Quiz");
         try {
-            MenuController menuController = controller.Menu();
+            MenuController menuController = controller.menu();
             menuController.setSportQuiz();
 
             // Load sport quiz overview.
@@ -44,7 +44,7 @@ public class HomeGraphicController extends HomePhoneGraphicController implements
             // Set sport quiz overview into the center of root layout.
             controller.getMainApp().getPrimaryPane().setCenter(paneSport);
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             SportQuizGraphicController graphicController = loaderSport.getController();
             SportQuizController controllerSport = new SportQuizController();
             controllerSport.setGraphicController(graphicController);
@@ -61,7 +61,7 @@ public class HomeGraphicController extends HomePhoneGraphicController implements
     private void findGymAction(){
         controller.getMainApp().getPrimaryStage().setTitle("Sportify - Find Gym");
         try {
-            MenuController menuController = controller.Menu();
+            MenuController menuController = controller.menu();
             menuController.setFindGym();
 
             // Load find gym overview.
@@ -72,7 +72,7 @@ public class HomeGraphicController extends HomePhoneGraphicController implements
             // Set find gym overview into the center of root layout.
             controller.getMainApp().getPrimaryPane().setCenter(paneGym);
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             FindGymGraphicController graphicController = loaderGym.getController();
             FindGymController controllerGym = new FindGymController();
             controllerGym.setGraphicController(graphicController);
@@ -90,7 +90,7 @@ public class HomeGraphicController extends HomePhoneGraphicController implements
     private void signLoginAction() {
         controller.getMainApp().getPrimaryStage().setTitle("Sportify - Login");
         try {
-            MenuController menuController = controller.Menu();
+            MenuController menuController = controller.menu();
             menuController.setLogin();
 
             // Load login overview.
@@ -101,7 +101,7 @@ public class HomeGraphicController extends HomePhoneGraphicController implements
             // Set login overview into the center of root layout.
             controller.getMainApp().getPrimaryPane().setCenter(paneLogin);
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             LoginGraphicController graphicController = loaderLogin.getController();
             LoginController controllerLogin = new LoginController();
             controllerLogin.setGraphicController(graphicController);

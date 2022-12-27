@@ -148,12 +148,12 @@ public abstract class EditGraphicController implements GraphicController{
         stage.close();
     }
 
-    /** Reference to controller*/
+    /** Reference to gymEditController*/
     protected EditController controller;
 
     /** Controls the modifiability of all field*/
     @FXML
-    protected void set_toggle_pass(Event modify) {
+    protected void setTogglePass(Event modify) {
         if (modify.getSource() == modifyUsername) {
             modifyLabelUsername();
         } else if (modify.getSource() == modifyEmail) {
@@ -241,13 +241,13 @@ public abstract class EditGraphicController implements GraphicController{
         }
     }
 
-    /** Is called to set controller*/
+    /** Is called to set gymEditController*/
     @Override
     public void setController(Controller controller) {
         this.controller = (EditController) controller;
     }
 
-    /** Is called to get controller type*/
+    /** Is called to get gymEditController type*/
     @Override
     public ControllerType getGraphicType(){
         return controller.getType();

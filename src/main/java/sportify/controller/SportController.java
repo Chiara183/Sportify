@@ -18,12 +18,12 @@ public class SportController extends Controller{
     /** Reference to the sport quiz*/
     private SportQuizController quiz;
 
-    /** Is called to set quiz controller*/
+    /** Is called to set quiz gymEditController*/
     public void setQuiz(SportQuizController quiz) {
         this.quiz = quiz;
     }
 
-    /** Is called to get quiz controller*/
+    /** Is called to get quiz gymEditController*/
     public SportQuizController getQuiz() {
         return this.quiz;
     }
@@ -76,7 +76,7 @@ public class SportController extends Controller{
             // Set test result overview into the center of root layout.
             this.mainApp.getPrimaryPane().setCenter(pane);
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             SportGraphicController sportGraphicController = loaderSport.getController();
             sportGraphicController.setController(this);
             this.setGraphicController(sportGraphicController);
@@ -97,7 +97,7 @@ public class SportController extends Controller{
         if(getMainApp().isNotMobile()) {
             FXMLLoader loaderSport = new FXMLLoader();
             loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportInfo.fxml"));
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             SportGraphicController sportGraphicController = setCenterPane(loaderSport);
             sportGraphicController.setSportName(sport);
             sportGraphicController.setSportDescription(description);
@@ -110,14 +110,14 @@ public class SportController extends Controller{
             menu.setView(ControllerType.SPORT_INFO);
             MenuGraphicController graphicMenuController = loaderTopScreen.getController();
             graphicMenuController.setController(menu);
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             SportGraphicController sportGraphicController = setCenterPane(loaderSport);
             sportGraphicController.setSportName(sport);
             sportGraphicController.setSportDescription(description);
         }
     }
 
-    /** Is called to set graphic  controller*/
+    /** Is called to set graphic  gymEditController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         //Do nothing because it doesn't need to, just override operation
@@ -135,7 +135,7 @@ public class SportController extends Controller{
         // Set test result overview into the center of root layout.
         this.mainApp.getPrimaryPane().setCenter(pane);
 
-        // Give the controller access to the main app.
+        // Give the gymEditController access to the main app.
         SportGraphicController sportGraphicController = loaderSport.getController();
         this.setGraphicController(sportGraphicController);
         sportGraphicController.setController(this);

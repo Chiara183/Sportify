@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class GymUser extends User {
 
+    private static final String where = "' WHERE `gym`.`owner` = '";
+
     /** The constructor.*/
     public GymUser() {
         this(null, null);
@@ -22,42 +24,42 @@ public class GymUser extends User {
     /** The method that set up gym variable*/
     public void setGymName(String name) {
         this.gymName.set(name);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
+        DAO objDAO = mainApp.getDAO();
+        objDAO.updateDB(
                 "UPDATE `gym` SET `name` = '"
-                        + name + "' WHERE `gym`.`owner` = '"
+                        + name + where
                         + this.userName.getValue() +"'");
     }
     public void setAddress(String address) {
         this.address.set(address);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
+        DAO objDAO = mainApp.getDAO();
+        objDAO.updateDB(
                 "UPDATE `gym` SET `address` = '"
-                        + address + "' WHERE `gym`.`owner` = '"
+                        + address + where
                         + this.userName.getValue() +"'");
     }
     public void setLatitude(String latitude) {
         this.latitude.set(latitude);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
+        DAO objDAO = mainApp.getDAO();
+        objDAO.updateDB(
                 "UPDATE `gym` SET `latitude` = '"
-                        + latitude + "' WHERE `gym`.`owner` = '"
+                        + latitude + where
                         + this.userName.getValue() +"'");
     }
     public void setLongitude(String longitude) {
         this.longitude.set(longitude);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
+        DAO objDAO = mainApp.getDAO();
+        objDAO.updateDB(
                 "UPDATE `gym` SET `longitude` = '"
-                        + longitude + "' WHERE `gym`.`owner` = '"
+                        + longitude + where
                         + this.userName.getValue() +"'");
     }
     public void setPhone(String phone) {
         this.phone.set(phone);
-        DAO obj_DAO = mainApp.getDAO();
-        obj_DAO.updateDB(
+        DAO objDAO = mainApp.getDAO();
+        objDAO.updateDB(
                 "UPDATE `gym` SET `phone` = '"
-                        + phone + "' WHERE `gym`.`owner` = '"
+                        + phone + where
                         + this.userName.getValue() +"'");
     }
 }

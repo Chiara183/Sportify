@@ -11,7 +11,7 @@ public class GymEditPhoneGraphicController extends GymEditGraphicController {
     /** Go to gym info interface*/
     @FXML
     private void gymInfoAction() {
-        controller.getMenu().loadGymInfo();
+        gymEditController.getMenu().loadGymInfo();
     }
 
     /** The action of the button.*/
@@ -20,10 +20,10 @@ public class GymEditPhoneGraphicController extends GymEditGraphicController {
     protected void okAction(){
         super.okAction();
         LocalDate bday = bean.settingBday(super.dayOfBirth, super.birthMonth, super.birthYear);
-        if(!Objects.equals(controller.getUser().getBirthday(), bday)) {
-            controller.getUser().setBirthday(bday);
+        if(!Objects.equals(gymEditController.getUser().getBirthday(), bday)) {
+            gymEditController.getUser().setBirthday(bday);
         }
-        controller.getMenu().setUser(controller.getUser());
-        controller.getMenu().back();
+        gymEditController.getMenu().setUser(gymEditController.getUser());
+        gymEditController.getMenu().back();
     }
 }

@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class FindGymController extends Controller{
 
-    /** Reference to graphic controller*/
+    /** Reference to graphic gymEditController*/
     private FindGymPhoneGraphicController findGymGraphicController;
 
     /** The constructor.*/
@@ -23,7 +23,7 @@ public class FindGymController extends Controller{
         this.type = ControllerType.FIND_GYM;
     }
 
-    /** Is called to set graphic controller*/
+    /** Is called to set graphic gymEditController*/
     public void setGraphicController(FindGymPhoneGraphicController graphicController) {
         this.findGymGraphicController = graphicController;
     }
@@ -43,7 +43,7 @@ public class FindGymController extends Controller{
             // Set menu overview into the top of root layout.
             this.findGymGraphicController.getMap().getChildren().add(paneMap);
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             MapGraphicController graphicController = loaderGym.getController();
             MapController controller = new MapController();
             controller.setGraphicController(graphicController);
@@ -62,7 +62,7 @@ public class FindGymController extends Controller{
         }
     }
 
-    /** Is called to set graphic controller*/
+    /** Is called to set graphic gymEditController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.findGymGraphicController = (FindGymPhoneGraphicController) graphicController;

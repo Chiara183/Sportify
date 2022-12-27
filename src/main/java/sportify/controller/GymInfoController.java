@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 
 public class GymInfoController extends Controller implements Observer {
 
-    /** Reference to graphic controller*/
+    /** Reference to graphic gymEditController*/
     private GymInfoGraphicController graphicController;
 
     private static final String SELECT = "SELECT * ";
@@ -43,23 +43,23 @@ public class GymInfoController extends Controller implements Observer {
         this.type = ControllerType.GYM_INFO;
     }
 
-    /** Method that set up the controller*/
+    /** Method that set up the gymEditController*/
     private void setReview(){
         if(this.user != null){
             if(Objects.equals(this.user.getRole(), "user")){
-                graphicController.reviewPane_isVisible(true);
-            } else graphicController.reviewPane_isVisible(!Objects.equals(this.user.getGymName(), this.gym));
+                graphicController.reviewPaneIsVisible(true);
+            } else graphicController.reviewPaneIsVisible(!Objects.equals(this.user.getGymName(), this.gym));
         } else {
-            graphicController.reviewPane_isVisible(false);
+            graphicController.reviewPaneIsVisible(false);
         }
     }
     private void setCourse(){
         if(this.user != null){
             if(Objects.equals(this.user.getRole(), "user")){
-                graphicController.coursePane_isVisible(false);
-            } else graphicController.coursePane_isVisible(Objects.equals(this.user.getGymName(), this.gym));
+                graphicController.coursePaneIsVisible(false);
+            } else graphicController.coursePaneIsVisible(Objects.equals(this.user.getGymName(), this.gym));
         } else {
-            graphicController.coursePane_isVisible(false);
+            graphicController.coursePaneIsVisible(false);
         }
     }
     private void settingPage(){
@@ -275,9 +275,9 @@ public class GymInfoController extends Controller implements Observer {
             graphicController.setComboSport(this.sport);
         });
         Task<Void> task0 = createTask(task);
-        task0.setOnRunning(e -> graphicController.comboSport_setCursor(Cursor.WAIT));
-        task0.setOnSucceeded(e -> graphicController.comboSport_setCursor(Cursor.DEFAULT));
-        task0.setOnFailed(e -> graphicController.comboSport_setCursor(Cursor.DEFAULT));
+        task0.setOnRunning(e -> graphicController.comboSportSetCursor(Cursor.WAIT));
+        task0.setOnSucceeded(e -> graphicController.comboSportSetCursor(Cursor.DEFAULT));
+        task0.setOnFailed(e -> graphicController.comboSportSetCursor(Cursor.DEFAULT));
 
         // Set course
         Runnable task1 = () -> Platform.runLater(this::downloadCourse);
@@ -309,7 +309,7 @@ public class GymInfoController extends Controller implements Observer {
     private void setGym(String name){
 
         // Window Title
-        graphicController.setGym_name(name);
+        graphicController.setGymName(name);
 
         // Set gym_description
         graphicController.setGymDescription(
@@ -358,7 +358,7 @@ public class GymInfoController extends Controller implements Observer {
         new Thread(task4).start();
     }
 
-    /** It's called to set the controller and view*/
+    /** It's called to set the gymEditController and view*/
     public void loadingGymName(String name) {
         this.mainApp.getPrimaryStage().setTitle("Sportify - " + name);
         try {
@@ -385,7 +385,7 @@ public class GymInfoController extends Controller implements Observer {
                 graphicMenuController.setController(menu);
             }
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             GymInfoGraphicController gymInfoGraphicController = loader.getController();
             this.setGraphicController(gymInfoGraphicController);
             gymInfoGraphicController.setController(this);
@@ -400,7 +400,7 @@ public class GymInfoController extends Controller implements Observer {
             LOGGER.log(Level.SEVERE, e.getMessage());        }
     }
 
-    /** Is called to set graphic controller*/
+    /** Is called to set graphic gymEditController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (GymInfoGraphicController) graphicController;
@@ -433,10 +433,10 @@ public class GymInfoController extends Controller implements Observer {
     private void setInfoReview(String gym) {
         Runnable task2 = () -> Platform.runLater(() -> downloadReview(gym));
         Task<Void> task5 = createTask(task2);
-        task5.setOnRunning(e -> graphicController.review_setCursor(Cursor.WAIT));
-        task5.setOnSucceeded(e -> graphicController.review_setCursor(Cursor.DEFAULT));
+        task5.setOnRunning(e -> graphicController.reviewSetCursor(Cursor.WAIT));
+        task5.setOnSucceeded(e -> graphicController.reviewSetCursor(Cursor.DEFAULT));
         task5.setOnFailed(e -> {
-            graphicController.review_setCursor(Cursor.DEFAULT);
+            graphicController.reviewSetCursor(Cursor.DEFAULT);
             Label labelNotFound = new Label("There are no reviews");
             labelNotFound.setStyle(FONT);
             graphicController.setReview(labelNotFound);

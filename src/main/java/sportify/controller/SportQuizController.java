@@ -199,7 +199,7 @@ SportQuizController extends Controller {
             // Set sport quiz overview into the center of root layout.
             this.mainApp.getPrimaryPane().setCenter(pane);
 
-            // Give the controller access to the main app.
+            // Give the gymEditController access to the main app.
             if(getMainApp().isNotMobile()) {
                 SportQuizGraphicController graphicController = loaderSport.getController();
                 this.setGraphicController(graphicController);

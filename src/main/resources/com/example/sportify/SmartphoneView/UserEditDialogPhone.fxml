@@ -47,32 +47,32 @@
             <Font name="Comic Sans MS" size="12.0" />
         </font>
     </Text>
-    <Label fx:id="modifyFirstName" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="71.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+    <Label fx:id="modifyFirstName" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="71.0" onMouseClicked="#setTogglePass" onTouchPressed="#setTogglePass" text="🖉" textAlignment="CENTER">
         <font>
             <Font name="Comic Sans MS" size="20.0" />
         </font>
     </Label>
-    <Label fx:id="modifyLastName" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="111.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+    <Label fx:id="modifyLastName" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="111.0" onMouseClicked="#setTogglePass" onTouchPressed="#setTogglePass" text="🖉" textAlignment="CENTER">
         <font>
             <Font name="Comic Sans MS" size="20.0" />
         </font>
     </Label>
-    <Label fx:id="modifyUsername" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="151.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+    <Label fx:id="modifyUsername" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="151.0" onMouseClicked="#setTogglePass" onTouchPressed="#setTogglePass" text="🖉" textAlignment="CENTER">
         <font>
             <Font name="Comic Sans MS" size="20.0" />
         </font>
     </Label>
-    <Label fx:id="modifyPassword" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="191.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+    <Label fx:id="modifyPassword" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="191.0" onMouseClicked="#setTogglePass" onTouchPressed="#setTogglePass" text="🖉" textAlignment="CENTER">
         <font>
             <Font name="Comic Sans MS" size="20.0" />
         </font>
     </Label>
-    <Label fx:id="modifyEmail" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="231.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+    <Label fx:id="modifyEmail" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="231.0" onMouseClicked="#setTogglePass" onTouchPressed="#setTogglePass" text="🖉" textAlignment="CENTER">
         <font>
             <Font name="Comic Sans MS" size="20.0" />
         </font>
     </Label>
-    <Label fx:id="modifyBirthday" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="271.0" onMouseClicked="#set_toggle_pass" onTouchPressed="#set_toggle_pass" text="🖉" textAlignment="CENTER">
+    <Label fx:id="modifyBirthday" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="271.0" onMouseClicked="#setTogglePass" onTouchPressed="#setTogglePass" text="🖉" textAlignment="CENTER">
         <font>
             <Font name="Comic Sans MS" size="20.0" />
         </font>

@@ -51,7 +51,7 @@
                         <Font name="Comic Sans MS" size="18.0" />
                     </font>
                 </Text>
-                <TextField fx:id="passText" maxWidth="233.0" prefHeight="33.0" prefWidth="226.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                <TextField fx:id="loginPassText" maxWidth="233.0" prefHeight="33.0" prefWidth="226.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>
@@ -68,7 +68,7 @@
                     <GridPane.margin>
                         <Insets right="8.0" />
                     </GridPane.margin>
-                    <Label fx:id="eye" onMouseClicked="#set_toggle_pass" text="👁">
+                    <Label fx:id="eye" onMouseClicked="#setTogglePass" text="👁">
                         <font>
                             <Font name="Comic Sans MS Bold" size="29.0" />
                         </font>

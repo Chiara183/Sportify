@@ -21,8 +21,8 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
     @FXML
     protected TextField gymCity;
 
-    /** Reference to controller*/
-    protected SignUpGymController controller;
+    /** Reference to gymEditController*/
+    protected SignUpGymController signUpGymController;
 
     /** Reference to bean*/
     protected final SignUpBean bean = new SignUpBean();
@@ -42,10 +42,10 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
         //check whether the credentials are authentic or not
         if (coords.get("lat") != null && coords.get("lon") != null) {
             //if authentic, navigate user to a new page
-            controller.submitActionSignUpGym(gymValue, address, coords);
+            signUpGymController.submitActionSignUpGym(gymValue, address, coords);
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "You're registered!");
-            controller.login();
+            signUpGymController.login();
         } else {
             helpMethod(coords);
         }
@@ -53,7 +53,7 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
 
     protected void alert(){
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.initOwner(signUpGymController.getMainApp().getPrimaryStage());
             alert.setTitle("Field empty");
             alert.setHeaderText("A field is empty");
             alert.setContentText("Please fill gym name, address and city field");
@@ -64,7 +64,7 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
         if (coords.get("lat") == null && coords.get("lon") == null){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.initOwner(signUpGymController.getMainApp().getPrimaryStage());
             alert.setTitle("Wrong address");
             alert.setHeaderText("Sorry, we can't find your address");
             alert.setContentText("Please enter valid address");
@@ -72,10 +72,10 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
         }
     }
 
-    /** Is called to set controller*/
+    /** Is called to set gymEditController*/
     @Override
     public void setController(Controller controller) {
-        this.controller = (SignUpGymController) controller;
+        this.signUpGymController = (SignUpGymController) controller;
         super.setController(controller);
     }
 }

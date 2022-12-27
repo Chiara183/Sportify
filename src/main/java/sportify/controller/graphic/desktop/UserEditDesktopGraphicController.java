@@ -13,10 +13,10 @@ public class UserEditDesktopGraphicController extends UserEditGraphicController 
     @FXML
     protected void okAction() {
         super.okAction();
-        if (!Objects.equals(controller.getUser().getBirthday(), date.getValue())) {
-            controller.getUser().setBirthday(date.getValue());
+        if (!Objects.equals(userEditController.getUser().getBirthday(), date.getValue())) {
+            userEditController.getUser().setBirthday(date.getValue());
         }
-        controller.getMenu().setUser(controller.getUser());
+        userEditController.getMenu().setUser(userEditController.getUser());
         Stage stage = (Stage) ok.getScene().getWindow();
         stage.close();
     }

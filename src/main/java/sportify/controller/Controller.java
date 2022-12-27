@@ -41,7 +41,7 @@ public abstract class Controller{
         this.searchCache = search;
     }
 
-    /** Is called to set graphic controller*/
+    /** Is called to set graphic gymEditController*/
     public abstract void setGraphicController(GraphicController graphicController);
 
     /** Is called to get type.*/

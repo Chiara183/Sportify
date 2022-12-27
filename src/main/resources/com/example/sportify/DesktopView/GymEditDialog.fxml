@@ -59,7 +59,7 @@
         <TextField fx:id="username" maxWidth="233.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <TextField fx:id="password" maxWidth="233.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
         <Label fx:id="emailLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-        <Label fx:id="modifyFirstName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+        <Label fx:id="modifyFirstName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#setTogglePassGym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
             <font>
                 <Font name="Comic Sans MS Bold" size="24.0" />
             </font>
@@ -67,7 +67,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
-        <Label fx:id="modifyLastName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+        <Label fx:id="modifyLastName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#setTogglePassGym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
             <font>
                 <Font name="Comic Sans MS Bold" size="24.0" />
             </font>
@@ -75,7 +75,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
-        <Label fx:id="modifyUsername" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+        <Label fx:id="modifyUsername" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#setTogglePassGym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
             <font>
                 <Font name="Comic Sans MS Bold" size="24.0" />
             </font>
@@ -83,7 +83,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
-        <Label fx:id="modifyPassword" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+        <Label fx:id="modifyPassword" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#setTogglePassGym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
             <font>
                 <Font name="Comic Sans MS Bold" size="24.0" />
             </font>
@@ -91,7 +91,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
-        <Label fx:id="modifyEmail" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+        <Label fx:id="modifyEmail" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#setTogglePassGym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
             <font>
                 <Font name="Comic Sans MS Bold" size="24.0" />
             </font>
@@ -113,7 +113,7 @@
         <Label fx:id="gymNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="6" />
         <Label fx:id="addressLabel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
         <Label fx:id="telephoneLabel" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-        <Label fx:id="modifyGymName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+        <Label fx:id="modifyGymName" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#setTogglePassGym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
             <font>
                 <Font name="Comic Sans MS Bold" size="24.0" />
             </font>
@@ -121,7 +121,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
-        <Label fx:id="modifyAddress" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+        <Label fx:id="modifyAddress" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#setTogglePassGym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="CENTER">
             <font>
                 <Font name="Comic Sans MS Bold" size="24.0" />
             </font>
@@ -129,7 +129,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
-        <Label fx:id="modifyTelephone" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#set_toggle_pass_gym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+        <Label fx:id="modifyTelephone" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#setTogglePassGym" text="🖉" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
             <font>
                 <Font name="Comic Sans MS Bold" size="24.0" />
             </font>
