@@ -96,8 +96,9 @@ public class MapController extends Controller{
             if(event.getMarker().getMapLabel().isEmpty()) {
                 mark.forEach((id, gym) -> {
                     if (coords == gym.getPosition()) {
+                        String s = "Marker number: " + id;
                         Logger logger = Logger.getLogger(MapController.class.getName());
-                        logger.log(Level.INFO, "Marker number: " + id);
+                        logger.log(Level.INFO, s);
                         if (allGym.get(gym.getPosition()) != null) {
                             String name = allGym.get(gym.getPosition());
                             MapLabel labelGym = new MapLabel(name, 10, -10).setCssClass("label");
