@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HomePhoneGraphicController implements GraphicController {
 
@@ -44,6 +46,10 @@ public class HomePhoneGraphicController implements GraphicController {
                 auth.startLogin(controller.getMainApp());
             }
             case "Find gym" -> this.controller.getMenu().getGraphicController().findGymAction();
+            default -> {
+                Logger logger = Logger.getLogger(HomePhoneGraphicController.class.getName());
+                logger.log(Level.INFO, "Waiting a choice");
+            }
         }
     }
 

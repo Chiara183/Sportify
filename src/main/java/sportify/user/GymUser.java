@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class GymUser extends User {
 
-    private static final String where = "' WHERE `gym`.`owner` = '";
+    private static final String WHERE = "' WHERE `gym`.`owner` = '";
 
     /** The constructor.*/
     public GymUser() {
@@ -27,7 +27,7 @@ public class GymUser extends User {
         DAO objDAO = mainApp.getDAO();
         objDAO.updateDB(
                 "UPDATE `gym` SET `name` = '"
-                        + name + where
+                        + name + WHERE
                         + this.userName.getValue() +"'");
     }
     public void setAddress(String address) {
@@ -35,7 +35,7 @@ public class GymUser extends User {
         DAO objDAO = mainApp.getDAO();
         objDAO.updateDB(
                 "UPDATE `gym` SET `address` = '"
-                        + address + where
+                        + address + WHERE
                         + this.userName.getValue() +"'");
     }
     public void setLatitude(String latitude) {
@@ -43,7 +43,7 @@ public class GymUser extends User {
         DAO objDAO = mainApp.getDAO();
         objDAO.updateDB(
                 "UPDATE `gym` SET `latitude` = '"
-                        + latitude + where
+                        + latitude + WHERE
                         + this.userName.getValue() +"'");
     }
     public void setLongitude(String longitude) {
@@ -51,7 +51,7 @@ public class GymUser extends User {
         DAO objDAO = mainApp.getDAO();
         objDAO.updateDB(
                 "UPDATE `gym` SET `longitude` = '"
-                        + longitude + where
+                        + longitude + WHERE
                         + this.userName.getValue() +"'");
     }
     public void setPhone(String phone) {
@@ -59,7 +59,7 @@ public class GymUser extends User {
         DAO objDAO = mainApp.getDAO();
         objDAO.updateDB(
                 "UPDATE `gym` SET `phone` = '"
-                        + phone + where
+                        + phone + WHERE
                         + this.userName.getValue() +"'");
     }
 }
