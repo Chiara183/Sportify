@@ -100,6 +100,14 @@
                     <groupId>org.openjfx</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>eu.hansolo.fx</groupId>
+                    <artifactId>countries</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>eu.hansolo.fx</groupId>
+                    <artifactId>heatmap</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -165,17 +173,6 @@
             <version>20220924</version>
         </dependency>
         <!-- Test scope -->
-        <dependency>
-            <groupId>eu.hansolo.fx</groupId>
-            <artifactId>heatmap</artifactId>
-            <version>17.0.12</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>eu.hansolo.fx</groupId>
-            <artifactId>countries</artifactId>
-            <version>17.0.23</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
