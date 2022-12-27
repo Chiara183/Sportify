@@ -11,6 +11,11 @@ public class SignUpBean {
 
     public boolean checkForNumbers(TextField str){
         String s = str.getText();
-        return !s.isEmpty() && s.matches(".*\\d.*");
+        for (char c : s.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
