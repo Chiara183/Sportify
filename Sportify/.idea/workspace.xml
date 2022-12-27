@@ -36,7 +36,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Matteo/IdeaProjects/Sportify.git/trunk/Sportify",
+    "last_opened_file_path": "C:/Users/Matteo/IdeaProjects/Sportify.git",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -80,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672051077633</updated>
       <workItem from="1672051079191" duration="17222000" />
-      <workItem from="1672152337242" duration="4743000" />
+      <workItem from="1672152337242" duration="4892000" />
     </task>
     <task id="LOCAL-00001" summary="Try to make SonarCloud analysis">
       <created>1672051207234</created>
