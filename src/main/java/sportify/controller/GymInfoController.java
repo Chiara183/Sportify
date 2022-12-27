@@ -282,10 +282,10 @@ public class GymInfoController extends Controller implements Observer {
         // Set course
         Runnable task1 = () -> Platform.runLater(this::downloadCourse);
         Task<Void> task2 = createTask(task1);
-        task2.setOnRunning(e -> graphicController.course_setCursor(Cursor.WAIT));
-        task2.setOnSucceeded(e -> graphicController.course_setCursor(Cursor.DEFAULT));
+        task2.setOnRunning(e -> graphicController.courseSetCursor(Cursor.WAIT));
+        task2.setOnSucceeded(e -> graphicController.courseSetCursor(Cursor.DEFAULT));
         task2.setOnFailed(e -> {
-            graphicController.course_setCursor(Cursor.DEFAULT);
+            graphicController.courseSetCursor(Cursor.DEFAULT);
             Label label = new Label("There are no course");
             label.setStyle(FONT);
             graphicController.setCourse(label);
@@ -336,9 +336,9 @@ public class GymInfoController extends Controller implements Observer {
                                     "\n\nTELEPHONE: " + rs);
                 });
         Task<Void> task4 = createTask(task1);
-        task4.setOnRunning(e -> graphicController.gymDescription_setCursor(Cursor.WAIT));
-        task4.setOnSucceeded(e -> graphicController.gymDescription_setCursor(Cursor.DEFAULT));
-        task4.setOnFailed(e -> graphicController.gymDescription_setCursor(Cursor.DEFAULT));
+        task4.setOnRunning(e -> graphicController.gymDescriptionSetCursor(Cursor.WAIT));
+        task4.setOnSucceeded(e -> graphicController.gymDescriptionSetCursor(Cursor.DEFAULT));
+        task4.setOnFailed(e -> graphicController.gymDescriptionSetCursor(Cursor.DEFAULT));
 
         if(mainApp.isNotMobile()) {
             // Handlers

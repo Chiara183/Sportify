@@ -55,7 +55,7 @@ public class MenuTest extends StartingTest{
         assertThat(robot.lookup(HOME).queryButton()).hasText("Home");
         assertThat(robot.lookup(FINDGYM).queryButton()).hasText(GYMFINDER);
         assertThat(robot.lookup(SPORTQUIZ).queryButton()).hasText(SPORT);
-        assertThat(robot.lookup("#signOut").queryButton()).hasText("Sign Out");
+        assertThat(robot.lookup("#signOutMethod").queryButton()).hasText("Sign Out");
     }
 
     /** Test the menu buttons being logged in as gym */

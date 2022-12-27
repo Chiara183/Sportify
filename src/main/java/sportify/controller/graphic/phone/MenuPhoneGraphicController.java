@@ -20,7 +20,7 @@ public class MenuPhoneGraphicController extends MenuGraphicController {
 
     @Override
     @FXML
-    protected void signOut() {
+    protected void signOutMethod() {
         controller.setUser(null);
         controller.getMainApp().setUser(null);
         homeAction();

@@ -1,11 +1,5 @@
 package sportify.controller.graphic;
 
-import sportify.MainApp;
-import sportify.auth.OAuthAuthenticator;
-import sportify.bean.SignUpBean;
-import sportify.controller.Controller;
-import sportify.controller.ControllerType;
-import sportify.controller.SignUpController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -15,6 +9,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import sportify.MainApp;
+import sportify.bean.SignUpBean;
+import sportify.controller.Controller;
+import sportify.controller.ControllerType;
+import sportify.controller.SignUpController;
 
 import java.io.IOException;
 import java.sql.Timestamp;

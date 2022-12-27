@@ -183,7 +183,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     }
 
     /** Is called to set cursor on gym description label*/
-    public void gymDescription_setCursor(Cursor cursor){
+    public void gymDescriptionSetCursor(Cursor cursor){
         this.gymDescription.setCursor(cursor);
     }
 
@@ -203,7 +203,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     }
 
     /** Is called to set cursor on course vbox*/
-    public void course_setCursor(Cursor cursor){
+    public void courseSetCursor(Cursor cursor){
         this.course.setCursor(cursor);
     }
 

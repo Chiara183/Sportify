@@ -41,7 +41,7 @@
                <Insets right="10.0" />
             </HBox.margin>
          </Button>
-          <Button fx:id="signOut" contentDisplay="CENTER" maxHeight="27.0" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#signOut" prefHeight="27.0" prefWidth="0.0" text="Sign Out" textAlignment="CENTER" visible="false">
+          <Button fx:id="signOut" contentDisplay="CENTER" maxHeight="27.0" minHeight="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#signOutMethod" prefHeight="27.0" prefWidth="0.0" text="Sign Out" textAlignment="CENTER" visible="false">
               <HBox.margin>
                   <Insets />
               </HBox.margin>

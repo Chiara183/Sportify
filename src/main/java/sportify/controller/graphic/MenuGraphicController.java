@@ -111,7 +111,7 @@ public class MenuGraphicController implements GraphicController{
         }
     }
     @FXML
-    protected void signOut() {
+    protected void signOutMethod() {
         controller.setUser(null);
         controller.getMainApp().setUser(null);
     }
@@ -274,7 +274,7 @@ public class MenuGraphicController implements GraphicController{
         controller.setView(ControllerType.USER_KIND);
     }
 
-    /** Is called to get signOut button.*/
+    /** Is called to get signOutMethod button.*/
     public Button getSignOut(){
         return this.signOut;
     }

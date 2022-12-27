@@ -149,7 +149,7 @@ public class MenuController extends Controller{
         this.graphicController = (MenuGraphicController) graphicController;
     }
 
-    /** Is called to get signOut button.*/
+    /** Is called to get signOutMethod button.*/
     public Button getSignOut(){
         return this.graphicController.getSignOut();
     }

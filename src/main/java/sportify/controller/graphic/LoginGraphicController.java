@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 public class LoginGraphicController extends AccessGraphicController{
 
     private boolean google;
-    private static final String gSecret = "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";
+    private static final String G_SECRET = "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";
     /** All the text field of the interface*/
     @FXML
     private TextField user;
@@ -112,8 +112,7 @@ public class LoginGraphicController extends AccessGraphicController{
         String gClientId = "941217546228-08fmsjebj3jn1a0agnt9tu9tnijgn2pq.apps.googleusercontent.com";
         String gRedir = "https://localhost:8080/oauth2";
         String gScope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
-        //String gSecret = "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";
-        OAuthGoogleAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
+        OAuthGoogleAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, G_SECRET, gScope);
         auth.startLogin(loginController.getMainApp());
     }
     @FXML
