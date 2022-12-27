@@ -23,7 +23,7 @@
         <maven.build.timestamp.format>ddMMyyyy-HHmm</maven.build.timestamp.format>
         <buildTimestamp>${maven.build.timestamp}</buildTimestamp>
         <appassembler.directory>Sportify</appassembler.directory>
-        <java.version>17</java.version>
+        <java.version>19</java.version>
         <junit.version>4.13.2</junit.version>
 
         <mapjfx.version>3.1.0</mapjfx.version>
@@ -273,8 +273,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>19</source>
-                    <target>19</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
         </plugins>
