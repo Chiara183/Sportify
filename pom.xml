@@ -307,6 +307,8 @@
                     <testFailureIgnore>true</testFailureIgnore>
                     <!-- <rerunFailingTestsCount>3</rerunFailingTestsCount> -->
                     <classpathDependencyScopeExclude>runtime</classpathDependencyScopeExclude>
+                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                    <argLine>--add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
         </plugins>

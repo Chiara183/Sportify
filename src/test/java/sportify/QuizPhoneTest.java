@@ -3,11 +3,13 @@ package sportify;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.util.WaitForAsyncUtils;
 
 import javax.swing.*;
 
@@ -17,24 +19,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(ApplicationExtension.class)
 public class QuizPhoneTest extends StartingTest {
 
-    private final FxRobot robot;
+    private final FxRobot robot = new FxRobot();
     private static final String COMBOBOX = "#comboActivity";
     private static final String QUIZ = "Take sport quiz";
     private static final String FOOTBALL = "Football";
 
-    public QuizPhoneTest(FxRobot robot) {
-        this.robot = robot;
+    @Override
+    @BeforeEach
+    public void setUp() {
+        ApplicationTest.launch(MainAppLauncher.class, "mobile");
+        WaitForAsyncUtils.waitForFxEvents(100);
     }
-
-
-    @BeforeAll
-    static void versionControl(){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "You have to click 'Mobile' and then 'Next' everytime the next pop up window appears during the test to execute the correct testing");
-    }
-
-
-
 
     @Test
     public void SportQuizTest(){

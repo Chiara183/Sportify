@@ -14,11 +14,7 @@ public abstract class StartingTest {
     private static final Logger LOGGER = Logger.getLogger(StartingTest.class.getName());
 
     @BeforeEach
-    public void setUp() {
-        ApplicationTest.launch(MainAppLauncher.class);
-        WaitForAsyncUtils.waitForFxEvents(100);
-
-    }
+    abstract public void setUp();
 
     @AfterEach
     public void tearDown() {

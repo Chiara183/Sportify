@@ -3,7 +3,9 @@ package sportify;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.testfx.api.FxRobot;
+import org.testfx.util.WaitForAsyncUtils;
 
 import javax.swing.*;
 
@@ -20,11 +22,11 @@ public class MenuTest extends StartingTest{
     private static final String SPORTQUIZ = "#sportQuiz";
     private static final String SPORT = "Sport Quiz";
 
-
-    @BeforeAll
-    static void versionControl(){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "You have to click 'Desktop' and then 'Next' everytime the next pop up window appears during the test to execute the correct testing");
+    @Override
+    @BeforeEach
+    public void setUp() {
+        ApplicationTest.launch(MainAppLauncher.class, "desktop");
+        WaitForAsyncUtils.waitForFxEvents(100);
     }
 
     /** Test the menu buttons without being logged in */
