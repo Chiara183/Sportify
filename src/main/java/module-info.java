@@ -13,20 +13,20 @@ module com.example.sportify {
     requires json.simple;
     requires commons.validator;
 
-    opens sportify to javafx.fxml;
+    opens sportify to javafx.fxml, javafx.graphics;
     exports sportify;
     exports sportify.controller;
-    opens sportify.controller to javafx.fxml;
+    opens sportify.controller to javafx.fxml, javafx.graphics;
     exports sportify.auth;
-    opens sportify.auth to javafx.fxml;
+    opens sportify.auth to javafx.fxml, javafx.graphics;
     exports sportify.user;
-    opens sportify.user to javafx.fxml;
+    opens sportify.user to javafx.fxml, javafx.graphics;
     exports sportify.controller.graphic;
-    opens sportify.controller.graphic to javafx.fxml;
+    opens sportify.controller.graphic to javafx.fxml, javafx.graphics;
     exports sportify.bean;
-    opens sportify.bean to javafx.fxml;
+    opens sportify.bean to javafx.fxml, javafx.graphics;
     exports sportify.controller.graphic.phone;
-    opens sportify.controller.graphic.phone to javafx.fxml;
+    opens sportify.controller.graphic.phone to javafx.fxml, javafx.graphics;
     exports sportify.controller.graphic.desktop;
-    opens sportify.controller.graphic.desktop to javafx.fxml;
+    opens sportify.controller.graphic.desktop to javafx.fxml, javafx.graphics;
 }
