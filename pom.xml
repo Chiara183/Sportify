@@ -168,8 +168,13 @@
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${openjfx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>19</version>
+            <version>${openjfx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -179,7 +184,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
-            <version>19</version>
+            <version>${openjfx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
