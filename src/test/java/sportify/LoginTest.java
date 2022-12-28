@@ -18,7 +18,7 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 @ExtendWith(ApplicationExtension.class)
 public class LoginTest extends StartingTest{
 
-    private FxRobot robot;
+    private final FxRobot robot;
 
     public LoginTest(FxRobot robot) {
         this.robot = robot;

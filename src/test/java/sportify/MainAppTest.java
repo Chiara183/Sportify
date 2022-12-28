@@ -15,7 +15,7 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 class MainAppTest extends StartingTest{
 
 
-    private FxRobot robot;
+    private final FxRobot robot;
 
     MainAppTest(FxRobot robot) {
         this.robot = robot;

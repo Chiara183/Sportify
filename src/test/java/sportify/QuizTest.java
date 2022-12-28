@@ -16,11 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class QuizTest extends StartingTest{
 
     private static final String QUIZ = "#sportQuiz";
-    private final FxRobot robot;
-
-    public QuizTest(FxRobot robot) {
-        this.robot = robot;
-    }
+    private final FxRobot robot = new FxRobot();
 
     @BeforeAll
     static void versionControl(){
