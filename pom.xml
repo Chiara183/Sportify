@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -17,47 +17,41 @@
     <name>${project.artifactId}</name>
 
     <properties>
-        <sonar.organization>chiara183</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <!-- Maven compiler -->
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>ddMMyyyy-HHmm</maven.build.timestamp.format>
         <buildTimestamp>${maven.build.timestamp}</buildTimestamp>
+
+        <!-- Sonar settings -->
+        <sonar.organization>chiara183</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
+        <!-- Java settings -->
         <appassembler.directory>Sportify</appassembler.directory>
         <java.version>19</java.version>
         <junit.version>4.13.2</junit.version>
 
+        <!-- JFX settings -->
         <mapjfx.version>3.1.0</mapjfx.version>
         <openjfx.version>19</openjfx.version>
 
+        <!-- Other settings -->
         <slf4j.version>2.0.5</slf4j.version>
         <logback.version>1.4.5</logback.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>19</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>${openjfx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-web</artifactId>
-            <version>19</version>
-        </dependency>
-        <dependency>
-            <groupId>org.controlsfx</groupId>
-            <artifactId>controlsfx</artifactId>
-            <version>11.1.2</version>
+            <groupId>com.dlsc</groupId>
+            <artifactId>GMapsFX</artifactId>
+            <version>11.0.6</version>
         </dependency>
         <dependency>
             <groupId>com.dlsc.formsfx</groupId>
@@ -71,25 +65,19 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>net.synedra</groupId>
-            <artifactId>validatorfx</artifactId>
-            <version>0.4.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.openjfx</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
         </dependency>
         <dependency>
-            <groupId>org.kordamp.ikonli</groupId>
-            <artifactId>ikonli-javafx</artifactId>
-            <version>12.3.1</version>
+            <groupId>com.sothawo</groupId>
+            <artifactId>mapjfx</artifactId>
+            <version>${mapjfx.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.kordamp.bootstrapfx</groupId>
-            <artifactId>bootstrapfx-core</artifactId>
-            <version>0.4.0</version>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.7</version>
         </dependency>
         <dependency>
             <groupId>eu.hansolo</groupId>
@@ -111,21 +99,25 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.9.1</version>
-            <scope>test</scope>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.9.1</version>
-            <scope>test</scope>
+            <groupId>net.synedra</groupId>
+            <artifactId>validatorfx</artifactId>
+            <version>0.4.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.dlsc</groupId>
-            <artifactId>GMapsFX</artifactId>
-            <version>11.0.6</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -143,64 +135,58 @@
             <version>2.19.0</version>
         </dependency>
         <dependency>
-            <groupId>com.sothawo</groupId>
-            <artifactId>mapjfx</artifactId>
-            <version>${mapjfx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.12.0</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.30</version>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>11.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20220924</version>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.bootstrapfx</groupId>
+            <artifactId>bootstrapfx-core</artifactId>
+            <version>0.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-javafx</artifactId>
+            <version>12.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>19</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${openjfx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>19</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
         <!-- Test scope -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testfx</groupId>
-            <artifactId>testfx-core</artifactId>
-            <version>4.0.16-alpha</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>commons-validator</groupId>
-            <artifactId>commons-validator</artifactId>
-            <version>1.7</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testfx</groupId>
-            <artifactId>testfx-junit5</artifactId>
-            <version>4.0.16-alpha</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
@@ -214,9 +200,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest</artifactId>
-            <version>2.2</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -226,15 +212,21 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>2.0.5</version>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>2.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jruby</groupId>
             <artifactId>jruby-core</artifactId>
             <version>9.4.0.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.5</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -251,6 +243,23 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
             <version>6.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -287,10 +296,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>3.0.0-M7</version>
                 <configuration>
                     <failIfNoTests>true</failIfNoTests>
                     <rerunFailingTestsCount>3</rerunFailingTestsCount>
+                    <classpathDependencyScopeExclude>runtime</classpathDependencyScopeExclude>
                 </configuration>
             </plugin>
         </plugins>
