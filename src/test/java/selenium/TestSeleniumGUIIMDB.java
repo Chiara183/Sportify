@@ -14,7 +14,7 @@ public class TestSeleniumGUIIMDB {
   JavascriptExecutor js;
   @Before
   public void setUp() {
-    System.setProperty("webdriver.chrome.driver", "trunk/drivers/chromedriver.exe");
+    System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
     driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
   }
