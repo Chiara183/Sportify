@@ -23,7 +23,7 @@ public class testSelenium {
     }
 
     public static String Translation () throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "trunk/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://translate.google.it/?hl=it&sl=it&tl=en&op=translate");
         driver.findElement(By.xpath("/html/body/c-wiz/div/div/div/div[2]/div[1]/div[4]/div[1]/div[1]/form[2]/div/div/button")).click();
