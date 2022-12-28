@@ -1,5 +1,7 @@
-module com.example.sportify {
+module sportify {
     requires javafx.controls;
+    requires javafx.media;
+
     requires javafx.fxml;
     requires javafx.base;
     requires javafx.graphics;

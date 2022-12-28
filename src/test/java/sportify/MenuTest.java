@@ -12,13 +12,17 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 
 public class MenuTest extends StartingTest{
 
-    private FxRobot robot;
+    private final FxRobot robot;
     private static final String SIGNIN = "#signIn";
     private static final String HOME = "#home";
     private static final String FINDGYM = "#findGym";
     private static final String GYMFINDER = "Gym Finder";
     private static final String SPORTQUIZ = "#sportQuiz";
     private static final String SPORT = "Sport Quiz";
+
+    public MenuTest(FxRobot robot) {
+        this.robot = robot;
+    }
 
 
     @BeforeAll

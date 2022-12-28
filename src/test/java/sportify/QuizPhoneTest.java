@@ -17,10 +17,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(ApplicationExtension.class)
 public class QuizPhoneTest extends StartingTest {
 
-    private FxRobot robot;
+    private final FxRobot robot;
     private static final String COMBOBOX = "#comboActivity";
     private static final String QUIZ = "Take sport quiz";
     private static final String FOOTBALL = "Football";
+
+    public QuizPhoneTest(FxRobot robot) {
+        this.robot = robot;
+    }
 
 
     @BeforeAll

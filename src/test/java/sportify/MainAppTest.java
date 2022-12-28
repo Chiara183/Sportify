@@ -17,6 +17,10 @@ class MainAppTest extends StartingTest{
 
     private FxRobot robot;
 
+    MainAppTest(FxRobot robot) {
+        this.robot = robot;
+    }
+
     @BeforeAll
     static void versionControl(){
         JFrame jFrame = new JFrame();

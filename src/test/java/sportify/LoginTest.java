@@ -20,6 +20,10 @@ public class LoginTest extends StartingTest{
 
     private FxRobot robot;
 
+    public LoginTest(FxRobot robot) {
+        this.robot = robot;
+    }
+
     @BeforeAll
     static void versionControl(){
         JFrame jFrame = new JFrame();

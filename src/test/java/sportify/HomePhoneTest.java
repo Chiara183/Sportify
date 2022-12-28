@@ -17,7 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class HomePhoneTest  extends StartingTest{
 
     private static final String COMBOBOX = "#comboActivity";
-    private FxRobot robot;
+    private final FxRobot robot;
+
+    public HomePhoneTest() {
+        this.robot = new FxRobot();
+    }
 
     @BeforeAll
     static void versionControl1() {
