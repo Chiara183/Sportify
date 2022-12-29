@@ -50,7 +50,7 @@ class LoginTest extends StartingTest{
         robot.clickOn("#eye");
         robot.clickOn("#submit");
         Stage stage1= FxToolkit.toolkitContext().getRegisteredStage();
-        assertThat(stage1.getTitle().contains("Wrong Username or Password")).isEqualTo(true);
+        assertThat(stage1.getTitle().contains("Wrong Username or Password")).isTrue();
     }
 
 
