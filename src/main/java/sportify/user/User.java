@@ -119,7 +119,6 @@ public abstract class User {
                             + this.userName.getValue() + "'");
             this.userName.set(userName);
         } else if (this.userName.getValue() == null){
-            assert false;
             this.userName.set(userName);
         } else {
             //show error message
@@ -140,7 +139,6 @@ public abstract class User {
                             + password + WHERECLAUSE
                             + this.userName.getValue() + "'");
         } else {
-            assert false;
             this.password.set(password);
         }
     }

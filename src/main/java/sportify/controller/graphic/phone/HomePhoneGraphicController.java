@@ -23,8 +23,7 @@ public class HomePhoneGraphicController implements GraphicController {
     protected Button signIn;
     @FXML
     protected Button gymInfo;
-
-
+    @FXML
     protected ComboBox<String> comboActivity;
 
     public ComboBox<String>getCombo(){

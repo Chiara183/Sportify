@@ -14,7 +14,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
     </ImageView>
-    <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="221.0" layoutY="15.0" onMouseClicked="#getInfo" onSwipeLeft="#getInfo" onSwipeRight="#getInfo" onTouchPressed="#getInfo">
+    <ImageView fx:id="info" fitHeight="35.0" fitWidth="35.0" layoutX="221.0" layoutY="15.0" onMouseClicked="#getInfo" onSwipeLeft="#getInfo" onSwipeRight="#getInfo" onTouchPressed="#getInfo">
         <Image url="@../Images/info_preview_rev_1.png" />
       <cursor>
          <Cursor fx:constant="HAND" />

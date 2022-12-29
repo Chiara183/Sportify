@@ -1,14 +1,10 @@
 package sportify;
 
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.util.WaitForAsyncUtils;
-
-import javax.swing.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.assertions.api.Assertions.assertThat;
@@ -16,16 +12,11 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 
 class MainAppTest extends StartingTest{
 
-
-    private final FxRobot robot = new FxRobot();
-
-    @Override
     @BeforeEach
     public void setUp() {
         ApplicationTest.launch(MainAppLauncher.class, "desktop");
         WaitForAsyncUtils.waitForFxEvents(100);
     }
-
 
     /**Test that the home screen has the correct button*/
     @Test

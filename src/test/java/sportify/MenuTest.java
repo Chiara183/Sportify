@@ -1,28 +1,21 @@
 package sportify;
 
-
-import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.testfx.api.FxRobot;
+import org.junit.jupiter.api.Test;
 import org.testfx.util.WaitForAsyncUtils;
-
-import javax.swing.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.assertions.api.Assertions.assertThat;
 
 public class MenuTest extends StartingTest{
-
-    private final FxRobot robot = new FxRobot();
     private static final String SIGNIN = "#signIn";
+    private static final String SIGNOUT = "#signOut";
     private static final String HOME = "#home";
     private static final String FINDGYM = "#findGym";
     private static final String GYMFINDER = "Gym Finder";
     private static final String SPORTQUIZ = "#sportQuiz";
     private static final String SPORT = "Sport Quiz";
 
-    @Override
     @BeforeEach
     public void setUp() {
         ApplicationTest.launch(MainAppLauncher.class, "desktop");
@@ -47,7 +40,7 @@ public class MenuTest extends StartingTest{
         assertEquals("Name", robot.lookup("#username").queryLabeled().getText());
     }
 
-    public void helpMethod(){
+    private void helpMethod(){
         robot.clickOn(SIGNIN);
         robot.clickOn("#user").write("Name");
         robot.clickOn("#password").write("name");
@@ -57,7 +50,7 @@ public class MenuTest extends StartingTest{
         assertThat(robot.lookup(HOME).queryButton()).hasText("Home");
         assertThat(robot.lookup(FINDGYM).queryButton()).hasText(GYMFINDER);
         assertThat(robot.lookup(SPORTQUIZ).queryButton()).hasText(SPORT);
-        assertThat(robot.lookup("#signOutMethod").queryButton()).hasText("Sign Out");
+        assertThat(robot.lookup(SIGNOUT).queryButton()).hasText("Sign Out");
     }
 
     /** Test the menu buttons being logged in as gym */
@@ -65,7 +58,7 @@ public class MenuTest extends StartingTest{
     public void hasButtonLogGymTest(){
         helpMethod();
         assertThat(robot.lookup("#gymInfo").queryButton()).hasText("Gym Info");
-        assertEquals("Prova", robot.lookup("#username").queryLabeled().getText());
+        assertEquals("Name", robot.lookup("#username").queryLabeled().getText());
     }
 
 }

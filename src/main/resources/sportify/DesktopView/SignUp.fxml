@@ -75,7 +75,7 @@
                         <Font name="Comic Sans MS" size="16.0" />
                     </font>
                 </Label>
-                <TextField fx:id="passText" maxWidth="273.0" prefHeight="33.0" prefWidth="273.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                <TextField fx:id="loginPassText" maxWidth="273.0" prefHeight="33.0" prefWidth="273.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                     <cursor>
                         <Cursor fx:constant="TEXT" />
                     </cursor>

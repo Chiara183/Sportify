@@ -44,7 +44,7 @@
             <Font name="Comic Sans MS" size="39.0" />
         </font>
     </Text>
-   <TextField fx:id="passText" alignment="CENTER" layoutX="40.0" layoutY="169.0" prefHeight="27.0" prefWidth="197.0" style="-fx-background-radius: 30px;" visible="false">
+   <TextField fx:id="loginPassText" alignment="CENTER" layoutX="40.0" layoutY="169.0" prefHeight="27.0" prefWidth="197.0" style="-fx-background-radius: 30px;" visible="false">
       <cursor>
          <Cursor fx:constant="DEFAULT" />
       </cursor>

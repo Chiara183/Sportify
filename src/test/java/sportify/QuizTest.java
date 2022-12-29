@@ -1,26 +1,19 @@
 package sportify;
 
 import javafx.stage.Stage;
-import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.util.WaitForAsyncUtils;
-
-import javax.swing.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-
 public class QuizTest extends StartingTest{
 
     private static final String QUIZ = "#sportQuiz";
-    private final FxRobot robot = new FxRobot();
 
-    @Override
     @BeforeEach
     public void setUp() {
         ApplicationTest.launch(MainAppLauncher.class, "desktop");
@@ -37,25 +30,21 @@ public class QuizTest extends StartingTest{
         assertEquals("Football", robot.lookup("#sportName").queryLabeled().getText());
         robot.clickOn("#info");
         assertEquals("Football", robot.lookup("#sport").queryLabeled().getText());
-        assertEquals("Football is a game in which two teams of 11 players, using any part of their bodies except their hands and arms, try to maneuver the ball into the opposing team’s goal. Only the goalkeeper is permitted to handle the ball and may do so only within the penalty area surrounding the goal. The team that scores more goals wins. Football is the world’s most popular ball game in the number of participants and spectators.", robot.lookup("#sportDescription").queryLabeled().getText());
+        assertEquals("Association football, more commonly known as simply football or soccer, is a team sport played with a spherical ball between two teams of 11 players. The game is played on a rectangular field called a pitch with a goal at each end. The object of the game is to score more goals than the opposition by moving the ball beyond the goal line into the opposing goal, usually within a time frame of 90 or more minutes.", robot.lookup("#sportDescription").queryLabeled().getText());
     }
 
 
-    /**
-     * Test that pressing the button combination "age1,indoor,group" lead to volleyball as answer of the quiz
-     */
+    /** Test that pressing the button combination "age1,indoor,group" lead to volleyball as answer of the quiz */
     @Test
     public void testVolleyball() {
         robot.clickOn(QUIZ);
         robot.clickOn("#age2");
         robot.clickOn("#outdoor");
-        robot.clickOn("#single");
+        robot.clickOn("#alone");
         assertEquals("Tennis", robot.lookup("#sportName").queryLabeled().getText());
     }
 
-    /**
-     * Test that pressing next quiz button without pressing an age button show a warning message
-     */
+    /** Test that pressing next quiz button without pressing an age button show a warning message */
     @Test
     public void testWarning() {
         robot.clickOn(QUIZ);

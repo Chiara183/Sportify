@@ -2,16 +2,12 @@ package sportify;
 
 
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.util.WaitForAsyncUtils;
-
-import javax.swing.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.assertions.api.Assertions.assertThat;
@@ -20,15 +16,11 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 @ExtendWith(ApplicationExtension.class)
 public class LoginTest extends StartingTest{
 
-    private final FxRobot robot = new FxRobot();
-
-    @Override
     @BeforeEach
     public void setUp() {
         ApplicationTest.launch(MainAppLauncher.class, "desktop");
         WaitForAsyncUtils.waitForFxEvents(100);
     }
-
 
     /**Test that login is successful with valid username and password*/
     @Test

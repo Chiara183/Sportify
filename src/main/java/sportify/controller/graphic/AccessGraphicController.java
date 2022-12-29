@@ -15,7 +15,7 @@ abstract class AccessGraphicController implements GraphicController{
 
     /** Text field of the interface*/
     @FXML
-    protected TextField passText;
+    protected TextField loginPassText;
     @FXML
     protected TextField password;
 
@@ -33,11 +33,11 @@ abstract class AccessGraphicController implements GraphicController{
         if(!this.passToggle.isSelected()) {
             eye.setStyle("-fx-text-fill: #6c6b6b;");
             passToggle.setSelected(true);
-            controller.getMainApp().togglevisiblePassword(this.passToggle, this.passText, this.password);
+            controller.getMainApp().togglevisiblePassword(this.passToggle, this.loginPassText, this.password);
         } else {
             eye.setStyle("-fx-text-fill: black;");
             passToggle.setSelected(false);
-            controller.getMainApp().togglevisiblePassword(this.passToggle, this.passText, this.password);
+            controller.getMainApp().togglevisiblePassword(this.passToggle, this.loginPassText, this.password);
         }
     }
 
