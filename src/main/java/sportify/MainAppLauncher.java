@@ -16,8 +16,11 @@ public class MainAppLauncher extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        String s = super.getParameters().getUnnamed().get(0) + " modality";
-        LOGGER.log(Level.INFO, s);
+        String s = "";
+        if (!super.getParameters().getUnnamed().isEmpty()){
+            s = super.getParameters().getUnnamed().get(0) + " modality";
+            LOGGER.log(Level.INFO, s);
+        }
         Projection projection = getParameters().getUnnamed().contains("wgs84")
                 ? Projection.WGS_84 : Projection.WEB_MERCATOR;
         MainApp mainApp = new MainApp();
@@ -30,9 +33,9 @@ public class MainAppLauncher extends Application {
         mainApp.getPrimaryStage().getIcons().add( new Image( Objects.requireNonNull(
                                 getClass().getResourceAsStream("Images/Sportify icon.png"))));
         CountDownLatch modalitySignal = new CountDownLatch(1);
-        if(Objects.equals(super.getParameters().getUnnamed().get(0), "mobile")){
+        if(Objects.equals(s, "mobile")){
             mainApp.setMobile(true);
-        } else if (Objects.equals(super.getParameters().getUnnamed().get(0), "desktop")){
+        } else if (Objects.equals(s, "desktop")){
             mainApp.setMobile(false);
         } else {
             new Thread(() -> {
