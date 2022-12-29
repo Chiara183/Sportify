@@ -50,7 +50,8 @@ class QuizTest extends StartingTest{
         robot.clickOn(QUIZ);
         robot.clickOn("#nextQuiz");
         Stage registeredStage = FxToolkit.toolkitContext().getRegisteredStage();
-        assertThat(registeredStage.getTitle().contains("Warning")).isTrue();
+        Boolean contains = registeredStage.getTitle().contains("Warning");
+        assertThat(contains).isTrue();
     }
 
 }

@@ -49,9 +49,10 @@ class QuizPhoneTest extends StartingTest {
         assertEquals(FOOTBALL, robot.lookup("#sportName").queryLabeled().getText());
         robot.clickOn("#info");
         assertEquals(FOOTBALL, robot.lookup("#sport").queryLabeled().getText());
-        assertThat(robot.lookup("#sportDescription")
+        Boolean contains = robot.lookup("#sportDescription")
                 .queryLabeled().getText()
-                .contains("Il calcio è uno sport di squadra giocato all'aperto")).isTrue();
+                .contains("Il calcio è uno sport di squadra giocato all'aperto");
+        assertThat(contains).isTrue();
     }
 
     @Test
@@ -60,6 +61,7 @@ class QuizPhoneTest extends StartingTest {
         robot.clickOn("#age").write("abc");
         robot.clickOn("#ok");
         Stage registeredStage = FxToolkit.toolkitContext().getRegisteredStage();
-        assertThat(registeredStage.getTitle().contains("Warning")).isTrue();
+        Boolean contains = registeredStage.getTitle().contains("Warning");
+        assertThat(contains).isTrue();
     }
 }
