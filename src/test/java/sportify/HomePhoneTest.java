@@ -12,7 +12,7 @@ import org.testfx.util.WaitForAsyncUtils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(ApplicationExtension.class)
-public class HomePhoneTest  extends StartingTest{
+class HomePhoneTest  extends StartingTest{
 
     private static final String COMBOBOX = "#comboActivity";
 
@@ -23,7 +23,7 @@ public class HomePhoneTest  extends StartingTest{
     }
 
     @Test
-    public void openSportQuizTest() {
+    void openSportQuizTest() {
         robot.clickOn(COMBOBOX).write("Take sport quiz").press(KeyCode.ENTER).release(KeyCode.ENTER);
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
@@ -31,7 +31,7 @@ public class HomePhoneTest  extends StartingTest{
     }
 
     @Test
-    public void openLoginWindow() {
+    void openLoginWindow() {
         robot.clickOn(COMBOBOX).write("Login").press(KeyCode.ENTER).release(KeyCode.ENTER);
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
@@ -39,7 +39,7 @@ public class HomePhoneTest  extends StartingTest{
     }
 
     @Test
-    public void openGymFinderWindow() {
+    void openGymFinderWindow() {
         robot.clickOn(COMBOBOX).write("Find gym").press(KeyCode.ENTER).release(KeyCode.ENTER);
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();

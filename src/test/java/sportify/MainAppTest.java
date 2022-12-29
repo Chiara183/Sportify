@@ -20,7 +20,7 @@ class MainAppTest extends StartingTest{
 
     /**Test that the home screen has the correct button*/
     @Test
-    public void hasButtonTest() {
+    void hasButtonTest() {
         assertThat(robot.lookup("#signIn").queryButton()).hasText("Log in");
         assertThat(robot.lookup("#gymInfo").queryButton()).hasText("Gym Info");
         assertThat(robot.lookup("#findGym").queryButton()).hasText("Find gym");
@@ -29,7 +29,7 @@ class MainAppTest extends StartingTest{
 
     /**Test that the application is launched correctly*/
     @Test
-    public void titleTest(){
+    void titleTest(){
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
         assertEquals("Sportify - Home", title);

@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class QuizTest extends StartingTest{
+class QuizTest extends StartingTest{
 
     private static final String QUIZ = "#sportQuiz";
 
@@ -22,7 +22,7 @@ public class QuizTest extends StartingTest{
 
     /** Test that sport information are correct */
     @Test
-    public void testSportInfo(){
+    void testSportInfo(){
         robot.clickOn(QUIZ);
         robot.clickOn("#age1");
         robot.clickOn("#outdoor");
@@ -36,7 +36,7 @@ public class QuizTest extends StartingTest{
 
     /** Test that pressing the button combination "age1,indoor,group" lead to volleyball as answer of the quiz */
     @Test
-    public void testVolleyball() {
+    void testVolleyball() {
         robot.clickOn(QUIZ);
         robot.clickOn("#age2");
         robot.clickOn("#outdoor");
@@ -46,11 +46,11 @@ public class QuizTest extends StartingTest{
 
     /** Test that pressing next quiz button without pressing an age button show a warning message */
     @Test
-    public void testWarning() {
+    void testWarning() {
         robot.clickOn(QUIZ);
         robot.clickOn("#nextQuiz");
         Stage registeredStage = FxToolkit.toolkitContext().getRegisteredStage();
-        assertThat(registeredStage.getTitle().contains("Warning"));
+        assertThat(registeredStage.getTitle().contains("Warning")).isTrue();
     }
 
 }

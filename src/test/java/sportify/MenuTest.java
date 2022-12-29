@@ -7,7 +7,7 @@ import org.testfx.util.WaitForAsyncUtils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.assertions.api.Assertions.assertThat;
 
-public class MenuTest extends StartingTest{
+class MenuTest extends StartingTest{
     private static final String SIGNIN = "#signIn";
     private static final String SIGNOUT = "#signOut";
     private static final String HOME = "#home";
@@ -24,7 +24,7 @@ public class MenuTest extends StartingTest{
 
     /** Test the menu buttons without being logged in */
     @Test
-    public void hasButtonTest(){
+    void hasButtonTest(){
         robot.clickOn(SIGNIN);
         assertThat(robot.lookup(HOME).queryButton()).hasText("Home");
         assertThat(robot.lookup(SIGNIN).queryButton()).hasText("Login");
@@ -35,7 +35,7 @@ public class MenuTest extends StartingTest{
 
     /** Test the menu buttons being logged in as user */
     @Test
-    public void hasButtonLogUserTest(){
+    void hasButtonLogUserTest(){
         helpMethod();
         assertEquals("Name", robot.lookup("#username").queryLabeled().getText());
     }
@@ -55,7 +55,7 @@ public class MenuTest extends StartingTest{
 
     /** Test the menu buttons being logged in as gym */
     @Test
-    public void hasButtonLogGymTest(){
+    void hasButtonLogGymTest(){
         helpMethod();
         assertThat(robot.lookup("#gymInfo").queryButton()).hasText("Gym Info");
         assertEquals("Name", robot.lookup("#username").queryLabeled().getText());

@@ -22,7 +22,7 @@ public class LoginGraphicController extends AccessGraphicController{
     @FXML
     private TextField user;
     @FXML
-    private TextField loginPassText;
+    private TextField loginPassTextController;
 
     /** All the button of the interface*/
     @FXML
@@ -41,7 +41,7 @@ public class LoginGraphicController extends AccessGraphicController{
         return this.user;
     }
     public TextField getPassField(){
-        return this.loginPassText;
+        return this.loginPassTextController;
     }
     public TextField getPasswordField(){
         return this.password;
@@ -85,8 +85,8 @@ public class LoginGraphicController extends AccessGraphicController{
         }
         String passValue;
         if(passToggle.isSelected()) {
-            if(bean.passCheck(loginPassText.getText())){
-                passValue = loginPassText.getText(); //get user entered password from the textField2
+            if(bean.passCheck(loginPassTextController.getText())){
+                passValue = loginPassTextController.getText(); //get user entered password from the textField2
                 loginController.submit(userValue, passValue);
             }else{
                 alert();

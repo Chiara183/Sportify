@@ -14,7 +14,7 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 
 
 @ExtendWith(ApplicationExtension.class)
-public class LoginTest extends StartingTest{
+class LoginTest extends StartingTest{
 
     @BeforeEach
     public void setUp() {
@@ -24,7 +24,7 @@ public class LoginTest extends StartingTest{
 
     /**Test that login is successful with valid username and password*/
     @Test
-    public void loginTest() {
+    void loginTest() {
         robot.clickOn("#signIn");
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
@@ -40,7 +40,7 @@ public class LoginTest extends StartingTest{
 
     /**Test that login is NOT successful with invalid username and password*/
     @Test
-    public void notLoginTest() {
+    void notLoginTest() {
         robot.clickOn("#signIn");
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
@@ -50,7 +50,7 @@ public class LoginTest extends StartingTest{
         robot.clickOn("#eye");
         robot.clickOn("#submit");
         Stage stage1= FxToolkit.toolkitContext().getRegisteredStage();
-        assertThat(stage1.getTitle().contains("Wrong Username or Password"));
+        assertThat(stage1.getTitle().contains("Wrong Username or Password")).isTrue();
     }
 
 

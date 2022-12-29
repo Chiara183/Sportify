@@ -16,7 +16,8 @@ public class MainAppLauncher extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        LOGGER.log(Level.INFO, super.getParameters().getUnnamed().get(0) + " modality");
+        String s = super.getParameters().getUnnamed().get(0) + " modality";
+        LOGGER.log(Level.INFO, s);
         Projection projection = getParameters().getUnnamed().contains("wgs84")
                 ? Projection.WGS_84 : Projection.WEB_MERCATOR;
         MainApp mainApp = new MainApp();

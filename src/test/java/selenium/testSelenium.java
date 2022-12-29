@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class testSelenium {
+public class testSelenium extends testBaseSelenium{
     public static Double RateValue () {
         System.setProperty("webdriver.chrome.whitelistedIps", "");
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
@@ -28,7 +28,7 @@ public class testSelenium {
         driver.get("https://translate.google.it/?hl=it&sl=it&tl=en&op=translate");
         driver.findElement(By.xpath("/html/body/c-wiz/div/div/div/div[2]/div[1]/div[4]/div[1]/div[1]/form[2]/div/div/button")).click();
         driver.findElement(By.xpath("//*[@id=\"yDmH0d\"]/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[3]/c-wiz[1]/span/span/div/textarea")).sendKeys("La pizza margherita è buona");
-        Thread.sleep(1000);
+        sleep(1000);
         String translation = driver.findElement(By.xpath("/html/body/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[3]/c-wiz[2]/div/div[8]/div/div[1]/span[1]/span/span")).getAttribute("innerText");
 
         System.out.println("The translation is: " + translation);

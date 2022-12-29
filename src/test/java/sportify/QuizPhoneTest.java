@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(ApplicationExtension.class)
-public class QuizPhoneTest extends StartingTest {
+class QuizPhoneTest extends StartingTest {
 
     private static final String COMBOBOX = "#comboActivity";
     private static final String QUIZ = "Take sport quiz";
@@ -26,7 +26,7 @@ public class QuizPhoneTest extends StartingTest {
     }
 
     @Test
-    public void SportQuizTest(){
+    void SportQuizTest(){
         robot.clickOn(COMBOBOX).write(QUIZ).press(KeyCode.ENTER).release(KeyCode.ENTER);
         robot.clickOn("#age").write("14");
         robot.clickOn("#ok");
@@ -38,7 +38,7 @@ public class QuizPhoneTest extends StartingTest {
     }
 
     @Test
-    public void infoSportQuizTest(){
+    void infoSportQuizTest(){
         robot.clickOn(COMBOBOX).write(QUIZ).press(KeyCode.ENTER).release(KeyCode.ENTER);
         robot.clickOn("#age").write("14");
         robot.clickOn("#ok");
@@ -49,15 +49,17 @@ public class QuizPhoneTest extends StartingTest {
         assertEquals(FOOTBALL, robot.lookup("#sportName").queryLabeled().getText());
         robot.clickOn("#info");
         assertEquals(FOOTBALL, robot.lookup("#sport").queryLabeled().getText());
-        assertThat(robot.lookup("#sportDescription").queryLabeled().getText().contains("Il calcio è uno sport di squadra giocato all'aperto"));
+        assertThat(robot.lookup("#sportDescription")
+                .queryLabeled().getText()
+                .contains("Il calcio è uno sport di squadra giocato all'aperto")).isTrue();
     }
 
     @Test
-    public void wrongInputQuiz(){
+    void wrongInputQuiz(){
         robot.clickOn(COMBOBOX).write(QUIZ).press(KeyCode.ENTER).release(KeyCode.ENTER);
         robot.clickOn("#age").write("abc");
         robot.clickOn("#ok");
         Stage registeredStage = FxToolkit.toolkitContext().getRegisteredStage();
-        assertThat(registeredStage.getTitle().contains("Warning"));
+        assertThat(registeredStage.getTitle().contains("Warning")).isTrue();
     }
 }
