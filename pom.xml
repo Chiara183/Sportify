@@ -30,7 +30,7 @@
 
         <!-- Java settings -->
         <appassembler.directory>Sportify</appassembler.directory>
-        <java.version>19</java.version>
+        <java.version>17</java.version>
         <junit.version>4.13.2</junit.version>
 
         <!-- JFX settings -->
