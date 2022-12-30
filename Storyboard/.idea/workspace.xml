@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5772ab3f-6fa6-4dec-a28c-d54c8495f4d1" name="Changes" comment="" />
+    <list default="true" id="5772ab3f-6fa6-4dec-a28c-d54c8495f4d1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Find_Gym.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/find_gym.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/lens.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/styleguide.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styleguide.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +27,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2JbgLJxVISICdcj8M2zCNYdlYcV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -30,7 +37,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/matte/Desktop/Sportify.git/trunk/Storyboard",
+    "last_opened_file_path": "C:/Users/matte/Desktop/Sportify.git/trunk/Storyboard/img",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -43,6 +50,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\matte\Desktop\Sportify.git\trunk\Storyboard\img" />
+      <recent name="C:\Users\matte\Desktop\Sportify.git\trunk\Storyboard\css" />
+      <recent name="C:\Users\matte\Desktop\Sportify.git\trunk\Storyboard" />
       <recent name="C:\Users\matte\WebstormProjects\LoginSportify" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -51,6 +61,28 @@
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\matte\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Users\matte\Desktop\Sportify.git\trunk\Storyboard" />
+          <option name="myCopyRoot" value="C:\Users\matte\Desktop\Sportify.git\trunk\Storyboard" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Users\matte\Desktop\Sportify.git\trunk\Storyboard" />
+          <option name="myCopyRoot" value="C:\Users\matte\Desktop\Sportify.git\trunk\Storyboard" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="5772ab3f-6fa6-4dec-a28c-d54c8495f4d1" name="Changes" comment="" />
@@ -60,11 +92,23 @@
       <updated>1672352140045</updated>
       <workItem from="1672352142722" duration="12149000" />
       <workItem from="1672392860738" duration="256000" />
-      <workItem from="1672400205420" duration="846000" />
+      <workItem from="1672400205420" duration="7589000" />
     </task>
+    <task id="LOCAL-00001" summary="Upgrade storyboard">
+      <created>1672401276189</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672401276189</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Upgrade storyboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upgrade storyboard" />
   </component>
 </project>

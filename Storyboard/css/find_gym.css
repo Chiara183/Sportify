@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css?family=Comic+Neue:700");
+
+.gym-finder-screen {
+  align-items: center;
+  background-image: url(../img/background.png);
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 4% 7%;
+}
+
+.menu {
+  align-items: flex-end;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  min-width: 70%;
+}
+
+.overlap {
+  align-items: center;
+  background-size: 100% 100%;
+  display: flex;
+  min-width: 20%;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.overlap-button {
+  background-image: url(../img/button.png);
+}
+
+.home {
+  color: var(--white);
+  font-family: var(--font-family-comic_neue);
+  font-size: var(--font-size-l);
+  line-height: normal;
+  text-shadow: 0 4px 4px #00000040;
+}
+
+.sport-quiz {
+  color: var(--white);
+  font-family: var(--font-family-comic_neue);
+  font-size: var(--font-size-l);
+  line-height: normal;
+  text-shadow: 0 4px 4px #00000040;
+}
+
+.gym-finder {
+  color: var(--white);
+  font-family: var(--font-family-comic_neue);
+  font-size: var(--font-size-l);
+  line-height: normal;
+  text-shadow: 0 4px 4px #00000040;
+}
+
+.overlap-window {
+  background-image: url(../img/buttonClicked.png);
+}
+
+.login {
+  color: #464646;
+  font-family: var(--font-family-comic_neue);
+  font-size: var(--font-size-l);
+  line-height: normal;
+  text-shadow: 0 4px 4px #00000040;
+}
+
+.sign-up {
+  color: var(--white);
+  font-family: var(--font-family-comic_neue);
+  font-size: var(--font-size-l);
+  line-height: normal;
+  text-shadow: 0 4px 4px #00000040;
+}
+
+.overlap-search {
+  display: flex;
+  position: relative;
+  width: 45%;
+  padding-top: 35%;
+  flex-direction: row;
+}
+
+.sportify-logo {
+  align-self: center;
+  height: 10%;
+  top: 10%;
+  object-fit: cover;
+  position: absolute;
+  width: 24%;
+}
+
+.overlap-map {
+  display: flex;
+  position: absolute;
+  top: 22%;
+  min-height: 60%;
+  min-width: 50%;
+}
+
+.map {
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.search {
+  color: grey;
+  font-family: var(--font-family-comic_neue);
+  font-size: var(--font-size-s);
+  font-style: normal;
+  line-height: normal;
+  position: absolute;
+  width: 30%;
+  left: 27%;
+  top: 15%;
+}
+
+.rectangle-search {
+  -webkit-backdrop-filter: blur(4px) brightness(100%);
+  backdrop-filter: blur(4px) brightness(100%);
+  background-color: var(--white);
+  border: 1px solid #00000080;
+  left: 25%;
+  position: absolute;
+  top: 12%;
+  height: 8%;
+  width: 40%;
+}
+
+.overlap-lens {
+  position: absolute;
+  background-image: url(../img/button.png);
+  background-size: 100% 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  top: 12%;
+  left: 67%;
+  height: 9%;
+  width: 10%;
+}
+
+.lens {
+  align-self: center;
+  height: 60%;
+  object-fit: cover;
+  width: 40%;
+}
+
+.overlap-km {
+  position: absolute;
+  background-image: url(../img/button.png);
+  background-size: 100% 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  top: 12%;
+  left: 78%;
+  height: 9%;
+  width: 10%;
+}
+
+.km {
+  align-self: center;
+  color: #464646;
+  font-family: var(--font-family-comic_neue);
+  font-size: var(--font-size-m);
+  line-height: normal;
+  text-shadow: 0 4px 4px #00000040;
+}
+
+.overlap-back {
+  background-image: url(../img/button.png);
+  background-size: 100% 100%;
+  display: flex;
+  align-self: flex-start;
+  height: 10%;
+  min-width: 8%;
+  justify-content: center;
+}
+
+.back {
+  color: #464646;
+  font-family: var(--font-family-comic_neue);
+  font-size: var(--font-size-m);
+  line-height: normal;
+  text-shadow: 0 4px 4px #00000040;
+}
