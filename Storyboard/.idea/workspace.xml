@@ -30,13 +30,14 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/matte/WebstormProjects/LoginSportify",
+    "last_opened_file_path": "C:/Users/Matteo/IdeaProjects/Sportify.git/trunk/Storyboard",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -58,6 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672352140045</updated>
       <workItem from="1672352142722" duration="12149000" />
+      <workItem from="1672392860738" duration="256000" />
     </task>
     <servers />
   </component>
