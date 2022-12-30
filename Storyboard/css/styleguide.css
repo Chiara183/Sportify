@@ -1,0 +1,26 @@
+/* Variables */
+
+:root {
+  --black : rgba(0, 0, 0, 1);
+  --white : rgba(255, 255, 255, 1);
+
+  --font-size-m : 1.5vw;
+  --font-size-l : 2vw;
+
+  --font-family-comic_neue : "Comic Neue";
+}
+
+/* Classes */
+
+.comicneue-bold-black-30px
+{
+  color: var(--black);
+  font-family: var(--font-family-comic_neue);
+  font-size: var(--font-size-m);
+  font-style: normal;
+}
+
+.button{
+  background-radius: 8;
+  background-color:#2571B9;
+}
