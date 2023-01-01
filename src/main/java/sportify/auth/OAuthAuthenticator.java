@@ -37,7 +37,6 @@ public abstract class OAuthAuthenticator {
     private final String redirectUri;
     private final String clientSecret;
 
-
     protected OAuthAuthenticator (String clientID, String redirectUri, String clientSecret) {
         this.clientID = clientID;
         this.redirectUri = redirectUri;
