@@ -52,36 +52,40 @@ public class GymEditGraphicController extends EditGraphicController{
     @FXML
     protected void okAction(){
         if (this.checkSyntax()) {
-            if (!Objects.equals(gymEditController.getUser().getUserName(), super.username.getText())) {
-                gymEditController.getUser().setUserName(super.username.getText());
-            }
-            if (!Objects.equals(gymEditController.getUser().getPassword(), super.password.getText())) {
-                gymEditController.getUser().setPassword(super.password.getText());
-            }
-            if (!Objects.equals(gymEditController.getUser().getFirstName(), super.firstName.getText())) {
-                gymEditController.getUser().setFirstName(super.firstName.getText());
-            }
-            if (!Objects.equals(gymEditController.getUser().getLastName(), super.lastName.getText())) {
-                gymEditController.getUser().setLastName(super.lastName.getText());
-            }
-            if (!Objects.equals(gymEditController.getUser().getEmail(), super.email.getText())) {
-                gymEditController.getUser().setEmail(super.email.getText());
-            }
-            if (!Objects.equals(gymEditController.getUser().getGymName(), gymName.getText())) {
-                gymEditController.getUser().setFirstName(gymName.getText());
-            }
-            if (!Objects.equals(gymEditController.getUser().getAddress(), address.getText())) {
-                gymEditController.getUser().setLastName(address.getText());
-            }
-            if (!Objects.equals(gymEditController.getUser().getPhone(), telephone.getText())) {
-                gymEditController.getUser().setEmail(telephone.getText());
-            }
+            checkedOkAction();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Error detected!");
             alert.setContentText("Wrong Syntax.");
             alert.showAndWait();
+        }
+    }
+
+    private void checkedOkAction(){
+        if (!Objects.equals(gymEditController.getUser().getUserName(), super.username.getText())) {
+            gymEditController.getUser().setUserName(super.username.getText());
+        }
+        if (!Objects.equals(gymEditController.getUser().getPassword(), super.password.getText())) {
+            gymEditController.getUser().setPassword(super.password.getText());
+        }
+        if (!Objects.equals(gymEditController.getUser().getFirstName(), super.firstName.getText())) {
+            gymEditController.getUser().setFirstName(super.firstName.getText());
+        }
+        if (!Objects.equals(gymEditController.getUser().getLastName(), super.lastName.getText())) {
+            gymEditController.getUser().setLastName(super.lastName.getText());
+        }
+        if (!Objects.equals(gymEditController.getUser().getEmail(), super.email.getText())) {
+            gymEditController.getUser().setEmail(super.email.getText());
+        }
+        if (!Objects.equals(gymEditController.getUser().getGymName(), gymName.getText())) {
+            gymEditController.getUser().setFirstName(gymName.getText());
+        }
+        if (!Objects.equals(gymEditController.getUser().getAddress(), address.getText())) {
+            gymEditController.getUser().setLastName(address.getText());
+        }
+        if (!Objects.equals(gymEditController.getUser().getPhone(), telephone.getText())) {
+            gymEditController.getUser().setEmail(telephone.getText());
         }
     }
 

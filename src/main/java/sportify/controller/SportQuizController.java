@@ -3,7 +3,6 @@ package sportify.controller;
 import sportify.MainApp;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.MenuGraphicController;
-import sportify.controller.graphic.SportGraphicController;
 import sportify.controller.graphic.SportQuizGraphicController;
 import sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +16,6 @@ import java.util.logging.Logger;
 
 public class
 SportQuizController extends Controller {
-
-    /** Reference to graphic SportQuizController*/
-    private SportQuizGraphicController graphicController;
 
     /* The variable that identify the user choice*/
     private static boolean buttonAge1 = false;
@@ -227,7 +223,7 @@ SportQuizController extends Controller {
 
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        this.graphicController = (SportQuizGraphicController) graphicController;
+        //Do nothing, but it has to exist given that this class extends Controller
     }
 }
 
