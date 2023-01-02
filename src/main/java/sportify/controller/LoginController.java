@@ -24,7 +24,7 @@ public class LoginController extends AccessController{
     /** Reference to graphic gymEditController*/
     private LoginGraphicController graphicController;
 
-    /** Error login variable*/
+    /* Error login variable*/
     private Double delay = 3.0;
     private final Label label = new Label();
 

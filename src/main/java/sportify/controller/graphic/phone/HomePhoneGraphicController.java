@@ -18,7 +18,7 @@ public class HomePhoneGraphicController implements GraphicController {
     private static final Properties prop = new Properties();
     private static final String G_SECRET = prop.getProperty("G_SECRET");
 
-    /** All the button of the interface*/
+    /* All the button of the interface*/
     @FXML
     protected Button signIn;
     @FXML

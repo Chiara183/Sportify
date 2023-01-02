@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class SignUpGymGraphicController extends RegisterGraphicController{
 
-    /** All the text field of the interface*/
+    /* All the text field of the interface*/
     @FXML
     protected TextField gymName;
     @FXML

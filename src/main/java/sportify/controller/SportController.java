@@ -1,12 +1,12 @@
 package sportify.controller;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 import sportify.DAO;
 import sportify.MainApp;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.MenuGraphicController;
 import sportify.controller.graphic.SportGraphicController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,6 +17,9 @@ public class SportController extends Controller{
 
     /** Reference to the sport quiz*/
     private SportQuizController quiz;
+
+    /** Reference to graphic SportController*/
+    private SportGraphicController graphicController;
 
     /** Is called to set quiz gymEditController*/
     public void setQuiz(SportQuizController quiz) {
@@ -120,7 +123,7 @@ public class SportController extends Controller{
     /** Is called to set graphic  gymEditController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        //Do nothing because it doesn't need to, just override operation
+        this.graphicController = (SportGraphicController) graphicController;
     }
 
     /** Is called to set center pane*/

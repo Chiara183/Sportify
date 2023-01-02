@@ -86,7 +86,6 @@ public class SportQuizPhoneGraphicController implements GraphicController {
         controller.sportQuizEnv();
     }
 
-
     @FXML
     public void end(){
         String input;

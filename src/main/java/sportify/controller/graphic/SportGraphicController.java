@@ -11,7 +11,7 @@ public class SportGraphicController implements GraphicController{
     /** Reference to gymEditController*/
     private SportController controller;
 
-    /** All the label of the interface*/
+    /* All the label of the interface*/
     @FXML
     private Label sport;
     @FXML
@@ -19,7 +19,7 @@ public class SportGraphicController implements GraphicController{
     @FXML
     private Label sportName;
 
-    /** The action of the buttons*/
+    /* The action of the buttons*/
     @FXML
     private void home(){
         controller.getMainApp().setUser(controller.getUser());

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class HomeGraphicController extends HomePhoneGraphicController implements GraphicController{
 
 
-    /** The action of the button*/
+    /* The action of the button*/
     @FXML
     private void loadGymInfo(){
         MenuController menu = controller.menu();

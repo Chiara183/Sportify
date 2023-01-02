@@ -13,7 +13,7 @@ public class MenuController extends Controller{
     /** The variable that identify the name of the view*/
     private ControllerType view;
 
-    /** Instance of the view.*/
+    /* Instance of the view.*/
     private LoginGraphicController login;
     private EditGraphicController edit;
     private SignUpGraphicController signUp;
@@ -37,7 +37,6 @@ public class MenuController extends Controller{
         this.view = view;
     }
 
-    /** Method to set the instance of the view.*/
     private void setLogin(LoginGraphicController login) {
         this.login = login;
         this.signUp = null;
@@ -73,6 +72,8 @@ public class MenuController extends Controller{
         this.edit = null;
         this.login = null;
     }
+
+    /** Method to set the instance of the view.*/
     public <T extends GraphicController> void setInstance(T instance){
         if (instance.getGraphicType() == ControllerType.LOGIN){
             setLogin((LoginGraphicController) instance);
@@ -92,7 +93,6 @@ public class MenuController extends Controller{
         return this.view;
     }
 
-    /** Method to get the instance of the view.*/
     private LoginGraphicController getLogin() {
         return this.login;
     }
@@ -108,6 +108,8 @@ public class MenuController extends Controller{
     private SportQuizPhoneGraphicController getQuiz() {
         return this.quiz;
     }
+
+    /** Method to get the instance of the view.*/
     public GraphicController getInstance(){
         if (login!=null){
             return getLogin();
@@ -159,7 +161,7 @@ public class MenuController extends Controller{
         graphicController.loadGymInfo();
     }
 
-    /** The method called to set the view*/
+    /* The method called to set the view*/
     public void setSportQuiz() {
         graphicController.setSportQuiz();
     }

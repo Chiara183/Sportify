@@ -22,19 +22,19 @@ import java.util.logging.Logger;
 
 public class SignUpGraphicController extends RegisterGraphicController{
 
-    /** Reference to gymEditController*/
+    /** Reference to signUpController*/
     protected SignUpController signUpController;
     protected Pane pane;
     private MenuGraphicController graphicMenuController;
     protected Pane paneTopScreen;
 
-    /** All the button of the interface*/
+    /* All the button of the interface*/
     @FXML
     protected Button gymUser;
     @FXML
     protected Button normalUser;
 
-    /** All the text field of the interface*/
+    /* All the text field of the interface*/
     @FXML
     private TextField username;
     @FXML
@@ -47,7 +47,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
     /**Reference to bean*/
     protected final SignUpBean bean = new SignUpBean();
 
-    /** All the checkbox of the interface*/
+    /* All the checkbox of the interface*/
     @FXML
     private CheckBox gymTick;
     @FXML
@@ -113,7 +113,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
         return userTick.isSelected();
     }
 
-    /** Is called to set gymEditController*/
+    /** Is called to set Controller*/
     @Override
     public void setController(Controller contr) {
         this.signUpController = (SignUpController) contr;

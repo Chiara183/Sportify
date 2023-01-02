@@ -33,7 +33,7 @@ public class MapGraphicController implements GraphicController{
     @FXML
     private TextField search;
 
-    /** All radio button of the interface*/
+    /* All radio button of the interface*/
     @FXML
     private RadioButton radioMsOSM;
     @FXML
@@ -49,7 +49,7 @@ public class MapGraphicController implements GraphicController{
     /** Reference to gymEditController*/
     private MapController controller;
 
-    /**Reference to bean*/
+    /** Reference to bean*/
     private final MapBean bean = new MapBean();
 
     // ObservableList

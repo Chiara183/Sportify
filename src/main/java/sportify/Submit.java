@@ -23,13 +23,14 @@ public class Submit{
         this.dB.setMainApp(mainApp);
     }
 
-    /** Login and SignUp method*/
+    /** Login method*/
     public boolean login(String userValue, String passValue) {
         Map<String, Map<String, String>> account = this.dB.read();
         return !account.isEmpty() && account.containsKey(userValue) &&
                 userValue.equals(account.get(userValue).get("username")) &&
                 passValue.equals(account.get(userValue).get("password"));
     }
+    /** SignUp method*/
     public void signUp(Map<String, String> userAccount) {
         this.dB.write(userAccount);
     }
@@ -39,6 +40,7 @@ public class Submit{
         Map<String, Map<String, String>> account = this.dB.read();
         return !account.isEmpty() && account.containsKey(username);
     }
+    /** The 'existsEmail' method*/
     public boolean existEmail(String email){
         Map<String, Map<String, String>> account = this.dB.read();
         AtomicBoolean exist = new AtomicBoolean(false);

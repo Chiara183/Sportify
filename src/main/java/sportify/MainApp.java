@@ -30,7 +30,7 @@ public class MainApp{
 
     private static final Logger LOGGER = Logger.getLogger(MainApp.class.getName());
 
-    /** The variable of all application*/
+    /* The variable of all application*/
     private Stage primaryStage;
     private BorderPane rootLayout;
     private Submit submit;
@@ -42,7 +42,7 @@ public class MainApp{
     private Projection projection;
     private boolean mobile;
 
-    /** Set method*/
+    /* Set method*/
     public void setMobile(boolean bool) {
         this.mobile = bool;
     }
@@ -71,7 +71,7 @@ public class MainApp{
         this.externalLogin = login;
     }
 
-    /** Get method*/
+    /* Get method*/
     public String[] getSearchCache() {
         return this.searchCache;
     }

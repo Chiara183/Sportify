@@ -12,7 +12,7 @@ public class SportQuizGraphicController implements GraphicController{
     /** Reference to gymEditController*/
     private SportQuizController controller;
 
-    /** All the button of the interface*/
+    /* All the button of the interface*/
     @FXML
     private Button backQuiz;
     @FXML
@@ -21,7 +21,7 @@ public class SportQuizGraphicController implements GraphicController{
     private Button backQuizType;
 
 
-    /** The action of the buttons*/
+    /* The action of the buttons*/
     @FXML
     public void backQuizAction(ActionEvent event) {
         Button b = (Button) event.getSource();

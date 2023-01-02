@@ -24,7 +24,7 @@ public class MenuGraphicController implements GraphicController{
     /** Reference to gymEditController*/
     protected MenuController controller;
 
-    /** All the button of the menu*/
+    /* All the button of the menu*/
     @FXML
     protected Button sportQuiz;
     @FXML
@@ -46,7 +46,7 @@ public class MenuGraphicController implements GraphicController{
     @FXML
     protected Label username;
 
-    /** The action of the buttons*/
+    /* The action of the buttons*/
     @FXML
     public void back(){
         if(controller.getView()==ControllerType.LOGIN) {
@@ -249,12 +249,11 @@ public class MenuGraphicController implements GraphicController{
         }
     }
 
-    /** The method called to set the view*/
+    /* The method called to set the view*/
     public void setSportQuiz() {
         controller.setView(ControllerType.SPORT_QUIZ);
         controller.setButton(findGym, signOut, signIn, signUp, gymInfo, sportQuiz);
     }
-
     public void setFindGym() {
         controller.setView(ControllerType.FIND_GYM);
         controller.setButton(signOut, signIn, signUp, gymInfo, sportQuiz, findGym);

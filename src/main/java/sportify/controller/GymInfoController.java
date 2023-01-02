@@ -43,7 +43,7 @@ public class GymInfoController extends Controller implements Observer {
         this.type = ControllerType.GYM_INFO;
     }
 
-    /** Method that set up the gymEditController*/
+    /* Method that set up the gymEditController*/
     private void setReview(){
         if(this.user != null){
             if(Objects.equals(this.user.getRole(), "user")){
@@ -111,7 +111,7 @@ public class GymInfoController extends Controller implements Observer {
         loadingGymName(this.gym);
     }
 
-    /** Cancel a review of gym*/
+    /** Share a review of gym*/
     public void shareReview(String gym, StringBuilder review){
         String str = gym + ": " + review;
         LOGGER.log(Level.INFO, str);
@@ -146,7 +146,7 @@ public class GymInfoController extends Controller implements Observer {
         }
     }
 
-    /** Cancel a course of gym*/
+    /** Add a course of gym*/
     public void addCourse(String sport, String gym, String time){
         String observerState = graphicController.getState();
         if(observerState.equals("Unchanged")){

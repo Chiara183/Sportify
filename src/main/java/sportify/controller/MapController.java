@@ -19,17 +19,18 @@ import java.util.logging.Logger;
 public class MapController extends Controller{
 
     private static final String SELECTALL = "SELECT * " + "FROM gym ";
+
     /** Reference to graphic gymEditController*/
     private MapGraphicController graphicController;
 
     /** default zoom value. */
     private static final int ZOOM_DEFAULT = 11;
 
-    /** All the HashMap of the map*/
+    /* All the HashMap of the map*/
     private final HashMap<Coordinate, String> allGym = new HashMap<>();
     private final HashMap<String, Marker> mark = new HashMap<>();
 
-    /** params for the WMS server. */
+    /* params for the WMS server. */
     private final WMSParam wmsParam = new WMSParam().setUrl("https://ows.terrestris.de/osm/service?")
             .addParam("layers", "OSM-WMS");
     private final XYZParam xyzParams = new XYZParam()
