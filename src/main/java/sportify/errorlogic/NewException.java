@@ -1,4 +1,4 @@
-package sportify;
+package sportify.errorlogic;
 
 public class NewException extends Exception{
 

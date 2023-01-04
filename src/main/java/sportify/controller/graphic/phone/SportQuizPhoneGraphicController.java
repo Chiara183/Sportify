@@ -1,6 +1,6 @@
 package sportify.controller.graphic.phone;
 
-import sportify.NewException;
+import sportify.errorlogic.NewException;
 import sportify.bean.SportQuizBean;
 import sportify.controller.Controller;
 import sportify.controller.ControllerType;

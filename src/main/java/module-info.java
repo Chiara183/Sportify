@@ -31,4 +31,6 @@ module sportify {
     opens sportify.controller.graphic.phone to javafx.fxml, javafx.graphics;
     exports sportify.controller.graphic.desktop;
     opens sportify.controller.graphic.desktop to javafx.fxml, javafx.graphics;
+    exports sportify.errorlogic;
+    opens sportify.errorlogic to javafx.fxml, javafx.graphics;
 }

@@ -1,6 +1,6 @@
 package sportify.controller;
 
-import sportify.NewException;
+import sportify.errorlogic.NewException;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.GymInfoGraphicController;
 import sportify.controller.graphic.LoginGraphicController;
