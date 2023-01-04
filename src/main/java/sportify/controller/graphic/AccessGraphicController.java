@@ -15,7 +15,7 @@ abstract class AccessGraphicController implements GraphicController{
 
     /** Text field of the interface*/
     @FXML
-    protected TextField loginPassText;
+    private TextField loginPassText;
     @FXML
     protected TextField password;
 
