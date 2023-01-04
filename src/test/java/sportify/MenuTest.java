@@ -7,6 +7,7 @@ import org.testfx.util.WaitForAsyncUtils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.assertions.api.Assertions.assertThat;
 
+/* Chiara D'Ambrogio */
 class MenuTest extends StartingTest{
     private static final String SIGNIN = "#signIn";
     private static final String SIGNOUT = "#signOut";

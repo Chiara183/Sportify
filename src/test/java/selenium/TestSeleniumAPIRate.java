@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class TestJUnitSeleniumRate {
+class TestSeleniumAPIRate {
     @Test
     void TestRate() {
         Double ResultA = testSelenium.RateValue();
