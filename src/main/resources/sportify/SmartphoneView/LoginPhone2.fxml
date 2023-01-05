@@ -17,6 +17,11 @@
             <Cursor fx:constant="TEXT" />
         </cursor>
     </TextField>
+    <TextField fx:id="loginPassText" alignment="CENTER" layoutX="53.0" layoutY="153.0" prefHeight="36.0" prefWidth="165.0" style="-fx-background-radius: 30px;">
+        <cursor>
+            <Cursor fx:constant="TEXT" />
+        </cursor>
+    </TextField>
     <PasswordField fx:id="password" alignment="CENTER" layoutX="53.0" layoutY="153.0" prefHeight="36.0" prefWidth="165.0" promptText="Password" style="-fx-background-radius: 30px;" />
     <Text accessibleRole="BUTTON" layoutX="27.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You are new to Sportify? ">
         <font>
