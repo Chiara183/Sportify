@@ -67,7 +67,7 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-media:19" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-media:win:19" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:2.0.5" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.codeborne:selenide:6.10.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.codeborne:selenide:6.11.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.seleniumhq.selenium:selenium-java:3.141.59" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.seleniumhq.selenium:selenium-api:3.141.59" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.seleniumhq.selenium:selenium-chrome-driver:3.141.59" level="project" />
@@ -81,7 +81,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.commons:commons-exec:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.squareup.okhttp3:okhttp:3.14.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.squareup.okio:okio:1.14.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.codeborne:selenide-core:6.10.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.codeborne:selenide-core:6.11.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: io.github.bonigarcia:webdrivermanager:5.3.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.google.code.gson:gson:2.8.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.brotli:dec:0.1.2" level="project" />
