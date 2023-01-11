@@ -27,6 +27,8 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     @FXML
     private ComboBox<String> comboGymInfo;
 
+    private String gym = "";
+
     /** Reference to gymEditController*/
     protected GymInfoController controller;
 
@@ -79,9 +81,9 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
         Object selectedItem = comboGymInfo.getSelectionModel().getSelectedItem();
         String choice = selectedItem.toString();
         if(choice.equals("Course")){
-            courseAction();
+            courseAction(this.gym);
         }else if(choice.equals("Review")){
-            reviewAction(gymName.getText());
+            reviewAction(this.gym);
         }
     }
 
@@ -89,7 +91,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     /** The action of the button*/
     @FXML
     protected void shareReview(){
-        if(!this.bean.checkReview(this.gymName, this.reviewArea)){
+        if(!this.bean.checkReview(this.gym, this.reviewArea)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(controller.getMainApp().getPrimaryStage());
@@ -99,7 +101,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
             alert.showAndWait();
         }
         String gym;
-        gym = this.gymName.getText();
+        gym = this.gym;
         StringBuilder reviews = new StringBuilder(this.reviewArea.getText(0, this.reviewArea.getLength()));
         this.controller.shareReview(gym, reviews);
     }
@@ -115,7 +117,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     @FXML
     protected void notifyAddCourse(){
         String gym;
-        gym = this.gymName.getText();
+        gym = this.gym;
         String sport = this.comboSport.getValue();
         String hours;
         if(this.hour.getText().equals("")){
@@ -174,7 +176,10 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
 
     /** Is called to set gym name*/
     public void setGymName(String name){
-        this.gymName.setText(name);
+        if (this.gymName != null) {
+            this.gymName.setText(name);
+        }
+        this.gym = name;
     }
 
     /** Is called to set gym description*/
@@ -252,7 +257,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
 
     /** Is called to show course window*/
     @FXML
-    protected void courseAction() {
+    protected void courseAction(String gymName) {
         try {
             FXMLLoader loader = new FXMLLoader();
             helpMethod(loader);

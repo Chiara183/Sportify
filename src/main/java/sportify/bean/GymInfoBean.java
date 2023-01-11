@@ -14,8 +14,8 @@ public class GymInfoBean {
         return String.valueOf((int)min.getValue());
     }
 
-    public boolean checkReview(Label gymName, TextArea reviewArea){
-        return !gymName.getText().equals("") && !reviewArea.getText().equals("");
+    public boolean checkReview(String gymName, TextArea reviewArea){
+        return !gymName.equals("") && !reviewArea.getText().equals("");
     }
 
     public boolean checkPhoneReview(String gymName, TextArea reviewArea){

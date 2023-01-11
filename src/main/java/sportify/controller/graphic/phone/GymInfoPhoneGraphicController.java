@@ -30,7 +30,7 @@ public class GymInfoPhoneGraphicController extends GymInfoGraphicController {
 
     @Override
     @FXML
-    protected void courseAction() {
+    protected void courseAction(String gymName) {
         try {
             // Load test result overview.
             FXMLLoader loader = new FXMLLoader();
@@ -38,6 +38,7 @@ public class GymInfoPhoneGraphicController extends GymInfoGraphicController {
 
             // Give the gymEditController access to the main app.
             GymInfoPhoneGraphicController gymInfoGraphicController = loader.getController();
+            gymInfoGraphicController.setGymName(gymName);
             this.controller.setGraphicController(gymInfoGraphicController);
             this.controller.setUser(this.controller.getMenu().getUser());
             gymInfoGraphicController.setController(this.controller);

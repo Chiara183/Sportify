@@ -307,6 +307,7 @@ public class GymInfoController extends Controller implements Observer {
 
     /** Set Gym View*/
     private void setGym(String name){
+        System.out.println(this.gym + " - " + name);
 
         // Window Title
         graphicController.setGymName(name);
@@ -360,7 +361,6 @@ public class GymInfoController extends Controller implements Observer {
 
     /** It's called to set the gymEditController and view*/
     public void loadingGymName(String name) {
-        this.mainApp.getPrimaryStage().setTitle("Sportify - " + name);
         try {
             // Load test result overview.
             FXMLLoader loader = new FXMLLoader();
