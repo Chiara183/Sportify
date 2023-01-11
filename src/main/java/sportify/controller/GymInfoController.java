@@ -307,7 +307,6 @@ public class GymInfoController extends Controller implements Observer {
 
     /** Set Gym View*/
     private void setGym(String name){
-        System.out.println(this.gym + " - " + name);
 
         // Window Title
         graphicController.setGymName(name);

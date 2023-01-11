@@ -100,10 +100,8 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
             alert.setContentText("Please fill gym name field and review field");
             alert.showAndWait();
         }
-        String gym;
-        gym = this.gym;
         StringBuilder reviews = new StringBuilder(this.reviewArea.getText(0, this.reviewArea.getLength()));
-        this.controller.shareReview(gym, reviews);
+        this.controller.shareReview(this.gym, reviews);
     }
     @FXML
     private void findGym(){
@@ -116,8 +114,6 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     }
     @FXML
     protected void notifyAddCourse(){
-        String gym;
-        gym = this.gym;
         String sport = this.comboSport.getValue();
         String hours;
         if(this.hour.getText().equals("")){
@@ -133,7 +129,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
         }
         String time = hours + ':' + mins + ":00";
         this.setState("Changed");
-        controller.addCourse(sport, gym, time);
+        controller.addCourse(sport, this.gym, time);
     }
 
     public void setState(String newState){
