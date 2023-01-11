@@ -66,7 +66,7 @@
                                 </Label>
                                 <VBox prefHeight="85.0" prefWidth="156.0">
                                     <HBox prefHeight="14.0" prefWidth="99.0">
-                                        <Slider fx:id="hourSlider" majorTickUnit="24.0" max="24.0" min="1.0" minorTickCount="1" prefHeight="14.0" prefWidth="99.0" showTickLabels="true">
+                                        <Slider fx:id="hourSlider" majorTickUnit="24.0" max="24.0" min="1.0" minorTickCount="1" prefHeight="14.0" prefWidth="99.0" showTickLabels="true" onDragDetected="#changeHour" onDragDone="#changeHour" onMouseDragged="#changeHour">
                                             <HBox.margin>
                                                 <Insets left="5.0" top="10.0" />
                                             </HBox.margin>
@@ -81,7 +81,7 @@
                                         </TextField>
                                     </HBox>
                                     <HBox prefHeight="48.0" prefWidth="156.0">
-                                        <Slider fx:id="minSlider" majorTickUnit="59.0" max="59.0" minorTickCount="0" prefHeight="29.0" prefWidth="106.0" showTickLabels="true">
+                                        <Slider fx:id="minSlider" majorTickUnit="59.0" max="59.0" minorTickCount="0" prefHeight="29.0" prefWidth="106.0" showTickLabels="true" onDragDetected="#changeMin" onDragDone="#changeMin" onMouseClicked="#changeMin" onMouseDragged="#changeMin">
                                             <padding>
                                                 <Insets left="4.0" top="10.0" />
                                             </padding>
