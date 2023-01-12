@@ -41,6 +41,7 @@ public class Adapter implements SignUp{
                 JFrame jFrame = new JFrame();
                 JOptionPane.showMessageDialog(jFrame, "You're registered!");
             }
+            this.userController.setSubmit(this.submit);
             this.userController.login();
         } else {
             userAccount.put("ruolo", "gym");
