@@ -32,7 +32,9 @@ public class MainApp{
 
     /* The variable of all application*/
     private Stage primaryStage;
+    private Stage secondaryStage;
     private BorderPane rootLayout;
+    private BorderPane secondaryRootLayout;
     private Submit submit;
     private User user = null;
     private String[] searchCache;
@@ -212,12 +214,19 @@ public class MainApp{
 
     /** Shows home overview inside the root layout.*/
     public void showOAuthAuthenticator(WebView root, String name) {
-        this.primaryStage.setTitle("Sportify - " + name);
+        if(!externalLogin) {
+            this.primaryStage.setTitle("Sportify - " + name);
 
-        // Set OAuth overview into the center of root layout.
-        rootLayout.setCenter(root);
-        rootLayout.setTop(null);
+            // Set OAuth overview into the center of root layout.
+            rootLayout.setCenter(root);
+            rootLayout.setTop(null);
+        } else {
+            this.secondaryStage.setTitle("Sportify - " + name);
 
+            // Set OAuth overview into the center of root layout.
+            secondaryRootLayout.setCenter(root);
+            secondaryRootLayout.setTop(null);
+        }
     }
 
     /** Shows login overview inside the root layout.*/
@@ -267,6 +276,7 @@ public class MainApp{
             } else {
                 // Create the dialog Stage.
                 Stage dialogStage = new Stage();
+                this.secondaryStage = dialogStage;
                 dialogStage.setTitle("Sportify - Login");
                 dialogStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Sportify icon.png"))));
 
@@ -274,6 +284,7 @@ public class MainApp{
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("DesktopView/RootLayout.fxml"));
                 BorderPane root = loader.load();
+                this.secondaryRootLayout = root;
 
                 // SetWindowModal
                 dialogStage.initModality(Modality.WINDOW_MODAL);

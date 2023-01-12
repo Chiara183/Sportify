@@ -72,8 +72,6 @@ public abstract class OAuthAuthenticator {
         WebView root = new WebView();
         WebEngine engine = root.getEngine();
 
-        engine.load(getWebUrl());
-
         engine.setOnStatusChanged(event -> {
             if (getGotData() || getAttemptReceived()) {
                 return;
@@ -86,12 +84,14 @@ public abstract class OAuthAuthenticator {
             }
         });
 
+        engine.load(getWebUrl());
+
         mainApp.showOAuthAuthenticator(root, name);
     }
 
     public void helpMethod(MainApp mainApp, OAuthType type, String location){
         if(!getAttemptReceived()){
-        attemptReceived = true;
+            attemptReceived = true;
         }
         accessCode = location.substring(location.indexOf("code=") + 5);
         accessToken = doGetAccessTokenRequest();
