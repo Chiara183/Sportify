@@ -219,13 +219,14 @@ public class MainApp{
 
             // Set OAuth overview into the center of root layout.
             rootLayout.setCenter(root);
-            rootLayout.setTop(null);
         } else {
             this.secondaryStage.setTitle("Sportify - " + name);
 
             // Set OAuth overview into the center of root layout.
             secondaryRootLayout.setCenter(root);
-            secondaryRootLayout.setTop(null);
+        }
+        if(!isNotMobile()){
+            rootLayout.setTop(null);
         }
     }
 
