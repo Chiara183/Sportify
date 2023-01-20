@@ -137,14 +137,15 @@
 .rectangle-pwd {
   position: absolute;
   left: 28%;
-  max-height: 110%;
+  min-height: 100%;
   width: 60%;
 }
 
 .eye-outline-1 {
-  align-self: flex-end;
+  align-self: flex-start;
   object-fit: cover;
   width: 10%;
+  padding-left: 100%;
 }
 
 .google {
