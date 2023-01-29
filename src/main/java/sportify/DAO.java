@@ -12,6 +12,14 @@ import java.util.logging.Logger;
 
 public class DAO {
 
+    // private static DAO instance = null;
+
+    // public static DAO getSingletonInstance() {
+    //     if (DAO.instance == null)
+    //         DAO.instance = new DBConnection();
+    //     return instance;
+    // }
+
     private static final Logger LOGGER  =   Logger.getLogger(DAO.class.getName());
     /** The main connection of the project*/
     Connection connection = null;
