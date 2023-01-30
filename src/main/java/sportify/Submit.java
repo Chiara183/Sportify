@@ -29,7 +29,26 @@ public class Submit{
         return !account.isEmpty() && account.containsKey(userValue) &&
                 userValue.equals(account.get(userValue).get("username")) &&
                 passValue.equals(account.get(userValue).get("password"));
+        /*try {
+            FileReader fr = new FileReader(new File(Paths.get("./src/resource/users.csv").toUri()));
+            BufferedReader br = new BufferedReader(fr);
+            String line = " ";
+            String[] tempArr;
+            while ((line = br.readLine()) != null) {
+                tempArr = line.split(delimiter);
+                if(tempArr[0].equals(userValue) && tempArr[1].equals(passValue)){
+                        br.close();
+                        return true;
+                }
+            }
+            br.close();
+            return false;
+        }
+        catch(IOException ioe) {
+            ioe.printStackTrace();
+        }*/
     }
+
     /** SignUp method*/
     public void signUp(Map<String, String> userAccount) {
         this.dB.write(userAccount);
