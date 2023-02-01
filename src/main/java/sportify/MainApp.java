@@ -453,7 +453,7 @@ public class MainApp{
         account.put("email", email);
         account.put("birthday", date);
         //String stringa = username + "," + password;
-        //FileManagement.writeFile(NomeFile, stringa);
+        //FileManagement.writeFile(stringa);
         return account;
     }
 

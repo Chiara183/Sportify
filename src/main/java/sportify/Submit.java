@@ -4,6 +4,11 @@ import sportify.user.ClassicUser;
 import sportify.user.GymUser;
 import sportify.user.User;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.security.SecureRandom;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -26,32 +31,42 @@ public class Submit{
     /** Login method*/
     public boolean login(String userValue, String passValue) {
         Map<String, Map<String, String>> account = this.dB.read();
-        return !account.isEmpty() && account.containsKey(userValue) &&
+        /*return !account.isEmpty() && account.containsKey(userValue) &&
                 userValue.equals(account.get(userValue).get("username")) &&
-                passValue.equals(account.get(userValue).get("password"));
-        /*try {
-            FileReader fr = new FileReader(new File(Paths.get("./src/resource/users.csv").toUri()));
+                passValue.equals(account.get(userValue).get("password"));*/
+        boolean resultDB = false;
+        boolean resultFile = false;
+        if(!account.isEmpty() && account.containsKey(userValue) &&
+                userValue.equals(account.get(userValue).get("username")) &&
+                passValue.equals(account.get(userValue).get("password"))){
+            resultDB = true;
+        }
+        try {
+            FileReader fr = new FileReader(new File(Paths.get("./src/main/resources/users.csv").toUri()));
             BufferedReader br = new BufferedReader(fr);
             String line = " ";
             String[] tempArr;
             while ((line = br.readLine()) != null) {
-                tempArr = line.split(delimiter);
-                if(tempArr[0].equals(userValue) && tempArr[1].equals(passValue)){
-                        br.close();
-                        return true;
+                tempArr = line.split(",");
+                if (tempArr[0].equals(userValue) && tempArr[1].equals(passValue)) {
+                    resultFile = true;
                 }
             }
-            br.close();
-            return false;
+            FileManagement.cleanUp(br);
         }
         catch(IOException ioe) {
             ioe.printStackTrace();
-        }*/
+        }
+        return (resultDB && resultFile);
     }
 
     /** SignUp method*/
     public void signUp(Map<String, String> userAccount) {
         this.dB.write(userAccount);
+        String usr = userAccount.get("username");
+        String pw = userAccount.get("password");
+        String str = usr + "," + pw;
+        FileManagement.writeFile(str);
     }
 
     /** The 'exists' method*/
