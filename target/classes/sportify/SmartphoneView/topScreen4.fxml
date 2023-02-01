@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sportify.controller.graphic.phone.SportQuizPhoneGraphicController">
+    <ImageView fitHeight="54.0" fitWidth="168.0" layoutX="60.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../Images/Sportify_logo.png" />
+    </ImageView>
+    <ImageView fx:id="back" accessibleRole="BUTTON" fitHeight="21.0" fitWidth="26.0" layoutX="14.0" layoutY="22.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../Images/backArrow.png" />
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+    </ImageView>
+    <ImageView accessibleRole="BUTTON" fitHeight="40.0" fitWidth="40.0" layoutX="221.0" layoutY="15.0" onMouseClicked="#end" onSwipeLeft="#end" onSwipeRight="#end" onTouchPressed="#end">
+        <Image url="@../Images/end1_preview_rev_1.png" />
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+    </ImageView>
+</Pane>

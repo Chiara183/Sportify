@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.sothawo.mapjfx.MapView?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity"
+            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sportify.controller.graphic.MapGraphicController">
+    <BorderPane prefHeight="280.0" prefWidth="270.0">
+        <center>
+            <MapView fx:id="mapView" BorderPane.alignment="CENTER" />
+        </center>
+        <bottom>
+            <Accordion fx:id="leftControls" BorderPane.alignment="CENTER">
+                <panes>
+                    <TitledPane animated="false" layoutX="36.0" layoutY="169.0" prefHeight="118.0" prefWidth="200.0" text="map style">
+                        <VBox spacing="10.0">
+                            <fx:define>
+                                <ToggleGroup fx:id="mapTypeGroup" />
+                            </fx:define>
+                            <RadioButton fx:id="radioMsOSM" text="OSM" />
+                            <RadioButton fx:id="radioMsWMS" text="WMS terrestrials OSM"/>
+                            <RadioButton text="XYZ source" toggleGroup="$mapTypeGroup" />
+                        </VBox>
+                        <font>
+                            <Font name="Comic Sans MS" size="12.0" />
+                        </font>
+                    </TitledPane>
+                </panes>
+            </Accordion>
+        </bottom>
+    </BorderPane>
+    <TextField fx:id="search" layoutX="6.0" prefHeight="32.0" prefWidth="158.0" promptText="Search..." style="-fx-background-radius: 30px;" />
+    <Button layoutX="164.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="37.0" style="-fx-background-radius: 30px;" onMouseClicked="#searchAction" onSwipeUp="#searchAction" onTouchPressed="#searchAction">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
+    <ImageView fitHeight="20.0" fitWidth="23.0" layoutX="171.0" layoutY="7.0">
+        <Image url="@../Images/1638265809410.png" />
+    </ImageView>
+    <ComboBox fx:id="km" layoutX="201.0" prefHeight="32.0" prefWidth="63.0" promptText="Km" style="-fx-background-radius: 30px;">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </ComboBox>
+</AnchorPane>

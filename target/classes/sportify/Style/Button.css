@@ -1,0 +1,30 @@
+.button, .combo-box{
+    -fx-padding: 8 8 11 8;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #04498a 0%, #1c558a 100%),
+            #1c558a,
+            #2571b9,
+            radial-gradient(center 50% 50%, radius 100%, #2571b9, #3296f5);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-font-family: "Comic Sans MS";
+    -fx-cursor: Hand;
+}
+.button:hover, .combo-box:hover{
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #0564bd 0%, #297cc9 100%),
+            #2b80d0,
+            #2f8fea,
+            radial-gradient(center 50% 50%, radius 100%, #2e8de7, #369cff);
+}
+.button:pressed, .combo-box:pressed{
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+.label{
+    -fx-text-fill: black;
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sportify.controller.graphic.phone.MenuPhoneGraphicController">
+    <HBox layoutX="191.0" layoutY="4.0" prefHeight="61.0" prefWidth="79.0">
+        <ImageView accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#signOutMethod" onSwipeLeft="#signOutMethod" onSwipeRight="#signOutMethod" onTouchPressed="#signOutMethod" pickOnBounds="true" preserveRatio="true">
+            <HBox.margin>
+                <Insets top="13.0" />
+            </HBox.margin>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <Image url="@../Images/logout.png" />
+        </ImageView>
+        <ImageView fitHeight="37.0" fitWidth="37.0" onMouseClicked="#submit" onSwipeLeft="#submit" onSwipeRight="#submit" onTouchPressed="#submit">
+            <Image url="@../Images/tick.png" />
+          <cursor>
+              <Cursor fx:constant="HAND" />
+          </cursor>
+          <HBox.margin>
+              <Insets left="10.0" top="10.0" />
+          </HBox.margin>
+        </ImageView>
+    </HBox>
+    <ImageView fx:id="back" fitHeight="22.0" fitWidth="28.0" layoutX="14.0" layoutY="23.0" onMouseClicked="#back" onSwipeDown="#back" onSwipeLeft="#back" onSwipeRight="#back" onTouchPressed="#back">
+        <Image url="@../Images/backArrow.png" />
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+    </ImageView>
+</Pane>
