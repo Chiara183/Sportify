@@ -26,7 +26,6 @@ public class DAO {
         PreparedStatement ps = null;
         ResultSet rs;
         List<String> result = new ArrayList<>();
-        String className = DAO.class.getName();
         try{
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -38,7 +37,7 @@ public class DAO {
             }
         }
         catch (SQLException e) {
-            Logger logger = Logger.getLogger(className);
+            Logger logger = Logger.getLogger(DAO.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
         finally {
@@ -48,7 +47,7 @@ public class DAO {
                 }
             }
             catch (SQLException e) {
-                Logger logger = Logger.getLogger(className);
+                Logger logger = Logger.getLogger(DAO.class.getName());
                 logger.info(e.toString());
             }
         }
@@ -58,13 +57,12 @@ public class DAO {
     /** It's called to update data in DB*/
     public void updateDB(String query){
         PreparedStatement ps = null;
-        String className = DAO.class.getName();
         try{
             ps = connection.prepareStatement(query);
             ps.execute();
         }
         catch (SQLException e){
-            Logger logger = Logger.getLogger(className);
+            Logger logger = Logger.getLogger(DAO.class.getName());
             logger.log(Level.WARNING, e.getMessage());
         }
         finally{
@@ -72,7 +70,7 @@ public class DAO {
                 Objects.requireNonNull(ps).close();
             }
             catch (SQLException e) {
-                Logger logger = Logger.getLogger(className);
+                Logger logger = Logger.getLogger(DAO.class.getName());
                 logger.info(e.toString());
             }
         }
