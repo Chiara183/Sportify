@@ -11,12 +11,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class IO {
-
-    private static final Logger LOGGER = Logger.getLogger(IO.class.getName());
     /** Reference to MainApp.*/
     private MainApp mainApp;
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
+    private static final String FIRSTNAME = "first_name";
+    private static final String LASTNAME = "last_name";
     private static final String LATITUDE = "latitude";
     private static final String LONGITUDE = "longitude";
     private static final String EMAIL = "email";
@@ -70,12 +70,15 @@ public class IO {
     /** It's called to read users in the DB.*/
     public Map<String, Map<String, String>> read(){
         HashMap<String, Map<String, String>> map = new HashMap<>();
-            PreparedStatement ps = null;
-            ResultSet rs;
+        PreparedStatement ps = null;
+        ResultSet rs;
+        String className = IO.class.getName();
+        String query;
         Connection connection = DBConnection.getSingletonInstance().getConnection();
         try{
             assert connection != null;
-            ps = connection.prepareStatement("SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username");
+            query = "SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username";
+            ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, String> gymAccount = getInfoUser(rs);
@@ -83,14 +86,16 @@ public class IO {
                 map.put(userValue, gymAccount);
             }
         }catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.SEVERE, e.getMessage());
         }finally {
             try {
                 if (ps != null) {
                     ps.close();
                 }
             } catch (SQLException e) {
-                LOGGER.info(e.toString());
+                Logger logger = Logger.getLogger(className);
+                logger.info(e.toString());
             }
         }
         return map;
@@ -98,12 +103,13 @@ public class IO {
 
     /** It's called to get info of given user.*/
     public Map<String, String> getInfoUser(ResultSet rs){
+        String className = IO.class.getName();
         HashMap<String, String> gymAccount = new HashMap<>();
         try {
                 String userValue = rs.getString(USERNAME);                    //get user username
                 String passValue = rs.getString(PASSWORD);                    //get user password
-                String nameValue = rs.getString("first_name");                  //get user first name
-                String lastNameValue = rs.getString("last_name");               //get user last name
+                String nameValue = rs.getString(FIRSTNAME);                  //get user first name
+                String lastNameValue = rs.getString(LASTNAME);               //get user last name
                 String email = rs.getString(EMAIL);                           //get user email
                 String birthday = "";
                 if(rs.getDate(BIRTHDAY) != null) {
@@ -128,7 +134,9 @@ public class IO {
                 gymAccount.put(PHONE, phone);                                            //put user phone in userAccount
                 gymAccount.put(RUOLO, ruolo);                                            //put user ruolo in userAccount
         } catch (SQLException e){
-            LOGGER.log(Level.SEVERE, e.getMessage());        }
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.SEVERE, e.getMessage());
+        }
         return gymAccount;
     }
 }

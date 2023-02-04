@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Paths;
 import java.security.SecureRandom;
 import java.time.LocalDate;
@@ -33,6 +34,9 @@ public class Submit{
     /** Login method*/
     public boolean login(String userValue, String passValue) {
         String className = Submit.class.getName();
+        String f = "./src/main/resources/users.csv";
+        URI uri;
+        File file;
         Map<String, Map<String, String>> account = this.dB.read();
         boolean resultDB = false;
         boolean resultFile = false;
@@ -44,8 +48,10 @@ public class Submit{
                 }
             }
         }
+        uri = Paths.get(f).toUri();
+        file = new File(uri);
 
-        try (BufferedReader br = new BufferedReader(new FileReader(new File(Paths.get("./src/main/resources/users.csv").toUri())))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             String[] tempArr;
             line = br.readLine();
@@ -108,30 +114,45 @@ public class Submit{
     }
     private User writeUser(HashMap<String, Map<String, String>> account, String username){
         User user;
-        if (Objects.equals(account.get(username).get(RUOLO), "user")) {
+        String s;
+        Map<String, String> map = account.get(username);
+        s = map.get(RUOLO);
+        if (Objects.equals(s, "user")) {
             user = new ClassicUser();
         } else {
             user = new GymUser();
         }
         user.setMainApp(mainApp);
-        user.setUserName(account.get(username).get(USER));
-        user.setPassword(account.get(username).get(PASS));
-        user.setFirstName(account.get(username).get("firstName"));
-        user.setLastName(account.get(username).get("lastName"));
-        user.setEmail(account.get(username).get("email"));
-        if (!Objects.equals(account.get(username).get("birthday"), "")) {
-            String d = account.get(username).get("birthday");
+        s = map.get(USER);
+        user.setUserName(s);
+        s = map.get(PASS);
+        user.setPassword(s);
+        s = map.get("firstName");
+        user.setFirstName(s);
+        s = map.get("lastName");
+        user.setLastName(s);
+        s = map.get("email");
+        user.setEmail(s);
+        s = map.get("birthday");
+        if (!Objects.equals(s, "")) {
+            String d = map.get("birthday");
             LocalDate date = DateUtil.parse(d);
             user.setBirthday(date);
         }
-        user.setRole(account.get(username).get(RUOLO));
-        if (Objects.equals(account.get(username).get(RUOLO), "gym")) {
+        s = map.get(RUOLO);
+        user.setRole(s);
+        if (Objects.equals(s, "gym")) {
             assert user instanceof GymUser;
-            ((GymUser) user).setGymName(account.get(username).get("gymName"));
-            ((GymUser) user).setAddress(account.get(username).get("address"));
-            ((GymUser) user).setLatitude(account.get(username).get("latitude"));
-            ((GymUser) user).setLongitude(account.get(username).get("longitude"));
-            ((GymUser) user).setPhone(account.get(username).get("phone"));
+            s = map.get("gymName");
+            ((GymUser) user).setGymName(s);
+            s = map.get("address");
+            ((GymUser) user).setAddress(s);
+            s = map.get("latitude");
+            ((GymUser) user).setLatitude(s);
+            s = map.get("longitude");
+            ((GymUser) user).setLongitude(s);
+            s = map.get("phone");
+            ((GymUser) user).setPhone(s);
         }
         return user;
     }

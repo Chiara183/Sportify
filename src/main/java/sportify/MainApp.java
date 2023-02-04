@@ -1,5 +1,7 @@
 package sportify;
 
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import sportify.controller.*;
 import sportify.controller.graphic.*;
 import sportify.controller.graphic.phone.MenuPhoneGraphicController;
@@ -66,11 +68,20 @@ public class MainApp{
     public void setPrimaryStage(Stage stage) {
         this.primaryStage = stage;
     }
+    public void setSecondaryStage(Stage secondaryStage) {
+        this.secondaryStage = secondaryStage;
+    }
     public void setSearchCache(String[] search) {
         this.searchCache = search;
     }
     public void setExternalLogin(boolean login) {
         this.externalLogin = login;
+    }
+    public void setPrimaryPane(BorderPane pane){
+        this.rootLayout = pane;
+    }
+    public void setSecondaryPane(BorderPane secondaryRootLayout) {
+        this.secondaryRootLayout = secondaryRootLayout;
     }
 
     /* Get method*/
@@ -80,17 +91,35 @@ public class MainApp{
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+    public Stage getSecondaryStage() {
+        return secondaryStage;
+    }
+    public MenuController getMenu(){
+        return this.menu;
+    }
+    public User getUser() {
+        return user;
+    }
     public DAO getDAO() {
         return this.dao;
     }
     public BorderPane getPrimaryPane() {
         return rootLayout;
     }
+    public BorderPane getSecondaryPane() {
+        return secondaryRootLayout;
+    }
+    public Submit getSubmit() {
+        return submit;
+    }
     public Projection getProjection() {
         return projection;
     }
     public boolean isNotMobile() {
         return !mobile;
+    }
+    public boolean isMobile(){
+        return mobile;
     }
     public boolean isExternalLogin(){return externalLogin;}
 
@@ -103,6 +132,7 @@ public class MainApp{
         logger.log(Level.INFO, dim);
         URL url;
         String resource;
+        Stage stage;
         try {
             FXMLLoader loader = new FXMLLoader();
             if(isNotMobile()) {
@@ -110,25 +140,28 @@ public class MainApp{
                 resource = "DesktopView/RootLayout.fxml";
                 url = MainApp.class.getResource(resource);
                 loader.setLocation(url);
-                rootLayout = loader.load();
+                setPrimaryPane(loader.load());
 
                 // Show the scene containing the root layout.
-                Scene scene = new Scene(rootLayout, 830, 550);
-                primaryStage.setScene(scene);
-                primaryStage.setFullScreen(true);
+                Scene scene = new Scene(getPrimaryPane(), 830, 550);
+                stage = getPrimaryStage();
+                stage.setScene(scene);
+                stage.setFullScreen(true);
             } else {
                 // Load root layout from fxml file.
                 resource = "SmartphoneView/RootLayoutPhone.fxml";
                 url = MainApp.class.getResource(resource);
                 loader.setLocation(url);
-                rootLayout = loader.load();
+                setPrimaryPane(loader.load());
 
                 // Show the scene containing the root layout.
-                Scene scene = new Scene(rootLayout, 270, 450);
-                primaryStage.setScene(scene);
-                primaryStage.setResizable(false);
+                Scene scene = new Scene(getPrimaryPane(), 270, 450);
+                stage = getPrimaryStage();
+                stage.setScene(scene);
+                stage.setResizable(false);
             }
-            primaryStage.show();
+            stage = getPrimaryStage();
+            stage.show();
         } catch (IOException e) {
             logger.log(Level.SEVERE, e.getMessage());
         }
@@ -140,18 +173,21 @@ public class MainApp{
         URL url;
         String resource;
         String className = MainApp.class.getName();
+        MenuController m = getMenu();
         if(isExternalLogin()){
-            ControllerType type = menu.getView();
-            String gym = menu.getGym();
-            menu = controller;
-            menu.setView(type);
-            menu.setGym(gym);
+            ControllerType type = m.getView();
+            String gym = m.getGym();
+            setMenu(controller);
+            m = getMenu();
+            m.setView(type);
+            m.setGym(gym);
         } else {
-            menu = controller;
+            setMenu(controller);
         }
         controller.setMainApp(this);
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
+            BorderPane pane = this.getPrimaryPane();
             if(isNotMobile()) {
                 MenuGraphicController graphicController;
                 resource = "DesktopView/menu.fxml";
@@ -160,7 +196,7 @@ public class MainApp{
                 Pane paneMenu = loaderMenu.load();
 
                 // Set menu overview into the top of root layout.
-                this.getPrimaryPane().setTop(paneMenu);
+                pane.setTop(paneMenu);
 
                 // Give the gymEditController access to the main app.
                 graphicController = loaderMenu.getController();
@@ -174,13 +210,13 @@ public class MainApp{
                 Pane paneMenu = loaderMenu.load();
 
                 // Set menu overview into the top of root layout.
-                this.getPrimaryPane().setBottom(paneMenu);
+                pane.setBottom(paneMenu);
                 graphicController = loaderMenu.getController();
                 controller.setGraphicController(graphicController);
                 graphicController.setController(controller);
             }
             // Give the gymEditController access to the main app.
-            controller.setUser(this.user);
+            controller.setUser(this.getUser());
         } catch (IOException e) {
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());        }
@@ -197,10 +233,12 @@ public class MainApp{
         String item3 = "";
         String item4 = "";
         String className = MainApp.class.getName();
+        BorderPane pane = getPrimaryPane();
         try {
             FXMLLoader loader = new FXMLLoader();
             title = "Sportify - Home";
-            this.primaryStage.setTitle(title);
+            Stage stage = this.getPrimaryStage();
+            stage.setTitle(title);
             HomeController controller = new HomeController();
             if(isNotMobile()) {
                 // Load home overview.
@@ -222,20 +260,22 @@ public class MainApp{
             Pane homeOverview = loader.load();
 
             // Set home overview into the center of root layout.
-            rootLayout.setCenter(homeOverview);
-            rootLayout.setTop(null);
+            pane.setCenter(homeOverview);
+            pane.setTop(null);
 
             // Give the gymEditController access to the main app.
             HomePhoneGraphicController graphicController = loader.getController();
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
             controller.setMainApp(this);
-            controller.setUser(this.user);
-            if(!isNotMobile()) {
-                graphicController.getCombo().getItems().add(item1);
-                graphicController.getCombo().getItems().add(item2);
-                graphicController.getCombo().getItems().add(item3);
-                graphicController.getCombo().getItems().add(item4);
+            controller.setUser(this.getUser());
+            if(isMobile()) {
+                ComboBox<String> combo = graphicController.getCombo();
+                ObservableList<String> obs = combo.getItems();
+                obs.add(item1);
+                obs.add(item2);
+                obs.add(item3);
+                obs.add(item4);
             }
         } catch (IOException e) {
             Logger logger = Logger.getLogger(className);
@@ -246,21 +286,28 @@ public class MainApp{
     /** Shows home overview inside the root layout.*/
     public void showOAuthAuthenticator(WebView root, String name) {
         String title;
-        if(!externalLogin) {
+        Stage stage;
+        BorderPane pane;
+        if(!isExternalLogin()) {
             title = "Sportify - " + name;
-            this.primaryStage.setTitle(title);
+            stage = this.getPrimaryStage();
+            stage.setTitle(title);
 
             // Set OAuth overview into the center of root layout.
-            rootLayout.setCenter(root);
+            pane = getPrimaryPane();
+            pane.setCenter(root);
         } else {
             title = "Sportify - " + name;
-            this.secondaryStage.setTitle(title);
+            stage = getSecondaryStage();
+            stage.setTitle(title);
 
             // Set OAuth overview into the center of root layout.
-            secondaryRootLayout.setCenter(root);
+            pane = getSecondaryPane();
+            pane.setCenter(root);
         }
-        if(!isNotMobile()){
-            rootLayout.setTop(null);
+        if(isMobile()){
+            pane = getPrimaryPane();
+            pane.setTop(null);
         }
     }
 
@@ -273,9 +320,11 @@ public class MainApp{
         URL url;
         Modality m;
         String className = MainApp.class.getName();
+        Stage stage;
         try {
             title = "Sportify - Login";
-            this.primaryStage.setTitle(title);
+            stage = getPrimaryStage();
+            stage.setTitle(title);
 
             MenuController menuController = menu();
             menuController.setLogin();
@@ -284,7 +333,7 @@ public class MainApp{
             FXMLLoader loaderLogin = new FXMLLoader();
             Pane paneTopScreen = null;
             MenuGraphicController graphicMenuController = null;
-            if(!mobile) {
+            if(isNotMobile()) {
                 resource = "DesktopView/Login.fxml";
                 url = MainApp.class.getResource(resource);
                 loaderLogin.setLocation(url);
@@ -306,16 +355,16 @@ public class MainApp{
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
             controller.setMainApp(this);
-            controller.setSubmit(this.submit);
-            controller.setUser(this.user);
+            controller.setSubmit(getSubmit());
+            controller.setUser(getUser());
             menuController.setInstance(graphicController);
-            controller.setMenu(this.menu);
-            controller.setExternal(this.externalLogin);
+            controller.setMenu(getMenu());
+            controller.setExternal(isExternalLogin());
 
-            if(!externalLogin) {
+            if(!isExternalLogin()) {
                 // Set login overview into the center of root layout.
                 this.getPrimaryPane().setCenter(pane);
-                if(mobile){
+                if(isMobile()){
                     this.getPrimaryPane().setTop(paneTopScreen);
                     assert graphicMenuController != null;
                     graphicMenuController.setController(menuController);
@@ -323,7 +372,7 @@ public class MainApp{
             } else {
                 // Create the dialog Stage.
                 Stage dialogStage = new Stage();
-                this.secondaryStage = dialogStage;
+                setSecondaryStage(dialogStage);
                 title = "Sportify - Login";
                 dialogStage.setTitle(title);
                 resource = "Images/Sportify icon.png";
@@ -337,19 +386,19 @@ public class MainApp{
                 url = getClass().getResource(resource);
                 loader.setLocation(url);
                 BorderPane root = loader.load();
-                this.secondaryRootLayout = root;
+                setSecondaryPane(root);
 
                 // SetWindowModal
                 m = Modality.WINDOW_MODAL;
                 dialogStage.initModality(m);
-                dialogStage.initOwner(this.primaryStage);
+                dialogStage.initOwner(getPrimaryStage());
                 Scene scene = new Scene(root, 830, 550);
                 root.setCenter(pane);
                 dialogStage.setScene(scene);
                 dialogStage.setResizable(false);
 
                 // Set the person into the gymEditController.
-                controller.setMenu(this.menu);
+                controller.setMenu(getMenu());
                 controller.setStage(dialogStage);
 
                 // Show the dialog and wait until the user closes it
@@ -394,7 +443,7 @@ public class MainApp{
 
             // Set sport quiz overview into the center of root layout.
             this.getPrimaryPane().setCenter(pane);
-            if(mobile){
+            if(isMobile()){
                 this.getPrimaryPane().setTop(paneTopScreen);
                 assert graphicMenuController != null;
                 graphicMenuController.setController(menu);
@@ -413,7 +462,7 @@ public class MainApp{
                 menu.setInstance(graphicController);
             }
             controller.setMainApp(this);
-            controller.setUser(this.user);
+            controller.setUser(getUser());
             controller.setMenu(menu);
 
         } catch (IOException e) {
@@ -428,6 +477,7 @@ public class MainApp{
         String resource;
         URL url;
         String className = MainApp.class.getName();
+        BorderPane primaryPane = getPrimaryPane();
         try {
             title = "Sportify - Find Gym";
             this.getPrimaryStage().setTitle(title);
@@ -453,9 +503,9 @@ public class MainApp{
             Pane pane = loaderGym.load();
 
             // Set find gym overview into the center of root layout.
-            this.getPrimaryPane().setCenter(pane);
-            if(mobile){
-                this.getPrimaryPane().setTop(paneTopScreen);
+            primaryPane.setCenter(pane);
+            if(isMobile()){
+                primaryPane.setTop(paneTopScreen);
                 assert graphicMenuController != null;
                 graphicMenuController.setController(menu);
             }
@@ -466,9 +516,9 @@ public class MainApp{
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
             controller.setMainApp(this);
-            controller.setSearchCache(this.searchCache);
+            controller.setSearchCache(getSearchCache());
             controller.setMenu(menu);
-            controller.setProjection(this.projection);
+            controller.setProjection(getProjection());
 
         } catch (IOException e) {
             Logger logger = Logger.getLogger(className);
@@ -483,6 +533,7 @@ public class MainApp{
         URL url;
         FXMLLoader loaderTopScreen;
         String className = MainApp.class.getName();
+        BorderPane primaryPane = getPrimaryPane();
         try {
             title = "Sportify - Sign Up";
             this.getPrimaryStage().setTitle(title);
@@ -508,11 +559,11 @@ public class MainApp{
             Pane pane = loaderSignUp.load();
 
             // Set sign up overview into the center of root layout.
-            this.getPrimaryPane().setCenter(pane);
-            if(mobile){
+            primaryPane.setCenter(pane);
+            if(isMobile()){
                 this.getPrimaryPane().setTop(paneTopScreen);
                 assert graphicMenuController != null;
-                graphicMenuController.setController(menu);
+                graphicMenuController.setController(getMenu());
                 graphicMenuController.setUserKind();
             }
 
@@ -520,7 +571,7 @@ public class MainApp{
             SignUpGraphicController graphicController = loaderSignUp.getController();
             SignUpController controller = new SignUpController();
             controller.setGraphicController(graphicController);
-            controller.setMenu(menu);
+            controller.setMenu(getMenu());
             graphicController.setController(controller);
             controller.setMainApp(this);
 
@@ -531,7 +582,8 @@ public class MainApp{
     }
 
     /** Is called to create account hashmap*/
-    public Map<String, String> createAccount(String username, String password, String firstName, String lastName, String email, String date){
+    public Map<String, String> createAccount(String username, String password, String firstName,
+                                             String lastName, String email, String date){
         HashMap<String, String> account = new HashMap<>();
         account.put("username", username);
         account.put("password", password);

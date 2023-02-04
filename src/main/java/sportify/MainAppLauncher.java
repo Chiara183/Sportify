@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
@@ -27,21 +28,25 @@ public class MainAppLauncher extends Application {
         String typeM = "mobile";
         String typeD = "desktop";
         int count = 1;
+        Parameters p = super.getParameters();
+        List<String> unnamed = p.getUnnamed();
         if (!super.getParameters().getUnnamed().isEmpty()){
-            parameter = super.getParameters().getUnnamed().get(0);
+            parameter = unnamed.get(0);
             s = parameter + m;
             Logger logger = Logger.getLogger(className);
             logger.log(Level.INFO, s);
         }
         Projection projection;
-        if (getParameters().getUnnamed().contains("wgs84")) {
+        if (unnamed.contains("wgs84")) {
             projection = Projection.WGS_84;
         } else {
             projection = Projection.WEB_MERCATOR;
         }
         MainApp mainApp = new MainApp();
-        c = DBConnection.getSingletonInstance().getConnection();
-        mainApp.getDAO().setConnection(c);
+        DBConnection db = DBConnection.getSingletonInstance();
+        c = db.getConnection();
+        DAO dao = mainApp.getDAO();
+        dao.setConnection(c);
         submit = new Submit(mainApp);
         mainApp.setSubmit(submit);
         mainApp.setPrimaryStage(primaryStage);
@@ -55,7 +60,8 @@ public class MainAppLauncher extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        mainApp.getPrimaryStage().getIcons().add(image);
+        Stage stage = mainApp.getPrimaryStage();
+        stage.getIcons().add(image);
         CountDownLatch modalitySignal = new CountDownLatch(count);
         if(Objects.equals(s, typeM)){
             mainApp.setMobile(true);
