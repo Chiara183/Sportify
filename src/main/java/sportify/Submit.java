@@ -34,14 +34,15 @@ public class Submit{
         Map<String, Map<String, String>> account = this.dB.read();
         boolean resultDB = false;
         boolean resultFile = false;
-        if(!account.isEmpty() && account.containsKey(userValue) &&
+        if (!account.isEmpty() && account.containsKey(userValue) &&
                 userValue.equals(account.get(userValue).get("username")) &&
-                passValue.equals(account.get(userValue).get("password"))){
+                passValue.equals(account.get(userValue).get("password"))) {
             resultDB = true;
         }
+        BufferedReader br = null;
         try {
             FileReader fr = new FileReader(new File(Paths.get("./src/main/resources/users.csv").toUri()));
-            BufferedReader br = new BufferedReader(fr);
+            br = new BufferedReader(fr);
             String line;
             String[] tempArr;
             while ((line = br.readLine()) != null) {
@@ -52,8 +53,16 @@ public class Submit{
             }
             FileManagement.cleanUp(br);
             br.close();
-        } catch(IOException ioe) {
+        } catch (IOException ioe) {
             LOGGER.log(Level.SEVERE, ioe.getMessage());
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    System.out.println("Errore durante la chiusura del reader: " + e.getMessage());
+                }
+            }
         }
         return (resultDB && resultFile);
     }
