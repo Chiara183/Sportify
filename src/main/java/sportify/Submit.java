@@ -21,6 +21,8 @@ public class Submit{
     private final IO dB;
     private final MainApp mainApp;
     private static final String RUOLO = "ruolo";
+    private static final String USER = "username";
+    private static final String PASS = "password";
 
     /** The constructor.*/
     public Submit(MainApp mainApp){
@@ -35,8 +37,8 @@ public class Submit{
         boolean resultDB = false;
         boolean resultFile = false;
         if (!account.isEmpty() && account.containsKey(userValue) &&
-                userValue.equals(account.get(userValue).get("username")) &&
-                passValue.equals(account.get(userValue).get("password"))) {
+                userValue.equals(account.get(userValue).get(USER)) &&
+                passValue.equals(account.get(userValue).get(PASS))) {
             resultDB = true;
         }
         BufferedReader br = null;
@@ -70,8 +72,8 @@ public class Submit{
     /** SignUp method*/
     public void signUp(Map<String, String> userAccount) {
         this.dB.write(userAccount);
-        String usr = userAccount.get("username");
-        String pw = userAccount.get("password");
+        String usr = userAccount.get(USER);
+        String pw = userAccount.get(PASS);
         String str = usr + "," + pw;
         FileManagement.writeFile(str);
     }
@@ -110,8 +112,8 @@ public class Submit{
             user = new GymUser();
         }
         user.setMainApp(mainApp);
-        user.setUserName(account.get(username).get("username"));
-        user.setPassword(account.get(username).get("password"));
+        user.setUserName(account.get(username).get(USER));
+        user.setPassword(account.get(username).get(PASS));
         user.setFirstName(account.get(username).get("firstName"));
         user.setLastName(account.get(username).get("lastName"));
         user.setEmail(account.get(username).get("email"));
