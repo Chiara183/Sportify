@@ -62,7 +62,7 @@ public class Submit{
                 try {
                     br.close();
                 } catch (IOException e) {
-                    System.out.println("Errore durante la chiusura del reader: " + e.getMessage());
+                    System.err.println("Errore durante la chiusura del reader: " + e.getMessage());
                 }
             }
         }
