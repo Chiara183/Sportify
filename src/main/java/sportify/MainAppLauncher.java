@@ -5,6 +5,9 @@ import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
 import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
@@ -12,30 +15,51 @@ import java.util.logging.Logger;
 
 public class MainAppLauncher extends Application {
 
-    private static final Logger LOGGER = Logger.getLogger(MainAppLauncher.class.getName());
-
     @Override
     public void start(Stage primaryStage) {
         String s = "";
+        Connection c;
+        Submit submit;
+        String parameter;
+        String m = " modality";
+        String className = MainAppLauncher.class.getName();
+        String img;
+        String typeM = "mobile";
+        String typeD = "desktop";
+        int count = 1;
         if (!super.getParameters().getUnnamed().isEmpty()){
-            s = super.getParameters().getUnnamed().get(0) + " modality";
-            LOGGER.log(Level.INFO, s);
+            parameter = super.getParameters().getUnnamed().get(0);
+            s = parameter + m;
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.INFO, s);
         }
-        Projection projection = getParameters().getUnnamed().contains("wgs84")
-                ? Projection.WGS_84 : Projection.WEB_MERCATOR;
+        Projection projection;
+        if (getParameters().getUnnamed().contains("wgs84")) {
+            projection = Projection.WGS_84;
+        } else {
+            projection = Projection.WEB_MERCATOR;
+        }
         MainApp mainApp = new MainApp();
-        mainApp.getDAO().setConnection(DBConnection.getSingletonInstance().getConnection());
-        mainApp.setSubmit(new Submit(mainApp));
+        c = DBConnection.getSingletonInstance().getConnection();
+        mainApp.getDAO().setConnection(c);
+        submit = new Submit(mainApp);
+        mainApp.setSubmit(submit);
         mainApp.setPrimaryStage(primaryStage);
         mainApp.setProjection(projection);
 
         // Set the application.
-        mainApp.getPrimaryStage().getIcons().add( new Image( Objects.requireNonNull(
-                                getClass().getResourceAsStream("Images/Sportify icon.png"))));
-        CountDownLatch modalitySignal = new CountDownLatch(1);
-        if(Objects.equals(s, "mobile")){
+        Image image;
+        img = "Images/Sportify icon.png";
+        try (InputStream i = getClass().getResourceAsStream(img)){
+            image = new Image(Objects.requireNonNull(i));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        mainApp.getPrimaryStage().getIcons().add(image);
+        CountDownLatch modalitySignal = new CountDownLatch(count);
+        if(Objects.equals(s, typeM)){
             mainApp.setMobile(true);
-        } else if (Objects.equals(s, "desktop")){
+        } else if (Objects.equals(s, typeD)){
             mainApp.setMobile(false);
         } else {
             new Thread(() -> {
@@ -47,7 +71,8 @@ public class MainAppLauncher extends Application {
             try {
                 modalitySignal.await();
             } catch (InterruptedException e) {
-                LOGGER.log(Level.WARNING, e.getMessage());
+                Logger logger = Logger.getLogger(className);
+                logger.log(Level.WARNING, e.getMessage());
                 Thread.currentThread().interrupt();
             }
         }

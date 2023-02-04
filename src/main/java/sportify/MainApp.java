@@ -20,6 +20,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -27,8 +29,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MainApp{
-
-    private static final Logger LOGGER = Logger.getLogger(MainApp.class.getName());
 
     /* The variable of all application*/
     private Stage primaryStage;
@@ -96,14 +96,20 @@ public class MainApp{
 
     /** Initializes the root layout.*/
     public void initRootLayout() {
+        String className = MainApp.class.getName();
         String os = System.getProperty("os.name");
         String dim = "The OS of device is: " + os;
-        LOGGER.log(Level.INFO, dim);
+        Logger logger = Logger.getLogger(className);
+        logger.log(Level.INFO, dim);
+        URL url;
+        String resource;
         try {
             FXMLLoader loader = new FXMLLoader();
             if(isNotMobile()) {
                 // Load root layout from fxml file.
-                loader.setLocation(MainApp.class.getResource("DesktopView/RootLayout.fxml"));
+                resource = "DesktopView/RootLayout.fxml";
+                url = MainApp.class.getResource(resource);
+                loader.setLocation(url);
                 rootLayout = loader.load();
 
                 // Show the scene containing the root layout.
@@ -112,7 +118,9 @@ public class MainApp{
                 primaryStage.setFullScreen(true);
             } else {
                 // Load root layout from fxml file.
-                loader.setLocation(MainApp.class.getResource("SmartphoneView/RootLayoutPhone.fxml"));
+                resource = "SmartphoneView/RootLayoutPhone.fxml";
+                url = MainApp.class.getResource(resource);
+                loader.setLocation(url);
                 rootLayout = loader.load();
 
                 // Show the scene containing the root layout.
@@ -122,13 +130,16 @@ public class MainApp{
             }
             primaryStage.show();
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
     /** Shows menu overview inside the root layout.*/
     public MenuController menu() {
         MenuController controller = new MenuController();
+        URL url;
+        String resource;
+        String className = MainApp.class.getName();
         if(isExternalLogin()){
             ControllerType type = menu.getView();
             String gym = menu.getGym();
@@ -143,7 +154,9 @@ public class MainApp{
             FXMLLoader loaderMenu = new FXMLLoader();
             if(isNotMobile()) {
                 MenuGraphicController graphicController;
-                loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("DesktopView/menu.fxml")));
+                resource = "DesktopView/menu.fxml";
+                url = getClass().getResource(resource);
+                loaderMenu.setLocation(Objects.requireNonNull(url));
                 Pane paneMenu = loaderMenu.load();
 
                 // Set menu overview into the top of root layout.
@@ -155,7 +168,9 @@ public class MainApp{
                 graphicController.setController(controller);
             } else {
                 MenuPhoneGraphicController graphicController;
-                loaderMenu.setLocation(Objects.requireNonNull(getClass().getResource("SmartphoneView/MenuPhone.fxml")));
+                resource = "SmartphoneView/MenuPhone.fxml";
+                url = getClass().getResource(resource);
+                loaderMenu.setLocation(Objects.requireNonNull(url));
                 Pane paneMenu = loaderMenu.load();
 
                 // Set menu overview into the top of root layout.
@@ -167,23 +182,40 @@ public class MainApp{
             // Give the gymEditController access to the main app.
             controller.setUser(this.user);
         } catch (IOException e) {
-            Logger logger = Logger.getLogger(MainApp.class.getName());
+            Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());        }
         return controller;
     }
 
     /** Shows home overview inside the root layout.*/
     public void showHomeOverview() {
+        String title;
+        String resource;
+        URL url;
+        String item1 = "";
+        String item2 = "";
+        String item3 = "";
+        String item4 = "";
+        String className = MainApp.class.getName();
         try {
             FXMLLoader loader = new FXMLLoader();
-            this.primaryStage.setTitle("Sportify - Home");
+            title = "Sportify - Home";
+            this.primaryStage.setTitle(title);
             HomeController controller = new HomeController();
             if(isNotMobile()) {
                 // Load home overview.
-                loader.setLocation(MainApp.class.getResource("DesktopView/Home.fxml"));
+                resource = "DesktopView/Home.fxml";
+                url = MainApp.class.getResource(resource);
+                loader.setLocation(url);
+                item1 = "Take sport quiz";
+                item2 = "Find gym";
+                item3 = "Login";
+                item4 = "Login with Google";
             } else {
                 // Load home overview.
-                loader.setLocation(MainApp.class.getResource("SmartphoneView/HomePhone.fxml"));
+                resource = "SmartphoneView/HomePhone.fxml";
+                url = MainApp.class.getResource(resource);
+                loader.setLocation(url);
                 MenuController menuController = menu();
                 controller.setMenu(menuController);
             }
@@ -200,26 +232,29 @@ public class MainApp{
             controller.setMainApp(this);
             controller.setUser(this.user);
             if(!isNotMobile()) {
-                graphicController.getCombo().getItems().add("Take sport quiz");
-                graphicController.getCombo().getItems().add("Find gym");
-                graphicController.getCombo().getItems().add("Login");
-                graphicController.getCombo().getItems().add("Login with Google");
+                graphicController.getCombo().getItems().add(item1);
+                graphicController.getCombo().getItems().add(item2);
+                graphicController.getCombo().getItems().add(item3);
+                graphicController.getCombo().getItems().add(item4);
             }
         } catch (IOException e) {
-            Logger logger = Logger.getLogger(MainApp.class.getName());
+            Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
     /** Shows home overview inside the root layout.*/
     public void showOAuthAuthenticator(WebView root, String name) {
+        String title;
         if(!externalLogin) {
-            this.primaryStage.setTitle("Sportify - " + name);
+            title = "Sportify - " + name;
+            this.primaryStage.setTitle(title);
 
             // Set OAuth overview into the center of root layout.
             rootLayout.setCenter(root);
         } else {
-            this.secondaryStage.setTitle("Sportify - " + name);
+            title = "Sportify - " + name;
+            this.secondaryStage.setTitle(title);
 
             // Set OAuth overview into the center of root layout.
             secondaryRootLayout.setCenter(root);
@@ -233,8 +268,14 @@ public class MainApp{
     public void showLoginOverview() {
         LoginController controller = new LoginController();
         LoginGraphicController graphicController;
+        String title;
+        String resource;
+        URL url;
+        Modality m;
+        String className = MainApp.class.getName();
         try {
-            this.primaryStage.setTitle("Sportify - Login");
+            title = "Sportify - Login";
+            this.primaryStage.setTitle(title);
 
             MenuController menuController = menu();
             menuController.setLogin();
@@ -244,11 +285,17 @@ public class MainApp{
             Pane paneTopScreen = null;
             MenuGraphicController graphicMenuController = null;
             if(!mobile) {
-                loaderLogin.setLocation(MainApp.class.getResource("DesktopView/Login.fxml"));
+                resource = "DesktopView/Login.fxml";
+                url = MainApp.class.getResource(resource);
+                loaderLogin.setLocation(url);
             } else {
-                loaderLogin.setLocation(MainApp.class.getResource("SmartphoneView/LoginPhone2.fxml"));
+                resource = "SmartphoneView/LoginPhone2.fxml";
+                url = MainApp.class.getResource(resource);
+                loaderLogin.setLocation(url);
                 FXMLLoader loaderTopScreen = new FXMLLoader();
-                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen2.fxml"));
+                resource = "SmartphoneView/topScreen2.fxml";
+                url = MainApp.class.getResource(resource);
+                loaderTopScreen.setLocation(url);
                 paneTopScreen = loaderTopScreen.load();
                 graphicMenuController = loaderTopScreen.getController();
             }
@@ -277,17 +324,24 @@ public class MainApp{
                 // Create the dialog Stage.
                 Stage dialogStage = new Stage();
                 this.secondaryStage = dialogStage;
-                dialogStage.setTitle("Sportify - Login");
-                dialogStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Sportify icon.png"))));
+                title = "Sportify - Login";
+                dialogStage.setTitle(title);
+                resource = "Images/Sportify icon.png";
+                InputStream inS = getClass().getResourceAsStream(resource);
+                Image img = new Image(Objects.requireNonNull(inS));
+                dialogStage.getIcons().add(img);
 
                 // Load root layout from fxml file.
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("DesktopView/RootLayout.fxml"));
+                resource = "DesktopView/RootLayout.fxml";
+                url = getClass().getResource(resource);
+                loader.setLocation(url);
                 BorderPane root = loader.load();
                 this.secondaryRootLayout = root;
 
                 // SetWindowModal
-                dialogStage.initModality(Modality.WINDOW_MODAL);
+                m = Modality.WINDOW_MODAL;
+                dialogStage.initModality(m);
                 dialogStage.initOwner(this.primaryStage);
                 Scene scene = new Scene(root, 830, 550);
                 root.setCenter(pane);
@@ -303,24 +357,36 @@ public class MainApp{
             }
 
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
     /** Shows sport quiz overview inside the root layout.*/
     public void showSportQuizOverview(MenuController menu) {
+        String title;
+        String resource;
+        URL url;
+        String className = MainApp.class.getName();
         try {
-            this.getPrimaryStage().setTitle("Sportify - Sport Quiz");
+            title = "Sportify - Sport Quiz";
+            this.getPrimaryStage().setTitle(title);
             // Load sport quiz overview.
             FXMLLoader loaderSport = new FXMLLoader();
             Pane paneTopScreen = null;
             MenuGraphicController graphicMenuController = null;
             if(isNotMobile()) {
-                loaderSport.setLocation(MainApp.class.getResource("DesktopView/SportQuiz.fxml"));
+                resource = "DesktopView/SportQuiz.fxml";
+                url = MainApp.class.getResource(resource);
+                loaderSport.setLocation(url);
             } else {
-                loaderSport.setLocation(MainApp.class.getResource("SmartphoneView/SportQuizPhone1.fxml"));
+                resource = "SmartphoneView/SportQuizPhone1.fxml";
+                url = MainApp.class.getResource(resource);
+                loaderSport.setLocation(url);
                 FXMLLoader loaderTopScreen = new FXMLLoader();
-                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen1.fxml"));
+                resource = "SmartphoneView/topScreen1.fxml";
+                url = MainApp.class.getResource(resource);
+                loaderTopScreen.setLocation(url);
                 paneTopScreen = loaderTopScreen.load();
                 graphicMenuController = loaderTopScreen.getController();
             }
@@ -351,24 +417,36 @@ public class MainApp{
             controller.setMenu(menu);
 
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
     /** Shows find gym overview inside the root layout.*/
     public void showFindGymOverview(MenuController menu) {
+        String title;
+        String resource;
+        URL url;
+        String className = MainApp.class.getName();
         try {
-            this.getPrimaryStage().setTitle("Sportify - Find Gym");
+            title = "Sportify - Find Gym";
+            this.getPrimaryStage().setTitle(title);
             // Load find gym overview.
             FXMLLoader loaderGym = new FXMLLoader();
             Pane paneTopScreen = null;
             MenuGraphicController graphicMenuController = null;
             if(isNotMobile()) {
-                loaderGym.setLocation(MainApp.class.getResource("DesktopView/FindGym.fxml"));
+                resource = "DesktopView/FindGym.fxml";
+                url = MainApp.class.getResource(resource);
+                loaderGym.setLocation(url);
             } else {
-                loaderGym.setLocation(MainApp.class.getResource("SmartphoneView/FindGymPhone0.fxml"));
+                resource = "SmartphoneView/FindGymPhone0.fxml";
+                url = MainApp.class.getResource(resource);
+                loaderGym.setLocation(url);
                 FXMLLoader loaderTopScreen = new FXMLLoader();
-                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen0.fxml"));
+                resource = "SmartphoneView/topScreen0.fxml";
+                url = MainApp.class.getResource(resource);
+                loaderTopScreen.setLocation(url);
                 paneTopScreen = loaderTopScreen.load();
                 graphicMenuController = loaderTopScreen.getController();
             }
@@ -393,24 +471,37 @@ public class MainApp{
             controller.setProjection(this.projection);
 
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
     /** Shows sign up overview inside the root layout.*/
     public void showSignUpOverview() {
+        String title;
+        String resource;
+        URL url;
+        FXMLLoader loaderTopScreen;
+        String className = MainApp.class.getName();
         try {
-            this.getPrimaryStage().setTitle("Sportify - Sign Up");
+            title = "Sportify - Sign Up";
+            this.getPrimaryStage().setTitle(title);
             // Load sign up overview.
             FXMLLoader loaderSignUp = new FXMLLoader();
             Pane paneTopScreen = null;
             MenuGraphicController graphicMenuController = null;
             if(isNotMobile()) {
-                loaderSignUp.setLocation(MainApp.class.getResource("DesktopView/SignUp.fxml"));
+                resource = "DesktopView/SignUp.fxml";
+                url = MainApp.class.getResource(resource);
+                loaderSignUp.setLocation(url);
             } else {
-                loaderSignUp.setLocation(MainApp.class.getResource("SmartphoneView/UserKind0.fxml"));
-                FXMLLoader loaderTopScreen = new FXMLLoader();
-                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen0.fxml"));
+                resource = "SmartphoneView/UserKind0.fxml";
+                url = MainApp.class.getResource(resource);
+                loaderSignUp.setLocation(url);
+                loaderTopScreen = new FXMLLoader();
+                resource = "SmartphoneView/topScreen0.fxml";
+                url = MainApp.class.getResource(resource);
+                loaderTopScreen.setLocation(url);
                 paneTopScreen = loaderTopScreen.load();
                 graphicMenuController = loaderTopScreen.getController();
             }
@@ -434,7 +525,8 @@ public class MainApp{
             controller.setMainApp(this);
 
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -466,10 +558,12 @@ public class MainApp{
     /** Is called to set top menu*/
     public void setTopMenu(FXMLLoader loaderTopScreen){
         Pane paneTopScreen = null;
+        String className = MainApp.class.getName();
         try {
             paneTopScreen = loaderTopScreen.load();
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.SEVERE, e.getMessage());
         }
         this.getPrimaryPane().setTop(paneTopScreen);
     }

@@ -7,6 +7,7 @@ import org.json.simple.JSONValue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -32,29 +33,36 @@ public class OpenStreetMapUtils {
     /** It's called to get the right string from web*/
     private String getRequest(String url){
         StringBuilder response = new StringBuilder();
+        int respond;
+        String className = OpenStreetMapUtils.class.getName();
+        String result;
         try {
             final URL obj = new URL(url);
             final HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
             con.setRequestMethod("GET");
 
-            if (con.getResponseCode() != 200) {
+            respond = con.getResponseCode();
+            if (respond != 200) {
                 return null;
             }
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            InputStream i = con.getInputStream();
+            InputStreamReader iSt = new InputStreamReader(i);
+            BufferedReader in = new BufferedReader(iSt);
             String inputLine;
             response = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
+            inputLine = in.readLine();
+            while (inputLine != null) {
                 response.append(inputLine);
+                inputLine = in.readLine();
             }
             in.close();
         } catch(IOException e){
-            Logger logger = Logger.getLogger(OpenStreetMapUtils.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
-
-        return response.toString();
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        result = response.toString();
+        return result;
     }
 
     /** It's called to get coordinate from given address*/
@@ -68,8 +76,11 @@ public class OpenStreetMapUtils {
         query.append("https://nominatim.openstreetmap.org/search?q=");
 
         if (split.length == 0) {
-            return Collections.emptyMap();
+            res = Collections.emptyMap();
+            return res;
         }
+        String queryS;
+        String queryResult;
 
         for (int i = 0; i < split.length; i++) {
             query.append(split[i]);
@@ -78,24 +89,30 @@ public class OpenStreetMapUtils {
             }
         }
         query.append("&format=json&addressdetails=1");
-
-        String queryResult = getRequest(query.toString());
+        queryS = query.toString();
+        queryResult = getRequest(queryS);
 
         if (queryResult == null) {
-            return Collections.emptyMap();
+            res = Collections.emptyMap();
+            return res;
         }
-
+        double lonD;
+        double latD;
+        String lon;
+        String lat;
+        JSONObject jsonObject;
         Object obj = JSONValue.parse(queryResult);
 
-        if (obj instanceof JSONArray array && !array.isEmpty()) {
-
-                JSONObject jsonObject = (JSONObject) array.get(0);
-
-                String lon = (String) jsonObject.get("lon");
-                String lat = (String) jsonObject.get("lat");
-                res.put("lon", Double.parseDouble(lon));
-                res.put("lat", Double.parseDouble(lat));
-
+        if (obj instanceof JSONArray array) {
+            if(!array.isEmpty()) {
+                jsonObject = (JSONObject) array.get(0);
+                lon = (String) jsonObject.get("lon");
+                lonD = Double.parseDouble(lon);
+                lat = (String) jsonObject.get("lat");
+                latD = Double.parseDouble(lat);
+                res.put("lon", lonD);
+                res.put("lat", latD);
+            }
         }
         return res;
     }
@@ -103,14 +120,28 @@ public class OpenStreetMapUtils {
     /** It's called to get distance from given two coordinates*/
     public Double getDistance (Coordinate startPoint, Coordinate endpoint){
         double d2r = Math.PI / 180;
-        double dLong = (endpoint.getLongitude() - startPoint.getLongitude()) * d2r;
-        double dLat = (endpoint.getLatitude() - startPoint.getLatitude()) * d2r;
-        double a =
-                Math.pow(Math.sin(dLat / 2.0), 2)
-                        + Math.cos(startPoint.getLatitude() * d2r)
-                        * Math.cos(endpoint.getLatitude() * d2r)
-                        * Math.pow(Math.sin(dLong / 2.0), 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double dLong1 = endpoint.getLongitude();
+        double dLong2 = startPoint.getLongitude();
+        double dLong3 = dLong1 - dLong2;
+        double dLong = dLong3 * d2r;
+        double dLat1 = endpoint.getLatitude();
+        double dLat2 = startPoint.getLatitude();
+        double dLat3 = dLat1 - dLat2;
+        double dLat = dLat3 * d2r;
+        double a11 = Math.sin(dLat / 2.0);
+        double a1 = Math.pow(a11, 2);
+        double a21 = startPoint.getLatitude();
+        double a2 = Math.cos(a21 * d2r);
+        double a31 = endpoint.getLatitude();
+        double a3 = Math.cos(a31 * d2r);
+        double a41 = Math.sin(dLong / 2.0);
+        double a4 = Math.pow(a41, 2);
+        double a5 = a2 * a3 * a4;
+        double a = a1 + a5;
+        double c1 = Math.sqrt(a);
+        double c2 = Math.sqrt(1 - a);
+        double c3 = Math.atan2(c1, c2);
+        double c = 2 * c3;
         return 6367 * c;
     }
 }

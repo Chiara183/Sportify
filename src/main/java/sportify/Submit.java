@@ -10,14 +10,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Submit{
-
-    private static final Logger LOGGER = Logger.getLogger(Submit.class.getName());
     private final IO dB;
     private final MainApp mainApp;
     private static final String RUOLO = "ruolo";
@@ -33,29 +32,39 @@ public class Submit{
 
     /** Login method*/
     public boolean login(String userValue, String passValue) {
+        String className = Submit.class.getName();
         Map<String, Map<String, String>> account = this.dB.read();
         boolean resultDB = false;
         boolean resultFile = false;
-        if (!account.isEmpty() && account.containsKey(userValue) &&
-                userValue.equals(account.get(userValue).get(USER)) &&
-                passValue.equals(account.get(userValue).get(PASS))) {
-            resultDB = true;
+        boolean result;
+        if (!account.isEmpty() && account.containsKey(userValue)) {
+            if(userValue.equals(account.get(userValue).get(USER))) {
+                if(passValue.equals(account.get(userValue).get(PASS))) {
+                    resultDB = true;
+                }
+            }
         }
 
         try (BufferedReader br = new BufferedReader(new FileReader(new File(Paths.get("./src/main/resources/users.csv").toUri())))) {
             String line;
             String[] tempArr;
-            while ((line = br.readLine()) != null) {
+            line = br.readLine();
+            while (line != null) {
                 tempArr = line.split(",");
-                if (tempArr[0].equals(userValue) && tempArr[1].equals(passValue)) {
-                    resultFile = true;
+                if (tempArr[0].equals(userValue)) {
+                    if(tempArr[1].equals(passValue)) {
+                        resultFile = true;
+                    }
                 }
+                line = br.readLine();
             }
             FileManagement.cleanUp(br);
         } catch (IOException ioe) {
-            LOGGER.log(Level.SEVERE, ioe.getMessage());
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.SEVERE, ioe.getMessage());
         }
-        return (resultDB && resultFile);
+        result = resultDB && resultFile;
+        return result;
     }
 
     /** SignUp method*/
@@ -69,11 +78,14 @@ public class Submit{
 
     /** The 'exists' method*/
     public boolean exist(String username){
+        boolean result;
         Map<String, Map<String, String>> account = this.dB.read();
-        return !account.isEmpty() && account.containsKey(username);
+        result = !account.isEmpty() && account.containsKey(username);
+        return result;
     }
     /** The 'existsEmail' method*/
     public boolean existEmail(String email){
+        boolean result;
         Map<String, Map<String, String>> account = this.dB.read();
         AtomicBoolean exist = new AtomicBoolean(false);
         account.forEach( (key, value) -> {
@@ -81,7 +93,8 @@ public class Submit{
                 exist.set(true);
             }
         });
-        return exist.get();
+        result = exist.get();
+        return result;
     }
 
     /** It's called to set user in the app*/
@@ -107,7 +120,9 @@ public class Submit{
         user.setLastName(account.get(username).get("lastName"));
         user.setEmail(account.get(username).get("email"));
         if (!Objects.equals(account.get(username).get("birthday"), "")) {
-            user.setBirthday(DateUtil.parse(account.get(username).get("birthday")));
+            String d = account.get(username).get("birthday");
+            LocalDate date = DateUtil.parse(d);
+            user.setBirthday(date);
         }
         user.setRole(account.get(username).get(RUOLO));
         if (Objects.equals(account.get(username).get(RUOLO), "gym")) {
@@ -123,6 +138,8 @@ public class Submit{
 
     /** Method to generate a random alphanumeric password of a specific length*/
     public String generateStrongPassword(int passwordLength) {
+        String className = Submit.class.getName();
+        String msg = "Final Password: {}";
 
         String charLowercase = "abcdefghijklmnopqrstuvwxyz";
         String charUppercase = charLowercase.toUpperCase();
@@ -156,31 +173,42 @@ public class Submit{
 
         String password = result.toString();
         // shuffle again
-        Logger logger = Logger.getLogger(DAO.class.getName());
-        logger.log(Level.INFO, "Final Password: {}", shuffleString(password));
+        Logger logger = Logger.getLogger(className);
+        logger.log(Level.INFO, msg, shuffleString(password));
         return password;
     }
     private String generateRandomString(String input, int size) {
-
+        String finalResult;
+        String error;
+        int length;
+        char ch;
         if (input == null || input.length() == 0) {
-            throw new IllegalArgumentException("Invalid input.");
+            error = "Invalid input.";
+            throw new IllegalArgumentException(error);
         }
         if (size < 1){
-            throw new IllegalArgumentException("Invalid size.");
+            error = "Invalid size.";
+            throw new IllegalArgumentException(error);
         }
 
         StringBuilder result = new StringBuilder(size);
         SecureRandom random = new SecureRandom();
         for (int i = 0; i < size; i++) {
             // produce a random order
-            int index = random.nextInt(input.length());
-            result.append(input.charAt(index));
+            length = input.length();
+            int index = random.nextInt(length);
+            ch = input.charAt(index);
+            result.append(ch);
         }
-        return result.toString();
+        finalResult = result.toString();
+        return finalResult;
     }
     private String shuffleString(String input) {
-        List<String> result = Arrays.asList(input.split(""));
+        String[] sList = input.split("");
+        String finalResult;
+        List<String> result = Arrays.asList(sList);
         Collections.shuffle(result);
-        return String.join("", result);
+        finalResult = String.join("", result);
+        return finalResult;
     }
 }
