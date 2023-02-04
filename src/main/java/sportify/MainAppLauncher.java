@@ -57,11 +57,12 @@ public class MainAppLauncher extends Application {
         img = "Images/Sportify icon.png";
         try (InputStream i = getClass().getResourceAsStream(img)){
             image = new Image(Objects.requireNonNull(i));
+            Stage stage = mainApp.getPrimaryStage();
+            stage.getIcons().add(image);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.WARNING, e.getMessage());
         }
-        Stage stage = mainApp.getPrimaryStage();
-        stage.getIcons().add(image);
         CountDownLatch modalitySignal = new CountDownLatch(count);
         if(Objects.equals(s, typeM)){
             mainApp.setMobile(true);

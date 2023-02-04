@@ -172,7 +172,6 @@ public class MainApp{
         MenuController controller = new MenuController();
         URL url;
         String resource;
-        String className = MainApp.class.getName();
         MenuController m = getMenu();
         if(isExternalLogin()){
             ControllerType type = m.getView();
@@ -218,7 +217,7 @@ public class MainApp{
             // Give the gymEditController access to the main app.
             controller.setUser(this.getUser());
         } catch (IOException e) {
-            Logger logger = Logger.getLogger(className);
+            Logger logger = Logger.getLogger(MainApp.class.getName());
             logger.log(Level.SEVERE, e.getMessage());        }
         return controller;
     }

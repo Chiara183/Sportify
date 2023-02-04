@@ -38,15 +38,13 @@ public class Submit{
         URI uri;
         File file;
         Map<String, Map<String, String>> account = this.dB.read();
+        Map<String, String> map = account.get(userValue);
         boolean resultDB = false;
         boolean resultFile = false;
         boolean result;
-        if (!account.isEmpty() && account.containsKey(userValue)) {
-            if(userValue.equals(account.get(userValue).get(USER))) {
-                if(passValue.equals(account.get(userValue).get(PASS))) {
-                    resultDB = true;
-                }
-            }
+        if (!account.isEmpty() && account.containsKey(userValue)
+                && userValue.equals(map.get(USER)) && passValue.equals(map.get(PASS))) {
+            resultDB = true;
         }
         uri = Paths.get(f).toUri();
         file = new File(uri);
@@ -57,10 +55,8 @@ public class Submit{
             line = br.readLine();
             while (line != null) {
                 tempArr = line.split(",");
-                if (tempArr[0].equals(userValue)) {
-                    if(tempArr[1].equals(passValue)) {
-                        resultFile = true;
-                    }
+                if (tempArr[0].equals(userValue) && tempArr[1].equals(passValue)) {
+                    resultFile = true;
                 }
                 line = br.readLine();
             }

@@ -103,16 +103,14 @@ public class OpenStreetMapUtils {
         JSONObject jsonObject;
         Object obj = JSONValue.parse(queryResult);
 
-        if (obj instanceof JSONArray array) {
-            if(!array.isEmpty()) {
-                jsonObject = (JSONObject) array.get(0);
-                lon = (String) jsonObject.get("lon");
-                lonD = Double.parseDouble(lon);
-                lat = (String) jsonObject.get("lat");
-                latD = Double.parseDouble(lat);
-                res.put("lon", lonD);
-                res.put("lat", latD);
-            }
+        if (obj instanceof JSONArray array && !array.isEmpty()) {
+            jsonObject = (JSONObject) array.get(0);
+            lon = (String) jsonObject.get("lon");
+            lonD = Double.parseDouble(lon);
+            lat = (String) jsonObject.get("lat");
+            latD = Double.parseDouble(lat);
+            res.put("lon", lonD);
+            res.put("lat", latD);
         }
         return res;
     }
