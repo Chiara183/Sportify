@@ -1,5 +1,6 @@
 package sportify;
 
+import sportify.controller.MenuController;
 import sportify.controller.SignUpController;
 import sportify.controller.SignUpGymController;
 import sportify.controller.graphic.SignUpGraphicController;
@@ -13,7 +14,31 @@ public class Adapter implements SignUp{
     private final SignUpGymController gymController;
     private SignUpGraphicController userGraphicController;
     private Submit submit;
-    
+
+    public SignUpController getUserController() {
+        return userController;
+    }
+
+    public SignUpGraphicController getUserGraphicController() {
+        return userGraphicController;
+    }
+
+    public SignUpGymController getGymController() {
+        return gymController;
+    }
+
+    public Submit getSubmit() {
+        return submit;
+    }
+
+    public void setSubmit(Submit submit) {
+        this.submit = submit;
+    }
+
+    public void setUserGraphicController(SignUpGraphicController userGraphicController) {
+        this.userGraphicController = userGraphicController;
+    }
+
     public Adapter(SignUpController user, SignUpGymController gym){
         this.userController = user;
         this.gymController  = gym;
@@ -24,28 +49,30 @@ public class Adapter implements SignUp{
     }
     public Adapter(SignUpController user, SignUpGraphicController graphicController, Submit submit) {
         this.userController = user;
-        this.gymController = new SignUpGymController(userController.getMainApp());
-        this.gymController.setMenu(user.getMenu());
-        this.userGraphicController = graphicController;
-        this.submit = submit;
+        MainApp mainApp = userController.getMainApp();
+        this.gymController = new SignUpGymController(mainApp);
+        MenuController menu = user.getMenu();
+        this.gymController.setMenu(menu);
+        setUserGraphicController(graphicController);
+        setSubmit(submit);
     }
 
     
     @Override
     public void userKind(Map<String, String> userAccount) {
-        if (this.userGraphicController.isUser()) {
+        if (getUserGraphicController().isUser()) {
             userAccount.put("ruolo", "user");
-            this.submit.signUp(userAccount);
-            if(userController.getMainApp().isNotMobile()) {
+            getSubmit().signUp(userAccount);
+            if(getUserController().getMainApp().isNotMobile()) {
                 JFrame jFrame = new JFrame();
                 JOptionPane.showMessageDialog(jFrame, "You're registered!");
             }
-            this.userController.setSubmit(this.submit);
-            this.userController.login();
+            getUserController().setSubmit(getSubmit());
+            getUserController().login();
         } else {
             userAccount.put("ruolo", "gym");
-            this.submit.signUp(userAccount);
-            gymController.signUpGymAction();
+            getSubmit().signUp(userAccount);
+            getGymController().signUpGymAction();
         }
     }
 }

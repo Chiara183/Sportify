@@ -7,19 +7,36 @@ public class AdapterLogin implements Login{
     private LoginGraphicController controller;
     private boolean google;
 
+    public void setController(LoginGraphicController controller) {
+        this.controller = controller;
+    }
+
+    public void setGoogle(boolean google) {
+        this.google = google;
+    }
+
+    public LoginGraphicController getController() {
+        return controller;
+    }
+
+    public boolean isGoogle() {
+        return google;
+    }
+
     public AdapterLogin(){}
 
     public AdapterLogin(LoginGraphicController controller, boolean google){
-        this.google = google;
-        this.controller = controller;
+        setGoogle(google);
+        setController(controller);
     }
 
     @Override
     public void doLogin() {
-        if(this.google){
-            this.controller.loginWithGoogle();
-        }else{
-            this.controller.submitActionLogin();
+        if(isGoogle()){
+            getController().loginWithGoogle();
+        }
+        else{
+            getController().submitActionLogin();
         }
 
     }

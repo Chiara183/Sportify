@@ -180,7 +180,8 @@ public class MainApp{
             m = getMenu();
             m.setView(type);
             m.setGym(gym);
-        } else {
+        }
+        else {
             setMenu(controller);
         }
         controller.setMainApp(this);
@@ -201,7 +202,8 @@ public class MainApp{
                 graphicController = loaderMenu.getController();
                 controller.setGraphicController(graphicController);
                 graphicController.setController(controller);
-            } else {
+            }
+            else {
                 MenuPhoneGraphicController graphicController;
                 resource = "SmartphoneView/MenuPhone.fxml";
                 url = getClass().getResource(resource);
@@ -216,7 +218,8 @@ public class MainApp{
             }
             // Give the gymEditController access to the main app.
             controller.setUser(this.getUser());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(MainApp.class.getName());
             logger.log(Level.SEVERE, e.getMessage());        }
         return controller;
@@ -248,7 +251,8 @@ public class MainApp{
                 item2 = "Find gym";
                 item3 = "Login";
                 item4 = "Login with Google";
-            } else {
+            }
+            else {
                 // Load home overview.
                 resource = "SmartphoneView/HomePhone.fxml";
                 url = MainApp.class.getResource(resource);
@@ -276,7 +280,8 @@ public class MainApp{
                 obs.add(item3);
                 obs.add(item4);
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());
         }
@@ -295,7 +300,8 @@ public class MainApp{
             // Set OAuth overview into the center of root layout.
             pane = getPrimaryPane();
             pane.setCenter(root);
-        } else {
+        }
+        else {
             title = "Sportify - " + name;
             stage = getSecondaryStage();
             stage.setTitle(title);
@@ -336,7 +342,8 @@ public class MainApp{
                 resource = "DesktopView/Login.fxml";
                 url = MainApp.class.getResource(resource);
                 loaderLogin.setLocation(url);
-            } else {
+            }
+            else {
                 resource = "SmartphoneView/LoginPhone2.fxml";
                 url = MainApp.class.getResource(resource);
                 loaderLogin.setLocation(url);
@@ -368,7 +375,8 @@ public class MainApp{
                     assert graphicMenuController != null;
                     graphicMenuController.setController(menuController);
                 }
-            } else {
+            }
+            else {
                 // Create the dialog Stage.
                 Stage dialogStage = new Stage();
                 setSecondaryStage(dialogStage);
@@ -404,7 +412,8 @@ public class MainApp{
                 dialogStage.showAndWait();
             }
 
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());
         }
@@ -427,7 +436,8 @@ public class MainApp{
                 resource = "DesktopView/SportQuiz.fxml";
                 url = MainApp.class.getResource(resource);
                 loaderSport.setLocation(url);
-            } else {
+            }
+            else {
                 resource = "SmartphoneView/SportQuizPhone1.fxml";
                 url = MainApp.class.getResource(resource);
                 loaderSport.setLocation(url);
@@ -454,7 +464,8 @@ public class MainApp{
                 SportQuizGraphicController graphicController = loaderSport.getController();
                 controller.setGraphicController(graphicController);
                 graphicController.setController(controller);
-            } else {
+            }
+            else {
                 SportQuizPhoneGraphicController graphicController = loaderSport.getController();
                 controller.setGraphicController(graphicController);
                 graphicController.setController(controller);
@@ -464,7 +475,8 @@ public class MainApp{
             controller.setUser(getUser());
             controller.setMenu(menu);
 
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());
         }
@@ -488,7 +500,8 @@ public class MainApp{
                 resource = "DesktopView/FindGym.fxml";
                 url = MainApp.class.getResource(resource);
                 loaderGym.setLocation(url);
-            } else {
+            }
+            else {
                 resource = "SmartphoneView/FindGymPhone0.fxml";
                 url = MainApp.class.getResource(resource);
                 loaderGym.setLocation(url);
@@ -519,7 +532,8 @@ public class MainApp{
             controller.setMenu(menu);
             controller.setProjection(getProjection());
 
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());
         }
@@ -544,7 +558,8 @@ public class MainApp{
                 resource = "DesktopView/SignUp.fxml";
                 url = MainApp.class.getResource(resource);
                 loaderSignUp.setLocation(url);
-            } else {
+            }
+            else {
                 resource = "SmartphoneView/UserKind0.fxml";
                 url = MainApp.class.getResource(resource);
                 loaderSignUp.setLocation(url);
@@ -574,7 +589,8 @@ public class MainApp{
             graphicController.setController(controller);
             controller.setMainApp(this);
 
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());
         }
@@ -612,7 +628,8 @@ public class MainApp{
         String className = MainApp.class.getName();
         try {
             paneTopScreen = loaderTopScreen.load();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());
         }

@@ -12,8 +12,6 @@ import java.util.logging.Logger;
 
 public class DAO {
 
-    private static final Logger LOGGER  =   Logger.getLogger(DAO.class.getName());
-
     /** The main connection of the project*/
     Connection connection = null;
 
@@ -28,6 +26,7 @@ public class DAO {
         PreparedStatement ps = null;
         ResultSet rs;
         List<String> result = new ArrayList<>();
+        String className = DAO.class.getName();
         try{
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -37,15 +36,21 @@ public class DAO {
             if(!result.isEmpty() && result.get(0) == null){
                 result.remove(0);
             }
-        }catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
-        }finally {
+        }
+        catch (SQLException e) {
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        finally {
             try {
                 if (ps != null) {
                     ps.close();
                 }
-            } catch (SQLException e) {
-                LOGGER.info(e.toString());            }
+            }
+            catch (SQLException e) {
+                Logger logger = Logger.getLogger(className);
+                logger.info(e.toString());
+            }
         }
         return result;
     }
@@ -53,16 +58,23 @@ public class DAO {
     /** It's called to update data in DB*/
     public void updateDB(String query){
         PreparedStatement ps = null;
+        String className = DAO.class.getName();
         try{
             ps = connection.prepareStatement(query);
             ps.execute();
-        }catch (SQLException e){
-            LOGGER.log(Level.WARNING, e.getMessage());
-        }finally{
+        }
+        catch (SQLException e){
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.WARNING, e.getMessage());
+        }
+        finally{
             try {
                 Objects.requireNonNull(ps).close();
-            } catch (SQLException e) {
-                LOGGER.info(e.toString());            }
+            }
+            catch (SQLException e) {
+                Logger logger = Logger.getLogger(className);
+                logger.info(e.toString());
+            }
         }
     }
 }

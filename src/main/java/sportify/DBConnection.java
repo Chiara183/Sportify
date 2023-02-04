@@ -15,7 +15,6 @@ public class DBConnection {
     private static final String ERROR = "Error";
     private static final String ERROR_DETECTED = "Error detected!";
     private int count = 0;
-    private static final Logger LOGGER = Logger.getLogger(DBConnection.class.getName());
 
     /** Implementing Singleton pattern*/
     private DBConnection(){}
@@ -34,18 +33,23 @@ public class DBConnection {
      */
     public Connection getConnection() {
         Connection connection = null;
+        String className = DBConnection.class.getName();
+        String error;
+        String driver = "com.mysql.cj.jdbc.Driver";
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName(driver);
 
             Properties prop = new Properties();
             String propFileName = "server.properties";
-
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream(propFileName);
 
             if (inputStream != null) {
                 prop.load(inputStream);
-            } else {
-                throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            }
+            else {
+                error = "property file '" + propFileName + "' not found in the classpath";
+                throw new FileNotFoundException(error);
             }
 
             // get the property value and print it out
@@ -54,32 +58,42 @@ public class DBConnection {
             String url = prop.getProperty("url");
             inputStream.close();
             connection = DriverManager.getConnection(url, user, password);
-        }catch (ClassNotFoundException e){
-            LOGGER.log(Level.SEVERE, e.getMessage());
+        }
+        catch (ClassNotFoundException e){
+            Logger logger = Logger.getLogger(className);
+            logger.log(Level.SEVERE, e.getMessage());
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(ERROR);
             alert.setHeaderText(ERROR_DETECTED);
-            alert.setContentText("No JDBC driver found. Please check class name.");
+            error = "No JDBC driver found. Please check class name.";
+            alert.setContentText(error);
             alert.showAndWait();
-        }catch (SQLException e){
+        }
+        catch (SQLException e){
             if(this.count == 0){
                 this.count++;
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle(ERROR);
                 alert.setHeaderText(ERROR_DETECTED);
-                alert.setContentText("Connection to DB failed. I'll retry one more time... ");
+                error = "Connection to DB failed. I'll retry one more time... ";
+                alert.setContentText(error);
                 alert.showAndWait();
                 instance.getConnection();
-            }else{
+            }
+            else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle(ERROR);
                 alert.setHeaderText(ERROR_DETECTED);
-                alert.setContentText("Connection to DB failed again. Check if there is an error in url, user or password.");
+                error = "Connection to DB failed again. Check if there is an error in url, user or password.";
+                alert.setContentText(error);
                 alert.showAndWait();
-                LOGGER.log(Level.SEVERE, e.getMessage());
+                Logger logger = Logger.getLogger(className);
+                logger.log(Level.SEVERE, e.getMessage());
             }
-        } catch (IOException e) {
-            LOGGER.info(e.toString());
+        }
+        catch (IOException e) {
+            Logger logger = Logger.getLogger(className);
+            logger.info(e.toString());
         }
         return connection;
     }

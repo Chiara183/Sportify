@@ -28,6 +28,7 @@ public class Dialog extends JPanel{
     private JPanel createSimpleDialogBox() {
         JRadioButton[] radioButtons = new JRadioButton[2];
         ButtonGroup group = new ButtonGroup();
+        JPanel panel;
 
         JButton showItButton = new JButton("Next");
 
@@ -49,7 +50,8 @@ public class Dialog extends JPanel{
 
         showItButton.setName("nextButton");
         showItButton.addActionListener(e -> {
-            String command = group.getSelection().getActionCommand();
+            ButtonModel model = group.getSelection();
+            String command = model.getActionCommand();
             //desktop
             if (Objects.equals(command, desktop)) {
                 mainApp.setMobile(false);
@@ -57,29 +59,31 @@ public class Dialog extends JPanel{
                 frame.dispose();
 
             //mobile
-            } else if (Objects.equals(command, mobile)) {
+            }
+            else if (Objects.equals(command, mobile)) {
                 mainApp.setMobile(true);
                 modalitySignal.countDown();
                 frame.dispose();
             }
         });
 
-        return createPane(radioButtons, showItButton);
+        panel = createPane(radioButtons, showItButton);
+        return panel;
     }
 
     /** Used to create a pane*/
     private JPanel createPane(JRadioButton[] radioButtons, JButton showButton) {
         JPanel box = new JPanel();
         JLabel label = new JLabel();
-
-        box.setLayout(new BoxLayout(box, BoxLayout.PAGE_AXIS));
+        BoxLayout boxLayout = new BoxLayout(box, BoxLayout.PAGE_AXIS);
+        box.setLayout(boxLayout);
         box.add(label);
 
         for (JRadioButton radioButton : radioButtons) {
             box.add(radioButton);
         }
-
-        JPanel pane = new JPanel(new BorderLayout());
+        BorderLayout borderLayout = new BorderLayout();
+        JPanel pane = new JPanel(borderLayout);
         pane.add(box, BorderLayout.PAGE_START);
         pane.add(showButton, BorderLayout.PAGE_END);
         return pane;
@@ -92,9 +96,10 @@ public class Dialog extends JPanel{
 
         //Create and set up the content pane.
         Dialog newContentPane = new Dialog(fr);
-        newContentPane.setMainApp(this.mainApp);
-        newContentPane.setWait(this.modalitySignal);
-        newContentPane.setPreferredSize(new Dimension(220,100));
+        newContentPane.setMainApp(getMainApp());
+        newContentPane.setWait(getModalitySignal());
+        Dimension dimension = new Dimension(220,100);
+        newContentPane.setPreferredSize(dimension);
         fr.setContentPane(newContentPane);
 
         //Display the window.
@@ -111,5 +116,13 @@ public class Dialog extends JPanel{
     /** Is called to set wait variable*/
     public void setWait(CountDownLatch modalitySignal) {
         this.modalitySignal = modalitySignal;
+    }
+
+    public MainApp getMainApp() {
+        return mainApp;
+    }
+
+    public CountDownLatch getModalitySignal() {
+        return modalitySignal;
     }
 }

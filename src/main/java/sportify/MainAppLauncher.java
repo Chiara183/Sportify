@@ -39,7 +39,8 @@ public class MainAppLauncher extends Application {
         Projection projection;
         if (unnamed.contains("wgs84")) {
             projection = Projection.WGS_84;
-        } else {
+        }
+        else {
             projection = Projection.WEB_MERCATOR;
         }
         MainApp mainApp = new MainApp();
@@ -59,25 +60,31 @@ public class MainAppLauncher extends Application {
             image = new Image(Objects.requireNonNull(i));
             Stage stage = mainApp.getPrimaryStage();
             stage.getIcons().add(image);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(className);
             logger.log(Level.WARNING, e.getMessage());
         }
         CountDownLatch modalitySignal = new CountDownLatch(count);
         if(Objects.equals(s, typeM)){
             mainApp.setMobile(true);
-        } else if (Objects.equals(s, typeD)){
+        }
+        else if (Objects.equals(s, typeD)){
             mainApp.setMobile(false);
-        } else {
-            new Thread(() -> {
+        }
+        else {
+            new Thread(
+                    () -> {
                 Dialog dialog = new Dialog();
                 dialog.setMainApp(mainApp);
                 dialog.setWait(modalitySignal);
                 dialog.createAndShowGUI();
-            }).start();
+            }
+            ).start();
             try {
                 modalitySignal.await();
-            } catch (InterruptedException e) {
+            }
+            catch (InterruptedException e) {
                 Logger logger = Logger.getLogger(className);
                 logger.log(Level.WARNING, e.getMessage());
                 Thread.currentThread().interrupt();

@@ -16,18 +16,23 @@ public class DateUtil {
 
     /** Returns the given date as a well formatted String. The above defined*/
     public static String format(LocalDate date) {
+        String s;
         if (date == null) {
             return null;
         }
-        return DATE_FORMATTER.format(date);
+        s = DATE_FORMATTER.format(date);
+        return s;
     }
 
     /** Converts a String in the format of the defined DATE_PATTERN to a LocalDate object.*/
     public static LocalDate parse(String dateString) {
+        LocalDate value;
         try {
-            return DATE_FORMATTER.parse(dateString, LocalDate::from);
-        } catch (DateTimeParseException e) {
-            return null;
+            value = DATE_FORMATTER.parse(dateString, LocalDate::from);
         }
+        catch (DateTimeParseException e) {
+            value = null;
+        }
+        return value;
     }
 }

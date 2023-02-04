@@ -57,7 +57,8 @@ public class OpenStreetMapUtils {
                 inputLine = in.readLine();
             }
             in.close();
-        } catch(IOException e){
+        }
+        catch(IOException e){
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());
         }

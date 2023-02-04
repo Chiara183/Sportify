@@ -61,7 +61,8 @@ public class Submit{
                 line = br.readLine();
             }
             FileManagement.cleanUp(br);
-        } catch (IOException ioe) {
+        }
+        catch (IOException ioe) {
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, ioe.getMessage());
         }
@@ -90,11 +91,14 @@ public class Submit{
         boolean result;
         Map<String, Map<String, String>> account = this.dB.read();
         AtomicBoolean exist = new AtomicBoolean(false);
-        account.forEach( (key, value) -> {
+        account.forEach(
+                (key, value) ->
+        {
             if(Objects.equals(account.get(key).get("email"), email)){
                 exist.set(true);
             }
-        });
+        }
+        );
         result = exist.get();
         return result;
     }
@@ -115,7 +119,8 @@ public class Submit{
         s = map.get(RUOLO);
         if (Objects.equals(s, "user")) {
             user = new ClassicUser();
-        } else {
+        }
+        else {
             user = new GymUser();
         }
         user.setMainApp(mainApp);

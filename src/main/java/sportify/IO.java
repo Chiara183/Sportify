@@ -85,15 +85,18 @@ public class IO {
                 String userValue = rs.getString(USERNAME);                    //get user username
                 map.put(userValue, gymAccount);
             }
-        }catch (SQLException e) {
+        }
+        catch (SQLException e) {
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());
-        }finally {
+        }
+        finally {
             try {
                 if (ps != null) {
                     ps.close();
                 }
-            } catch (SQLException e) {
+            }
+            catch (SQLException e) {
                 Logger logger = Logger.getLogger(className);
                 logger.info(e.toString());
             }
@@ -133,7 +136,8 @@ public class IO {
                 gymAccount.put(LONGITUDE, longitude);                                    //put user longitude in userAccount
                 gymAccount.put(PHONE, phone);                                            //put user phone in userAccount
                 gymAccount.put(RUOLO, ruolo);                                            //put user ruolo in userAccount
-        } catch (SQLException e){
+        }
+        catch (SQLException e){
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());
         }
