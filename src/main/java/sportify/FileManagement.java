@@ -9,6 +9,12 @@ public class FileManagement {
 
     private static final Logger LOGGER = Logger.getLogger(FileManagement.class.getName());
 
+    private FileManagement() {}
+
+    public static FileManagement getInstance() {
+        return new FileManagement();
+    }
+
     public static void writeFile(String stringa){
         FileWriter fstream = null;
         try {
