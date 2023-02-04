@@ -19,10 +19,17 @@ import java.util.logging.Logger;
 
 public class OpenStreetMapUtils {
 
-    /** The instance of the class.*/
+    /**
+     * The instance of the class.
+     */
     private static OpenStreetMapUtils instance = null;
 
-    /** It's called to get an instance of OpenStreetMapUtils*/
+    /**
+     * It's called to get an instance
+     * of OpenStreetMapUtils
+     *
+     * @return An instance of the class
+     */
     public static OpenStreetMapUtils getInstance() {
         if (instance == null) {
             instance = new OpenStreetMapUtils();
@@ -30,7 +37,15 @@ public class OpenStreetMapUtils {
         return instance;
     }
 
-    /** It's called to get the right string from web*/
+    /**
+     *  It's called to get the right
+     *  string from web.
+     *
+     * @param url the url to try to
+     *            connect to
+     * @return The answer to the connection
+     * test
+     */
     private String getRequest(String url){
         StringBuilder response = new StringBuilder();
         int respond;
@@ -66,7 +81,14 @@ public class OpenStreetMapUtils {
         return result;
     }
 
-    /** It's called to get coordinate from given address*/
+    /**
+     * It's called to get coordinate from given address
+     *
+     * @param address the address of which to retrieve
+     *                the coordinates
+     * @return returns a Map of two values which are
+     * longitude and latitude of the requested address
+     */
     public Map<String, Double> getCoordinates(String address) {
         Map<String, Double> res;
         StringBuilder query;
@@ -116,7 +138,15 @@ public class OpenStreetMapUtils {
         return res;
     }
 
-    /** It's called to get distance from given two coordinates*/
+    /**
+     * It's called to get distance from given two coordinates
+     *
+     * @param startPoint The coordinate from which to start
+     *                   measuring the distance
+     * @param endpoint The coordinate to arrive at to calculate
+     *                how far it is from the first
+     * @return The distance between the two coordinates
+     */
     public Double getDistance (Coordinate startPoint, Coordinate endpoint){
         double d2r = Math.PI / 180;
         double dLong1 = endpoint.getLongitude();

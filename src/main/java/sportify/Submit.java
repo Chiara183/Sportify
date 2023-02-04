@@ -17,21 +17,50 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The class that interfaces
+ * with the IO class
+ */
 public class Submit{
+    /**
+     * Reference to IO
+     */
     private final IO dB;
+    /**
+     * Reference to MainApp
+     */
     private final MainApp mainApp;
+    /**
+     * String that define RUOLO
+     */
     private static final String RUOLO = "ruolo";
+    /**
+     * String that define USER
+     */
     private static final String USER = "username";
+    /**
+     * String that define PASS
+     */
     private static final String PASS = "password";
 
-    /** The constructor.*/
+    /**
+     * The constructor.
+     *
+     * @param mainApp reference to MainApp
+     */
     public Submit(MainApp mainApp){
         this.mainApp = mainApp;
         this.dB = new IO();
         this.dB.setMainApp(mainApp);
     }
 
-    /** Login method*/
+    /**
+     * The method used to do the Login
+     *
+     * @param userValue the username that try to access
+     * @param passValue the password of the account
+     * @return If the procedure was a success
+     */
     public boolean login(String userValue, String passValue) {
         String className = Submit.class.getName();
         String f = "./src/main/resources/users.csv";
@@ -70,7 +99,12 @@ public class Submit{
         return result;
     }
 
-    /** SignUp method*/
+    /**
+     * The method used to do the SignUp
+     *
+     * @param userAccount the account you want to
+     *                    create on the application
+     */
     public void signUp(Map<String, String> userAccount) {
         this.dB.write(userAccount);
         String usr = userAccount.get(USER);
@@ -79,14 +113,29 @@ public class Submit{
         FileManagement.writeFile(str);
     }
 
-    /** The 'exists' method*/
+    /**
+     * The 'exists' method
+     *
+     * @param username The user you want to
+     *                 check if it already exists
+     * @return Returns true if the user exists or
+     * false if the user does not already exist
+     */
     public boolean exist(String username){
         boolean result;
         Map<String, Map<String, String>> account = this.dB.read();
         result = !account.isEmpty() && account.containsKey(username);
         return result;
     }
-    /** The 'existsEmail' method*/
+
+    /**
+     * The 'existsEmail' method
+     *
+     * @param email The email you want to
+     *                check if it already exists
+     * @return Returns true if the email exists or
+     * false if the email does not already exist
+     */
     public boolean existEmail(String email){
         boolean result;
         Map<String, Map<String, String>> account = this.dB.read();
@@ -103,7 +152,13 @@ public class Submit{
         return result;
     }
 
-    /** It's called to set user in the app*/
+    /**
+     * It's called to set user in the app
+     *
+     * @param username The username of the user
+     *                 who wants to log in
+     * @return Return logged-in user
+     */
     public User setUser(String username){
         Map<String, Map<String, String>> account = this.dB.read();
         User user = null;
@@ -112,6 +167,14 @@ public class Submit{
         }
         return user;
     }
+
+    /**
+     * writes the user on the view
+     *
+     * @param account the users retrieved from the DB
+     * @param username the user you want to write on the view
+     * @return returns the user just written to the view
+     */
     private User writeUser(HashMap<String, Map<String, String>> account, String username){
         User user;
         String s;
@@ -158,7 +221,14 @@ public class Submit{
         return user;
     }
 
-    /** Method to generate a random alphanumeric password of a specific length*/
+    /**
+     * Method to generate a random alphanumeric
+     * password of a specific length
+     *
+     * @param passwordLength the length of the
+     *                       password you want to create
+     * @return the password created
+     */
     public String generateStrongPassword(int passwordLength) {
         String className = Submit.class.getName();
         String msg = "Final Password: {}";
@@ -199,6 +269,15 @@ public class Submit{
         logger.log(Level.INFO, msg, shuffleString(password));
         return password;
     }
+
+    /**
+     * Generates random strings.
+     *
+     * @param input The string from which you want
+     *              to extract a random
+     * @param size the length of the final string
+     * @return Returns a random string
+     */
     private String generateRandomString(String input, int size) {
         String finalResult;
         String error;
@@ -225,6 +304,13 @@ public class Submit{
         finalResult = result.toString();
         return finalResult;
     }
+
+    /**
+     * Mixes the strings it receives.
+     *
+     * @param input The string you want to mix
+     * @return The mixed string
+     */
     private String shuffleString(String input) {
         String[] sList = input.split("");
         String finalResult;

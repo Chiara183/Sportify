@@ -25,26 +25,26 @@ public class GymUser extends User {
     public void setGymName(String name) {
         this.gymName.set(name);
         DAO objDAO = mainApp.getDAO();
-        objDAO.updateDB(
-                "UPDATE `gym` SET `name` = '"
-                        + name + WHERE
-                        + this.userName.getValue() +"'");
+        String query = "UPDATE `gym` SET `name` = '"
+                + name + WHERE
+                + this.userName.getValue() +"'";
+        objDAO.updateDB(query);
     }
     public void setAddress(String address) {
         this.address.set(address);
         DAO objDAO = mainApp.getDAO();
-        objDAO.updateDB(
-                "UPDATE `gym` SET `address` = '"
-                        + address + WHERE
-                        + this.userName.getValue() +"'");
+        String query ="UPDATE `gym` SET `address` = '"
+                + address + WHERE
+                + this.userName.getValue() +"'";
+        objDAO.updateDB(query);
     }
     public void setLatitude(String latitude) {
         this.latitude.set(latitude);
         DAO objDAO = mainApp.getDAO();
-        objDAO.updateDB(
-                "UPDATE `gym` SET `latitude` = '"
-                        + latitude + WHERE
-                        + this.userName.getValue() +"'");
+        String query = "UPDATE `gym` SET `latitude` = '"
+                + latitude + WHERE
+                + this.userName.getValue() +"'";
+        objDAO.updateDB(query);
     }
     public void setLongitude(String longitude) {
         this.longitude.set(longitude);
@@ -57,9 +57,9 @@ public class GymUser extends User {
     public void setPhone(String phone) {
         this.phone.set(phone);
         DAO objDAO = mainApp.getDAO();
-        objDAO.updateDB(
-                "UPDATE `gym` SET `phone` = '"
-                        + phone + WHERE
-                        + this.userName.getValue() +"'");
+        String query = "UPDATE `gym` SET `phone` = '"
+                + phone + WHERE
+                + this.userName.getValue() +"'";
+        objDAO.updateDB(query);
     }
 }
