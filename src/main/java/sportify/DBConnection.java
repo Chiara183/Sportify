@@ -10,17 +10,25 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Allows connection with the DB
+ */
 public class DBConnection {
 
     private static final String ERROR = "Error";
     private static final String ERROR_DETECTED = "Error detected!";
     private int count = 0;
 
-    /** Implementing Singleton pattern*/
+    /**
+     * The constructor.
+     */
     private DBConnection(){}
 
     private static DBConnection instance = null;
 
+    /**
+     * Implementing Singleton pattern
+     */
     public static DBConnection getSingletonInstance() {
         if (DBConnection.instance == null)
             DBConnection.instance = new DBConnection();
@@ -29,6 +37,7 @@ public class DBConnection {
 
     /**
      * It's called to create a new connection to the DB.
+     *
      * @return null if it gives an error
      */
     public Connection getConnection() {

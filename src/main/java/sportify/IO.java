@@ -11,7 +11,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class IO {
-    /** Reference to MainApp.*/
+    /**
+     * Reference to MainApp.
+     */
     private MainApp mainApp;
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
@@ -26,12 +28,20 @@ public class IO {
     private static final String ADDRESS = "address";
 
 
-    /** It's called to give a reference to MainApp.*/
+    /**
+     * It's called to give a reference to MainApp.
+     *
+     * @param mainApp the value to be set
+     */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    /** It's called to write user in the DB.*/
+    /**
+     * It's called to write user in the DB.
+     *
+     * @param map the value to be written in DB
+     */
     public void write(Map<String, String> map) {
         DAO objDAO = mainApp.getDAO();
         String username = map.get(USERNAME);
@@ -67,7 +77,11 @@ public class IO {
         }
     }
 
-    /** It's called to read users in the DB.*/
+    /**
+     * It's called to read users in the DB.
+     *
+     * @return returns a map of the users' account
+     */
     public Map<String, Map<String, String>> read(){
         HashMap<String, Map<String, String>> map = new HashMap<>();
         PreparedStatement ps = null;
@@ -104,7 +118,13 @@ public class IO {
         return map;
     }
 
-    /** It's called to get info of given user.*/
+    /**
+     * It's called to get info of given user.
+     *
+     * @param rs the ResultSet that returned the DB
+     *
+     * @return returns a map of the user's account
+     */
     public Map<String, String> getInfoUser(ResultSet rs){
         String className = IO.class.getName();
         HashMap<String, String> gymAccount = new HashMap<>();

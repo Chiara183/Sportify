@@ -30,6 +30,9 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * the main controller of the application
+ */
 public class MainApp{
 
     /* The variable of all application*/
@@ -47,83 +50,245 @@ public class MainApp{
     private boolean mobile;
 
     /* Set method*/
+
+    /**
+     * setMobile: sets the boolean
+     * variable "mobile" to indicate
+     * whether the application is running
+     * on a mobile device.
+     *
+     * @param bool the value to be set
+     */
     public void setMobile(boolean bool) {
         this.mobile = bool;
     }
+
+    /**
+     * setSubmit: sets the instance of Submit.
+     *
+     * @param submit the value to be set
+     */
     public void setSubmit(Submit submit) {
         this.submit = submit;
     }
+
+    /**
+     * setProjection: sets the instance of Projection.
+     *
+     * @param projection the value to be set
+     */
     public void setProjection(Projection projection) {
         this.projection = projection;
     }
+
+    /**
+     * setUser: sets the User instance
+     * and establishes the reference to the main
+     * application within the User instance.
+     *
+     * @param user the value to be set
+     */
     public void setUser(User user) {
         this.user = user;
         if(user != null) {
             this.user.setMainApp(this);
         }
     }
+
+    /**
+     * setMenu: sets the MenuController instance.
+     *
+     * @param menu the value to be set
+     */
     public void setMenu(MenuController menu) {
         this.menu = menu;
     }
+
+    /**
+     * setPrimaryStage: sets the primary stage.
+     *
+     * @param stage the value to be set
+     */
     public void setPrimaryStage(Stage stage) {
         this.primaryStage = stage;
     }
+
+    /**
+     * setSecondaryStage: sets the secondary stage.
+     *
+     * @param secondaryStage the value to be set
+     */
     public void setSecondaryStage(Stage secondaryStage) {
         this.secondaryStage = secondaryStage;
     }
+
+    /**
+     * setSearchCache: sets the search cache.
+     *
+     * @param search the value to be set
+     */
     public void setSearchCache(String[] search) {
         this.searchCache = search;
     }
+
+    /**
+     * setExternalLogin: sets the boolean
+     * variable "externalLogin" to indicate
+     * whether the user has logged in from
+     * an external source.
+     *
+     * @param login the value to be set
+     */
     public void setExternalLogin(boolean login) {
         this.externalLogin = login;
     }
+
+    /**
+     * setPrimaryPane: sets the main BorderPane.
+     *
+     * @param pane the value to be set
+     */
     public void setPrimaryPane(BorderPane pane){
         this.rootLayout = pane;
     }
+
+    /**
+     * setSecondaryPane: sets the secondary BorderPane.
+     *
+     * @param secondaryRootLayout the value to be set
+     */
     public void setSecondaryPane(BorderPane secondaryRootLayout) {
         this.secondaryRootLayout = secondaryRootLayout;
     }
 
     /* Get method*/
+
+    /**
+     * getSearchCache: returns the search cache.
+     *
+     * @return the return value
+     */
     public String[] getSearchCache() {
         return this.searchCache;
     }
+
+    /**
+     * getPrimaryStage: returns the primary stage.
+     *
+     * @return the return value
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+
+    /**
+     * getSecondaryStage: returns the secondary stage.
+     *
+     * @return the return value
+     */
     public Stage getSecondaryStage() {
         return secondaryStage;
     }
+
+    /**
+     * getMenu: returns the MenuController instance.
+     *
+     * @return the return value
+     */
     public MenuController getMenu(){
         return this.menu;
     }
+
+    /**
+     * getUser: returns the instance of User.
+     *
+     * @return the return value
+     */
     public User getUser() {
         return user;
     }
+
+    /**
+     * getDAO: returns the instance of
+     * the DAO class.
+     *
+     * @return the return value
+     */
     public DAO getDAO() {
         return this.dao;
     }
+
+    /**
+     * getPrimaryPane: returns the
+     * primary BorderPane.
+     *
+     * @return the return value
+     */
     public BorderPane getPrimaryPane() {
         return rootLayout;
     }
+
+    /**
+     * getSecondaryPane: returns the
+     * secondary BorderPane.
+     *
+     * @return the return value
+     */
     public BorderPane getSecondaryPane() {
         return secondaryRootLayout;
     }
+
+    /**
+     * getSubmit: returns the
+     * instance of Submit.
+     *
+     * @return the return value
+     */
     public Submit getSubmit() {
         return submit;
     }
+
+    /**
+     * getProjection: returns the
+     * instance of Projection.
+     *
+     * @return the return value
+     */
     public Projection getProjection() {
         return projection;
     }
+
+    /**
+     * isNotMobile: returns the opposite value
+     * to the boolean variable "mobile".
+     *
+     * @return the return value
+     */
     public boolean isNotMobile() {
         return !mobile;
     }
+
+    /**
+     * isMobile: returns the boolean
+     * variable "mobile".
+     *
+     * @return the return value
+     */
     public boolean isMobile(){
         return mobile;
     }
+
+    /**
+     * isExternalLogin: returns the
+     * boolean variable "externalLogin".
+     *
+     * @return the return value
+     */
     public boolean isExternalLogin(){return externalLogin;}
 
-    /** Initializes the root layout.*/
+    /**
+     * Initializes the root layout.
+     */
     public void initRootLayout() {
         String className = MainApp.class.getName();
         String os = System.getProperty("os.name");
@@ -167,7 +332,12 @@ public class MainApp{
         }
     }
 
-    /** Shows menu overview inside the root layout.*/
+    /**
+     * Shows menu overview inside
+     * the root layout.
+     *
+     * @return the menu set
+     */
     public MenuController menu() {
         MenuController controller = new MenuController();
         URL url;
@@ -225,7 +395,9 @@ public class MainApp{
         return controller;
     }
 
-    /** Shows home overview inside the root layout.*/
+    /**
+     * Shows home overview inside the root layout.
+     */
     public void showHomeOverview() {
         String title;
         String resource;
@@ -287,7 +459,9 @@ public class MainApp{
         }
     }
 
-    /** Shows home overview inside the root layout.*/
+    /**
+     * Shows home overview inside the root layout.
+     */
     public void showOAuthAuthenticator(WebView root, String name) {
         String title;
         Stage stage;
@@ -316,7 +490,9 @@ public class MainApp{
         }
     }
 
-    /** Shows login overview inside the root layout.*/
+    /**
+     * Shows login overview inside the root layout.
+     */
     public void showLoginOverview() {
         LoginController controller = new LoginController();
         LoginGraphicController graphicController;
@@ -419,7 +595,9 @@ public class MainApp{
         }
     }
 
-    /** Shows sport quiz overview inside the root layout.*/
+    /**
+     * Shows sport quiz overview inside the root layout.
+     */
     public void showSportQuizOverview(MenuController menu) {
         String title;
         String resource;
@@ -482,7 +660,9 @@ public class MainApp{
         }
     }
 
-    /** Shows find gym overview inside the root layout.*/
+    /**
+     * Shows find gym overview inside the root layout.
+     */
     public void showFindGymOverview(MenuController menu) {
         String title;
         String resource;
@@ -539,7 +719,9 @@ public class MainApp{
         }
     }
 
-    /** Shows sign up overview inside the root layout.*/
+    /**
+     * Shows sign up overview inside the root layout.
+     */
     public void showSignUpOverview() {
         String title;
         String resource;
@@ -596,7 +778,24 @@ public class MainApp{
         }
     }
 
-    /** Is called to create account hashmap*/
+    /**
+     * Is called to create account hashmap
+     *
+     * @param username the value of the user
+     *                 to be set
+     * @param password the value of the user
+     *                 to be set
+     * @param firstName the value of the user
+     *                  to be set
+     * @param lastName the value of the user
+     *                 to be set
+     * @param email the value of the user
+     *              to be set
+     * @param date the value of the user
+     *             to be set
+     *
+     * @return returns a map of the user's account
+     */
     public Map<String, String> createAccount(String username, String password, String firstName,
                                              String lastName, String email, String date){
         HashMap<String, String> account = new HashMap<>();
@@ -609,7 +808,16 @@ public class MainApp{
         return account;
     }
 
-    /** Controls the visibility of the Password field*/
+    /**
+     * Controls the visibility of the Password field
+     *
+     * @param passToggle The checkbox from which to
+     *                   see if the user wants to see
+     *                   the password
+     * @param passText the textfield set to text="password"
+     * @param password the textfield showing the hidden
+     *                 characters of the password
+     */
     public void togglevisiblePassword(CheckBox passToggle, TextField passText, TextField password) {
         if (passToggle.isSelected()) {
             passText.setText(password.getText());
@@ -622,7 +830,12 @@ public class MainApp{
         passText.setVisible(false);
     }
 
-    /** Is called to set top menu*/
+    /**
+     * Is called to set top menu
+     *
+     * @param loaderTopScreen The FXMLLoader
+     *                       where to open the top menu
+     */
     public void setTopMenu(FXMLLoader loaderTopScreen){
         Pane paneTopScreen = null;
         String className = MainApp.class.getName();

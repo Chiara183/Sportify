@@ -6,15 +6,26 @@ import java.awt.*;
 import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * Allows you to create a Dialog window
+ * external to the application that puts
+ * the application on hold
+ */
 public class Dialog extends JPanel{
     private JFrame frame;
     private transient MainApp mainApp;
     private transient CountDownLatch modalitySignal;
 
-    /** Creates the instance*/
+    /**
+     *  Creates the instance
+     */
     public Dialog() {}
 
-    /** Creates the GUI shown inside the frame's content pane. */
+    /**
+     * Creates the GUI shown inside the frame's content pane.
+     *
+     * @param frame the frame where to show the GUI
+     */
     public Dialog(JFrame frame) {
         this.frame = frame;
         JPanel frequentPanel = createSimpleDialogBox();
@@ -24,7 +35,11 @@ public class Dialog extends JPanel{
         add(frequentPanel, BorderLayout.CENTER);
     }
 
-    /** Creates the panel shown by the first tab. */
+    /**
+     * Creates the panel shown by the first tab.
+     *
+     * @return the dialog box created
+     */
     private JPanel createSimpleDialogBox() {
         JRadioButton[] radioButtons = new JRadioButton[2];
         ButtonGroup group = new ButtonGroup();
@@ -71,7 +86,16 @@ public class Dialog extends JPanel{
         return panel;
     }
 
-    /** Used to create a pane*/
+    /**
+     * Used to create a pane
+     *
+     * @param radioButtons the list of radioButtons
+     *                    to be placed in the dialog box
+     * @param showButton the Button to be inserted at the
+     *                  end of the dialog box
+     *
+     * @return the dialog box created
+     */
     private JPanel createPane(JRadioButton[] radioButtons, JButton showButton) {
         JPanel box = new JPanel();
         JLabel label = new JLabel();
@@ -89,7 +113,9 @@ public class Dialog extends JPanel{
         return pane;
     }
 
-    /** Create the GUI and show it*/
+    /**
+     * Create the GUI and show it
+     */
     public void createAndShowGUI() {
         //Create and set up the window.
         JFrame fr = new JFrame("Modality");
@@ -108,20 +134,40 @@ public class Dialog extends JPanel{
         fr.setVisible(true);
     }
 
-    /** Is called to set mainApp*/
+    /**
+     * Is called to set mainApp
+     *
+     * @param mainApp the value to be set
+     */
     public void setMainApp(MainApp mainApp){
         this.mainApp = mainApp;
     }
 
-    /** Is called to set wait variable*/
+    /**
+     * Is called to set wait variable
+     *
+     * @param modalitySignal the value to be set
+     */
     public void setWait(CountDownLatch modalitySignal) {
         this.modalitySignal = modalitySignal;
     }
 
+    /**
+     * getMainApp: returns the main
+     * controller of the application.
+     *
+     * @return the main controller
+     */
     public MainApp getMainApp() {
         return mainApp;
     }
 
+    /**
+     * getModalitySignal: returns the value
+     * of time to wait.
+     *
+     * @return the waiting value
+     */
     public CountDownLatch getModalitySignal() {
         return modalitySignal;
     }

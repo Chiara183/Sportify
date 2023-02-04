@@ -10,18 +10,34 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Allows you to talk to the DB
+ */
 public class DAO {
 
-    /** The main connection of the project*/
+    /**
+     * The main connection of the project
+     */
     Connection connection = null;
 
 
-    /** It's called to set connection*/
+    /**
+     * It's called to set connection
+     *
+     * @param connection the connection to set
+     */
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
 
-    /** It's called to get data from DB*/
+    /**
+     * It's called to get data from DB
+     *
+     * @param column the column to be checked
+     * @param query the query to run in DB
+     *
+     * @return a list of results
+     */
     public List<String> checkData(String query, String column){
         PreparedStatement ps = null;
         ResultSet rs;
@@ -54,7 +70,11 @@ public class DAO {
         return result;
     }
 
-    /** It's called to update data in DB*/
+    /**
+     * It's called to update data in DB
+     *
+     * @param query the query to run in DB
+     */
     public void updateDB(String query){
         PreparedStatement ps = null;
         try{

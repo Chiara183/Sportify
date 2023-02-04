@@ -3,14 +3,27 @@ package sportify.user;
 import sportify.DAO;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * The class that represents
+ * the gym user
+ */
 public class GymUser extends User {
 
     private static final String WHERE = "' WHERE `gym`.`owner` = '";
 
-    /** The constructor.*/
+    /**
+     * The constructor.
+     */
     public GymUser() {
         this(null, null);
     }
+
+    /**
+     * The constructor.
+     *
+     * @param userName the username of the user
+     * @param password the password of the user
+     */
     public GymUser(String userName, String password) {
         super(userName, password);
         role = new SimpleStringProperty("gym");
@@ -21,7 +34,11 @@ public class GymUser extends User {
         this.phone = new SimpleStringProperty(null);
     }
 
-    /** The method that set up gym variable*/
+    /**
+     * The method that set up gym name
+     *
+     * @param name the gym name to set
+     */
     public void setGymName(String name) {
         this.gymName.set(name);
         DAO objDAO = mainApp.getDAO();
@@ -30,6 +47,12 @@ public class GymUser extends User {
                 + this.userName.getValue() +"'";
         objDAO.updateDB(query);
     }
+
+    /**
+     * The method that set up gym address
+     *
+     * @param address the address to set
+     */
     public void setAddress(String address) {
         this.address.set(address);
         DAO objDAO = mainApp.getDAO();
@@ -38,6 +61,12 @@ public class GymUser extends User {
                 + this.userName.getValue() +"'";
         objDAO.updateDB(query);
     }
+
+    /**
+     * The method that set up gym latitude
+     *
+     * @param latitude the latitude to set
+     */
     public void setLatitude(String latitude) {
         this.latitude.set(latitude);
         DAO objDAO = mainApp.getDAO();
@@ -46,6 +75,12 @@ public class GymUser extends User {
                 + this.userName.getValue() +"'";
         objDAO.updateDB(query);
     }
+
+    /**
+     * The method that set up gym longitude
+     *
+     * @param longitude the longitude to set
+     */
     public void setLongitude(String longitude) {
         this.longitude.set(longitude);
         DAO objDAO = mainApp.getDAO();
@@ -54,6 +89,12 @@ public class GymUser extends User {
                         + longitude + WHERE
                         + this.userName.getValue() +"'");
     }
+
+    /**
+     * The method that set up gym phone
+     *
+     * @param phone the phone to set
+     */
     public void setPhone(String phone) {
         this.phone.set(phone);
         DAO objDAO = mainApp.getDAO();
