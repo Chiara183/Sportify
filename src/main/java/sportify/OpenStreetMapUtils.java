@@ -17,6 +17,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The class that implements the useful
+ * methods for an OpenStreetMap
+ */
 public class OpenStreetMapUtils {
 
     /**

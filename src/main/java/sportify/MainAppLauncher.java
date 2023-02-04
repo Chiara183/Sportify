@@ -14,8 +14,18 @@ import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The class that launches the application
+ */
 public class MainAppLauncher extends Application {
 
+    /**
+     * The method that allows the
+     * application to be launched
+     *
+     * @param primaryStage The first stage
+     *                     of the application
+     */
     @Override
     public void start(Stage primaryStage) {
         String s = "";
