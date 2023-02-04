@@ -16,7 +16,7 @@ public abstract class User {
 
     private static final String WHERECLAUSE = "' WHERE `user`.`username` = '";
 
-    /** All parameter of user*/
+    /* All parameter of user*/
     protected final StringProperty firstName;
     protected final StringProperty lastName;
     protected final StringProperty userName;

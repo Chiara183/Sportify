@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 
 public abstract class EditController extends Controller{
 
-    /** Reference to graphic gymEditController*/
+    /** Reference to graphicController*/
     protected EditGraphicController graphicController;
 
     /** The variable that identify the name of the view*/
@@ -63,6 +63,7 @@ public abstract class EditController extends Controller{
         passText.setVisible(false);
     }
 
+    /** Is called to set graphicController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (EditGraphicController) graphicController;

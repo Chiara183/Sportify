@@ -7,7 +7,7 @@ import sportify.user.GymUser;
 
 public class GymEditController extends EditController{
 
-    /** Reference to graphic gymEditController*/
+    /** Reference to graphicController*/
     private GymEditGraphicController graphicGymController;
 
     /** The constructor.*/

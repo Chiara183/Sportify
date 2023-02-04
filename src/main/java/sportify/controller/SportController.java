@@ -117,7 +117,7 @@ public class SportController extends Controller{
         }
     }
 
-    /** Is called to set graphic  gymEditController*/
+    /** Is called to set graphicController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         //Do nothing because it doesn't need to, just override operation

@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 
 public class Submit{
 
+    private static final Logger LOGGER = Logger.getLogger(Submit.class.getName());
     private final IO dB;
     private final MainApp mainApp;
     private static final String RUOLO = "ruolo";
@@ -31,9 +32,6 @@ public class Submit{
     /** Login method*/
     public boolean login(String userValue, String passValue) {
         Map<String, Map<String, String>> account = this.dB.read();
-        /*return !account.isEmpty() && account.containsKey(userValue) &&
-                userValue.equals(account.get(userValue).get("username")) &&
-                passValue.equals(account.get(userValue).get("password"));*/
         boolean resultDB = false;
         boolean resultFile = false;
         if(!account.isEmpty() && account.containsKey(userValue) &&
@@ -44,7 +42,7 @@ public class Submit{
         try {
             FileReader fr = new FileReader(new File(Paths.get("./src/main/resources/users.csv").toUri()));
             BufferedReader br = new BufferedReader(fr);
-            String line = " ";
+            String line;
             String[] tempArr;
             while ((line = br.readLine()) != null) {
                 tempArr = line.split(",");
@@ -53,9 +51,9 @@ public class Submit{
                 }
             }
             FileManagement.cleanUp(br);
-        }
-        catch(IOException ioe) {
-            ioe.printStackTrace();
+            br.close();
+        } catch(IOException ioe) {
+            LOGGER.log(Level.SEVERE, ioe.getMessage());
         }
         return (resultDB && resultFile);
     }

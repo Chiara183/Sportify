@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 
 public class GymInfoController extends Controller implements Observer {
 
-    /** Reference to graphic gymEditController*/
+    /** Reference to graphicController*/
     private GymInfoGraphicController graphicController;
 
     private static final String SELECT = "SELECT * ";
@@ -358,7 +358,7 @@ public class GymInfoController extends Controller implements Observer {
         new Thread(task4).start();
     }
 
-    /** It's called to set the gymEditController and view*/
+    /** It's called to set the View*/
     public void loadingGymName(String name) {
         try {
             // Load test result overview.
@@ -399,7 +399,7 @@ public class GymInfoController extends Controller implements Observer {
             LOGGER.log(Level.SEVERE, e.getMessage());        }
     }
 
-    /** Is called to set graphic gymEditController*/
+    /** Is called to set graphicController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (GymInfoGraphicController) graphicController;

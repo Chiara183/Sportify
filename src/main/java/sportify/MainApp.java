@@ -122,8 +122,7 @@ public class MainApp{
             }
             primaryStage.show();
         } catch (IOException e) {
-            Logger logger = Logger.getLogger(MainApp.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -304,8 +303,7 @@ public class MainApp{
             }
 
         } catch (IOException e) {
-            Logger logger = Logger.getLogger(MainApp.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -353,8 +351,7 @@ public class MainApp{
             controller.setMenu(menu);
 
         } catch (IOException e) {
-            Logger logger = Logger.getLogger(MainApp.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -396,8 +393,7 @@ public class MainApp{
             controller.setProjection(this.projection);
 
         } catch (IOException e) {
-            Logger logger = Logger.getLogger(MainApp.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -438,8 +434,7 @@ public class MainApp{
             controller.setMainApp(this);
 
         } catch (IOException e) {
-            Logger logger = Logger.getLogger(MainApp.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -452,8 +447,6 @@ public class MainApp{
         account.put("lastName", lastName);
         account.put("email", email);
         account.put("birthday", date);
-        //String stringa = username + "," + password;
-        //FileManagement.writeFile(stringa);
         return account;
     }
 
@@ -476,8 +469,7 @@ public class MainApp{
         try {
             paneTopScreen = loaderTopScreen.load();
         } catch (IOException e) {
-            Logger logger = Logger.getLogger(MainApp.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }
         this.getPrimaryPane().setTop(paneTopScreen);
     }

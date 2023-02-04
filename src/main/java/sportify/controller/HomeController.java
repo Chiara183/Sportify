@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class HomeController extends Controller {
 
-    /** Reference to graphic gymEditController*/
+    /** Reference to graphicController*/
     private HomePhoneGraphicController homeGraphicController;
 
     /** The constructor.*/
@@ -40,7 +40,7 @@ public class HomeController extends Controller {
         }
     }
 
-    /** Is called to set graphic gymEditController*/
+    /** Is called to set graphicController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.homeGraphicController = (HomePhoneGraphicController) graphicController;
@@ -66,8 +66,7 @@ public class HomeController extends Controller {
         } catch (IOException e) {
             Logger logger = Logger.getLogger(HomeController.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
-            Logger logger1 = Logger.getLogger(HomeController.class.getName());
-            logger1.log(Level.SEVERE, e.getLocalizedMessage());
+            logger.log(Level.SEVERE, e.getLocalizedMessage());
         }
         return controller;
     }

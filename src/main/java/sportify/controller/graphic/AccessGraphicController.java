@@ -10,10 +10,10 @@ import javafx.scene.control.TextField;
 
 abstract class AccessGraphicController implements GraphicController{
 
-    /** Reference to gymEditController*/
+    /** Reference to controller*/
     protected AccessController controller;
 
-    /** Text field of the interface*/
+    /* Text field of the interface*/
     @FXML
     private TextField loginPassText;
     @FXML
@@ -23,7 +23,7 @@ abstract class AccessGraphicController implements GraphicController{
     @FXML
     protected Label eye;
 
-    /** All the checkbox of the interface*/
+    /* All the checkbox of the interface*/
     @FXML
     protected CheckBox passToggle;
 
@@ -41,13 +41,13 @@ abstract class AccessGraphicController implements GraphicController{
         }
     }
 
-    /** Is called to set gymEditController*/
+    /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.controller = (AccessController) controller;
     }
 
-    /** Is called to get gymEditController type*/
+    /** Is called to get controller type*/
     @Override
     public ControllerType getGraphicType(){
         return controller.getType();

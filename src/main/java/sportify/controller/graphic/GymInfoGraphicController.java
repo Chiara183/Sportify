@@ -38,7 +38,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     /**Attribute of concrete subject*/
     protected String subjectState = "Unchanged";
 
-    /** All the label of interface*/
+    /* All the label of interface*/
     @FXML
     protected Label gymName;
     @FXML
@@ -48,19 +48,19 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     @FXML
     protected TextArea reviewArea;
 
-    /** All the text field of interface*/
+    /* All the text field of interface*/
     @FXML
     protected TextField hour;
     @FXML
     protected TextField min;
 
-    /** All the border pane of interface*/
+    /* All the border pane of interface*/
     @FXML
     protected BorderPane reviewPane;
     @FXML
     protected BorderPane coursePane;
 
-    /** All the vbox of interface*/
+    /* All the vbox of interface*/
     @FXML
     protected VBox course;
     @FXML
@@ -70,7 +70,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     @FXML
     protected ComboBox<String> comboSport;
 
-    /** All the slider of interface*/
+    /* All the slider of interface*/
     @FXML
     protected Slider hourSlider;
     @FXML
@@ -88,7 +88,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     }
 
 
-    /** The action of the button*/
+    /* The action of the button*/
     @FXML
     protected void shareReview(){
         if(!this.bean.checkReview(this.gym, this.reviewArea)){
@@ -239,13 +239,13 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
         this.comboSport.setCursor(cursor);
     }
 
-    /** Is called to set gymEditController*/
+    /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.controller = (GymInfoController) controller;
     }
 
-    /** Is called to get gymEditController type*/
+    /** Is called to get controller type*/
     @Override
     public ControllerType getGraphicType(){
         return controller.getType();

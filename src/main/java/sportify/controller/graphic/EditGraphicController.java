@@ -15,11 +15,11 @@ public abstract class EditGraphicController implements GraphicController{
     private static final String FILL = "-fx-text-fill: #6c6b6b;";
     private static final String BLACK = "-fx-text-fill: black;";
 
-    /** All the Pane of interface*/
+    /* All the Pane of interface*/
     @FXML
     protected Pane birthdayPane;
 
-    /** All the Label of interface */
+    /* All the Label of interface */
     @FXML
     protected Label usernameLabel;
     @FXML
@@ -57,7 +57,7 @@ public abstract class EditGraphicController implements GraphicController{
     @FXML
     protected Label modifyBirthday;
 
-    /** All the TextField of interface*/
+    /* All the TextField of interface*/
     @FXML
     protected TextField username;
     @FXML
@@ -81,7 +81,7 @@ public abstract class EditGraphicController implements GraphicController{
     @FXML
     protected TextField birthYear;
 
-    /** All the CheckBox of interface*/
+    /* All the CheckBox of interface*/
     @FXML
     protected CheckBox toggleFirstName;
     @FXML
@@ -101,7 +101,7 @@ public abstract class EditGraphicController implements GraphicController{
     @FXML
     protected CheckBox toggleBirthday;
 
-    /** All the Button of the interface*/
+    /* All the Button of the interface*/
     @FXML
     protected Button ok;
     @FXML
@@ -135,7 +135,7 @@ public abstract class EditGraphicController implements GraphicController{
         }
     }
 
-    /** The action of the button.*/
+    /* The action of the button.*/
     @FXML
     protected abstract void okAction();
 
@@ -241,13 +241,13 @@ public abstract class EditGraphicController implements GraphicController{
         }
     }
 
-    /** Is called to set gymEditController*/
+    /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.controller = (EditController) controller;
     }
 
-    /** Is called to get gymEditController type*/
+    /** Is called to get controller type*/
     @Override
     public ControllerType getGraphicType(){
         return controller.getType();

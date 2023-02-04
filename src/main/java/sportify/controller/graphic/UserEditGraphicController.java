@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class UserEditGraphicController extends EditGraphicController{
 
-    /** Reference to gymEditController*/
+    /** Reference to controller*/
     protected UserEditController userEditController;
 
     /** The action of the button.*/
@@ -32,14 +32,14 @@ public class UserEditGraphicController extends EditGraphicController{
         }
     }
 
-    /** Is called to set gymEditController*/
+    /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.userEditController = (UserEditController) controller;
         super.setController(controller);
     }
 
-    /** Is called to get gymEditController type*/
+    /** Is called to get controller type*/
     @Override
     public ControllerType getGraphicType(){
         return userEditController.getType();

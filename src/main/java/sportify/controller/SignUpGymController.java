@@ -23,7 +23,7 @@ public class SignUpGymController extends AccessController {
 
     private static final Logger LOGGER = Logger.getLogger(SignUpGymController.class.getName());
 
-    /** Reference to graphic gymEditController*/
+    /** Reference to graphicController*/
     private SignUpGymGraphicController graphicController;
     private final MainApp mainAppGym;
     private final Submit submitGym;

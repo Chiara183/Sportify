@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 public class SignUpGraphicController extends RegisterGraphicController{
 
-    /** Reference to signUpController*/
+    /** Reference to controller*/
     protected SignUpController signUpController;
     protected Pane pane;
     private MenuGraphicController graphicMenuController;

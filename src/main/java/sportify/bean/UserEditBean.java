@@ -5,7 +5,6 @@ import sportify.DateUtil;
 import java.time.LocalDate;
 
 public class UserEditBean {
-
         public LocalDate settingBirthDay(int dayOfBirth, int birthMonth, int birthYear){
             String month;
             if(birthMonth < 10){

@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 public class DAO {
 
     private static final Logger LOGGER  =   Logger.getLogger(DAO.class.getName());
+
     /** The main connection of the project*/
     Connection connection = null;
 

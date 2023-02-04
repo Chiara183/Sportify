@@ -17,7 +17,7 @@ public class UserEditPhoneGraphicController extends UserEditGraphicController {
     final int month = userEditController.getUser().getBirthday().getMonth().getValue();
     final int year = userEditController.getUser().getBirthday().getYear();
 
-    /** The action of the button.*/
+    /* The action of the button.*/
     @Override
     @FXML
     protected void okAction() {

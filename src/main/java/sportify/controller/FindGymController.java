@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class FindGymController extends Controller{
 
-    /** Reference to graphic gymEditController*/
+    /** Reference to graphicController*/
     private FindGymPhoneGraphicController findGymGraphicController;
 
     /** The constructor.*/
@@ -23,7 +23,7 @@ public class FindGymController extends Controller{
         this.type = ControllerType.FIND_GYM;
     }
 
-    /** Is called to set graphic gymEditController*/
+    /** Is called to set graphicController*/
     public void setGraphicController(FindGymPhoneGraphicController graphicController) {
         this.findGymGraphicController = graphicController;
     }
@@ -62,7 +62,7 @@ public class FindGymController extends Controller{
         }
     }
 
-    /** Is called to set graphic gymEditController*/
+    /** Is called to set graphicController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.findGymGraphicController = (FindGymPhoneGraphicController) graphicController;

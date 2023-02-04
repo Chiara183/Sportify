@@ -20,7 +20,7 @@ public class MapController extends Controller{
 
     private static final String SELECTALL = "SELECT * " + "FROM gym ";
 
-    /** Reference to graphic gymEditController*/
+    /** Reference to graphicController*/
     private MapGraphicController graphicController;
 
     /** default zoom value. */
@@ -48,7 +48,7 @@ public class MapController extends Controller{
         graphicController.setSearchCache(search);
     }
 
-    /** Is called to set graphic gymEditController*/
+    /** Is called to set graphicController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (MapGraphicController) graphicController;

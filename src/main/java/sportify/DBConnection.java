@@ -10,7 +10,6 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class DBConnection {
 
     private static final String ERROR = "Error";
@@ -19,7 +18,6 @@ public class DBConnection {
     private static final Logger LOGGER = Logger.getLogger(DBConnection.class.getName());
 
     /** Implementing Singleton pattern*/
-
     private DBConnection(){}
 
     private static DBConnection instance = null;

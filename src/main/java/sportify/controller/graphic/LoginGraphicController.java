@@ -18,19 +18,20 @@ public class LoginGraphicController extends AccessGraphicController{
     private boolean google;
     private static final Properties prop = new Properties();
     private static final String G_SECRET = prop.getProperty("G_SECRET");
-    /** All the text field of the interface*/
+
+    /* All the text field of the interface*/
     @FXML
     private TextField user;
     @FXML
     private TextField loginPassText;
 
-    /** All the button of the interface*/
+    /* All the button of the interface*/
     @FXML
     private Button submit;
     @FXML
     private Button skip;
 
-    /** Reference to gymEditController*/
+    /** Reference to controller*/
     private LoginController loginController;
 
     /**Reference to bean instance*/
@@ -69,7 +70,7 @@ public class LoginGraphicController extends AccessGraphicController{
         }
         adapterLogin.doLogin();
     }
-    /** The action of the buttons*/
+    /* The action of the buttons*/
     public void submitActionLogin() {
         String userValue = "";
         if(bean.userCheck(user.getText())) {
@@ -127,14 +128,14 @@ public class LoginGraphicController extends AccessGraphicController{
         loginController.getMainApp().showSignUpOverview();
     }
 
-    /** Is called to set gymEditController*/
+    /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.loginController = (LoginController) controller;
         super.setController(controller);
     }
 
-    /** Is called to get gymEditController type*/
+    /** Is called to get controller type*/
     @Override
     public ControllerType getGraphicType(){
         return loginController.getType();

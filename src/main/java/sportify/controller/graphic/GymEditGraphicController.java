@@ -14,7 +14,7 @@ public class GymEditGraphicController extends EditGraphicController{
     protected static final String STYLE = "-fx-text-fill: #06B7C5;";
     protected static final String COLOR = "-fx-text-fill: black;";
 
-    /** Reference to gymEditController*/
+    /** Reference to controller*/
     protected GymEditController gymEditController;
 
     /** Reference to bean*/
@@ -89,14 +89,14 @@ public class GymEditGraphicController extends EditGraphicController{
         }
     }
 
-    /** Is called to set gymEditController*/
+    /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.gymEditController = (GymEditController) controller;
         super.setController(controller);
     }
 
-    /** Is called to get gymEditController type*/
+    /** Is called to get controller type*/
     @Override
     public ControllerType getGraphicType(){
         return gymEditController.getType();

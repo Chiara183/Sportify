@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class SignUpController extends AccessController {
 
-    /** Reference to graphic gymEditController*/
+    /** Reference to graphicController*/
     private SignUpGraphicController graphicController;
     private Submit submitSignUp;
 

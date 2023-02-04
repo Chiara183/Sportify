@@ -21,7 +21,7 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
     @FXML
     protected TextField gymCity;
 
-    /** Reference to gymEditController*/
+    /** Reference to controller*/
     protected SignUpGymController signUpGymController;
 
     /** Reference to bean*/
@@ -72,7 +72,7 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
         }
     }
 
-    /** Is called to set gymEditController*/
+    /** Is called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.signUpGymController = (SignUpGymController) controller;

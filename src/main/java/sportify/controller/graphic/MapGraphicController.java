@@ -46,7 +46,7 @@ public class MapGraphicController implements GraphicController{
     // MapCircle
     MapCircle circle;
 
-    /** Reference to gymEditController*/
+    /** Reference to controller*/
     private MapController controller;
 
     /** Reference to bean*/
@@ -55,7 +55,7 @@ public class MapGraphicController implements GraphicController{
     // ObservableList
     private final ObservableList<String> radius = FXCollections.observableArrayList("1", "5", "10", "20", "50");
 
-    /** It's called to set gymEditController*/
+    /** It's called to set controller*/
     @Override
     public void setController(Controller controller) {
         this.controller = (MapController) controller;
@@ -174,7 +174,7 @@ public class MapGraphicController implements GraphicController{
         }
     }
 
-    /** Is called to get gymEditController type*/
+    /** Is called to get controller type*/
     @Override
     public ControllerType getGraphicType(){
         return controller.getType();

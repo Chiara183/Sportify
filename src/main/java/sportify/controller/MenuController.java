@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 
 public class MenuController extends Controller{
 
-    /** Reference to graphic gymEditController*/
+    /** Reference to graphicController*/
     private MenuGraphicController graphicController;
 
     /** The variable that identify the name of the view*/
@@ -145,7 +145,7 @@ public class MenuController extends Controller{
         }
     }
 
-    /** Is called to set graphic gymEditController*/
+    /** Is called to set graphicController*/
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (MenuGraphicController) graphicController;
