@@ -53,15 +53,15 @@ public class MenuGraphicController implements GraphicController{
             homeAction();
         } else if(controller.getView()==ControllerType.SPORT_QUIZ) {
             homeAction();
-        } else if(controller.getView()==ControllerType.GYM_INFO) {
-            findGymAction();
         } else if(controller.getView()==ControllerType.FIND_GYM) {
             homeAction();
         } else if(controller.getView()==ControllerType.USER_KIND) {
             signAction();
         } else if(controller.getView()==ControllerType.SPORT_INFO) {
             homeAction();
-        }else if(controller.getView()==ControllerType.USER_EDIT) {
+        } else if(controller.getView()==ControllerType.GYM_INFO) {
+            findGymAction();
+        } else if(controller.getView()==ControllerType.USER_EDIT) {
             helpMethod();
         } else if(controller.getView()==ControllerType.SIGN_UP || controller.getView()==ControllerType.SIGN_UP_GYM) {
             signLoginAction();
