@@ -22,6 +22,7 @@ import sportify.user.User;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -304,9 +305,9 @@ public class GymInfoController extends Controller implements Observer {
     /** Download the review*/
     private void downloadReview(String gym){
         DAO dao = mainApp.getDAO();
-        List<String> review = null;
-        List<String> writer = null;
-        List<String> time = null;
+        List<String> review = new ArrayList<>();
+        List<String> writer = new ArrayList<>();
+        List<String> time = new ArrayList<>();
         String query = SELECT +
                 "FROM review " +
                 "WHERE review.gym = \""+ gym +"\"";
