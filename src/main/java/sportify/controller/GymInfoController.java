@@ -130,11 +130,12 @@ public class GymInfoController extends Controller implements Observer {
         String[] query0 = query00.split(";");
         String query1 = query0[0];
         String query2 = query0[1];
+        String gym = getGym();
         String query = "DELETE FROM `review` " +
                 "WHERE `review`.`writer` = '" +
                  query1+
                 "' AND `review`.`gym` = '" +
-                getGym() +
+                gym +
                 "' AND `review`.`timestamp` = '" +
                 query2+
                 "'";
