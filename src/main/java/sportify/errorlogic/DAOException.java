@@ -3,6 +3,8 @@ package sportify.errorlogic;
 /**
  * An exception class to handle exceptions
  * in the data access layer.
+ *
+ * @see Exception
  */
 public class DAOException extends Exception {
 

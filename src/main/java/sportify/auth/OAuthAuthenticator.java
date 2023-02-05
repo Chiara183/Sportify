@@ -26,6 +26,8 @@ import java.util.logging.Logger;
 
 /**
  * Abstract class for OAuth authentication.
+ *
+ * @see OAuthCompletedCallback
  */
 public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
 

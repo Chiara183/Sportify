@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleStringProperty;
 /**
  * The class that represents
  * the classic user
+ *
+ * @see User
  */
 public class ClassicUser extends User {
 

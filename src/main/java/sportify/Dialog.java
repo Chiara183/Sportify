@@ -10,6 +10,8 @@ import java.util.concurrent.CountDownLatch;
  * Allows you to create a Dialog window
  * external to the application that puts
  * the application on hold
+ *
+ * @see JPanel
  */
 public class Dialog extends JPanel{
     private JFrame frame;

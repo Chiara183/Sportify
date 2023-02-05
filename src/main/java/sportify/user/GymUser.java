@@ -1,7 +1,7 @@
 package sportify.user;
 
-import sportify.DAO;
 import javafx.beans.property.SimpleStringProperty;
+import sportify.DAO;
 import sportify.errorlogic.DAOException;
 
 import java.util.logging.Level;
@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 /**
  * The class that represents
  * the gym user
+ *
+ * @see User
  */
 public class GymUser extends User {
 

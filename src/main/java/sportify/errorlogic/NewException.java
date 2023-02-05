@@ -3,6 +3,8 @@ package sportify.errorlogic;
 /**
  * The class that implement
  * the new exception
+ *
+ * @see Exception
  */
 public class NewException extends Exception{
 

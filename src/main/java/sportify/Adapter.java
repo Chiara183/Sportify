@@ -12,6 +12,8 @@ import java.util.Map;
  * The `Adapter` class implements the `SignUp` interface.
  * It provides the functionality to handle the user sign-up
  * process, depending on the user type selected by the user.
+ *
+ * @see SignUp
  */
 public class Adapter implements SignUp{
 

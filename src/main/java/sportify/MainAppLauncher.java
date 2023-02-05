@@ -17,6 +17,8 @@ import java.util.logging.Logger;
 
 /**
  * The class that launches the application
+ *
+ * @see Application
  */
 public class MainAppLauncher extends Application {
 

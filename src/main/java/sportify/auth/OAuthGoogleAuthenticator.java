@@ -8,6 +8,8 @@ import sportify.MainApp;
  * <p>
  * This class provides the necessary URLs, access parameters, and tokens for authentication
  * with Google.
+ *
+ * @see OAuthAuthenticator
  */
 public class OAuthGoogleAuthenticator extends OAuthAuthenticator{
 

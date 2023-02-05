@@ -15,29 +15,60 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * SportController class extends the Controller class
+ * and handles the logic for displaying and managing the Sport related data.
+ * It has SportGraphicController and SportQuizController instance variables
+ * and methods to set and get the quiz controller.
+ * The class also has methods for loading sport descriptions from the database,
+ * handling exceptions in loading FXML files,
+ * loading sport names and descriptions, setting the graphic controller and setting
+ * the center pane of the screen.
+ *
+ * @see Controller
+ */
 public class SportController extends Controller{
 
+    /**
+     * Instance variable for the SportGraphicController class
+     */
     SportGraphicController graphicController;
 
-    /** Reference to the sport quiz*/
+    /**
+     * Instance variable for the SportQuizController class
+     */
     private SportQuizController quiz;
 
-    /** Is called to set quiz gymEditController*/
+    /**
+     * Method to set the SportQuizController instance
+     *
+     * @param quiz - instance of SportQuizController
+     */
     public void setQuiz(SportQuizController quiz) {
         this.quiz = quiz;
     }
 
-    /** Is called to get quiz gymEditController*/
+    /**
+     * Method to get the SportQuizController instance
+     *
+     * @return - instance of SportQuizController
+     */
     public SportQuizController getQuiz() {
         return this.quiz;
     }
 
-    /** The constructor.*/
+    /**
+     * Constructor method for the SportController class
+     */
     public SportController(){
         this.type = ControllerType.SPORT;
     }
 
-    /** It's called to load the sport description from DB*/
+    /**
+     * Method to load the sport descriptions from the database
+     *
+     * @param sport - name of the sport
+     */
     public void loadDescriptionFromDB(String sport){
         DAO objDAO = mainApp.getDAO();
         String query = "SELECT * " +
@@ -56,6 +87,13 @@ public class SportController extends Controller{
         this.loadingSport(sport, rs);
     }
 
+    /**
+     * Method to handle exceptions in loading the FXML files
+     *
+     * @param loaderTopScreen - FXMLLoader instance for the top screen
+     *
+     * @return - Pane object for the top screen
+     */
     public Pane tryCatch(FXMLLoader loaderTopScreen){
         Pane paneTopScreen = null;
         try {
@@ -68,7 +106,11 @@ public class SportController extends Controller{
         return paneTopScreen;
     }
 
-    /** It's called to load the sport name from DB*/
+    /**
+     * Method to load the sport name
+     *
+     * @param sport - name of the sport
+     */
     public void loadingSportName(String sport) {
         this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
@@ -111,7 +153,12 @@ public class SportController extends Controller{
         }
     }
 
-    /** It's called to load the sport from DB*/
+    /**
+     * Method to load the sport and its description
+     *
+     * @param sport - name of the sport
+     * @param description - description of the sport
+     */
     public void loadingSport(String sport, String description) {
         this.mainApp.setUser(this.user);
         this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
@@ -144,13 +191,23 @@ public class SportController extends Controller{
         }
     }
 
-    /** Is called to set graphicController*/
+    /**
+     * Overridden method from the Controller class to set the graphic controller
+     *
+     * @param graphicController - instance of the GraphicController
+     */
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (SportGraphicController) graphicController;
     }
 
-    /** Is called to set center pane*/
+    /**
+     * Method to set the center pane of the screen
+     *
+     * @param loaderSport - FXMLLoader instance for the sport screen
+     *
+     * @return - instance of SportGraphicController
+     */
     private SportGraphicController setCenterPane(FXMLLoader loaderSport){
         Pane pane = null;
         try {
@@ -173,6 +230,9 @@ public class SportController extends Controller{
         return sportGraphicController;
     }
 
+    /**
+     * Method to go back to the previous screen
+     */
     public void back() {
         Logger logger = Logger.getLogger(SportController.class.getName());
         logger.log(Level.WARNING, "--back--");

@@ -5,8 +5,15 @@ package sportify.auth;
  * {@link OAuthAuthenticator} for authentication with Facebook
  * This class provides a way to authenticate with Facebook
  * through the OAuth protocol.
+ *
+ * @see OAuthAuthenticator
  */
 public class OAuthFacebookAuthenticator extends OAuthAuthenticator{
+
+    /**
+     * The facebookApiScope variable holds the
+     * Facebook API scope to be used for authentication.
+     */
     private final String facebookFieldsstring;
 
     /**

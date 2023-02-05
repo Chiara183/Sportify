@@ -6,6 +6,8 @@ import sportify.controller.graphic.LoginGraphicController;
  * Class that implements the Login interface
  * and acts as an adapter for the
  * LoginGraphicController class.
+ *
+ * @see Login
  */
 public class AdapterLogin implements Login{
 
