@@ -40,7 +40,7 @@ public class UserEditBean {
         }
         String year = String.valueOf(birthYear);
         date = year + "-" + month + "-" + day;
-        result = DateUtil.parse(date);;
+        result = DateUtil.parse(date);
         return result;
     }
 }

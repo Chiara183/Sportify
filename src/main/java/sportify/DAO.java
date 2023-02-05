@@ -55,8 +55,6 @@ public class DAO {
             }
         }
         catch (SQLException e) {
-            Logger logger = Logger.getLogger(DAO.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
             throw new DAOException("Check error: " + e.getMessage());
         }
         finally {
@@ -85,8 +83,6 @@ public class DAO {
             ps.execute();
         }
         catch (SQLException e){
-            Logger logger = Logger.getLogger(DAO.class.getName());
-            logger.log(Level.WARNING, e.getMessage());
             throw new DAOException("Update error: " + e.getMessage());
         }
         finally{

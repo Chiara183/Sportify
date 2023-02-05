@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 public abstract class User {
 
     private static final String WHERECLAUSE = "' WHERE `user`.`username` = '";
+    private static final String UPDATE_USER = "UPDATE `user` ";
 
     /* All parameter of user*/
     /**
@@ -234,7 +235,7 @@ public abstract class User {
      */
     public void setFirstName(String firstName) {
         this.firstName.set(firstName);
-        String query = "UPDATE `user` " +
+        String query = UPDATE_USER +
                 "SET `first_name` = '"
                 + firstName + WHERECLAUSE
                 + getUserName() + "'";
@@ -256,7 +257,7 @@ public abstract class User {
     public void setLastName(String lastName) {
         this.lastName.set(lastName);
         DAO objDAO = mainApp.getDAO();
-        String query = "UPDATE `user` " +
+        String query = UPDATE_USER +
                 "SET `last_name` = '"
                 + lastName + WHERECLAUSE
                 + getUserName() + "'";
@@ -276,8 +277,8 @@ public abstract class User {
      */
     public void setUserName(String userName) {
         Submit submit = new Submit(this.mainApp);
-        String query = "UPDATE `user` SET " +
-                "`username` = '"
+        String query = UPDATE_USER +
+                "SET `username` = '"
                 + userName + WHERECLAUSE
                 + getUserName() + "'";
         if(!submit.exist(userName)) {
@@ -311,7 +312,7 @@ public abstract class User {
      * @param password the password to set
      */
     public void setPassword(String password) {
-        String query = "UPDATE `user` " +
+        String query = UPDATE_USER +
                 "SET `password` = '"
                 + password + WHERECLAUSE
                 + getUserName() + "'";
@@ -339,7 +340,7 @@ public abstract class User {
     public void setEmail(String email) {
         this.email.set(email);
         DAO objDAO = mainApp.getDAO();
-        String query = "UPDATE `user` " +
+        String query = UPDATE_USER +
                 "SET `email` = '"
                 + email + WHERECLAUSE
                 + getUserName() + "'";
@@ -360,7 +361,7 @@ public abstract class User {
     public void setBirthday(LocalDate birthday) {
         this.birthday.set(birthday);
         DAO objDAO = mainApp.getDAO();
-        String query = "UPDATE `user` " +
+        String query = UPDATE_USER +
                 "SET `birthday` = '"
                 + birthday.toString() + WHERECLAUSE
                 + getUserName() + "'";

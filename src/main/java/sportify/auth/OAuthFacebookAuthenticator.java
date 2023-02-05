@@ -7,7 +7,7 @@ package sportify.auth;
  * through the OAuth protocol.
  */
 public class OAuthFacebookAuthenticator extends OAuthAuthenticator{
-    private final String FACEBOOK_fieldsString;
+    private final String facebookFieldsstring;
 
     /**
      * Constructor that initializes basic information for authentication with Facebook.
@@ -19,7 +19,7 @@ public class OAuthFacebookAuthenticator extends OAuthAuthenticator{
      */
     public OAuthFacebookAuthenticator(String clientID, String redirectUri, String clientSecret, String apiFields) {
         super(clientID, redirectUri, clientSecret);
-        FACEBOOK_fieldsString = apiFields;
+        facebookFieldsstring = apiFields;
     }
 
     /**
@@ -39,7 +39,7 @@ public class OAuthFacebookAuthenticator extends OAuthAuthenticator{
      */
     @Override
     String getApiTokenUrl() {
-        return "https://graph.facebook.com/me?fields=" + FACEBOOK_fieldsString + "&access_token=" + getAccessToken();
+        return "https://graph.facebook.com/me?fields=" + facebookFieldsstring + "&access_token=" + getAccessToken();
     }
 
     /**

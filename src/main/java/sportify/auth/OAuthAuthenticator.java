@@ -445,8 +445,8 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
      */
     @Override
     public void oAuthCallback(OAuthAuthenticator authenticator) {
-        String accessToken = authenticator.getAccessToken();
-        this.setTokenCache(accessToken);
+        String tok = authenticator.getAccessToken();
+        this.setTokenCache(tok);
     }
 }
 
