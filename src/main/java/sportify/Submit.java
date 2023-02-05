@@ -26,18 +26,22 @@ public class Submit{
      * Reference to IO
      */
     private final IO dB;
+
     /**
      * Reference to MainApp
      */
     private final MainApp mainApp;
+
     /**
      * String that define RUOLO
      */
     private static final String RUOLO = "ruolo";
+
     /**
      * String that define USER
      */
     private static final String USER = "username";
+
     /**
      * String that define PASS
      */
@@ -59,6 +63,7 @@ public class Submit{
      *
      * @param userValue the username that try to access
      * @param passValue the password of the account
+     *
      * @return If the procedure was a success
      */
     public boolean login(String userValue, String passValue) {
@@ -71,8 +76,10 @@ public class Submit{
         boolean resultDB = false;
         boolean resultFile = false;
         boolean result;
-        if (!account.isEmpty() && account.containsKey(userValue)
-                && userValue.equals(map.get(USER)) && passValue.equals(map.get(PASS))) {
+        if (!account.isEmpty() &&
+                account.containsKey(userValue) &&
+                userValue.equals(map.get(USER)) &&
+                passValue.equals(map.get(PASS))) {
             resultDB = true;
         }
         uri = Paths.get(f).toUri();
@@ -84,7 +91,8 @@ public class Submit{
             line = br.readLine();
             while (line != null) {
                 tempArr = line.split(",");
-                if (tempArr[0].equals(userValue) && tempArr[1].equals(passValue)) {
+                if (tempArr[0].equals(userValue) &&
+                        tempArr[1].equals(passValue)) {
                     resultFile = true;
                 }
                 line = br.readLine();
@@ -118,13 +126,15 @@ public class Submit{
      *
      * @param username The user you want to
      *                 check if it already exists
+     *
      * @return Returns true if the user exists or
      * false if the user does not already exist
      */
     public boolean exist(String username){
         boolean result;
         Map<String, Map<String, String>> account = this.dB.read();
-        result = !account.isEmpty() && account.containsKey(username);
+        result = !account.isEmpty() &&
+                account.containsKey(username);
         return result;
     }
 
@@ -133,6 +143,7 @@ public class Submit{
      *
      * @param email The email you want to
      *                check if it already exists
+     *
      * @return Returns true if the email exists or
      * false if the email does not already exist
      */
@@ -157,6 +168,7 @@ public class Submit{
      *
      * @param username The username of the user
      *                 who wants to log in
+     *
      * @return Return logged-in user
      */
     public User setUser(String username){
@@ -173,6 +185,7 @@ public class Submit{
      *
      * @param account the users retrieved from the DB
      * @param username the user you want to write on the view
+     *
      * @return returns the user just written to the view
      */
     private User writeUser(HashMap<String, Map<String, String>> account, String username){
@@ -227,6 +240,7 @@ public class Submit{
      *
      * @param passwordLength the length of the
      *                       password you want to create
+     *
      * @return the password created
      */
     public String generateStrongPassword(int passwordLength) {
@@ -276,6 +290,7 @@ public class Submit{
      * @param input The string from which you want
      *              to extract a random
      * @param size the length of the final string
+     *
      * @return Returns a random string
      */
     private String generateRandomString(String input, int size) {
@@ -283,7 +298,8 @@ public class Submit{
         String error;
         int length;
         char ch;
-        if (input == null || input.length() == 0) {
+        if (input == null ||
+                input.length() == 0) {
             error = "Invalid input.";
             throw new IllegalArgumentException(error);
         }
@@ -309,6 +325,7 @@ public class Submit{
      * Mixes the strings it receives.
      *
      * @param input The string you want to mix
+     *
      * @return The mixed string
      */
     private String shuffleString(String input) {

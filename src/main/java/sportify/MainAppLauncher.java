@@ -4,6 +4,7 @@ import com.sothawo.mapjfx.Projection;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import sportify.errorlogic.DAOException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,7 +30,7 @@ public class MainAppLauncher extends Application {
     @Override
     public void start(Stage primaryStage) {
         String s = "";
-        Connection c;
+        Connection c = null;
         Submit submit;
         String parameter;
         String m = " modality";
@@ -40,7 +41,7 @@ public class MainAppLauncher extends Application {
         int count = 1;
         Parameters p = super.getParameters();
         List<String> unnamed = p.getUnnamed();
-        if (!super.getParameters().getUnnamed().isEmpty()){
+        if (!unnamed.isEmpty()){
             parameter = unnamed.get(0);
             s = parameter + m;
             Logger logger = Logger.getLogger(className);
@@ -55,7 +56,13 @@ public class MainAppLauncher extends Application {
         }
         MainApp mainApp = new MainApp();
         DBConnection db = DBConnection.getSingletonInstance();
-        c = db.getConnection();
+        try {
+            c = db.getConnection();
+        }
+        catch (DAOException e){
+            Logger logger = Logger.getLogger(MainAppLauncher.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
         DAO dao = mainApp.getDAO();
         dao.setConnection(c);
         submit = new Submit(mainApp);

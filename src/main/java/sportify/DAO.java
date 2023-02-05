@@ -1,5 +1,7 @@
 package sportify;
 
+import sportify.errorlogic.DAOException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,7 +40,7 @@ public class DAO {
      *
      * @return a list of results
      */
-    public List<String> checkData(String query, String column){
+    public List<String> checkData(String query, String column) throws DAOException {
         PreparedStatement ps = null;
         ResultSet rs;
         List<String> result = new ArrayList<>();
@@ -55,6 +57,7 @@ public class DAO {
         catch (SQLException e) {
             Logger logger = Logger.getLogger(DAO.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
+            throw new DAOException("Check error: " + e.getMessage());
         }
         finally {
             try {
@@ -75,7 +78,7 @@ public class DAO {
      *
      * @param query the query to run in DB
      */
-    public void updateDB(String query){
+    public void updateDB(String query) throws DAOException {
         PreparedStatement ps = null;
         try{
             ps = connection.prepareStatement(query);
@@ -84,6 +87,7 @@ public class DAO {
         catch (SQLException e){
             Logger logger = Logger.getLogger(DAO.class.getName());
             logger.log(Level.WARNING, e.getMessage());
+            throw new DAOException("Update error: " + e.getMessage());
         }
         finally{
             try {

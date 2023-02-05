@@ -9,14 +9,15 @@ import javafx.beans.property.SimpleStringProperty;
 public class ClassicUser extends User {
 
     /**
-     * The constructor.
+     * Constructs a new ClassicUser instance.
      */
     public ClassicUser() {
         this(null, null);
     }
 
     /**
-     * The constructor.
+     * Constructs a new ClassicUser instance
+     * with the given username and password.
      *
      * @param userName the username of the user
      * @param password the password of the user

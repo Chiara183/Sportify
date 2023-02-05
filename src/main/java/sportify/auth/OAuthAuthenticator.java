@@ -3,6 +3,7 @@ package sportify.auth;
 import sportify.DAO;
 import sportify.MainApp;
 import sportify.Submit;
+import sportify.errorlogic.DAOException;
 import sportify.user.User;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -23,46 +24,135 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public abstract class OAuthAuthenticator {
+/**
+ * Abstract class for OAuth authentication.
+ */
+public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
 
+    /**
+     * String to store access token cache.
+     */
+    private String tokenCache;
+
+    /**
+     * JSON object to store accessed data.
+     */
     private JSONObject accessedJsonData;
 
+    /**
+     * Flag to track whether login has been attempted.
+     */
     private boolean loginAttempted = false;
 
+    /**
+     * String to store access token.
+     */
     private String accessToken;
+
+    /**
+     * String to store access code.
+     */
     private String accessCode;
+
+    /**
+     * Flag to track whether an attempt has been received.
+     */
     private boolean attemptReceived = false;
+
+    /**
+     * Flag to track whether data has been received.
+     */
     private boolean gotData = false;
+
+    /**
+     * String to store the client ID.
+     */
     private final String clientID;
+
+    /**
+     * String to store the redirect URI.
+     */
     private final String redirectUri;
+
+    /**
+     * String to store the client secret.
+     */
     private final String clientSecret;
 
+    /**
+     * Constructor for OAuthAuthenticator.
+     *
+     * @param clientID the client ID.
+     * @param redirectUri the redirect URI.
+     * @param clientSecret the client secret.
+     */
     protected OAuthAuthenticator (String clientID, String redirectUri, String clientSecret) {
         this.clientID = clientID;
         this.redirectUri = redirectUri;
         this.clientSecret = clientSecret;
     }
 
+    /**
+     * setTokenCache: sets the token cache.
+     *
+     * @param token the value to be set
+     */
+    public void setTokenCache(String token) {
+        this.tokenCache = token;
+    }
+
+    /**
+     * Returns the value of the `gotData` field.
+     *
+     * @return The value of the `gotData` field.
+     */
     private boolean getGotData(){
         return this.gotData;
     }
 
+    /**
+     * Returns the value of the `attemptReceived` field.
+     *
+     * @return The value of the `attemptReceived` field.
+     */
     private boolean getAttemptReceived(){
         return attemptReceived;
     }
 
+    /**
+     * Returns the client ID.
+     *
+     * @return The client ID.
+     */
     public String getClientID() {
         return clientID;
     }
 
+    /**
+     * Returns the client secret.
+     *
+     * @return The client secret.
+     */
     public String getClientSecret() {
         return clientSecret;
     }
 
+    /**
+     * Returns the redirect URI.
+     *
+     * @return The redirect URI.
+     */
     public String getRedirectUri(){
         return redirectUri;
     }
 
+    /**
+     * Starts the OAuth authentication process.
+     *
+     * @param mainApp the main application.
+     * @param name the name of the authentication.
+     * @param type the type of OAuth authentication.
+     */
     public void start(MainApp mainApp, String name, OAuthType type) {
 
         if(loginAttempted) {
@@ -72,23 +162,34 @@ public abstract class OAuthAuthenticator {
         WebView root = new WebView();
         WebEngine engine = root.getEngine();
 
-        engine.setOnStatusChanged(event -> {
-            if (getGotData() || getAttemptReceived()) {
+        engine.setOnStatusChanged(event ->
+        {
+            if (getGotData() ||
+                    getAttemptReceived()) {
                 return;
             }
             if (event.getSource() instanceof WebEngine we) {
                 String location = we.getLocation();
-                if (location.contains("code") && location.startsWith(getRedirectUri())) {
+                if (location.contains("code") &&
+                        location.startsWith(getRedirectUri())) {
                     helpMethod(mainApp, type, location);
                 }
             }
-        });
+        }
+        );
 
         engine.load(getWebUrl());
 
         mainApp.showOAuthAuthenticator(root, name);
     }
 
+    /**
+     * Helper method for OAuth authentication.
+     *
+     * @param mainApp the main application.
+     * @param type the type of OAuth authentication.
+     * @param location the location for the authentication.
+     */
     public void helpMethod(MainApp mainApp, OAuthType type, String location){
         if(!getAttemptReceived()){
             attemptReceived = true;
@@ -109,6 +210,11 @@ public abstract class OAuthAuthenticator {
         }
     }
 
+    /**
+     * Method for Google OAuth authentication.
+     *
+     * @param mainApp the main application.
+     */
     public void googleAuth(MainApp mainApp){
         String email = accessedJsonData.getString("email");
         String[] s = email.split("@");
@@ -117,10 +223,18 @@ public abstract class OAuthAuthenticator {
         Submit submit = new Submit(mainApp);
         User user;
         DAO objDAO = mainApp.getDAO();
-        List<String> list = objDAO.checkData(
-                "SELECT * " +
-                        "FROM user " +
-                        "WHERE user.email = \"" + email + "\"", "username");
+        String query = "SELECT * " +
+                "FROM user " +
+                "WHERE user.email = \"" + email + "\"";
+        List<String> list = null;
+        try {
+            list = objDAO.checkData(query, "username");
+        }
+        catch (DAOException e){
+            Logger logger = Logger.getLogger(DAO.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        assert list != null;
         String rs = list.get(list.size() - 1);
         if (!submit.exist(rs)) {
             String firstName = accessedJsonData.getString("given_name");
@@ -144,22 +258,67 @@ public abstract class OAuthAuthenticator {
         }
         mainApp.setUser(user);
     }
+
+    /**
+     * getTokenCache: returns the token cache.
+     *
+     * @return the return value
+     */
+    public String getTokenCache() {
+        return this.tokenCache;
+    }
+
+    /**
+     * Abstract method to get the web URL.
+     *
+     * @return the web URL.
+     */
     abstract String getWebUrl();
 
+    /**
+     * Abstract method to get the API token URL.
+     *
+     * @return the API token URL.
+     */
     abstract String getApiTokenUrl();
 
+    /**
+     * Abstract method to get the API access URL.
+     *
+     * @return the API access URL.
+     */
     abstract String getApiAccessUrl();
 
+    /**
+     * Abstract method to get the API access parameters.
+     *
+     * @return the API access parameters.
+     */
     abstract String getApiAccessParams();
 
+    /**
+     * Method to get the access token.
+     *
+     * @return the access token.
+     */
     public String getAccessToken() {
         return accessToken;
     }
 
+    /**
+     * Method to get the access code.
+     *
+     * @return the access code.
+     */
     public String getAccessCode() {
         return accessCode;
     }
 
+    /**
+     * Private method to get the account information.
+     *
+     * @return the account information
+     */
     private String doGetAccountInfo() {
         try {
             HttpURLConnection connection2;
@@ -177,11 +336,13 @@ public abstract class OAuthAuthenticator {
                 if(response2 != null) {
                     return response2.toString();
                 }
-            } else {
+            }
+            else {
                 Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
                 logger.log(Level.SEVERE, "Error retrieving api data!: {}", responseCode2);
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
             logger.log(Level.SEVERE, "####### ERROR GETTING ACCOUNT INFO ##############");
@@ -189,7 +350,15 @@ public abstract class OAuthAuthenticator {
         return null;
     }
 
+    /**
+     * Returns the result of the access token request.
+     *
+     * @return The result of the access token request.
+     *
+     * @throws JSONException If there is a problem with the JSON data.
+     */
     private String doGetAccessTokenRequest() throws JSONException {
+        String result;
         try {
             URL url = new URL(getApiAccessUrl());
             String urlParams = getApiAccessParams();
@@ -229,14 +398,23 @@ public abstract class OAuthAuthenticator {
             }
 
             JSONObject json = new JSONObject(fullResponse);
-            return json.getString("access_token");
-        } catch (IOException e) {
+            result = json.getString("access_token");
+            return result;
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
         return null;
     }
 
+    /**
+     * Returns the response from the connection.
+     *
+     * @param connection The HTTP URL connection.
+     *
+     * @return The response from the connection.
+     */
     private StringBuilder getResponse(HttpURLConnection connection) {
         StringBuilder response = null;
         try {
@@ -250,11 +428,25 @@ public abstract class OAuthAuthenticator {
             }
             in.close();
             connection.disconnect();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
         return response;
+    }
+
+    /**
+     * Callback method that is called when the OAuth
+     * authentication process is completed.
+     *
+     * @param authenticator The OAuth authenticator that
+     *                      completed the authentication process.
+     */
+    @Override
+    public void oAuthCallback(OAuthAuthenticator authenticator) {
+        String accessToken = authenticator.getAccessToken();
+        this.setTokenCache(accessToken);
     }
 }
 

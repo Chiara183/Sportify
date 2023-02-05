@@ -47,6 +47,7 @@ public class OpenStreetMapUtils {
      *
      * @param url the url to try to
      *            connect to
+     *
      * @return The answer to the connection
      * test
      */
@@ -90,6 +91,7 @@ public class OpenStreetMapUtils {
      *
      * @param address the address of which to retrieve
      *                the coordinates
+     *
      * @return returns a Map of two values which are
      * longitude and latitude of the requested address
      */
@@ -130,7 +132,8 @@ public class OpenStreetMapUtils {
         JSONObject jsonObject;
         Object obj = JSONValue.parse(queryResult);
 
-        if (obj instanceof JSONArray array && !array.isEmpty()) {
+        if (obj instanceof JSONArray array &&
+                !array.isEmpty()) {
             jsonObject = (JSONObject) array.get(0);
             lon = (String) jsonObject.get("lon");
             lonD = Double.parseDouble(lon);
@@ -149,6 +152,7 @@ public class OpenStreetMapUtils {
      *                   measuring the distance
      * @param endpoint The coordinate to arrive at to calculate
      *                how far it is from the first
+     *
      * @return The distance between the two coordinates
      */
     public Double getDistance (Coordinate startPoint, Coordinate endpoint){

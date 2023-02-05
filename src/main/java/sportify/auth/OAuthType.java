@@ -1,5 +1,19 @@
 package sportify.auth;
 
+/**
+ * Enum class to represent the different
+ * types of OAuth authentication.
+ */
 public enum OAuthType {
-    FACEBOOK, GOOGLE
+    /**
+     * Enum constant to represent
+     * Facebook OAuth authentication.
+     */
+    FACEBOOK,
+
+    /**
+     * Enum constant to represent
+     * Google OAuth authentication.
+     */
+    GOOGLE
 }

@@ -16,9 +16,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import sportify.errorlogic.DAOException;
+import sportify.user.User;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -31,7 +34,6 @@ public class GymInfoController extends Controller implements Observer {
 
     private static final String SELECT = "SELECT * ";
     private static final String FONT = "-fx-font-weight: bold;";
-    private static final Logger LOGGER = Logger.getLogger(GymInfoController.class.getName());
 
     /** The name of the gym*/
     private String gym;
@@ -45,76 +47,138 @@ public class GymInfoController extends Controller implements Observer {
 
     /* Method that set up the gymEditController*/
     private void setReview(){
-        if(this.user != null){
-            if(Objects.equals(this.user.getRole(), "user")){
+        User user = getUser();
+        String role;
+        String gymName;
+        if(getUser() != null){
+            role = user.getRole();
+            if(Objects.equals(role, "user")){
                 graphicController.reviewPaneIsVisible(true);
-            } else graphicController.reviewPaneIsVisible(!Objects.equals(this.user.getGymName(), this.gym));
+            }
+            else {
+                gymName = user.getGymName();
+                graphicController.reviewPaneIsVisible(!Objects.equals(gymName, this.gym));
+            }
         } else {
             graphicController.reviewPaneIsVisible(false);
         }
     }
     private void setCourse(){
-        if(this.user != null){
-            if(Objects.equals(this.user.getRole(), "user")){
+        User user = getUser();
+        String role;
+        String gymName;
+        if(getUser() != null){
+            role = user.getRole();
+            if(Objects.equals(role, "user")){
                 graphicController.coursePaneIsVisible(false);
-            } else graphicController.coursePaneIsVisible(Objects.equals(this.user.getGymName(), this.gym));
+            }
+            else {
+                gymName = user.getGymName();
+                graphicController.coursePaneIsVisible(Objects.equals(gymName, this.gym));
+            }
         } else {
             graphicController.coursePaneIsVisible(false);
         }
     }
     private void settingPage(){
         this.user = this.menu.getUser();
-        Runnable task = () -> Platform.runLater(() -> {
+        Runnable task = () -> Platform.runLater(
+                () -> {
             setReview();
             setCourse();
-        });
+        }
+        );
         Task<Void> task1 = createTask(task);
-        task1.setOnRunning(e -> this.mainApp.getPrimaryPane().setCursor(Cursor.WAIT));
-        task1.setOnSucceeded(e -> this.mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT));
-        task1.setOnFailed(e -> this.mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT));
+        task1.setOnRunning(e ->
+                this.mainApp.getPrimaryPane().setCursor(Cursor.WAIT)
+        );
+        task1.setOnSucceeded(e ->
+                this.mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT)
+        );
+        task1.setOnFailed(e ->
+                this.mainApp.getPrimaryPane().setCursor(Cursor.DEFAULT)
+        );
         new Thread(task1).start();
     }
+
+    public String getGym() {
+        return gym;
+    }
+
     private ObservableList<String> getSport(){
         assert this.mainApp != null;
+        String query = SELECT +
+                "FROM sport ";
         DAO objDAO = this.mainApp.getDAO();
-        List<String> list = objDAO.checkData(
-                SELECT +
-                        "FROM sport ", "name");
-        return FXCollections.observableArrayList(list);
+        ObservableList<String> result = null;
+        try {
+            List<String> list = objDAO.checkData(query, "name");
+            result = FXCollections.observableArrayList(list);
+        }
+        catch(DAOException e){
+            Logger logger = Logger.getLogger(GymInfoController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        return result;
     }
 
     /** Cancel a review of gym*/
     private void cancelReview(MouseEvent e){
         Label event = (Label) e.getSource();
-        DAO objDAO = this.mainApp.getDAO();
-        objDAO.updateDB("DELETE FROM `review` WHERE `review`.`writer` = '" +
-                event.getEllipsisString().split(";")[0] +
+        String query00 = event.getEllipsisString();
+        String[] query0 = query00.split(";");
+        String query1 = query0[0];
+        String query2 = query0[1];
+        String query = "DELETE FROM `review` " +
+                "WHERE `review`.`writer` = '" +
+                 query1+
                 "' AND `review`.`gym` = '" +
-                this.gym +
+                getGym() +
                 "' AND `review`.`timestamp` = '" +
-                event.getEllipsisString().split(";")[1] +
-                "'");
-        loadingGymName(this.gym);
+                query2+
+                "'";
+        DAO objDAO = this.mainApp.getDAO();
+        try {
+            objDAO.updateDB(query);
+        }
+        catch(DAOException ex){
+            Logger logger = Logger.getLogger(GymInfoController.class.getName());
+            logger.log(Level.SEVERE, ex.getMessage());
+        }
+        loadingGymName(getGym());
     }
 
     /** Cancel a course of gym*/
     private void cancelCourse(MouseEvent e){
         Label event = (Label) e.getSource();
-        DAO objDAO = this.mainApp.getDAO();
-        objDAO.updateDB("DELETE FROM `course` WHERE `course`.`sport` = '" +
-                event.getEllipsisString().split(";")[0] +
+        String query00 = event.getEllipsisString();
+        String[] query0 = query00.split(";");
+        String query1 = query0[0];
+        String query2 = query0[1];
+        String query = "DELETE FROM `course`" +
+                " WHERE `course`.`sport` = '" +
+                query1 +
                 "' AND `course`.`gym` = '" +
-                this.gym +
+                getGym() +
                 "' AND `course`.`time` = '" +
-                event.getEllipsisString().split(";")[1] +
-                "'");
+                query2 +
+                "'";
+        DAO objDAO = this.mainApp.getDAO();
+        try {
+            objDAO.updateDB(query);
+        }
+        catch(DAOException ex){
+            Logger logger = Logger.getLogger(GymInfoController.class.getName());
+            logger.log(Level.SEVERE, ex.getMessage());
+        }
         loadingGymName(this.gym);
     }
 
     /** Share a review of gym*/
     public void shareReview(String gym, StringBuilder review){
         String str = gym + ": " + review;
-        LOGGER.log(Level.INFO, str);
+        Logger logger = Logger.getLogger(GymInfoController.class.getName());
+        logger.log(Level.INFO, str);
         String[] reviewList = review.toString().split("'");
         review = new StringBuilder();
         int i = 0;
@@ -128,20 +192,29 @@ public class GymInfoController extends Controller implements Observer {
         String user = this.user.getUserName();
         if(!review.toString().equals("")) {
             DAO objDAO = this.mainApp.getDAO();
-            String query = "INSERT INTO `review` (`gym`, `review`, `writer`, `timestamp`) " +
+            String query = "INSERT INTO `review` " +
+                    "(`gym`, `review`, `writer`, " +
+                    "`timestamp`) " +
                     "VALUES ('"
                     + gym + "', '"
                     + review + "', '"
                     + user + "', " +
                     "CURRENT_TIMESTAMP);";
-            objDAO.updateDB(query);
-        } else {
+            try {
+                objDAO.updateDB(query);
+            }
+            catch(DAOException e){
+                logger.log(Level.SEVERE, e.getMessage());
+            }
+        }
+        else {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Review is empty.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         if(mainApp.isNotMobile()) {
             loadingGymName(gym);
-        } else {
+        }
+        else {
             settingPhoneReview(gym);
         }
     }
@@ -149,18 +222,27 @@ public class GymInfoController extends Controller implements Observer {
     /** Add a course of gym*/
     public void addCourse(String sport, String gym, String time){
         String observerState = graphicController.getState();
+        String query = "INSERT INTO `course`" +
+                " (`sport`, `gym`," +
+                " `time`) VALUES ('" +
+                sport + "', '" +
+                gym + "', '" +
+                time + "');";
         if(observerState.equals("Unchanged")){
             return;
         }
         if(!sport.equals("select sport")) {
             DAO objDAO = this.mainApp.getDAO();
-            objDAO.updateDB(
-                    "INSERT INTO `course` (`sport`, `gym`, `time`) VALUES ('" +
-                            sport + "', '" +
-                            gym + "', '" +
-                            time + "');");
+            try {
+                objDAO.updateDB(query);
+            }
+            catch(DAOException e){
+                Logger logger = Logger.getLogger(GymInfoController.class.getName());
+                logger.log(Level.SEVERE, e.getMessage());
+            }
             loadingGymName(gym);
-        } else {
+        }
+        else {
             JFrame jFrame = new JFrame();
             JOptionPane.showMessageDialog(jFrame, "Insert all value.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -168,7 +250,11 @@ public class GymInfoController extends Controller implements Observer {
 
     /** initializes the event handlers.*/
     private void setupEventHandlers() {
-        this.menu.getSignOut().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> settingPage());
+        this.menu.getSignOut()
+                .addEventHandler(
+                        MouseEvent.MOUSE_CLICKED,
+                        event -> settingPage()
+                );
     }
 
     /** It's called to create new task*/
@@ -185,6 +271,9 @@ public class GymInfoController extends Controller implements Observer {
     /** Load the review of gym*/
     private void loadReview(List<String> writer, List<String> time, List<String> review){
         graphicController.cleanReview();
+        User user = getUser();
+        String role = user.getRole();
+        String gymName = user.getGymName();
         int i = 0;
         while (i != review.size()) {
             Label labelTitle = new Label(writer.get(i) + " " + time.get(i));
@@ -193,7 +282,9 @@ public class GymInfoController extends Controller implements Observer {
             Label labelReview = new Label(review.get(i));
             Label blankSpace = new Label();
             VBox vbox = new VBox(labelTitle, labelReview, blankSpace);
-            if (this.user != null && Objects.equals(this.user.getRole(), "gym") && Objects.equals(this.user.getGymName(), this.gym)) {
+            if (getUser() != null &&
+                    Objects.equals(role, "gym") &&
+                    Objects.equals(gymName, getGym())) {
                 Label cancel = new Label("⮿");
                 cancel.setStyle("-fx-text-fill: red; ");
                 cancel.setEllipsisString(string);
@@ -202,7 +293,8 @@ public class GymInfoController extends Controller implements Observer {
                 cancel.addEventHandler(MouseEvent.MOUSE_EXITED, e -> cancel.setCursor(Cursor.DEFAULT));
                 HBox hbox = new HBox(vbox, new Label(), new Label(), new Label(), new Label(), cancel);
                 graphicController.setReview(hbox);
-            } else {
+            }
+            else {
                 graphicController.setReview(vbox);
             }
             i++;
@@ -212,12 +304,22 @@ public class GymInfoController extends Controller implements Observer {
     /** Download the review*/
     private void downloadReview(String gym){
         DAO dao = mainApp.getDAO();
+        List<String> review = null;
+        List<String> writer = null;
+        List<String> time = null;
         String query = SELECT +
                 "FROM review " +
                 "WHERE review.gym = \""+ gym +"\"";
-        List<String> review = dao.checkData(query, "review");
-        List<String> writer = dao.checkData(query, "writer");
-        List<String> time = dao.checkData(query, "timestamp");
+        try {
+            review = dao.checkData(query, "review");
+            writer = dao.checkData(query, "writer");
+            time = dao.checkData(query, "timestamp");
+        }
+        catch(DAOException e){
+            Logger logger = Logger.getLogger(GymInfoController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        assert review != null;
         loadReview(writer, time, review);
         if(graphicController.getSizeReview()<1) {
             Label labelNotFound = new Label("There are no reviews");
@@ -252,11 +354,25 @@ public class GymInfoController extends Controller implements Observer {
         DAO dao = mainApp.getDAO();
         String query = SELECT +
                 "FROM course " +
-                "WHERE course.gym = \""+ this.gym +"\"";
-        List<String> sportList = dao.checkData(query, "sport");
-        List<String> time = dao.checkData(query, "time");
+                "WHERE course.gym =" +
+                " \""+ this.gym +"\"";
+        List<String> sportList = null;
+        List<String> time = null;
+        try {
+            sportList = dao.checkData(query, "sport");
+            time = dao.checkData(query, "time");
+        }
+        catch(DAOException e){
+            Logger logger = Logger.getLogger(GymInfoController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
         int i = 0;
-        while(i != sportList.size()){
+        while(true){
+            assert sportList != null;
+            if (i == sportList.size()){
+                break;
+            }
+            assert time != null;
             loadCourse(sportList.get(i), time.get(i));
             i++;
         }
@@ -270,26 +386,40 @@ public class GymInfoController extends Controller implements Observer {
     /** Set course*/
     private void setInfoCourse(){
         // set ComboBox
-        Runnable task = () -> Platform.runLater(() -> {
+        Runnable task = () -> Platform.runLater(() ->
+        {
             this.sport = getSport();
             graphicController.setComboSport(this.sport);
-        });
+        }
+        );
         Task<Void> task0 = createTask(task);
-        task0.setOnRunning(e -> graphicController.comboSportSetCursor(Cursor.WAIT));
-        task0.setOnSucceeded(e -> graphicController.comboSportSetCursor(Cursor.DEFAULT));
-        task0.setOnFailed(e -> graphicController.comboSportSetCursor(Cursor.DEFAULT));
+        task0.setOnRunning(e ->
+                graphicController.comboSportSetCursor(Cursor.WAIT)
+        );
+        task0.setOnSucceeded(e ->
+                graphicController.comboSportSetCursor(Cursor.DEFAULT)
+        );
+        task0.setOnFailed(e ->
+                graphicController.comboSportSetCursor(Cursor.DEFAULT)
+        );
 
         // Set course
         Runnable task1 = () -> Platform.runLater(this::downloadCourse);
         Task<Void> task2 = createTask(task1);
-        task2.setOnRunning(e -> graphicController.courseSetCursor(Cursor.WAIT));
-        task2.setOnSucceeded(e -> graphicController.courseSetCursor(Cursor.DEFAULT));
-        task2.setOnFailed(e -> {
+        task2.setOnRunning(e ->
+                graphicController.courseSetCursor(Cursor.WAIT)
+        );
+        task2.setOnSucceeded(e ->
+                graphicController.courseSetCursor(Cursor.DEFAULT)
+        );
+        task2.setOnFailed(e ->
+        {
             graphicController.courseSetCursor(Cursor.DEFAULT);
             Label label = new Label("There are no course");
             label.setStyle(FONT);
             graphicController.setCourse(label);
-        });
+        }
+        );
 
         // Run Thread and set DEFAULT review and course
         new Thread(task0).start();
@@ -320,25 +450,40 @@ public class GymInfoController extends Controller implements Observer {
         Runnable task1 = () -> Platform.runLater(() -> {
 
                     DAO objDAO = this.mainApp.getDAO();
-                    List<String> list = objDAO.checkData(
-                            SELECT +
-                                    "FROM gym " +
-                                    "WHERE gym.name = \"" + name + "\"", "phone");
-                    String rs = list.get(0);
-                    DAO objDAO1 = this.mainApp.getDAO();
-                    List<String> list1 = objDAO1.checkData(
-                            SELECT +
-                                    "FROM gym " +
-                                    "WHERE gym.name = \"" + name + "\"", "address");
-                    String rs1 = list1.get(0);
+                    String rs = null;
+                    List<String> list1 = null;
+                    String query = SELECT +
+                            "FROM gym " +
+                            "WHERE gym.name = \"" + name + "\"";
+                    try {
+                        List<String> list = objDAO.checkData(query, "phone");
+                        rs = list.get(0);
+                        DAO objDAO1 = this.mainApp.getDAO();
+                        query = SELECT +
+                                "FROM gym " +
+                                "WHERE gym.name = \"" + name + "\"";
+                        list1 = objDAO1.checkData(query, "address");
+                    }
+                    catch(DAOException e){
+                        Logger logger = Logger.getLogger(GymInfoController.class.getName());
+                        logger.log(Level.SEVERE, e.getMessage());
+                    }
+            assert list1 != null;
+            String rs1 = list1.get(0);
                     graphicController.setGymDescription(
                             "ADDRESS: " + rs1 +
                                     "\n\nTELEPHONE: " + rs);
                 });
         Task<Void> task4 = createTask(task1);
-        task4.setOnRunning(e -> graphicController.gymDescriptionSetCursor(Cursor.WAIT));
-        task4.setOnSucceeded(e -> graphicController.gymDescriptionSetCursor(Cursor.DEFAULT));
-        task4.setOnFailed(e -> graphicController.gymDescriptionSetCursor(Cursor.DEFAULT));
+        task4.setOnRunning(e ->
+                graphicController.gymDescriptionSetCursor(Cursor.WAIT)
+        );
+        task4.setOnSucceeded(e ->
+                graphicController.gymDescriptionSetCursor(Cursor.DEFAULT)
+        );
+        task4.setOnFailed(e ->
+                graphicController.gymDescriptionSetCursor(Cursor.DEFAULT)
+        );
 
         if(mainApp.isNotMobile()) {
             // Handlers
@@ -365,12 +510,17 @@ public class GymInfoController extends Controller implements Observer {
             FXMLLoader loader = new FXMLLoader();
             Pane paneTopScreen = null;
             MenuGraphicController graphicMenuController = null;
+            URL url;
             if(mainApp.isNotMobile()) {
-                loader.setLocation(this.mainApp.getClass().getResource("DesktopView/GymInfo.fxml"));
-            } else {
-                loader.setLocation(this.mainApp.getClass().getResource("SmartphoneView/GymInfoPhone1.fxml"));
+                url = this.mainApp.getClass().getResource("DesktopView/GymInfo.fxml");
+                loader.setLocation(url);
+            }
+            else {
+                url = this.mainApp.getClass().getResource("SmartphoneView/GymInfoPhone1.fxml");
+                loader.setLocation(url);
                 FXMLLoader loaderTopScreen = new FXMLLoader();
-                loaderTopScreen.setLocation(this.mainApp.getClass().getResource("SmartphoneView/topScreen1.fxml"));
+                url = this.mainApp.getClass().getResource("SmartphoneView/topScreen1.fxml");
+                loaderTopScreen.setLocation(url);
                 paneTopScreen = loaderTopScreen.load();
                 graphicMenuController = loaderTopScreen.getController();
             }
@@ -395,8 +545,11 @@ public class GymInfoController extends Controller implements Observer {
                 graphicController.getComboGymInfo().getItems().add("Course");
                 graphicController.getComboGymInfo().getItems().add("Review");
             }
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());        }
+        }
+        catch (IOException e) {
+            Logger logger = Logger.getLogger(GymInfoController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
     }
 
     /** Is called to set graphicController*/
@@ -413,7 +566,8 @@ public class GymInfoController extends Controller implements Observer {
         try {
             paneTopScreen = loaderTopScreen.load();
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            Logger logger = Logger.getLogger(GymInfoController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
         MenuGraphicController graphicMenuController = loaderTopScreen.getController();
         graphicMenuController.setController(this.menu);

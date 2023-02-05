@@ -2,6 +2,10 @@ package sportify.user;
 
 import sportify.DAO;
 import javafx.beans.property.SimpleStringProperty;
+import sportify.errorlogic.DAOException;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The class that represents
@@ -12,14 +16,15 @@ public class GymUser extends User {
     private static final String WHERE = "' WHERE `gym`.`owner` = '";
 
     /**
-     * The constructor.
+     * Constructs a new GymUser instance.
      */
     public GymUser() {
         this(null, null);
     }
 
     /**
-     * The constructor.
+     * Constructs a new GymUser instance
+     * with the given username and password.
      *
      * @param userName the username of the user
      * @param password the password of the user
@@ -42,10 +47,17 @@ public class GymUser extends User {
     public void setGymName(String name) {
         this.gymName.set(name);
         DAO objDAO = mainApp.getDAO();
-        String query = "UPDATE `gym` SET `name` = '"
+        String query = "UPDATE `gym`" +
+                " SET `name` = '"
                 + name + WHERE
-                + this.userName.getValue() +"'";
-        objDAO.updateDB(query);
+                + getUserName() +"'";
+        try {
+            objDAO.updateDB(query);
+        }
+        catch (DAOException e){
+            Logger logger = Logger.getLogger(GymUser.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
     }
 
     /**
@@ -58,8 +70,14 @@ public class GymUser extends User {
         DAO objDAO = mainApp.getDAO();
         String query ="UPDATE `gym` SET `address` = '"
                 + address + WHERE
-                + this.userName.getValue() +"'";
-        objDAO.updateDB(query);
+                + getUserName() +"'";
+        try {
+            objDAO.updateDB(query);
+        }
+        catch (DAOException e){
+            Logger logger = Logger.getLogger(GymUser.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
     }
 
     /**
@@ -72,8 +90,14 @@ public class GymUser extends User {
         DAO objDAO = mainApp.getDAO();
         String query = "UPDATE `gym` SET `latitude` = '"
                 + latitude + WHERE
-                + this.userName.getValue() +"'";
-        objDAO.updateDB(query);
+                + getUserName() +"'";
+        try {
+            objDAO.updateDB(query);
+        }
+        catch (DAOException e){
+            Logger logger = Logger.getLogger(GymUser.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
     }
 
     /**
@@ -84,10 +108,17 @@ public class GymUser extends User {
     public void setLongitude(String longitude) {
         this.longitude.set(longitude);
         DAO objDAO = mainApp.getDAO();
-        objDAO.updateDB(
-                "UPDATE `gym` SET `longitude` = '"
-                        + longitude + WHERE
-                        + this.userName.getValue() +"'");
+        String query = "UPDATE `gym` " +
+                "SET `longitude` = '"
+                + longitude + WHERE
+                + getUserName() + "'";
+        try {
+            objDAO.updateDB(query);
+        }
+        catch (DAOException e){
+            Logger logger = Logger.getLogger(GymUser.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
     }
 
     /**
@@ -100,7 +131,13 @@ public class GymUser extends User {
         DAO objDAO = mainApp.getDAO();
         String query = "UPDATE `gym` SET `phone` = '"
                 + phone + WHERE
-                + this.userName.getValue() +"'";
-        objDAO.updateDB(query);
+                + getUserName() +"'";
+        try {
+            objDAO.updateDB(query);
+        }
+        catch (DAOException e){
+            Logger logger = Logger.getLogger(GymUser.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
     }
 }

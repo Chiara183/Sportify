@@ -3,7 +3,9 @@ package sportify;
 import sportify.controller.graphic.LoginGraphicController;
 
 /**
- * This class implements the Adapter pattern on the login
+ * Class that implements the Login interface
+ * and acts as an adapter for the
+ * LoginGraphicController class.
  */
 public class AdapterLogin implements Login{
 
@@ -11,62 +13,59 @@ public class AdapterLogin implements Login{
     private boolean google;
 
     /**
-     * This method sets the value of the
-     * controller field with the value given
-     * as the argument.
+     * Sets the LoginGraphicController object.
      *
-     * @param controller the value to be set
+     * @param controller The LoginGraphicController
+     *                  object to be set.
      */
     public void setController(LoginGraphicController controller) {
         this.controller = controller;
     }
 
     /**
-     * This method sets the value of the
-     * Google field with the value given
-     * as argument.
+     * Sets the value for the 'google' variable.
      *
-     * @param google the value to be set
+     * @param google A boolean value to set
+     *              whether login will be done
+     *              through Google or not.
      */
     public void setGoogle(boolean google) {
         this.google = google;
     }
 
     /**
-     * This method returns the value of
-     * the controller field.
+     * Gets the LoginGraphicController object.
      *
-     * @return the graphic controller
+     * @return The LoginGraphicController object.
      */
     public LoginGraphicController getController() {
         return controller;
     }
 
     /**
-     * This method returns the value of
-     * the Google field.
+     * Gets the value of the 'google' variable.
      *
-     * @return if the user as chosen google login
+     * @return A boolean value indicating
+     * whether login will be done through
+     * Google or not.
      */
     public boolean isGoogle() {
         return google;
     }
 
     /**
-     * This is a default constructor for
-     * the AdapterLogin class.
+     * The constructor.
      */
     public AdapterLogin(){}
 
     /**
-     * This is a constructor that takes two arguments:
-     * controller and google. The constructor calls the
-     * setGoogle and setController methods to set the
-     * values of the Google and controller fields.
+     * Parameterized constructor.
      *
-     * @param controller the controller to set.
-     * @param google the value to set if user chose
-     *               google login
+     * @param controller The LoginGraphicController
+     *                  object to be set.
+     * @param google A boolean value to set whether
+     *              login will be done through Google
+     *              or not.
      */
     public AdapterLogin(LoginGraphicController controller, boolean google){
         setGoogle(google);
@@ -74,13 +73,13 @@ public class AdapterLogin implements Login{
     }
 
     /**
-     * This method implements the Login interface
-     * and represents the action to be performed
-     * during login. If the value of the Google
-     * field is true, the method calls the loginWithGoogle
-     * method on the object returned by getController.
-     * Otherwise, it calls the submitActionLogin method
-     * on the object returned by getController.
+     * Override of the doLogin method defined
+     * in the Login interface.
+     * Calls either the loginWithGoogle()
+     * method or the submitActionLogin()
+     * method of the LoginGraphicController
+     * object, depending on the value of the
+     * 'google' variable.
      */
     @Override
     public void doLogin() {

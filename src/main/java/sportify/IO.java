@@ -1,5 +1,7 @@
 package sportify;
 
+import sportify.errorlogic.DAOException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,11 +12,19 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The IO class handles the input and output
+ * operations for the MainApp to the DB.
+ */
 public class IO {
     /**
      * Reference to MainApp.
      */
     private MainApp mainApp;
+
+    /**
+     * Constants for the different fields in the application.
+     */
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
     private static final String FIRSTNAME = "first_name";
@@ -29,18 +39,18 @@ public class IO {
 
 
     /**
-     * It's called to give a reference to MainApp.
+     * Sets a reference to the MainApp.
      *
-     * @param mainApp the value to be set
+     * @param mainApp the reference to the MainApp
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
     /**
-     * It's called to write user in the DB.
+     * Writes the user data to the database.
      *
-     * @param map the value to be written in DB
+     * @param map the map containing the user data to be written
      */
     public void write(Map<String, String> map) {
         DAO objDAO = mainApp.getDAO();
@@ -51,29 +61,35 @@ public class IO {
         String email = map.get(EMAIL);
         String birthday = map.get(BIRTHDAY);
         String ruolo = map.get(RUOLO);
-        objDAO.updateDB(
-                "INSERT INTO `user` (`username`, `email`, `password`, `first_name`, `last_name`, `ruolo`, `birthday`) VALUES ('"
-                        + username +"', '"
-                        + email + "', '"
-                        + password + "', '"
-                        + firstName + "', '"
-                        + lastName + "', '"
-                        + ruolo + "', '"
-                        + birthday + "')");
-        if (Objects.equals(ruolo, "gym")) {
-            String gymName = map.get("gymName");
-            String address = map.get(ADDRESS);
-            String latitude = map.get(LATITUDE);
-            String longitude = map.get(LONGITUDE);
-            String phone = map.get(PHONE);
-            objDAO.updateDB(
-                    "INSERT INTO `gym` (`name`, `owner`, `address`, `latitude`, `longitude`, `phone`) VALUES ('"
-                            + gymName +"', '"
-                            + username + "', '"
-                            + address + "', '"
-                            + latitude + "', '"
-                            + longitude + "', '"
-                            + phone + "')");
+        String query = "INSERT INTO `user` (`username`, `email`, `password`, `first_name`, `last_name`, `ruolo`, `birthday`) VALUES ('"
+                + username + "', '"
+                + email + "', '"
+                + password + "', '"
+                + firstName + "', '"
+                + lastName + "', '"
+                + ruolo + "', '"
+                + birthday + "')";
+        try {
+            objDAO.updateDB(query);
+            if (Objects.equals(ruolo, "gym")) {
+                String gymName = map.get("gymName");
+                String address = map.get(ADDRESS);
+                String latitude = map.get(LATITUDE);
+                String longitude = map.get(LONGITUDE);
+                String phone = map.get(PHONE);
+                query = "INSERT INTO `gym` (`name`, `owner`, `address`, `latitude`, `longitude`, `phone`) VALUES ('"
+                        + gymName + "', '"
+                        + username + "', '"
+                        + address + "', '"
+                        + latitude + "', '"
+                        + longitude + "', '"
+                        + phone + "')";
+                objDAO.updateDB(query);
+            }
+        }
+        catch (DAOException e){
+            Logger logger = Logger.getLogger(IO.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -88,7 +104,15 @@ public class IO {
         ResultSet rs;
         String className = IO.class.getName();
         String query;
-        Connection connection = DBConnection.getSingletonInstance().getConnection();
+        DBConnection db = DBConnection.getSingletonInstance();
+        Connection connection = null;
+        try{
+           connection = db.getConnection();
+        }
+        catch (DAOException e){
+            Logger logger = Logger.getLogger(IO.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
         try{
             assert connection != null;
             query = "SELECT * FROM user LEFT JOIN gym ON gym.owner = user.username";

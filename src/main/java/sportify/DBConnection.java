@@ -1,6 +1,7 @@
 package sportify;
 
 import javafx.scene.control.Alert;
+import sportify.errorlogic.DAOException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,19 +16,35 @@ import java.util.logging.Logger;
  */
 public class DBConnection {
 
+    /**
+     * Error message string constant
+     */
     private static final String ERROR = "Error";
+
+    /**
+     * Error detected message string constant
+     */
     private static final String ERROR_DETECTED = "Error detected!";
+
+    /**
+     * Counter for number of connections made
+     */
     private int count = 0;
 
     /**
-     * The constructor.
+     * Singleton instance of this class
      */
-    private DBConnection(){}
-
     private static DBConnection instance = null;
 
     /**
-     * Implementing Singleton pattern
+     * Private constructor for Singleton pattern
+     */
+    private DBConnection(){}
+
+    /**
+     * Returns the singleton instance of the class
+     *
+     * @return The singleton instance of the class
      */
     public static DBConnection getSingletonInstance() {
         if (DBConnection.instance == null)
@@ -36,11 +53,14 @@ public class DBConnection {
     }
 
     /**
-     * It's called to create a new connection to the DB.
+     * Creates a new connection to the database.
      *
-     * @return null if it gives an error
+     * @return The new database connection,
+     * or null if an error occurs
+     *
+     * @throws DAOException If there is a problem with the connection.
      */
-    public Connection getConnection() {
+    public Connection getConnection() throws DAOException {
         Connection connection = null;
         String className = DBConnection.class.getName();
         String error;
@@ -99,6 +119,7 @@ public class DBConnection {
                 Logger logger = Logger.getLogger(className);
                 logger.log(Level.SEVERE, e.getMessage());
             }
+            throw new DAOException("Connection error: " + e.getMessage());
         }
         catch (IOException e) {
             Logger logger = Logger.getLogger(className);

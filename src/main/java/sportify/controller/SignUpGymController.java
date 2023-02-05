@@ -9,6 +9,7 @@ import sportify.controller.graphic.MenuGraphicController;
 import sportify.controller.graphic.SignUpGymGraphicController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import sportify.errorlogic.DAOException;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -82,12 +83,21 @@ public class SignUpGymController extends AccessController {
         Map<String, String> gymAccount;
         PreparedStatement ps = null;
         ResultSet rs;
-        Connection connection = DBConnection.getSingletonInstance().getConnection();
+        DBConnection db = DBConnection.getSingletonInstance();
+        Connection connection = null;
+        try {
+            connection = db.getConnection();
+        }
+        catch (DAOException e){
+            Logger logger = Logger.getLogger(SignUpGymController.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
         try{
             assert connection != null;
             ps = connection.prepareStatement("SELECT * " +
                     "FROM user " +
-                    "LEFT JOIN gym ON gym.owner = user.username " +
+                    "LEFT JOIN gym " +
+                    "ON gym.owner = user.username " +
                     "WHERE user.ruolo = \"gym\"");
             rs = ps.executeQuery();
         gymAccount = objIO.getInfoUser(rs);

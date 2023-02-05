@@ -9,76 +9,99 @@ import javax.swing.*;
 import java.util.Map;
 
 /**
- * This class implements the Adapter pattern on the SignUp
+ * The `Adapter` class implements the `SignUp` interface.
+ * It provides the functionality to handle the user sign-up
+ * process, depending on the user type selected by the user.
  */
 public class Adapter implements SignUp{
 
+    /**
+     * A private final instance of the `SignUpController` class.
+     */
     private final SignUpController userController;
+
+    /**
+     * A private final instance of the `SignUpGymController` class.
+     */
     private final SignUpGymController gymController;
+
+    /**
+     * A private instance of the `SignUpGraphicController` class.
+     */
     private SignUpGraphicController userGraphicController;
+
+    /**
+     * A private instance of the `Submit` class.
+     */
     private Submit submit;
 
     /**
-     * This method returns the user controller
+     * A getter method that returns the user controller.
      *
-     * @return the controller
+     * @return An instance of the `SignUpController` class.
      */
     public SignUpController getUserController() {
         return userController;
     }
 
     /**
-     * This method return the graphic controller
+     * A getter method that returns the graphic
+     * controller for the user.
      *
-     * @return the user graphic controller
+     * @return An instance of the
+     * `SignUpGraphicController` class.
      */
     public SignUpGraphicController getUserGraphicController() {
         return userGraphicController;
     }
 
     /**
-     * This method return the gym controller
+     * A getter method that returns the gym controller.
      *
-     * @return the gym controller
+     * @return An instance of the `SignUpGymController` class.
      */
     public SignUpGymController getGymController() {
         return gymController;
     }
 
     /**
-     * This method return the gym graphic controller
+     * A getter method that returns the 'submit' instance.
      *
-     * @return the gym graphic controller
+     * @return An instance of the `Submit` class.
      */
     public Submit getSubmit() {
         return submit;
     }
 
     /**
-     * This method allows to set submit value
+     * A setter method that sets the 'submit' instance.
      *
-     * @param submit the value to set
+     * @param submit An instance of the `Submit` class.
      */
     public void setSubmit(Submit submit) {
         this.submit = submit;
     }
 
     /**
-     * This method allows to set user
-     * graphic controller value
+     * A setter method that sets the graphic
+     * controller for the user.
      *
-     * @param userGraphicController the value
-     *                              to set
+     * @param userGraphicController An instance of the
+     *                              `SignUpGraphicController`
+     *                              class.
      */
     public void setUserGraphicController(SignUpGraphicController userGraphicController) {
         this.userGraphicController = userGraphicController;
     }
 
     /**
-     * This is a constructor of the class
+     * A constructor that takes in two parameters:
+     * a user controller and a gym controller.
      *
-     * @param user the user controller to set
-     * @param gym the gym controller to set
+     * @param user An instance of the
+     *             `SignUpController` class.
+     * @param gym An instance of the
+     *            `SignUpGymController` class.
      */
     public Adapter(SignUpController user, SignUpGymController gym){
         this.userController = user;
@@ -86,9 +109,11 @@ public class Adapter implements SignUp{
     }
 
     /**
-     * This is a constructor of the class
+     * A constructor that takes in one parameter:
+     * a user controller.
      *
-     * @param user the user controller to set
+     * @param user An instance of the
+     *            `SignUpController` class.
      */
     public Adapter(SignUpController user) {
         this.userController = user;
@@ -96,11 +121,15 @@ public class Adapter implements SignUp{
     }
 
     /**
-     * This is a constructor of the class
+     * A constructor that takes in three parameters:
+     * a user controller, a gym controller and a 'submit'
+     * instance.
      *
-     * @param user the user controller to set
-     * @param graphicController the gym controller to set
-     * @param submit the value of submit to set
+     * @param user An instance of the
+     *             `SignUpController` class.
+     * @param graphicController An instance of the
+     *             `SignUpGymController` class.
+     * @param submit An instance of the `Submit` class.
      */
     public Adapter(SignUpController user, SignUpGraphicController graphicController, Submit submit) {
         this.userController = user;

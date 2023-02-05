@@ -5,8 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Grants a number of useful
- * methods for the LocalDate object
+ * Utility class for handling dates.
  */
 public class DateUtil {
 
@@ -42,12 +41,14 @@ public class DateUtil {
     }
 
     /**
-     * Converts a String in the format of the defined
-     * DATE_PATTERN to a LocalDate object.
+     * Converts a string in the format of
+     * the defined DATE_PATTERN
+     * to a {@code LocalDate} object.
      *
      * @param dateString the string to parse
      *
-     * @return the local date parsed
+     * @return the local date parsed, or null
+     * if the string could not be parsed
      */
     public static LocalDate parse(String dateString) {
         LocalDate value;

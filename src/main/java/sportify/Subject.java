@@ -4,30 +4,42 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- * Class representing a subject object
- * that notifies registered observers
- * whenever its state changes.
+ * An abstract class representing a subject
+ * in the Observer pattern. A subject can
+ * have multiple observers, and notifies them
+ * when there is a change in its state. The
+ * observer pattern allows for loose coupling
+ * between the subject and the observers.
+ * This class provides methods for attaching
+ * and detaching observers, as well as a
+ * protected method for notifying observers
+ * of a change in the subject.
  */
 public abstract class Subject {
 
     /**
-     * List of registered observers.
+     *  A list of observers for this subject.
      */
     protected final List<Observer> observers;
+
+    /**
+     * A mutex used for synchronizing access to the list of observers.
+     */
     protected final Object mutex = new Object();
 
     /**
-     * The constructor method.
+     * Constructs a new subject with no observers.
      */
     protected Subject() {
         this((Observer) null);
     }
 
     /**
-     * The constructor method.
+     * Constructs a new subject with
+     * a single observer.
      *
-     * @param obs The first observer
-     *            of the subject
+     * @param obs The observer to
+     *            attach to this subject.
      */
     protected Subject(Observer obs) {
         this(new Vector<>());
@@ -36,20 +48,20 @@ public abstract class Subject {
     }
 
     /**
-     * The constructor method.
+     * Constructs a new subject with a
+     * list of observers.
      *
      * @param list The list of observers
-     *             to be added to the subject
+     *            to attach to this subject.
      */
     protected Subject(List<Observer> list) {
         this.observers = list;
     }
 
     /**
-     * Register a new observer to be notified
-     * whenever the subject's status changes.
+     * Attaches an observer to this subject.
      *
-     * @param obs new observer to register
+     * @param obs The observer to attach.
      */
     public void attach(Observer obs) {
         synchronized (mutex) {
@@ -58,10 +70,9 @@ public abstract class Subject {
     }
 
     /**
-     * Removes an observer from the list of
-     * registered observers.
+     * Detaches an observer from this subject.
      *
-     * @param obs observer to remove
+     * @param obs The observer to detach.
      */
     public void detach(Observer obs) {
         synchronized (mutex) {
@@ -70,8 +81,9 @@ public abstract class Subject {
     }
 
     /**
-     * Notifies registered observers of the
-     * change in the subject's status.
+     * Notifies observers of a change in the subject.
+     * The exact change being notified is defined by
+     * concrete subclasses of this class.
      */
     protected abstract void notifyAddCourse();
 }
