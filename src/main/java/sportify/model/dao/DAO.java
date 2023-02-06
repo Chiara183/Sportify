@@ -55,12 +55,14 @@ public class DAO implements DAOInterface{
             while(rs.next()){
                 result.add(rs.getString(column));
             }
-            if(!result.isEmpty() && result.get(0) == null){
+            if(!result.isEmpty() &&
+                    result.get(0) == null){
                 result.remove(0);
             }
         }
         catch (SQLException e) {
-            throw new DAOException("Check error: " + e.getMessage());
+            Logger logger = Logger.getLogger(DAO.class.getName());
+            logger.info(e.toString());
         }
         finally {
             try {
@@ -93,7 +95,8 @@ public class DAO implements DAOInterface{
             while(rs.next()){
                 result.add(rs);
             }
-            if(!result.isEmpty() && result.get(0) == null){
+            if(!result.isEmpty() &&
+                    result.get(0) == null){
                 result.remove(0);
             }
         }
