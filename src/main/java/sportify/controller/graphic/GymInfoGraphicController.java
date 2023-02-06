@@ -1,6 +1,6 @@
 package sportify.controller.graphic;
 
-import sportify.Subject;
+import sportify.pattern.Subject;
 import sportify.bean.GymInfoBean;
 import sportify.controller.Controller;
 import sportify.controller.ControllerType;

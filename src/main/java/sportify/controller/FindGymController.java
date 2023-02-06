@@ -9,34 +9,66 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * This class extends the {@link Controller}
+ * class and implements its own methods to handle
+ * the finding of gyms.
+ *
+ * @see Controller
+ */
 public class FindGymController extends Controller{
 
-    /** Reference to graphicController*/
+    /**
+     * Reference to the {@link FindGymPhoneGraphicController}
+     * object used to manage the graphical representation of the data.
+     */
     private FindGymPhoneGraphicController findGymGraphicController;
 
-    /** The constructor.*/
+    /**
+     * Constructor for the {@link FindGymController} class.
+     * This sets the type of the controller to
+     * {@link ControllerType#FIND_GYM}.
+     */
     public FindGymController() {
         this.type = ControllerType.FIND_GYM;
     }
 
-    /** Is called to set graphicController*/
+    /**
+     * Method used to set the {@link FindGymPhoneGraphicController} object for the class.
+     *
+     * @param graphicController The {@link FindGymPhoneGraphicController}
+     *                          object to be used by the class.
+     */
     public void setGraphicController(FindGymPhoneGraphicController graphicController) {
         this.findGymGraphicController = graphicController;
     }
 
-    /** Set the map*/
+    /**
+     * Method used to set the map for the class.
+     * It loads the map overview, sets it in the
+     * top of the root layout, and initializes the
+     * map and its controls.
+     *
+     * @param projection The {@link Projection}
+     *                   object to be used by the map.
+     */
     public void setProjection(Projection projection){
+        URL url;
         try {
             // Load find map overview.
             FXMLLoader loaderGym = new FXMLLoader();
             if(mainApp.isNotMobile()) {
-                loaderGym.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("DesktopView/Map.fxml")));
-            } else {
-                loaderGym.setLocation(MainApp.class.getResource("SmartphoneView/MapPhone.fxml"));
+                url = mainApp.getClass().getResource("DesktopView/Map.fxml");
+                loaderGym.setLocation(Objects.requireNonNull(url));
+            }
+            else {
+                url = MainApp.class.getResource("SmartphoneView/MapPhone.fxml");
+                loaderGym.setLocation(url);
             }
             AnchorPane paneMap = loaderGym.load();
 
@@ -56,13 +88,19 @@ public class FindGymController extends Controller{
             if(searchCache !=null){
                 graphicController.searchAction();
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(FindGymController.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
-    /** Is called to set graphicController*/
+    /**
+     * Sets the graphic controller for this class
+     *
+     * @param graphicController The graphic controller
+     *                          to set
+     */
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.findGymGraphicController = (FindGymPhoneGraphicController) graphicController;

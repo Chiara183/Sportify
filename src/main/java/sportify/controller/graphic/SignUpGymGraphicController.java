@@ -1,6 +1,6 @@
 package sportify.controller.graphic;
 
-import sportify.OpenStreetMapUtils;
+import sportify.util.OpenStreetMapUtils;
 import sportify.bean.SignUpBean;
 import sportify.controller.Controller;
 import sportify.controller.SignUpGymController;

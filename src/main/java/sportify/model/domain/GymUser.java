@@ -1,7 +1,7 @@
-package sportify.user;
+package sportify.model.domain;
 
 import javafx.beans.property.SimpleStringProperty;
-import sportify.DAO;
+import sportify.model.dao.DAO;
 import sportify.errorlogic.DAOException;
 
 import java.util.logging.Level;

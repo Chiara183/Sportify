@@ -1,8 +1,10 @@
-package sportify;
+package sportify.model.dao;
 
-import sportify.user.ClassicUser;
-import sportify.user.GymUser;
-import sportify.user.User;
+import sportify.util.DateUtil;
+import sportify.MainApp;
+import sportify.model.domain.ClassicUser;
+import sportify.model.domain.GymUser;
+import sportify.model.domain.User;
 
 import java.io.BufferedReader;
 import java.io.File;

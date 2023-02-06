@@ -1,7 +1,7 @@
 package sportify.controller;
 
-import sportify.DAO;
-import sportify.Observer;
+import sportify.model.dao.DAO;
+import sportify.pattern.Observer;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.GymInfoGraphicController;
 import sportify.controller.graphic.MenuGraphicController;
@@ -17,7 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import sportify.errorlogic.DAOException;
-import sportify.user.User;
+import sportify.model.domain.User;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -27,26 +27,53 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * The `GymInfoController` class extends the `Controller`
+ * class and implements the `Observer` interface.
+ * It provides a variety of functions related to retrieving
+ * and setting information about gyms.
+ *
+ * @see Observer
+ * @see Controller
+ */
 public class GymInfoController extends Controller implements Observer {
 
-    /** Reference to graphicController*/
+    /**
+     * A reference to the `GymInfoGraphicController` object
+     */
     private GymInfoGraphicController graphicController;
 
+    /**
+     * A constant string used in SQL statements
+     */
     private static final String SELECT = "SELECT * ";
+
+    /**
+     * A constant string used to set font weight
+     */
     private static final String FONT = "-fx-font-weight: bold;";
 
-    /** The name of the gym*/
+    /**
+     * The name of the gym
+     */
     private String gym;
 
+    /**
+     * A list of sports available at the gym
+     */
     private ObservableList<String> sport;
 
-    /** The constructor.*/
+    /**
+     * The default constructor for the `GymInfoController` class.
+     */
     public GymInfoController(){
         this.type = ControllerType.GYM_INFO;
     }
 
     /* Method that set up the gymEditController*/
+    /**
+     * A private method used to set the review information.
+     */
     private void setReview(){
         User user = getUser();
         String role;
@@ -64,6 +91,11 @@ public class GymInfoController extends Controller implements Observer {
             graphicController.reviewPaneIsVisible(false);
         }
     }
+
+    /**
+     * This method sets the course details
+     * for the selected gym.
+     */
     private void setCourse(){
         User user = getUser();
         String role;
@@ -81,6 +113,11 @@ public class GymInfoController extends Controller implements Observer {
             graphicController.coursePaneIsVisible(false);
         }
     }
+
+    /**
+     * This method sets up the information
+     * page for the selected gym.
+     */
     private void settingPage(){
         this.user = this.menu.getUser();
         Runnable task = () -> Platform.runLater(
@@ -102,10 +139,24 @@ public class GymInfoController extends Controller implements Observer {
         new Thread(task1).start();
     }
 
+    /**
+     * This method returns the name of
+     * the selected gym.
+     *
+     * @return the name of the selected
+     * gym as a string
+     */
     public String getGym() {
         return gym;
     }
 
+    /**
+     * This method returns the list of sports available
+     * at the selected gym.
+     *
+     * @return an ObservableList of strings representing
+     * the sports available at the gym
+     */
     private ObservableList<String> getSport(){
         assert this.mainApp != null;
         String query = SELECT +
@@ -123,7 +174,13 @@ public class GymInfoController extends Controller implements Observer {
         return result;
     }
 
-    /** Cancel a review of gym*/
+    /**
+     * This method cancels the user's review for
+     * the selected gym.
+     *
+     * @param e the mouse event that triggered
+     *          the cancellation
+     */
     private void cancelReview(MouseEvent e){
         Label event = (Label) e.getSource();
         String query00 = event.getEllipsisString();
@@ -150,7 +207,13 @@ public class GymInfoController extends Controller implements Observer {
         loadingGymName(getGym());
     }
 
-    /** Cancel a course of gym*/
+    /**
+     * This method cancels the user's course
+     * booking for the selected gym.
+     *
+     * @param e the mouse event that triggered
+     *          the cancellation
+     */
     private void cancelCourse(MouseEvent e){
         Label event = (Label) e.getSource();
         String query00 = event.getEllipsisString();
@@ -176,7 +239,13 @@ public class GymInfoController extends Controller implements Observer {
         loadingGymName(this.gym);
     }
 
-    /** Share a review of gym*/
+    /**
+     * This method shares a review for the selected gym.
+     *
+     * @param gym the name of the selected gym
+     * @param review the review to be shared, represented
+     *              as a StringBuilder object
+     */
     public void shareReview(String gym, StringBuilder review){
         String str = gym + ": " + review;
         Logger logger = Logger.getLogger(GymInfoController.class.getName());
@@ -221,7 +290,14 @@ public class GymInfoController extends Controller implements Observer {
         }
     }
 
-    /** Add a course of gym*/
+    /**
+     * This method adds a course booking for the selected gym.
+     *
+     * @param sport the name of the sport for which
+     *              the booking is being made
+     * @param gym the name of the selected gym
+     * @param time the time of the booking
+     */
     public void addCourse(String sport, String gym, String time){
         String observerState = graphicController.getState();
         String query = "INSERT INTO `course`" +
@@ -250,7 +326,11 @@ public class GymInfoController extends Controller implements Observer {
         }
     }
 
-    /** initializes the event handlers.*/
+    /**
+     * This method sets up event handlers
+     * for various UI elements on the gym
+     * information page.
+     */
     private void setupEventHandlers() {
         this.menu.getSignOut()
                 .addEventHandler(
@@ -259,7 +339,13 @@ public class GymInfoController extends Controller implements Observer {
                 );
     }
 
-    /** It's called to create new task*/
+    /**
+     * Creates a new task and returns it.
+     *
+     * @param task The task to be executed.
+     *
+     * @return The created task.
+     */
     private Task<Void> createTask(Runnable task){
         return new Task<>() {
             @Override
@@ -270,7 +356,13 @@ public class GymInfoController extends Controller implements Observer {
         };
     }
 
-    /** Load the review of gym*/
+    /**
+     * Loads reviews for a gym.
+     *
+     * @param writer List of writers of the reviews.
+     * @param time List of timestamps for the reviews.
+     * @param review List of reviews for the gym.
+     */
     private void loadReview(List<String> writer, List<String> time, List<String> review){
         graphicController.cleanReview();
         User user = getUser();
@@ -303,7 +395,12 @@ public class GymInfoController extends Controller implements Observer {
         }
     }
 
-    /** Download the review*/
+    /**
+     * Downloads review for the specified gym
+     *
+     * @param gym Name of the gym to download
+     *            the review for
+     */
     private void downloadReview(String gym){
         DAO dao = mainApp.getDAO();
         List<String> review = new ArrayList<>();
@@ -331,7 +428,12 @@ public class GymInfoController extends Controller implements Observer {
 
     }
 
-    /** Load the course of gym*/
+    /**
+     * Loads information about a specific sport and time
+     *
+     * @param sport The sport to load information for
+     * @param time The time the sport takes place
+     */
     private void loadCourse(String sport, String time){
         graphicController.cleanCourse();
         Label label = new Label(sport + " " + time.substring(0, 5));
@@ -351,7 +453,9 @@ public class GymInfoController extends Controller implements Observer {
         }
     }
 
-    /** Download Course*/
+    /**
+     * Downloads information about a course
+     */
     private void downloadCourse(){
         DAO dao = mainApp.getDAO();
         String query = SELECT +
@@ -385,7 +489,9 @@ public class GymInfoController extends Controller implements Observer {
         }
     }
 
-    /** Set course*/
+    /**
+     * Sets information about a course
+     */
     private void setInfoCourse(){
         // set ComboBox
         Runnable task = () -> Platform.runLater(() ->
@@ -428,7 +534,9 @@ public class GymInfoController extends Controller implements Observer {
         new Thread(task2).start();
     }
 
-    /** Is called to set phone course window*/
+    /**
+     * Sets information about a phone course
+     */
     public void settingPhoneCourse(){
         // Set visible or not area new course
         setCourse();
@@ -437,7 +545,11 @@ public class GymInfoController extends Controller implements Observer {
         setInfoCourse();
     }
 
-    /** Set Gym View*/
+    /**
+     * Sets the gym information
+     *
+     * @param name The name of the gym
+     */
     private void setGym(String name){
 
         // Window Title
@@ -505,7 +617,11 @@ public class GymInfoController extends Controller implements Observer {
         new Thread(task4).start();
     }
 
-    /** It's called to set the View*/
+    /**
+     * Loads information about the gym with the specified name
+     *
+     * @param name The name of the gym to load information for
+     */
     public void loadingGymName(String name) {
         try {
             // Load test result overview.
@@ -554,20 +670,30 @@ public class GymInfoController extends Controller implements Observer {
         }
     }
 
-    /** Is called to set graphicController*/
+    /**
+     * Sets the graphic controller for this class
+     *
+     * @param graphicController The graphic controller
+     *                          to set
+     */
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (GymInfoGraphicController) graphicController;
     }
 
-    /** Is called to set top menu*/
+    /**
+     * Is called to set the top menu
+     *
+     * @return A Pane representing the top menu
+     */
     public Pane setTopMenu(){
         FXMLLoader loaderTopScreen = new FXMLLoader();
         loaderTopScreen.setLocation(this.mainApp.getClass().getResource("SmartphoneView/topScreen0.fxml"));
         Pane paneTopScreen = null;
         try {
             paneTopScreen = loaderTopScreen.load();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(GymInfoController.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
@@ -576,7 +702,11 @@ public class GymInfoController extends Controller implements Observer {
         return paneTopScreen;
     }
 
-    /** Is called to set phone review window*/
+    /**
+     * Is called to set the phone review window
+     *
+     * @param gymName The name of the gym to set the review for
+     */
     public void settingPhoneReview(String gymName) {
         // Set visible or not area new review
         setReview();
@@ -585,6 +715,11 @@ public class GymInfoController extends Controller implements Observer {
         setInfoReview(gymName);
     }
 
+    /**
+     * Sets information about a review for the specified gym
+     *
+     * @param gym The name of the gym to set the review for
+     */
     private void setInfoReview(String gym) {
         Runnable task2 = () -> Platform.runLater(() -> downloadReview(gym));
         Task<Void> task5 = createTask(task2);

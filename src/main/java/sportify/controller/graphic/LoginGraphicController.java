@@ -1,6 +1,6 @@
 package sportify.controller.graphic;
 
-import sportify.AdapterLogin;
+import sportify.pattern.AdapterLogin;
 import sportify.auth.OAuthGoogleAuthenticator;
 import sportify.bean.LoginBean;
 import sportify.controller.Controller;

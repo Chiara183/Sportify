@@ -1,6 +1,6 @@
 package sportify.controller.graphic;
 
-import sportify.OpenStreetMapUtils;
+import sportify.util.OpenStreetMapUtils;
 import sportify.bean.MapBean;
 import sportify.controller.Controller;
 import sportify.controller.ControllerType;

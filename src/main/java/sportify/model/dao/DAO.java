@@ -1,4 +1,4 @@
-package sportify;
+package sportify.model.dao;
 
 import sportify.errorlogic.DAOException;
 

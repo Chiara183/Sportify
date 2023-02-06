@@ -1,6 +1,6 @@
 package sportify.controller;
 
-import sportify.DAO;
+import sportify.model.dao.DAO;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.GymInfoGraphicController;
 import sportify.controller.graphic.MapGraphicController;
@@ -17,49 +17,98 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The MapController class extends the Controller
+ * class and provides functionality for managing
+ * a map display and its associated controls.
+ *
+ * @see Controller
+ */
 public class MapController extends Controller{
 
+    /**
+     * A constant string representing the
+     * SQL query for selecting all gym data.
+     */
     private static final String SELECTALL = "SELECT * " + "FROM gym ";
 
-    /** Reference to graphicController*/
+    /**
+     * An instance of the MapGraphicController
+     * class that manages the graphical display of the map.
+     */
     private MapGraphicController graphicController;
 
-    /** default zoom value. */
+    /**
+     * A constant integer representing
+     * the default zoom level for the map.
+     */
     private static final int ZOOM_DEFAULT = 11;
 
     /* All the HashMap of the map*/
+    /**
+     * A HashMap that stores all the gym data, where the
+     * key is the coordinate and the value is the gym name.
+     */
     private final HashMap<Coordinate, String> allGym = new HashMap<>();
+
+    /**
+     * A HashMap that stores markers for the gyms, where the
+     * key is the gym name and the value is the marker.
+     */
     private final HashMap<String, Marker> mark = new HashMap<>();
 
     /* params for the WMS server. */
+    /**
+     * An instance of the WMSParam class that
+     * contains parameters for connecting to a WMS server.
+     */
     private final WMSParam wmsParam = new WMSParam().setUrl("https://ows.terrestris.de/osm/service?")
             .addParam("layers", "OSM-WMS");
+
+    /**
+     * An instance of the XYZParam class that contains
+     * parameters for connecting to an XYZ tile server.
+     */
     private final XYZParam xyzParams = new XYZParam()
             .withUrl("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x})")
             .withAttributions("'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
 
-    /** The constructor.*/
+    /**
+     * Constructs a MapController object.
+     */
     public MapController() {
         this.type = ControllerType.MAP;
     }
 
-    /** It's called to set search cache*/
+    /**
+     * Implements the abstract setSearchCache
+     * method from the Controller class.
+     *
+     * @param search an array of strings representing the search cache
+     */
     @Override
     public void setSearchCache(String[] search) {
         graphicController.setSearchCache(search);
     }
 
-    /** Is called to set graphicController*/
+    /**
+     * Implements the abstract setGraphicController
+     * method from the Controller class.
+     *
+     * @param graphicController an instance of the GraphicController class
+     *                         that manages the graphical display of the map
+     */
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.graphicController = (MapGraphicController) graphicController;
     }
 
     /**
-     * called after the fxml is loaded and all objects are created. This is not called initialize anymore,
+     * called after the fxml is loaded and all objects are created.
+     * This is not called initialize anymore,
      * because we need to pass in the projection before initializing.
      *
-     * @param projection to use in the map.
+     * @param projection the projection for the map.
      */
     public void initMapAndControls(Projection projection) {
         // set ComboBox
@@ -95,7 +144,9 @@ public class MapController extends Controller{
         );
     }
 
-    /** initializes the event handlers.*/
+    /**
+     * Sets up event handlers for the map and its controls.
+     */
     private void setupEventHandlers() {
         graphicController.getMapView().addEventHandler(
                 MarkerEvent.MARKER_CLICKED, event ->
@@ -170,7 +221,9 @@ public class MapController extends Controller{
                 );
     }
 
-    /** finishes setup after the mpa is initialized*/
+    /**
+     * Method to be called after the map is initialized.
+     */
     private void afterMapIsInitialized() {
         // start at the harbour with default zoom
         graphicController.getMapView().setZoom(ZOOM_DEFAULT);
@@ -180,7 +233,10 @@ public class MapController extends Controller{
         graphicController.setControlsDisable(false);
     }
 
-    /** load the coordinate of all gym*/
+    /**
+     * loadCoordinate is a private method that
+     * is responsible for loading map coordinates.
+     */
     private void loadCoordinate() {
         DAO objDAO = mainApp.getDAO();
         List<String> list = null;
@@ -210,7 +266,13 @@ public class MapController extends Controller{
 
     }
 
-    /** load a gym info overview*/
+    /**
+     * loadGymInfo is a private method that takes in a
+     * MapLabelEvent as an argument and is responsible
+     * for loading gym information.
+     *
+     * @param event MapLabelEvent to be processed
+     */
     private void loadGymInfo(MapLabelEvent event){
         event.consume();
         if(Objects.equals(event.getMapLabel().getText(), "You are Here!")) {
@@ -241,12 +303,24 @@ public class MapController extends Controller{
         }
     }
 
-    /** Is called to get mark hashmap*/
+    /**
+     * getMark is a public method that returns a HashMap of markers.
+     * The key is a string representation of the marker,
+     * and the value is a Marker object.
+     *
+     * @return a HashMap of markers.
+     */
     public HashMap<String, Marker> getMark(){
         return this.mark;
     }
 
-    /** Is called to get gym hashmap*/
+    /**
+     * getAllGym is a public method that returns a HashMap of all gym
+     * information. The key is a Coordinate object representing the gym location,
+     * and the value is a string representation of the gym information.
+     *
+     * @return a HashMap of all gym information.
+     */
     public HashMap<Coordinate, String> getAllGym(){
         return this.allGym;
     }

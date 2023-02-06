@@ -1,6 +1,6 @@
 package sportify.controller.graphic;
 
-import sportify.OpenStreetMapUtils;
+import sportify.util.OpenStreetMapUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 

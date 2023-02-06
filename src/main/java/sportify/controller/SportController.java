@@ -1,6 +1,6 @@
 package sportify.controller;
 
-import sportify.DAO;
+import sportify.model.dao.DAO;
 import sportify.MainApp;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.MenuGraphicController;

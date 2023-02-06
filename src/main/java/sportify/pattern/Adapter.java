@@ -1,9 +1,12 @@
-package sportify;
+package sportify.pattern;
 
+import sportify.MainApp;
+import sportify.controller.SignUp;
 import sportify.controller.MenuController;
 import sportify.controller.SignUpController;
 import sportify.controller.SignUpGymController;
 import sportify.controller.graphic.SignUpGraphicController;
+import sportify.model.dao.Submit;
 
 import javax.swing.*;
 import java.util.Map;

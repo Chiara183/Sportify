@@ -6,7 +6,7 @@ import sportify.bean.GymEditBean;
 import sportify.controller.Controller;
 import sportify.controller.ControllerType;
 import sportify.controller.GymEditController;
-import sportify.user.GymUser;
+import sportify.model.domain.GymUser;
 
 import java.util.Objects;
 

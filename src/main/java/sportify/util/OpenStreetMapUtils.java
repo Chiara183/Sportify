@@ -1,4 +1,4 @@
-package sportify;
+package sportify.util;
 
 import com.sothawo.mapjfx.Coordinate;
 import org.json.simple.JSONArray;

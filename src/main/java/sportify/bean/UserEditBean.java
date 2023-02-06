@@ -1,6 +1,6 @@
 package sportify.bean;
 
-import sportify.DateUtil;
+import sportify.util.DateUtil;
 
 import java.time.LocalDate;
 

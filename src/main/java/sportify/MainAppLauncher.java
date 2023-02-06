@@ -4,7 +4,11 @@ import com.sothawo.mapjfx.Projection;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import sportify.controller.Dialog;
 import sportify.errorlogic.DAOException;
+import sportify.model.dao.DAO;
+import sportify.model.dao.DBConnection;
+import sportify.model.dao.Submit;
 
 import java.io.IOException;
 import java.io.InputStream;

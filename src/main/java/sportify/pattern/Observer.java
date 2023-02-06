@@ -1,4 +1,4 @@
-package sportify;
+package sportify.pattern;
 
 /**
  * Interface representing an observer object that

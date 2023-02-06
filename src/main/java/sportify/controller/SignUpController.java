@@ -1,8 +1,8 @@
 package sportify.controller;
 
-import sportify.Adapter;
+import sportify.pattern.Adapter;
 import sportify.MainApp;
-import sportify.Submit;
+import sportify.model.dao.Submit;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.SignUpGraphicController;
 import javafx.scene.control.Alert;

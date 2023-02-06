@@ -1,4 +1,4 @@
-package sportify;
+package sportify.model.dao;
 
 import javafx.scene.control.Alert;
 import sportify.errorlogic.DAOException;

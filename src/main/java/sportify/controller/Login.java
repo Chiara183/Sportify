@@ -1,4 +1,4 @@
-package sportify;
+package sportify.controller;
 
 /**
  * The Login class interface

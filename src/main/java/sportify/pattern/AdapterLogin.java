@@ -1,10 +1,11 @@
-package sportify;
+package sportify.pattern;
 
+import sportify.controller.Login;
 import sportify.controller.graphic.LoginGraphicController;
 
 /**
  * Class that implements the Login interface
- * and acts as an adapter for the
+ * and acts as an pattern for the
  * LoginGraphicController class.
  *
  * @see Login

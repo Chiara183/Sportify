@@ -1,4 +1,4 @@
-package sportify.user;
+package sportify.model.domain;
 
 import javafx.beans.property.SimpleStringProperty;
 

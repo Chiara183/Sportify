@@ -3,7 +3,7 @@ package sportify.controller.graphic;
 import sportify.controller.Controller;
 import sportify.controller.ControllerType;
 import sportify.controller.EditController;
-import sportify.user.User;
+import sportify.model.domain.User;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

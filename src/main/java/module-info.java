@@ -21,8 +21,6 @@ module sportify {
     opens sportify.controller to javafx.fxml, javafx.graphics;
     exports sportify.auth;
     opens sportify.auth to javafx.fxml, javafx.graphics;
-    exports sportify.user;
-    opens sportify.user to javafx.fxml, javafx.graphics;
     exports sportify.controller.graphic;
     opens sportify.controller.graphic to javafx.fxml, javafx.graphics;
     exports sportify.bean;
@@ -33,4 +31,12 @@ module sportify {
     opens sportify.controller.graphic.desktop to javafx.fxml, javafx.graphics;
     exports sportify.errorlogic;
     opens sportify.errorlogic to javafx.fxml, javafx.graphics;
+    exports sportify.util;
+    opens sportify.util to javafx.fxml, javafx.graphics;
+    exports sportify.model.dao;
+    opens sportify.model.dao to javafx.fxml, javafx.graphics;
+    exports sportify.model.domain;
+    opens sportify.model.domain to javafx.fxml, javafx.graphics;
+    exports sportify.pattern;
+    opens sportify.pattern to javafx.fxml, javafx.graphics;
 }

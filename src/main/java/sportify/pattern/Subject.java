@@ -1,4 +1,4 @@
-package sportify;
+package sportify.pattern;
 
 import java.util.List;
 import java.util.Vector;

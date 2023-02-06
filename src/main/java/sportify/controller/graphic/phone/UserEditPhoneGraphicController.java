@@ -1,6 +1,6 @@
 package sportify.controller.graphic.phone;
 
-import sportify.DateUtil;
+import sportify.util.DateUtil;
 import sportify.bean.UserEditBean;
 import sportify.controller.graphic.UserEditGraphicController;
 import javafx.fxml.FXML;

@@ -1,4 +1,6 @@
-package sportify;
+package sportify.controller;
+
+import sportify.MainApp;
 
 import javax.swing.*;
 import javax.swing.border.Border;

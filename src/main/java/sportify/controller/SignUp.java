@@ -1,4 +1,4 @@
-package sportify;
+package sportify.controller;
 
 import java.util.Map;
 

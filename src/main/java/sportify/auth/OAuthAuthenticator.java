@@ -1,10 +1,10 @@
 package sportify.auth;
 
-import sportify.DAO;
+import sportify.model.dao.DAO;
 import sportify.MainApp;
-import sportify.Submit;
+import sportify.model.dao.Submit;
 import sportify.errorlogic.DAOException;
-import sportify.user.User;
+import sportify.model.domain.User;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import org.json.JSONException;

@@ -1,5 +1,6 @@
-package sportify;
+package sportify.model.dao;
 
+import sportify.MainApp;
 import sportify.errorlogic.DAOException;
 
 import java.sql.Connection;

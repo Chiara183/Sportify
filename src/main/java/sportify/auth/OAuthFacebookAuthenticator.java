@@ -5,6 +5,8 @@ package sportify.auth;
  * {@link OAuthAuthenticator} for authentication with Facebook
  * This class provides a way to authenticate with Facebook
  * through the OAuth protocol.
+ * <p>
+ * Not yet implemented
  *
  * @see OAuthAuthenticator
  */

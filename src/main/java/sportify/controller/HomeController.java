@@ -3,36 +3,60 @@ package sportify.controller;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.phone.HomePhoneGraphicController;
 import sportify.controller.graphic.MenuGraphicController;
-import sportify.user.User;
+import sportify.model.domain.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The HomeController class extends the Controller
+ * class and provides functionality for setting the
+ * user and graphic controller,
+ * as well as creating a new menu in the window.
+ *
+ * @see Controller
+ */
 public class HomeController extends Controller {
 
-    /** Reference to graphicController*/
+    /**
+     * homeGraphicController is a private field that represents
+     * the graphical user interface for the home screen.
+     */
     private HomePhoneGraphicController homeGraphicController;
 
-    /** The constructor.*/
+    /**
+     * The constructor for the HomeController class,
+     * which initializes the necessary fields.
+     */
     public HomeController() {
         this.type = ControllerType.HOME;
     }
 
-    /** Is called to set user.*/
+    /**
+     * setUser is a public method that overrides the
+     * setUser method in the Controller class and sets
+     * the user for the home screen.
+     *
+     * @param user the User to be set as the
+     *             user for the home screen
+     */
     @Override
     public void setUser(User user) {
         this.user = user;
         if(mainApp.isNotMobile()) {
             homeGraphicController.getSignIn().setVisible(this.user == null);
-            if (this.user != null && this.user.getRole().equals("gym")) {
+            if (this.user != null &&
+                    this.user.getRole().equals("gym")) {
                 homeGraphicController.getGymInfo().setVisible(true);
                 homeGraphicController.getGymInfo().setPrefWidth(141);
                 homeGraphicController.getSignIn().setPrefWidth(0);
-            } else {
+            }
+            else {
                 homeGraphicController.getGymInfo().setVisible(false);
                 homeGraphicController.getGymInfo().setPrefWidth(0);
                 homeGraphicController.getSignIn().setPrefWidth(141);
@@ -40,19 +64,34 @@ public class HomeController extends Controller {
         }
     }
 
-    /** Is called to set graphicController*/
+    /**
+     * setGraphicController is a public method that overrides
+     * the setGraphicController method in the Controller class
+     * and sets the graphicController field.
+     *
+     * @param graphicController the GraphicController to be set
+     *                          as the graphicController field
+     */
     @Override
     public void setGraphicController(GraphicController graphicController) {
         this.homeGraphicController = (HomePhoneGraphicController) graphicController;
     }
 
-    /** It's called to create and ad a new menu in the window*/
+    /**
+     * menu is a public method that creates
+     * and adds a new menu to the window.
+     *
+     * @return the MenuController
+     * representing the new menu
+     */
     public MenuController menu() {
         MenuController controller = new MenuController();
         controller.setMainApp(this.mainApp);
+        URL url;
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
-            loaderMenu.setLocation(Objects.requireNonNull(mainApp.getClass().getResource("DesktopView/menu.fxml")));
+            url = mainApp.getClass().getResource("DesktopView/menu.fxml");
+            loaderMenu.setLocation(Objects.requireNonNull(url));
             Pane paneMenu = loaderMenu.load();
 
             // Set menu overview into the top of root layout.
@@ -63,7 +102,8 @@ public class HomeController extends Controller {
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
             controller.setUser(this.user);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger logger = Logger.getLogger(HomeController.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
             logger.log(Level.SEVERE, e.getLocalizedMessage());

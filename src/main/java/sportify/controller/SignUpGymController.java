@@ -1,9 +1,9 @@
 package sportify.controller;
 
-import sportify.DBConnection;
-import sportify.IO;
+import sportify.model.dao.DBConnection;
+import sportify.model.dao.IO;
 import sportify.MainApp;
-import sportify.Submit;
+import sportify.model.dao.Submit;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.MenuGraphicController;
 import sportify.controller.graphic.SignUpGymGraphicController;

@@ -1,8 +1,8 @@
-package sportify.user;
+package sportify.model.domain;
 
-import sportify.DAO;
+import sportify.model.dao.DAO;
 import sportify.MainApp;
-import sportify.Submit;
+import sportify.model.dao.Submit;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
