@@ -7,8 +7,6 @@ import sportify.errorlogic.DAOException;
 import sportify.model.domain.User;
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,7 +14,6 @@ import java.util.logging.Logger;
 
 public class GymInfoDAO {
 
-    private final Connection conn;
     private final DAO dao;
 
     /**
@@ -26,7 +23,6 @@ public class GymInfoDAO {
 
     public GymInfoDAO(DAO dao) {
         this.dao = dao;
-        this.conn = dao.getConnection();
     }
 
     /**
@@ -135,9 +131,9 @@ public class GymInfoDAO {
                     "(`gym`, `review`, `writer`, " + "`timestamp`) " +
                     "VALUES ('" + gym + "', '" + review + "', '" + username + "', " + "CURRENT_TIMESTAMP);";
 
-            try (PreparedStatement statement = conn.prepareStatement(query)) {
-                statement.executeUpdate();
-            } catch (SQLException e) {
+            try {
+                dao.updateDB(query);
+            } catch (DAOException e) {
                 Logger logger = Logger.getLogger(GymInfoDAO.class.getName());
                 logger.log(Level.SEVERE, e.getMessage());
             }
