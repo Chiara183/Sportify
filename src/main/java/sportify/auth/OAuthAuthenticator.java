@@ -230,7 +230,7 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
                 "WHERE user.email = \"" + email + "\"";
         List<String> list = null;
         try {
-            list = objDAO.checkData(query, "username");
+            list = objDAO.checkDataColumn(query, "username");
         }
         catch (DAOException e){
             Logger logger = Logger.getLogger(DAO.class.getName());

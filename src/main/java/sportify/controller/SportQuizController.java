@@ -31,7 +31,7 @@ SportQuizController extends Controller {
     /**
      * Instance variable for the SportQuizGraphicController class
      */
-    SportQuizGraphicController quizGraphicController;
+    GraphicController quizGraphicController;
 
     /* The variable that identify the user choice*/
     /**
@@ -360,7 +360,7 @@ SportQuizController extends Controller {
      */
     @Override
     public void setGraphicController(GraphicController graphicController) {
-        this.quizGraphicController = (SportQuizGraphicController) graphicController;
+        this.quizGraphicController = graphicController;
     }
 }
 

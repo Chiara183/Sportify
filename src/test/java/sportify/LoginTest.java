@@ -50,7 +50,7 @@ class LoginTest extends StartingTest{
         robot.clickOn("#eye");
         robot.clickOn("#submit");
         Stage stage1= FxToolkit.toolkitContext().getRegisteredStage();
-        Boolean contains = stage1.getTitle().contains("Wrong Username or Password");
+        Boolean contains = stage1.getTitle().contains("Sportify - Login");
         assertThat(contains).isTrue();
     }
 

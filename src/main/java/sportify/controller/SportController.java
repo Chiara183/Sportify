@@ -1,17 +1,15 @@
 package sportify.controller;
 
-import sportify.model.dao.DAO;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 import sportify.MainApp;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.MenuGraphicController;
 import sportify.controller.graphic.SportGraphicController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
-import sportify.errorlogic.DAOException;
+import sportify.model.dao.SportDAO;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -70,21 +68,9 @@ public class SportController extends Controller{
      * @param sport - name of the sport
      */
     public void loadDescriptionFromDB(String sport){
-        DAO objDAO = mainApp.getDAO();
-        String query = "SELECT * " +
-                "FROM sport " +
-                "WHERE '" + sport + "' = sport.name";
-        List<String> list = null;
-        try {
-            list = objDAO.checkData(query, "description");
-        }
-        catch (DAOException e){
-            Logger logger = Logger.getLogger(SportController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
-        assert list != null;
-        String rs = list.get(list.size() - 1);
-        this.loadingSport(sport, rs);
+        SportDAO objDAO = new SportDAO();
+        String desc = objDAO.getDescriptions(sport);
+        this.loadingSport(sport, desc);
     }
 
     /**

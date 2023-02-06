@@ -71,7 +71,7 @@ public class IO {
                 + ruolo + "', '"
                 + birthday + "')";
         try {
-            objDAO.updateDB(query);
+            objDAO.updateAndGetDB(query);
             if (Objects.equals(ruolo, "gym")) {
                 String gymName = map.get("gymName");
                 String address = map.get(ADDRESS);
@@ -85,7 +85,7 @@ public class IO {
                         + latitude + "', '"
                         + longitude + "', '"
                         + phone + "')";
-                objDAO.updateDB(query);
+                objDAO.updateAndGetDB(query);
             }
         }
         catch (DAOException e){

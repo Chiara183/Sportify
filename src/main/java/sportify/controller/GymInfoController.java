@@ -1,12 +1,6 @@
 package sportify.controller;
 
-import sportify.model.dao.DAO;
-import sportify.pattern.Observer;
-import sportify.controller.graphic.GraphicController;
-import sportify.controller.graphic.GymInfoGraphicController;
-import sportify.controller.graphic.MenuGraphicController;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
@@ -16,12 +10,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import sportify.MainApp;
+import sportify.controller.graphic.GraphicController;
+import sportify.controller.graphic.GymInfoGraphicController;
+import sportify.controller.graphic.MenuGraphicController;
 import sportify.errorlogic.DAOException;
+import sportify.model.dao.GymInfoDAO;
 import sportify.model.domain.User;
+import sportify.pattern.Observer;
 
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -44,11 +45,6 @@ public class GymInfoController extends Controller implements Observer {
     private GymInfoGraphicController graphicController;
 
     /**
-     * A constant string used in SQL statements
-     */
-    private static final String SELECT = "SELECT * ";
-
-    /**
      * A constant string used to set font weight
      */
     private static final String FONT = "-fx-font-weight: bold;";
@@ -57,6 +53,11 @@ public class GymInfoController extends Controller implements Observer {
      * The name of the gym
      */
     private String gym;
+
+    /**
+     * The DAO for the class
+     */
+    private GymInfoDAO dao;
 
     /**
      * A list of sports available at the gym
@@ -68,6 +69,17 @@ public class GymInfoController extends Controller implements Observer {
      */
     public GymInfoController(){
         this.type = ControllerType.GYM_INFO;
+    }
+
+    /**
+     * Sets the main application for the controller.
+     *
+     * @param mainApp The reference to the main application.
+     */
+    @Override
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+        this.dao = new GymInfoDAO(mainApp.getDAO());
     }
 
     /* Method that set up the gymEditController*/
@@ -151,30 +163,6 @@ public class GymInfoController extends Controller implements Observer {
     }
 
     /**
-     * This method returns the list of sports available
-     * at the selected gym.
-     *
-     * @return an ObservableList of strings representing
-     * the sports available at the gym
-     */
-    private ObservableList<String> getSport(){
-        assert this.mainApp != null;
-        String query = SELECT +
-                "FROM sport ";
-        DAO objDAO = this.mainApp.getDAO();
-        ObservableList<String> result = null;
-        try {
-            List<String> list = objDAO.checkData(query, "name");
-            result = FXCollections.observableArrayList(list);
-        }
-        catch(DAOException e){
-            Logger logger = Logger.getLogger(GymInfoController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
-        return result;
-    }
-
-    /**
      * This method cancels the user's review for
      * the selected gym.
      *
@@ -185,22 +173,12 @@ public class GymInfoController extends Controller implements Observer {
         Label event = (Label) e.getSource();
         String query00 = event.getEllipsisString();
         String[] query0 = query00.split(";");
-        String query1 = query0[0];
-        String query2 = query0[1];
+        String writer = query0[0];
+        String timestamp = query0[1];
         String gymName = getGym();
-        String query = "DELETE FROM `review` " +
-                "WHERE `review`.`writer` = '" +
-                 query1+
-                "' AND `review`.`gym` = '" +
-                gymName +
-                "' AND `review`.`timestamp` = '" +
-                query2+
-                "'";
-        DAO objDAO = this.mainApp.getDAO();
         try {
-            objDAO.updateDB(query);
-        }
-        catch(DAOException ex){
+            dao.cancelReview(writer, gymName, timestamp);
+        } catch (SQLException ex){
             Logger logger = Logger.getLogger(GymInfoController.class.getName());
             logger.log(Level.SEVERE, ex.getMessage());
         }
@@ -218,24 +196,9 @@ public class GymInfoController extends Controller implements Observer {
         Label event = (Label) e.getSource();
         String query00 = event.getEllipsisString();
         String[] query0 = query00.split(";");
-        String query1 = query0[0];
-        String query2 = query0[1];
-        String query = "DELETE FROM `course`" +
-                " WHERE `course`.`sport` = '" +
-                query1 +
-                "' AND `course`.`gym` = '" +
-                getGym() +
-                "' AND `course`.`time` = '" +
-                query2 +
-                "'";
-        DAO objDAO = this.mainApp.getDAO();
-        try {
-            objDAO.updateDB(query);
-        }
-        catch(DAOException ex){
-            Logger logger = Logger.getLogger(GymInfoController.class.getName());
-            logger.log(Level.SEVERE, ex.getMessage());
-        }
+        String sport = query0[0];
+        String time = query0[1];
+        dao.cancelCourse(sport, getGym(), time);
         loadingGymName(this.gym);
     }
 
@@ -250,38 +213,7 @@ public class GymInfoController extends Controller implements Observer {
         String str = gym + ": " + review;
         Logger logger = Logger.getLogger(GymInfoController.class.getName());
         logger.log(Level.INFO, str);
-        String[] reviewList = review.toString().split("'");
-        review = new StringBuilder();
-        int i = 0;
-        while(i!=reviewList.length){
-            review.append(reviewList[i]);
-            if(i!=reviewList.length-1){
-                review.append("\\'");
-            }
-            i++;
-        }
-        String user = this.user.getUserName();
-        if(!review.toString().equals("")) {
-            DAO objDAO = this.mainApp.getDAO();
-            String query = "INSERT INTO `review` " +
-                    "(`gym`, `review`, `writer`, " +
-                    "`timestamp`) " +
-                    "VALUES ('"
-                    + gym + "', '"
-                    + review + "', '"
-                    + user + "', " +
-                    "CURRENT_TIMESTAMP);";
-            try {
-                objDAO.updateDB(query);
-            }
-            catch(DAOException e){
-                logger.log(Level.SEVERE, e.getMessage());
-            }
-        }
-        else {
-            JFrame jFrame = new JFrame();
-            JOptionPane.showMessageDialog(jFrame, "Review is empty.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
+        dao.shareReview(gym, review, this.user);
         if(mainApp.isNotMobile()) {
             loadingGymName(gym);
         }
@@ -300,24 +232,11 @@ public class GymInfoController extends Controller implements Observer {
      */
     public void addCourse(String sport, String gym, String time){
         String observerState = graphicController.getState();
-        String query = "INSERT INTO `course`" +
-                " (`sport`, `gym`," +
-                " `time`) VALUES ('" +
-                sport + "', '" +
-                gym + "', '" +
-                time + "');";
         if(observerState.equals("Unchanged")){
             return;
         }
         if(!sport.equals("select sport")) {
-            DAO objDAO = this.mainApp.getDAO();
-            try {
-                objDAO.updateDB(query);
-            }
-            catch(DAOException e){
-                Logger logger = Logger.getLogger(GymInfoController.class.getName());
-                logger.log(Level.SEVERE, e.getMessage());
-            }
+            dao.addCourse(sport, gym, time);
             loadingGymName(gym);
         }
         else {
@@ -402,17 +321,13 @@ public class GymInfoController extends Controller implements Observer {
      *            the review for
      */
     private void downloadReview(String gym){
-        DAO dao = mainApp.getDAO();
         List<String> review = new ArrayList<>();
         List<String> writer = new ArrayList<>();
         List<String> time = new ArrayList<>();
-        String query = SELECT +
-                "FROM review " +
-                "WHERE review.gym = \""+ gym +"\"";
         try {
-            review = dao.checkData(query, "review");
-            writer = dao.checkData(query, "writer");
-            time = dao.checkData(query, "timestamp");
+            review = dao.checkDataColumnGymInfo(gym, "review", "review");
+            writer = dao.checkDataColumnGymInfo(gym, "review", "writer");
+            time = dao.checkDataColumnGymInfo(gym, "review", "timestamp");
         }
         catch(DAOException e){
             Logger logger = Logger.getLogger(GymInfoController.class.getName());
@@ -457,16 +372,11 @@ public class GymInfoController extends Controller implements Observer {
      * Downloads information about a course
      */
     private void downloadCourse(){
-        DAO dao = mainApp.getDAO();
-        String query = SELECT +
-                "FROM course " +
-                "WHERE course.gym =" +
-                " \""+ this.gym +"\"";
         List<String> sportList = null;
         List<String> time = null;
         try {
-            sportList = dao.checkData(query, "sport");
-            time = dao.checkData(query, "time");
+            sportList = dao.checkDataColumnGymInfo(this.gym, "course", "sport");
+            time = dao.checkDataColumnGymInfo(this.gym, "course", "time");
         }
         catch(DAOException e){
             Logger logger = Logger.getLogger(GymInfoController.class.getName());
@@ -496,7 +406,7 @@ public class GymInfoController extends Controller implements Observer {
         // set ComboBox
         Runnable task = () -> Platform.runLater(() ->
         {
-            this.sport = getSport();
+            this.sport = dao.getSportList(mainApp);
             graphicController.setComboSport(this.sport);
         }
         );
@@ -563,25 +473,17 @@ public class GymInfoController extends Controller implements Observer {
                         TELEPHONE:\s""");
         Runnable task1 = () -> Platform.runLater(() -> {
 
-                    DAO objDAO = this.mainApp.getDAO();
-                    String rs = null;
-                    List<String> list1 = null;
-                    String query = SELECT +
-                            "FROM gym " +
-                            "WHERE gym.name = \"" + name + "\"";
-                    try {
-                        List<String> list = objDAO.checkData(query, "phone");
-                        rs = list.get(0);
-                        DAO objDAO1 = this.mainApp.getDAO();
-                        query = SELECT +
-                                "FROM gym " +
-                                "WHERE gym.name = \"" + name + "\"";
-                        list1 = objDAO1.checkData(query, "address");
-                    }
-                    catch(DAOException e){
-                        Logger logger = Logger.getLogger(GymInfoController.class.getName());
-                        logger.log(Level.SEVERE, e.getMessage());
-                    }
+            String rs = null;
+            List<String> list1 = null;
+            try {
+                List<String> list = dao.checkDataColumnGymInfo(name, "gym", "phone");
+                rs = list.get(0);
+                list1 = dao.checkDataColumnGymInfo(name, "gym", "address");
+            }
+            catch(DAOException e){
+                Logger logger = Logger.getLogger(GymInfoController.class.getName());
+                logger.log(Level.SEVERE, e.getMessage());
+            }
             assert list1 != null;
             String rs1 = list1.get(0);
                     graphicController.setGymDescription(

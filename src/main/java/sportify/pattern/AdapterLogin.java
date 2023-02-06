@@ -5,7 +5,7 @@ import sportify.controller.graphic.LoginGraphicController;
 
 /**
  * Class that implements the Login interface
- * and acts as an pattern for the
+ * and acts as a pattern for the
  * LoginGraphicController class.
  *
  * @see Login

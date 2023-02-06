@@ -45,13 +45,14 @@ public class MainAppLauncher extends Application {
         String typeM = "mobile";
         String typeD = "desktop";
         int count = 1;
-        Parameters p = super.getParameters();
+        Parameters p = getParameters();
         List<String> unnamed = p.getUnnamed();
-        if (!unnamed.isEmpty()){
+        if (!getParameters().getUnnamed().isEmpty()){
             parameter = unnamed.get(0);
             s = parameter + m;
             Logger logger = Logger.getLogger(className);
             logger.log(Level.INFO, s);
+            s = parameter;
         }
         Projection projection;
         if (unnamed.contains("wgs84")) {

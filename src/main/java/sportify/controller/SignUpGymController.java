@@ -1,22 +1,15 @@
 package sportify.controller;
 
-import sportify.model.dao.DBConnection;
-import sportify.model.dao.IO;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 import sportify.MainApp;
-import sportify.model.dao.Submit;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.MenuGraphicController;
 import sportify.controller.graphic.SignUpGymGraphicController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
-import sportify.errorlogic.DAOException;
+import sportify.model.dao.GymDAO;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,9 +28,11 @@ public class SignUpGymController extends AccessController {
      * Reference to graphicController
      */
     private SignUpGymGraphicController graphicController;
-    private final MainApp mainAppGym;
-    private final Submit submitGym;
 
+    /**
+     * Reference to MainApp instance
+     */
+    private final MainApp mainAppGym;
     /**
      * Creates a new instance of the SignUpGymController class.
      *
@@ -45,7 +40,6 @@ public class SignUpGymController extends AccessController {
      */
     public SignUpGymController(MainApp mainAppGym) {
         this.type = ControllerType.SIGN_UP_GYM;
-        this.submitGym = new Submit(mainAppGym);
         this.mainAppGym = mainAppGym;
     }
 
@@ -108,51 +102,10 @@ public class SignUpGymController extends AccessController {
      * @param coords The coordinates of the gym.
      */
     public void submitActionSignUpGym(String gymValue, String address, Map<String, Double> coords) {
-        IO objIO = new IO();
-        objIO.setMainApp(this.mainAppGym);
         Map<String, String> gymAccount;
-        PreparedStatement ps = null;
-        ResultSet rs;
-        DBConnection db = DBConnection.getSingletonInstance();
-        Connection connection = null;
-        try {
-            connection = db.getConnection();
-        }
-        catch (DAOException e){
-            Logger logger = Logger.getLogger(SignUpGymController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
-        try{
-            assert connection != null;
-            ps = connection.prepareStatement("SELECT * " +
-                    "FROM user " +
-                    "LEFT JOIN gym " +
-                    "ON gym.owner = user.username " +
-                    "WHERE user.ruolo = \"gym\"");
-            rs = ps.executeQuery();
-        gymAccount = objIO.getInfoUser(rs);
-        gymAccount.put("gymName", gymValue);            //put gymName in userAccount
-        gymAccount.put("address", address);             //put gymAddress in userAccount
-        gymAccount.put("latitude", String.valueOf(coords.get("lat")));
-        gymAccount.put("longitude", String.valueOf(coords.get("lon")));
-
-        this.submitGym.signUp(gymAccount);
-        }
-        catch (SQLException e) {
-            Logger logger = Logger.getLogger(SignUpGymController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
-        finally {
-            try {
-                if (ps != null) {
-                    ps.close();
-                }
-            }
-            catch (SQLException e) {
-                Logger logger = Logger.getLogger(SignUpGymController.class.getName());
-                logger.info(e.toString());
-            }
-        }
+        GymDAO dao = new GymDAO(mainAppGym);
+        gymAccount = dao.getGymAccount();
+        dao.submitGymAccount(gymValue, address, coords, gymAccount);
     }
 
     /**

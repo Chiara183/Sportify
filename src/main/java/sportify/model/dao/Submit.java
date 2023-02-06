@@ -105,7 +105,11 @@ public class Submit{
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, ioe.getMessage());
         }
-        result = resultDB && resultFile;
+        if(resultDB){
+            result = true;
+        } else {
+            result = resultFile;
+        }
         return result;
     }
 

@@ -241,7 +241,7 @@ public abstract class User {
                 + getUserName() + "'";
         DAO objDAO = this.mainApp.getDAO();
         try {
-            objDAO.updateDB(query);
+            objDAO.updateAndGetDB(query);
         }
         catch (DAOException e){
             Logger logger = Logger.getLogger(User.class.getName());
@@ -262,7 +262,7 @@ public abstract class User {
                 + lastName + WHERECLAUSE
                 + getUserName() + "'";
         try {
-            objDAO.updateDB(query);
+            objDAO.updateAndGetDB(query);
         }
         catch (DAOException e){
             Logger logger = Logger.getLogger(User.class.getName());
@@ -284,7 +284,7 @@ public abstract class User {
         if(!submit.exist(userName)) {
             DAO objDAO = mainApp.getDAO();
             try {
-                objDAO.updateDB(query);
+                objDAO.updateAndGetDB(query);
             }
             catch (DAOException e){
                 Logger logger = Logger.getLogger(User.class.getName());
@@ -320,7 +320,7 @@ public abstract class User {
             this.password.setValue(password);
             DAO objDAO = mainApp.getDAO();
             try {
-                objDAO.updateDB(query);
+                objDAO.updateAndGetDB(query);
             }
             catch (DAOException e){
                 Logger logger = Logger.getLogger(User.class.getName());
@@ -345,7 +345,7 @@ public abstract class User {
                 + email + WHERECLAUSE
                 + getUserName() + "'";
         try {
-            objDAO.updateDB(query);
+            objDAO.updateAndGetDB(query);
         }
         catch (DAOException e){
             Logger logger = Logger.getLogger(User.class.getName());
@@ -366,7 +366,7 @@ public abstract class User {
                 + birthday.toString() + WHERECLAUSE
                 + getUserName() + "'";
         try {
-            objDAO.updateDB(query);
+            objDAO.updateAndGetDB(query);
         }
         catch (DAOException e){
             Logger logger = Logger.getLogger(User.class.getName());

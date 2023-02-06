@@ -1,7 +1,5 @@
 module sportify {
     requires javafx.controls;
-    requires javafx.media;
-
     requires javafx.fxml;
     requires javafx.base;
     requires javafx.graphics;
@@ -11,7 +9,6 @@ module sportify {
     requires javafx.web;
     requires org.apache.commons.lang3;
     requires org.json;
-    requires mysql.connector.java;
     requires json.simple;
     requires commons.validator;
 

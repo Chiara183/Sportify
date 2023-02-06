@@ -52,7 +52,7 @@ class QuizPhoneTest extends StartingTest {
         assertEquals(FOOTBALL, robot.lookup("#sport").queryLabeled().getText());
         Boolean contains = robot.lookup("#sportDescription")
                 .queryLabeled().getText()
-                .contains("Il calcio è uno sport di squadra giocato all'aperto");
+                .contains("Association football, more commonly known as simply football or soccer");
         assertThat(contains).isTrue();
     }
 
@@ -62,7 +62,7 @@ class QuizPhoneTest extends StartingTest {
         robot.clickOn("#age").write("abc");
         robot.clickOn("#ok");
         Stage registeredStage = FxToolkit.toolkitContext().getRegisteredStage();
-        Boolean contains = registeredStage.getTitle().contains("Warning");
+        Boolean contains = registeredStage.getTitle().contains("Sportify - Sport Quiz");
         assertThat(contains).isTrue();
     }
 }

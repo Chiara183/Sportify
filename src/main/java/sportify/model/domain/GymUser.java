@@ -54,7 +54,7 @@ public class GymUser extends User {
                 + name + WHERE
                 + getUserName() +"'";
         try {
-            objDAO.updateDB(query);
+            objDAO.updateAndGetDB(query);
         }
         catch (DAOException e){
             Logger logger = Logger.getLogger(GymUser.class.getName());
@@ -74,7 +74,7 @@ public class GymUser extends User {
                 + address + WHERE
                 + getUserName() +"'";
         try {
-            objDAO.updateDB(query);
+            objDAO.updateAndGetDB(query);
         }
         catch (DAOException e){
             Logger logger = Logger.getLogger(GymUser.class.getName());
@@ -94,7 +94,7 @@ public class GymUser extends User {
                 + latitude + WHERE
                 + getUserName() +"'";
         try {
-            objDAO.updateDB(query);
+            objDAO.updateAndGetDB(query);
         }
         catch (DAOException e){
             Logger logger = Logger.getLogger(GymUser.class.getName());
@@ -115,7 +115,7 @@ public class GymUser extends User {
                 + longitude + WHERE
                 + getUserName() + "'";
         try {
-            objDAO.updateDB(query);
+            objDAO.updateAndGetDB(query);
         }
         catch (DAOException e){
             Logger logger = Logger.getLogger(GymUser.class.getName());
@@ -135,7 +135,7 @@ public class GymUser extends User {
                 + phone + WHERE
                 + getUserName() +"'";
         try {
-            objDAO.updateDB(query);
+            objDAO.updateAndGetDB(query);
         }
         catch (DAOException e){
             Logger logger = Logger.getLogger(GymUser.class.getName());
