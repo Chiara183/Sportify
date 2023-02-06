@@ -14,7 +14,6 @@ import sportify.MainApp;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.GymInfoGraphicController;
 import sportify.controller.graphic.MenuGraphicController;
-import sportify.errorlogic.DAOException;
 import sportify.model.dao.GymInfoDAO;
 import sportify.model.domain.User;
 import sportify.pattern.Observer;
@@ -23,7 +22,6 @@ import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -321,19 +319,13 @@ public class GymInfoController extends Controller implements Observer {
      *            the review for
      */
     private void downloadReview(String gym){
-        List<String> review = new ArrayList<>();
-        List<String> writer = new ArrayList<>();
-        List<String> time = new ArrayList<>();
+        List<String> review;
+        List<String> writer;
+        List<String> time;
         String rev = "review";
-        try {
-            review = dao.checkDataColumnGymInfo(gym, rev, rev);
-            writer = dao.checkDataColumnGymInfo(gym, rev, "writer");
-            time = dao.checkDataColumnGymInfo(gym, rev, "timestamp");
-        }
-        catch(DAOException e){
-            Logger logger = Logger.getLogger(GymInfoController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
+        review = dao.checkDataColumnGymInfo(gym, rev, rev);
+        writer = dao.checkDataColumnGymInfo(gym, rev, "writer");
+        time = dao.checkDataColumnGymInfo(gym, rev, "timestamp");
         assert review != null;
         loadReview(writer, time, review);
         if(graphicController.getSizeReview()<1) {
@@ -373,16 +365,10 @@ public class GymInfoController extends Controller implements Observer {
      * Downloads information about a course
      */
     private void downloadCourse(){
-        List<String> sportList = null;
-        List<String> time = null;
-        try {
-            sportList = dao.checkDataColumnGymInfo(this.gym, "course", "sport");
-            time = dao.checkDataColumnGymInfo(this.gym, "course", "time");
-        }
-        catch(DAOException e){
-            Logger logger = Logger.getLogger(GymInfoController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
+        List<String> sportList;
+        List<String> time;
+        sportList = dao.checkDataColumnGymInfo(this.gym, "course", "sport");
+        time = dao.checkDataColumnGymInfo(this.gym, "course", "time");
         int i = 0;
         while(true){
             assert sportList != null;
@@ -474,17 +460,11 @@ public class GymInfoController extends Controller implements Observer {
                         TELEPHONE:\s""");
         Runnable task1 = () -> Platform.runLater(() -> {
 
-            String rs = null;
-            List<String> list1 = null;
-            try {
-                List<String> list = dao.checkDataColumnGymInfo(name, "gym", "phone");
-                rs = list.get(0);
-                list1 = dao.checkDataColumnGymInfo(name, "gym", "address");
-            }
-            catch(DAOException e){
-                Logger logger = Logger.getLogger(GymInfoController.class.getName());
-                logger.log(Level.SEVERE, e.getMessage());
-            }
+            String rs;
+            List<String> list1;
+            List<String> list = dao.checkDataColumnGymInfo(name, "gym", "phone");
+            rs = list.get(0);
+            list1 = dao.checkDataColumnGymInfo(name, "gym", "address");
             assert list1 != null;
             String rs1 = list1.get(0);
                     graphicController.setGymDescription(

@@ -35,14 +35,9 @@ public class GymInfoDAO {
     public ObservableList<String> getSportList(MainApp mainApp) {
         String query = SELECT + "FROM sport ";
         DAO objDAO = mainApp.getDAO();
-        ObservableList<String> sportList = null;
-        try {
-            List<String> sportNameList = objDAO.checkDataColumn(query, "name");
-            sportList = FXCollections.observableArrayList(sportNameList);
-        } catch (DAOException e) {
-            Logger logger = Logger.getLogger(GymInfoDAO.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
+        ObservableList<String> sportList;
+        List<String> sportNameList = objDAO.checkDataColumn(query, "name");
+        sportList = FXCollections.observableArrayList(sportNameList);
         return sportList;
     }
 
@@ -152,7 +147,7 @@ public class GymInfoDAO {
      *
      * @return a list of results
      */
-    public List<String> checkDataColumnGymInfo(String gym, String table, String column) throws DAOException {
+    public List<String> checkDataColumnGymInfo(String gym, String table, String column){
         List<String> data;
         String query = SELECT +
                 "FROM " + table +

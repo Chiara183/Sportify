@@ -45,7 +45,7 @@ public class DAO implements DAOInterface{
      *
      * @return a list of results
      */
-    public List<String> checkDataColumn(String query, String column) throws DAOException {
+    public List<String> checkDataColumn(String query, String column){
         PreparedStatement ps = null;
         ResultSet rs;
         List<String> result = new ArrayList<>();

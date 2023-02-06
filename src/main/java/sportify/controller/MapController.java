@@ -242,15 +242,9 @@ public class MapController extends Controller{
         List<String> list = null;
         List<String> list1 = null;
         List<String> list2 = null;
-        try {
-            list = objDAO.checkDataColumn(SELECTALL, "latitude");
-            list1 = objDAO.checkDataColumn(SELECTALL, "longitude");
-            list2 = objDAO.checkDataColumn(SELECTALL, "name");
-        }
-        catch (DAOException e){
-            Logger logger = Logger.getLogger(MapController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
+        list = objDAO.checkDataColumn(SELECTALL, "latitude");
+        list1 = objDAO.checkDataColumn(SELECTALL, "longitude");
+        list2 = objDAO.checkDataColumn(SELECTALL, "name");
 
         int i = 0;
         assert list2 != null;
