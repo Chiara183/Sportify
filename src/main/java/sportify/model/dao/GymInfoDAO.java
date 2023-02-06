@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,9 +64,11 @@ public class GymInfoDAO {
                 "WHERE `review`.`writer` = '" + writer +
                 "' AND `review`.`gym` = '" + gym +
                 "' AND `review`.`timestamp` = '" + timestamp + "'";
-
-        try (Statement stmt = conn.createStatement()) {
-            stmt.executeUpdate(query);
+        try {
+            dao.updateDB(query);
+        } catch (DAOException e) {
+            Logger logger = Logger.getLogger(GymInfoDAO.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 

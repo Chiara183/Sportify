@@ -196,9 +196,9 @@ public class GymInfoController extends Controller implements Observer {
         Label event = (Label) e.getSource();
         String query00 = event.getEllipsisString();
         String[] query0 = query00.split(";");
-        String sport = query0[0];
+        String course = query0[0];
         String time = query0[1];
-        dao.cancelCourse(sport, getGym(), time);
+        dao.cancelCourse(course, getGym(), time);
         loadingGymName(this.gym);
     }
 
@@ -324,10 +324,11 @@ public class GymInfoController extends Controller implements Observer {
         List<String> review = new ArrayList<>();
         List<String> writer = new ArrayList<>();
         List<String> time = new ArrayList<>();
+        String rev = "review";
         try {
-            review = dao.checkDataColumnGymInfo(gym, "review", "review");
-            writer = dao.checkDataColumnGymInfo(gym, "review", "writer");
-            time = dao.checkDataColumnGymInfo(gym, "review", "timestamp");
+            review = dao.checkDataColumnGymInfo(gym, rev, rev);
+            writer = dao.checkDataColumnGymInfo(gym, rev, "writer");
+            time = dao.checkDataColumnGymInfo(gym, rev, "timestamp");
         }
         catch(DAOException e){
             Logger logger = Logger.getLogger(GymInfoController.class.getName());
