@@ -10,6 +10,7 @@ module sportify {
     requires org.apache.commons.lang3;
     requires org.json;
     requires json.simple;
+    requires mysql.connector.java;
     requires commons.validator;
 
     opens sportify to javafx.fxml, javafx.graphics;

@@ -17,32 +17,48 @@ import java.util.logging.Logger;
  */
 public class SportDAO {
 
-    private static final DAO objDAO = new DAO();
     private static final List<Sport> sports = new ArrayList<>();
 
-    static {
+    /**
+     * The constructor.
+     */
+    public SportDAO(DAO dao) {
         String query = "SELECT * " +
                 "FROM sport ";
-        List<ResultSet> list = null;
+        ResultSet rs = null;
         try {
-            list = objDAO.checkData(query);
+            rs = dao.checkData(query);
         }
         catch (DAOException e){
             Logger logger = Logger.getLogger(SportDAO.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
-        assert list != null;
-        for (ResultSet rs : list) {
-            Sport sport = null;
-            try {
-                sport = new Sport(rs.getString("name"),
-                        rs.getString("type"),
-                        rs.getString("description"));
-            } catch (SQLException e) {
-                Logger logger = Logger.getLogger(SportDAO.class.getName());
-                logger.log(Level.SEVERE, e.getMessage());
+        assert rs != null;
+        try {
+            while (rs.next()) {
+                Sport sport = null;
+                try {
+                    sport = new Sport(rs.getString("name"),
+                            rs.getString("type"),
+                            rs.getString("description"));
+                } catch (SQLException e) {
+                    Logger logger = Logger.getLogger(SportDAO.class.getName());
+                    logger.log(Level.SEVERE, e.getMessage());
+                }
+                sports.add(sport);
             }
-            sports.add(sport);
+        } catch (SQLException e) {
+            Logger logger = Logger.getLogger(SportDAO.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        finally {
+            try {
+                rs.close();
+            }
+            catch (SQLException e) {
+                Logger logger = Logger.getLogger(DAO.class.getName());
+                logger.info(e.toString());
+            }
         }
     }
 

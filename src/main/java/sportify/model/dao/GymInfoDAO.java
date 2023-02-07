@@ -9,6 +9,7 @@ import sportify.model.domain.User;
 import javax.swing.*;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -91,7 +92,7 @@ public class GymInfoDAO {
      * @param time the time of the course
      */
     public void addCourse(String sport, String gym, String time){
-        String query = "INSERT INTO `course` (`sport`, `gym`, `time`) " +
+        String query = "INSERT INTO `course` " +
                 "VALUES ('" + sport + "', '" + gym + "', '" + time + "');";
         try {
             dao.updateDB(query);
@@ -149,9 +150,16 @@ public class GymInfoDAO {
      */
     public List<String> checkDataColumnGymInfo(String gym, String table, String column){
         List<String> data;
-        String query = SELECT +
-                "FROM " + table +
-                " WHERE "+ table + ".gym = \""+ gym +"\"";
+        String query;
+        if(Objects.equals(table, "course") || Objects.equals(table, "review")) {
+            query = "SELECT * " +
+                    "FROM " + table +
+                    " WHERE " + table + ".gym = \"" + gym + "\"";
+        } else {
+            query = "SELECT * " +
+                    "FROM " + table +
+                    " WHERE " + table + ".name = \"" + gym + "\"";
+        }
         data = dao.checkDataColumn(query, column);
         return data;
     }

@@ -1,14 +1,13 @@
 package sportify.auth;
 
-import sportify.model.dao.DAO;
-import sportify.MainApp;
-import sportify.model.dao.Submit;
-import sportify.errorlogic.DAOException;
-import sportify.model.domain.User;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import org.json.JSONException;
 import org.json.JSONObject;
+import sportify.MainApp;
+import sportify.model.dao.DAOAuthAuthenticator;
+import sportify.model.dao.Submit;
+import sportify.model.domain.User;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -18,7 +17,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -223,15 +221,9 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
         String username = s[0];
         accessedJsonData.getString("picture");
         Submit submit = new Submit(mainApp);
+        DAOAuthAuthenticator dao = new DAOAuthAuthenticator(mainApp.getDAO());
         User user;
-        DAO objDAO = mainApp.getDAO();
-        String query = "SELECT * " +
-                "FROM user " +
-                "WHERE user.email = \"" + email + "\"";
-        List<String> list = null;
-        list = objDAO.checkDataColumn(query, "username");
-        assert list != null;
-        String rs = list.get(list.size() - 1);
+        String rs = dao.getUsernameByEmail(email);
         if (!submit.exist(rs)) {
             String firstName = accessedJsonData.getString("given_name");
             String lastName = accessedJsonData.getString("family_name");

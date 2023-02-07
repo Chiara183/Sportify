@@ -68,7 +68,7 @@ public class SportController extends Controller{
      * @param sport - name of the sport
      */
     public void loadDescriptionFromDB(String sport){
-        SportDAO objDAO = new SportDAO();
+        SportDAO objDAO = new SportDAO(mainApp.getDAO());
         String desc = objDAO.getDescriptions(sport);
         this.loadingSport(sport, desc);
     }

@@ -281,10 +281,8 @@ public class GymInfoController extends Controller implements Observer {
      * @param review List of reviews for the gym.
      */
     private void loadReview(List<String> writer, List<String> time, List<String> review){
-        graphicController.cleanReview();
         User user = getUser();
         String role = user.getRole();
-        String gymName = user.getGymName();
         int i = 0;
         while (i != review.size()) {
             Label labelTitle = new Label(writer.get(i) + " " + time.get(i));
@@ -295,7 +293,7 @@ public class GymInfoController extends Controller implements Observer {
             VBox vbox = new VBox(labelTitle, labelReview, blankSpace);
             if (getUser() != null &&
                     Objects.equals(role, "gym") &&
-                    Objects.equals(gymName, getGym())) {
+                    Objects.equals(user.getGymName(), getGym())) {
                 Label cancel = new Label("⮿");
                 cancel.setStyle("-fx-text-fill: red; ");
                 cancel.setEllipsisString(string);
@@ -319,6 +317,7 @@ public class GymInfoController extends Controller implements Observer {
      *            the review for
      */
     private void downloadReview(String gym){
+        graphicController.cleanReview();
         List<String> review;
         List<String> writer;
         List<String> time;
@@ -343,11 +342,10 @@ public class GymInfoController extends Controller implements Observer {
      * @param time The time the sport takes place
      */
     private void loadCourse(String sport, String time){
-        graphicController.cleanCourse();
         Label label = new Label(sport + " " + time.substring(0, 5));
         String s = sport + ";" + time;
         label.setStyle("-fx-text-fill: white;");
-        if (this.user != null && Objects.equals(this.user.getGymName(), this.gym)) {
+        if (this.user != null && Objects.equals(this.user.getRole(), "gym") && Objects.equals(this.user.getGymName(), this.gym)) {
             Label cancel = new Label("⮿");
             cancel.setStyle("-fx-text-fill: red;");
             cancel.setEllipsisString(s);
@@ -365,17 +363,13 @@ public class GymInfoController extends Controller implements Observer {
      * Downloads information about a course
      */
     private void downloadCourse(){
+        graphicController.cleanCourse();
         List<String> sportList;
         List<String> time;
         sportList = dao.checkDataColumnGymInfo(this.gym, "course", "sport");
         time = dao.checkDataColumnGymInfo(this.gym, "course", "time");
         int i = 0;
-        while(true){
-            assert sportList != null;
-            if (i == sportList.size()){
-                break;
-            }
-            assert time != null;
+        while (i != sportList.size()) {
             loadCourse(sportList.get(i), time.get(i));
             i++;
         }
@@ -529,7 +523,7 @@ public class GymInfoController extends Controller implements Observer {
 
             // Set test result overview into the center of root layout.
             this.mainApp.getPrimaryPane().setCenter(pane);
-            if(!mainApp.isNotMobile()){
+            if(mainApp.isMobile()){
                 mainApp.getPrimaryPane().setTop(paneTopScreen);
                 assert graphicMenuController != null;
                 graphicMenuController.setController(menu);

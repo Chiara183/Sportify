@@ -36,7 +36,7 @@ public class FileManagement {
      */
     public static void writeFile(String string){
         FileWriter fstream = null;
-        String f = "./src/main/resources/users.csv";
+        String f = "trunk/src/main/resources/users.csv";
         Path path = Paths.get(f);
         URI uri = path.toUri();
         File file = new File(uri);

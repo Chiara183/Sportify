@@ -85,36 +85,17 @@ public class DAO implements DAOInterface{
      *
      * @return a list of results
      */
-    public List<ResultSet> checkData(String query) throws DAOException {
+    public ResultSet checkData(String query) throws DAOException {
         PreparedStatement ps = null;
         ResultSet rs;
-        List<ResultSet> result = new ArrayList<>();
         try{
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){
-                result.add(rs);
-            }
-            if(!result.isEmpty() &&
-                    result.get(0) == null){
-                result.remove(0);
-            }
         }
         catch (SQLException e) {
             throw new DAOException("Check error: " + e.getMessage());
         }
-        finally {
-            try {
-                if (ps != null) {
-                    ps.close();
-                }
-            }
-            catch (SQLException e) {
-                Logger logger = Logger.getLogger(DAO.class.getName());
-                logger.info(e.toString());
-            }
-        }
-        return result;
+        return rs;
     }
 
     /**
@@ -145,14 +126,19 @@ public class DAO implements DAOInterface{
      * Method to update the database with the given query.
      *
      * @param query the query to execute
+     *
+     * @return number of row modified
+     *
      * @throws DAOException if a DAO error occurs
      */
-    public void updateDB(String query) throws DAOException {
+    public int updateDB(String query) throws DAOException {
+        int rowsAffected;
         try (Statement stmt = connection.createStatement()) {
-            stmt.executeUpdate(query);
+            rowsAffected = stmt.executeUpdate(query);
         } catch (SQLException ex) {
             throw new DAOException("Error updating the database", ex);
         }
+        return rowsAffected;
     }
 
     public void close() throws DAOException {

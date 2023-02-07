@@ -416,15 +416,15 @@ public class MainApp{
             Stage stage = this.getPrimaryStage();
             stage.setTitle(title);
             HomeController controller = new HomeController();
+            item1 = "Take sport quiz";
+            item2 = "Find gym";
+            item3 = "Login";
+            item4 = "Login with Google";
             if(isNotMobile()) {
                 // Load home overview.
                 resource = "DesktopView/Home.fxml";
                 url = MainApp.class.getResource(resource);
                 loader.setLocation(url);
-                item1 = "Take sport quiz";
-                item2 = "Find gym";
-                item3 = "Login";
-                item4 = "Login with Google";
             }
             else {
                 // Load home overview.

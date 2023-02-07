@@ -19,21 +19,22 @@ public class TestSeleniumGUIYoutube extends testBaseSelenium{
     driver.quit();
   }
   @Test
-  public void testSeleniumGUI() throws InterruptedException {
+  public void testSeleniumGUI() {
     // Test name: Untitled
     // Step # | name | target | value
     // 1 | open | https://www.youtube.com/watch?v=bAO0ZNin7qM | 
     driver.get("https://www.youtube.com/watch?v=bAO0ZNin7qM");
     sleep(1000);
-    // 2 | setWindowSize | 1382x784 | 
-    driver.manage().window().setSize(new Dimension(1382, 784));
+    // 2 | setWindowSize | 1920x1080 |
+    driver.manage().window().setSize(new Dimension(1920, 1080));
     sleep(1000);
-    // 3 | runScript | window.scrollTo(0,400) | 
-    js.executeScript("window.scrollTo(0,400)");
+    // 3 | runScript | window.scrollTo(0,400) |
+    sleep(10, "//*[@id=\"dialog\"]", driver);
+    sleep(10, "//*[@id=\"content\"]/div[2]/div[6]/div[1]/ytd-button-renderer[2]/yt-button-shape/button", driver);
+    driver.findElement(By.xpath("//*[@id=\"content\"]/div[2]/div[6]/div[1]/ytd-button-renderer[2]/yt-button-shape/button")).click();
     sleep(1000);
-    driver.findElement(By.xpath("//*[@id=\"content\"]/div[2]/div[5]/div[2]/ytd-button-renderer[2]")).click();
-    sleep(1000);
-    // 4 | click | linkText=Gilby1385 | 
+    // 4 | click | linkText=Gilby1385 |
+    sleepText(10, "Gilby1385", driver);
     driver.findElement(By.linkText("Gilby1385")).click();
     sleep(2000);
     // 5 | runScript | window.scrollTo(0,0) | 
@@ -41,26 +42,20 @@ public class TestSeleniumGUIYoutube extends testBaseSelenium{
     sleep(100);
     // 6 | runScript | window.scrollTo(0,359) | 
     js.executeScript("window.scrollTo(0,359)");
-    sleep(100);
+    sleep(10, "//*[@id=\"right-arrow\"]/ytd-button-renderer/yt-button-shape/button", driver);
     // 7 | click | css=.ytd-shelf-renderer > #right-arrow #button > #button > .style-scope | 
-    driver.findElement(By.cssSelector(".ytd-shelf-renderer > #right-arrow #button > #button > .style-scope")).click();
-    sleep(100);
-    // 8 | click | css=.ytd-shelf-renderer > #right-arrow #button > #button > .style-scope | 
-    driver.findElement(By.cssSelector(".ytd-shelf-renderer > #right-arrow #button > #button > .style-scope")).click();
-    sleep(100);
-    // 9 | click | linkText=McDonald's commercial (1980) | 
-    driver.findElement(By.linkText("McDonald's commercial (1980)")).click();
+    driver.findElement(By.xpath("//*[@id=\"right-arrow\"]/ytd-button-renderer/yt-button-shape/button")).click();
+    sleepText(10, "Fake Logo - Dingo Pictures (2000)", driver);
+    // 8 | click | linkText=McDonald's commercial (1980) |
+    driver.findElement(By.linkText("Fake Logo - Dingo Pictures (2000)")).click();
     sleep(4000);
-    // 10 | runScript | window.scrollTo(0,0) | 
+    // 9 | runScript | window.scrollTo(0,0) |
     js.executeScript("window.scrollTo(0,0)");
-    sleep(100);
-    // 11 | click | css=.ytp-play-button|
+    sleepCss(10, ".ytp-play-button", driver);
+    // 10 | click | css=.ytp-play-button|
     driver.findElement(By.cssSelector(".ytp-play-button")).click();
     sleep(100);
-    // 12 | click | css=.ytp-chrome-bottom:nth-child(29) .ytp-progress-bar | 
-    driver.findElement(By.cssSelector(".ytp-chrome-bottom:nth-child(29) .ytp-progress-bar")).click();
-    sleep(100);
-    // 13 | close |  | 
+    // 12 | close |  |
     driver.close();
   }
 }

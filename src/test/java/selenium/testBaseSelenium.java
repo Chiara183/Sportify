@@ -2,7 +2,6 @@ package selenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -40,5 +39,27 @@ public abstract class testBaseSelenium {
         WebDriverWait wait = new WebDriverWait(driver, duration);
         wait.until(ExpectedConditions.presenceOfElementLocated(
                 By.xpath(xpath)));
+    }
+
+    /**
+     * Sleeps the execution of the program for the specified duration.
+     *
+     * @param duration the duration to sleep in milliseconds
+     */
+    protected static void sleepText(long duration, String linkedText, WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, duration);
+        wait.until(ExpectedConditions.elementToBeClickable(
+                By.linkText(linkedText)));
+    }
+
+    /**
+     * Sleeps the execution of the program for the specified duration.
+     *
+     * @param duration the duration to sleep in milliseconds
+     */
+    protected static void sleepCss(long duration, String css, WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, duration);
+        wait.until(ExpectedConditions.elementToBeClickable(
+                By.cssSelector(css)));
     }
 }

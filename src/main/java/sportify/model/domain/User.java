@@ -1,30 +1,22 @@
 package sportify.model.domain;
 
-import sportify.model.dao.DAO;
-import sportify.MainApp;
-import sportify.model.dao.Submit;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
-import sportify.errorlogic.DAOException;
+import sportify.MainApp;
+import sportify.model.dao.Submit;
+import sportify.model.dao.UserDAO;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * The abstract class that
  * represents the user
  */
 public abstract class User {
-
-    private static final String WHERECLAUSE = "' WHERE `user`.`username` = '";
-    private static final String UPDATE_USER = "UPDATE `user` ";
-
-    /* All parameter of user*/
     /**
      * Property representing the first name of the user.
      */
@@ -58,7 +50,7 @@ public abstract class User {
     /**
      * Property representing the role of the user.
      */
-    protected StringProperty role = new SimpleStringProperty(null);
+    protected StringProperty role;
 
     /**
      * Property representing the gym name of the user.
@@ -92,12 +84,19 @@ public abstract class User {
     protected MainApp mainApp;
 
     /**
+     * A reference to the
+     * UserDAO class.
+     */
+    protected UserDAO dao;
+
+    /**
      * Sets the reference to the main application class.
      *
      * @param mainApp the main application class
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
+        this.dao = new UserDAO(mainApp.getDAO());
     }
 
     /**
@@ -115,6 +114,7 @@ public abstract class User {
      * @param password the password of the user
      */
     protected User(String userName, String password) {
+        this.role = new SimpleStringProperty(null);
         this.firstName = new SimpleStringProperty(null);
         this.lastName = new SimpleStringProperty(null);
         this.email = new SimpleStringProperty(null);
@@ -127,6 +127,13 @@ public abstract class User {
         date = date.substring(0,10);
         String[] dateValue = date.split("-");
         this.birthday = new SimpleObjectProperty<>(LocalDate.of(Integer.parseInt(dateValue[0]), Integer.parseInt(dateValue[1]), Integer.parseInt(dateValue[2])));
+    }
+
+    /**
+     * Update user in the DB.
+     */
+    protected void update(){
+        this.dao.updateUser(this);
     }
 
     /**
@@ -220,6 +227,24 @@ public abstract class User {
     }
 
     /**
+     * Gets the latitude of the gym.
+     *
+     * @return the latitude of the gym
+     */
+    public String getLatitude() {
+        return this.latitude.get();
+    }
+
+    /**
+     * Gets the longitude of the gym.
+     *
+     * @return the longitude of the gym
+     */
+    public String getLongitude() {
+        return this.longitude.get();
+    }
+
+    /**
      *  The set action of role
      *
      * @param role the role to set
@@ -235,18 +260,7 @@ public abstract class User {
      */
     public void setFirstName(String firstName) {
         this.firstName.set(firstName);
-        String query = UPDATE_USER +
-                "SET `first_name` = '"
-                + firstName + WHERECLAUSE
-                + getUserName() + "'";
-        DAO objDAO = this.mainApp.getDAO();
-        try {
-            objDAO.updateAndGetDB(query);
-        }
-        catch (DAOException e){
-            Logger logger = Logger.getLogger(User.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
+        update();
     }
 
     /**
@@ -256,18 +270,7 @@ public abstract class User {
      */
     public void setLastName(String lastName) {
         this.lastName.set(lastName);
-        DAO objDAO = mainApp.getDAO();
-        String query = UPDATE_USER +
-                "SET `last_name` = '"
-                + lastName + WHERECLAUSE
-                + getUserName() + "'";
-        try {
-            objDAO.updateAndGetDB(query);
-        }
-        catch (DAOException e){
-            Logger logger = Logger.getLogger(User.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
+        update();
     }
 
     /**
@@ -277,20 +280,9 @@ public abstract class User {
      */
     public void setUserName(String userName) {
         Submit submit = new Submit(this.mainApp);
-        String query = UPDATE_USER +
-                "SET `username` = '"
-                + userName + WHERECLAUSE
-                + getUserName() + "'";
         if(!submit.exist(userName)) {
-            DAO objDAO = mainApp.getDAO();
-            try {
-                objDAO.updateAndGetDB(query);
-            }
-            catch (DAOException e){
-                Logger logger = Logger.getLogger(User.class.getName());
-                logger.log(Level.SEVERE, e.getMessage());
-            }
-            setUserName(userName);
+            this.userName.set(userName);
+            update();
         }
         else if (this.userName.getValue() == null){
             this.userName.set(userName);
@@ -312,23 +304,12 @@ public abstract class User {
      * @param password the password to set
      */
     public void setPassword(String password) {
-        String query = UPDATE_USER +
-                "SET `password` = '"
-                + password + WHERECLAUSE
-                + getUserName() + "'";
         if (getPassword() != null) {
-            this.password.setValue(password);
-            DAO objDAO = mainApp.getDAO();
-            try {
-                objDAO.updateAndGetDB(query);
-            }
-            catch (DAOException e){
-                Logger logger = Logger.getLogger(User.class.getName());
-                logger.log(Level.SEVERE, e.getMessage());
-            }
+            this.password.set(password);
+            dao.updateUser(this);
         }
         else {
-            this.password.setValue(password);
+            this.password.set(password);
         }
     }
 
@@ -338,18 +319,22 @@ public abstract class User {
      * @param email the email to set
      */
     public void setEmail(String email) {
-        this.email.set(email);
-        DAO objDAO = mainApp.getDAO();
-        String query = UPDATE_USER +
-                "SET `email` = '"
-                + email + WHERECLAUSE
-                + getUserName() + "'";
-        try {
-            objDAO.updateAndGetDB(query);
+        Submit submit = new Submit(this.mainApp);
+        if(!submit.existEmail(email)) {
+            this.email.set(email);
+            update();
         }
-        catch (DAOException e){
-            Logger logger = Logger.getLogger(User.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+        else if (this.email.getValue() == null){
+            this.email.set(email);
+        }
+        else {
+            //show error message
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("Email already registered");
+            alert.setHeaderText("The email already has register");
+            alert.setContentText("Please enter a different email.");
+            alert.showAndWait();
         }
     }
 
@@ -360,17 +345,6 @@ public abstract class User {
      */
     public void setBirthday(LocalDate birthday) {
         this.birthday.set(birthday);
-        DAO objDAO = mainApp.getDAO();
-        String query = UPDATE_USER +
-                "SET `birthday` = '"
-                + birthday.toString() + WHERECLAUSE
-                + getUserName() + "'";
-        try {
-            objDAO.updateAndGetDB(query);
-        }
-        catch (DAOException e){
-            Logger logger = Logger.getLogger(User.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
+        update();
     }
 }
