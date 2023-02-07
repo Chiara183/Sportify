@@ -3,9 +3,7 @@ package sportify.model.dao;
 import sportify.errorlogic.DAOException;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -85,17 +83,38 @@ public class DAO implements DAOInterface{
      *
      * @return a list of results
      */
-    public ResultSet checkData(String query) throws DAOException {
+    public List<Map<Integer, String>> checkData(String query) throws DAOException {
+        List<Map<Integer, String>> list = new ArrayList<>();
         PreparedStatement ps = null;
         ResultSet rs;
         try{
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
+            while(rs.next()){
+                int i = 1;
+                Map<Integer, String> map = new HashMap<>();
+                while(i!=rs.getMetaData().getColumnCount()+1) {
+                    map.put(i, rs.getString(i));
+                    i++;
+                }
+                list.add(map);
+            }
         }
         catch (SQLException e) {
             throw new DAOException("Check error: " + e.getMessage());
         }
-        return rs;
+        finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+            catch (SQLException e) {
+                Logger logger = Logger.getLogger(DAO.class.getName());
+                logger.info(e.toString());
+            }
+        }
+        return list;
     }
 
     /**

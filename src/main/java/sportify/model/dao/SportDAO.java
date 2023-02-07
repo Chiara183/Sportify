@@ -3,10 +3,9 @@ package sportify.model.dao;
 import sportify.errorlogic.DAOException;
 import sportify.model.domain.Sport;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,7 +24,7 @@ public class SportDAO {
     public SportDAO(DAO dao) {
         String query = "SELECT * " +
                 "FROM sport ";
-        ResultSet rs = null;
+        List<Map<Integer, String>> rs = null;
         try {
             rs = dao.checkData(query);
         }
@@ -34,31 +33,14 @@ public class SportDAO {
             logger.log(Level.SEVERE, e.getMessage());
         }
         assert rs != null;
-        try {
-            while (rs.next()) {
-                Sport sport = null;
-                try {
-                    sport = new Sport(rs.getString("name"),
-                            rs.getString("type"),
-                            rs.getString("description"));
-                } catch (SQLException e) {
-                    Logger logger = Logger.getLogger(SportDAO.class.getName());
-                    logger.log(Level.SEVERE, e.getMessage());
-                }
-                sports.add(sport);
-            }
-        } catch (SQLException e) {
-            Logger logger = Logger.getLogger(SportDAO.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
-        finally {
-            try {
-                rs.close();
-            }
-            catch (SQLException e) {
-                Logger logger = Logger.getLogger(DAO.class.getName());
-                logger.info(e.toString());
-            }
+        int i = 0 ;
+        while (i != rs.size()) {
+            Sport sport;
+            sport = new Sport(rs.get(i).get(1),
+                    rs.get(i).get(2),
+                    rs.get(i).get(3));
+            sports.add(sport);
+            i++;
         }
     }
 

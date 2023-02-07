@@ -4,6 +4,8 @@ import sportify.errorlogic.DAOException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,12 +22,12 @@ public class DAOAuthAuthenticator {
                 "FROM user " +
                 "WHERE email = \"" + email + "\"";
         try {
-            ResultSet resultSet = dao.checkData(query);
+            List<Map<Integer, String>> resultSet = dao.checkData(query);
 
-            if (resultSet.next()) {
-                username = resultSet.getString("username");
+            if (!resultSet.isEmpty()) {
+                username = resultSet.get(0).get(1);
             }
-        } catch (DAOException | SQLException e){
+        } catch (DAOException e){
             Logger logger = Logger.getLogger(DAOAuthAuthenticator.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
