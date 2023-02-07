@@ -6,6 +6,9 @@ import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+/**
+ * @author Chiara D'Ambrogio
+ */
 public class TestSeleniumGUIIMDB {
   private WebDriver driver;
   JavascriptExecutor js;

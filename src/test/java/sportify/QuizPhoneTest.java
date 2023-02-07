@@ -12,7 +12,9 @@ import org.testfx.util.WaitForAsyncUtils;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/* Chiara D'Ambrogio */
+/**
+ * @author Chiara D'Ambrogio
+ */
 @ExtendWith(ApplicationExtension.class)
 class QuizPhoneTest extends StartingTest {
 

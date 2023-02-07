@@ -9,7 +9,9 @@ import org.testfx.util.WaitForAsyncUtils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.assertions.api.Assertions.assertThat;
 
-/* Matteo La Gioia */
+/**
+ * @author Matteo La Gioia
+ */
 class MainAppTest extends StartingTest{
 
     @BeforeEach

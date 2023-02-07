@@ -5,6 +5,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+/**
+ * @author Matteo La Gioia
+ */
 public class TestSeleniumGUIYoutube extends testBaseSelenium{
   private WebDriver driver;
   JavascriptExecutor js;

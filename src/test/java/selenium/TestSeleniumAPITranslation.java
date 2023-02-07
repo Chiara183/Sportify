@@ -3,7 +3,9 @@ package selenium;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+/**
+ * @author Chiara D'Ambrogio
+ */
 class TestSeleniumAPITranslation {
     @Test
     void TestTranslation() throws InterruptedException {

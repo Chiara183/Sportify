@@ -11,7 +11,9 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.util.WaitForAsyncUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-/* Matteo La Gioia */
+/**
+ * @author Matteo La Gioia
+ */
 @ExtendWith(ApplicationExtension.class)
 class HomePhoneTest extends StartingTest{
 
