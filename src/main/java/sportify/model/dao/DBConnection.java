@@ -31,7 +31,7 @@ public class DBConnection {
     /**
      * Counter for number of connections made
      */
-    private static int count = 0;
+    private int count = 0;
 
     /**
      * Singleton instance of this class

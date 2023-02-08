@@ -13,6 +13,11 @@ import java.util.logging.Logger;
 public class UserDAO {
 
     /**
+     * private constructor.
+     */
+    private UserDAO(){}
+
+    /**
      * Updates the information of a user in the database
      *
      * @param user the user to update

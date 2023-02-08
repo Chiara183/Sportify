@@ -50,6 +50,11 @@ public class MainApp{
     private static Projection projection;
     private static boolean mobile;
 
+    /**
+     * private constructor.
+     */
+    private MainApp(){}
+
     /* Set method*/
 
     /**

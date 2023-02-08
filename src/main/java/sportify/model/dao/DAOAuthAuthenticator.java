@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 
 public class DAOAuthAuthenticator {
 
+    private DAOAuthAuthenticator(){}
+
     public static String getUsernameByEmail(String email){
         String username = null;
         String query = "SELECT username " +

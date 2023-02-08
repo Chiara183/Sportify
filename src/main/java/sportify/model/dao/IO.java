@@ -34,6 +34,11 @@ public class IO {
     private static final String ADDRESS = "address";
 
     /**
+     * private constructor.
+     */
+    private IO(){}
+
+    /**
      * Writes the user data to the database.
      *
      * @param map the map containing the user data to be written

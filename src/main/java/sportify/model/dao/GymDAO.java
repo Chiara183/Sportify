@@ -13,6 +13,11 @@ import java.util.logging.Logger;
 public class GymDAO {
 
     /**
+     * private constructor.
+     */
+    private GymDAO(){}
+
+    /**
      * Retrieves the gym account information from the database.
      *
      * @return a Map containing the gym account information

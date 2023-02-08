@@ -15,6 +15,11 @@ import java.util.logging.Logger;
 public class GymInfoDAO {
 
     /**
+     * private constructor.
+     */
+    private GymInfoDAO(){}
+
+    /**
      * A constant string used in SQL statements
      */
     private static final String SELECT = "SELECT name ";
@@ -40,10 +45,8 @@ public class GymInfoDAO {
      * @param writer the username of the reviewer
      * @param gym the name of the gym
      * @param timestamp the timestamp of the review
-     *
-     * @throws SQLException if a database error occurs
      */
-    public static void cancelReview(String writer, String gym, String timestamp) throws SQLException {
+    public static void cancelReview(String writer, String gym, String timestamp){
         String query = "DELETE FROM `review` " +
                 "WHERE `review`.`writer` = '" + writer +
                 "' AND `review`.`gym` = '" + gym +

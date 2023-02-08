@@ -1,6 +1,5 @@
 package sportify.controller;
 
-import sportify.MainApp;
 import sportify.controller.graphic.GraphicController;
 import sportify.model.domain.User;
 

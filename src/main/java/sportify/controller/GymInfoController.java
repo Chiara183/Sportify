@@ -158,12 +158,7 @@ public class GymInfoController extends Controller implements Observer {
         String writer = query0[0];
         String timestamp = query0[1];
         String gymName = getGym();
-        try {
-            GymInfoDAO.cancelReview(writer, gymName, timestamp);
-        } catch (SQLException ex){
-            Logger logger = Logger.getLogger(GymInfoController.class.getName());
-            logger.log(Level.SEVERE, ex.getMessage());
-        }
+        GymInfoDAO.cancelReview(writer, gymName, timestamp);
         loadingGymName(getGym());
     }
 

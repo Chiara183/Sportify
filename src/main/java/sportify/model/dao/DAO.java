@@ -12,6 +12,11 @@ import java.util.logging.Logger;
 public class DAO {
 
     /**
+     * private constructor.
+     */
+    private DAO(){}
+
+    /**
      * The main connection of the project
      */
     static Connection connection = null;

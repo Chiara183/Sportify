@@ -25,6 +25,11 @@ import java.util.logging.Logger;
 public class Submit{
 
     /**
+     * private constructor.
+     */
+    private Submit(){}
+
+    /**
      * String that define RUOLO
      */
     private static final String RUOLO = "ruolo";
