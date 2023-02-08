@@ -6,7 +6,6 @@ import sportify.errorlogic.DAOException;
 import sportify.model.domain.User;
 
 import javax.swing.*;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;

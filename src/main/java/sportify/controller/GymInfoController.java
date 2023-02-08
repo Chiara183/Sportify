@@ -21,7 +21,6 @@ import sportify.pattern.Observer;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
