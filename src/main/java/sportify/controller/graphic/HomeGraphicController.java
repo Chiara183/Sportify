@@ -1,5 +1,6 @@
 package sportify.controller.graphic;
 
+import sportify.MainApp;
 import sportify.controller.*;
 import sportify.controller.graphic.phone.HomePhoneGraphicController;
 import javafx.fxml.FXML;
@@ -23,33 +24,31 @@ public class HomeGraphicController extends HomePhoneGraphicController implements
         GymInfoController gym = new GymInfoController();
         graphicController.setController(gym);
         gym.setGraphicController(graphicController);
-        gym.setMainApp(controller.getMainApp());
         gym.setUser(controller.getUser());
         gym.setMenu(menu);
-        gym.setSearchCache(controller.getMainApp().getSearchCache());
+        gym.setSearchCache(MainApp.getSearchCache());
         gym.loadingGymName(controller.getUser().getGymName());
     }
     @FXML
     private void sportQuizAction(){
-        controller.getMainApp().getPrimaryStage().setTitle("Sportify - Sport Quiz");
+        MainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
         try {
             MenuController menuController = controller.menu();
             menuController.setSportQuiz();
 
             // Load sport quiz overview.
             FXMLLoader loaderSport = new FXMLLoader();
-            loaderSport.setLocation(Objects.requireNonNull(controller.getMainApp().getClass().getResource("DesktopView/SportQuiz.fxml")));
+            loaderSport.setLocation(Objects.requireNonNull(MainApp.class.getResource("DesktopView/SportQuiz.fxml")));
             Pane paneSport = loaderSport.load();
 
             // Set sport quiz overview into the center of root layout.
-            controller.getMainApp().getPrimaryPane().setCenter(paneSport);
+            MainApp.getPrimaryPane().setCenter(paneSport);
 
             // Give the gymEditController access to the main app.
             SportQuizGraphicController graphicController = loaderSport.getController();
             SportQuizController controllerSport = new SportQuizController();
             controllerSport.setGraphicController(graphicController);
             graphicController.setController(controllerSport);
-            controllerSport.setMainApp(controller.getMainApp());
             controllerSport.setUser(controller.getUser());
             controllerSport.setMenu(menuController);
         } catch (IOException e) {
@@ -59,28 +58,27 @@ public class HomeGraphicController extends HomePhoneGraphicController implements
     }
     @FXML
     private void findGymAction(){
-        controller.getMainApp().getPrimaryStage().setTitle("Sportify - Find Gym");
+        MainApp.getPrimaryStage().setTitle("Sportify - Find Gym");
         try {
             MenuController menuController = controller.menu();
             menuController.setFindGym();
 
             // Load find gym overview.
             FXMLLoader loaderGym = new FXMLLoader();
-            loaderGym.setLocation(Objects.requireNonNull(controller.getMainApp().getClass().getResource("DesktopView/FindGym.fxml")));
+            loaderGym.setLocation(Objects.requireNonNull(MainApp.class.getResource("DesktopView/FindGym.fxml")));
             Pane paneGym = loaderGym.load();
 
             // Set find gym overview into the center of root layout.
-            controller.getMainApp().getPrimaryPane().setCenter(paneGym);
+            MainApp.getPrimaryPane().setCenter(paneGym);
 
             // Give the gymEditController access to the main app.
             FindGymGraphicController graphicController = loaderGym.getController();
             FindGymController controllerGym = new FindGymController();
             controllerGym.setGraphicController(graphicController);
             graphicController.setController(controllerGym);
-            controllerGym.setMainApp(controller.getMainApp());
             controllerGym.setUser(controller.getUser());
             controllerGym.setMenu(menuController);
-            controllerGym.setProjection(controller.getMainApp().getProjection());
+            controllerGym.setProjection(MainApp.getProjection());
         } catch (IOException e) {
             Logger logger = Logger.getLogger(HomeGraphicController.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
@@ -88,25 +86,24 @@ public class HomeGraphicController extends HomePhoneGraphicController implements
     }
     @FXML
     private void signLoginAction() {
-        controller.getMainApp().getPrimaryStage().setTitle("Sportify - Login");
+        MainApp.getPrimaryStage().setTitle("Sportify - Login");
         try {
             MenuController menuController = controller.menu();
             menuController.setLogin();
 
             // Load login overview.
             FXMLLoader loaderLogin = new FXMLLoader();
-            loaderLogin.setLocation(Objects.requireNonNull(controller.getMainApp().getClass().getResource("DesktopView/Login.fxml")));
+            loaderLogin.setLocation(Objects.requireNonNull(MainApp.class.getResource("DesktopView/Login.fxml")));
             Pane paneLogin = loaderLogin.load();
 
             // Set login overview into the center of root layout.
-            controller.getMainApp().getPrimaryPane().setCenter(paneLogin);
+            MainApp.getPrimaryPane().setCenter(paneLogin);
 
             // Give the gymEditController access to the main app.
             LoginGraphicController graphicController = loaderLogin.getController();
             LoginController controllerLogin = new LoginController();
             controllerLogin.setGraphicController(graphicController);
             graphicController.setController(controllerLogin);
-            controllerLogin.setMainApp(controller.getMainApp());
             controllerLogin.setUser(controller.getUser());
             controllerLogin.setMenu(menuController);
         } catch (IOException e) {

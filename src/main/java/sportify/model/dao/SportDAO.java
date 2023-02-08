@@ -21,12 +21,12 @@ public class SportDAO {
     /**
      * The constructor.
      */
-    public SportDAO(DAO dao) {
+    public SportDAO() {
         String query = "SELECT * " +
                 "FROM sport ";
         List<Map<Integer, String>> rs = null;
         try {
-            rs = dao.checkData(query);
+            rs = DAO.checkData(query);
         }
         catch (DAOException e){
             Logger logger = Logger.getLogger(SportDAO.class.getName());

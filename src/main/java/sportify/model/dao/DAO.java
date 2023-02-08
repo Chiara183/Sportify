@@ -9,12 +9,12 @@ import java.util.logging.Logger;
 /**
  * Allows you to talk to the DB
  */
-public class DAO implements DAOInterface{
+public class DAO {
 
     /**
      * The main connection of the project
      */
-    Connection connection = null;
+    static Connection connection = null;
 
 
     /**
@@ -22,8 +22,8 @@ public class DAO implements DAOInterface{
      *
      * @param connection the connection to set
      */
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public static void setConnection(Connection connection) {
+        DAO.connection = connection;
     }
 
     /**
@@ -31,8 +31,8 @@ public class DAO implements DAOInterface{
      *
      * @return the connection
      */
-    public Connection getConnection() {
-        return this.connection;
+    public static Connection getConnection() {
+        return connection;
     }
 
     /**
@@ -43,7 +43,7 @@ public class DAO implements DAOInterface{
      *
      * @return a list of results
      */
-    public List<String> checkDataColumn(String query, String column){
+    public static List<String> checkDataColumn(String query, String column){
         PreparedStatement ps = null;
         ResultSet rs;
         List<String> result = new ArrayList<>();
@@ -83,7 +83,7 @@ public class DAO implements DAOInterface{
      *
      * @return a list of results
      */
-    public List<Map<Integer, String>> checkData(String query) throws DAOException {
+    public static List<Map<Integer, String>> checkData(String query) throws DAOException {
         List<Map<Integer, String>> list = new ArrayList<>();
         PreparedStatement ps = null;
         ResultSet rs;
@@ -122,7 +122,7 @@ public class DAO implements DAOInterface{
      *
      * @param query the query to run in DB
      */
-    public void updateAndGetDB(String query) throws DAOException {
+    public static void updateAndGetDB(String query) throws DAOException {
         PreparedStatement ps = null;
         try{
             ps = connection.prepareStatement(query);
@@ -150,7 +150,7 @@ public class DAO implements DAOInterface{
      *
      * @throws DAOException if a DAO error occurs
      */
-    public int updateDB(String query) throws DAOException {
+    public static int updateDB(String query) throws DAOException {
         int rowsAffected;
         try (Statement stmt = connection.createStatement()) {
             rowsAffected = stmt.executeUpdate(query);
@@ -160,7 +160,7 @@ public class DAO implements DAOInterface{
         return rowsAffected;
     }
 
-    public void close() throws DAOException {
+    public static void close() throws DAOException {
         try {
             connection.close();
         } catch (SQLException e) {

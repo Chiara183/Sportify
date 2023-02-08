@@ -46,7 +46,7 @@ public class HomePhoneGraphicController implements GraphicController {
                 String gRedir = "https://localhost:8080/oauth2";
                 String gScope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
                 OAuthGoogleAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, G_SECRET, gScope);
-                auth.startLogin(controller.getMainApp());
+                auth.startLogin();
             }
             case "Find gym" -> this.controller.getMenu().getGraphicController().findGymAction();
             default -> {

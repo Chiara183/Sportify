@@ -22,7 +22,7 @@ public class MenuPhoneGraphicController extends MenuGraphicController {
     @FXML
     protected void signOutMethod() {
         controller.setUser(null);
-        controller.getMainApp().setUser(null);
+        MainApp.setUser(null);
         homeAction();
     }
 
@@ -30,9 +30,9 @@ public class MenuPhoneGraphicController extends MenuGraphicController {
     @FXML
     public void findGymAction() {
         controller.setView(ControllerType.FIND_GYM);
-        controller.getMainApp().setMenu(controller);
-        controller.getMainApp().setUser(controller.getUser());
-        controller.getMainApp().showFindGymOverview(controller);
+        MainApp.setMenu(controller);
+        MainApp.setUser(controller.getUser());
+        MainApp.showFindGymOverview(controller);
     }
 
     @Override
@@ -48,17 +48,17 @@ public class MenuPhoneGraphicController extends MenuGraphicController {
     @FXML
     public void sportQuizAction() {
         controller.setView(ControllerType.SPORT_QUIZ);
-        controller.getMainApp().setMenu(controller);
-        controller.getMainApp().setUser(controller.getUser());
-        controller.getMainApp().showSportQuizOverview(controller);
+        MainApp.setMenu(controller);
+        MainApp.setUser(controller.getUser());
+        MainApp.showSportQuizOverview(controller);
     }
 
     @Override
     @FXML
     public void signLoginAction() {
-        controller.getMainApp().setMenu(controller);
-        controller.getMainApp().setUser(controller.getUser());
-        controller.getMainApp().showLoginOverview();
+        MainApp.setMenu(controller);
+        MainApp.setUser(controller.getUser());
+        MainApp.showLoginOverview();
     }
 
     @Override
@@ -83,8 +83,8 @@ public class MenuPhoneGraphicController extends MenuGraphicController {
             graphicMenuController = loaderTopScreen.getController();
             AnchorPane page = loader.load();
 
-            controller.getMainApp().getPrimaryPane().setCenter(page);
-            controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
+            MainApp.getPrimaryPane().setCenter(page);
+            MainApp.getPrimaryPane().setTop(paneTopScreen);
             assert graphicMenuController != null;
             graphicMenuController.setController(this.controller);
 

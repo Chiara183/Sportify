@@ -1,7 +1,5 @@
 package sportify.auth;
 
-import sportify.MainApp;
-
 /**
  * The OAuthGoogleAuthenticator class extends the OAuthAuthenticator class and provides
  * functionality specific to Google's OAuth 2.0 authentication.
@@ -84,9 +82,8 @@ public class OAuthGoogleAuthenticator extends OAuthAuthenticator{
     /**
      * Starts the Google login process.
      *
-     * @param mainApp the main application object
      */
-    public void startLogin(MainApp mainApp){
-        super.start(mainApp, "Google Login", OAuthType.GOOGLE);
+    public void startLogin(){
+        super.start("Google Login", OAuthType.GOOGLE);
     }
 }

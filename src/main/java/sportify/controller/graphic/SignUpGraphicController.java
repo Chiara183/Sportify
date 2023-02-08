@@ -74,7 +74,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
         if(this.bean.checkEmpty(username) || this.bean.checkEmpty(password) || this.bean.checkEmpty(email)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(signUpController.getMainApp().getPrimaryStage());
+            alert.initOwner(MainApp.getPrimaryStage());
             alert.setTitle("Field empty");
             alert.setHeaderText("A field is empty");
             alert.setContentText("Please fill username, email and password field");
@@ -83,7 +83,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
         if(bean.checkForNumbers(firstName) || bean.checkForNumbers(lastName)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(signUpController.getMainApp().getPrimaryStage());
+            alert.initOwner(MainApp.getPrimaryStage());
             alert.setTitle("Field empty");
             alert.setHeaderText("A field is empty");
             alert.setContentText("Please fill first name and last name fields with letters or leave them empty");
@@ -133,15 +133,14 @@ public class SignUpGraphicController extends RegisterGraphicController{
     public void helpMethod3(SignUpGraphicController graphicController){
         SignUpController controllerSignUp = new SignUpController();
         controllerSignUp.setMenu(this.signUpController.getMenu());
-        this.signUpController.getMainApp().getPrimaryPane().setCenter(pane);
-        this.signUpController.getMainApp().getPrimaryPane().setTop(paneTopScreen);
+        MainApp.getPrimaryPane().setCenter(pane);
+        MainApp.getPrimaryPane().setTop(paneTopScreen);
         assert this.graphicMenuController != null;
         this.graphicMenuController.setController(this.signUpController.getMenu());
 
         // Give the controllerSignUp access to the main app.
         controllerSignUp.setGraphicController(graphicController);
         graphicController.setController(controllerSignUp);
-        controllerSignUp.setMainApp(this.signUpController.getMainApp());
         this.signUpController.getMenu().setInstance(graphicController);
     }
 

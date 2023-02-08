@@ -1,5 +1,6 @@
 package sportify.controller.graphic.phone;
 
+import sportify.MainApp;
 import sportify.controller.graphic.GymInfoGraphicController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,7 @@ public class GymInfoPhoneGraphicController extends GymInfoGraphicController {
         if(!this.bean.checkPhoneReview(gym, this.reviewArea)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.initOwner(MainApp.getPrimaryStage());
             alert.setTitle("Field empty");
             alert.setHeaderText("A field is empty");
             alert.setContentText("Please fill gym name field and review field");

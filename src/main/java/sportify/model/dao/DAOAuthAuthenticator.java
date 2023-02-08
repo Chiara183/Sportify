@@ -8,19 +8,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DAOAuthAuthenticator {
-    private final DAO dao;
 
-    public DAOAuthAuthenticator(DAO dao) {
-        this.dao = dao;
-    }
-
-    public String getUsernameByEmail(String email){
+    public static String getUsernameByEmail(String email){
         String username = null;
         String query = "SELECT username " +
                 "FROM user " +
                 "WHERE email = \"" + email + "\"";
         try {
-            List<Map<Integer, String>> resultSet = dao.checkData(query);
+            List<Map<Integer, String>> resultSet = DAO.checkData(query);
 
             if (!resultSet.isEmpty()) {
                 username = resultSet.get(0).get(1);

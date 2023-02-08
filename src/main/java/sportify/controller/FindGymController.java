@@ -62,8 +62,8 @@ public class FindGymController extends Controller{
         try {
             // Load find map overview.
             FXMLLoader loaderGym = new FXMLLoader();
-            if(mainApp.isNotMobile()) {
-                url = mainApp.getClass().getResource("DesktopView/Map.fxml");
+            if(MainApp.isNotMobile()) {
+                url = MainApp.class.getResource("DesktopView/Map.fxml");
                 loaderGym.setLocation(Objects.requireNonNull(url));
             }
             else {
@@ -80,7 +80,6 @@ public class FindGymController extends Controller{
             MapController controller = new MapController();
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
-            controller.setMainApp(this.mainApp);
             controller.setUser(this.user);
             controller.setMenu(this.menu);
             controller.initMapAndControls(projection);

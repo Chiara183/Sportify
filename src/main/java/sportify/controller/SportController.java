@@ -68,7 +68,7 @@ public class SportController extends Controller{
      * @param sport - name of the sport
      */
     public void loadDescriptionFromDB(String sport){
-        SportDAO objDAO = new SportDAO(mainApp.getDAO());
+        SportDAO objDAO = new SportDAO();
         String desc = objDAO.getDescriptions(sport);
         this.loadingSport(sport, desc);
     }
@@ -98,13 +98,13 @@ public class SportController extends Controller{
      * @param sport - name of the sport
      */
     public void loadingSportName(String sport) {
-        this.mainApp.setUser(this.user);
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
+        MainApp.setUser(this.user);
+        MainApp.getPrimaryStage().setTitle("Sportify - Test Result");
         URL url;
         try {
             // Load test result overview.
             FXMLLoader loaderSport = new FXMLLoader();
-            if(this.getMainApp().isNotMobile()) {
+            if(MainApp.isNotMobile()) {
                 url = MainApp.class.getResource("DesktopView/Sport.fxml");
                 loaderSport.setLocation(url);
             }
@@ -116,21 +116,20 @@ public class SportController extends Controller{
                 loaderTopScreen.setLocation(url);
                 Pane paneTopScreen =  tryCatch(loaderTopScreen);
                 SportGraphicController graphicMenuController = loaderTopScreen.getController();
-                this.mainApp.getPrimaryPane().setTop(paneTopScreen);
+                MainApp.getPrimaryPane().setTop(paneTopScreen);
                 graphicMenuController.setController(this);
                 graphicMenuController.setSportName(sport);
             }
             Pane pane = loaderSport.load();
 
             // Set test result overview into the center of root layout.
-            this.mainApp.getPrimaryPane().setCenter(pane);
+            MainApp.getPrimaryPane().setCenter(pane);
 
             // Give the gymEditController access to the main app.
             SportGraphicController sportGraphicController = loaderSport.getController();
             sportGraphicController.setController(this);
             this.setGraphicController(sportGraphicController);
             this.setUser(this.user);
-            this.setMainApp(this.mainApp);
             sportGraphicController.setSportName(sport);
         }
         catch (IOException e) {
@@ -146,12 +145,12 @@ public class SportController extends Controller{
      * @param description - description of the sport
      */
     public void loadingSport(String sport, String description) {
-        this.mainApp.setUser(this.user);
-        this.mainApp.getPrimaryStage().setTitle("Sportify - Test Result");
+        MainApp.setUser(this.user);
+        MainApp.getPrimaryStage().setTitle("Sportify - Test Result");
         URL url;
         // Load test result overview.
-        if(getMainApp().isNotMobile()) {
-            FXMLLoader loaderSport = new FXMLLoader();
+        FXMLLoader loaderSport = new FXMLLoader();
+        if(MainApp.isNotMobile()) {
             url = MainApp.class.getResource("DesktopView/SportInfo.fxml");
             loaderSport.setLocation(url);
             // Give the gymEditController access to the main app.
@@ -160,13 +159,12 @@ public class SportController extends Controller{
             sportGraphicController.setSportDescription(description);
         }
         else {
-            FXMLLoader loaderSport = new FXMLLoader();
             url = MainApp.class.getResource("SmartphoneView/SportInfoPhone0.fxml");
             loaderSport.setLocation(url);
             FXMLLoader loaderTopScreen = new FXMLLoader();
             url = MainApp.class.getResource("SmartphoneView/topScreen0.fxml");
             loaderTopScreen.setLocation(url);
-            mainApp.setTopMenu(loaderTopScreen);
+            MainApp.setTopMenu(loaderTopScreen);
             menu.setView(ControllerType.SPORT_INFO);
             MenuGraphicController graphicMenuController = loaderTopScreen.getController();
             graphicMenuController.setController(menu);
@@ -204,14 +202,13 @@ public class SportController extends Controller{
             logger.log(Level.SEVERE, e.getMessage());
         }
         // Set test result overview into the center of root layout.
-        this.mainApp.getPrimaryPane().setCenter(pane);
+        MainApp.getPrimaryPane().setCenter(pane);
 
         // Give the gymEditController access to the main app.
         SportGraphicController sportGraphicController = loaderSport.getController();
         this.setGraphicController(sportGraphicController);
         sportGraphicController.setController(this);
         this.setUser(this.user);
-        this.setMainApp(this.mainApp);
         this.setMenu(this.menu);
         return sportGraphicController;
     }

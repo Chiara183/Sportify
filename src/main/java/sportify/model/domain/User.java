@@ -78,28 +78,6 @@ public abstract class User {
     protected StringProperty phone;
 
     /**
-     * A reference to the main
-     * application class.
-     */
-    protected MainApp mainApp;
-
-    /**
-     * A reference to the
-     * UserDAO class.
-     */
-    protected UserDAO dao;
-
-    /**
-     * Sets the reference to the main application class.
-     *
-     * @param mainApp the main application class
-     */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-        this.dao = new UserDAO(mainApp.getDAO());
-    }
-
-    /**
      * Constructs a new User instance.
      */
     protected User() {
@@ -133,7 +111,7 @@ public abstract class User {
      * Update user in the DB.
      */
     protected void update(){
-        this.dao.updateUser(this);
+        UserDAO.updateUser(this);
     }
 
     /**
@@ -279,8 +257,7 @@ public abstract class User {
      * @param userName the username to set
      */
     public void setUserName(String userName) {
-        Submit submit = new Submit(this.mainApp);
-        if(!submit.exist(userName)) {
+        if(!Submit.exist(userName)) {
             this.userName.set(userName);
             update();
         }
@@ -290,7 +267,7 @@ public abstract class User {
         else {
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainApp.getPrimaryStage());
+            alert.initOwner(MainApp.getPrimaryStage());
             alert.setTitle("User already exists");
             alert.setHeaderText("The user already exists");
             alert.setContentText("Please enter a different username.");
@@ -306,7 +283,7 @@ public abstract class User {
     public void setPassword(String password) {
         if (getPassword() != null) {
             this.password.set(password);
-            dao.updateUser(this);
+            UserDAO.updateUser(this);
         }
         else {
             this.password.set(password);
@@ -319,8 +296,7 @@ public abstract class User {
      * @param email the email to set
      */
     public void setEmail(String email) {
-        Submit submit = new Submit(this.mainApp);
-        if(!submit.existEmail(email)) {
+        if(!Submit.existEmail(email)) {
             this.email.set(email);
             update();
         }
@@ -330,7 +306,7 @@ public abstract class User {
         else {
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainApp.getPrimaryStage());
+            alert.initOwner(MainApp.getPrimaryStage());
             alert.setTitle("Email already registered");
             alert.setHeaderText("The email already has register");
             alert.setContentText("Please enter a different email.");

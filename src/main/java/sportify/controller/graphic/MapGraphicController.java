@@ -1,5 +1,6 @@
 package sportify.controller.graphic;
 
+import sportify.MainApp;
 import sportify.util.OpenStreetMapUtils;
 import sportify.bean.MapBean;
 import sportify.controller.Controller;
@@ -109,7 +110,7 @@ public class MapGraphicController implements GraphicController{
         while(!bean.checkSearch(this.search)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.initOwner(MainApp.getPrimaryStage());
             alert.setTitle("Field empty");
             alert.setHeaderText("Field is empty");
             alert.setContentText("Please fill search field");
@@ -123,7 +124,7 @@ public class MapGraphicController implements GraphicController{
         while(!bean.checkKm(this.km)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.initOwner(MainApp.getPrimaryStage());
             alert.setTitle("Field empty");
             alert.setHeaderText("km field is empty");
             alert.setContentText("Please select a km range");
@@ -166,7 +167,7 @@ public class MapGraphicController implements GraphicController{
         }else{
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.initOwner(MainApp.getPrimaryStage());
             alert.setTitle("Wrong address");
             alert.setHeaderText("Sorry, we can't find your address");
             alert.setContentText("Please enter valid address");

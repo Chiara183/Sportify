@@ -1,10 +1,9 @@
 package sportify.model.dao;
 
-import sportify.util.DateUtil;
-import sportify.MainApp;
 import sportify.model.domain.ClassicUser;
 import sportify.model.domain.GymUser;
 import sportify.model.domain.User;
+import sportify.util.DateUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,15 +23,6 @@ import java.util.logging.Logger;
  * with the IO class
  */
 public class Submit{
-    /**
-     * Reference to IO
-     */
-    private final IO dB;
-
-    /**
-     * Reference to MainApp
-     */
-    private final MainApp mainApp;
 
     /**
      * String that define RUOLO
@@ -50,17 +40,6 @@ public class Submit{
     private static final String PASS = "password";
 
     /**
-     * The constructor.
-     *
-     * @param mainApp reference to MainApp
-     */
-    public Submit(MainApp mainApp){
-        this.mainApp = mainApp;
-        this.dB = new IO();
-        this.dB.setMainApp(mainApp);
-    }
-
-    /**
      * The method used to do the Login
      *
      * @param userValue the username that try to access
@@ -68,12 +47,12 @@ public class Submit{
      *
      * @return If the procedure was a success
      */
-    public boolean login(String userValue, String passValue) {
+    public static boolean login(String userValue, String passValue) {
         String className = Submit.class.getName();
         String f = "trunk/src/main/resources/users.csv";
         URI uri;
         File file;
-        Map<String, Map<String, String>> account = this.dB.read();
+        Map<String, Map<String, String>> account = IO.read();
         Map<String, String> map = account.get(userValue);
         boolean resultDB = false;
         boolean resultFile = false;
@@ -119,8 +98,8 @@ public class Submit{
      * @param userAccount the account you want to
      *                    create on the application
      */
-    public void signUp(Map<String, String> userAccount) {
-        this.dB.write(userAccount);
+    public static void signUp(Map<String, String> userAccount) {
+        IO.write(userAccount);
         String usr = userAccount.get(USER);
         String pw = userAccount.get(PASS);
         String str = usr + "," + pw;
@@ -136,9 +115,9 @@ public class Submit{
      * @return Returns true if the user exists or
      * false if the user does not already exist
      */
-    public boolean exist(String username){
+    public static boolean exist(String username){
         boolean result;
-        Map<String, Map<String, String>> account = this.dB.read();
+        Map<String, Map<String, String>> account = IO.read();
         result = !account.isEmpty() &&
                 account.containsKey(username);
         return result;
@@ -153,9 +132,9 @@ public class Submit{
      * @return Returns true if the email exists or
      * false if the email does not already exist
      */
-    public boolean existEmail(String email){
+    public static boolean existEmail(String email){
         boolean result;
-        Map<String, Map<String, String>> account = this.dB.read();
+        Map<String, Map<String, String>> account = IO.read();
         AtomicBoolean exist = new AtomicBoolean(false);
         account.forEach(
                 (key, value) ->
@@ -177,8 +156,8 @@ public class Submit{
      *
      * @return Return logged-in user
      */
-    public User setUser(String username){
-        Map<String, Map<String, String>> account = this.dB.read();
+    public static User setUser(String username){
+        Map<String, Map<String, String>> account = IO.read();
         User user = null;
         if (account.containsKey(username)) {
             user = writeUser((HashMap<String, Map<String, String>>) account,username);
@@ -194,7 +173,7 @@ public class Submit{
      *
      * @return returns the user just written to the view
      */
-    private User writeUser(HashMap<String, Map<String, String>> account, String username){
+    private static User writeUser(HashMap<String, Map<String, String>> account, String username){
         User user;
         String s;
         Map<String, String> map = account.get(username);
@@ -205,7 +184,6 @@ public class Submit{
         else {
             user = new GymUser();
         }
-        user.setMainApp(mainApp);
         s = map.get(USER);
         user.setUserName(s);
         s = map.get(PASS);
@@ -249,7 +227,7 @@ public class Submit{
      *
      * @return the password created
      */
-    public String generateStrongPassword(int passwordLength) {
+    public static String generateStrongPassword(int passwordLength) {
         String className = Submit.class.getName();
         String msg = "Final Password: {}";
 
@@ -299,7 +277,7 @@ public class Submit{
      *
      * @return Returns a random string
      */
-    private String generateRandomString(String input, int size) {
+    private static String generateRandomString(String input, int size) {
         String finalResult;
         String error;
         int length;
@@ -334,7 +312,7 @@ public class Submit{
      *
      * @return The mixed string
      */
-    private String shuffleString(String input) {
+    private static String shuffleString(String input) {
         String[] sList = input.split("");
         String finalResult;
         List<String> result = Arrays.asList(sList);

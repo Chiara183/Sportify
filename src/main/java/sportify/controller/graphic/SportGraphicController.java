@@ -1,5 +1,6 @@
 package sportify.controller.graphic;
 
+import sportify.MainApp;
 import sportify.controller.Controller;
 import sportify.controller.ControllerType;
 import sportify.controller.SportController;
@@ -22,8 +23,8 @@ public class SportGraphicController implements GraphicController{
     /* The action of the buttons*/
     @FXML
     private void home(){
-        controller.getMainApp().setUser(controller.getUser());
-        controller.getMainApp().showHomeOverview();
+        MainApp.setUser(controller.getUser());
+        MainApp.showHomeOverview();
     }
 
     @FXML

@@ -1,5 +1,6 @@
 package sportify.controller.graphic;
 
+import sportify.MainApp;
 import sportify.controller.Controller;
 import sportify.controller.ControllerType;
 import sportify.controller.EditController;
@@ -123,7 +124,7 @@ public abstract class EditGraphicController implements GraphicController{
         username.setText(user.getUserName());
         password.setText(user.getPassword());
         email.setText(user.getEmail());
-        if(controller.getMainApp().isNotMobile()) {
+        if(MainApp.isNotMobile()) {
             date.setValue(user.getBirthday());
         } else {
             dayOfBirth.setText(String.valueOf(user.getBirthday().getDayOfMonth()));

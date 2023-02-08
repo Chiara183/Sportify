@@ -1,5 +1,6 @@
 package sportify.controller.graphic;
 
+import sportify.MainApp;
 import sportify.util.OpenStreetMapUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -14,7 +15,7 @@ public class SignUpGymPhoneGraphicController extends SignUpGymGraphicController{
         if(this.bean.checkEmpty(gymName) || this.bean.checkEmpty(gymAddress) || this.bean.checkEmpty(gymCity)){
             //show error message
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(signUpGymController.getMainApp().getPrimaryStage());
+                alert.initOwner(MainApp.getPrimaryStage());
                 alert.setTitle("Field empty");
                 alert.setHeaderText("A field is empty");
                 alert.setContentText("Please fill gym name, address and city field");

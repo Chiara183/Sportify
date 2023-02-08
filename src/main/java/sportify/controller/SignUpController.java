@@ -29,29 +29,10 @@ public class SignUpController extends AccessController {
     private SignUpGraphicController graphicController;
 
     /**
-     * A reference to the Submit object, which is
-     * used to submit the user's information.
-     */
-    private Submit submitSignUp;
-
-    /**
      * The default constructor for the SignUpController class.
      */
     public SignUpController() {
         this.type = ControllerType.SIGN_UP;
-        this.submitSignUp = new Submit(null);
-    }
-
-    /**
-     * Overrides the setMainApp method in the
-     * AccessController class to set the main application.
-     *
-     * @param mainApp  the main application to be set
-     */
-    @Override
-    public void setMainApp(MainApp mainApp){
-        this.mainApp = mainApp;
-        this.submitSignUp = new Submit(mainApp);
     }
 
 
@@ -68,29 +49,29 @@ public class SignUpController extends AccessController {
      */
     public void submitActionSignUp(String userValue, String passValue, String nameValue, String lastNameValue, String email, String date) {
         Map<String, String> userAccount =
-                mainApp.createAccount(userValue, passValue, nameValue, lastNameValue, email, date);
+                MainApp.createAccount(userValue, passValue, nameValue, lastNameValue, email, date);
         if (!email.equals("") &&
                 !userValue.equals("") &&
                 !passValue.equals("") &&
-                !submitSignUp.exist(userValue) &&
-                !submitSignUp.existEmail(email)) { //if authentic, navigate user to a new page
-              Adapter adapter = new Adapter(this, this.graphicController, this.submitSignUp);
+                !Submit.exist(userValue) &&
+                !Submit.existEmail(email)) { //if authentic, navigate user to a new page
+              Adapter adapter = new Adapter(this, this.graphicController);
               adapter.userKind(userAccount);
         }
         else {
-            if (submitSignUp.exist(userValue)){
+            if (Submit.exist(userValue)){
                 //show error message
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(mainApp.getPrimaryStage());
+                alert.initOwner(MainApp.getPrimaryStage());
                 alert.setTitle("User already exists");
                 alert.setHeaderText("The user already exists");
                 alert.setContentText("Please enter a different username or login.");
                 alert.showAndWait();
             }
-            else if (submitSignUp.existEmail(email)){
+            else if (Submit.existEmail(email)){
                 //show error message
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(mainApp.getPrimaryStage());
+                alert.initOwner(MainApp.getPrimaryStage());
                 alert.setTitle("User already exists");
                 alert.setHeaderText("The email is already registered");
                 alert.setContentText("Please enter a different email or login.");
@@ -99,7 +80,7 @@ public class SignUpController extends AccessController {
             else {
                 //show error message
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(mainApp.getPrimaryStage());
+                alert.initOwner(MainApp.getPrimaryStage());
                 alert.setTitle("Empty field");
                 alert.setHeaderText("Some obligatory value are empty");
                 alert.setContentText("Please enter all obligatory value.");

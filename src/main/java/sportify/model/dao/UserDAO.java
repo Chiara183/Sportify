@@ -11,25 +11,13 @@ import java.util.logging.Logger;
  * information in the database
  */
 public class UserDAO {
-    private final DAO dao;
-
-    /**
-     * Constructs a UserDAO object with
-     * a specified DAO
-     *
-     * @param dao the DAO used to interact
-     *            with the database
-     */
-    public UserDAO(DAO dao) {
-        this.dao = dao;
-    }
 
     /**
      * Updates the information of a user in the database
      *
      * @param user the user to update
      */
-    public void updateUser(User user){
+    public static void updateUser(User user){
         String query = "UPDATE `user` " +
                 "SET `first_name` = '" + user.getFirstName() + "', " +
                 "`last_name` = '" + user.getLastName() + "', " +
@@ -51,7 +39,7 @@ public class UserDAO {
      *
      * @param user the gym user to update
      */
-    public void updateGymUser(User user){
+    public static void updateGymUser(User user){
         String query = "UPDATE `gym` " +
                 "SET `name` = '" + user.getGymName() + "', " +
                 "`address` = '" + user.getAddress() + "', " +
@@ -75,9 +63,9 @@ public class UserDAO {
      * @throws DAOException if the update fails
      * and no rows are affected
      */
-    private void update(String query) throws DAOException{
+    private static void update(String query) throws DAOException{
         try {
-            int rowsAffected = dao.updateDB(query);
+            int rowsAffected = DAO.updateDB(query);
             if (rowsAffected == 0) {
                 throw new DAOException("Updating user failed, no rows affected.");
             }

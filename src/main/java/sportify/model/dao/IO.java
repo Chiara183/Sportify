@@ -1,6 +1,5 @@
 package sportify.model.dao;
 
-import sportify.MainApp;
 import sportify.errorlogic.DAOException;
 
 import java.sql.Connection;
@@ -18,10 +17,6 @@ import java.util.logging.Logger;
  * operations for the MainApp to the DB.
  */
 public class IO {
-    /**
-     * Reference to MainApp.
-     */
-    private MainApp mainApp;
 
     /**
      * Constants for the different fields in the application.
@@ -38,23 +33,12 @@ public class IO {
     private static final String PHONE = "phone";
     private static final String ADDRESS = "address";
 
-
-    /**
-     * Sets a reference to the MainApp.
-     *
-     * @param mainApp the reference to the MainApp
-     */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-
     /**
      * Writes the user data to the database.
      *
      * @param map the map containing the user data to be written
      */
-    public void write(Map<String, String> map) {
-        DAO objDAO = mainApp.getDAO();
+    public static void write(Map<String, String> map) {
         String username = map.get(USERNAME);
         String password = map.get(PASSWORD);
         String firstName = map.get("firstName");
@@ -71,7 +55,7 @@ public class IO {
                 + ruolo + "', '"
                 + birthday + "')";
         try {
-            objDAO.updateAndGetDB(query);
+            DAO.updateAndGetDB(query);
             if (Objects.equals(ruolo, "gym")) {
                 String gymName = map.get("gymName");
                 String address = map.get(ADDRESS);
@@ -85,7 +69,7 @@ public class IO {
                         + latitude + "', '"
                         + longitude + "', '"
                         + phone + "')";
-                objDAO.updateAndGetDB(query);
+                DAO.updateAndGetDB(query);
             }
         }
         catch (DAOException e){
@@ -99,7 +83,7 @@ public class IO {
      *
      * @return returns a map of the users' account
      */
-    public Map<String, Map<String, String>> read(){
+    public static Map<String, Map<String, String>> read(){
         HashMap<String, Map<String, String>> map = new HashMap<>();
         PreparedStatement ps = null;
         ResultSet rs;
@@ -150,7 +134,7 @@ public class IO {
      *
      * @return returns a map of the user's account
      */
-    public Map<String, String> getInfoUser(ResultSet rs){
+    public static Map<String, String> getInfoUser(ResultSet rs){
         String className = IO.class.getName();
         HashMap<String, String> gymAccount = new HashMap<>();
         try {

@@ -149,11 +149,10 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
     /**
      * Starts the OAuth authentication process.
      *
-     * @param mainApp the main application.
      * @param name the name of the authentication.
      * @param type the type of OAuth authentication.
      */
-    public void start(MainApp mainApp, String name, OAuthType type) {
+    public void start(String name, OAuthType type) {
 
         if(loginAttempted) {
             return;
@@ -172,7 +171,7 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
                 String location = we.getLocation();
                 if (location.contains("code") &&
                         location.startsWith(getRedirectUri())) {
-                    helpMethod(mainApp, type, location);
+                    helpMethod(type, location);
                 }
             }
         }
@@ -180,17 +179,16 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
 
         engine.load(getWebUrl());
 
-        mainApp.showOAuthAuthenticator(root, name);
+        MainApp.showOAuthAuthenticator(root, name);
     }
 
     /**
      * Helper method for OAuth authentication.
      *
-     * @param mainApp the main application.
      * @param type the type of OAuth authentication.
      * @param location the location for the authentication.
      */
-    public void helpMethod(MainApp mainApp, OAuthType type, String location){
+    public void helpMethod(OAuthType type, String location){
         if(!getAttemptReceived()){
             attemptReceived = true;
         }
@@ -202,9 +200,9 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
         Logger logger = Logger.getLogger(OAuthAuthenticator.class.getName());
         logger.log(Level.INFO, "Login Success!");
         if(type == OAuthType.GOOGLE) {
-            googleAuth(mainApp);
+            googleAuth();
         }
-        mainApp.showHomeOverview();
+        MainApp.showHomeOverview();
         if(!getGotData()){
             this.gotData = true;
         }
@@ -212,30 +210,26 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
 
     /**
      * Method for Google OAuth authentication.
-     *
-     * @param mainApp the main application.
      */
-    public void googleAuth(MainApp mainApp){
+    public void googleAuth(){
         String email = accessedJsonData.getString("email");
         String[] s = email.split("@");
         String username = s[0];
         accessedJsonData.getString("picture");
-        Submit submit = new Submit(mainApp);
-        DAOAuthAuthenticator dao = new DAOAuthAuthenticator(mainApp.getDAO());
         User user;
-        String rs = dao.getUsernameByEmail(email);
-        if (!submit.exist(rs)) {
+        String rs = DAOAuthAuthenticator.getUsernameByEmail(email);
+        if (!Submit.exist(rs)) {
             String firstName = accessedJsonData.getString("given_name");
             String lastName = accessedJsonData.getString("family_name");
-            String password = submit.generateStrongPassword(32);
+            String password = Submit.generateStrongPassword(32);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             String date = timestamp.toString();
             date = date.substring(0,10);
-            Map<String, String> account = mainApp.createAccount(username, password, firstName, lastName, email, date);
+            Map<String, String> account = MainApp.createAccount(username, password, firstName, lastName, email, date);
             account.put("ruolo", "user");
-            submit.signUp(account);
+            Submit.signUp(account);
         }
-        user = submit.setUser(rs);
+        user = Submit.setUser(rs);
         if(Objects.equals(user.getFirstName(), "")){
             String firstName = accessedJsonData.getString("given_name");
             user.setFirstName(firstName);
@@ -244,7 +238,7 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
             String lastName = accessedJsonData.getString("family_name");
             user.setLastName(lastName);
         }
-        mainApp.setUser(user);
+        MainApp.setUser(user);
     }
 
     /**

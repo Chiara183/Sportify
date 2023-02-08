@@ -17,7 +17,6 @@ import java.util.concurrent.CountDownLatch;
  */
 public class Dialog extends JPanel{
     private JFrame frame;
-    private transient MainApp mainApp;
     private transient CountDownLatch modalitySignal;
 
     /**
@@ -73,14 +72,14 @@ public class Dialog extends JPanel{
             String command = model.getActionCommand();
             //desktop
             if (Objects.equals(command, desktop)) {
-                mainApp.setMobile(false);
+                MainApp.setMobile(false);
                 modalitySignal.countDown();
                 frame.dispose();
 
             //mobile
             }
             else if (Objects.equals(command, mobile)) {
-                mainApp.setMobile(true);
+                MainApp.setMobile(true);
                 modalitySignal.countDown();
                 frame.dispose();
             }
@@ -126,7 +125,6 @@ public class Dialog extends JPanel{
 
         //Create and set up the content pane.
         Dialog newContentPane = new Dialog(fr);
-        newContentPane.setMainApp(getMainApp());
         newContentPane.setWait(getModalitySignal());
         Dimension dimension = new Dimension(220,100);
         newContentPane.setPreferredSize(dimension);
@@ -139,31 +137,12 @@ public class Dialog extends JPanel{
     }
 
     /**
-     * Is called to set mainApp
-     *
-     * @param mainApp the value to be set
-     */
-    public void setMainApp(MainApp mainApp){
-        this.mainApp = mainApp;
-    }
-
-    /**
      * Is called to set wait variable
      *
      * @param modalitySignal the value to be set
      */
     public void setWait(CountDownLatch modalitySignal) {
         this.modalitySignal = modalitySignal;
-    }
-
-    /**
-     * getMainApp: returns the main
-     * controller of the application.
-     *
-     * @return the main controller
-     */
-    public MainApp getMainApp() {
-        return mainApp;
     }
 
     /**

@@ -2,7 +2,6 @@ package sportify.model.dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import sportify.MainApp;
 import sportify.errorlogic.DAOException;
 import sportify.model.domain.User;
 
@@ -15,16 +14,10 @@ import java.util.logging.Logger;
 
 public class GymInfoDAO {
 
-    private final DAO dao;
-
     /**
      * A constant string used in SQL statements
      */
     private static final String SELECT = "SELECT name ";
-
-    public GymInfoDAO(DAO dao) {
-        this.dao = dao;
-    }
 
     /**
      * This method returns the list of sports available
@@ -33,11 +26,10 @@ public class GymInfoDAO {
      * @return an ObservableList of strings representing
      * the sports available at the gym
      */
-    public ObservableList<String> getSportList(MainApp mainApp) {
+    public static ObservableList<String> getSportList() {
         String query = SELECT + "FROM sport ";
-        DAO objDAO = mainApp.getDAO();
         ObservableList<String> sportList;
-        List<String> sportNameList = objDAO.checkDataColumn(query, "name");
+        List<String> sportNameList = DAO.checkDataColumn(query, "name");
         sportList = FXCollections.observableArrayList(sportNameList);
         return sportList;
     }
@@ -51,13 +43,13 @@ public class GymInfoDAO {
      *
      * @throws SQLException if a database error occurs
      */
-    public void cancelReview(String writer, String gym, String timestamp) throws SQLException {
+    public static void cancelReview(String writer, String gym, String timestamp) throws SQLException {
         String query = "DELETE FROM `review` " +
                 "WHERE `review`.`writer` = '" + writer +
                 "' AND `review`.`gym` = '" + gym +
                 "' AND `review`.`timestamp` = '" + timestamp + "'";
         try {
-            dao.updateDB(query);
+            DAO.updateDB(query);
         } catch (DAOException e) {
             Logger logger = Logger.getLogger(GymInfoDAO.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
@@ -71,13 +63,13 @@ public class GymInfoDAO {
      * @param gym the name of the gym
      * @param time the time of the course
      */
-    public void cancelCourse(String sport, String gym, String time){
+    public static void cancelCourse(String sport, String gym, String time){
         String query = "DELETE FROM `course`" +
                 " WHERE `course`.`sport` = '" + sport +
                 "' AND `course`.`gym` = '" + gym +
                 "' AND `course`.`time` = '" + time + "'";
         try {
-            dao.updateDB(query);
+            DAO.updateDB(query);
         } catch (DAOException e) {
             Logger logger = Logger.getLogger(GymInfoDAO.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
@@ -91,11 +83,11 @@ public class GymInfoDAO {
      * @param gym the name of the gym
      * @param time the time of the course
      */
-    public void addCourse(String sport, String gym, String time){
+    public static void addCourse(String sport, String gym, String time){
         String query = "INSERT INTO `course` " +
                 "VALUES ('" + sport + "', '" + gym + "', '" + time + "');";
         try {
-            dao.updateDB(query);
+            DAO.updateDB(query);
         } catch (DAOException e) {
             Logger logger = Logger.getLogger(GymInfoDAO.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
@@ -109,7 +101,7 @@ public class GymInfoDAO {
      * @param review the review to be shared, represented
      *              as a StringBuilder object
      */
-    public void shareReview(String gym, StringBuilder review, User user) {
+    public static void shareReview(String gym, StringBuilder review, User user) {
         String[] reviewList = review.toString().split("'");
         review = new StringBuilder();
         int i = 0;
@@ -128,7 +120,7 @@ public class GymInfoDAO {
                     "VALUES ('" + gym + "', '" + review + "', '" + username + "', " + "CURRENT_TIMESTAMP);";
 
             try {
-                dao.updateDB(query);
+                DAO.updateDB(query);
             } catch (DAOException e) {
                 Logger logger = Logger.getLogger(GymInfoDAO.class.getName());
                 logger.log(Level.SEVERE, e.getMessage());
@@ -148,7 +140,7 @@ public class GymInfoDAO {
      *
      * @return a list of results
      */
-    public List<String> checkDataColumnGymInfo(String gym, String table, String column){
+    public static List<String> checkDataColumnGymInfo(String gym, String table, String column){
         List<String> data;
         String query;
         if(Objects.equals(table, "course") || Objects.equals(table, "review")) {
@@ -160,7 +152,7 @@ public class GymInfoDAO {
                     "FROM " + table +
                     " WHERE " + table + ".name = \"" + gym + "\"";
         }
-        data = dao.checkDataColumn(query, column);
+        data = DAO.checkDataColumn(query, column);
         return data;
     }
 }

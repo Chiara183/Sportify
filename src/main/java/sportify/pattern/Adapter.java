@@ -36,11 +36,6 @@ public class Adapter implements SignUp{
     private SignUpGraphicController userGraphicController;
 
     /**
-     * A private instance of the `Submit` class.
-     */
-    private Submit submit;
-
-    /**
      * A getter method that returns the user controller.
      *
      * @return An instance of the `SignUpController` class.
@@ -67,24 +62,6 @@ public class Adapter implements SignUp{
      */
     public SignUpGymController getGymController() {
         return gymController;
-    }
-
-    /**
-     * A getter method that returns the 'submit' instance.
-     *
-     * @return An instance of the `Submit` class.
-     */
-    public Submit getSubmit() {
-        return submit;
-    }
-
-    /**
-     * A setter method that sets the 'submit' instance.
-     *
-     * @param submit An instance of the `Submit` class.
-     */
-    public void setSubmit(Submit submit) {
-        this.submit = submit;
     }
 
     /**
@@ -122,7 +99,7 @@ public class Adapter implements SignUp{
      */
     public Adapter(SignUpController user) {
         this.userController = user;
-        this.gymController = new SignUpGymController(userController.getMainApp());
+        this.gymController = new SignUpGymController();
     }
 
     /**
@@ -134,16 +111,13 @@ public class Adapter implements SignUp{
      *             `SignUpController` class.
      * @param graphicController An instance of the
      *             `SignUpGymController` class.
-     * @param submit An instance of the `Submit` class.
      */
-    public Adapter(SignUpController user, SignUpGraphicController graphicController, Submit submit) {
+    public Adapter(SignUpController user, SignUpGraphicController graphicController) {
         this.userController = user;
-        MainApp mainApp = userController.getMainApp();
-        this.gymController = new SignUpGymController(mainApp);
+        this.gymController = new SignUpGymController();
         MenuController menu = user.getMenu();
         this.gymController.setMenu(menu);
         setUserGraphicController(graphicController);
-        setSubmit(submit);
     }
 
     /**
@@ -157,16 +131,15 @@ public class Adapter implements SignUp{
     public void userKind(Map<String, String> userAccount) {
         if (getUserGraphicController().isUser()) {
             userAccount.put("ruolo", "user");
-            getSubmit().signUp(userAccount);
-            if(getUserController().getMainApp().isNotMobile()) {
+            Submit.signUp(userAccount);
+            if(MainApp.isNotMobile()) {
                 JFrame jFrame = new JFrame();
                 JOptionPane.showMessageDialog(jFrame, "You're registered!");
             }
-            getUserController().setSubmit(getSubmit());
             getUserController().login();
         } else {
             userAccount.put("ruolo", "gym");
-            getSubmit().signUp(userAccount);
+            Submit.signUp(userAccount);
             getGymController().signUpGymAction();
         }
     }

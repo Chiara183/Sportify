@@ -1,13 +1,14 @@
 package sportify.model.dao;
 
 import javafx.scene.control.Alert;
-import sportify.MainAppLauncher;
 import sportify.errorlogic.DAOException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +31,7 @@ public class DBConnection {
     /**
      * Counter for number of connections made
      */
-    private int count = 0;
+    private static int count = 0;
 
     /**
      * Singleton instance of this class
@@ -71,7 +72,7 @@ public class DBConnection {
 
             Properties prop = new Properties();
             String propFileName = "server.properties";
-            ClassLoader classLoader = getClass().getClassLoader();
+            ClassLoader classLoader = DBConnection.class.getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream(propFileName);
 
             if (inputStream != null) {
@@ -100,8 +101,8 @@ public class DBConnection {
             alert.showAndWait();
         }
         catch (SQLException e){
-            if(this.count == 0){
-                this.count++;
+            if(count == 0){
+                count++;
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle(ERROR);
                 alert.setHeaderText(ERROR_DETECTED);

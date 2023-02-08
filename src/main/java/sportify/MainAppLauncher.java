@@ -8,7 +8,6 @@ import sportify.controller.Dialog;
 import sportify.errorlogic.DAOException;
 import sportify.model.dao.DAO;
 import sportify.model.dao.DBConnection;
-import sportify.model.dao.Submit;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +36,6 @@ public class MainAppLauncher extends Application {
     public void start(Stage primaryStage) {
         String s = "";
         Connection c = null;
-        Submit submit;
         String parameter;
         String m = " modality";
         String className = MainAppLauncher.class.getName();
@@ -61,7 +59,6 @@ public class MainAppLauncher extends Application {
         else {
             projection = Projection.WEB_MERCATOR;
         }
-        MainApp mainApp = new MainApp();
         DBConnection db = DBConnection.getSingletonInstance();
         try {
             c = db.getConnection();
@@ -70,19 +67,16 @@ public class MainAppLauncher extends Application {
             Logger logger = Logger.getLogger(MainAppLauncher.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
-        DAO dao = mainApp.getDAO();
-        dao.setConnection(c);
-        submit = new Submit(mainApp);
-        mainApp.setSubmit(submit);
-        mainApp.setPrimaryStage(primaryStage);
-        mainApp.setProjection(projection);
+        DAO.setConnection(c);
+        MainApp.setPrimaryStage(primaryStage);
+        MainApp.setProjection(projection);
 
         // Set the application.
         Image image;
         img = "Images/Sportify icon.png";
         try (InputStream i = getClass().getResourceAsStream(img)){
             image = new Image(Objects.requireNonNull(i));
-            Stage stage = mainApp.getPrimaryStage();
+            Stage stage = MainApp.getPrimaryStage();
             stage.getIcons().add(image);
         }
         catch (IOException e) {
@@ -91,16 +85,15 @@ public class MainAppLauncher extends Application {
         }
         CountDownLatch modalitySignal = new CountDownLatch(count);
         if(Objects.equals(s, typeM)){
-            mainApp.setMobile(true);
+            MainApp.setMobile(true);
         }
         else if (Objects.equals(s, typeD)){
-            mainApp.setMobile(false);
+            MainApp.setMobile(false);
         }
         else {
             new Thread(
                     () -> {
                 Dialog dialog = new Dialog();
-                dialog.setMainApp(mainApp);
                 dialog.setWait(modalitySignal);
                 dialog.createAndShowGUI();
             }
@@ -114,7 +107,7 @@ public class MainAppLauncher extends Application {
                 Thread.currentThread().interrupt();
             }
         }
-        mainApp.initRootLayout();
-        mainApp.showHomeOverview();
+        MainApp.initRootLayout();
+        MainApp.showHomeOverview();
     }
 }

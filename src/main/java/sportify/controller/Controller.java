@@ -19,11 +19,6 @@ public abstract class Controller{
     protected ControllerType type;
 
     /**
-     * The reference to the main application.
-     */
-    protected MainApp mainApp;
-
-    /**
      * The current user.
      */
     protected User user = null;
@@ -37,15 +32,6 @@ public abstract class Controller{
      * The cache for the search results.
      */
     protected String[] searchCache;
-
-    /**
-     * Sets the main application for the controller.
-     *
-     * @param mainApp The reference to the main application.
-     */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
 
     /**
      * Sets the current user for the controller.
@@ -90,15 +76,6 @@ public abstract class Controller{
      */
     public ControllerType getType() {
         return this.type;
-    }
-
-    /**
-     * Returns the reference to the main application.
-     *
-     * @return The reference to the main application.
-     */
-    public MainApp getMainApp() {
-        return this.mainApp;
     }
 
     /**

@@ -1,6 +1,7 @@
 package sportify.model.domain;
 
 import javafx.beans.property.SimpleStringProperty;
+import sportify.model.dao.UserDAO;
 
 /**
  * The class that represents
@@ -40,7 +41,7 @@ public class GymUser extends User {
     @Override
     protected void update(){
         super.update();
-        this.dao.updateGymUser(this);
+        UserDAO.updateGymUser(this);
     }
 
     /**

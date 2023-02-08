@@ -1,14 +1,14 @@
 package sportify.controller;
 
-import sportify.model.dao.DAO;
-import sportify.controller.graphic.GraphicController;
-import sportify.controller.graphic.GymInfoGraphicController;
-import sportify.controller.graphic.MapGraphicController;
 import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.event.MapLabelEvent;
 import com.sothawo.mapjfx.event.MarkerEvent;
 import javafx.scene.Cursor;
-import sportify.errorlogic.DAOException;
+import sportify.MainApp;
+import sportify.controller.graphic.GraphicController;
+import sportify.controller.graphic.GymInfoGraphicController;
+import sportify.controller.graphic.MapGraphicController;
+import sportify.model.dao.DAO;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -192,14 +192,14 @@ public class MapController extends Controller{
                 MarkerEvent.MARKER_ENTERED, event ->
                 {
                     graphicController.getMapView().setCursor(Cursor.HAND);
-                    mainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.HAND);
+                    MainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.HAND);
                 }
                 );
         graphicController.getMapView().addEventHandler(
                 MarkerEvent.MARKER_EXITED, event ->
                 {
                     graphicController.getMapView().setCursor(Cursor.DEFAULT);
-                    mainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.DEFAULT);
+                    MainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.DEFAULT);
                 }
                 );
 
@@ -209,14 +209,14 @@ public class MapController extends Controller{
                 MapLabelEvent.MAPLABEL_ENTERED, event ->
                 {
                     graphicController.getMapView().setCursor(Cursor.HAND);
-                    mainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.HAND);
+                    MainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.HAND);
                 }
                 );
         graphicController.getMapView().addEventHandler(
                 MapLabelEvent.MAPLABEL_EXITED, event ->
                 {
                     graphicController.getMapView().setCursor(Cursor.DEFAULT);
-                    mainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.DEFAULT);
+                    MainApp.getPrimaryStage().getScene().getRoot().setCursor(Cursor.DEFAULT);
                 }
                 );
     }
@@ -238,16 +238,14 @@ public class MapController extends Controller{
      * is responsible for loading map coordinates.
      */
     private void loadCoordinate() {
-        DAO objDAO = mainApp.getDAO();
-        List<String> list = null;
-        List<String> list1 = null;
-        List<String> list2 = null;
-        list = objDAO.checkDataColumn(SELECTALL, "latitude");
-        list1 = objDAO.checkDataColumn(SELECTALL, "longitude");
-        list2 = objDAO.checkDataColumn(SELECTALL, "name");
+        List<String> list;
+        List<String> list1;
+        List<String> list2;
+        list = DAO.checkDataColumn(SELECTALL, "latitude");
+        list1 = DAO.checkDataColumn(SELECTALL, "longitude");
+        list2 = DAO.checkDataColumn(SELECTALL, "name");
 
         int i = 0;
-        assert list2 != null;
         for (String rs2 : list2) {
             String rs = list.get(i);
             String rs1 = list1.get(i);
@@ -278,7 +276,6 @@ public class MapController extends Controller{
             GymInfoController gym = new GymInfoController();
             gym.setGraphicController(gymInfoGraphicController);
             gymInfoGraphicController.setController(gym);
-            gym.setMainApp(this.mainApp);
             gym.setUser(this.user);
             gym.setMenu(this.menu);
             String[] searchCache = new String[2];
@@ -286,7 +283,7 @@ public class MapController extends Controller{
             searchCache[1] = this.graphicController.getKm();
             gym.setSearchCache(searchCache);
             this.menu.setGym(event.getMapLabel().getText());
-            if(mainApp.isNotMobile()) {
+            if(MainApp.isNotMobile()) {
                 this.menu.setFindGym();
             }
             else {

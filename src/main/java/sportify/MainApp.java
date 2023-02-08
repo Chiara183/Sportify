@@ -1,20 +1,11 @@
 package sportify;
 
-import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
-import sportify.controller.*;
-import sportify.controller.graphic.*;
-import sportify.controller.graphic.phone.MenuPhoneGraphicController;
-import sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
-import sportify.controller.graphic.phone.FindGymPhoneGraphicController;
-import sportify.controller.graphic.phone.HomePhoneGraphicController;
-import sportify.model.dao.DAO;
-import sportify.model.dao.Submit;
-import sportify.model.domain.User;
 import com.sothawo.mapjfx.Projection;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -22,6 +13,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sportify.controller.*;
+import sportify.controller.graphic.LoginGraphicController;
+import sportify.controller.graphic.MenuGraphicController;
+import sportify.controller.graphic.SignUpGraphicController;
+import sportify.controller.graphic.SportQuizGraphicController;
+import sportify.controller.graphic.phone.FindGymPhoneGraphicController;
+import sportify.controller.graphic.phone.HomePhoneGraphicController;
+import sportify.controller.graphic.phone.MenuPhoneGraphicController;
+import sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
+import sportify.model.domain.User;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,18 +39,16 @@ import java.util.logging.Logger;
 public class MainApp{
 
     /* The variable of all application*/
-    private Stage primaryStage;
-    private Stage secondaryStage;
-    private BorderPane rootLayout;
-    private BorderPane secondaryRootLayout;
-    private Submit submit;
-    private User user = null;
-    private String[] searchCache;
-    private final DAO dao = new DAO();
-    private boolean externalLogin = false;
-    private MenuController menu;
-    private Projection projection;
-    private boolean mobile;
+    private static Stage primaryStage;
+    private static Stage secondaryStage;
+    private static BorderPane rootLayout;
+    private static BorderPane secondaryRootLayout;
+    private static User user = null;
+    private static String[] searchCache;
+    private static boolean externalLogin = false;
+    private static MenuController menu;
+    private static Projection projection;
+    private static boolean mobile;
 
     /* Set method*/
 
@@ -61,17 +60,8 @@ public class MainApp{
      *
      * @param bool the value to be set
      */
-    public void setMobile(boolean bool) {
-        this.mobile = bool;
-    }
-
-    /**
-     * setSubmit: sets the instance of Submit.
-     *
-     * @param submit the value to be set
-     */
-    public void setSubmit(Submit submit) {
-        this.submit = submit;
+    public static void setMobile(boolean bool) {
+        mobile = bool;
     }
 
     /**
@@ -79,8 +69,8 @@ public class MainApp{
      *
      * @param projection the value to be set
      */
-    public void setProjection(Projection projection) {
-        this.projection = projection;
+    public static void setProjection(Projection projection) {
+        MainApp.projection = projection;
     }
 
     /**
@@ -90,11 +80,8 @@ public class MainApp{
      *
      * @param user the value to be set
      */
-    public void setUser(User user) {
-        this.user = user;
-        if(user != null) {
-            this.user.setMainApp(this);
-        }
+    public static void setUser(User user) {
+        MainApp.user = user;
     }
 
     /**
@@ -102,8 +89,8 @@ public class MainApp{
      *
      * @param menu the value to be set
      */
-    public void setMenu(MenuController menu) {
-        this.menu = menu;
+    public static void setMenu(MenuController menu) {
+        MainApp.menu = menu;
     }
 
     /**
@@ -111,8 +98,8 @@ public class MainApp{
      *
      * @param stage the value to be set
      */
-    public void setPrimaryStage(Stage stage) {
-        this.primaryStage = stage;
+    public static void setPrimaryStage(Stage stage) {
+        primaryStage = stage;
     }
 
     /**
@@ -120,8 +107,8 @@ public class MainApp{
      *
      * @param secondaryStage the value to be set
      */
-    public void setSecondaryStage(Stage secondaryStage) {
-        this.secondaryStage = secondaryStage;
+    public static void setSecondaryStage(Stage secondaryStage) {
+        MainApp.secondaryStage = secondaryStage;
     }
 
     /**
@@ -129,8 +116,8 @@ public class MainApp{
      *
      * @param search the value to be set
      */
-    public void setSearchCache(String[] search) {
-        this.searchCache = search;
+    public static void setSearchCache(String[] search) {
+        searchCache = search;
     }
 
     /**
@@ -141,8 +128,8 @@ public class MainApp{
      *
      * @param login the value to be set
      */
-    public void setExternalLogin(boolean login) {
-        this.externalLogin = login;
+    public static void setExternalLogin(boolean login) {
+        externalLogin = login;
     }
 
     /**
@@ -150,8 +137,8 @@ public class MainApp{
      *
      * @param pane the value to be set
      */
-    public void setPrimaryPane(BorderPane pane){
-        this.rootLayout = pane;
+    public static void setPrimaryPane(BorderPane pane){
+        rootLayout = pane;
     }
 
     /**
@@ -159,8 +146,8 @@ public class MainApp{
      *
      * @param secondaryRootLayout the value to be set
      */
-    public void setSecondaryPane(BorderPane secondaryRootLayout) {
-        this.secondaryRootLayout = secondaryRootLayout;
+    public static void setSecondaryPane(BorderPane secondaryRootLayout) {
+        MainApp.secondaryRootLayout = secondaryRootLayout;
     }
 
     /* Get method*/
@@ -170,8 +157,8 @@ public class MainApp{
      *
      * @return the return value
      */
-    public String[] getSearchCache() {
-        return this.searchCache;
+    public static String[] getSearchCache() {
+        return searchCache;
     }
 
     /**
@@ -179,7 +166,7 @@ public class MainApp{
      *
      * @return the return value
      */
-    public Stage getPrimaryStage() {
+    public static Stage getPrimaryStage() {
         return primaryStage;
     }
 
@@ -188,7 +175,7 @@ public class MainApp{
      *
      * @return the return value
      */
-    public Stage getSecondaryStage() {
+    public static Stage getSecondaryStage() {
         return secondaryStage;
     }
 
@@ -197,8 +184,8 @@ public class MainApp{
      *
      * @return the return value
      */
-    public MenuController getMenu(){
-        return this.menu;
+    public static MenuController getMenu(){
+        return menu;
     }
 
     /**
@@ -206,18 +193,8 @@ public class MainApp{
      *
      * @return the return value
      */
-    public User getUser() {
+    public static User getUser() {
         return user;
-    }
-
-    /**
-     * getDAO: returns the instance of
-     * the DAO class.
-     *
-     * @return the return value
-     */
-    public DAO getDAO() {
-        return this.dao;
     }
 
     /**
@@ -226,7 +203,7 @@ public class MainApp{
      *
      * @return the return value
      */
-    public BorderPane getPrimaryPane() {
+    public static BorderPane getPrimaryPane() {
         return rootLayout;
     }
 
@@ -236,18 +213,8 @@ public class MainApp{
      *
      * @return the return value
      */
-    public BorderPane getSecondaryPane() {
+    public static BorderPane getSecondaryPane() {
         return secondaryRootLayout;
-    }
-
-    /**
-     * getSubmit: returns the
-     * instance of Submit.
-     *
-     * @return the return value
-     */
-    public Submit getSubmit() {
-        return submit;
     }
 
     /**
@@ -256,7 +223,7 @@ public class MainApp{
      *
      * @return the return value
      */
-    public Projection getProjection() {
+    public static Projection getProjection() {
         return projection;
     }
 
@@ -266,7 +233,7 @@ public class MainApp{
      *
      * @return the return value
      */
-    public boolean isNotMobile() {
+    public static boolean isNotMobile() {
         return !mobile;
     }
 
@@ -276,7 +243,7 @@ public class MainApp{
      *
      * @return the return value
      */
-    public boolean isMobile(){
+    public static boolean isMobile(){
         return mobile;
     }
 
@@ -286,12 +253,12 @@ public class MainApp{
      *
      * @return the return value
      */
-    public boolean isExternalLogin(){return externalLogin;}
+    public static boolean isExternalLogin(){return externalLogin;}
 
     /**
      * Initializes the root layout.
      */
-    public void initRootLayout() {
+    public static void initRootLayout() {
         String className = MainApp.class.getName();
         String os = System.getProperty("os.name");
         String dim = "The OS of device is: " + os;
@@ -340,7 +307,7 @@ public class MainApp{
      *
      * @return the menu set
      */
-    public MenuController menu() {
+    public static MenuController menu() {
         MenuController controller = new MenuController();
         URL url;
         String resource;
@@ -356,14 +323,13 @@ public class MainApp{
         else {
             setMenu(controller);
         }
-        controller.setMainApp(this);
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
-            BorderPane pane = this.getPrimaryPane();
+            BorderPane pane = getPrimaryPane();
             if(isNotMobile()) {
                 MenuGraphicController graphicController;
                 resource = "DesktopView/menu.fxml";
-                url = getClass().getResource(resource);
+                url = MainApp.class.getResource(resource);
                 loaderMenu.setLocation(Objects.requireNonNull(url));
                 Pane paneMenu = loaderMenu.load();
 
@@ -378,7 +344,7 @@ public class MainApp{
             else {
                 MenuPhoneGraphicController graphicController;
                 resource = "SmartphoneView/MenuPhone.fxml";
-                url = getClass().getResource(resource);
+                url = MainApp.class.getResource(resource);
                 loaderMenu.setLocation(Objects.requireNonNull(url));
                 Pane paneMenu = loaderMenu.load();
 
@@ -389,7 +355,7 @@ public class MainApp{
                 graphicController.setController(controller);
             }
             // Give the gymEditController access to the main app.
-            controller.setUser(this.getUser());
+            controller.setUser(getUser());
         }
         catch (IOException e) {
             Logger logger = Logger.getLogger(MainApp.class.getName());
@@ -400,20 +366,20 @@ public class MainApp{
     /**
      * Shows home overview inside the root layout.
      */
-    public void showHomeOverview() {
+    public static void showHomeOverview() {
         String title;
         String resource;
         URL url;
-        String item1 = "";
-        String item2 = "";
-        String item3 = "";
-        String item4 = "";
+        String item1;
+        String item2;
+        String item3;
+        String item4;
         String className = MainApp.class.getName();
         BorderPane pane = getPrimaryPane();
         try {
             FXMLLoader loader = new FXMLLoader();
             title = "Sportify - Home";
-            Stage stage = this.getPrimaryStage();
+            Stage stage = getPrimaryStage();
             stage.setTitle(title);
             HomeController controller = new HomeController();
             item1 = "Take sport quiz";
@@ -444,8 +410,7 @@ public class MainApp{
             HomePhoneGraphicController graphicController = loader.getController();
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
-            controller.setMainApp(this);
-            controller.setUser(this.getUser());
+            controller.setUser(getUser());
             if(isMobile()) {
                 ComboBox<String> combo = graphicController.getCombo();
                 ObservableList<String> obs = combo.getItems();
@@ -464,13 +429,13 @@ public class MainApp{
     /**
      * Shows home overview inside the root layout.
      */
-    public void showOAuthAuthenticator(WebView root, String name) {
+    public static void showOAuthAuthenticator(WebView root, String name) {
         String title;
         Stage stage;
         BorderPane pane;
         if(!isExternalLogin()) {
             title = "Sportify - " + name;
-            stage = this.getPrimaryStage();
+            stage = getPrimaryStage();
             stage.setTitle(title);
 
             // Set OAuth overview into the center of root layout.
@@ -495,7 +460,7 @@ public class MainApp{
     /**
      * Shows login overview inside the root layout.
      */
-    public void showLoginOverview() {
+    public static void showLoginOverview() {
         LoginController controller = new LoginController();
         LoginGraphicController graphicController;
         String title;
@@ -538,8 +503,6 @@ public class MainApp{
             graphicController = loaderLogin.getController();
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
-            controller.setMainApp(this);
-            controller.setSubmit(getSubmit());
             controller.setUser(getUser());
             menuController.setInstance(graphicController);
             controller.setMenu(getMenu());
@@ -547,9 +510,9 @@ public class MainApp{
 
             if(!isExternalLogin()) {
                 // Set login overview into the center of root layout.
-                this.getPrimaryPane().setCenter(pane);
+                getPrimaryPane().setCenter(pane);
                 if(isMobile()){
-                    this.getPrimaryPane().setTop(paneTopScreen);
+                    getPrimaryPane().setTop(paneTopScreen);
                     assert graphicMenuController != null;
                     graphicMenuController.setController(menuController);
                 }
@@ -561,14 +524,14 @@ public class MainApp{
                 title = "Sportify - Login";
                 dialogStage.setTitle(title);
                 resource = "Images/Sportify icon.png";
-                InputStream inS = getClass().getResourceAsStream(resource);
+                InputStream inS = MainApp.class.getResourceAsStream(resource);
                 Image img = new Image(Objects.requireNonNull(inS));
                 dialogStage.getIcons().add(img);
 
                 // Load root layout from fxml file.
                 FXMLLoader loader = new FXMLLoader();
                 resource = "DesktopView/RootLayout.fxml";
-                url = getClass().getResource(resource);
+                url = MainApp.class.getResource(resource);
                 loader.setLocation(url);
                 BorderPane root = loader.load();
                 setSecondaryPane(root);
@@ -600,14 +563,14 @@ public class MainApp{
     /**
      * Shows sport quiz overview inside the root layout.
      */
-    public void showSportQuizOverview(MenuController menu) {
+    public static void showSportQuizOverview(MenuController menu) {
         String title;
         String resource;
         URL url;
         String className = MainApp.class.getName();
         try {
             title = "Sportify - Sport Quiz";
-            this.getPrimaryStage().setTitle(title);
+            getPrimaryStage().setTitle(title);
             // Load sport quiz overview.
             FXMLLoader loaderSport = new FXMLLoader();
             Pane paneTopScreen = null;
@@ -631,9 +594,9 @@ public class MainApp{
             Pane pane = loaderSport.load();
 
             // Set sport quiz overview into the center of root layout.
-            this.getPrimaryPane().setCenter(pane);
+            getPrimaryPane().setCenter(pane);
             if(isMobile()){
-                this.getPrimaryPane().setTop(paneTopScreen);
+                getPrimaryPane().setTop(paneTopScreen);
                 assert graphicMenuController != null;
                 graphicMenuController.setController(menu);
             }
@@ -651,7 +614,6 @@ public class MainApp{
                 graphicController.setController(controller);
                 menu.setInstance(graphicController);
             }
-            controller.setMainApp(this);
             controller.setUser(getUser());
             controller.setMenu(menu);
 
@@ -665,7 +627,7 @@ public class MainApp{
     /**
      * Shows find gym overview inside the root layout.
      */
-    public void showFindGymOverview(MenuController menu) {
+    public static void showFindGymOverview(MenuController menu) {
         String title;
         String resource;
         URL url;
@@ -673,7 +635,7 @@ public class MainApp{
         BorderPane primaryPane = getPrimaryPane();
         try {
             title = "Sportify - Find Gym";
-            this.getPrimaryStage().setTitle(title);
+            getPrimaryStage().setTitle(title);
             // Load find gym overview.
             FXMLLoader loaderGym = new FXMLLoader();
             Pane paneTopScreen = null;
@@ -709,7 +671,6 @@ public class MainApp{
             FindGymController controller = new FindGymController();
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
-            controller.setMainApp(this);
             controller.setSearchCache(getSearchCache());
             controller.setMenu(menu);
             controller.setProjection(getProjection());
@@ -724,7 +685,7 @@ public class MainApp{
     /**
      * Shows sign up overview inside the root layout.
      */
-    public void showSignUpOverview() {
+    public static void showSignUpOverview() {
         String title;
         String resource;
         URL url;
@@ -733,7 +694,7 @@ public class MainApp{
         BorderPane primaryPane = getPrimaryPane();
         try {
             title = "Sportify - Sign Up";
-            this.getPrimaryStage().setTitle(title);
+            getPrimaryStage().setTitle(title);
             // Load sign up overview.
             FXMLLoader loaderSignUp = new FXMLLoader();
             Pane paneTopScreen = null;
@@ -759,7 +720,7 @@ public class MainApp{
             // Set sign up overview into the center of root layout.
             primaryPane.setCenter(pane);
             if(isMobile()){
-                this.getPrimaryPane().setTop(paneTopScreen);
+                getPrimaryPane().setTop(paneTopScreen);
                 assert graphicMenuController != null;
                 graphicMenuController.setController(getMenu());
                 graphicMenuController.setUserKind();
@@ -771,7 +732,6 @@ public class MainApp{
             controller.setGraphicController(graphicController);
             controller.setMenu(getMenu());
             graphicController.setController(controller);
-            controller.setMainApp(this);
 
         }
         catch (IOException e) {
@@ -798,7 +758,7 @@ public class MainApp{
      *
      * @return returns a map of the user's account
      */
-    public Map<String, String> createAccount(String username, String password, String firstName,
+    public static Map<String, String> createAccount(String username, String password, String firstName,
                                              String lastName, String email, String date){
         HashMap<String, String> account = new HashMap<>();
         account.put("username", username);
@@ -820,7 +780,7 @@ public class MainApp{
      * @param password the textfield showing the hidden
      *                 characters of the password
      */
-    public void togglevisiblePassword(CheckBox passToggle, TextField passText, TextField password) {
+    public static void togglevisiblePassword(CheckBox passToggle, TextField passText, TextField password) {
         if (passToggle.isSelected()) {
             passText.setText(password.getText());
             passText.setVisible(true);
@@ -838,7 +798,7 @@ public class MainApp{
      * @param loaderTopScreen The FXMLLoader
      *                       where to open the top menu
      */
-    public void setTopMenu(FXMLLoader loaderTopScreen){
+    public static void setTopMenu(FXMLLoader loaderTopScreen){
         Pane paneTopScreen = null;
         String className = MainApp.class.getName();
         try {
@@ -848,6 +808,6 @@ public class MainApp{
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());
         }
-        this.getPrimaryPane().setTop(paneTopScreen);
+        getPrimaryPane().setTop(paneTopScreen);
     }
 }

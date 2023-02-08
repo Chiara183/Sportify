@@ -1,5 +1,6 @@
 package sportify.controller.graphic;
 
+import sportify.MainApp;
 import sportify.util.OpenStreetMapUtils;
 import sportify.bean.SignUpBean;
 import sportify.controller.Controller;
@@ -53,7 +54,7 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
 
     protected void alert(){
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(signUpGymController.getMainApp().getPrimaryStage());
+            alert.initOwner(MainApp.getPrimaryStage());
             alert.setTitle("Field empty");
             alert.setHeaderText("A field is empty");
             alert.setContentText("Please fill gym name, address and city field");
@@ -64,7 +65,7 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
         if (coords.get("lat") == null && coords.get("lon") == null){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(signUpGymController.getMainApp().getPrimaryStage());
+            alert.initOwner(MainApp.getPrimaryStage());
             alert.setTitle("Wrong address");
             alert.setHeaderText("Sorry, we can't find your address");
             alert.setContentText("Please enter valid address");

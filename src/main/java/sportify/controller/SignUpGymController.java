@@ -30,31 +30,25 @@ public class SignUpGymController extends AccessController {
     private SignUpGymGraphicController graphicController;
 
     /**
-     * Reference to MainApp instance
-     */
-    private final MainApp mainAppGym;
-    /**
      * Creates a new instance of the SignUpGymController class.
      *
-     * @param mainAppGym The reference to the main application instance.
      */
-    public SignUpGymController(MainApp mainAppGym) {
+    public SignUpGymController() {
         this.type = ControllerType.SIGN_UP_GYM;
-        this.mainAppGym = mainAppGym;
     }
 
     /**
      * Performs the 'sign up' action for a gym.
      */
     public void signUpGymAction(){
-        mainAppGym.getPrimaryStage().setTitle("Sportify - Sign Up");
+        MainApp.getPrimaryStage().setTitle("Sportify - Sign Up");
         URL url;
         try {
             // Load login overview.
             FXMLLoader loaderSignUp = new FXMLLoader();
             Pane paneTopScreen = null;
             MenuGraphicController graphicMenuController = null;
-            if(mainAppGym.isNotMobile()) {
+            if(MainApp.isNotMobile()) {
                 url = MainApp.class.getResource("DesktopView/SignUpGym.fxml");
                 loaderSignUp.setLocation(url);
             }
@@ -70,20 +64,18 @@ public class SignUpGymController extends AccessController {
             Pane pane = loaderSignUp.load();
 
             // Set login overview into the center of root layout.
-            getMainApp().getPrimaryPane().setCenter(pane);
-            if(!getMainApp().isNotMobile()){
-                getMainApp().getPrimaryPane().setTop(paneTopScreen);
+            MainApp.getPrimaryPane().setCenter(pane);
+            if(!MainApp.isNotMobile()){
+                MainApp.getPrimaryPane().setTop(paneTopScreen);
                 assert graphicMenuController != null;
                 graphicMenuController.setController(getMenu());
             }
 
             // Give the gymEditController access to the main app.
             SignUpGymGraphicController signUpGymGraphicController = loaderSignUp.getController();
-            SignUpGymController controller = new SignUpGymController(getMainApp());
+            SignUpGymController controller = new SignUpGymController();
             controller.setGraphicController(signUpGymGraphicController);
             signUpGymGraphicController.setController(controller);
-            controller.setMainApp(getMainApp());
-            controller.setSubmit(getSubmit());
             getMenu().setInstance(signUpGymGraphicController);
             getMenu().setView(ControllerType.SIGN_UP_GYM2);
 
@@ -103,9 +95,8 @@ public class SignUpGymController extends AccessController {
      */
     public void submitActionSignUpGym(String gymValue, String address, Map<String, Double> coords) {
         Map<String, String> gymAccount;
-        GymDAO dao = new GymDAO(mainAppGym);
-        gymAccount = dao.getGymAccount();
-        dao.submitGymAccount(gymValue, address, coords, gymAccount);
+        gymAccount = GymDAO.getGymAccount();
+        GymDAO.submitGymAccount(gymValue, address, coords, gymAccount);
     }
 
     /**

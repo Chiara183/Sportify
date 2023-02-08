@@ -1,5 +1,6 @@
 package sportify.controller;
 
+import sportify.MainApp;
 import sportify.errorlogic.NewException;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.GymInfoGraphicController;
@@ -16,6 +17,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import sportify.model.dao.Submit;
 
 import java.util.Objects;
 
@@ -98,8 +100,8 @@ public class LoginController extends AccessController{
      * navigates the user to the home screen.
      */
     public void home(){
-        this.mainApp.setUser(this.user);
-        this.mainApp.showHomeOverview();
+        MainApp.setUser(this.user);
+        MainApp.showHomeOverview();
         if(external){
             Stage stage = this.externalStage;
             stage.close();
@@ -114,19 +116,18 @@ public class LoginController extends AccessController{
      * @param passValue the password provided by the user
      */
     public void submit(String userValue, String passValue){
-        if (this.submit.login(userValue, passValue)) {   //if authentic, navigate user to a new page
-            this.user = this.submit.setUser(userValue);
+        if (Submit.login(userValue, passValue)) {   //if authentic, navigate user to a new page
+            this.user = Submit.setUser(userValue);
             if(!external) {
                 home();
             }
             else {
-                this.mainApp.setUser(this.user);
+                MainApp.setUser(this.user);
                 this.menu.setUser(this.user);
-                MenuController menu = this.mainApp.menu();
+                MenuController menu = MainApp.menu();
                 menu.setUser(this.user);
                 GymInfoGraphicController gymInfoGraphicController = new GymInfoGraphicController();
                 GymInfoController gym = new GymInfoController();
-                gym.setMainApp(this.mainApp);
                 gym.setUser(this.user);
                 gymInfoGraphicController.setController(gym);
                 gym.setGraphicController(gymInfoGraphicController);
@@ -145,7 +146,7 @@ public class LoginController extends AccessController{
             catch (NewException e) {
                 //show error message
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(mainApp.getPrimaryStage());
+                alert.initOwner(MainApp.getPrimaryStage());
                 alert.setTitle("Wrong Username or Password");
                 alert.setHeaderText("You wrote wrong username or password");
                 alert.setContentText("Please enter valid username and password or Signup");
@@ -216,7 +217,7 @@ public class LoginController extends AccessController{
         graphicController.getUsernameField().setDisable(bool);
         graphicController.getPassField().setDisable(bool);
         graphicController.getPasswordField().setDisable(bool);
-        if(mainApp.isNotMobile()) {
+        if(MainApp.isNotMobile()) {
             graphicController.getSubmitButton().setDisable(bool);
             graphicController.getSkipButton().setDisable(bool);
             menu.setMenuDisable(bool);
@@ -235,7 +236,7 @@ public class LoginController extends AccessController{
         int seconds;
         Stage stage = new Stage();
         stage.setAlwaysOnTop(true);
-        stage.initOwner(mainApp.getPrimaryStage());
+        stage.initOwner(MainApp.getPrimaryStage());
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
         seconds = delay.intValue();
@@ -246,7 +247,7 @@ public class LoginController extends AccessController{
         doTime();
         Pane root = new Pane();
         root.getChildren().add(label);
-        if(mainApp.isNotMobile()) {
+        if(MainApp.isNotMobile()) {
             stage.setScene(new Scene(root, 300, 70));
         }
         else {

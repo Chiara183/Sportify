@@ -1,5 +1,6 @@
 package sportify.controller.graphic;
 
+import sportify.MainApp;
 import sportify.pattern.Subject;
 import sportify.bean.GymInfoBean;
 import sportify.controller.Controller;
@@ -94,7 +95,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
         if(!this.bean.checkReview(this.gym, this.reviewArea)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(controller.getMainApp().getPrimaryStage());
+            alert.initOwner(MainApp.getPrimaryStage());
             alert.setTitle("Field empty");
             alert.setHeaderText("A field is empty");
             alert.setContentText("Please fill gym name field and review field");
@@ -105,11 +106,11 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     }
     @FXML
     private void findGym(){
-        MenuController menu = controller.getMainApp().menu();
+        MenuController menu = MainApp.menu();
         menu.setFindGym();
-        controller.getMainApp().setUser(controller.getUser());
-        controller.getMainApp().setSearchCache(controller.getMainApp().getSearchCache());
-        controller.getMainApp().showFindGymOverview(menu);
+        MainApp.setUser(controller.getUser());
+        MainApp.setSearchCache(MainApp.getSearchCache());
+        MainApp.showFindGymOverview(menu);
 
     }
     @FXML
@@ -273,13 +274,13 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
 
     public void helpMethod(FXMLLoader loader) throws IOException {
         // Load test result overview.
-        loader.setLocation(this.controller.getMainApp().getClass().getResource("SmartphoneView/GymInfoCoursePhone0.fxml"));
+        loader.setLocation(MainApp.class.getResource("SmartphoneView/GymInfoCoursePhone0.fxml"));
         Pane paneTopScreen = controller.setTopMenu();
         Pane pane = loader.load();
 
         // Set test result overview into the center of root layout.
-        this.controller.getMainApp().getPrimaryPane().setCenter(pane);
-        controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
+        MainApp.getPrimaryPane().setCenter(pane);
+        MainApp.getPrimaryPane().setTop(paneTopScreen);
         controller.getMenu().setView(ControllerType.COURSE_GYM);
     }
 
@@ -304,13 +305,13 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     }
 
     public void helpMethod1(FXMLLoader loader) throws IOException {
-        loader.setLocation(this.controller.getMainApp().getClass().getResource("SmartphoneView/GymInfoReviewPhone0.fxml"));
+        loader.setLocation(MainApp.class.getResource("SmartphoneView/GymInfoReviewPhone0.fxml"));
         Pane paneTopScreen = controller.setTopMenu();
         Pane pane = loader.load();
 
         // Set test result overview into the center of root layout.
-        this.controller.getMainApp().getPrimaryPane().setCenter(pane);
-        controller.getMainApp().getPrimaryPane().setTop(paneTopScreen);
+        MainApp.getPrimaryPane().setCenter(pane);
+        MainApp.getPrimaryPane().setTop(paneTopScreen);
         controller.getMenu().setView(ControllerType.REVIEW_GYM);
     }
 

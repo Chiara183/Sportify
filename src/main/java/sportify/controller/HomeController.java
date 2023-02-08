@@ -1,5 +1,6 @@
 package sportify.controller;
 
+import sportify.MainApp;
 import sportify.controller.graphic.GraphicController;
 import sportify.controller.graphic.phone.HomePhoneGraphicController;
 import sportify.controller.graphic.MenuGraphicController;
@@ -48,7 +49,7 @@ public class HomeController extends Controller {
     @Override
     public void setUser(User user) {
         this.user = user;
-        if(mainApp.isNotMobile()) {
+        if(MainApp.isNotMobile()) {
             homeGraphicController.getSignIn().setVisible(this.user == null);
             if (this.user != null &&
                     this.user.getRole().equals("gym")) {
@@ -86,16 +87,15 @@ public class HomeController extends Controller {
      */
     public MenuController menu() {
         MenuController controller = new MenuController();
-        controller.setMainApp(this.mainApp);
         URL url;
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
-            url = mainApp.getClass().getResource("DesktopView/menu.fxml");
+            url = MainApp.class.getResource("DesktopView/menu.fxml");
             loaderMenu.setLocation(Objects.requireNonNull(url));
             Pane paneMenu = loaderMenu.load();
 
             // Set menu overview into the top of root layout.
-            this.mainApp.getPrimaryPane().setTop(paneMenu);
+            MainApp.getPrimaryPane().setTop(paneMenu);
 
             // Give the gymEditController access to the main app.
             MenuGraphicController graphicController = loaderMenu.getController();

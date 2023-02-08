@@ -1,5 +1,6 @@
 package sportify.controller;
 
+import sportify.MainApp;
 import sportify.controller.graphic.*;
 import sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
 import sportify.model.domain.User;
@@ -298,7 +299,7 @@ public class MenuController extends Controller{
     @Override
     public void setUser(User user) {
         this.user = user;
-        if(mainApp.isNotMobile()) {
+        if(MainApp.isNotMobile()) {
             graphicController.setUser(this.user != null);
         }
     }
@@ -369,7 +370,7 @@ public class MenuController extends Controller{
      * @param bool the disable status of the menu.
      */
     public void setMenuDisable(boolean bool){
-        mainApp.getPrimaryPane().getTop().setDisable(bool);
+        MainApp.getPrimaryPane().getTop().setDisable(bool);
     }
 
     /**

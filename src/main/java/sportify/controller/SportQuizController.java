@@ -209,7 +209,6 @@ SportQuizController extends Controller {
      */
     private void setSport(String nameOfSport){
         SportController sport = new SportController();
-        sport.setMainApp(getMainApp());
         sport.setUser(getUser());
         sport.setMenu(getMenu());
         sport.setQuiz(this);
@@ -221,18 +220,16 @@ SportQuizController extends Controller {
      * Navigates the user to the home screen.
      */
     public void home(){
-        MainApp app = getMainApp();
-        app.setUser(getUser());
-        app.showHomeOverview();
+        MainApp.setUser(getUser());
+        MainApp.showHomeOverview();
     }
 
     /**
      * Navigates the user to the sport quiz screen.
      */
     public void sportQuiz(){
-        MainApp app = getMainApp();
-        app.setUser(getUser());
-        app.showSportQuizOverview(getMenu());
+        MainApp.setUser(getUser());
+        MainApp.showSportQuizOverview(getMenu());
     }
 
     /**
@@ -274,12 +271,11 @@ SportQuizController extends Controller {
      * @return True if the scene was set successfully, false otherwise.
      */
     public boolean setScene(String kindOfScene, FXMLLoader loaderSport, FXMLLoader loaderTopScreen){
-        MainApp app = getMainApp();
         boolean result = false;
-        app.setUser(getUser());
-        app.getPrimaryStage().setTitle("Sportify - Sport Quiz");
+        MainApp.setUser(getUser());
+        MainApp.getPrimaryStage().setTitle("Sportify - Sport Quiz");
         URL url;
-        if(app.isNotMobile()) {
+        if(MainApp.isNotMobile()) {
             if(kindOfScene.equals("Env")) {
                 url = MainApp.class.getResource("DesktopView/SportQuizEnv.fxml");
                 loaderSport.setLocation(url);
@@ -308,7 +304,7 @@ SportQuizController extends Controller {
                 url = MainApp.class.getResource("SmartphoneView/topScreen4.fxml");
                 loaderTopScreen.setLocation(url);
             }
-            app.setTopMenu(loaderTopScreen);
+            MainApp.setTopMenu(loaderTopScreen);
         }
         return result;
     }
@@ -322,15 +318,14 @@ SportQuizController extends Controller {
      */
     private SportQuizPhoneGraphicController createController(FXMLLoader loaderSport){
         SportQuizPhoneGraphicController graphicPhoneController = null;
-        MainApp app = getMainApp();
         try {
             Pane pane = loaderSport.load();
 
             // Set sport quiz overview into the center of root layout.
-            app.getPrimaryPane().setCenter(pane);
+            MainApp.getPrimaryPane().setCenter(pane);
 
             // Give the gymEditController access to the main app.
-            if(app.isNotMobile()) {
+            if(MainApp.isNotMobile()) {
                 SportQuizGraphicController graphicController = loaderSport.getController();
                 this.setGraphicController(graphicController);
                 graphicController.setController(this);
@@ -342,7 +337,6 @@ SportQuizController extends Controller {
                 getMenu().setInstance(graphicPhoneController);
             }
             this.setUser(getUser());
-            this.setMainApp(app);
             this.setMenu(getMenu());
 
         }

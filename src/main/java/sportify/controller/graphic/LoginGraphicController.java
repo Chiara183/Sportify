@@ -1,5 +1,6 @@
 package sportify.controller.graphic;
 
+import sportify.MainApp;
 import sportify.pattern.AdapterLogin;
 import sportify.auth.OAuthGoogleAuthenticator;
 import sportify.bean.LoginBean;
@@ -78,7 +79,7 @@ public class LoginGraphicController extends AccessGraphicController{
         }else{
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(loginController.getMainApp().getPrimaryStage());
+            alert.initOwner(MainApp.getPrimaryStage());
             alert.setTitle("User is empty");
             alert.setHeaderText("The user field is empty");
             alert.setContentText("Please enter a username.");
@@ -105,7 +106,7 @@ public class LoginGraphicController extends AccessGraphicController{
     public void alert(){
         //show error message
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.initOwner(loginController.getMainApp().getPrimaryStage());
+        alert.initOwner(MainApp.getPrimaryStage());
         alert.setTitle("Password is empty");
         alert.setHeaderText("The password field is empty");
         alert.setContentText("Please enter a password.");
@@ -117,7 +118,7 @@ public class LoginGraphicController extends AccessGraphicController{
         String gRedir = "https://localhost:8080/oauth2";
         String gScope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
         OAuthGoogleAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, G_SECRET, gScope);
-        auth.startLogin(loginController.getMainApp());
+        auth.startLogin();
     }
     @FXML
     private void skipAction() {
@@ -125,7 +126,7 @@ public class LoginGraphicController extends AccessGraphicController{
     }
     @FXML
     private void signUpAction(){
-        loginController.getMainApp().showSignUpOverview();
+        MainApp.showSignUpOverview();
     }
 
     /** Is called to set controller*/
