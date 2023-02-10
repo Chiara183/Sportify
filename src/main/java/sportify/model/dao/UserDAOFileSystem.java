@@ -3,6 +3,8 @@ package sportify.model.dao;
 
 import java.io.*;
 import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,13 +34,14 @@ public class UserDAOFileSystem {
         URI uri1;
         File file;
         File tempFile;
-        uri = Paths.get(f).toUri();
+        Path path1 = Paths.get(f);
+        uri = path1.toUri();
         uri1 = Paths.get(tmpF).toUri();
         file = new File(uri);
         tempFile = new File(uri1);
         boolean result;
+        String line = "";
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
             String[] tempArr;
             while ((line = br.readLine()) != null) {
                 tempArr = line.split(",");
@@ -46,20 +49,24 @@ public class UserDAOFileSystem {
                     tempArr[1] = passValue;
                     line = tempArr[0] + "," + tempArr[1];
                 }
-                try(BufferedWriter wr = new BufferedWriter(new FileWriter(tempFile))) {
-                    wr.write(line + "\n");
-                } catch(IOException e) {
-                    Logger logger = Logger.getLogger(UserDAOFileSystem.class.getName());
-                    logger.log(Level.SEVERE, e.getMessage());
-                }
             }
         } catch (IOException e) {
             Logger logger = Logger.getLogger(UserDAOFileSystem.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
-        boolean bool1 = file.delete();
-        boolean bool2 = tempFile.renameTo(file);
-        result = bool1 && bool2;
+        try(BufferedWriter wr = new BufferedWriter(new FileWriter(tempFile))) {
+            wr.write(line + "\n");
+        } catch(IOException e) {
+            Logger logger = Logger.getLogger(UserDAOFileSystem.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        try {
+            Files.delete(path1);
+        } catch(IOException e){
+            Logger logger = Logger.getLogger(UserDAOFileSystem.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        result = tempFile.renameTo(file);
         return result;
     }
 }
