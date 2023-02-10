@@ -3,8 +3,10 @@ package sportify.model.dao;
 
 import java.io.*;
 import java.net.URI;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,9 +35,10 @@ public class UserDAOFileSystem {
         URI uri1;
         File file;
         File tempFile;
-        Path path1 = Paths.get(f);
-        uri = path1.toUri();
-        uri1 = Paths.get(tmpF).toUri();
+        Path path2 = Paths.get(f);
+        uri = path2.toUri();
+        Path path = Paths.get(tmpF);
+        uri1 = path.toUri();
         file = new File(uri);
         tempFile = new File(uri1);
         boolean result;
@@ -56,8 +59,15 @@ public class UserDAOFileSystem {
             logger.log(Level.SEVERE, e.getMessage());
         }
 
-        file.delete();
-        result = tempFile.renameTo(file);
+        try {
+            Files.delete(path2);
+            Files.move(path, path2, StandardCopyOption.REPLACE_EXISTING);
+            result = true;
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(UserDAOFileSystem.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+            result = false;
+        }
         return result;
     }
 }
