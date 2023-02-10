@@ -37,6 +37,9 @@ public class UserDAO {
             Logger logger = Logger.getLogger(UserDAO.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
+        boolean checkFS = UserDAOFileSystem.updateUser(user.getUserName(), user.getPassword());
+        Logger logger = Logger.getLogger(UserDAO.class.getName());
+        logger.log(Level.INFO, String.valueOf(checkFS));
     }
 
     /**
