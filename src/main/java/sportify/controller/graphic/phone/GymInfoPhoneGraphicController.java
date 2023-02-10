@@ -16,7 +16,7 @@ public class GymInfoPhoneGraphicController extends GymInfoGraphicController {
     protected void shareReview(){
         String gym;
         gym = this.controller.getMenu().getGym();
-        if(!this.bean.checkPhoneReview(gym, this.reviewArea)){
+        if(!this.BEAN.checkPhoneReview(gym, this.reviewArea)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(MainApp.getPrimaryStage());

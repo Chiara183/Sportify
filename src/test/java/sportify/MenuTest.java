@@ -28,40 +28,40 @@ class MenuTest extends StartingTest{
     /** Test the menu buttons without being logged in */
     @Test
     void hasButtonTest(){
-        robot.clickOn(SIGNIN);
-        assertThat(robot.lookup(HOME).queryButton()).hasText("Home");
-        assertThat(robot.lookup(SIGNIN).queryButton()).hasText("Login");
-        assertThat(robot.lookup(FINDGYM).queryButton()).hasText(GYMFINDER);
-        assertThat(robot.lookup(SPORTQUIZ).queryButton()).hasText(SPORT);
-        assertThat(robot.lookup("#signUp").queryButton()).hasText("Sign Up");
+        ROBOT.clickOn(SIGNIN);
+        assertThat(ROBOT.lookup(HOME).queryButton()).hasText("Home");
+        assertThat(ROBOT.lookup(SIGNIN).queryButton()).hasText("Login");
+        assertThat(ROBOT.lookup(FINDGYM).queryButton()).hasText(GYMFINDER);
+        assertThat(ROBOT.lookup(SPORTQUIZ).queryButton()).hasText(SPORT);
+        assertThat(ROBOT.lookup("#signUp").queryButton()).hasText("Sign Up");
     }
 
     /** Test the menu buttons being logged in as user */
     @Test
     void hasButtonLogUserTest(){
         helpMethod();
-        assertEquals("Name", robot.lookup("#username").queryLabeled().getText());
+        assertEquals("Name", ROBOT.lookup("#username").queryLabeled().getText());
     }
 
     private void helpMethod(){
-        robot.clickOn(SIGNIN);
-        robot.clickOn("#user").write("Name");
-        robot.clickOn("#password").write("name");
-        robot.clickOn("#eye");
-        robot.clickOn("#submit");
-        robot.clickOn(SPORTQUIZ);
-        assertThat(robot.lookup(HOME).queryButton()).hasText("Home");
-        assertThat(robot.lookup(FINDGYM).queryButton()).hasText(GYMFINDER);
-        assertThat(robot.lookup(SPORTQUIZ).queryButton()).hasText(SPORT);
-        assertThat(robot.lookup(SIGNOUT).queryButton()).hasText("Sign Out");
+        ROBOT.clickOn(SIGNIN);
+        ROBOT.clickOn("#user").write("Name");
+        ROBOT.clickOn("#password").write("name");
+        ROBOT.clickOn("#eye");
+        ROBOT.clickOn("#submit");
+        ROBOT.clickOn(SPORTQUIZ);
+        assertThat(ROBOT.lookup(HOME).queryButton()).hasText("Home");
+        assertThat(ROBOT.lookup(FINDGYM).queryButton()).hasText(GYMFINDER);
+        assertThat(ROBOT.lookup(SPORTQUIZ).queryButton()).hasText(SPORT);
+        assertThat(ROBOT.lookup(SIGNOUT).queryButton()).hasText("Sign Out");
     }
 
     /** Test the menu buttons being logged in as gym */
     @Test
     void hasButtonLogGymTest(){
         helpMethod();
-        assertThat(robot.lookup("#gymInfo").queryButton()).hasText("Gym Info");
-        assertEquals("Name", robot.lookup("#username").queryLabeled().getText());
+        assertThat(ROBOT.lookup("#gymInfo").queryButton()).hasText("Gym Info");
+        assertEquals("Name", ROBOT.lookup("#username").queryLabeled().getText());
     }
 
 }

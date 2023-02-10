@@ -12,14 +12,14 @@ import java.util.logging.Logger;
 public class DAO {
 
     /**
-     * private constructor.
-     */
-    private DAO(){}
-
-    /**
      * The main connection of the project
      */
     static Connection connection = null;
+
+    /**
+     * private constructor.
+     */
+    private DAO(){}
 
 
     /**
@@ -131,6 +131,7 @@ public class DAO {
         PreparedStatement ps = null;
         try{
             ps = connection.prepareStatement(query);
+            ps.executeUpdate();
         }
         catch (SQLException e){
             throw new DAOException("Update error: " + e.getMessage());

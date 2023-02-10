@@ -23,10 +23,10 @@ class MainAppTest extends StartingTest{
     /**Test that the home screen has the correct button*/
     @Test
     void hasButtonTest() {
-        assertThat(robot.lookup("#signIn").queryButton()).hasText("Log in");
-        assertThat(robot.lookup("#gymInfo").queryButton()).hasText("Gym Info");
-        assertThat(robot.lookup("#findGym").queryButton()).hasText("Find gym");
-        assertThat(robot.lookup("#sportQuiz").queryButton()).hasText("Sport quiz");
+        assertThat(ROBOT.lookup("#signIn").queryButton()).hasText("Log in");
+        assertThat(ROBOT.lookup("#gymInfo").queryButton()).hasText("Gym Info");
+        assertThat(ROBOT.lookup("#findGym").queryButton()).hasText("Find gym");
+        assertThat(ROBOT.lookup("#sportQuiz").queryButton()).hasText("Sport quiz");
     }
 
     /**Test that the application is launched correctly*/

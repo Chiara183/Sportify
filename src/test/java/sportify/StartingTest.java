@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public abstract class StartingTest {
 
-    protected final FxRobot robot = new FxRobot();
+    protected final FxRobot ROBOT = new FxRobot();
     private static final Logger LOGGER = Logger.getLogger(StartingTest.class.getName());
 
     @AfterEach

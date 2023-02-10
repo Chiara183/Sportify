@@ -17,8 +17,8 @@ import java.util.Properties;
 public class LoginGraphicController extends AccessGraphicController{
 
     private boolean google;
-    private static final Properties prop = new Properties();
-    private static final String G_SECRET = prop.getProperty("G_SECRET");
+    private static final Properties PROP = new Properties();
+    private static final String G_SECRET = PROP.getProperty("G_SECRET");
 
     /* All the text field of the interface*/
     @FXML
@@ -36,7 +36,7 @@ public class LoginGraphicController extends AccessGraphicController{
     private LoginController loginController;
 
     /**Reference to bean instance*/
-    private final LoginBean bean = new LoginBean();
+    private final LoginBean BEAN = new LoginBean();
 
     /** Get method*/
     public TextField getUsernameField(){
@@ -74,7 +74,7 @@ public class LoginGraphicController extends AccessGraphicController{
     /* The action of the buttons*/
     public void submitActionLogin() {
         String userValue = "";
-        if(bean.userCheck(user.getText())) {
+        if(BEAN.userCheck(user.getText())) {
             userValue = user.getText(); //get user entered username from the textField1
         }else{
             //show error message
@@ -87,14 +87,14 @@ public class LoginGraphicController extends AccessGraphicController{
         }
         String passValue;
         if(passToggle.isSelected()) {
-            if(bean.passCheck(this.loginPassText.getText())){
+            if(BEAN.passCheck(this.loginPassText.getText())){
                 passValue = this.loginPassText.getText(); //get user entered password from the textField2
                 loginController.submit(userValue, passValue);
             }else{
                 alert();
             }
         } else {
-            if(bean.passCheck(password.getText())){
+            if(BEAN.passCheck(password.getText())){
                 passValue = password.getText(); //get user entered password from the textField2
                 loginController.submit(userValue, passValue);
             }else{

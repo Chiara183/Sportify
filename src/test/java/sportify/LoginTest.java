@@ -27,14 +27,14 @@ class LoginTest extends StartingTest{
     /**Test that login is successful with valid username and password*/
     @Test
     void loginTest() {
-        robot.clickOn("#signIn");
+        ROBOT.clickOn("#signIn");
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
         assertEquals("Sportify - Login", title);
-        robot.clickOn("#user").write("Pluto");
-        robot.clickOn("#password").write("pluto");
-        robot.clickOn("#eye");
-        robot.clickOn("#submit");
+        ROBOT.clickOn("#user").write("Pluto");
+        ROBOT.clickOn("#password").write("pluto");
+        ROBOT.clickOn("#eye");
+        ROBOT.clickOn("#submit");
         Stage stage1= FxToolkit.toolkitContext().getRegisteredStage();
         String title1 = stage1.getTitle();
         assertEquals("Sportify - Home", title1);
@@ -43,14 +43,14 @@ class LoginTest extends StartingTest{
     /**Test that login is NOT successful with invalid username and password*/
     @Test
     void notLoginTest() {
-        robot.clickOn("#signIn");
+        ROBOT.clickOn("#signIn");
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
         assertEquals("Sportify - Login", title);
-        robot.clickOn("#user").write("Ciao");
-        robot.clickOn("#password").write("prova");
-        robot.clickOn("#eye");
-        robot.clickOn("#submit");
+        ROBOT.clickOn("#user").write("Ciao");
+        ROBOT.clickOn("#password").write("prova");
+        ROBOT.clickOn("#eye");
+        ROBOT.clickOn("#submit");
         Stage stage1= FxToolkit.toolkitContext().getRegisteredStage();
         Boolean contains = stage1.getTitle().contains("Sportify - Login");
         assertThat(contains).isTrue();

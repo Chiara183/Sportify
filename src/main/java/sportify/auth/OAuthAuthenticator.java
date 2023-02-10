@@ -67,17 +67,17 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
     /**
      * String to store the client ID.
      */
-    private final String clientID;
+    private final String CLIENT_ID;
 
     /**
      * String to store the redirect URI.
      */
-    private final String redirectUri;
+    private final String REDIRECT_URI;
 
     /**
      * String to store the client secret.
      */
-    private final String clientSecret;
+    private final String CLIENT_SECRET;
 
     /**
      * Constructor for OAuthAuthenticator.
@@ -87,9 +87,9 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
      * @param clientSecret the client secret.
      */
     protected OAuthAuthenticator (String clientID, String redirectUri, String clientSecret) {
-        this.clientID = clientID;
-        this.redirectUri = redirectUri;
-        this.clientSecret = clientSecret;
+        this.CLIENT_ID = clientID;
+        this.REDIRECT_URI = redirectUri;
+        this.CLIENT_SECRET = clientSecret;
     }
 
     /**
@@ -125,7 +125,7 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
      * @return The client ID.
      */
     public String getClientID() {
-        return clientID;
+        return CLIENT_ID;
     }
 
     /**
@@ -134,7 +134,7 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
      * @return The client secret.
      */
     public String getClientSecret() {
-        return clientSecret;
+        return CLIENT_SECRET;
     }
 
     /**
@@ -143,7 +143,7 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
      * @return The redirect URI.
      */
     public String getRedirectUri(){
-        return redirectUri;
+        return REDIRECT_URI;
     }
 
     /**

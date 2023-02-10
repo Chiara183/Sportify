@@ -30,29 +30,29 @@ class QuizPhoneTest extends StartingTest {
 
     @Test
     void SportQuizTest(){
-        robot.clickOn(COMBOBOX).write(QUIZ).press(KeyCode.ENTER).release(KeyCode.ENTER);
-        robot.clickOn("#age").write("14");
-        robot.clickOn("#ok");
-        robot.clickOn("#environment").write("outdoor");
-        robot.clickOn("#ok");
-        robot.clickOn("#type").write("group");
-        robot.clickOn("#ok");
-        assertEquals(FOOTBALL, robot.lookup("#sportName").queryLabeled().getText());
+        ROBOT.clickOn(COMBOBOX).write(QUIZ).press(KeyCode.ENTER).release(KeyCode.ENTER);
+        ROBOT.clickOn("#age").write("14");
+        ROBOT.clickOn("#ok");
+        ROBOT.clickOn("#environment").write("outdoor");
+        ROBOT.clickOn("#ok");
+        ROBOT.clickOn("#type").write("group");
+        ROBOT.clickOn("#ok");
+        assertEquals(FOOTBALL, ROBOT.lookup("#sportName").queryLabeled().getText());
     }
 
     @Test
     void infoSportQuizTest(){
-        robot.clickOn(COMBOBOX).write(QUIZ).press(KeyCode.ENTER).release(KeyCode.ENTER);
-        robot.clickOn("#age").write("14");
-        robot.clickOn("#ok");
-        robot.clickOn("#environment").write("outdoor");
-        robot.clickOn("#ok");
-        robot.clickOn("#type").write("group");
-        robot.clickOn("#ok");
-        assertEquals(FOOTBALL, robot.lookup("#sportName").queryLabeled().getText());
-        robot.clickOn("#info");
-        assertEquals(FOOTBALL, robot.lookup("#sport").queryLabeled().getText());
-        Boolean contains = robot.lookup("#sportDescription")
+        ROBOT.clickOn(COMBOBOX).write(QUIZ).press(KeyCode.ENTER).release(KeyCode.ENTER);
+        ROBOT.clickOn("#age").write("14");
+        ROBOT.clickOn("#ok");
+        ROBOT.clickOn("#environment").write("outdoor");
+        ROBOT.clickOn("#ok");
+        ROBOT.clickOn("#type").write("group");
+        ROBOT.clickOn("#ok");
+        assertEquals(FOOTBALL, ROBOT.lookup("#sportName").queryLabeled().getText());
+        ROBOT.clickOn("#info");
+        assertEquals(FOOTBALL, ROBOT.lookup("#sport").queryLabeled().getText());
+        Boolean contains = ROBOT.lookup("#sportDescription")
                 .queryLabeled().getText()
                 .contains("Association football, more commonly known as simply football or soccer");
         assertThat(contains).isTrue();
@@ -60,9 +60,9 @@ class QuizPhoneTest extends StartingTest {
 
     @Test
     void wrongInputQuiz(){
-        robot.clickOn(COMBOBOX).write(QUIZ).press(KeyCode.ENTER).release(KeyCode.ENTER);
-        robot.clickOn("#age").write("abc");
-        robot.clickOn("#ok");
+        ROBOT.clickOn(COMBOBOX).write(QUIZ).press(KeyCode.ENTER).release(KeyCode.ENTER);
+        ROBOT.clickOn("#age").write("abc");
+        ROBOT.clickOn("#ok");
         Stage registeredStage = FxToolkit.toolkitContext().getRegisteredStage();
         Boolean contains = registeredStage.getTitle().contains("Sportify - Sport Quiz");
         assertThat(contains).isTrue();

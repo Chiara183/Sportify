@@ -23,12 +23,12 @@ public class Adapter implements SignUp{
     /**
      * A private final instance of the `SignUpController` class.
      */
-    private final SignUpController userController;
+    private final SignUpController USER_CONTROLLER;
 
     /**
      * A private final instance of the `SignUpGymController` class.
      */
-    private final SignUpGymController gymController;
+    private final SignUpGymController GYM_CONTROLLER;
 
     /**
      * A private instance of the `SignUpGraphicController` class.
@@ -41,7 +41,7 @@ public class Adapter implements SignUp{
      * @return An instance of the `SignUpController` class.
      */
     public SignUpController getUserController() {
-        return userController;
+        return USER_CONTROLLER;
     }
 
     /**
@@ -61,7 +61,7 @@ public class Adapter implements SignUp{
      * @return An instance of the `SignUpGymController` class.
      */
     public SignUpGymController getGymController() {
-        return gymController;
+        return GYM_CONTROLLER;
     }
 
     /**
@@ -86,8 +86,8 @@ public class Adapter implements SignUp{
      *            `SignUpGymController` class.
      */
     public Adapter(SignUpController user, SignUpGymController gym){
-        this.userController = user;
-        this.gymController  = gym;
+        this.USER_CONTROLLER = user;
+        this.GYM_CONTROLLER = gym;
     }
 
     /**
@@ -98,8 +98,8 @@ public class Adapter implements SignUp{
      *            `SignUpController` class.
      */
     public Adapter(SignUpController user) {
-        this.userController = user;
-        this.gymController = new SignUpGymController();
+        this.USER_CONTROLLER = user;
+        this.GYM_CONTROLLER = new SignUpGymController();
     }
 
     /**
@@ -113,10 +113,10 @@ public class Adapter implements SignUp{
      *             `SignUpGymController` class.
      */
     public Adapter(SignUpController user, SignUpGraphicController graphicController) {
-        this.userController = user;
-        this.gymController = new SignUpGymController();
+        this.USER_CONTROLLER = user;
+        this.GYM_CONTROLLER = new SignUpGymController();
         MenuController menu = user.getMenu();
-        this.gymController.setMenu(menu);
+        this.GYM_CONTROLLER.setMenu(menu);
         setUserGraphicController(graphicController);
     }
 

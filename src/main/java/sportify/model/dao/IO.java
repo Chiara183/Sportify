@@ -51,14 +51,14 @@ public class IO {
         String email = map.get(EMAIL);
         String birthday = map.get(BIRTHDAY);
         String ruolo = map.get(RUOLO);
-        String query = "INSERT INTO `user` (`username`, `email`, `password`, `first_name`, `last_name`, `ruolo`, `birthday`) VALUES ('"
-                + username + "', '"
-                + email + "', '"
-                + password + "', '"
-                + firstName + "', '"
-                + lastName + "', '"
-                + ruolo + "', '"
-                + birthday + "')";
+        String query = "INSERT INTO `user` VALUES " +
+                "('" + username + "', " +
+                "'" + email + "', " +
+                "'" + password + "', " +
+                "'" + firstName + "', " +
+                "'" + lastName + "', " +
+                "'" + ruolo + "', " +
+                "'" + birthday + "')";
         try {
             DAO.updateAndGetDB(query);
             if (Objects.equals(ruolo, "gym")) {

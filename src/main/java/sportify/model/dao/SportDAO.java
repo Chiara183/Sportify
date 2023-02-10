@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class SportDAO {
 
-    private static final List<Sport> sports = new ArrayList<>();
+    private static final List<Sport> SPORTS = new ArrayList<>();
 
     /**
      * The constructor.
@@ -39,7 +39,7 @@ public class SportDAO {
             sport = new Sport(rs.get(i).get(1),
                     rs.get(i).get(2),
                     rs.get(i).get(3));
-            sports.add(sport);
+            SPORTS.add(sport);
             i++;
         }
     }
@@ -53,7 +53,7 @@ public class SportDAO {
      * @return the description of the sport
      */
     public String getDescriptions(String sportName) {
-        for (Sport sport : sports) {
+        for (Sport sport : SPORTS) {
             if (sport.getName().equals(sportName)) {
                 return sport.getDescription();
             }

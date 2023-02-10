@@ -48,7 +48,7 @@ public class LoginController extends AccessController{
      * label is a private final field that represents
      * a label to display error messages.
      */
-    private final Label label = new Label();
+    private final Label LABEL = new Label();
 
     /**
      * external is a private boolean field that
@@ -171,9 +171,9 @@ public class LoginController extends AccessController{
         KeyFrame frame = new KeyFrame(Duration.seconds(delay),
                 event -> {
             seconds[0]--;
-            label.setText("Waiting... " + seconds[0]);
+            LABEL.setText("Waiting... " + seconds[0]);
             if(seconds[0] <=0){
-                Stage stage = (Stage)label.getParent().getScene().getWindow();
+                Stage stage = (Stage) LABEL.getParent().getScene().getWindow();
                 stage.close();
                 time.stop();
             }
@@ -240,13 +240,13 @@ public class LoginController extends AccessController{
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
         seconds = delay.intValue();
-        label.setTextFill(Color.BLACK);
-        label.setFont(Font.font(20));
-        label.setTextAlignment(TextAlignment.CENTER);
-        label.setText("Waiting... " + seconds);
+        LABEL.setTextFill(Color.BLACK);
+        LABEL.setFont(Font.font(20));
+        LABEL.setTextAlignment(TextAlignment.CENTER);
+        LABEL.setText("Waiting... " + seconds);
         doTime();
         Pane root = new Pane();
-        root.getChildren().add(label);
+        root.getChildren().add(LABEL);
         if(MainApp.isNotMobile()) {
             stage.setScene(new Scene(root, 300, 70));
         }

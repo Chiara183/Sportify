@@ -14,14 +14,14 @@ import java.util.logging.Logger;
 public class GymInfoDAO {
 
     /**
-     * private constructor.
-     */
-    private GymInfoDAO(){}
-
-    /**
      * A constant string used in SQL statements
      */
     private static final String SELECT = "SELECT name ";
+
+    /**
+     * private constructor.
+     */
+    private GymInfoDAO(){}
 
     /**
      * This method returns the list of sports available

@@ -30,7 +30,7 @@ public class MapController extends Controller{
      * A constant string representing the
      * SQL query for selecting all gym data.
      */
-    private static final String SELECTALL = "SELECT * " + "FROM gym ";
+    private static final String SELECT_ALL = "SELECT * " + "FROM gym ";
 
     /**
      * An instance of the MapGraphicController
@@ -49,27 +49,27 @@ public class MapController extends Controller{
      * A HashMap that stores all the gym data, where the
      * key is the coordinate and the value is the gym name.
      */
-    private final HashMap<Coordinate, String> allGym = new HashMap<>();
+    private final HashMap<Coordinate, String> ALL_GYM = new HashMap<>();
 
     /**
      * A HashMap that stores markers for the gyms, where the
      * key is the gym name and the value is the marker.
      */
-    private final HashMap<String, Marker> mark = new HashMap<>();
+    private final HashMap<String, Marker> MARK = new HashMap<>();
 
     /* params for the WMS server. */
     /**
      * An instance of the WMSParam class that
      * contains parameters for connecting to a WMS server.
      */
-    private final WMSParam wmsParam = new WMSParam().setUrl("https://ows.terrestris.de/osm/service?")
+    private final WMSParam WMS_PARAMS = new WMSParam().setUrl("https://ows.terrestris.de/osm/service?")
             .addParam("layers", "OSM-WMS");
 
     /**
      * An instance of the XYZParam class that contains
      * parameters for connecting to an XYZ tile server.
      */
-    private final XYZParam xyzParams = new XYZParam()
+    private final XYZParam XYZ_PARAMS = new XYZParam()
             .withUrl("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x})")
             .withAttributions("'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
 
@@ -132,7 +132,7 @@ public class MapController extends Controller{
         );
 
         // observe the map type radiobutton
-        graphicController.setMapTypeGroup(wmsParam,xyzParams);
+        graphicController.setMapTypeGroup(WMS_PARAMS, XYZ_PARAMS);
 
         setupEventHandlers();
 
@@ -154,15 +154,15 @@ public class MapController extends Controller{
                     event.consume();
                     Coordinate coords = event.getMarker().getPosition();
                     if(event.getMarker().getMapLabel().isEmpty()) {
-                        mark.forEach(
+                        MARK.forEach(
                                 (id, gym) ->
                                 {
                                     if (coords == gym.getPosition()) {
                                         String s = "Marker number: " + id;
                                         Logger logger = Logger.getLogger(MapController.class.getName());
                                         logger.log(Level.INFO, s);
-                                        if (allGym.get(gym.getPosition()) != null) {
-                                            String name = allGym.get(gym.getPosition());
+                                        if (ALL_GYM.get(gym.getPosition()) != null) {
+                                            String name = ALL_GYM.get(gym.getPosition());
                                             MapLabel labelGym = new MapLabel(name, 10, -10).setCssClass("label");
                                             graphicController.getMapView().removeMarker(event.getMarker());
                                             event.getMarker().attachLabel(labelGym);
@@ -241,9 +241,9 @@ public class MapController extends Controller{
         List<String> list;
         List<String> list1;
         List<String> list2;
-        list = DAO.checkDataColumn(SELECTALL, "latitude");
-        list1 = DAO.checkDataColumn(SELECTALL, "longitude");
-        list2 = DAO.checkDataColumn(SELECTALL, "name");
+        list = DAO.checkDataColumn(SELECT_ALL, "latitude");
+        list1 = DAO.checkDataColumn(SELECT_ALL, "longitude");
+        list2 = DAO.checkDataColumn(SELECT_ALL, "name");
 
         int i = 0;
         for (String rs2 : list2) {
@@ -252,7 +252,7 @@ public class MapController extends Controller{
             Coordinate gym = new Coordinate(
                     Double.parseDouble(rs),
                     Double.parseDouble(rs1));
-            this.allGym.put(gym, rs2);
+            this.ALL_GYM.put(gym, rs2);
             i++;
         }
 
@@ -302,7 +302,7 @@ public class MapController extends Controller{
      * @return a HashMap of markers.
      */
     public HashMap<String, Marker> getMark(){
-        return this.mark;
+        return this.MARK;
     }
 
     /**
@@ -313,6 +313,6 @@ public class MapController extends Controller{
      * @return a HashMap of all gym information.
      */
     public HashMap<Coordinate, String> getAllGym(){
-        return this.allGym;
+        return this.ALL_GYM;
     }
 }

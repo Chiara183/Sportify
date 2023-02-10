@@ -32,7 +32,7 @@ class HomePhoneTest extends StartingTest{
             "Find gym, Sportify - Find Gym",
     })
     void openSceneTest(String wr, String t) {
-        robot.clickOn(COMBOBOX).write(wr).press(KeyCode.ENTER).release(KeyCode.ENTER);
+        ROBOT.clickOn(COMBOBOX).write(wr).press(KeyCode.ENTER).release(KeyCode.ENTER);
         Stage stage = FxToolkit.toolkitContext().getRegisteredStage();
         String title = stage.getTitle();
         assertEquals(t, title);
