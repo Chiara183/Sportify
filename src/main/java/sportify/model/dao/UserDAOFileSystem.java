@@ -3,9 +3,7 @@ package sportify.model.dao;
 
 import java.io.*;
 import java.net.URI;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,8 +26,8 @@ public class UserDAOFileSystem {
      * @param passValue the new password for the user to update
      */
     public static boolean updateUser(String userValue, String passValue) {
-        String f = "./src/main/resources/users.csv";
-        String tmpF = "./src/main/resources/tempUsers.csv";
+        String f = "trunk/src/main/resources/users.csv";
+        String tmpF = "trunk/src/main/resources/tempUsers.csv";
         URI uri;
         URI uri1;
         File file;
@@ -38,45 +36,30 @@ public class UserDAOFileSystem {
         uri1 = Paths.get(tmpF).toUri();
         file = new File(uri);
         tempFile = new File(uri1);
-        BufferedReader br = null;
-        BufferedWriter wr = null;
-        boolean result = false;
-        try {
-            br = new BufferedReader(new FileReader(file));
-            wr = new BufferedWriter(new FileWriter(tempFile));
+        boolean result;
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             String[] tempArr;
             while ((line = br.readLine()) != null) {
                 tempArr = line.split(",");
                 if (tempArr[0].equals(userValue)) {
                     tempArr[1] = passValue;
-                    String lineNew = tempArr[0] + "," + tempArr[1];
-                    line = lineNew;
+                    line = tempArr[0] + "," + tempArr[1];
                 }
-                wr.write(line + "\n");
+                try(BufferedWriter wr = new BufferedWriter(new FileWriter(tempFile))) {
+                    wr.write(line + "\n");
+                } catch(IOException e) {
+                    Logger logger = Logger.getLogger(UserDAOFileSystem.class.getName());
+                    logger.log(Level.SEVERE, e.getMessage());
+                }
             }
-        } catch (FileNotFoundException ex) {
-            throw new RuntimeException(ex);
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        } finally {
-            try {
-                if(br != null)
-                    br.close();
-            } catch (IOException e) {
-                //
-            }
-            try {
-                if(wr != null)
-                    wr.close();
-            } catch (IOException e) {
-
-            }
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(UserDAOFileSystem.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
         }
-        file.delete();
-        tempFile.renameTo(file);
-        result = true;
+        boolean bool1 = file.delete();
+        boolean bool2 = tempFile.renameTo(file);
+        result = bool1 && bool2;
         return result;
     }
 }
-

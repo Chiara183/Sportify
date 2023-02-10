@@ -51,10 +51,10 @@ public class MapGraphicController implements GraphicController{
     private MapController controller;
 
     /** Reference to bean*/
-    private final MapBean BEAN = new MapBean();
+    private final MapBean bean = new MapBean();
 
     // ObservableList
-    private final ObservableList<String> RADIUS = FXCollections.observableArrayList("1", "5", "10", "20", "50");
+    private final ObservableList<String> radius = FXCollections.observableArrayList("1", "5", "10", "20", "50");
 
     /** It's called to set controller*/
     @Override
@@ -74,7 +74,7 @@ public class MapGraphicController implements GraphicController{
     public void setKmCombo(){
         // set ComboBox
         km.setValue("Km");
-        km.setItems(RADIUS);
+        km.setItems(radius);
     }
 
     /** It's called to set mapTypeGroup*/
@@ -107,7 +107,7 @@ public class MapGraphicController implements GraphicController{
 
     /** It's called to get search string*/
     public String getSearch(){
-        while(!BEAN.checkSearch(this.search)){
+        while(!bean.checkSearch(this.search)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(MainApp.getPrimaryStage());
@@ -121,7 +121,7 @@ public class MapGraphicController implements GraphicController{
 
     /** It's called to get km round value*/
     public String getKm(){
-        while(!BEAN.checkKm(this.km)){
+        while(!bean.checkKm(this.km)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(MainApp.getPrimaryStage());

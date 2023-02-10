@@ -68,7 +68,7 @@ SportQuizController extends Controller {
     /**
      * Represents the lock object for synchronization.
      */
-    private final Object LOCK_OBJ = new Object();
+    private final Object lockObj = new Object();
 
     /**
      * The default constructor for SportQuizController.
@@ -84,17 +84,17 @@ SportQuizController extends Controller {
      */
     public void takeQuiz(String b) {
         if (Objects.equals(b, AGE1)) {
-            synchronized (LOCK_OBJ) {
+            synchronized (lockObj) {
             buttonAge1 = true;}
             sportQuizEnv();
         }
         else if (Objects.equals(b, AGE2)) {
-            synchronized (LOCK_OBJ) {
+            synchronized (lockObj) {
             buttonAge2 = true;}
             sportQuizEnv();
         }
         else if (Objects.equals(b, AGE3)) {
-            synchronized (LOCK_OBJ) {
+            synchronized (lockObj) {
             buttonAge3 = true;}
             sportQuizEnv();
         }
@@ -102,7 +102,7 @@ SportQuizController extends Controller {
             sportQuizEnv();
         }
         else if (Objects.equals(b, INDOOR)) {
-            synchronized (LOCK_OBJ) {
+            synchronized (lockObj) {
             buttonIndoor = true;}
             sportQuizType();
         }

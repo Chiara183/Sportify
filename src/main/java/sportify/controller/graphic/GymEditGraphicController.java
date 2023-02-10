@@ -18,7 +18,7 @@ public class GymEditGraphicController extends EditGraphicController{
     protected GymEditController gymEditController;
 
     /** Reference to bean*/
-    protected final GymEditBean BEAN = new GymEditBean();
+    protected final GymEditBean bean = new GymEditBean();
 
 
     public void setUser(GymUser user) {
@@ -32,19 +32,19 @@ public class GymEditGraphicController extends EditGraphicController{
 
     public boolean checkSyntax(){
         return
-        BEAN.checkUser(super.username.getText())
+        bean.checkUser(super.username.getText())
                 &&
-        BEAN.checkPass(super.password.getText())
+        bean.checkPass(super.password.getText())
                 &&
-        BEAN.checkEmail(super.email.getText())
+        bean.checkEmail(super.email.getText())
                 &&
-        BEAN.checkGymName(super.gymName.getText())
+        bean.checkGymName(super.gymName.getText())
                 &&
-        BEAN.checkTel(super.telephone.getText())
+        bean.checkTel(super.telephone.getText())
                 &&
-        BEAN.checkAddress(super.address.getText())
+        bean.checkAddress(super.address.getText())
                 &&
-        BEAN.checkBday(super.dayOfBirth.getText(), super.birthMonth.getText(), super.birthYear.getText());
+        bean.checkBday(super.dayOfBirth.getText(), super.birthMonth.getText(), super.birthYear.getText());
     }
 
     /** The action of the button.*/

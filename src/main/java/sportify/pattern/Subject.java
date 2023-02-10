@@ -20,12 +20,12 @@ public abstract class Subject {
     /**
      *  A list of observers for this subject.
      */
-    protected final List<Observer> OBSERVERS;
+    protected final List<Observer> observers;
 
     /**
      * A mutex used for synchronizing access to the list of observers.
      */
-    protected final Object MUTEX = new Object();
+    protected final Object mutex = new Object();
 
     /**
      * Constructs a new subject with no observers.
@@ -44,7 +44,7 @@ public abstract class Subject {
     protected Subject(Observer obs) {
         this(new Vector<>());
         if (obs != null)
-            this.OBSERVERS.add(obs);
+            this.observers.add(obs);
     }
 
     /**
@@ -55,7 +55,7 @@ public abstract class Subject {
      *            to attach to this subject.
      */
     protected Subject(List<Observer> list) {
-        this.OBSERVERS = list;
+        this.observers = list;
     }
 
     /**
@@ -64,8 +64,8 @@ public abstract class Subject {
      * @param obs The observer to attach.
      */
     public void attach(Observer obs) {
-        synchronized (MUTEX) {
-            this.OBSERVERS.add(obs);
+        synchronized (mutex) {
+            this.observers.add(obs);
         }
     }
 
@@ -75,8 +75,8 @@ public abstract class Subject {
      * @param obs The observer to detach.
      */
     public void detach(Observer obs) {
-        synchronized (MUTEX) {
-            this.OBSERVERS.remove(obs);
+        synchronized (mutex) {
+            this.observers.remove(obs);
         }
     }
 

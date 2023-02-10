@@ -19,7 +19,7 @@ public class GymEditPhoneGraphicController extends GymEditGraphicController {
     @FXML
     protected void okAction(){
         super.okAction();
-        LocalDate bday = BEAN.settingBday(super.dayOfBirth, super.birthMonth, super.birthYear);
+        LocalDate bday = bean.settingBday(super.dayOfBirth, super.birthMonth, super.birthYear);
         if(!Objects.equals(gymEditController.getUser().getBirthday(), bday)) {
             gymEditController.getUser().setBirthday(bday);
         }

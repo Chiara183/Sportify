@@ -15,7 +15,7 @@ public class OAuthGoogleAuthenticator extends OAuthAuthenticator{
      * The googleApiScope variable holds the
      * Google API scope to be used for authentication.
      */
-    private final String GOOGLE_API_SCOPE;
+    private final String googleApiScope;
 
     /**
      * The constructor for OAuthGoogleAuthenticator takes the following parameters:
@@ -30,7 +30,7 @@ public class OAuthGoogleAuthenticator extends OAuthAuthenticator{
      */
     public OAuthGoogleAuthenticator(String clientID, String redirectUri, String clientSecret, String apiScope) {
         super(clientID, redirectUri, clientSecret);
-        GOOGLE_API_SCOPE = apiScope;
+        googleApiScope = apiScope;
     }
 
     /**
@@ -42,7 +42,7 @@ public class OAuthGoogleAuthenticator extends OAuthAuthenticator{
      */
     @Override
     String getWebUrl() {
-        return "https://accounts.google.com/o/oauth2/v2/auth?scope=" + GOOGLE_API_SCOPE + "&access_type=offline&redirect_uri=" + getRedirectUri() + "&response_type=code&client_id=" + getClientID();
+        return "https://accounts.google.com/o/oauth2/v2/auth?scope=" + googleApiScope + "&access_type=offline&redirect_uri=" + getRedirectUri() + "&response_type=code&client_id=" + getClientID();
     }
 
     /**

@@ -49,27 +49,27 @@ public class MapController extends Controller{
      * A HashMap that stores all the gym data, where the
      * key is the coordinate and the value is the gym name.
      */
-    private final HashMap<Coordinate, String> ALL_GYM = new HashMap<>();
+    private final HashMap<Coordinate, String> allGym = new HashMap<>();
 
     /**
      * A HashMap that stores markers for the gyms, where the
      * key is the gym name and the value is the marker.
      */
-    private final HashMap<String, Marker> MARK = new HashMap<>();
+    private final HashMap<String, Marker> mark = new HashMap<>();
 
     /* params for the WMS server. */
     /**
      * An instance of the WMSParam class that
      * contains parameters for connecting to a WMS server.
      */
-    private final WMSParam WMS_PARAMS = new WMSParam().setUrl("https://ows.terrestris.de/osm/service?")
+    private final WMSParam wmsParam = new WMSParam().setUrl("https://ows.terrestris.de/osm/service?")
             .addParam("layers", "OSM-WMS");
 
     /**
      * An instance of the XYZParam class that contains
      * parameters for connecting to an XYZ tile server.
      */
-    private final XYZParam XYZ_PARAMS = new XYZParam()
+    private final XYZParam xyzParam = new XYZParam()
             .withUrl("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x})")
             .withAttributions("'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
 
@@ -132,7 +132,7 @@ public class MapController extends Controller{
         );
 
         // observe the map type radiobutton
-        graphicController.setMapTypeGroup(WMS_PARAMS, XYZ_PARAMS);
+        graphicController.setMapTypeGroup(wmsParam, xyzParam);
 
         setupEventHandlers();
 
@@ -154,15 +154,15 @@ public class MapController extends Controller{
                     event.consume();
                     Coordinate coords = event.getMarker().getPosition();
                     if(event.getMarker().getMapLabel().isEmpty()) {
-                        MARK.forEach(
+                        mark.forEach(
                                 (id, gym) ->
                                 {
                                     if (coords == gym.getPosition()) {
                                         String s = "Marker number: " + id;
                                         Logger logger = Logger.getLogger(MapController.class.getName());
                                         logger.log(Level.INFO, s);
-                                        if (ALL_GYM.get(gym.getPosition()) != null) {
-                                            String name = ALL_GYM.get(gym.getPosition());
+                                        if (allGym.get(gym.getPosition()) != null) {
+                                            String name = allGym.get(gym.getPosition());
                                             MapLabel labelGym = new MapLabel(name, 10, -10).setCssClass("label");
                                             graphicController.getMapView().removeMarker(event.getMarker());
                                             event.getMarker().attachLabel(labelGym);
@@ -252,7 +252,7 @@ public class MapController extends Controller{
             Coordinate gym = new Coordinate(
                     Double.parseDouble(rs),
                     Double.parseDouble(rs1));
-            this.ALL_GYM.put(gym, rs2);
+            this.allGym.put(gym, rs2);
             i++;
         }
 
@@ -302,7 +302,7 @@ public class MapController extends Controller{
      * @return a HashMap of markers.
      */
     public HashMap<String, Marker> getMark(){
-        return this.MARK;
+        return this.mark;
     }
 
     /**
@@ -313,6 +313,6 @@ public class MapController extends Controller{
      * @return a HashMap of all gym information.
      */
     public HashMap<Coordinate, String> getAllGym(){
-        return this.ALL_GYM;
+        return this.allGym;
     }
 }

@@ -36,7 +36,7 @@ public class LoginGraphicController extends AccessGraphicController{
     private LoginController loginController;
 
     /**Reference to bean instance*/
-    private final LoginBean BEAN = new LoginBean();
+    private final LoginBean bean = new LoginBean();
 
     /** Get method*/
     public TextField getUsernameField(){
@@ -74,7 +74,7 @@ public class LoginGraphicController extends AccessGraphicController{
     /* The action of the buttons*/
     public void submitActionLogin() {
         String userValue = "";
-        if(BEAN.userCheck(user.getText())) {
+        if(bean.userCheck(user.getText())) {
             userValue = user.getText(); //get user entered username from the textField1
         }else{
             //show error message
@@ -87,14 +87,14 @@ public class LoginGraphicController extends AccessGraphicController{
         }
         String passValue;
         if(passToggle.isSelected()) {
-            if(BEAN.passCheck(this.loginPassText.getText())){
+            if(bean.passCheck(this.loginPassText.getText())){
                 passValue = this.loginPassText.getText(); //get user entered password from the textField2
                 loginController.submit(userValue, passValue);
             }else{
                 alert();
             }
         } else {
-            if(BEAN.passCheck(password.getText())){
+            if(bean.passCheck(password.getText())){
                 passValue = password.getText(); //get user entered password from the textField2
                 loginController.submit(userValue, passValue);
             }else{

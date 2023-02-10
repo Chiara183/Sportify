@@ -34,7 +34,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     protected GymInfoController controller;
 
     /** Reference to bean*/
-    protected final GymInfoBean BEAN = new GymInfoBean();
+    protected final GymInfoBean bean = new GymInfoBean();
 
     /**Attribute of concrete subject*/
     protected String subjectState = "Unchanged";
@@ -92,7 +92,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     /* The action of the button*/
     @FXML
     protected void shareReview(){
-        if(!this.BEAN.checkReview(this.gym, this.reviewArea)){
+        if(!this.bean.checkReview(this.gym, this.reviewArea)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(MainApp.getPrimaryStage());
@@ -144,7 +144,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     /** The action that change the value of text field*/
     @FXML
     private void changeHour(){
-        String hourSet = BEAN.getHour(this.hourSlider);
+        String hourSet = bean.getHour(this.hourSlider);
         if(Integer.parseInt(hourSet)<10) {
             this.hour.setText("0" + hourSet);
         } else {
@@ -153,7 +153,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
     }
     @FXML
     private void changeMin(){
-        String minSet = BEAN.getMin(this.minSlider);
+        String minSet = bean.getMin(this.minSlider);
         if(Integer.parseInt(minSet)<10) {
             this.min.setText("0" + minSet);
         } else {

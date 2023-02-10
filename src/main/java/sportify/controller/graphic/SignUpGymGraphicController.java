@@ -26,12 +26,12 @@ public class SignUpGymGraphicController extends RegisterGraphicController{
     protected SignUpGymController signUpGymController;
 
     /** Reference to bean*/
-    protected final SignUpBean BEAN = new SignUpBean();
+    protected final SignUpBean bean = new SignUpBean();
 
     /** The action of the buttons*/
     @FXML
     protected void submitActionSignUpGym() {
-        if(this.BEAN.checkEmpty(gymName) || this.BEAN.checkEmpty(gymAddress) || this.BEAN.checkEmpty(gymCity)){
+        if(this.bean.checkEmpty(gymName) || this.bean.checkEmpty(gymAddress) || this.bean.checkEmpty(gymCity)){
             alert();
         }
         String gymValue = gymName.getText();            //get user entered gym name

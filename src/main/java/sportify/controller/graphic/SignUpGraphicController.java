@@ -45,7 +45,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
     private TextField email;
 
     /**Reference to bean*/
-    protected final SignUpBean BEAN = new SignUpBean();
+    protected final SignUpBean bean = new SignUpBean();
 
     /* All the checkbox of the interface*/
     @FXML
@@ -71,7 +71,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
     /** The action of the buttons*/
     @FXML
     protected void submitActionSignUp() {
-        if(this.BEAN.checkEmpty(username) || this.BEAN.checkEmpty(password) || this.BEAN.checkEmpty(email)){
+        if(this.bean.checkEmpty(username) || this.bean.checkEmpty(password) || this.bean.checkEmpty(email)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(MainApp.getPrimaryStage());
@@ -80,7 +80,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
             alert.setContentText("Please fill username, email and password field");
             alert.showAndWait();
         }
-        if(BEAN.checkForNumbers(firstName) || BEAN.checkForNumbers(lastName)){
+        if(bean.checkForNumbers(firstName) || bean.checkForNumbers(lastName)){
             //show error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(MainApp.getPrimaryStage());

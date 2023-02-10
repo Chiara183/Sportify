@@ -16,7 +16,7 @@ public class OAuthFacebookAuthenticator extends OAuthAuthenticator{
      * The facebookApiScope variable holds the
      * Facebook API scope to be used for authentication.
      */
-    private final String FACEBOOK_FIELD_STRING;
+    private final String facebookFieldString;
 
     /**
      * Constructor that initializes basic information for authentication with Facebook.
@@ -28,7 +28,7 @@ public class OAuthFacebookAuthenticator extends OAuthAuthenticator{
      */
     public OAuthFacebookAuthenticator(String clientID, String redirectUri, String clientSecret, String apiFields) {
         super(clientID, redirectUri, clientSecret);
-        FACEBOOK_FIELD_STRING = apiFields;
+        facebookFieldString = apiFields;
     }
 
     /**
@@ -48,7 +48,7 @@ public class OAuthFacebookAuthenticator extends OAuthAuthenticator{
      */
     @Override
     String getApiTokenUrl() {
-        return "https://graph.facebook.com/me?fields=" + FACEBOOK_FIELD_STRING + "&access_token=" + getAccessToken();
+        return "https://graph.facebook.com/me?fields=" + facebookFieldString + "&access_token=" + getAccessToken();
     }
 
     /**
