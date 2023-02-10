@@ -3,7 +3,6 @@ package sportify.model.dao;
 
 import java.io.*;
 import java.net.URI;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
@@ -40,12 +39,8 @@ public class UserDAOFileSystem {
         file = new File(uri);
         tempFile = new File(uri1);
         boolean result;
-        BufferedReader br = null;
-        BufferedWriter wr = null;
         String line;
-        try  {
-            br = new BufferedReader(new FileReader(file));
-            wr = new BufferedWriter(new FileWriter(tempFile));
+        try (BufferedReader br = new BufferedReader(new FileReader(file)); BufferedWriter wr = new BufferedWriter(new FileWriter(tempFile))) {
             String[] tempArr;
             while ((line = br.readLine()) != null) {
                 tempArr = line.split(",");
@@ -60,20 +55,7 @@ public class UserDAOFileSystem {
             Logger logger = Logger.getLogger(UserDAOFileSystem.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
-        finally {
-            try {
-                if(br != null)
-                    br.close();
-            } catch (IOException e) {
-                //
-            }
-            try {
-                if(wr != null)
-                    wr.close();
-            } catch (IOException e) {
-                //
-            }
-        }
+
         file.delete();
         result = tempFile.renameTo(file);
         return result;

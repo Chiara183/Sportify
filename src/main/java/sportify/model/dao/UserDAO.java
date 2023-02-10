@@ -3,7 +3,6 @@ package sportify.model.dao;
 import sportify.errorlogic.DAOException;
 import sportify.model.domain.User;
 
-import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,9 +22,7 @@ public class UserDAO {
      *
      * @param user the user to update
      */
-    public static void updateUser(User user){
-        Logger logger1 = Logger.getLogger(UserDAO.class.getName());
-        logger1.log(Level.INFO, user.getPassword());
+    public static void updateUser(User user) {
         String query = "UPDATE `user` " +
                 "SET `first_name` = '" + user.getFirstName() + "', " +
                 "`last_name` = '" + user.getLastName() + "', " +
@@ -37,14 +34,26 @@ public class UserDAO {
         try {
             update(query);
         } catch (DAOException e) {
-            Logger logger = Logger.getLogger(UserDAO.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+            logError(e.getMessage());
         }
+        updateUserInFileSystem(user);
+    }
+
+    private static void updateUserInFileSystem(User user) {
         boolean checkFS = UserDAOFileSystem.updateUser(user.getUserName(), user.getPassword());
         if (checkFS) {
-            Logger logger = Logger.getLogger(UserDAO.class.getName());
-            logger.log(Level.INFO, String.valueOf(true));
+            logInfo(String.valueOf(true));
         }
+    }
+
+    private static void logError(String message) {
+        Logger logger = Logger.getLogger(UserDAO.class.getName());
+        logger.log(Level.SEVERE, message);
+    }
+
+    private static void logInfo(String message) {
+        Logger logger = Logger.getLogger(UserDAO.class.getName());
+        logger.log(Level.INFO,message);
     }
 
     /**
