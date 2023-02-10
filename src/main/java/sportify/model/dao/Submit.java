@@ -54,7 +54,7 @@ public class Submit{
      */
     public static boolean login(String userValue, String passValue) {
         String className = Submit.class.getName();
-        String f = "trunk/src/main/resources/users.csv";
+        String f = "./src/main/resources/users.csv";
         URI uri;
         File file;
         Map<String, Map<String, String>> account = IO.read();

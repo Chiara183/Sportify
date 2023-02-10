@@ -28,8 +28,8 @@ public class UserDAOFileSystem {
      * @param passValue the new password for the user to update
      */
     public static boolean updateUser(String userValue, String passValue) {
-        String f = "trunk/src/main/resources/users.csv";
-        String tmpF = "trunk/src/main/resources/tempUsers.csv";
+        String f = "./src/main/resources/users.csv";
+        String tmpF = "./src/main/resources/tempUsers.csv";
         URI uri;
         URI uri1;
         File file;
@@ -40,8 +40,12 @@ public class UserDAOFileSystem {
         file = new File(uri);
         tempFile = new File(uri1);
         boolean result;
-        String line = "";
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        BufferedReader br = null;
+        BufferedWriter wr = null;
+        String line;
+        try  {
+            br = new BufferedReader(new FileReader(file));
+            wr = new BufferedWriter(new FileWriter(tempFile));
             String[] tempArr;
             while ((line = br.readLine()) != null) {
                 tempArr = line.split(",");
@@ -49,23 +53,28 @@ public class UserDAOFileSystem {
                     tempArr[1] = passValue;
                     line = tempArr[0] + "," + tempArr[1];
                 }
+                wr.write(line + "\n");
+
             }
         } catch (IOException e) {
             Logger logger = Logger.getLogger(UserDAOFileSystem.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
         }
-        try(BufferedWriter wr = new BufferedWriter(new FileWriter(tempFile))) {
-            wr.write(line + "\n");
-        } catch(IOException e) {
-            Logger logger = Logger.getLogger(UserDAOFileSystem.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
+        finally {
+            try {
+                if(br != null)
+                    br.close();
+            } catch (IOException e) {
+                //
+            }
+            try {
+                if(wr != null)
+                    wr.close();
+            } catch (IOException e) {
+                //
+            }
         }
-        try {
-            Files.delete(path1);
-        } catch(IOException e){
-            Logger logger = Logger.getLogger(UserDAOFileSystem.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());
-        }
+        file.delete();
         result = tempFile.renameTo(file);
         return result;
     }

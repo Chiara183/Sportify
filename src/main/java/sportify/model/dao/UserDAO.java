@@ -3,6 +3,7 @@ package sportify.model.dao;
 import sportify.errorlogic.DAOException;
 import sportify.model.domain.User;
 
+import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,6 +24,8 @@ public class UserDAO {
      * @param user the user to update
      */
     public static void updateUser(User user){
+        Logger logger1 = Logger.getLogger(UserDAO.class.getName());
+        logger1.log(Level.INFO, user.getPassword());
         String query = "UPDATE `user` " +
                 "SET `first_name` = '" + user.getFirstName() + "', " +
                 "`last_name` = '" + user.getLastName() + "', " +
