@@ -1,9 +1,5 @@
 package sportify.model.domain;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
 import sportify.MainApp;
 import sportify.model.dao.Submit;
@@ -18,64 +14,64 @@ import java.time.LocalDate;
  */
 public abstract class User {
     /**
-     * Property representing the first name of the user.
+     * Representing the first name of the user.
      */
-    protected final StringProperty firstName;
+    protected String firstName;
 
     /**
-     * Property representing the last name of the user.
+     * Representing the last name of the user.
      */
-    protected final StringProperty lastName;
+    protected String lastName;
 
     /**
-     * Property representing the username of the user.
+     * Representing the username of the user.
      */
-    protected final StringProperty userName;
+    protected String userName;
 
     /**
-     * Property representing the password of the user.
+     * Representing the password of the user.
      */
-    protected final StringProperty password;
+    protected String password;
 
     /**
-     * Property representing the email of the user.
+     * Representing the email of the user.
      */
-    protected final StringProperty email;
+    protected String email;
 
     /**
-     * Property representing the birthday of the user.
+     * Representing the birthday of the user.
      */
-    protected final ObjectProperty<LocalDate> birthday;
+    protected LocalDate birthday;
 
     /**
-     * Property representing the role of the user.
+     * Representing the role of the user.
      */
-    protected StringProperty role;
+    protected String role;
 
     /**
-     * Property representing the gym name of the user.
+     * Representing the gym name of the user.
      */
-    protected StringProperty gymName;
+    protected String gymName;
 
     /**
-     * Property representing the address of the user.
+     * Representing the address of the user.
      */
-    protected StringProperty address;
+    protected String address;
 
     /**
-     * Property representing the latitude of the user's location.
+     * Representing the latitude of the user's location.
      */
-    protected StringProperty latitude;
+    protected String latitude;
 
     /**
-     * Property representing the longitude of the user's location.
+     * Representing the longitude of the user's location.
      */
-    protected StringProperty longitude;
+    protected String longitude;
 
     /**
-     * Property representing the phone number of the user.
+     * Representing the phone number of the user.
      */
-    protected StringProperty phone;
+    protected String phone;
 
     /**
      * Constructs a new User instance.
@@ -92,19 +88,14 @@ public abstract class User {
      * @param password the password of the user
      */
     protected User(String userName, String password) {
-        this.role = new SimpleStringProperty(null);
-        this.firstName = new SimpleStringProperty(null);
-        this.lastName = new SimpleStringProperty(null);
-        this.email = new SimpleStringProperty(null);
-
         // Some initial dummy data, just for convenient testing.
-        this.userName = new SimpleStringProperty(userName);
-        this.password = new SimpleStringProperty(password);
+        this.userName = userName;
+        this.password = password;
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String date = timestamp.toString();
         date = date.substring(0,10);
         String[] dateValue = date.split("-");
-        this.birthday = new SimpleObjectProperty<>(LocalDate.of(Integer.parseInt(dateValue[0]), Integer.parseInt(dateValue[1]), Integer.parseInt(dateValue[2])));
+        this.birthday = LocalDate.of(Integer.parseInt(dateValue[0]), Integer.parseInt(dateValue[1]), Integer.parseInt(dateValue[2]));
     }
 
     /**
@@ -120,7 +111,7 @@ public abstract class User {
      * @return the role of the user
      */
     public String getRole() {
-        return this.role.get();
+        return this.role;
     }
 
     /**
@@ -129,7 +120,7 @@ public abstract class User {
      * @return the first name of the user
      */
     public String getFirstName() {
-        return firstName.get();
+        return firstName;
     }
 
     /**
@@ -138,7 +129,7 @@ public abstract class User {
      * @return the last name of the user
      */
     public String getLastName() {
-        return lastName.get();
+        return lastName;
     }
 
     /**
@@ -147,7 +138,7 @@ public abstract class User {
      * @return the username of the user
      */
     public String getUserName() {
-        return userName.get();
+        return userName;
     }
 
     /**
@@ -156,7 +147,7 @@ public abstract class User {
      * @return the password of the user
      */
     public String getPassword() {
-        return password.get();
+        return password;
     }
 
     /**
@@ -165,7 +156,7 @@ public abstract class User {
      * @return the email of the user
      */
     public String getEmail() {
-        return email.get();
+        return email;
     }
 
     /**
@@ -174,7 +165,7 @@ public abstract class User {
      * @return the birthday of the user
      */
     public LocalDate getBirthday() {
-        return birthday.get();
+        return birthday;
     }
 
     /**
@@ -183,7 +174,7 @@ public abstract class User {
      * @return the gym name of the user
      */
     public String getGymName() {
-        return gymName.get();
+        return gymName;
     }
 
     /**
@@ -192,7 +183,7 @@ public abstract class User {
      * @return the address of the user
      */
     public String getAddress() {
-        return address.get();
+        return address;
     }
 
     /**
@@ -201,7 +192,7 @@ public abstract class User {
      * @return the phone of the user
      */
     public String getPhone() {
-        return phone.get();
+        return phone;
     }
 
     /**
@@ -210,7 +201,7 @@ public abstract class User {
      * @return the latitude of the gym
      */
     public String getLatitude() {
-        return this.latitude.get();
+        return this.latitude;
     }
 
     /**
@@ -219,7 +210,7 @@ public abstract class User {
      * @return the longitude of the gym
      */
     public String getLongitude() {
-        return this.longitude.get();
+        return this.longitude;
     }
 
     /**
@@ -228,7 +219,7 @@ public abstract class User {
      * @param role the role to set
      */
     public void setRole(String role) {
-        this.role.set(role);
+        this.role = role;
     }
 
     /**
@@ -237,7 +228,7 @@ public abstract class User {
      * @param firstName the first name to set
      */
     public void setFirstName(String firstName) {
-        this.firstName.set(firstName);
+        this.firstName =firstName;
         update();
     }
 
@@ -247,7 +238,7 @@ public abstract class User {
      * @param lastName the last name to set
      */
     public void setLastName(String lastName) {
-        this.lastName.set(lastName);
+        this.lastName = lastName;
         update();
     }
 
@@ -258,11 +249,11 @@ public abstract class User {
      */
     public void setUserName(String userName) {
         if(!Submit.exist(userName)) {
-            this.userName.set(userName);
+            this.userName = userName;
             update();
         }
-        else if (this.userName.getValue() == null){
-            this.userName.set(userName);
+        else if (this.userName == null){
+            this.userName = userName;
         }
         else {
             //show error message
@@ -282,11 +273,11 @@ public abstract class User {
      */
     public void setPassword(String password) {
         if (getPassword() != null) {
-            this.password.set(password);
+            this.password = password;
             UserDAO.updateUser(this);
         }
         else {
-            this.password.set(password);
+            this.password = password;
         }
     }
 
@@ -297,11 +288,11 @@ public abstract class User {
      */
     public void setEmail(String email) {
         if(!Submit.existEmail(email)) {
-            this.email.set(email);
+            this.email = email;
             update();
         }
-        else if (this.email.getValue() == null){
-            this.email.set(email);
+        else if (this.email == null){
+            this.email = email;
         }
         else {
             //show error message
@@ -320,7 +311,7 @@ public abstract class User {
      * @param birthday the birthday to set
      */
     public void setBirthday(LocalDate birthday) {
-        this.birthday.set(birthday);
+        this.birthday = birthday;
         update();
     }
 }

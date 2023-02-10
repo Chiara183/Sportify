@@ -14,6 +14,11 @@ import java.util.logging.Logger;
 public class FileManagement {
 
     /**
+     * Singleton instance of this class
+     */
+    private static FileManagement instance = null;
+
+    /**
      * The private method that instantiates the class
      */
     private FileManagement() {}
@@ -24,7 +29,9 @@ public class FileManagement {
      * @return an instance of the class
      */
     public static FileManagement getInstance() {
-        return new FileManagement();
+        if (FileManagement.instance == null)
+            FileManagement.instance = new FileManagement();
+        return instance;
     }
 
     /**

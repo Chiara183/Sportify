@@ -1,7 +1,5 @@
 package sportify.model.domain;
 
-import javafx.beans.property.SimpleStringProperty;
-
 /**
  * The class that represents
  * the classic user
@@ -26,6 +24,6 @@ public class ClassicUser extends User {
      */
     public ClassicUser(String userName, String password) {
         super(userName, password);
-        role = new SimpleStringProperty("user");
+        role = "user";
        }
 }

@@ -1,6 +1,5 @@
 package sportify.model.domain;
 
-import javafx.beans.property.SimpleStringProperty;
 import sportify.model.dao.UserDAO;
 
 /**
@@ -27,12 +26,7 @@ public class GymUser extends User {
      */
     public GymUser(String userName, String password) {
         super(userName, password);
-        role = new SimpleStringProperty("gym");
-        this.gymName = new SimpleStringProperty(null);
-        this.address = new SimpleStringProperty(null);
-        this.latitude = new SimpleStringProperty(null);
-        this.longitude = new SimpleStringProperty(null);
-        this.phone = new SimpleStringProperty(null);
+        role = "gym";
     }
 
     /**
@@ -50,7 +44,7 @@ public class GymUser extends User {
      * @param name the gym name to set
      */
     public void setGymName(String name) {
-        this.gymName.set(name);
+        this.gymName = name;
         update();
     }
 
@@ -60,7 +54,7 @@ public class GymUser extends User {
      * @param address the address to set
      */
     public void setAddress(String address) {
-        this.address.set(address);
+        this.address = address;
         update();
     }
 
@@ -70,7 +64,7 @@ public class GymUser extends User {
      * @param latitude the latitude to set
      */
     public void setLatitude(String latitude) {
-        this.latitude.set(latitude);
+        this.latitude = latitude;
         update();
     }
 
@@ -80,7 +74,7 @@ public class GymUser extends User {
      * @param longitude the longitude to set
      */
     public void setLongitude(String longitude) {
-        this.longitude.set(longitude);
+        this.longitude = longitude;
         update();
     }
 
@@ -90,7 +84,7 @@ public class GymUser extends User {
      * @param phone the phone to set
      */
     public void setPhone(String phone) {
-        this.phone.set(phone);
+        this.phone = phone;
         update();
     }
 }
