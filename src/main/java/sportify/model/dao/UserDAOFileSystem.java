@@ -29,8 +29,8 @@ public class UserDAOFileSystem {
      * @param passValue the new password for the user to update
      */
     public static boolean updateUser(String userValue, String passValue) {
-        String f = "./src/main/resources/users.csv";
-        String tmpF = "./src/main/resources/tempUsers.csv";
+        String f = "trunk/src/main/resources/users.csv";
+        String tmpF = "trunk/src/main/resources/tempUsers.csv";
         URI uri;
         URI uri1;
         File file;
