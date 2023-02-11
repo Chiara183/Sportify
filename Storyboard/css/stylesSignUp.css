@@ -1,0 +1,151 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+	
+	background-image: url("img/background.png");
+	background-repeat: no-repeat;
+  /* background-position: center; */
+  background-size: cover;
+}
+
+body {
+	font-family: "Comic Sans MS";
+}
+
+article {
+	width: 800px;
+	margin: 0 auto;
+}
+
+header {
+	text-align: center;
+	margin-top: 80px;
+}
+
+nav {
+	margin-top: 32px;
+	display: flex;
+	justify-content: space-around;
+}
+
+a {
+	padding: 7px 3px 0 3px;
+	border-radius: 13px;
+	width: 135px;
+	height: 40px;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+}
+
+a:visited {
+	background: radial-gradient(#008000, #119a60);
+	box-shadow: 0px 7px #025502;
+}
+
+form {
+	margin-top: 16px;
+}
+
+fieldset {
+	border: none;
+	display: flex;
+	justify-content: center;
+}
+
+label[for="gym"],
+label[for="user"] {
+	width: 40px;
+	height: auto;
+	font-size: 20px;
+	margin-right: 16px;
+}
+#gym,
+#user {
+	height: 24px;
+	width: 24px;
+	border-radius: 0px;
+	margin-right: 6px;
+}
+
+label.required-field::before {
+	content: "*";
+	display: inline-block;
+	font-size: small;
+	top: -3px;
+	position: relative;
+	right: 1px;
+}
+
+label:not([for="gym"], [for="user"]),
+input:not([type="checkbox"]) {
+	display: inline-block;
+	height: 32px;
+	width: 300px;
+}
+
+input:not([type="checkbox"]) {
+	/* transition: all 0.30s ease-in-out; */
+	outline: none;
+	padding: 3px 0px 3px 3px;
+	margin: 5px 1px 3px 0px;
+	border: 1px solid #444444;
+	border-radius: 3px;
+}
+input:not([type="checkbox"]) {
+	top: -3px;
+	position: relative;
+	right: 1px;
+}
+
+#psw::after {
+	content: "👁️‍🗨️";
+	display: inline-block;
+	font-size: 24px;
+}
+.glowing:focus {
+	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	border: 1px solid rgba(81, 203, 238, 1);
+}
+
+ul {
+	list-style-type: none;
+}
+
+.radio-fieldset {
+	margin-top: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.actions {
+	width: 230px;
+	margin: 32px auto 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.actions > button {
+	font-weight: bold;
+	font-family: inherit;
+	height: 55px;
+	width: 100px;
+	font-size: 16px;
+	border-radius: 13px;
+	border-color: #1e90ff;
+	background-color: #1e90ff;
+	box-shadow: 0px 7px #4242c6;
+}
+
+li {
+	align-items: center;
+}
+
+img {
+	width: 400px;
+	height: auto;
+}
