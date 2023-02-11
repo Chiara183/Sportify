@@ -2,6 +2,8 @@ package it.uniroma2.dicii.ispw.sportify.model.domain;
 
 import it.uniroma2.dicii.ispw.sportify.model.dao.UserDAO;
 
+import java.util.Objects;
+
 /**
  * The class that represents
  * the gym user
@@ -9,13 +11,6 @@ import it.uniroma2.dicii.ispw.sportify.model.dao.UserDAO;
  * @see User
  */
 public class GymUser extends User {
-
-    /**
-     * Constructs a new GymUser instance.
-     */
-    public GymUser() {
-        this(null, null);
-    }
 
     /**
      * Constructs a new GymUser instance
@@ -45,7 +40,10 @@ public class GymUser extends User {
      */
     public void setGymName(String name) {
         this.gymName = name;
-        update();
+        if (!Objects.equals(account.get("gymName"), name)) {
+            this.update();
+            account.put("gymName", name);
+        }
     }
 
     /**
@@ -55,7 +53,10 @@ public class GymUser extends User {
      */
     public void setAddress(String address) {
         this.address = address;
-        update();
+        if (!Objects.equals(account.get("address"), address)) {
+            this.update();
+            account.put("address", address);
+        }
     }
 
     /**
@@ -65,7 +66,10 @@ public class GymUser extends User {
      */
     public void setLatitude(String latitude) {
         this.latitude = latitude;
-        update();
+        if (!Objects.equals(account.get("latitude"), latitude)) {
+            this.update();
+            account.put("latitude", latitude);
+        }
     }
 
     /**
@@ -75,7 +79,10 @@ public class GymUser extends User {
      */
     public void setLongitude(String longitude) {
         this.longitude = longitude;
-        update();
+        if (!Objects.equals(account.get("longitude"), longitude)) {
+            this.update();
+            account.put("longitude", longitude);
+        }
     }
 
     /**
@@ -85,6 +92,9 @@ public class GymUser extends User {
      */
     public void setPhone(String phone) {
         this.phone = phone;
-        update();
+        if (!Objects.equals(account.get("phone"), phone)) {
+            this.update();
+            account.put("phone", phone);
+        }
     }
 }

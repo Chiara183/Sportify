@@ -28,7 +28,7 @@ public class UserDAOFileSystem {
      * @param userValue the username of the user to update
      * @param passValue the new password for the user to update
      */
-    public static boolean updateUser(String userValue, String passValue) {
+    public static void updateUser(String userValue, String passValue) {
         String f = "trunk/src/main/resources/users.csv";
         String tmpF = "trunk/src/main/resources/tempUsers.csv";
         URI uri;
@@ -41,7 +41,6 @@ public class UserDAOFileSystem {
         uri1 = path.toUri();
         file = new File(uri);
         tempFile = new File(uri1);
-        boolean result;
         String line;
         try (BufferedReader br = new BufferedReader(new FileReader(file)); BufferedWriter wr = new BufferedWriter(new FileWriter(tempFile))) {
             String[] tempArr;
@@ -62,12 +61,9 @@ public class UserDAOFileSystem {
         try {
             Files.delete(path2);
             Files.move(path, path2, StandardCopyOption.REPLACE_EXISTING);
-            result = true;
         } catch (IOException e) {
             Logger logger = Logger.getLogger(UserDAOFileSystem.class.getName());
             logger.log(Level.SEVERE, e.getMessage());
-            result = false;
         }
-        return result;
     }
 }

@@ -54,7 +54,7 @@ public class Submit{
      */
     public static boolean login(String userValue, String passValue) {
         String className = Submit.class.getName();
-        String f = "./src/main/resources/users.csv";
+        String f = "trunk/src/main/resources/users.csv";
         URI uri;
         File file;
         Map<String, Map<String, String>> account = IO.read();
@@ -184,15 +184,11 @@ public class Submit{
         Map<String, String> map = account.get(username);
         s = map.get(RUOLO);
         if (Objects.equals(s, "user")) {
-            user = new ClassicUser();
+            user = new ClassicUser(map.get(USER), map.get(PASS));
         }
         else {
-            user = new GymUser();
+            user = new GymUser(map.get(USER), map.get(PASS));
         }
-        s = map.get(USER);
-        user.setUserName(s);
-        s = map.get(PASS);
-        user.setPassword(s);
         s = map.get("firstName");
         user.setFirstName(s);
         s = map.get("lastName");

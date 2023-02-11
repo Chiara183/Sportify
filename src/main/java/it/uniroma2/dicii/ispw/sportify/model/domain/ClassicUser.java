@@ -9,13 +9,6 @@ package it.uniroma2.dicii.ispw.sportify.model.domain;
 public class ClassicUser extends User {
 
     /**
-     * Constructs a new ClassicUser instance.
-     */
-    public ClassicUser() {
-        this(null, null);
-    }
-
-    /**
      * Constructs a new ClassicUser instance
      * with the given username and password.
      *

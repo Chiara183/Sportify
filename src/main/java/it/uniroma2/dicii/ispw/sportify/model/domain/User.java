@@ -1,12 +1,15 @@
 package it.uniroma2.dicii.ispw.sportify.model.domain;
 
 import it.uniroma2.dicii.ispw.sportify.MainApp;
+import it.uniroma2.dicii.ispw.sportify.model.dao.IO;
 import it.uniroma2.dicii.ispw.sportify.model.dao.Submit;
 import it.uniroma2.dicii.ispw.sportify.model.dao.UserDAO;
 import javafx.scene.control.Alert;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * The abstract class that
@@ -73,12 +76,7 @@ public abstract class User {
      */
     protected String phone;
 
-    /**
-     * Constructs a new User instance.
-     */
-    protected User() {
-        this(null, null);
-    }
+    protected Map<String, String> account;
 
     /**
      * Constructs a new User instance
@@ -88,6 +86,7 @@ public abstract class User {
      * @param password the password of the user
      */
     protected User(String userName, String password) {
+        account = IO.read().get(userName);
         // Some initial dummy data, just for convenient testing.
         this.userName = userName;
         this.password = password;
@@ -229,7 +228,10 @@ public abstract class User {
      */
     public void setFirstName(String firstName) {
         this.firstName =firstName;
-        update();
+        if (!Objects.equals(account.get("firstName"), firstName)) {
+            update();
+            account.put("firstName", firstName);
+        }
     }
 
     /**
@@ -239,7 +241,10 @@ public abstract class User {
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
-        update();
+        if (!Objects.equals(account.get("lastName"), lastName)) {
+            update();
+            account.put("lastName", lastName);
+        }
     }
 
     /**
@@ -250,7 +255,10 @@ public abstract class User {
     public void setUserName(String userName) {
         if(!Submit.exist(userName)) {
             this.userName = userName;
-            update();
+            if (!Objects.equals(account.get("username"), userName)) {
+                update();
+                account.put("username", userName);
+            }
         }
         else if (this.userName == null){
             this.userName = userName;
@@ -274,7 +282,10 @@ public abstract class User {
     public void setPassword(String password) {
         if (getPassword() != null) {
             this.password = password;
-            UserDAO.updateUser(this);
+            if (!Objects.equals(account.get("password"), password)) {
+                update();
+                account.put("password", password);
+            }
         }
         else {
             this.password = password;
@@ -289,7 +300,10 @@ public abstract class User {
     public void setEmail(String email) {
         if(!Submit.existEmail(email)) {
             this.email = email;
-            update();
+            if (!Objects.equals(account.get("email"), email)) {
+                update();
+                account.put("email", email);
+            }
         }
         else if (this.email == null){
             this.email = email;
@@ -312,6 +326,9 @@ public abstract class User {
      */
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
-        update();
+        if (!Objects.equals(account.get("birthday"), birthday.toString())) {
+            update();
+            account.put("birthday", birthday.toString());
+        }
     }
 }

@@ -36,24 +36,12 @@ public class UserDAO {
         } catch (DAOException e) {
             logError(e.getMessage());
         }
-        updateUserInFileSystem(user);
-    }
-
-    private static void updateUserInFileSystem(User user) {
-        boolean checkFS = UserDAOFileSystem.updateUser(user.getUserName(), user.getPassword());
-        if (checkFS) {
-            logInfo(String.valueOf(true));
-        }
+        UserDAOFileSystem.updateUser(user.getUserName(), user.getPassword());
     }
 
     private static void logError(String message) {
         Logger logger = Logger.getLogger(UserDAO.class.getName());
         logger.log(Level.SEVERE, message);
-    }
-
-    private static void logInfo(String message) {
-        Logger logger = Logger.getLogger(UserDAO.class.getName());
-        logger.log(Level.INFO,message);
     }
 
     /**
