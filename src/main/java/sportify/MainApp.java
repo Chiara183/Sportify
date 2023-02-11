@@ -408,7 +408,9 @@ public class MainApp{
             case SIGN_UP -> showSignUpOverview();
             case SPORT_QUIZ -> showSportQuizOverview();
             case USER_EDIT -> showUserInterface();
-            default -> {}
+            default -> {
+                break;
+            }
         }
     }
 
