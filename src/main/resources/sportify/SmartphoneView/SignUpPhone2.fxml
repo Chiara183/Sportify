@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sportify.controller.graphic.phone.SignUpPhoneGraphicController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uniroma2.dicii.ispw.sportify.controller.graphic.phone.SignUpPhoneGraphicController">
     <TextField fx:id="username" alignment="CENTER" layoutX="40.0" layoutY="136.0" prefHeight="27.0" prefWidth="197.0" promptText="*Username" style="-fx-background-radius: 30px;">
         <cursor>
             <Cursor fx:constant="DEFAULT" />

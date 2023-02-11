@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="830.0" prefHeight="500.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sportify.controller.graphic.SignUpGraphicController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="830.0" prefHeight="500.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uniroma2.dicii.ispw.sportify.controller.graphic.SignUpGraphicController">
     <VBox alignment="TOP_CENTER" layoutX="-2.0" prefHeight="500.0" prefWidth="830.0">
         <GridPane prefHeight="453.0" prefWidth="830.0">
             <columnConstraints>

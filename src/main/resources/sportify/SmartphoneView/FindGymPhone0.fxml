@@ -2,6 +2,6 @@
 
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sportify.controller.graphic.phone.FindGymPhoneGraphicController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/HomePhone.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uniroma2.dicii.ispw.sportify.controller.graphic.phone.FindGymPhoneGraphicController">
     <Pane fx:id="map" prefHeight="280.0" prefWidth="270.0" />
 </Pane>

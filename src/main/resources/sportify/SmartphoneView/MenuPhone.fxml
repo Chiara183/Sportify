@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="56.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/ButtonPhone.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sportify.controller.graphic.phone.MenuPhoneGraphicController">
+<Pane prefHeight="56.0" prefWidth="270.0" stylesheets="@../StyleSmartPhone/ButtonPhone.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uniroma2.dicii.ispw.sportify.controller.graphic.phone.MenuPhoneGraphicController">
      <ImageView accessibleRole="BUTTON" fitHeight="58.0" fitWidth="70.0" onMouseClicked="#homeAction" onSwipeUp="#homeAction" onTouchPressed="#homeAction" pickOnBounds="true" preserveRatio="true" styleClass="button1">
          <Image url="@../Images/home_preview_rev_1.png" />
       <cursor>

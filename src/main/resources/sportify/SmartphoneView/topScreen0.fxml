@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sportify.controller.graphic.phone.MenuPhoneGraphicController">
+<Pane prefHeight="114.0" prefWidth="270.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uniroma2.dicii.ispw.sportify.controller.graphic.phone.MenuPhoneGraphicController">
     <ImageView fitHeight="54.0" fitWidth="168.0" layoutX="60.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../Images/Sportify_logo.png" />
     </ImageView>

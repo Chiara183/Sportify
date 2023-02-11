@@ -284,7 +284,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>sportify.MainAppLauncher</mainClass>
+                            <mainClass>it.uniroma2.dicii.ispw.sportify.MainAppLauncher</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
