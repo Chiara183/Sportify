@@ -141,7 +141,7 @@ public class SignUpGraphicController extends RegisterGraphicController{
         // Give the controllerSignUp access to the main app.
         controllerSignUp.setGraphicController(graphicController);
         graphicController.setController(controllerSignUp);
-        this.signUpController.getMenu().setInstance(graphicController);
+        this.signUpController.getMenu().setGraphicInstance(graphicController);
     }
 
     public void helpMethod(Event event, FXMLLoader loaderSignUp){

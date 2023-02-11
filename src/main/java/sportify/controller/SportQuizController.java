@@ -221,7 +221,7 @@ SportQuizController extends Controller {
      */
     public void home(){
         MainApp.setUser(getUser());
-        MainApp.showHomeOverview();
+        MainApp.showOverview(ControllerType.HOME);
     }
 
     /**
@@ -229,7 +229,7 @@ SportQuizController extends Controller {
      */
     public void sportQuiz(){
         MainApp.setUser(getUser());
-        MainApp.showSportQuizOverview(getMenu());
+        MainApp.showOverview(ControllerType.SPORT_QUIZ);
     }
 
     /**
@@ -334,7 +334,7 @@ SportQuizController extends Controller {
                 graphicPhoneController = loaderSport.getController();
                 this.setGraphicController(graphicPhoneController);
                 graphicPhoneController.setController(this);
-                getMenu().setInstance(graphicPhoneController);
+                getMenu().setGraphicInstance(graphicPhoneController);
             }
             this.setUser(getUser());
             this.setMenu(getMenu());

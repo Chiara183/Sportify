@@ -86,7 +86,7 @@ public class HomeController extends Controller {
      * representing the new menu
      */
     public MenuController menu() {
-        MenuController controller = new MenuController();
+        MenuController controller = MenuController.getInstance();
         URL url;
         try {
             FXMLLoader loaderMenu = new FXMLLoader();

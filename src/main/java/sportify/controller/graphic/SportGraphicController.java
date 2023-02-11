@@ -24,7 +24,7 @@ public class SportGraphicController implements GraphicController{
     @FXML
     private void home(){
         MainApp.setUser(controller.getUser());
-        MainApp.showHomeOverview();
+        MainApp.showOverview(ControllerType.HOME);
     }
 
     @FXML

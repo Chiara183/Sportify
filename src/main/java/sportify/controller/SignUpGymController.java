@@ -76,7 +76,7 @@ public class SignUpGymController extends AccessController {
             SignUpGymController controller = new SignUpGymController();
             controller.setGraphicController(signUpGymGraphicController);
             signUpGymGraphicController.setController(controller);
-            getMenu().setInstance(signUpGymGraphicController);
+            getMenu().setGraphicInstance(signUpGymGraphicController);
             getMenu().setView(ControllerType.SIGN_UP_GYM2);
 
         }

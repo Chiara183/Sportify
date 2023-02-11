@@ -4,6 +4,7 @@ import com.sothawo.mapjfx.Projection;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import sportify.controller.ControllerType;
 import sportify.controller.Dialog;
 import sportify.errorlogic.DAOException;
 import sportify.model.dao.DAO;
@@ -108,6 +109,6 @@ public class MainAppLauncher extends Application {
             }
         }
         MainApp.initRootLayout();
-        MainApp.showHomeOverview();
+        MainApp.showOverview(ControllerType.HOME);
     }
 }

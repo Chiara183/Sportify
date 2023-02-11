@@ -5,6 +5,7 @@ import javafx.scene.web.WebView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import sportify.MainApp;
+import sportify.controller.ControllerType;
 import sportify.model.dao.DAOAuthAuthenticator;
 import sportify.model.dao.Submit;
 import sportify.model.domain.User;
@@ -202,7 +203,7 @@ public abstract class OAuthAuthenticator implements OAuthCompletedCallback{
         if(type == OAuthType.GOOGLE) {
             googleAuth();
         }
-        MainApp.showHomeOverview();
+        MainApp.showOverview(ControllerType.HOME);
         if(!getGotData()){
             this.gotData = true;
         }

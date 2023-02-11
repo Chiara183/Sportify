@@ -8,16 +8,14 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sportify.controller.*;
-import sportify.controller.graphic.LoginGraphicController;
-import sportify.controller.graphic.MenuGraphicController;
-import sportify.controller.graphic.SignUpGraphicController;
-import sportify.controller.graphic.SportQuizGraphicController;
+import sportify.controller.graphic.*;
 import sportify.controller.graphic.phone.FindGymPhoneGraphicController;
 import sportify.controller.graphic.phone.HomePhoneGraphicController;
 import sportify.controller.graphic.phone.MenuPhoneGraphicController;
@@ -313,20 +311,20 @@ public class MainApp{
      * @return the menu set
      */
     public static MenuController menu() {
-        MenuController controller = new MenuController();
+        menu = MenuController.getInstance();
         URL url;
         String resource;
         MenuController m = getMenu();
         if(isExternalLogin()){
             ControllerType type = m.getView();
             String gym = m.getGym();
-            setMenu(controller);
+            setMenu(menu);
             m = getMenu();
             m.setView(type);
             m.setGym(gym);
         }
         else {
-            setMenu(controller);
+            setMenu(menu);
         }
         try {
             FXMLLoader loaderMenu = new FXMLLoader();
@@ -343,8 +341,8 @@ public class MainApp{
 
                 // Give the gymEditController access to the main app.
                 graphicController = loaderMenu.getController();
-                controller.setGraphicController(graphicController);
-                graphicController.setController(controller);
+                menu.setGraphicController(graphicController);
+                graphicController.setController(menu);
             }
             else {
                 MenuPhoneGraphicController graphicController;
@@ -356,22 +354,67 @@ public class MainApp{
                 // Set menu overview into the top of root layout.
                 pane.setBottom(paneMenu);
                 graphicController = loaderMenu.getController();
-                controller.setGraphicController(graphicController);
-                graphicController.setController(controller);
+                menu.setGraphicController(graphicController);
+                graphicController.setController(menu);
             }
             // Give the gymEditController access to the main app.
-            controller.setUser(getUser());
+            menu.setUser(getUser());
         }
         catch (IOException e) {
             Logger logger = Logger.getLogger(MainApp.class.getName());
             logger.log(Level.SEVERE, e.getMessage());        }
-        return controller;
+        return menu;
     }
 
     /**
      * Shows home overview inside the root layout.
      */
-    public static void showHomeOverview() {
+    public static void showOAuthAuthenticator(WebView root, String name) {
+        String title;
+        Stage stage;
+        BorderPane pane;
+        if(!isExternalLogin()) {
+            title = "Sportify - " + name;
+            stage = getPrimaryStage();
+            stage.setTitle(title);
+
+            // Set OAuth overview into the center of root layout.
+            pane = getPrimaryPane();
+            pane.setCenter(root);
+        }
+        else {
+            title = "Sportify - " + name;
+            stage = getSecondaryStage();
+            stage.setTitle(title);
+
+            // Set OAuth overview into the center of root layout.
+            pane = getSecondaryPane();
+            pane.setCenter(root);
+        }
+        if(isMobile()){
+            pane = getPrimaryPane();
+            pane.setTop(null);
+        }
+    }
+
+    /**
+     * Shows overview.
+     */
+    public static void showOverview(ControllerType type) {
+        switch (type) {
+            case FIND_GYM -> showFindGymOverview();
+            case HOME -> showHomeOverview();
+            case LOGIN -> showLoginOverview();
+            case SIGN_UP -> showSignUpOverview();
+            case SPORT_QUIZ -> showSportQuizOverview();
+            case USER_EDIT -> showUserInterface();
+        }
+    }
+
+    /**
+     * Shows home overview inside the root layout.
+     */
+    private static void showHomeOverview() {
         String title;
         String resource;
         URL url;
@@ -432,40 +475,9 @@ public class MainApp{
     }
 
     /**
-     * Shows home overview inside the root layout.
-     */
-    public static void showOAuthAuthenticator(WebView root, String name) {
-        String title;
-        Stage stage;
-        BorderPane pane;
-        if(!isExternalLogin()) {
-            title = "Sportify - " + name;
-            stage = getPrimaryStage();
-            stage.setTitle(title);
-
-            // Set OAuth overview into the center of root layout.
-            pane = getPrimaryPane();
-            pane.setCenter(root);
-        }
-        else {
-            title = "Sportify - " + name;
-            stage = getSecondaryStage();
-            stage.setTitle(title);
-
-            // Set OAuth overview into the center of root layout.
-            pane = getSecondaryPane();
-            pane.setCenter(root);
-        }
-        if(isMobile()){
-            pane = getPrimaryPane();
-            pane.setTop(null);
-        }
-    }
-
-    /**
      * Shows login overview inside the root layout.
      */
-    public static void showLoginOverview() {
+    private static void showLoginOverview() {
         LoginController controller = new LoginController();
         LoginGraphicController graphicController;
         String title;
@@ -509,7 +521,7 @@ public class MainApp{
             controller.setGraphicController(graphicController);
             graphicController.setController(controller);
             controller.setUser(getUser());
-            menuController.setInstance(graphicController);
+            menuController.setGraphicInstance(graphicController);
             controller.setMenu(getMenu());
             controller.setExternal(isExternalLogin());
 
@@ -568,7 +580,7 @@ public class MainApp{
     /**
      * Shows sport quiz overview inside the root layout.
      */
-    public static void showSportQuizOverview(MenuController menu) {
+    private static void showSportQuizOverview() {
         String title;
         String resource;
         URL url;
@@ -617,7 +629,7 @@ public class MainApp{
                 SportQuizPhoneGraphicController graphicController = loaderSport.getController();
                 controller.setGraphicController(graphicController);
                 graphicController.setController(controller);
-                menu.setInstance(graphicController);
+                menu.setGraphicInstance(graphicController);
             }
             controller.setUser(getUser());
             controller.setMenu(menu);
@@ -632,7 +644,7 @@ public class MainApp{
     /**
      * Shows find gym overview inside the root layout.
      */
-    public static void showFindGymOverview(MenuController menu) {
+    private static void showFindGymOverview() {
         String title;
         String resource;
         URL url;
@@ -690,7 +702,7 @@ public class MainApp{
     /**
      * Shows sign up overview inside the root layout.
      */
-    public static void showSignUpOverview() {
+    private static void showSignUpOverview() {
         String title;
         String resource;
         URL url;
@@ -743,6 +755,82 @@ public class MainApp{
             Logger logger = Logger.getLogger(className);
             logger.log(Level.SEVERE, e.getMessage());
         }
+    }
+
+    /**
+     * Shows user interface overview desktop.
+     */
+    private static void showUserInterface() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            EditController editController;
+            if (isMobile()) {
+                if (Objects.equals(menu.getUser().getRole(), "gym")) {
+                    loader.setLocation(MainApp.class.getResource("SmartphoneView/GymEditDialogPhone5.fxml"));
+                    editController = new GymEditController();
+                } else {
+                    loader.setLocation(MainApp.class.getResource("SmartphoneView/UserEditDialogPhone.fxml"));
+                    editController = new UserEditController();
+                }
+            } else {
+                if (Objects.equals(menu.getUser().getRole(), "gym")) {
+                    loader.setLocation(MainApp.class.getResource("DesktopView/GymEditDialog.fxml"));
+                    editController = new GymEditController();
+                } else {
+                    loader.setLocation(MainApp.class.getResource("DesktopView/UserEditDialog.fxml"));
+                    editController = new UserEditController();
+                }
+            }
+            AnchorPane page = loader.load();
+            Stage dialogStage = null;
+            if (isNotMobile()) {
+                dialogStage = new Stage();
+
+
+                // Create the dialog Stage.
+                dialogStage.setTitle(menu.getUser().getUserName());
+                dialogStage.getIcons().add(new Image(Objects.requireNonNull(MainApp.class.getResourceAsStream("Images/Sportify icon.png"))));
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.initOwner(MainApp.getPrimaryStage());
+                Scene scene = new Scene(page);
+                dialogStage.setScene(scene);
+            } else {
+                FXMLLoader loaderTopScreen = new FXMLLoader();
+                loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen5.fxml"));
+                Pane paneTopScreen = loaderTopScreen.load();
+                MenuPhoneGraphicController graphicMenuController = loaderTopScreen.getController();
+
+                MainApp.getPrimaryPane().setCenter(page);
+                MainApp.getPrimaryPane().setTop(paneTopScreen);
+                assert graphicMenuController != null;
+                graphicMenuController.setController(menu);
+            }
+
+            // Set the person into the editController.
+            helpMethod2(loader, editController);
+
+            if(isNotMobile()) {
+                // Show the dialog and wait until the user closes it
+                assert dialogStage != null;
+                dialogStage.showAndWait();
+            }
+
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(MainApp.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+    }
+
+    public static void helpMethod2(FXMLLoader loader, EditController editController){
+        EditGraphicController graphicController = loader.getController();
+        editController.setGraphicController(graphicController);
+        editController.setUser(menu.getUser());
+        editController.setMenu(menu);
+        graphicController.setController(editController);
+        menu.setGraphicInstance(graphicController);
+        editController.setView(menu.getView());
+        menu.setView(ControllerType.USER_EDIT);
     }
 
     /**

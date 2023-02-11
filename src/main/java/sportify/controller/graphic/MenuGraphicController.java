@@ -1,23 +1,15 @@
 package sportify.controller.graphic;
 
-import sportify.MainApp;
-import sportify.controller.*;
-import sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import sportify.MainApp;
+import sportify.controller.Controller;
+import sportify.controller.ControllerType;
+import sportify.controller.GymInfoController;
+import sportify.controller.MenuController;
+import sportify.controller.graphic.phone.SportQuizPhoneGraphicController;
 
 public class MenuGraphicController implements GraphicController{
 
@@ -85,7 +77,7 @@ public class MenuGraphicController implements GraphicController{
     }
 
     public void helpMethod(){
-        EditGraphicController edit = (EditGraphicController) controller.getInstance();
+        EditGraphicController edit = (EditGraphicController) controller.getGraphicInstance();
         if(edit.controller.getView()==ControllerType.FIND_GYM) {
             findGymAction();
         } else if(edit.controller.getView()==ControllerType.GYM_INFO) {
@@ -138,7 +130,7 @@ public class MenuGraphicController implements GraphicController{
         controller.setView(ControllerType.HOME);
         MainApp.setMenu(controller);
         MainApp.setUser(controller.getUser());
-        MainApp.showHomeOverview();
+        MainApp.showOverview(ControllerType.HOME);
     }
     @FXML
     public void sportQuizAction() {
@@ -146,7 +138,7 @@ public class MenuGraphicController implements GraphicController{
         controller.setButton(sportQuiz, findGym, signOut, signIn, signUp, gymInfo);
         MainApp.setMenu(controller);
         MainApp.setUser(controller.getUser());
-        MainApp.showSportQuizOverview(controller);
+        MainApp.showOverview(ControllerType.SPORT_QUIZ);
     }
     @FXML
     public void findGymAction() {
@@ -154,14 +146,14 @@ public class MenuGraphicController implements GraphicController{
         controller.setButton(findGym, signOut, signIn, signUp, gymInfo, sportQuiz);
         MainApp.setMenu(controller);
         MainApp.setUser(controller.getUser());
-        MainApp.showFindGymOverview(controller);
+        MainApp.showOverview(ControllerType.FIND_GYM);
     }
     @FXML
     public void signLoginAction() {
         MainApp.setExternalLogin(true);
         MainApp.setMenu(controller);
         MainApp.setUser(controller.getUser());
-        MainApp.showLoginOverview();
+        MainApp.showOverview(ControllerType.LOGIN);
     }
     @FXML
     protected void signUpAction() {
@@ -169,68 +161,27 @@ public class MenuGraphicController implements GraphicController{
         controller.setButton(signUp, signOut, signIn, gymInfo, sportQuiz, findGym);
         MainApp.setMenu(controller);
         MainApp.setUser(controller.getUser());
-        MainApp.showSignUpOverview();
+        MainApp.showOverview(ControllerType.SIGN_UP);
     }
     @FXML
     protected void openUserInterface() {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            EditController editController;
-            if (Objects.equals(this.controller.getUser().getRole(), "gym")) {
-                loader.setLocation(MainApp.class.getResource("DesktopView/GymEditDialog.fxml"));
-                editController = new GymEditController();
-            } else {
-                loader.setLocation(MainApp.class.getResource("DesktopView/UserEditDialog.fxml"));
-                editController = new UserEditController();
-            }
-            AnchorPane page = loader.load();
-            Stage dialogStage = new Stage();
-
-
-            // Create the dialog Stage.
-            dialogStage.setTitle(this.controller.getUser().getUserName());
-            dialogStage.getIcons().add(new Image(Objects.requireNonNull(MainApp.class.getResourceAsStream("Images/Sportify icon.png"))));
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(MainApp.getPrimaryStage());
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            // Set the person into the editController.
-            helpMethod2(loader, editController);
-
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(MenuGraphicController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
-    }
-
-    public void helpMethod2(FXMLLoader loader, EditController editController){
-        EditGraphicController graphicController = loader.getController();
-        editController.setGraphicController(graphicController);
-        graphicController.setController(editController);
-        editController.setUser(this.controller.getUser());
-        editController.setMenu(this.controller);
-        this.controller.setInstance(graphicController);
-        editController.setView(controller.getView());
-        this.controller.setView(ControllerType.USER_EDIT);
+        MainApp.setMenu(controller);
+        MainApp.showOverview(ControllerType.USER_EDIT);
     }
 
     @FXML
     protected void submit(){
         if(controller.getView()==ControllerType.LOGIN) {
-            LoginGraphicController login = (LoginGraphicController) controller.getInstance();
+            LoginGraphicController login = (LoginGraphicController) controller.getGraphicInstance();
             login.submitActionLogin();
         } else if(controller.getView()==ControllerType.USER_EDIT) {
-            EditGraphicController edit = (EditGraphicController) controller.getInstance();
+            EditGraphicController edit = (EditGraphicController) controller.getGraphicInstance();
             edit.okAction();
         } else if(controller.getView()==ControllerType.SIGN_UP || controller.getView()==ControllerType.SIGN_UP_GYM) {
-            SignUpGraphicController sU = (SignUpGraphicController) controller.getInstance();
+            SignUpGraphicController sU = (SignUpGraphicController) controller.getGraphicInstance();
             sU.submit(controller.getView());
         } else if (controller.getView()==ControllerType.SIGN_UP_GYM2){
-            SignUpGymGraphicController gym = (SignUpGymGraphicController) controller.getInstance();
+            SignUpGymGraphicController gym = (SignUpGymGraphicController) controller.getGraphicInstance();
             gym.submitActionSignUpGym();
         }
     }
@@ -238,10 +189,10 @@ public class MenuGraphicController implements GraphicController{
     @FXML
     private void next(){
         if(controller.getView()==ControllerType.SPORT_QUIZ) {
-            SportQuizPhoneGraphicController quiz = (SportQuizPhoneGraphicController) controller.getInstance();
+            SportQuizPhoneGraphicController quiz = (SportQuizPhoneGraphicController) controller.getGraphicInstance();
             quiz.getAge();
         } else if(controller.getView()==ControllerType.SPORT_QUIZ_ENV) {
-            SportQuizPhoneGraphicController quiz = (SportQuizPhoneGraphicController) controller.getInstance();
+            SportQuizPhoneGraphicController quiz = (SportQuizPhoneGraphicController) controller.getGraphicInstance();
             quiz.getEnvironment();
         }
     }

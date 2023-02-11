@@ -22,6 +22,6 @@ public abstract class AccessController extends Controller{
      * {@code showLoginOverview} method.
      */
     public void login(){
-        MainApp.showLoginOverview();
+        MainApp.showOverview(ControllerType.LOGIN);
     }
 }

@@ -110,7 +110,7 @@ public class GymInfoGraphicController extends Subject implements GraphicControll
         menu.setFindGym();
         MainApp.setUser(controller.getUser());
         MainApp.setSearchCache(MainApp.getSearchCache());
-        MainApp.showFindGymOverview(menu);
+        MainApp.showOverview(ControllerType.FIND_GYM);
 
     }
     @FXML

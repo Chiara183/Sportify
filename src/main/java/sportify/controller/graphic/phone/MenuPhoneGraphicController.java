@@ -1,20 +1,13 @@
 package sportify.controller.graphic.phone;
 
+import javafx.fxml.FXML;
 import sportify.MainApp;
-import sportify.controller.*;
+import sportify.controller.ControllerType;
+import sportify.controller.GymInfoController;
 import sportify.controller.graphic.EditGraphicController;
 import sportify.controller.graphic.LoginGraphicController;
 import sportify.controller.graphic.MenuGraphicController;
 import sportify.controller.graphic.SignUpGymPhoneGraphicController;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-
-import java.io.IOException;
-import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MenuPhoneGraphicController extends MenuGraphicController {
 
@@ -32,7 +25,7 @@ public class MenuPhoneGraphicController extends MenuGraphicController {
         controller.setView(ControllerType.FIND_GYM);
         MainApp.setMenu(controller);
         MainApp.setUser(controller.getUser());
-        MainApp.showFindGymOverview(controller);
+        MainApp.showOverview(ControllerType.FIND_GYM);
     }
 
     @Override
@@ -50,7 +43,7 @@ public class MenuPhoneGraphicController extends MenuGraphicController {
         controller.setView(ControllerType.SPORT_QUIZ);
         MainApp.setMenu(controller);
         MainApp.setUser(controller.getUser());
-        MainApp.showSportQuizOverview(controller);
+        MainApp.showOverview(ControllerType.SPORT_QUIZ);
     }
 
     @Override
@@ -58,41 +51,7 @@ public class MenuPhoneGraphicController extends MenuGraphicController {
     public void signLoginAction() {
         MainApp.setMenu(controller);
         MainApp.setUser(controller.getUser());
-        MainApp.showLoginOverview();
-    }
-
-    @Override
-    @FXML
-    protected void openUserInterface() {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            EditController editController;
-            Pane paneTopScreen;
-            MenuPhoneGraphicController graphicMenuController;
-            if (Objects.equals(this.controller.getUser().getRole(), "gym")) {
-                loader.setLocation(MainApp.class.getResource("SmartphoneView/GymEditDialogPhone5.fxml"));
-                editController = new GymEditController();
-            } else {
-                loader.setLocation(MainApp.class.getResource("SmartphoneView/UserEditDialogPhone.fxml"));
-                editController = new UserEditController();
-            }
-            FXMLLoader loaderTopScreen = new FXMLLoader();
-            loaderTopScreen.setLocation(MainApp.class.getResource("SmartphoneView/topScreen5.fxml"));
-            paneTopScreen = loaderTopScreen.load();
-            graphicMenuController = loaderTopScreen.getController();
-            AnchorPane page = loader.load();
-
-            MainApp.getPrimaryPane().setCenter(page);
-            MainApp.getPrimaryPane().setTop(paneTopScreen);
-            assert graphicMenuController != null;
-            graphicMenuController.setController(this.controller);
-
-            // Set the person into the editController.
-            helpMethod2(loader, editController);
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(MenuGraphicController.class.getName());
-            logger.log(Level.SEVERE, e.getMessage());        }
+        MainApp.showOverview(ControllerType.LOGIN);
     }
 
     @Override
@@ -127,16 +86,16 @@ public class MenuPhoneGraphicController extends MenuGraphicController {
     @FXML
     protected void submit(){
         if(controller.getView()==ControllerType.LOGIN) {
-            LoginGraphicController login = (LoginGraphicController) controller.getInstance();
+            LoginGraphicController login = (LoginGraphicController) controller.getGraphicInstance();
             login.submitActionLogin();
         } else if(controller.getView()==ControllerType.USER_EDIT) {
-            EditGraphicController edit = (EditGraphicController) controller.getInstance();
+            EditGraphicController edit = (EditGraphicController) controller.getGraphicInstance();
             edit.calledOkAction();
         } else if(controller.getView()==ControllerType.SIGN_UP || controller.getView()==ControllerType.SIGN_UP_GYM) {
-            SignUpPhoneGraphicController sU = (SignUpPhoneGraphicController) controller.getInstance();
+            SignUpPhoneGraphicController sU = (SignUpPhoneGraphicController) controller.getGraphicInstance();
             sU.submit(controller.getView());
         } else if (controller.getView()==ControllerType.SIGN_UP_GYM2){
-            SignUpGymPhoneGraphicController gym = (SignUpGymPhoneGraphicController) controller.getInstance();
+            SignUpGymPhoneGraphicController gym = (SignUpGymPhoneGraphicController) controller.getGraphicInstance();
             gym.calledSubmitAction();
         }
     }

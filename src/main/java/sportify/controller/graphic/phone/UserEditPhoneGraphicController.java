@@ -1,5 +1,7 @@
 package sportify.controller.graphic.phone;
 
+import sportify.controller.Controller;
+import sportify.controller.UserEditController;
 import sportify.util.DateUtil;
 import sportify.bean.UserEditBean;
 import sportify.controller.graphic.UserEditGraphicController;
@@ -13,11 +15,20 @@ public class UserEditPhoneGraphicController extends UserEditGraphicController {
     /** Reference to bean*/
     protected final UserEditBean bean = new UserEditBean();
 
-    final int  day = userEditController.getUser().getBirthday().getDayOfMonth();
-    final int month = userEditController.getUser().getBirthday().getMonth().getValue();
-    final int year = userEditController.getUser().getBirthday().getYear();
+    int  day;
+    int month;
+    int year;
 
     /* The action of the button.*/
+    @Override
+    public void setController(Controller controller) {
+        this.userEditController = (UserEditController) controller;
+        super.setController(controller);
+        day = userEditController.getUser().getBirthday().getDayOfMonth();
+        month = userEditController.getUser().getBirthday().getMonth().getValue();
+        year = userEditController.getUser().getBirthday().getYear();
+    }
+
     @Override
     @FXML
     protected void okAction() {

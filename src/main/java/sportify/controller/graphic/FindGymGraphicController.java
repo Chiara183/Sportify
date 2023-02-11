@@ -1,6 +1,7 @@
 package sportify.controller.graphic;
 
 import sportify.MainApp;
+import sportify.controller.ControllerType;
 import sportify.controller.graphic.phone.FindGymPhoneGraphicController;
 import javafx.fxml.FXML;
 
@@ -10,7 +11,7 @@ public class FindGymGraphicController extends FindGymPhoneGraphicController impl
     @FXML
     private void skipAction() {
         MainApp.setUser(this.controller.getUser());
-        MainApp.showHomeOverview();
+        MainApp.showOverview(ControllerType.HOME);
     }
 
 }

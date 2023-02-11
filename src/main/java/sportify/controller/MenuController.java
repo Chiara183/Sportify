@@ -66,11 +66,25 @@ public class MenuController extends Controller{
     private String gym;
 
     /**
-     * The default constructor for
-     * the MenuController class.
+     * Singleton instance of this class
      */
-    public MenuController() {
-        this.type = ControllerType.MENU;
+    private static MenuController instance = null;
+
+    /**
+     * Private constructor for Singleton pattern
+     */
+    private MenuController() {}
+
+    /**
+     * Returns the singleton instance of the class
+     *
+     * @return The singleton instance of the class
+     */
+    public static MenuController getInstance() {
+        if (instance == null) {
+            instance = new MenuController();
+        }
+        return instance;
     }
 
     /**
@@ -172,7 +186,7 @@ public class MenuController extends Controller{
      * @param <T> the type of the instance, which extends
      *           the GraphicController class.
      */
-    public <T extends GraphicController> void setInstance(T instance){
+    public <T extends GraphicController> void setGraphicInstance(T instance){
         if (instance.getGraphicType() == ControllerType.LOGIN){
             setLogin((LoginGraphicController) instance);
         }
@@ -252,7 +266,7 @@ public class MenuController extends Controller{
      *
      * @return the current instance of a GraphicController.
      */
-    public GraphicController getInstance(){
+    public GraphicController getGraphicInstance(){
         if (login!=null){
             return getLogin();
         }

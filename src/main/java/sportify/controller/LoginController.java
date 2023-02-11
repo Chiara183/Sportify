@@ -104,7 +104,7 @@ public class LoginController extends AccessController{
      */
     public void home(){
         MainApp.setUser(this.user);
-        MainApp.showHomeOverview();
+        MainApp.showOverview(ControllerType.HOME);
         if(external){
             Stage stage = this.externalStage;
             stage.close();
@@ -129,12 +129,16 @@ public class LoginController extends AccessController{
                 this.menu.setUser(this.user);
                 MenuController menu = MainApp.menu();
                 menu.setUser(this.user);
-                GymInfoGraphicController gymInfoGraphicController = new GymInfoGraphicController();
-                GymInfoController gym = new GymInfoController();
-                gym.setUser(this.user);
-                gymInfoGraphicController.setController(gym);
-                gym.setGraphicController(gymInfoGraphicController);
-                loadUser(gym);
+                if(this.menu.getGym() != null) {
+                    GymInfoGraphicController gymInfoGraphicController = new GymInfoGraphicController();
+                    GymInfoController gym = new GymInfoController();
+                    gym.setUser(this.user);
+                    gymInfoGraphicController.setController(gym);
+                    gym.setGraphicController(gymInfoGraphicController);
+                    loadUser(gym);
+                } else if (this.menu.getView() == ControllerType.SIGN_UP){
+                    MainApp.showOverview(ControllerType.HOME);
+                }
                 Stage stage = this.externalStage;
                 stage.close();
             }

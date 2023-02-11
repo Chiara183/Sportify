@@ -126,7 +126,7 @@ public class LoginGraphicController extends AccessGraphicController{
     }
     @FXML
     private void signUpAction(){
-        MainApp.showSignUpOverview();
+        MainApp.showOverview(ControllerType.SIGN_UP);
     }
 
     /** Is called to set controller*/

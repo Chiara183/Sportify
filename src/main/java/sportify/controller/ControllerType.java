@@ -30,11 +30,6 @@ public enum ControllerType {
     MAP,
 
     /**
-     * Controller used for the main menu of the application.
-     */
-    MENU,
-
-    /**
      * Controller used for user registration.
      */
     SIGN_UP,
