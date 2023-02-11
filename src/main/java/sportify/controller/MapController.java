@@ -74,13 +74,6 @@ public class MapController extends Controller{
             .withAttributions("'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
 
     /**
-     * Constructs a MapController object.
-     */
-    public MapController() {
-        this.type = ControllerType.MAP;
-    }
-
-    /**
      * Implements the abstract setSearchCache
      * method from the Controller class.
      *

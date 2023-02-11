@@ -25,11 +25,6 @@ public enum ControllerType {
     LOGIN,
 
     /**
-     * Controller used to display a map.
-     */
-    MAP,
-
-    /**
      * Controller used for user registration.
      */
     SIGN_UP,
@@ -38,11 +33,6 @@ public enum ControllerType {
      * Controller used for gym registration.
      */
     SIGN_UP_GYM,
-
-    /**
-     * Controller used to view information about a specific sport.
-     */
-    SPORT,
 
     /**
      * Controller used for sport quizzes.

@@ -56,13 +56,6 @@ public class SportController extends Controller{
     }
 
     /**
-     * Constructor method for the SportController class
-     */
-    public SportController(){
-        this.type = ControllerType.SPORT;
-    }
-
-    /**
      * Method to load the sport descriptions from the database
      *
      * @param sport - name of the sport
