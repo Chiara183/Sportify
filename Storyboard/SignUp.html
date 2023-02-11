@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="stylesSignUp.css">
+  <script src="main.js" defer></script>
+</head>
+
+<body>
+  <article class="container">
+    <nav>
+      <a href="/">Home</a>
+      <a href="/quiz">Sport Quiz</a>
+      <a href="/find">Gym Finder</a>
+      <a href="/login">Login</a>
+      <a href="/signup">Sign Up</a>
+    </nav>
+    <header>
+      <img src="img\Sportify_logo.png" alt="logo sportify">
+    </header>
+    <form action="">
+      <fieldset>
+        <ul>
+          <li><label for="username" class="required-field">Username</label>
+            <input type="text" id="username" class="glowing" name="username" required>
+          </li>
+          <li><label for="firstname">First Name</label>
+            <input type="text" id="firstname" class="glowing" name="firstname">
+          </li>
+          <li><label for="lastname">Last Name</label>
+            <input type="text" id="lastname" class="glowing" name="lastname">
+          </li>
+          <li id="psw"><label for="password" class="required-field">Password</label>
+            <input type="password" id="password" class="glowing" name="password" required>
+          </li>
+          <li><label for="email" class="required-field">Email</label>
+            <input type="email" id="email" class="glowing" name="email" required>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset class="radio-fieldset">
+        <input type="checkbox" name="user-type" id="gym" value="gym">
+        <label for="gym">Gym</label>
+        <input type="checkbox" name="user-type" id="user" value="user">
+        <label for="user">User</label>
+      </fieldset>
+      <fieldset class="actions">
+        <button type="submit">Submit</button>
+        <button type="button">Skip</button>
+      </fieldset>
+    </form>
+  </article>
+</body>
+
+</html>
