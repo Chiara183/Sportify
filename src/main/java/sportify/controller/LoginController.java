@@ -18,6 +18,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import sportify.model.dao.Submit;
+import javafx.animation.Animation;
+
+
 
 import java.util.Objects;
 
@@ -167,7 +170,7 @@ public class LoginController extends AccessController{
     private void doTime(){
         final int[] seconds = {delay.intValue()};
         Timeline time = new Timeline();
-        time.setCycleCount(Timeline.INDEFINITE);
+        time.setCycleCount(Animation.INDEFINITE);
         KeyFrame frame = new KeyFrame(Duration.seconds(delay),
                 event -> {
             seconds[0]--;
@@ -182,7 +185,6 @@ public class LoginController extends AccessController{
         time.getKeyFrames().add(frame);
         time.playFromStart();
     }
-
     /**
      * loadUser is a private method that takes
      * in a GymInfoController and loads the user information.
