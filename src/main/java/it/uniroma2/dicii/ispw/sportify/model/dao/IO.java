@@ -61,6 +61,12 @@ public class IO {
                 "'" + birthday + "')";
         try {
             DAO.updateAndGetDB(query);
+        }
+        catch (DAOException e){
+            Logger logger = Logger.getLogger(IO.class.getName());
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        try{
             if (Objects.equals(ruolo, "gym")) {
                 String gymName = map.get("gymName");
                 String address = map.get(ADDRESS);

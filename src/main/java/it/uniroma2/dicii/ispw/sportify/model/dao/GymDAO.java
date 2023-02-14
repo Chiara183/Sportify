@@ -31,8 +31,10 @@ public class GymDAO {
                     "FROM user " +
                     "LEFT JOIN gym " +
                     "ON gym.owner = user.username " +
-                    "WHERE user.ruolo = \"gym\"");
+                    "WHERE user.ruolo = \"gym\"" +
+                    "ORDER BY gym.owner IS NULL DESC, user.username DESC");
             rs = ps.executeQuery();
+            rs.next();
             gymAccount = IO.getInfoUser(rs);
         } catch (SQLException e) {
             Logger logger = Logger.getLogger(GymDAO.class.getName());
