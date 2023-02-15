@@ -35,6 +35,7 @@ public class MainAppLauncher extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
+        int a;
         String s = "";
         Connection c = null;
         String parameter;
