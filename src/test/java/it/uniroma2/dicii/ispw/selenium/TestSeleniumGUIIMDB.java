@@ -20,7 +20,9 @@ public class TestSeleniumGUIIMDB {
   public void setUp() {
     String driverPath = System.getenv("CHROMEDRIVER_PATH");
     System.setProperty("webdriver.chrome.driver", driverPath);
-    driver = new ChromeDriver();
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--user-data-dir=/tmp/chrome-profile-" + UUID.randomUUID());
+    WebDriver driver = new ChromeDriver(options);
     js = (JavascriptExecutor) driver;
   }
 
@@ -29,6 +31,9 @@ public class TestSeleniumGUIIMDB {
    */
   @After
   public void tearDown() {
+    if (driver != null) {
+        driver.quit();
+    }
     driver.quit();
   }
 
