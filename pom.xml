@@ -372,7 +372,9 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <failIfNoTests>false</failIfNoTests>
+                        <configuration>
+                                 <failIfNoTests>true</failIfNoTests>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
