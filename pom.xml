@@ -372,17 +372,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/HomePhoneTest.java</exclude>
-                                <exclude>**/LoginTest.java</exclude>
-                                <exclude>**/MainAppTest.java</exclude>
-                                <exclude>**/MenuTest.java</exclude>
-                                <exclude>**/Quiz*Test.java</exclude>
-                                <exclude>**/QuizPhoneTest.java</exclude>
-                                <exclude>**/TestSeleniumAPI*.java</exclude>
-                            </excludes>
-                        </configuration>
+                        <failIfNoTests>false</failIfNoTests>
                     </plugin>
                 </plugins>
             </build>
