@@ -14,7 +14,8 @@ public class TestSeleniumGUIYoutube extends testBaseSelenium{
   JavascriptExecutor js;
   @Before
   public void setUp() {
-    System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+    String driverPath = System.getenv("CHROMEDRIVER_PATH");
+    System.setProperty("webdriver.chrome.driver", driverPath);
     driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
   }
