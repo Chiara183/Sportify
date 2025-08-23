@@ -56,6 +56,7 @@ jobs:
           # Esegui Maven saltando i test che richiedono GUI o WebDriver.
           # Usa la sintassi Surefire 3.x con pattern negativi (!).
           mvn -B \
+            -Pci-linux,skip-ui-tests \
             -DfailIfNoTests=false \
             -Dtest="**/*Test,!**/HomePhoneTest,!**/LoginTest,!**/MainAppTest,!**/MenuTest,!**/Quiz*Test,!**/QuizPhoneTest,!**/TestSeleniumAPI*" \
             verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
