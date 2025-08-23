@@ -7,7 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class testSelenium extends testBaseSelenium{
     public static Double RateValue () {
         System.setProperty("webdriver.chrome.whitelistedIps", "");
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        String driverPath = System.getenv("CHROMEDRIVER_PATH");
+        System.setProperty("webdriver.chrome.driver", driverPath);
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.imdb.com/title/tt0273255/");
 
@@ -25,7 +26,8 @@ public class testSelenium extends testBaseSelenium{
     }
 
     public static String Translation () throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        String driverPath = System.getenv("CHROMEDRIVER_PATH");
+        System.setProperty("webdriver.chrome.driver", driverPath);
         WebDriver driver = new ChromeDriver();
         driver.get("https://translate.google.it/?hl=it&sl=it&tl=en&op=translate");
         driver.findElement(
@@ -46,3 +48,4 @@ public class testSelenium extends testBaseSelenium{
         return translation;
     }
 }
+
