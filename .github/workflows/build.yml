@@ -58,11 +58,5 @@ jobs:
           mvn -B \
             -Pci-linux,skip-ui-tests \
             -DfailIfNoTests=false \
-            -Dtest="**/*Test,!**/HomePhoneTest,!**/LoginTest,!**/MainAppTest,!**/MenuTest,!**/Quiz*Test,!**/QuizPhoneTest,!**/TestSeleniumAPI*" \
             verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -Dsonar.projectKey=Chiara183_Sportify2
-
-      - name: Report skipped tests info
-        run: |
-          echo "GUI/Selenium test esclusi in CI:"
-          echo " - HomePhoneTest, LoginTest, MainAppTest, MenuTest, Quiz*Test, QuizPhoneTest, TestSeleniumAPI*"
